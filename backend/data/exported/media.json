@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "61c82c052cf693a32ba5d21a"
+  },
+  "name": "Oil on Canvas",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c82c052cf693a32ba5d21b"
+  },
+  "name": "Acrylic on Canvas",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c82c052cf693a32ba5d21c"
+  },
+  "name": "Mixed Media",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c82c052cf693a32ba5d21d"
+  },
+  "name": "Watercolour",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c82c052cf693a32ba5d21e"
+  },
+  "name": "Gouache",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c82c052cf693a32ba5d21f"
+  },
+  "name": "Ink",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c82c052cf693a32ba5d220"
+  },
+  "name": "Photography",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c82c052cf693a32ba5d221"
+  },
+  "name": "Prints",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c82c052cf693a32ba5d222"
+  },
+  "name": "Sculpture",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c8c49e8eae4a8146dabdaa"
+  },
+  "name": "Collage",
+  "__v": 0
+}]

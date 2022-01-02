@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "61c82b569a7afa05d215e98e"
+  },
+  "name": "Nick",
+  "email": "info@fishslates.com",
+  "password": "$2a$10$UGfVTlbgdUliaD8bM3PMmezwSWUec33UN53pbyPH/UzAma2GMvj/K",
+  "avatar": {
+    "public_id": "avatars/tnzdsr6mvw4sv4k0g8vc",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640508246/avatars/tnzdsr6mvw4sv4k0g8vc.jpg"
+  },
+  "role": "admin",
+  "createdAt": {
+    "$date": "2021-12-26T08:44:06.578Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61c8f6b8b264b7bb87c9e3ea"
+  },
+  "name": "Jenny",
+  "email": "jane@gmail.com",
+  "password": "$2a$10$GzXsoLAVyBalMSKQFXLcBup8.PFOnVrdm2UWQiqbB4QfiR6aQHG56",
+  "avatar": {
+    "public_id": "avatars/hpm5fqbrtebnspnijjyu",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640560317/avatars/hpm5fqbrtebnspnijjyu.jpg"
+  },
+  "role": "user",
+  "createdAt": {
+    "$date": "2021-12-26T23:11:52.801Z"
+  },
+  "__v": 0
+}]

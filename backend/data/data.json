@@ -1,0 +1,378 @@
+[
+    {
+        "name": "Automata",
+        "price": 500,
+        "width": 40,
+        "height": 40,
+        "depth": 0,
+        "description": "Artist David Brooks is a fan of Japanese artist Isao Tomita and his unique synthesized music. It's no surprise therefore that David took inspiration from Tomita's album covers when he painted Automata. For those unfamiliar with his work, Tomita is considered by many to be the grandfather of electronic music and space-music. Broadly, Automata refers to machines making tasks easier, more efficient and less mistake-prone and ultimately helping humans toward an easier if not brighter future. In David's representation, horizontal bands overlay the image of what could be a face. A stark canvas texture and an alluring vignette create a puzzling and mysterious image. This gorgeous abstract would compliment any well lit room.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/1",
+                "url": "https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Automota1.jpg?fit=466%2C453&ssl=1",
+                "thumbUrl": "https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Automota1.jpg?fit=240%2C233&ssl=1"
+            },
+            {
+                "thumb_id": "products/2",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/08/Automota-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/08/Automota-on-your-wall.jpg"
+            }
+        ],
+        "artist": "David Brooks",
+        "orientation": "Square",
+        "media": "Acrylic on Canvas",
+        "datePublished": "2021",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "White Peonies",
+        "price": 425,
+        "width": 38,
+        "height": 21,
+        "depth": 0,
+        "description": "A recent abstract by artist Jim Ulrich, White Peonies is a depiction of the flowers in his wife’s garden.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/3",
+                "url": "https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/05/White-Peonies.jpg?fit=1920%2C1031&ssl=1",
+                "thumbUrl": "https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/05/White-Peonies.jpg?fit=240%2C129&ssl=1"
+            },
+            {
+                "thumb_id": "products/4",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/05/White-Peonies-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/05/White-Peonies-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Jim Ulrich",
+        "orientation": "Landscape",
+        "media": "Mixed Media",
+        "datePublished": "2021",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "Blue Light (iv)",
+        "price": 1200,
+        "width": 45.7,
+        "height": 63,
+        "depth": 0,
+        "description": "One of four paintings from Norman Sjoman's Blue Light Series.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/5",
+                "url": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Blue-Lightiv.jpg?fit=792%2C1080&ssl=1",
+                "thumbUrl": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Blue-Lightiv.jpg?fit=176%2C240&ssl=1"
+            },
+            {
+                "thumb_id": "products/6",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/09/Blue-Lightiv-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/09/Blue-Lightiv-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Norman Sjoman",
+        "orientation": "Portrait",
+        "media": "Watercolour",
+        "datePublished": "2021",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "School of Fish",
+        "price": 1755,
+        "width": 61,
+        "height": 76,
+        "depth": 0,
+        "description": "A playful painting by Smartex Tambala that takes a snapshot of life under the sea. School of Fish would make an interesting and quirky addition to any room.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/7",
+                "url": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/School-of-Fish.jpg?fit=240%2C320&ssl=1",
+                "thumbUrl": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/School-of-Fish.jpg?fit=180%2C240&ssl=1"
+            },
+            {
+                "thumb_id": "products/8",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/07/School-of-Fish-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/07/School-of-Fish-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Smartex Tambala",
+        "orientation": "Portrait",
+        "media": "Acrylic on Canvas",
+        "datePublished": "2021",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "The Waiting",
+        "price": 1100,
+        "width": 46,
+        "height": 91,
+        "depth": 0,
+        "description": "The striking stillness of the heron is captured by artist Jegan G Raja in his painting, The Waiting. The beautiful blues and greens would make this a lovely addition to freshen up any room.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/9",
+                "url": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/The-Waiting.jpg?fit=570%2C1080&ssl=1",
+                "thumbUrl": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/The-Waiting.jpg?fit=127%2C240&ssl=1"
+            },
+            {
+                "thumb_id": "products/10",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/07/The-Waiting-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/07/The-Waiting-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Jegan G Raja",
+        "orientation": "Portrait",
+        "media": "Acrylic on Canvas",
+        "datePublished": "2021",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "Requiem for Ad Reinhardt",
+        "price": 1000,
+        "width": 51,
+        "height": 41,
+        "depth": 0,
+        "description": "Using dark colours, artist Ed Bader takes a minimalist, geometric approach in his homage to American abstract expressionist Ad Reinhardt.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/11",
+                "url": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Requiem-for-Ad-Reinhart.jpg?fit=1357%2C1080&ssl=1",
+                "thumbUrl": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Requiem-for-Ad-Reinhart.jpg?fit=240%2C191&ssl=1"
+            },
+            {
+                "thumb_id": "products/12",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/08/Requiem-for-Ad-Reinhart-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/08/Requiem-for-Ad-Reinhart-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Edward Bader",
+        "orientation": "Landscape",
+        "media": "Acrylic on Canvas",
+        "datePublished": "2018",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "Songs-P3024_03",
+        "price": 3850,
+        "width": 61,
+        "height": 76,
+        "depth": 0,
+        "description": "From his Songs series, Songs-P3024_03, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/13",
+                "url": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Songs-P3024_03.jpg?fit=866%2C1080&ssl=1",
+                "thumbUrl": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Songs-P3024_03.jpg?fit=192%2C240&ssl=1"
+            },
+            {
+                "thumb_id": "products/14",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/08/Songs-P3024_03-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/08/Songs-P3024_03-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Quentin Caron",
+        "orientation": "Portrait",
+        "media": "Oil on Canvas",
+        "datePublished": "2017",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "Strictly Outta Curiosity",
+        "price": 825,
+        "width": 51,
+        "height": 51,
+        "depth": 0,
+        "description": "This is the second painting that was created in a series focused on working with pairs. Artist Rachel Cadrin created Strictly Outta Curiosity at the same time as creating its mate, What Would Happen. The colours are the same but the space created is unique to each piece.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/15",
+                "url": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Strictly-Outta-Curiosity.jpg?fit=1080%2C1080&ssl=1",
+                "thumbUrl": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Strictly-Outta-Curiosity.jpg?fit=240%2C240&ssl=1"
+            },
+            {
+                "thumb_id": "products/16",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/08/Strictly-Outta-Curiosity-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/08/Strictly-Outta-Curiosity-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Rachel Cadrin",
+        "orientation": "Square",
+        "media": "Oil on Canvas",
+        "datePublished": "2018-06-20",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "Rubinstein",
+        "price": 1150,
+        "width": 45.72,
+        "height": 60.96,
+        "depth": 0,
+        "description": "Created from mixed media collage, Rubinstein is artist Perry Adamuik's homage to the classical pianist.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/17",
+                "url": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Rubinstein.jpeg?fit=784%2C1073&ssl=1",
+                "thumbUrl": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Rubinstein.jpeg?fit=175%2C240&ssl=1"
+            },
+            {
+                "thumb_id": "products/18",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/09/Rubinstein-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/09/Rubinstein-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Perry Adamuik",
+        "orientation": "Portrait",
+        "media": "Mixed Media",
+        "datePublished": "2021-09-05",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "Artifact no.57",
+        "price": 800,
+        "width": 32.4,
+        "height": 27.3,
+        "depth": 0,
+        "description": "Alyssia White's Artifact no.57: \"Both poison and light travel as fast as a homesick bird\".",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/19",
+                "url": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Artifact-no.57.jpg?fit=1248%2C1080&ssl=1",
+                "thumbUrl": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Artifact-no.57.jpg?fit=240%2C208&ssl=1"
+            },
+            {
+                "thumb_id": "products/20",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/09/Artifact-no.57-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/09/Artifact-no.57-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Alyssia White",
+        "orientation": "Landscape",
+        "media": "Mixed Media",
+        "datePublished": "2021",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "El Quadern Gris (The Gray Notebook)",
+        "price": 175,
+        "width": 28,
+        "height": 35,
+        "depth": 0,
+        "description": "Artist David Cheney was inspired after reading this classic of Catalan literature by Josep Pal, El Quadern Gris.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/21",
+                "url": "https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/El-Quadern-Gris-The-Gray-Notebook.jpg?fit=856%2C1080&ssl=1",
+                "thumbUrl": "https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/El-Quadern-Gris-The-Gray-Notebook.jpg?fit=190%2C240&ssl=1"
+            },
+            {
+                "thumb_id": "products/22",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/09/El-Quadern-Gris-The-Gray-Notebook-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/09/El-Quadern-Gris-The-Gray-Notebook-on-your-wall.jpg"
+            }
+        ],
+        "artist": "David Cheney",
+        "orientation": "Portrait",
+        "media": "Mixed Media",
+        "datePublished": "2021-09-01",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "Fun Money Currents (Up Flow)",
+        "price": 1685,
+        "width": 45.2,
+        "height": 45.2,
+        "depth": 0,
+        "description": "One in a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. Fun Money Currents (Up Flow), \"currents, the rhythmic movement of money, exchanges of goods and experiences. New growth is buoyed upward by the currents, reaching toward sunlight.\" This mixed-media creation uses foil and acrylic on canvas.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/23",
+                "url": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/11/Fun-Money-Currents-Up-Flow.jpg?fit=1080%2C1071&ssl=1",
+                "thumbUrl": "https://i2.wp.com/abstractartcanada.com/wp-content/uploads/2021/11/Fun-Money-Currents-Up-Flow.jpg?fit=240%2C238&ssl=1"
+            },
+            {
+                "thumb_id": "products/24",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/11/Fun-Money-Currents-Up-Flow-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/11/Fun-Money-Currents-Up-Flow-on-your-wall.jpg"
+            }
+        ],
+        "artist": "Debbie.lee Miszaniec",
+        "orientation": "Square",
+        "media": "Acrylic on Canvas",
+        "datePublished": "2014-08-02",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    },
+
+    {
+        "name": "Authentic Self",
+        "price": 500,
+        "width": 40,
+        "height": 40,
+        "depth": 0,
+        "description": "When he painted Authentic Self, artist David Brooks was pondering the question of how much of our true selves we reveal on our journeys through life.",
+        "ratings": 0,
+        "images": [
+            {
+                "public_id": "products/25",
+                "url": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Authentic-Self.jpg?fit=1082%2C1080&ssl=1",
+                "thumbUrl": "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Authentic-Self.jpg?fit=240%2C240&ssl=1"
+            },
+            {
+                "thumb_id": "products/26",
+                "url": "https://abstractartcanada.com/wp-content/uploads/2021/08/Authentic-Self-on-your-wall.jpg",
+                "thumbUrl": "https://abstractartcanada.com/wp-content/uploads/2021/08/Authentic-Self-on-your-wall.jpg"
+            }
+        ],
+        "artist": "David Brooks",
+        "orientation": "Square",
+        "media": "Acrylic on Canvas",
+        "datePublished": "2021",
+        "stock": 1,
+        "numOfReviews": 0,
+        "reviews": []
+    }
+]
