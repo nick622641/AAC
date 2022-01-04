@@ -49,16 +49,16 @@ const Lightbox = (props) => {
             </animated.div> 
 
             <div className="arrow-buttons">
-                    <i 
-                        className={imgIndex > 0 ? 'fa fa-chevron-left' : ''} 
-                        onClick={moveLeft}
-                    />
-                    <i 
-                        className={imgIndex < (props.product.images.length - 1) ? 'fa fa-chevron-right' : ''}
-                        onClick={moveRight}
-                    />
-                </div>
-                <i className="fa fa-times" onClick={props.toggleLightbox}></i>
+                <i 
+                    className={imgIndex > 0 ? 'fa fa-chevron-left' : ''} 
+                    onClick={moveLeft}
+                />
+                <i 
+                    className={imgIndex < (props.product.images.length - 1) ? 'fa fa-chevron-right' : ''}
+                    onClick={moveRight}
+                />
+            </div>
+            <i className="fa fa-times" onClick={props.toggleLightbox}/>
 
             </div>
 

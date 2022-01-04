@@ -12,15 +12,15 @@ const Shipping = () => {
     const navigate = useNavigate()
     const countriesList = Object.values(countries)
     const { shippingInfo } = useSelector(state => state.cart)    
-    const [ address, setAddress ] = useState(shippingInfo.address)
-    const [ city, setCity ] = useState(shippingInfo.city)
+    const [ address, setAddress       ] = useState(shippingInfo.address)
+    const [ city, setCity             ] = useState(shippingInfo.city)
     const [ postalCode, setPostalCode ] = useState(shippingInfo.postalCode)
-    const [ phoneNo, setPhoneNo ] = useState(shippingInfo.phoneNo)
-    const [ country, setCountry ] = useState(shippingInfo.country)    
+    const [ phoneNo, setPhoneNo       ] = useState(shippingInfo.phoneNo)
+    const [ country, setCountry       ] = useState(shippingInfo.country)    
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(saveShippingInfo({ address, city, postalCode, phoneNo, country}))
+        dispatch(saveShippingInfo( { address, city, postalCode, phoneNo, country } ))
         navigate('/order/confirm')
     }
 
@@ -30,18 +30,20 @@ const Shipping = () => {
 
             <MetaData title={'Shipping Info'} />
 
-            <div className="container">
-
-            <CheckoutSteps shipping />
+            <div className="container">            
 
                 <div className="wrapper">
 
+                    <CheckoutSteps shipping />
+
+                    <br />
+
                     <form className="user-form" onSubmit={submitHandler}>
 
-                        <h2>Shipping Info</h2>
+                        <h1>Shipping Info</h1>
 
                         <table>
-                            <tbody>
+                        <tbody>
                             <tr>
                                 <th>
                                     <h6>Address:</h6>
@@ -113,10 +115,12 @@ const Shipping = () => {
                                     </select>
                                 </td>
                             </tr>
-                            </tbody>
-                        </table>   
-                  
-                        <button className="submit">CONTINUE</button>
+                        </tbody>
+                        </table> 
+
+                        <br />  
+                    
+                        <button className="submit">Continue</button>
 
                     </form>
 

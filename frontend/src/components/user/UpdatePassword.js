@@ -1,23 +1,27 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import MetaData from '../layouts/MetaData'
 import { useAlert } from 'react-alert'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updatePassword, clearErrors } from '../../actions/userActions'
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants'
-import { useNavigate, Link } from 'react-router-dom'
+import MetaData from '../layouts/MetaData'
 
-const UpdatePassword = () => {
+const UpdatePassword = () => {    
+    
+    const dispatch = useDispatch()      
+    const navigate = useNavigate()     
+    const alert = useAlert() 
+    const [ newPassword, setNewPassword ] = useState('') 
+    const [ oldPassword, setOldPassword ] = useState('')       
+    const [ oldPasswordVisible, setOldPasswordVisible ] = useState(false)
+    const [ newPasswordVisible, setNewPasswordVisible ] = useState(false)
+    const { loading, isUpdated, error } = useSelector( state => state.user )
 
-    const navigate = useNavigate()
-    const [oldPassword, setOldPassword] = useState('')
-    const [password, setPassword] = useState('')    
-    const dispatch = useDispatch()
-    const alert = useAlert()
-    const {  error, isUpdated, loading } = useSelector(state => state.user )
-    const [ passwordVisible, setPasswordVisible ] = useState()
-
-    const togglePassword = () => {
-        setPasswordVisible(!passwordVisible)
+    const toggleOldPassword = () => {
+        setOldPasswordVisible(!oldPasswordVisible)
+    }
+    const toggleNewPassword = () => {
+        setNewPasswordVisible(!newPasswordVisible)
     }
 
     useEffect(() => {    
@@ -26,7 +30,7 @@ const UpdatePassword = () => {
             dispatch(clearErrors())
         }
         if(isUpdated) {
-            alert.success('Password updated successfully')
+            alert.success('Password Updated Successfully')
             navigate('/me')              
             dispatch({
                 type: UPDATE_PASSWORD_RESET
@@ -38,60 +42,69 @@ const UpdatePassword = () => {
         e.preventDefault()
         const formData = new FormData()
         formData.set('oldPassword', oldPassword)
-        formData.set('password', password)
+        formData.set('password', newPassword)
         dispatch(updatePassword(formData))
     }
 
     return (
+
         <Fragment>
+
             <MetaData title={'Update Password'} />
+
             <div className="container">
                 <div className="wrapper">
 
                     <form className="user-form" onSubmit={submitHandler}>
-                        <h2>Update Password</h2>
+
+                        <h1>Update Password</h1>
                         
                         <label>
                             <input
-                                type={passwordVisible ? 'text' : 'password'}
+                                type={oldPasswordVisible ? 'text' : 'password'}
                                 placeholder="Old Password"
                                 value={oldPassword}
                                 onChange={(e) => setOldPassword(e.target.value)}
+                                required
                             />
                             <i 
-                                className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                aria-hidden="true"
-                                onClick={togglePassword}
-                            ></i>
-                        </label>  
-                    
+                                className={oldPasswordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
+                                onClick={toggleOldPassword}
+                            />
+                        </label> 
+                        <br />                     
                         <label>
                             <input
-                                type={passwordVisible ? 'text' : 'password'}
+                                type={newPasswordVisible ? 'text' : 'password'}
                                 placeholder="New Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                required
                             />
                             <i 
-                                className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                aria-hidden="true"
-                                onClick={togglePassword}
-                            ></i>
+                                className={newPasswordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
+                                onClick={toggleNewPassword}
+                            />
                         </label>
                         <br /><br />
                         <button 
                             className="submit" 
                             disabled={loading ? true : false}
                         >
-                            Update Password
+                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Update Password'}
                         </button>
 
-                        <Link to="/me"><i className="fa fa-times"></i></Link>
+                        <Link to="/me"><i className="fa fa-times"/></Link>
+
                     </form>
+
                 </div>
             </div>
+
         </Fragment>
+
     )
+
 }
 
 export default UpdatePassword

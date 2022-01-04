@@ -11,7 +11,7 @@ const Terms = () => {
 
         <MetaData title={'Terms & Conditions'} />
 
-        <section><img src="../../images/terms.jpg" alt="Terms and Conditions" /></section>
+        <img src="../../images/terms.jpg" alt="Terms and Conditions" />
 
         <div className="container">
             <div className="wrapper parent">

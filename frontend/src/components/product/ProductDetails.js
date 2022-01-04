@@ -69,7 +69,7 @@ const ProductDetails = () => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title={product.name} />
-                    <div className="product-details">
+                    <div className="bg-grey">
                         <div className="container">         
                             <div className="wrapper">
                                 <div className={product.orientation !== 'Landscape' ? 'portrait parent' : 'landscape'}>

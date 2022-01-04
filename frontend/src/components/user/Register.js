@@ -67,63 +67,75 @@ const Register = () => {
             <MetaData title={'Register User'} />
 
             <div className="container">
-
                 <div className="wrapper">
-
                     <form onSubmit={submitHandler}  className="user-form">
 
-                        <h2>Register</h2>
+                        <h1>Register</h1>
 
-                        <label className="avatar">                            
-                            <input
-                                type='file'   
-                                name="avatar"                            
-                                accept="images/*"
-                                onChange={onChange}                                 
-                            />                            
-                            <img src={avatarPreview} alt="Avatar Preview"/>
-                        </label>     
-
-                        <label>
-                            <input 
-                                type="text" 
-                                placeholder="Name"   
-                                name="name"                      
-                                value={name}
-                                onChange={onChange}
-                            />                
-                        </label>
-
-                        <label>
-                            <input 
-                                type="email" 
-                                placeholder="Email" 
-                                name="email"                        
-                                value={email}
-                                onChange={onChange}
-                            />                
-                        </label>
-
-                        <label>
-                            <input 
-                                type={passwordVisible ? 'text' : 'password'}
-                                placeholder="Password" 
-                                name="password"
-                                value={password}
-                                onChange={onChange} 
-                            />                
-                            <i 
-                                className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                aria-hidden="true"
-                                onClick={togglePassword}
-                            ></i>
-                        </label>                          
-                        <br /><br />
+                        <table  className="middle-align">
+                            <tbody>
+                                <tr>
+                                    <td rowSpan="3">
+                                        <label className="avatar">                            
+                                            <input
+                                                type='file'   
+                                                name="avatar"                            
+                                                accept="images/*"
+                                                onChange={onChange} 
+                                                required                                
+                                            />                            
+                                            <img src={avatarPreview} alt="Avatar Preview"/>
+                                        </label>
+                                    </td>
+                                    <td>                                        
+                                        <input 
+                                            type="text" 
+                                            placeholder="Name"   
+                                            name="name"                      
+                                            value={name}
+                                            onChange={onChange}
+                                            required
+                                        /> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>                                       
+                                        <input 
+                                            type="email" 
+                                            placeholder="Email" 
+                                            name="email"                        
+                                            value={email}
+                                            onChange={onChange}
+                                            required
+                                        />  
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>
+                                            <input 
+                                                type={passwordVisible ? 'text' : 'password'}
+                                                placeholder="Password" 
+                                                name="password"
+                                                value={password}
+                                                onChange={onChange} 
+                                                required
+                                            />                
+                                            <i 
+                                                className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
+                                                onClick={togglePassword}
+                                            />
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       
                         <button 
                             className="submit"
                             disabled={loading ? true : false}
                         >
-                            Sign Up
+                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Sign Up'}
                         </button>
 
                         <p className="parent">

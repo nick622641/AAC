@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 
 const Sidebar = () => {
 
-    const [ isSidebarOpen, setSideBarOpen] = useState(false)
+    const [ isSidebarOpen, setSideBarOpen ] = useState(false)
     const [ isMenuVisible, setMenuVisible ] = useState(false)
     const [ isCategoriesVisible, setCategoriesVisible ] = useState(false)
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
@@ -20,13 +20,12 @@ const Sidebar = () => {
     const toggleCategories = () => {
         setCategoriesVisible(isCategoriesVisible => !isCategoriesVisible)
     }
-
     const menuAppear = useSpring({
-        transform: isMenuVisible ? "translate3D(0,0,0)" : "translate3D(0,-40px,0)",
+        transform: isMenuVisible ? "translateY(0)" : "translateY(-40px)",
         opacity: isMenuVisible ? 1 : 0
     })
     const categoriesAppear = useSpring({
-        transform: isCategoriesVisible ? "translate3D(0,0,0)" : "translate3D(0,-40px,0)",
+        transform: isCategoriesVisible ? "translateY(0)" : "translateY(-40px)",
         opacity: isCategoriesVisible ? 1 : 0
     })
 
@@ -34,89 +33,84 @@ const Sidebar = () => {
 
         <Fragment>
 
-        <button 
-            className="filters show-filter"
-            onClick={() => {setSideBarOpen(!isSidebarOpen)}}
-        >
-            SHOW MENU
-        </button>
+            <button 
+                className="filters show-filter"
+                onClick={() => {setSideBarOpen(!isSidebarOpen)}}
+            >
+                SHOW MENU
+            </button>
 
-        {(isSidebarOpen || !isMobile) && (
+            {(isSidebarOpen || !isMobile) && (
             <animated.div style={isMobile ? sidebarAppear : {}}>
             
                 <nav>
                     <ul>
 
                         <li>
-                            <Link to="/dashboard"><i className="fa fa-tachometer"></i> Dashboard</Link>
-                        </li>
-                    
-                        <li onClick={() => {toggleMenu()}} style={{ cursor: "pointer" }}>                        
+                            <Link to="/dashboard"><i className="fa fa-tachometer" /> <span>Dashboard</span></Link>
+                        </li>                    
+                        <li onClick={() => {toggleMenu()}}>                        
                             <span>
-                                <i className="fa fa-picture-o"></i> 
-                                &nbsp;Artwork 
-                                <i className={isMenuVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} aria-hidden="true"></i>
+                                <i className="fa fa-picture-o" /> 
+                                &nbsp;Artwork
+                                <i className={isMenuVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} />
                             </span>
                             {isMenuVisible && ( 
                             <animated.div className="dropdown-menu" style={menuAppear}>  
                                 <ul>                            
                                     <li>
-                                        <Link to="/admin/products"><i className="fa fa-clipboard"></i> All</Link>
+                                        <Link to="/admin/products"><i className="fa fa-clipboard" /> All</Link>
                                     </li>
                         
                                     <li>
-                                        <Link to="/admin/product"><i className="fa fa-plus"></i> Create</Link>
+                                        <Link to="/admin/product"><i className="fa fa-plus" /> Create</Link>
                                     </li>
                                 </ul>
                             </animated.div>
                             )}
                         </li>
-
-                        <li onClick={() => {toggleCategories()}} style={{ cursor: "pointer" }}>                        
+                        <li onClick={() => {toggleCategories()}}>                        
                             <span>
-                                <i className="fa fa-tags"></i> 
-                                &nbsp;Categories 
-                                <i className={isCategoriesVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} aria-hidden="true"></i>
+                                <i className="fa fa-tags" /> 
+                                &nbsp;Categories
+                                <i className={isCategoriesVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} />
                             </span>
                             {isCategoriesVisible && ( 
                             <animated.div className="dropdown-menu" style={categoriesAppear}>  
                                 <ul>                            
                                     <li>
-                                        <Link to="/admin/artists"><i className="fa fa-user"></i> Artists</Link>
+                                        <Link to="/admin/artists"><i className="fa fa-user" /> Artists</Link>
                                     </li>                    
                                     <li>
-                                        <Link to="/admin/orientations"><i className="fa fa-compass"></i> Orientations</Link>
+                                        <Link to="/admin/orientations"><i className="fa fa-compass" /> Orientations</Link>
                                     </li>
                                     <li>
-                                        <Link to="/admin/media"><i className="fa fa-paint-brush"></i> Media</Link>
+                                        <Link to="/admin/media"><i className="fa fa-paint-brush" /> Media</Link>
                                     </li>
                                 </ul>
                             </animated.div>
                             )}
-                        </li>
-    
+                        </li>    
                         <li>
-                            <Link to="/admin/orders"><i className="fa fa-shopping-basket"></i> Orders</Link>
+                            <Link to="/admin/orders"><i className="fa fa-shopping-basket"></i> <span>Orders</span></Link>
                         </li>
-
                         <li>
-                            <Link to="/admin/users"><i className="fa fa-users"></i> Users</Link>
+                            <Link to="/admin/users"><i className="fa fa-users"></i> <span>Users</span></Link>
                         </li>
-
                         <li>
-                            <Link to="/admin/reviews"><i className="fa fa-star"></i> Reviews</Link>
+                            <Link to="/admin/reviews"><i className="fa fa-star"></i> <span>Reviews</span></Link>
                         </li>
                 
                 </ul>
             </nav>
         
-            </animated.div>
-        )}
-
-        
+        </animated.div>
+        )}        
 
     </Fragment>
+
     )
+
 }
 
 export default Sidebar

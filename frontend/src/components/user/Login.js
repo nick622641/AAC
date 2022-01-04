@@ -4,19 +4,19 @@ import MetaData from '../layouts/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, clearErrors } from '../../actions/userActions'
-import { useNavigate, useLocation, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Login = () => {
         
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const location = useLocation()
+    // const location = useLocation()
     const alert = useAlert()
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')    
     const [ passwordVisible, setPasswordVisible ] = useState()
-    const { isAuthenticated, error, loading } = useSelector(state => state.auth )
-    const redirect = location.search  ? `/${location.search.split('=')[1]}` : '/'  
+    const { loading, isAuthenticated, error } = useSelector( state => state.auth )
+    // const redirect = location.search  ? `/${location.search.split('=')[1]}` : '/'  
     
     const togglePassword = () => {
         setPasswordVisible(!passwordVisible)
@@ -24,13 +24,13 @@ const Login = () => {
    
     useEffect(() => {
         if(isAuthenticated) {
-            navigate(redirect)   
+            navigate('/')   
         }
         if(error) { 
             alert.error(error)
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, isAuthenticated, error, navigate, redirect])
+    }, [dispatch, alert, isAuthenticated, error, navigate])
 
     const submitHandler = (e) => {        
         e.preventDefault()
@@ -48,12 +48,11 @@ const Login = () => {
                     <MetaData title={'Login'} />
 
                     <div className="container">
-
                         <div className="wrapper">
 
                             <form onSubmit={submitHandler} className="user-form">
 
-                                <h2>Login</h2>
+                                <h1>Login</h1>
 
                                 <label>
                                     <input 
@@ -61,6 +60,7 @@ const Login = () => {
                                         placeholder="Email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
+                                        required
                                     />                
                                 </label>
 
@@ -72,6 +72,7 @@ const Login = () => {
                                         placeholder="Password" 
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
+                                        required
                                     />                
                                     <i                         
                                         className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
@@ -86,8 +87,7 @@ const Login = () => {
                                 <br />
 
                                 <p className="parent">
-                                    <Link to="/password/forgot">Forgot Password?</Link>
-                               
+                                    <Link to="/password/forgot">Forgot Password?</Link>                               
                                     <Link to="/register">New User?</Link>
                                </p>
 
@@ -98,9 +98,13 @@ const Login = () => {
                     </div>
                    
                 </Fragment>
+
             )}
+
         </Fragment>
+
     )
+
 }
 
 export default Login

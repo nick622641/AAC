@@ -18,7 +18,7 @@ function PrivateRoute({ children, isAdmin }) {
 
         {loading === false && !isAdmin && (
 
-            isAuthenticated ? children : <Navigate to="/login" />   
+            isAuthenticated ? children : <Navigate to="/" />   
             
         )}   
 

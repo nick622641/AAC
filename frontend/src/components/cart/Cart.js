@@ -54,7 +54,7 @@ const Cart = () => {
 
                             <div className="parent">
 
-                            <table>
+                            <table className="middle-align">
                             <tbody>
                             {cartItems.map(item => (
                                 <tr key={item.product}>

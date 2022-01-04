@@ -1,22 +1,22 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import MetaData from '../layouts/MetaData'
 import { useAlert } from 'react-alert'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProfile, loadUser, clearErrors } from '../../actions/userActions'
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants'
-import { Link, useNavigate } from 'react-router-dom'
+import MetaData from '../layouts/MetaData'
 
 const UpdateProfile = () => {
-
-    const navigate = useNavigate()
+    
     const dispatch = useDispatch()
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [avatar, setAvatar] = useState('')
-    const [avatarPreview, setAvatarPreview] = useState('/images/default-avatar.jpg')     
+    const navigate = useNavigate()
     const alert = useAlert()
-    const { user } = useSelector(state => state.auth )
-    const { error, isUpdated, loading } = useSelector(state => state.user )
+    const [ name, setName ] = useState('')
+    const [ email, setEmail ] = useState('')
+    const [ avatar, setAvatar ] = useState('')
+    const [ avatarPreview, setAvatarPreview ] = useState('/images/default-avatar.jpg')   
+    const { user } = useSelector( state => state.auth )
+    const { loading, isUpdated, error } = useSelector( state => state.user )
 
     useEffect(() => {
         if(user) {
@@ -29,12 +29,12 @@ const UpdateProfile = () => {
             dispatch(clearErrors())
         }
         if(isUpdated) {
-            alert.success('User updated successfully')
+            alert.success('User Updated Successfully')
             dispatch(loadUser())
             navigate('/me')              
             dispatch({ type: UPDATE_PROFILE_RESET })
         }
-    }, [dispatch, alert, error, navigate, isUpdated, user])
+    }, [dispatch, navigate, user, alert, isUpdated, error])
 
     const submitHandler = (e) => {        
         e.preventDefault()
@@ -63,46 +63,44 @@ const UpdateProfile = () => {
             <MetaData title={'Update Profile'} />
 
             <div className="container">
-                <div className="wrapper">               
+                <div className="wrapper">  
+
                     <form className="user-form" onSubmit={submitHandler} encType='multipart/form-data'>
                       
-                        <h2>Update Profile</h2>
+                        <h1>Update Profile</h1>
 
-                        <table>
+                        <table className="middle-align">
                             <tbody>
                                 <tr>                                    
                                     <td>
-                                        <label className="avatar">
-                                          
+                                        <label className="avatar">                                          
                                             <img 
                                                 src={avatarPreview} 
                                                 alt='Avatar Preview' 
                                             />                                            
                                             <input
                                                 type='file'   
-                                                name="avatar"                            
-                                                accept="images/*"
                                                 onChange={onChange} 
                                             />         
                                         </label>
                                     </td>
-                                    <td className="vertical-align-top">
+                                    <td>
                                         <label>
                                             <input 
                                                 type="name" 
                                                 placeholder="Name"
-                                                name='name'
                                                 value={name}
                                                 onChange={(e) => setName(e.target.value)}
+                                                required
                                             />
                                         </label>
                                         <label>
                                             <input
                                                 type="email"
                                                 placeholder="Email"
-                                                name='email'
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
+                                                required
                                             />
                                         </label>
                                     </td>
@@ -114,10 +112,10 @@ const UpdateProfile = () => {
                             className="submit"
                             disabled={loading ? true : false}
                         >
-                            Update
+                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Update'}
                         </button>
 
-                        <Link to="/me"><i className="fa fa-times"></i></Link>
+                        <Link to="/me"><i className="fa fa-times"/></Link>
 
                     </form>
 

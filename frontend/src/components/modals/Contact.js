@@ -49,6 +49,7 @@ function Contact() {
                                     type="email" 
                                     placeholder="Email" 
                                     ref={emailInputRef}
+                                    required
                                 /> 
                             </td>
                         </tr>
@@ -57,12 +58,19 @@ function Contact() {
                                 <h6 style={{ paddingTop: "12px" }}>Message:</h6>
                             </th>
                             <td>
-                                <textarea rows="4" ref={messageInputRef} placeholder="Message" /> 
+                                <textarea 
+                                    rows="4" 
+                                    ref={messageInputRef} 
+                                    placeholder="Message" 
+                                    required
+                                /> 
                             </td>
                         </tr>
                         
                     </tbody>
                 </table>   
+
+                <br />
 
                 <button className="submit">Send</button>
                     

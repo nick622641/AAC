@@ -332,12 +332,12 @@ const UpdateProduct = () => {
                                     className="submit"
                                     disabled={loading ? true : false}
                                 >
-                                    {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i> : 'UPDATE'}
+                                    {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Update'}
                                 </button>
 
                             </form>
 
-                            <Link to="/admin/products"><i className="fa fa-times"></i></Link>
+                            <Link to="/admin/products"><i className="fa fa-times"/></Link>
 
                         </div>
 

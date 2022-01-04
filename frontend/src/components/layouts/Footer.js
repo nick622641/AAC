@@ -12,10 +12,10 @@ const Footer = () => {
                 <div className="wrapper">
 
                     <nav>        
-                        <ul>
+                        <ul className="parent">
                        
                             <li>
-                                <span>Galleries</span>
+                                <h6>Galleries</h6>
                                 <ul>                               
                                
                                     <li>
@@ -26,7 +26,7 @@ const Footer = () => {
                             </li>
 
                             <li>
-                                <span>Technical</span>
+                                <h6>Technical</h6>
                                 <ul>                               
                                
                                     <li>
@@ -46,14 +46,14 @@ const Footer = () => {
             <div className="container">            
                 <div className="wrapper">            
                     <nav> 
-                        <ul>
+                        <ul className="parent">
                             <li>
                             <div className="icons">  
                                 <Link to="!#" target="_blank">
-                                    <i className="fa fa-facebook facebook" aria-hidden="true"></i>
+                                    <i className="fa fa-facebook facebook"/>
                                 </Link>
                                 <Link to="!#" target="_blank">
-                                    <i className="fa fa-twitter" aria-hidden="true"></i>
+                                    <i className="fa fa-twitter"/>
                                 </Link>
                             </div>    
                             </li>  

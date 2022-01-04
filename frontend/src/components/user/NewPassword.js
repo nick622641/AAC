@@ -52,40 +52,40 @@ const NewPassword = () => {
                         <h2>New Password</h2>
                         
                         <label>
-                            <i className="fa fa-unlock-alt" aria-hidden="true"></i>
+                            <i className="fa fa-unlock-alt"/>
                             <input
                                 type={passwordVisible ? 'text' : 'password'}
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                required
                             />
                             <i 
                                 className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                aria-hidden="true"
                                 onClick={togglePassword}
                             ></i>
                         </label>
                        
                         <label>
-                            <i className="fa fa-unlock-alt" aria-hidden="true"></i>
+                            <i className="fa fa-unlock-alt"/>
                             <input
                                 type={passwordVisible ? 'text' : 'password'}
                                 placeholder="Confirm"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
                             />
                             <i 
                                 className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                aria-hidden="true"
                                 onClick={togglePassword}
                             ></i>
                         </label>
-
+                        <br />
                         <button
                             className="submit"
                             disabled={loading ? true : false}
                         >
-                            Set Password
+                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Set Password'}
                         </button>
 
                     </form>

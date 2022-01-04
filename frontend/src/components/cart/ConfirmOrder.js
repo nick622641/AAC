@@ -75,7 +75,7 @@ const ConfirmOrder = () => {
 
                     <div className="parent">
 
-                        <table>
+                        <table className="middle-align">
 
                             <tbody>
                                 

@@ -45,20 +45,24 @@ const OrderDetails = () => {
 
                     <div className="wrapper">
 
-                        <h2>Order <small># {order._id}</small></h2>
+                        <h1>Order <small># {order._id}</small></h1>
 
                         <div className="user-form cart">  
 
                             <div className="parent">
 
-                            <table>
+                            <table className="middle-align">
                                 <tbody>
                                     {orderItems && orderItems.map(item => (
                                     <tr key={item.product}>
                                         <td>
                                             <Link to={`/artwork/${item.product}`}>
                                                 <div className="cart-image">
-                                                    <img src={item.image} alt={item.name} height="90" width="115" />
+                                                    <img 
+                                                        src={item.image} 
+                                                        alt={item.name} 
+                                                        className="centered-image"
+                                                    />
                                                 </div>
                                             </Link>
                                         </td>
@@ -74,9 +78,7 @@ const OrderDetails = () => {
                                     </tr>
                                     ))}
                                 </tbody>
-                            </table> 
-
-                            <div style={{ width: "40px" }} />
+                            </table>                            
 
                             <div className="order-summary">
 
@@ -88,7 +90,7 @@ const OrderDetails = () => {
                                             <th>
                                                 <h6>Name:</h6>
                                             </th>
-                                            <td style={{ color: "var(--prmary-color)" }}>                                                
+                                            <td>                                                
                                                 {user && user.name}                                             
                                             </td>
                                         </tr>  
@@ -144,7 +146,7 @@ const OrderDetails = () => {
                                 </table>   
                             </div>
 
-                            <Link to="/orders/me"><i className="fa fa-times"></i></Link>                    
+                            <Link to="/orders/me"><i className="fa fa-times"/></Link>                    
                            
                         </div>
                         </div>

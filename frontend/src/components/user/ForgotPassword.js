@@ -1,16 +1,16 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import MetaData from '../layouts/MetaData'
 import { Link } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { forgotPassword, clearErrors } from '../../actions/userActions'
+import MetaData from '../layouts/MetaData'
 
 const ForgotPassword = () => {
 
-    const [email, setEmail] = useState('')
     const dispatch = useDispatch()
     const alert = useAlert()
-    const { error, message, loading } = useSelector(state => state.forgotPassword )
+    const [ email, setEmail ] = useState('')    
+    const { loading, message, error } = useSelector( state => state.forgotPassword )
 
     useEffect(() => {    
         if(error) { 
@@ -20,7 +20,7 @@ const ForgotPassword = () => {
         if(message) {
             alert.success(message)          
         }
-    }, [dispatch, alert, error, message])
+    }, [dispatch, alert, message, error])
 
     const submitHandler = (e) => {        
         e.preventDefault()
@@ -29,13 +29,17 @@ const ForgotPassword = () => {
         dispatch(forgotPassword(formData))
     }
     return (
+
         <Fragment>
+            
             <MetaData title={'Forgot Password'} />
             
             <div className="container">
                 <div className="wrapper">
+
                     <form className="user-form" onSubmit={submitHandler}>
-                        <h2>Forgot Password</h2>
+
+                        <h1>Forgot Password</h1>
                        
                         <label>
                             <input
@@ -43,23 +47,30 @@ const ForgotPassword = () => {
                                 placeholder="Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                         </label>
+
+                        <br /><br />
 
                         <button
                             className="submit"
                             disabled={loading ? true : false}
                         >
-                            Send Email
+                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Send Email'}
                         </button>
 
-                        <Link to="/login"><i className="fa fa-times"></i></Link>
+                        <Link to="/login"><i className="fa fa-times"/></Link>
 
                     </form>
+
                 </div>
             </div>
+
         </Fragment>
+
     )
+
 }
 
 export default ForgotPassword

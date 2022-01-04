@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { logout } from '../../actions/userActions'
@@ -12,6 +12,7 @@ import './layout.css'
 const Header = () => {
     const alert = useAlert()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { user, loading } = useSelector(state => state.auth)
     const { cartItems } = useSelector(state => state.cart)
     const [ isNavOpen, setIsNavOpen ] = useState(false)
@@ -23,6 +24,7 @@ const Header = () => {
         dispatch(logout())
         setMenuVisible(false)
         alert.success('Logged out successfully.')
+        navigate('/')
     }
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
@@ -53,7 +55,12 @@ const Header = () => {
                 <div className="backdrop" onClick={() => setIsNavOpen(!isNavOpen)} /> 
             )}  
 
-            <header style={ isSearchVisible ? {marginBottom: "250px"} : {marginBottom: "0"} }>      
+            <header 
+                style={ isSearchVisible 
+                    ? {marginBottom: "250px"} 
+                    : {marginBottom: "0"} }
+                className="parent"
+            >      
 
                     <div className="logo">
 

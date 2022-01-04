@@ -11,7 +11,7 @@ const Privacy = () => {
 
             <MetaData title={'Privacy Policy'} />
 
-            <section><img src="../../images/privacy.jpg" alt="Terms and Conditions" /></section>
+            <img src="../../images/privacy.jpg" alt="Terms and Conditions" />
 
             <div className="container">
                 <div className="wrapper parent">
