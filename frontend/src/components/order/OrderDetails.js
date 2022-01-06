@@ -29,7 +29,6 @@ const OrderDetails = () => {
         }
     }, [dispatch, alert, error, id])
 
-    const shippingDetails = shippingInfo && `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`
     const isPaid = paymentInfo && paymentInfo.status === 'succeeded' ? true : false
 
     return (
@@ -43,16 +42,20 @@ const OrderDetails = () => {
 
                     <div className="container">
 
-                    <div className="wrapper">
+                        <div className="wrapper">                        
 
-                        <h1>Order <small># {order._id}</small></h1>
+                            <div className="user-form">  
 
-                        <div className="user-form cart">  
+                                <h1>Order Details</h1>
 
-                            <div className="parent">
-
-                            <table className="middle-align">
+                                <table className="middle-align bordered-table">
                                 <tbody>
+                                    <tr className="bg-grey">
+                                        <td><h6>Item</h6></td>
+                                        <td><h6>Title</h6></td>                                                
+                                        <td><h6>Quantity</h6></td>
+                                        <td><h6>Price</h6></td>
+                                    </tr>
                                     {orderItems && orderItems.map(item => (
                                     <tr key={item.product}>
                                         <td>
@@ -69,95 +72,85 @@ const OrderDetails = () => {
                                         <td>
                                             <Link to={`/artwork/${item.product}`}>{item.name}</Link>
                                         </td>
+                                        <td>{item.quantity}</td>
                                         <td>
-                                            ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                                        </td>
-                                        <td>
-                                            <b>{item.quantity} </b>
-                                        </td>
+                                            ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} CAD
+                                        </td>                                                
                                     </tr>
                                     ))}
                                 </tbody>
-                            </table>                            
+                                </table>  
+                                <h4>Shipping Details</h4>
+                                <table className="bordered-table">
+                                <tbody>                            
+                                    <tr>
+                                        <th><h6>Name:</h6></th>
+                                        <td>{user && user.name}</td>
+                                    </tr>  
+                                    <tr>
+                                        <th><h6>Phone:</h6></th>
+                                        <td>{shippingInfo && shippingInfo.phoneNo}</td>
+                                    </tr>  
+                                    <tr>
+                                        <th><h6>Address:</h6></th>
+                                        <td>
+                                            {shippingInfo && shippingInfo.address}
+                                            <br />
+                                            {shippingInfo && shippingInfo.city}
+                                            <br />
+                                            {shippingInfo && shippingInfo.postalCode}
+                                            <br />
+                                            {shippingInfo && shippingInfo.country}
+                                        </td>
+                                    </tr>                              
+                                    <tr>
+                                        <td colSpan="2" className="spacer-cell">
+                                            <h4>Order Status</h4>
+                                        </td>
+                                    </tr> 
+                                    <tr>
+                                        <th><h6>Oder ID:</h6></th>
+                                        <td>{order._id}</td>
+                                    </tr>  
+                                    <tr>
+                                        <th><h6>Date:</h6></th>
+                                        <td>{createdAt}</td>
+                                    </tr>
+                                    <tr>
+                                        <th><h6>Amount:</h6></th>
+                                        <td>${grandTotal} CAD</td>
+                                    </tr>                                   
+                                    <tr>
+                                        <th><h6>Payment Status:</h6></th>
+                                        <td style={ isPaid ? {  color: "var(--cta-green)"} : { color: "red"} }>                                                
+                                            <b>{ isPaid ? 'Paid': 'Pending' }</b>                                             
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><h6>Process Status:</h6></th>
+                                        <td style={ order.orderStatus && String(order.orderStatus).includes('Delivered') ? { color: "var(--cta-green)" } : { color: "red" } }>
+                                            <b>{ orderStatus }</b>
+                                        </td>
+                                    </tr>                            
+                                </tbody>    
+                                </table>                           
 
-                            <div className="order-summary">
-
-                                <h4>Order Details</h4>
-                                <br />
-                                <table>
-                                    <tbody>                                        
-                                        <tr>
-                                            <th>
-                                                <h6>Name:</h6>
-                                            </th>
-                                            <td>                                                
-                                                {user && user.name}                                             
-                                            </td>
-                                        </tr>  
-                                        <tr>
-                                            <th>
-                                                <h6>Phone:</h6>
-                                            </th>
-                                            <td>
-                                                {shippingInfo && shippingInfo.phoneNo}
-                                            </td>
-                                        </tr>  
-                                        <tr>
-                                            <th>
-                                                <h6>Address:</h6>
-                                            </th>
-                                            <td>
-                                                {shippingDetails}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <h6>Amount:</h6>
-                                            </th>
-                                            <td>
-                                                ${grandTotal}
-                                            </td>
-                                        </tr>  
-                                        <tr>
-                                            <th>
-                                                <h6>Date:</h6>
-                                            </th>
-                                            <td>
-                                                {createdAt}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <h6>Payment Status:</h6>
-                                            </th>
-                                            <td style={ isPaid ? {  color: "var(--primary-color)"} : { color: "red"} }>                                                
-                                                { isPaid ? 'PAID': 'PENDING' }                                             
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <h6>Order Status:</h6>
-                                            </th>
-                                            <td style={ order.orderStatus && String(order.orderStatus).includes('Delivered') ? { color: "var(--primary-color)" } : { color: "red" } }>
-                                                { orderStatus }
-                                            </td>
-                                        </tr>                            
-                                    </tbody>    
-                                </table>   
+                                <Link to="/orders/me"><i className="fa fa-times"/></Link>                    
+                            
                             </div>
 
-                            <Link to="/orders/me"><i className="fa fa-times"/></Link>                    
-                           
                         </div>
-                        </div>
+
                     </div>
-                    </div>
+
                 </Fragment>
 
             )}
             
         </Fragment>
+
     )
+
 }
 
 export default OrderDetails

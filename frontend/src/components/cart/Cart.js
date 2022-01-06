@@ -50,12 +50,18 @@ const Cart = () => {
 
                         <Fragment>
                             
-                            <h2>Your Cart <small><b>({cartItems.length} items)</b></small></h2>   
+                            <h1>Your Cart <small><b>({cartItems.length} items)</b></small></h1>   
 
                             <div className="parent">
 
-                            <table className="middle-align">
+                            <table className="middle-align bordered-table">
                             <tbody>
+                                <tr className="bg-grey">
+                                    <td><h6>Item</h6></td>
+                                    <td><h6>Title</h6></td>
+                                    <td><h6>Price</h6></td>                                    
+                                    <th><h6>Actions</h6></th>
+                                </tr>
                             {cartItems.map(item => (
                                 <tr key={item.product}>
                                     <td>
@@ -71,7 +77,7 @@ const Cart = () => {
                                     <td className="whitespace-nowrap">
                                         ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} CAD
                                     </td>
-                                    <td className="stockcounter">
+                                    <th className="stockcounter">
                                         <span 
                                             className={item.quantity === 1 ? 'inactive minus' : 'minus'}
                                             onClick={() => decreaseQty(item.product, item.quantity)}
@@ -90,19 +96,17 @@ const Cart = () => {
                                             onClick={() => increaseQty(item.product, item.quantity, item.stock)}
                                         >
                                             <i className="fa fa-plus-circle" />
-                                        </span>
-                                    </td>
-                                    <td>
-                                    <i className="fa fa-trash-o" onClick={() => removeCartItemHandler(item.product)}/>
-                                    </td>                                        
+                                        </span> 
+                                        &nbsp; &nbsp; &nbsp;                                  
+                                        <i className="fa fa-trash-o" onClick={() => removeCartItemHandler(item.product)}/>
+                                    </th>                                        
                                 </tr>
                             ))}    
                             </tbody>
                             </table>
-
-                            <div className="order-summary">
+                            <div style={{ width: "40px" }}></div>
+                            <div>
                                 <h4>Order Summary</h4>
-                                <br />
                                 <table>
                                     <tbody>
                                         <tr>

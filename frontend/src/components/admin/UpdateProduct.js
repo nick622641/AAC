@@ -152,7 +152,11 @@ const UpdateProduct = () => {
                                         multiple                              
                                     />                            
                                     {oldImages[0] && (
-                                        <img src={oldImages[0].thumbUrl} alt={name}/>
+                                        <img 
+                                            src={oldImages[0].thumbUrl} 
+                                            alt={name}
+                                            className="centered-image"
+                                        />
                                     )}   
                                     {imagesPreview[0] && (
                                         <img src={imagesPreview[0]} alt={name}/>
@@ -205,21 +209,30 @@ const UpdateProduct = () => {
 
                             </div>  
 
-                            <div className="preview-thumbnails">                          
+                            <ul className="thumbnails">                          
 
                                 {oldImages && oldImages.map((img, i) => (
-                                    <figure key={i} >
-                                        <img key={i} src={img.thumbUrl} alt={img.url} />
-                                    </figure>
+                                    <li key={i} >
+                                        <img 
+                                            key={i} 
+                                            src={img.thumbUrl} 
+                                            alt={img.url} 
+                                            className="centered-image"    
+                                        />
+                                    </li>
                                 ))}
 
                                 {imagesPreview.map((img, i) => (
-                                    <figure key={i} >
-                                        <img src={img} alt="Images Preview" />
-                                    </figure>
+                                    <li key={i} >
+                                        <img 
+                                            src={img} 
+                                            alt="Images Preview" 
+                                            className="centered-image"    
+                                        />
+                                    </li>
                                 ))}
 
-                            </div>  
+                            </ul>  
 
                             <div>
                                     <h4>Dimesions</h4>

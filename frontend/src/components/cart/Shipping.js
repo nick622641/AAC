@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { countries } from 'countries-list'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingInfo } from '../../actions/cartActions'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 
@@ -121,6 +121,8 @@ const Shipping = () => {
                         <br />  
                     
                         <button className="submit">Continue</button>
+
+                        <Link to="/cart"><i className="fa fa-times"/></Link>
 
                     </form>
 

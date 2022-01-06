@@ -77,6 +77,7 @@ const UpdateProfile = () => {
                                             <img 
                                                 src={avatarPreview} 
                                                 alt='Avatar Preview' 
+                                                className="centered-image"
                                             />                                            
                                             <input
                                                 type='file'   

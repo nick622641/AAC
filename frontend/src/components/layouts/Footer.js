@@ -15,7 +15,7 @@ const Footer = () => {
                         <ul className="parent">
                        
                             <li>
-                                <h6>Galleries</h6>
+                                <h6>Galleries</h6>                               
                                 <ul>                               
                                
                                     <li>

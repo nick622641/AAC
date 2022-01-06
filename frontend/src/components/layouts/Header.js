@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useSpring, animated } from 'react-spring'
 import { useAlert } from 'react-alert'
 import { logout } from '../../actions/userActions'
-import { useSpring, animated } from 'react-spring'
 import Modal from '../modals/Modal'
 import Contact from '../modals/Contact'
 import Search from './Search'
@@ -59,7 +59,6 @@ const Header = () => {
                 style={ isSearchVisible 
                     ? {marginBottom: "250px"} 
                     : {marginBottom: "0"} }
-                className="parent"
             >      
 
                     <div className="logo">
@@ -86,9 +85,9 @@ const Header = () => {
                                                 <Link 
                                                     to="/gallery" 
                                                     onClick={() => setIsNavOpen(!isNavOpen)}
-                                            >
-                                                All the work
-                                            </Link>
+                                                >
+                                                    All the work
+                                                </Link>
                                             </li>
                         
                                         </ul>
@@ -106,17 +105,14 @@ const Header = () => {
                     </nav>            
 
                     <div className="icons">
-
                         <i 
                             className="fa fa-bars" 
                             onClick={() => setIsNavOpen(!isNavOpen)}
                         />  
-
                         <i 
                             className="fa fa-search" 
                             onClick={toggleSearch}
-                        />   
-
+                        />  
                         <i 
                             className="fa fa-envelope" 
                             onClick={toggleModal}
@@ -128,14 +124,14 @@ const Header = () => {
 
                         {user ? (
                             <Fragment>
-                                <span className="avatar" onClick={toggleMenu}>
+                                <figure onClick={toggleMenu}>
                                     <img
                                         src={user.avatar && user.avatar.url}
                                         alt={user && user.name}  
                                     /> 
                                     <br />                               
                                     <small>{user && user.name}</small>
-                                </span>
+                                </figure>
                                 {isMenuVisible && ( 
                                 <Fragment>
                                 <div className="backdrop" onClick={toggleMenu} style={{ background: "none" }} />
@@ -143,20 +139,20 @@ const Header = () => {
                                     {user && user.role === 'admin' && (
                                         <Link to="/dashboard" onClick={toggleMenu}
                                         >Dashboard 
-                                            <i className="fa fa-tachometer" aria-hidden="true"></i>
+                                            <i className="fa fa-tachometer" />
                                         </Link>
                                     )}
                                     <Link to="/orders/me" onClick={toggleMenu}>
                                         Orders 
-                                        <i className="fa fa-cart-plus" aria-hidden="true"></i>
+                                        <i className="fa fa-cart-plus" />
                                     </Link>
                                     <Link to="/me" onClick={toggleMenu}>
                                         Profile 
-                                        <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+                                        <i className="fa fa-user-circle-o" />
                                     </Link>
                                     <Link to="/" onClick={logoutHandler}>
                                         Logout 
-                                        <i className="fa fa-sign-out" aria-hidden="true"></i>
+                                        <i className="fa fa-sign-out" />
                                     </Link>
                                 </animated.div>
                                 </Fragment>
@@ -164,12 +160,12 @@ const Header = () => {
                             </Fragment>
                         ) : !loading && (
                             <Link to="/login">
-                                <i className="fa fa-unlock-alt" aria-hidden="true"></i>
+                                <i className="fa fa-unlock-alt" />
                             </Link>
                         )}                          
 
                         <Link to="!#" target="_blank">
-                            <i className="fa fa-facebook" aria-hidden="true"></i>
+                            <i className="fa fa-facebook" />
                         </Link>
 
                         <Modal

@@ -1,7 +1,8 @@
 /* Sitewide Variables */
 :root {
   --primary-color: #88744a;
-  --secondary-color: ##999999;
+  --secondary-color: #555;
+  --cta-green: #13ae4b;
   --speed: 500ms;  
 }
 /* CSS Reset */
@@ -50,7 +51,8 @@ footer {
 .text-center {
   text-align: center;
 }
-.centered-image {
+.centered-image,
+.avatar img {
   position: relative;
   top: 50%;
   left: 50%;
@@ -100,7 +102,6 @@ h6 {
   letter-spacing: 0.07rem;
   color: var(--primary-color);
   text-transform: uppercase;
-  margin-bottom: 10px;
 }
 p {
   line-height: 1.8em;
@@ -136,23 +137,33 @@ small {
 }
 /* Aside / Article Styles */
 aside {
-  flex: 0 0 30%;
-}
-aside h4 {
-  margin: 0 0 30px 0;
+  flex: 0 0 25%;
 }
 aside ul {
   margin: 10px 0 30px 0;
-  display: inline-block;
+}
+aside ul ul {
+  padding-left: 20px;
+}
+aside li a {
+  display: inline-block; 
 }
 aside li,
 aside li a {
+  position: relative;
   line-height: 26px;
   font-size: 12px;
   cursor: pointer;
 }
+aside h4 {
+  margin: 0 0 30px 0;
+}
+aside .fa {
+  font-size: 22px;
+  margin: 0 20px 20px 0;      
+}
 article {
-  flex: 0 1 calc(70% - 40px);     
+  flex: 0 1 calc(75% - 40px);     
 }
 .rc-slider {
   margin: 20px 0 50px 0;
@@ -186,13 +197,19 @@ a:hover {
   pointer-events: none;
 }
 /* Fontawesome styles */
+.fa {
+  color: var(--secondary-color);
+  transition: all var(--speed);
+}
+.fa:hover {
+  color: var(--primary-color);
+}
 .fa-times {   
   font-size: 22px;
   position: absolute;
   top: 10px;
   right: 10px;
-  color: #999999;
-  transition: all 0.5s;
+  color: #999999;  
   cursor: pointer;
   z-index: 1;
 }
@@ -209,22 +226,41 @@ button .fa-spinner {
   font-size: 32px; 
 }
 .fa-trash-o {
-  color: red;    
-  transition: all var(--speed);
-  font-size: 18px;  
-}
-.fa-trash-o:hover {
-  color: var(--secondary-color);
+  color: red;  
 }
 .fa-pencil,
 .fa-eye,
 .fa-eye-slash {
   color: var(--primary-color);
 }
+.fa-check {
+  color: var(--cta-green);
+}
+.fa-caret-down,
+.fa-caret-up {
+    font-size: 12px !important;    
+    position: absolute;
+    top: 6px;
+    right: 0;
+}
+li:hover > a > .fa,
+li:hover > .fa {
+  color: var(--primary-color); 
+}
+.fa-trash-o:hover,
+.fa-pencil:hover,
+.fa-eye:hover,
+.fa-eye-slash:hover {
+  color: var(--secondary-color);
+}
 /* Button Styles */
 button {
   cursor: pointer;    
-  transition: all 0.5s;
+  transition: all var(--speed);
+  color: inherit;
+}
+button:hover {
+  color: var(--primary-color);
 }
 button[disabled] {
   pointer-events: none;
@@ -247,11 +283,15 @@ button[disabled] {
   color: white; 
   background: var(--primary-color);
 }
-.submit .fa-chevron-right {
+button .fa-chevron-right,
+a .fa-chevron-right {
   position: relative;
-  margin-left: 35px;    
+  left: 0;
+  margin-left: 35px;   
+  color: inherit; 
 }
-.submit:hover .fa-chevron-right {  
+button:hover .fa-chevron-right,
+a:hover .fa-chevron-right {  
   left: 5px;
 }
 .filters { 
@@ -287,6 +327,14 @@ button[disabled] {
   margin: auto;  
   z-index: 1; 
 }
+.add-product-title,
+.add-product-title::placeholder {
+    font-size: 32px;
+    color: var(--primary-color);
+    padding: 0;
+    margin-bottom: 40px;
+    text-transform: capitalize;
+}
 label {
   display: block;
   position: relative;
@@ -296,6 +344,7 @@ textarea,
 select {
   padding: 10px;
   width: 100%;
+  border: solid 1px transparent
 }
 input:focus,
 select:focus,
@@ -306,20 +355,29 @@ textarea:focus {
 input[type=file] {
   display: none;   
 }
-.user-form .avatar {
+.avatar {
   margin-bottom: 20px;
-  max-width: 150px;  
+  width: 150px;  
+  height: 150px;
+  overflow: hidden;
   cursor: pointer;
+  border: solid 1px #ccc;
+}
+.avatar img {
+  height: 100%;
+  width: auto;
 }
 .cart-image {
-  width: 140px;
-  height: 90px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
+  border-radius: 100%;
+  border: solid 1px #ccc;
   transition: all var(--speed);
 }
 .cart-image:hover {    
   transform: scale(1.05);
-  box-shadow: 0 0 32px rgba(0,0,0,0.5);
+  box-shadow: 0 0 32px rgba(0,0,0,0.1);
 }
 .order-summary {
   padding: 20px;
@@ -347,6 +405,15 @@ table {
 	border-spacing: 0;
   width: 100%;
 }
+.bordered-table {
+  border: solid 1px #ccc;
+}
+.spacer-cell {
+  border: solid 1px #ccc;
+  border-left-color: white;
+  border-right-color: white;
+  padding: 0;
+}
 th {
   text-align: right; 
   font-weight: normal;
@@ -355,6 +422,9 @@ th {
 th,
 td {
   padding: 10px;   
+}
+th a, td a {
+  font-size: inherit;
 }
 .middle-align th,
 .middle-align td {
@@ -370,6 +440,7 @@ td {
 }
 .mdb-table table {       
     margin-bottom: 20px;
+    border: solid 1px #ccc;
 }
 .mdb-table th {
   text-align: left;
@@ -379,6 +450,7 @@ td {
   background: #eee;
   transition: all var(--speed);
   cursor: auto;
+  vertical-align: middle;
 }
 .mdb-table tr:nth-child(even) td {
   background: #f6f5f5;
@@ -426,6 +498,42 @@ section .callout h3 {
 section .callout p {
   color: #ccc;
 }
+/* Dashboard Styles */
+.admin {
+  color: white;  
+  border-radius: 5px;
+  flex: 0 1 calc(25% - 10px);
+  text-align: center;
+  padding-top: 20px;      
+  margin-bottom: 10px;
+}
+.admin-total {
+  background: var(--primary-color);   
+  padding-bottom: 40px;
+}
+.admin-products {
+  background: var(--cta-green);
+}
+.admin-orders {
+  background: #ffbb00;
+}
+.admin-users {
+  background: #0b97bb;
+}
+.admin-stock {
+  background: #ea4845;  
+  padding-bottom: 40px;  
+}
+a.admin:hover {
+  box-shadow: 0 0 32px rgba(0,0,0,0.3);
+  transform: scale(1.05);
+  color: white;
+}
+.admin p {
+  border-top: solid 1px #555;
+  background: rgba(0,0,0,0.2);
+  margin-top: 20px;   
+}
 /* Product Page Styles */
 .portrait .parent {
   flex-direction: column;
@@ -471,21 +579,16 @@ section .callout p {
 }
 /* Quantity Button Styles */
 .stockcounter {
-  white-space: nowrap;
-  text-align: center; 
+  white-space: nowrap;  
 }
 .stockcounter input {
   width: 3rem;
   text-align: center;
 }
-.plus,
-.minus {
-    padding: 5px 10px;
-    cursor: pointer;
-}
 .plus i, 
 .minus i {
     color: var(--primary-color);
+    cursor: pointer;
 }
 .plus i:hover, 
 .minus i:hover {
@@ -529,14 +632,15 @@ img {
 .thumbnails {  
   height: 75px;  
   display: flex; 
-  margin: 5px 0 40px 0;
+  flex-wrap: wrap;  
 }
 .thumbnails li {
-  margin: 0 5px 0 0;     
+  margin: 0 5px 5px 0;     
   cursor: zoom-in; 
   width: 125px; 
   height: 75px; 
   overflow: hidden;
+  border: solid 1px #ccc;
 }
 .thumbnails li:hover img {
   opacity: 0.5;
@@ -804,6 +908,9 @@ img {
   article {    
     margin-left: 0;
   }
+  .user-form {
+    padding: 20px;
+  }
   .filters {
     display: inline-block;
   }
@@ -814,6 +921,9 @@ img {
   }
   .last-image {
     width: 50%;
+  }
+  td, th {
+    font-size: 12px;
   }
 }
 @media ( max-width: 480px ) {

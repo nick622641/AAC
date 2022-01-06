@@ -8,16 +8,26 @@ header {
     align-items: center;
     box-shadow: 0 0 32px rgba(0,0,0,0.5);
     z-index: 1;
+    display: flex;
+    justify-content: space-between;
 }
-header .avatar {
-    font-size: 0; 
+header figure {
+    position: relative;
+    top: 4px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     text-align: right;
+    margin: 0 15px;
 }
-header .avatar img {
-    width: 30px;
-    border-radius: 100%;
-    margin-left: 15px;
+header figure small {
+    position: absolute;
+    top: 100%; 
+    right: 0;  
+    white-space: nowrap;  
+}
+header figure img {    
+    border-radius: 100%;    
 }
 header .dropdown-menu {
     position: absolute;
@@ -33,9 +43,6 @@ header .dropdown-menu {
 header .dropdown-menu a {
     display: block;
     line-height: 1.8em;
-}
-header nav > ul {
-    display: flex;    
 }
 header nav > ul > li > ul {
     position: absolute;
@@ -73,11 +80,7 @@ header nav a {
 .icons i {
     cursor: pointer;
     padding: 12px;  
-    font-size: 1.2rem;  
-    transition: all var(--speed);
-}
-.icons i:hover {
-    color: var(--primary-color);
+    font-size: 1.2rem;      
 }
 header .fa-facebook {
     border-left: solid 1px #ddd;
@@ -121,6 +124,9 @@ footer {
 }
 footer > div:first-child {
     border-bottom: solid 1px #333;
+}
+footer ul ul{
+    margin-top: 10px;
 }
 footer ul a {
     color: #999; 

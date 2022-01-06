@@ -124,7 +124,9 @@ const NewProduct = () => {
                                             multiple                              
                                         />                            
                                         <img 
-                                            src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} alt='Avatar Preview' 
+                                            src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
+                                            alt='Avatar Preview' 
+                                            className="centered-image"
                                         />
                                     </label>    
 
@@ -174,19 +176,22 @@ const NewProduct = () => {
                                 </table>                                 
                                     
                                 </div>
+                                {imagesPreview.length > 0 && (
+                                    <ul className="thumbnails">
 
-                                <div className="parent preview-thumbnails">
-
-                                {imagesPreview.map(img => (
-                                    <figure key={img} >
-                                        <img                                             
-                                            src={img}                                             
-                                            alt="Images Preview"                                         
-                                        />
-                                    </figure>
-                                ))}  
-
-                                </div>   
+                                    {imagesPreview.map(img => (
+                                        <li key={img} >
+                                            <img                                             
+                                                src={img}                                             
+                                                alt="Images Preview"  
+                                                className="centered-image"                                       
+                                            />
+                                        </li>
+                                    ))}  
+    
+                                    </ul> 
+                                )}
+                                  
 
                                 <div>
                                     <h4>Dimensions</h4>

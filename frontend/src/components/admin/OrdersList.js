@@ -39,7 +39,7 @@ const OrdersList = () => {
         const data = {
             columns: [
                 {
-                    label: 'ID',
+                    label: 'Order ID',
                     field: 'id',
                     sort: 'asc'
                 },
@@ -67,14 +67,14 @@ const OrdersList = () => {
             rows: []
         }
 
-        orders.forEach( order => {
+        orders && orders.forEach( order => {
             data.rows.push({
-                id: order._id,
+                id: <small>{order._id}</small>,
                 numOfItems: order.orderItems.length,
                 amount: `$${order.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, 
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
-                ? <p style={{ color:'green' }} >{order.orderStatus}</p>
-                : <p style={{ color:'red'   }} >{order.orderStatus}</p>,
+                ? <p style={{ color: "var(--cta-green)" }} >{order.orderStatus}</p>
+                : <p style={{ color:"red"   }} >{order.orderStatus}</p>,
                 actions: 
                 
                     <Fragment>
@@ -82,8 +82,9 @@ const OrdersList = () => {
                         <Link to={`/admin/order/${order._id}`}>
                             <i className="fa fa-eye"></i>
                         </Link> 
+                        &nbsp; &nbsp;
                         <i 
-                            className="fa fa-trash"
+                            className="fa fa-trash-o"
                             onClick={() => deleteOrderHandler(order._id)}
                         />
 

@@ -47,14 +47,14 @@ const Sidebar = () => {
                     <ul>
 
                         <li>
-                            <Link to="/dashboard"><i className="fa fa-tachometer" /> <span>Dashboard</span></Link>
+                            <Link to="/dashboard"><i className="fa fa-tachometer" />Dashboard</Link>
                         </li>                    
                         <li onClick={() => {toggleMenu()}}>                        
-                            <span>
-                                <i className="fa fa-picture-o" /> 
-                                &nbsp;Artwork
-                                <i className={isMenuVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} />
-                            </span>
+                           
+                            <i className="fa fa-picture-o" /> 
+                            Artwork
+                            <i className={isMenuVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} />
+                       
                             {isMenuVisible && ( 
                             <animated.div className="dropdown-menu" style={menuAppear}>  
                                 <ul>                            
@@ -70,11 +70,11 @@ const Sidebar = () => {
                             )}
                         </li>
                         <li onClick={() => {toggleCategories()}}>                        
-                            <span>
-                                <i className="fa fa-tags" /> 
-                                &nbsp;Categories
-                                <i className={isCategoriesVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} />
-                            </span>
+                           
+                            <i className="fa fa-tags" /> 
+                            Categories
+                            <i className={isCategoriesVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} />
+                        
                             {isCategoriesVisible && ( 
                             <animated.div className="dropdown-menu" style={categoriesAppear}>  
                                 <ul>                            
@@ -92,13 +92,13 @@ const Sidebar = () => {
                             )}
                         </li>    
                         <li>
-                            <Link to="/admin/orders"><i className="fa fa-shopping-basket"></i> <span>Orders</span></Link>
+                            <Link to="/admin/orders"><i className="fa fa-shopping-basket"/>Orders</Link>
                         </li>
                         <li>
-                            <Link to="/admin/users"><i className="fa fa-users"></i> <span>Users</span></Link>
+                            <Link to="/admin/users"><i className="fa fa-users"/>Users</Link>
                         </li>
                         <li>
-                            <Link to="/admin/reviews"><i className="fa fa-star"></i> <span>Reviews</span></Link>
+                            <Link to="/admin/reviews"><i className="fa fa-star"/>Reviews</Link>
                         </li>
                 
                 </ul>

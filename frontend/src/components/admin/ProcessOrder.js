@@ -37,7 +37,6 @@ const ProcessOrder = () => {
         dispatch(updateOrder(id, formData))
     }
 
-    const shippingDetails = shippingInfo && `${shippingInfo.address}, ${shippingInfo.city} ${shippingInfo.postalCode} ${shippingInfo.country}`
     const isPaid = paymentInfo && paymentInfo.status === 'succeeded' ? true : false
 
     return (
@@ -56,43 +55,29 @@ const ProcessOrder = () => {
 
                     {loading ? <Loader /> : (
 
-<                       Fragment>   
+<                       Fragment>                               
 
-                            <h1 >Order <small># {order._id}</small></h1>
+                            <div className="user-form">
 
-                            <div className="user-form cart">
+                                <h1 >
+                                    Order 
+                                    <small style={{ float: "right" }}># {order._id}</small>
+                                </h1>
 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th><h6>Name:</h6></th>
-                                            <td>{user && user.name}</td>
-                                        </tr>
-                                        <tr>
-                                            <th><h6>Phone:</h6></th>
-                                            <td>{shippingInfo && shippingInfo.phoneNo}</td>
-                                        </tr>
-                                        <tr>
-                                            <th><h6>Address:</h6></th>
-                                            <td>{shippingDetails}</td>
-                                        </tr>
-                                        <tr>
-                                            <th><h6>Amount:</h6></th>
-                                            <td>${totalPrice && totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <br />                                
-
-                                <table>
-                                    <tbody>
+                                <table className="middle-align bordered-table">
+                                <tbody>
+                                    <tr className="bg-grey">
+                                        <td><h6>Item</h6></td>
+                                        <td><h6>Title</h6></td>
+                                        <td><h6>Price</h6></td>
+                                        <th><h6>Quantity</h6></th>
+                                    </tr>
                                     {orderItems && orderItems.map(item => (
                                         <tr key={item.product}>
                                             <td>
                                                 <Link to={`/artwork/${item.product}`}>
                                                     <div className="cart-image">
-                                                        <img src={item.image}alt={item.name} />
+                                                        <img src={item.image} alt={item.name} className="centered-image" />
                                                     </div>
                                                 </Link>
                                             </td>
@@ -100,64 +85,89 @@ const ProcessOrder = () => {
                                             <td>
                                                 ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
                                             </td>
-                                            <td><b>{item.quantity} Items(s)</b></td> 
+                                            <th>{item.quantity}</th> 
                                         </tr>
                                     ))}
-                                    </tbody>
+                                </tbody>
                                 </table>
-                                <br />
-                                <table>
+
+                                <h4>Summary</h4>
+
+                                <table className="bordered-table">
                                     <tbody>
-                                        <tr>
-                                            <th><h6>Status</h6></th>
-                                            <td>
-                                                <select
-                                                    value={status ? status : order.orderStatus}
-                                                    onChange={(e) => setStatus(e.target.value)}
-                                                >
-                                                    <option value="Processing">Processing</option>
-                                                    <option value="Shipped">Shipped</option>
-                                                    <option value="Delivered">Delivered</option>
-                                                </select>
-                                            </td>
-                                            <th>
-                                                <button className="submit" style={{ width: "auto" }}                                                           
-                                                    onClick={() => updateOrderHandler(order._id)
-                                                }>
-                                                    Update Status
-                                                </button>
-                                            </th>
-                                        </tr>
-                                    </tbody>
+                                    <tr>
+                                        <th><h6>Name:</h6></th>
+                                        <td>{user && user.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th><h6>Phone:</h6></th>
+                                        <td>{shippingInfo && shippingInfo.phoneNo}</td>
+                                    </tr>
+                                    <tr>
+                                        <th><h6>Address:</h6></th>
+                                        <td>
+                                            {shippingInfo && shippingInfo.address}
+                                            <br />
+                                            {shippingInfo && shippingInfo.city}
+                                            <br />
+                                            {shippingInfo && shippingInfo.postalCode}
+                                            <br />
+                                            {shippingInfo && shippingInfo.country}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><h6>Amount:</h6></th>
+                                        <td>${totalPrice && totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <th><h6>Status</h6></th>
+                                        <td>
+                                            <select
+                                                style={{ width: "auto", padding: 0 }}
+                                                value={status ? status : order.orderStatus}
+                                                onChange={(e) => setStatus(e.target.value)}
+                                            >
+                                                <option value="Processing">Processing</option>
+                                                <option value="Shipped">Shipped</option>
+                                                <option value="Delivered">Delivered</option>
+                                            </select>
+                                        </td>
+                                        <th>
+                                            <button                                                          
+                                                onClick={() => updateOrderHandler(order._id)
+                                            }>                                                
+                                               <i className="fa fa-pencil" />                                          
+                                            </button>
+                                        </th>
+                                    </tr>                          
+                                    <tr>
+                                        <td colSpan="3" className="spacer-cell">
+                                            <h4>Payment</h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><h6>Stripe ID:</h6></th>
+                                        <td><small>{paymentInfo && paymentInfo.id}</small></td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <h6>Payment Status:</h6>
+                                        </th>
+                                        <td>
+                                        <p style={isPaid ? {color: "var(--cta-green)"} : {color: "red"}}>{isPaid ? 'Paid': 'Pending'}</p>
+                                        </td>
+                                    </tr>                                    
+                                    <tr>
+                                        <th><h6>Order Status:</h6></th>
+                                        <td>
+                                            <p style={order.orderStatus && String(order.orderStatus).includes('Delivered') ? {color: "var(--cta-green)"} : {color: "red"}}>{orderStatus}</p> 
+                                        </td>
+                                    </tr>                                                
+                                </tbody>
                                 </table>
-                                <br />
-                                <div className="order-summary">
-                                    <h4>Payment</h4>
-                                    <br />
-                                    <table>
-                                        <tbody>
-                                        <tr>
-                                            <th>
-                                                <h6>Payment Status:</h6>
-                                            </th>
-                                            <td>
-                                            <p style={isPaid ? {color: "green"} : {color: "red"}}><b>{isPaid ? 'PAID': 'PENDING'}</b></p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th><h6>Stripe ID:</h6></th>
-                                            <td>{paymentInfo && paymentInfo.id}</td>
-                                        </tr>
-                                        <tr>
-                                            <th><h6>Order Status:</h6></th>
-                                            <td>
-                                                <p style={order.orderStatus && String(order.orderStatus).includes('Delivered') ? {color: "green"} : {color: "red"}}><b>{orderStatus}</b></p> 
-                                            </td>
-                                        </tr>                                                
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <Link to="/admin/orders"><i className="fa fa-times"></i></Link>
+                             
+                                <Link to="/admin/orders"><i className="fa fa-times"/></Link>
                                 
                             </div>
 

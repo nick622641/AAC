@@ -60,14 +60,15 @@ const OrientationList = () => {
         }   
         orientations && orientations.forEach( orientation => {
             data.rows.push({                
-                id: orientation._id,
+                id: <small>{orientation._id}</small>,
                 name: orientation.name,
                 actions: <Fragment>
                     <Link to={`/admin/orientation/${orientation._id}`}>
-                        <i className="fa fa-pencil"></i>
-                    </Link>                     
+                        <i className="fa fa-pencil"/>
+                    </Link>  
+                    &nbsp; &nbsp;                   
                     <i 
-                        className="fa fa-trash"
+                        className="fa fa-trash-o"
                         onClick={() => deleteCategoryHandler(orientation._id)}
                     /> 
                 </Fragment> 
@@ -98,6 +99,7 @@ const OrientationList = () => {
                                     Add &nbsp;
                                     <i className="fa fa-plus" />
                                 </Link>
+                                <br /><br />
                                 <MDBDataTable data={setCategories()} />
                                 <Link to="/dashboard"><i className="fa fa-times" /></Link>
                             </div>

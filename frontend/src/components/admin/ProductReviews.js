@@ -1,19 +1,19 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { MDBDataTable } from 'mdbreact'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductReviews, deleteReview, clearErrors } from '../../actions/productActions'
 import { DELETE_REVIEW_RESET } from '../../constants/productConstants'
+import MetaData from '../layouts/MetaData'
+import Sidebar from '../admin/Sidebar'
 
 const ProductReviews = () => {
    
     const alert = useAlert()
     const dispatch = useDispatch()
     const [ productId, setProductId ] = useState('')
-    const { error, reviews } = useSelector(state => state.productReviews)
-    const { isDeleted, error: deleteError } = useSelector(state => state.review)
+    const { error, reviews } = useSelector( state => state.productReviews )
+    const { isDeleted, error: deleteError } = useSelector( state => state.review )
 
     useEffect(() => {
         if(error) {
@@ -28,7 +28,7 @@ const ProductReviews = () => {
             dispatch(getProductReviews(productId))
         }
         if(isDeleted) {
-            alert.success('Review deleted successfully')            
+            alert.success('Review Deleted Successfully')            
             dispatch({ type: DELETE_REVIEW_RESET })
         }  
     }, [dispatch, isDeleted, alert, error, productId, deleteError])
@@ -73,7 +73,7 @@ const ProductReviews = () => {
 
         reviews.forEach( review => {
             data.rows.push({
-                id: review._id,
+                id: <small>{review._id}</small>,
                 rating: review.rating,
                 comment: review.comment, 
                 user: review.name,                
@@ -81,7 +81,7 @@ const ProductReviews = () => {
                     <Fragment>   
 
                         <button onClick={() => deleteReviewHandler(review._id)}> 
-                            <i className="fa fa-trash"></i>
+                            <i className="fa fa-trash-o"/>
                         </button>  
 
                     </Fragment> 
@@ -106,7 +106,7 @@ const ProductReviews = () => {
 
                         <h1>Product Reviews</h1>
 
-                        <form className="user-form cart" onSubmit={submitHandler}>                            
+                        <form onSubmit={submitHandler}>                            
                             <input
                                 placeholder="Enter Product ID"
                                 value={productId}

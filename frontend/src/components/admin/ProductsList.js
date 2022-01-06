@@ -45,7 +45,7 @@ const ProductsList = () => {
                     field: 'url',
                 },
                 {
-                    label: 'ID',
+                    label: 'Artwork ID',
                     field: 'id',
                     sort: 'asc'
                 },
@@ -75,20 +75,25 @@ const ProductsList = () => {
         products && products.forEach( product => {
             data.rows.push({
                 url: <Link to={`/artwork/${product._id}`}>
-                        <figure>
-                            <img src={product.images[0].thumbUrl} alt={product.name} />
-                        </figure>
+                        <div className="cart-image">
+                            <img 
+                                src={product.images[0].thumbUrl} 
+                                alt={product.name} 
+                                className="centered-image"
+                            />
+                        </div>
                     </Link>,
-                id: product._id,
+                id: <small>{product._id}</small>,
                 name: product.name,
                 price: `$${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, 
                 stock: product.stock,
                 actions: <Fragment>
                     <Link to={`/admin/product/${product._id}`}>
-                        <i className="fa fa-pencil"></i>
-                    </Link>                     
+                        <i className="fa fa-pencil"/>
+                    </Link> 
+                    &nbsp; &nbsp;                    
                     <i 
-                        className="fa fa-trash"
+                        className="fa fa-trash-o"
                         onClick={() => deleteProductHandler(product._id)}
                     />
                 </Fragment> 

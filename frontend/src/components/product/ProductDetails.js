@@ -175,7 +175,7 @@ const ProductDetails = () => {
                                                 </button>     
                                             </div>  
                                             <br />
-                                            <div className="stockcounter">
+                                            <div className="stockcounter text-center">
                                                 Quantity &nbsp;
                                                 <span className={quantity === 1 ? 'inactive minus' : 'minus'} onClick={decreaseQty}>
                                                     <i className="fa fa-minus-circle"/>

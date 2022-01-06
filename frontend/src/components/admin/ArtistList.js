@@ -60,14 +60,15 @@ const ArtistList = () => {
         }      
         artists && artists.forEach( artist => {
             data.rows.push({                
-                id: artist._id,
+                id: <small>{artist._id}</small>,
                 name: artist.name,
                 actions: <Fragment>
                             <Link to={`/admin/artist/${artist._id}`}>
-                                <i className="fa fa-pencil"></i>
-                            </Link>                     
+                                <i className="fa fa-pencil"/>
+                            </Link> 
+                            &nbsp; &nbsp;                    
                             <i 
-                                className="fa fa-trash"
+                                className="fa fa-trash-o"
                                 onClick={() => deleteCategoryHandler(artist._id)}
                             />
                         </Fragment> 
@@ -98,6 +99,7 @@ const ArtistList = () => {
                                     Add &nbsp;
                                     <i className="fa fa-plus" />
                                 </Link>
+                                <br /><br />
                                 <MDBDataTable data={setCategories()} />
                                 <Link to="/dashboard"><i className="fa fa-times" /></Link>
                             </div>

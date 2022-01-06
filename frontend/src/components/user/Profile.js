@@ -37,19 +37,19 @@ const Profile = () => {
                                     </td>
                                     <td >
                                         <h6>Username</h6>
-                                        <span>{user.name}</span>
+                                        <p>{user.name}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <h6>Email</h6>
-                                        <span>{user.email}</span>
+                                        <p>{user.email}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <h6>Date Joined</h6>
-                                        <span>{createdAt}</span>
+                                        <p>{createdAt}</p>
                                     </td>
                                 </tr>                                  
                                 <tr>

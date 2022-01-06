@@ -53,18 +53,18 @@ const ListOrders = () => {
             rows: []
         }
 
-        orders.forEach( order => {
+        orders && orders.forEach( order => {
 
             data.rows.push({                
                 id: order._id,
                 numOfItems: order.orderItems.length,
                 amount: `$${order.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, 
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
-                    ? <p style={{ color:'var(--primary-color)' }} >{order.orderStatus}</p>
+                    ? <p style={{ color:'var(--cta-green)' }} >{order.orderStatus}</p>
                     : <p style={{ color:'red' }} >{order.orderStatus}</p>,
                 actions:
                     <Link to={`/order/${order._id}`}>
-                        <i className="fa fa-eye"></i>
+                        <i className="fa fa-eye"/>
                     </Link>    
             })
         })
@@ -91,9 +91,6 @@ const ListOrders = () => {
                             <MDBDataTable
                                 className="mdb-table"
                                 data={setOrders()}
-                                bordered
-                                striped
-                                hover    
                             />
 
                         )}

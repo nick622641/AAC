@@ -32,139 +32,129 @@ const ConfirmOrder = () => {
 
             <MetaData title={'Confirm Order'} />
 
-            <div className="container">
+            <div className="container">            
 
-            <CheckoutSteps shipping confirmOrder />
+                <div className="wrapper">   
 
-            <div className="wrapper">                
+                    <CheckoutSteps shipping confirmOrder />  
 
-                <div className="user-form cart">
+                    <br />                   
 
-                    <h2>Confirm Order</h2>
+                    <div className="user-form"> 
 
-                    <table>
+                        <h1>Confirm Order</h1>   
+
+                        <table className="middle-align bordered-table">
+                        <tbody>                               
+
+                        <tr className="bg-grey">
+                            <td><h6>Item</h6></td>
+                            <td><h6>Title</h6></td>
+                            <td><h6>Price</h6></td>
+                            <td><h6>Sub total</h6></td>
+                        </tr>
+                            
+                        {cartItems.map(item => (
+                            <tr key={item.product}>
+                                <td>
+                                    <Link to={`/artwork/${item.product}`}>
+                                        <div className="cart-image">
+                                            <img src={item.image}alt={item.name} className="centered-image" />
+                                        </div>
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link to={`/artwork/${item.product}`}>{item.name}</Link>
+                                </td>
+                                
+                                <td style={{ whiteSpace: "nowrap" }}>
+                                <small>
+                                {item.quantity}
+                                &nbsp;x&nbsp;
+                                    ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 
+                                    &nbsp;CAD
+                                </small>
+                                </td>
+                                <td> 
+                                <small>                                       
+                                    $
+                                    {(item.quantity * item.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                    &nbsp;CAD  
+                                </small>                                    
+                                </td>                                     
+                            </tr>
+                        ))}                           
+
+                        </tbody>
+                        </table>          
+
+                        <h4>Shipping Details</h4>                   
+
+                        <table className="bordered-table">
                         <tbody>                            
                             <tr>
-                                <th>
-                                    <h6>Name:</h6>
-                                </th>
-                                <td>
-                                    {user && user.name}
-                                </td>
+                                <th><h6>Name:</h6></th>
+                                <td>{user && user.name}</td>
                             </tr>
                             <tr>
-                                <th>
-                                    <h6>Phone:</h6>
-                                </th>
-                                <td>
-                                    {shippingInfo.phoneNo}
-                                </td>
+                                <th><h6>Phone:</h6></th>
+                                <td>{shippingInfo.phoneNo}</td>
                             </tr>
                             <tr>
-                                <th>
-                                    <h6>Address:</h6>
-                                </th>
+                                <th><h6>Address:</h6></th>
                                 <td>
                                 { `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country  }`}
                                 </td>
+                            </tr>   
+                            <tr>
+                                <td colSpan="2" className="spacer-cell">
+                                    <h4>Order Summary</h4>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h6>Subtotal:</h6>
+                                </th>
+                                <td>
+                                    ${itemsPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h6>Shipping:</h6>
+                                </th>
+                                <td>
+                                    ${shippingPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h6>Tax:</h6>
+                                </th>
+                                <td>
+                                    ${taxPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h6>Total:</h6>
+                                </th>
+                                <td>
+                                    ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
+                                </td>
                             </tr>
                         </tbody>
-                    </table>   
+                        </table>
 
-                    <br />  
+                        <br />
 
-                    <div className="parent">
+                        <button className="submit" onClick={proceedToPayment}>Proceed to Payment</button>   
 
-                        <table className="middle-align">
+                        <Link to="/shipping"><i className="fa fa-times"/></Link>
 
-                            <tbody>
-                                
-                            {cartItems.map(item => (
-                                <tr key={item.product}>
-                                    <td>
-                                        <Link to={`/artwork/${item.product}`}>
-                                            <div className="cart-image">
-                                                <img src={item.image}alt={item.name} height="90" width="115" />
-                                            </div>
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/artwork/${item.product}`}>{item.name}</Link>
-                                    </td>
-                                       
-                                    <td style={{ whiteSpace: "nowrap" }}>
-                                    {item.quantity}
-                                    &nbsp;x&nbsp;
-                                        ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 
-                                        &nbsp;CAD
-                                        
-                                    </td>
-                                    <td>
-                                        <b>
-                                        $
-                                        {(item.quantity * item.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                                        &nbsp;CAD
-                                        </b>
-                                    </td>                                     
-                                </tr>
-                            ))}
-
-                            </tbody>
-
-                        </table>   
-
-                        <div style={{ width: "40px" }} />                  
-
-                        <div>
-                            <div className="order-summary">
-                                <h4>Order Summary</h4>
-                                <br />
-                                <table>
-                                    <tbody>
-                                    <tr>
-                                        <th>
-                                            <h6>Subtotal:</h6>
-                                        </th>
-                                        <td>
-                                            ${itemsPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h6>Shipping:</h6>
-                                        </th>
-                                        <td>
-                                            ${shippingPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h6>Tax:</h6>
-                                        </th>
-                                        <td>
-                                            ${taxPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h6>Total:</h6>
-                                        </th>
-                                        <td>
-                                            ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <br />
-                                <button className="submit" onClick={proceedToPayment}>Proceed to Payment</button>
-                            </div>
-                        </div>  
-
-                    </div>
-
-                </div>              
-                
-            </div>
+                    </div>              
+                    
+                </div>
 
             </div>
 

@@ -68,7 +68,7 @@ const UsersList = () => {
 
         users.forEach( user => {
             data.rows.push({
-                id: user._id,
+                id: <small>{user._id}</small>,
                 name: user.name,
                 email: user.email, 
                 role: user.role,                
@@ -78,9 +78,9 @@ const UsersList = () => {
                         <Link to={`/admin/user/${user._id}`} className="btn btn-primary py-1 px-2">
                             <i className="fa fa-pencil"></i>
                         </Link> 
-
+                        &nbsp; &nbsp;
                         <i 
-                            className="fa fa-trash"
+                            className="fa fa-trash-o"
                             onClick={() => deleteUserHandler(user._id)}
                         />
 
