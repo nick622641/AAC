@@ -4,33 +4,33 @@ import MetaData from '../layouts/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, clearErrors } from '../../actions/userActions'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 
 const Login = () => {
         
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // const location = useLocation()
+    const location = useLocation()
     const alert = useAlert()
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')    
     const [ passwordVisible, setPasswordVisible ] = useState()
     const { loading, isAuthenticated, error } = useSelector( state => state.auth )
-    // const redirect = location.search  ? `/${location.search.split('=')[1]}` : '/'  
-    
+    const redirect = location.search  ? `/${location.search.split('=')[1]}` : '/'  
+
     const togglePassword = () => {
         setPasswordVisible(!passwordVisible)
     }
    
     useEffect(() => {
         if(isAuthenticated) {
-            navigate('/')   
+            navigate(redirect)   
         }
         if(error) { 
             alert.error(error)
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, isAuthenticated, error, navigate])
+    }, [dispatch, alert, isAuthenticated, error, redirect, navigate])
 
     const submitHandler = (e) => {        
         e.preventDefault()
@@ -48,7 +48,7 @@ const Login = () => {
                     <MetaData title={'Login'} />
 
                     <div className="container">
-                        <div className="wrapper">
+                        <div className="wrapper stage">
 
                             <form onSubmit={submitHandler} className="user-form">
 

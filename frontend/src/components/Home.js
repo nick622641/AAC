@@ -94,7 +94,7 @@ const Home = () => {
 
         <Fragment>
 
-            <MetaData title={'Home'} />   
+            <MetaData title={'Home'} /> 
 
             <div className="slideshow">
                 {transitions((style, index) => (
@@ -135,10 +135,10 @@ const Home = () => {
                             <h4>SPREAD THE WORD ABOUT ABSTRACT ART CANADA</h4>
 
                             <div className="icons">  
-                                <Link to="!#" target="_blank">
+                                <Link to="#!" target="_blank">
                                     <i className="fa fa-facebook facebook" />
                                 </Link>
-                                <Link to="!#" target="_blank">
+                                <Link to="#!" target="_blank">
                                     <i className="fa fa-twitter" />
                                 </Link>
                             </div> 
@@ -148,10 +148,7 @@ const Home = () => {
 
                             <p>At Abstract Art Canada, we are committed to providing original art that's accessible and affordable. Beautiful, reasonably priced art that would look perfect in any home or workspace. In various sizes and styles, our artists create art that you can appreciate every day.   The artists at Abstract Art Canada are drawn to bold shapes and colours. They create art with feeling to produce something unique that might leave you reminded of a past experience.   We love creating and we want everyone else to share our love therefore we sell our art at reasonable prices.   Fancy having a go? In addition to selling our art, we offer free online courses for beginners. All you need is a drop of courage and a splash of curiosity.</p>
 
-                        </div> 
-                        <div>
-                        
-                        </div>   
+                        </div>                     
                     </div>  
 
                 </div>

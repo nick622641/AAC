@@ -160,7 +160,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 
     }
 }
-
+// Add new review
 export const newReview = (reviewData) => async (dispatch) => {
     try {
 
@@ -172,7 +172,7 @@ export const newReview = (reviewData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put('/api/v1/review', reviewData, config);
+        const { data } = await axios.put('/api/v1/review', reviewData, config)
 
         dispatch({
             type: NEW_REVIEW_SUCCESS,
@@ -188,7 +188,7 @@ export const newReview = (reviewData) => async (dispatch) => {
 
     }
 }
-
+// Get products - (Admin)
 export const getAdminProducts = () => async (dispatch) => {
     try {
 

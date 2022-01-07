@@ -103,7 +103,7 @@ const NewProduct = () => {
 
                         <h1>Create Artwork</h1>                   
                             
-                        <div className="user-form cart"> 
+                        <div className="user-form cart upload-product"> 
 
                             <form onSubmit={submitHandler} encType='multipart/form-data'>
 
@@ -116,27 +116,26 @@ const NewProduct = () => {
 
                                 <div className="parent">
 
-                                    <label className="avatar">                                        
-                                        <input
-                                            type="file"   
-                                            name="product_images"                            
-                                            onChange={onChange}   
-                                            multiple                              
-                                        />                            
-                                        <img 
-                                            src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
-                                            alt='Avatar Preview' 
-                                            className="centered-image"
-                                        />
-                                    </label>    
+                                    <table className="middle-align">
+                                    <tbody> 
 
-                                    <table className="add-artwork-details">
-                                    <tbody>                                        
-                                       
                                         <tr>
-                                            <th>
-                                                <h6>Stock</h6>
-                                            </th>
+                                            <td rowSpan="3">
+                                                <label className="avatar">                                        
+                                                    <input
+                                                        type="file"   
+                                                        name="product_images"                            
+                                                        onChange={onChange}   
+                                                        multiple                              
+                                                    />                            
+                                                    <img 
+                                                        src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
+                                                        alt='Avatar Preview' 
+                                                        className="centered-image"
+                                                    />
+                                                </label> 
+                                            </td>
+                                            <th><h6>Stock</h6></th>
                                             <td>
                                                 <input
                                                     type="number"
@@ -147,9 +146,7 @@ const NewProduct = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>
-                                                <h6>$ CAD</h6>
-                                            </th>
+                                            <th><h6>$ CAD</h6></th>
                                             <td>
                                                 <input
                                                     type="number"
@@ -160,9 +157,7 @@ const NewProduct = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>
-                                                <h6>Published</h6>
-                                            </th>
+                                            <th><h6>Published</h6></th>
                                             <td>
                                                 <input
                                                     type="date"
@@ -171,7 +166,7 @@ const NewProduct = () => {
                                                 />
                                             </td>
                                         </tr>
-                                        
+
                                     </tbody>
                                 </table>                                 
                                     
@@ -195,7 +190,7 @@ const NewProduct = () => {
 
                                 <div>
                                     <h4>Dimensions</h4>
-                                    <table className="admin-size-details">
+                                    <table>
                                         <tbody>
                                         <tr>
                                             <th>
@@ -204,7 +199,6 @@ const NewProduct = () => {
                                             <td>                                                
                                                 <input
                                                     type="number"
-                                                    placeholder="Width"
                                                     value={width}
                                                     onChange={(e) => setWidth(e.target.value)} 
                                                 />
@@ -215,7 +209,6 @@ const NewProduct = () => {
                                             <td>                                                
                                                 <input
                                                     type="number"
-                                                    placeholder="Height"
                                                     value={height}
                                                     onChange={(e) => setHeight(e.target.value)} 
                                                 />
@@ -226,7 +219,6 @@ const NewProduct = () => {
                                             <td>
                                                 <input
                                                     type="number"
-                                                    placeholder="Depth"
                                                     value={depth}
                                                     onChange={(e) => setDepth(e.target.value)} 
                                                 />

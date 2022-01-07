@@ -63,7 +63,7 @@ const UpdateProfile = () => {
             <MetaData title={'Update Profile'} />
 
             <div className="container">
-                <div className="wrapper">  
+                <div className="wrapper stage">  
 
                     <form className="user-form" onSubmit={submitHandler} encType='multipart/form-data'>
                       

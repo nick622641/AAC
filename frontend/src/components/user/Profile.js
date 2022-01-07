@@ -24,7 +24,7 @@ const Profile = () => {
                 <MetaData title={'My Profile'} />
 
                 <div className="container">
-                    <div className="wrapper">
+                    <div className="wrapper stage">
                         <div className="user-form">
 
                             <h1>My Profile</h1>
@@ -33,10 +33,16 @@ const Profile = () => {
                             <tbody>
                                 <tr>
                                     <td rowSpan="3">
-                                        <img src={user.avatar.url} alt={user.name} /> 
+                                        <figure className="avatar">
+                                            <img 
+                                                src={user.avatar.url} 
+                                                alt={user.name} 
+                                                className="centered-image"
+                                            /> 
+                                        </figure>
                                     </td>
                                     <td >
-                                        <h6>Username</h6>
+                                        <h6>Name</h6>
                                         <p>{user.name}</p>
                                     </td>
                                 </tr>

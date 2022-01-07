@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
 import { useAlert } from 'react-alert'
+import { Link } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
 import Modal from '../modals/Modal'
 import Contact from '../modals/Contact'
@@ -12,7 +12,6 @@ import './layout.css'
 const Header = () => {
     const alert = useAlert()
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const { user, loading } = useSelector(state => state.auth)
     const { cartItems } = useSelector(state => state.cart)
     const [ isNavOpen, setIsNavOpen ] = useState(false)
@@ -23,8 +22,7 @@ const Header = () => {
     const logoutHandler = () => {
         dispatch(logout())
         setMenuVisible(false)
-        alert.success('Logged out successfully.')
-        navigate('/')
+        alert.success('Logged Out Successfully')
     }
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
@@ -124,14 +122,16 @@ const Header = () => {
 
                         {user ? (
                             <Fragment>
-                                <figure onClick={toggleMenu}>
-                                    <img
-                                        src={user.avatar && user.avatar.url}
-                                        alt={user && user.name}  
-                                    /> 
-                                    <br />                               
-                                    <small>{user && user.name}</small>
-                                </figure>
+                                <div className="relative">
+                                    <figure onClick={toggleMenu}>
+                                        <img
+                                            src={user.avatar && user.avatar.url}
+                                            alt={user && user.name}  
+                                            className="centered-image"
+                                        /> 
+                                    </figure>
+                                <small>{user && user.name}</small>
+                                </div>
                                 {isMenuVisible && ( 
                                 <Fragment>
                                 <div className="backdrop" onClick={toggleMenu} style={{ background: "none" }} />
@@ -164,7 +164,7 @@ const Header = () => {
                             </Link>
                         )}                          
 
-                        <Link to="!#" target="_blank">
+                        <Link to="#!" target="_blank">
                             <i className="fa fa-facebook" />
                         </Link>
 

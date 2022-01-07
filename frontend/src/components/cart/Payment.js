@@ -5,7 +5,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { createOrder, clearErrors } from '../../actions/orderActions'
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const options = {
@@ -107,49 +107,50 @@ const Payment = () => {
 
             <MetaData title={'Payment'} />
 
-            <div className="container">
+            <div className="container">            
 
-            <CheckoutSteps shipping confirmOrder payment />
-
-            <div className="wrapper">
+            <div className="wrapper stage">
 
                     <form className="user-form" onSubmit={submitHandler}>
 
-                        <h2>Payment</h2>
+                        <CheckoutSteps shipping confirmOrder payment />
 
-                        <h6>Card Number</h6>
-                        <br />
-                        <label>
-                            
-                            <CardNumberElement
-                                className="input"                       
-                                options={options}
-                            />
-                        </label>
-                        <br />
-
-                        <h6>Card Expiry</h6>
-                        <br />
-                        <label>                            
-                            <CardExpiryElement
-                                className="input"   
-                                options={options}
-                            />
-                        </label>
-                        <br />
-
-                        <h6>Card CVC</h6>
-                        <br />
-                        <label>                            
-                            <CardCvcElement
-                                className="input"   
-                                options={options}
-                            />
-                        </label>
+                        <table className="bordered-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h6>Card Number</h6>                        
+                                        <br />   
+                                        <CardNumberElement
+                                            className="input" 
+                                            options={options}
+                                        />                                        
+                                        <p><small style={{ color: "grey" }}>Test data: 4000 0027 6000 3184</small></p>
+                                        <br />
+                                        <h6>Card Expiry</h6>
+                                        <br />                                                                    
+                                        <CardExpiryElement
+                                            className="input"   
+                                            options={options}
+                                        />                                        
+                                        <br />
+                                        <h6>Card CVC</h6>
+                                        <br />                                                                    
+                                        <CardCvcElement
+                                            className="input"   
+                                            options={options}
+                                        />                                        
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
                         <br />
                         <button className="submit">
                             {`Pay - $${orderInfo && orderInfo.totalPrice} CAD`}
                         </button>
+
+                        <Link to="/order/confirm"><i className="fa fa-times"/></Link>
             
                     </form>
                 </div>

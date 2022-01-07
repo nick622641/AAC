@@ -21,12 +21,12 @@ const CheckoutSteps = ({ shipping, confirmOrder, payment }) => {
 
             {confirmOrder ? <Link to="/order/confirm">
                         <div className="triangle2-active"></div>
-                        <div className="step active-step">Confirm Order</div>
+                        <div className="step active-step">Confirm</div>
                         <div className="triangle-active"></div>
                     </Link>
                     : <Link to="#!" disabled>
                         <div className="triangle2-incomplete"></div>
-                        <div className="step incomplete">Confirm Order</div>
+                        <div className="step incomplete">Confirm</div>
                         <div className="triangle-incomplete"></div>
                     </Link>
             }

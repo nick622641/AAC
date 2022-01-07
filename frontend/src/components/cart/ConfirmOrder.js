@@ -34,15 +34,11 @@ const ConfirmOrder = () => {
 
             <div className="container">            
 
-                <div className="wrapper">   
-
-                    <CheckoutSteps shipping confirmOrder />  
-
-                    <br />                   
+                <div className="wrapper stage">                                  
 
                     <div className="user-form"> 
 
-                        <h1>Confirm Order</h1>   
+                        <CheckoutSteps shipping confirmOrder /> 
 
                         <table className="middle-align bordered-table">
                         <tbody>                               
@@ -103,7 +99,13 @@ const ConfirmOrder = () => {
                             <tr>
                                 <th><h6>Address:</h6></th>
                                 <td>
-                                { `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country  }`}
+                                {shippingInfo.address}
+                                <br />
+                                {shippingInfo.city}
+                                <br />
+                                {shippingInfo.postalCode.toUpperCase()}
+                                <br />
+                                {shippingInfo.country}
                                 </td>
                             </tr>   
                             <tr>

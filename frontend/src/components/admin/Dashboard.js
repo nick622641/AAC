@@ -66,7 +66,7 @@ const Dashboard = () => {
 
                                     <Link to="/admin/products" className="admin admin-products">                                        
                                         <p>Artwork<br /> <b>{products && products.length}</b></p>                                        
-                                        <p>
+                                        <p className="relative">
                                             <small>View Details</small>
                                             <i className="fa fa-chevron-right"/>
                                         </p>
@@ -74,17 +74,17 @@ const Dashboard = () => {
 
                                     <Link to="/admin/orders" className="admin admin-orders">                                        
                                         <p>Orders<br /> <b>{orders && orders.length}</b></p>
-                                        <p>
+                                        <p className="relative">
                                             <small>View Details</small>
-                                            <i className="fa fa-chevron-right"/>
+                                            <i className="fa fa-chevron-right" />
                                         </p>                                            
                                     </Link>
 
                                     <Link to="/admin/users" className="admin admin-users">  
                                         <p>Users<br /> <b>{users && users.length}</b></p>                                        
-                                        <p>
+                                        <p className="relative">
                                             <small>View Details</small>
-                                            <i className="fa fa-chevron-right"/>
+                                            <i className="fa fa-chevron-right" />
                                         </p>   
                                     </Link>
 

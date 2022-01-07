@@ -1,12 +1,13 @@
-import { Fragment, useEffect           } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useTransition, animated       } from 'react-spring'
 import { Routes, Route, useLocation    } from 'react-router-dom'
 import { loadUser                      } from './actions/userActions'
+import { useSelector                   } from 'react-redux'
 import store                             from './store'
 // Payments
-// import { Elements                      } from '@stripe/react-stripe-js'
-// import { loadStripe                    } from '@stripe/stripe-js'
-// import axios                             from 'axios'
+import { Elements                      } from '@stripe/react-stripe-js'
+import { loadStripe                    } from '@stripe/stripe-js'
+import axios                             from 'axios'
 // Routes
 import Header                            from './components/layouts/Header'
 import Footer                            from './components/layouts/Footer'
@@ -55,24 +56,33 @@ import MediaList                         from './components/admin/MediaList'
 import NewMedia                          from './components/admin/NewMedia'
 import UpdateMedia                       from './components/admin/UpdateMedia'
 
-function App() {
+function App() {  
 
-  // const [ stripeApiKey, setStripeApiKey ] = useState('')    
+  const { product    } = useSelector( state => state.productDetails )  
+  const { loggingOut } = useSelector( state => state.auth )
+
+  const [ stripeApiKey, setStripeApiKey ] = useState('')    
   useEffect(() => {
     store.dispatch(loadUser())
-    // async function getStripApiKey() {
-    //   const { data } = await axios.get('/api/v1/stripeapi')
-    //   setStripeApiKey(data.stripeApiKey)
-    // }
-    // getStripApiKey()
+    async function getStripApiKey() {
+      const { data } = await axios.get('/api/v1/stripeapi')
+      setStripeApiKey(data.stripeApiKey)
+    }
+    getStripApiKey()
   }, [])
 
   const location = useLocation()
   const transitions = useTransition( location, {
     from:  { opacity: 0,   transform: "translate( 100%, 0%)" },
     enter: { opacity: 1,   transform: "translate(   0%, 0%)" },
-    leave: { opacity: 0.5, transform: "translate(-100%, 0%)", position: "absolute" }
+    leave: { opacity: 0.5, transform: "translate(-100%, 0%)", position: "absolute", top: "94px", width: "100%" }
   })
+
+  const redirect = !loggingOut &&
+                    location.pathname !== `/artwork/${product._id}` &&                    
+                    location.pathname !== '/shipping' && 
+                    location.pathname !== '/login' 
+                  ? false : true
 
   return (    
     
@@ -80,15 +90,15 @@ function App() {
 
       <Header />        
 
-        {transitions((props, item) => (      
-        <animated.div style={props}>
+      {transitions((props, item) => (      
+        <animated.div style={props} className="main">
 
-        {/* {stripeApiKey && 
-        <Elements stripe={loadStripe(stripeApiKey)}> */}
+        {stripeApiKey && 
+        <Elements stripe={location.pathname === '/payment' ? loadStripe(stripeApiKey) : null}>
 
           <ScrollToTop />
-
-          <Routes location={item}>
+          
+          <Routes location={redirect ? null : item} >
 
             <Route path="/"                      element={<Home                                                         />} />
             <Route path="/gallery"               element={<Gallery                                                      />} />
@@ -101,18 +111,16 @@ function App() {
             <Route path="/register"              element={<Register                                                     />} />  
             <Route path="/password/forgot"       element={<ForgotPassword                                               />} />
             <Route path="/password/reset/:token" element={<NewPassword                                                  />} /> 
-            <Route path="/me"                    element={<PrivateRoute><Profile                         /></PrivateRoute>} />
+            <Route path="/me"                    element={<PrivateRoute><Profile                         /></PrivateRoute>} />           
             <Route path="/me/update"             element={<PrivateRoute><UpdateProfile                   /></PrivateRoute>} />
             <Route path="/password/update"       element={<PrivateRoute><UpdatePassword                  /></PrivateRoute>} />
 
-            <Route path="/cart"                  element={<Cart                                                       />} />
+            <Route path="/cart"                  element={<Cart                                                         />} />
             <Route path="/orders/me"             element={<PrivateRoute><ListOrders                      /></PrivateRoute>} />
             <Route path="/order/:id"             element={<PrivateRoute><OrderDetails                    /></PrivateRoute>} />
             <Route path="/shipping"              element={<PrivateRoute><Shipping                        /></PrivateRoute>} />
-            <Route path="/order/confirm"         element={<PrivateRoute><ConfirmOrder                    /></PrivateRoute>} />   
-                                 
+            <Route path="/order/confirm"         element={<PrivateRoute><ConfirmOrder                    /></PrivateRoute>} />                                
             <Route path="/payment"               element={<PrivateRoute><Payment                         /></PrivateRoute>} />            
-            
             <Route path="/success"               element={<PrivateRoute><OrderSuccess                    /></PrivateRoute>} />
             
             <Route path="/dashboard"             element={<PrivateRoute isAdmin={true}><Dashboard        /></PrivateRoute>} />
@@ -136,16 +144,18 @@ function App() {
 
           </Routes>   
 
-        {/* </Elements>
-        }         */}
+        </Elements>
+        }        
 
         </animated.div>       
-        ))}         
+      ))}         
 
       <Footer />
 
     </Fragment>
+
   )
+  
 }
 
 export default App

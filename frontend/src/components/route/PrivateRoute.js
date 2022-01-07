@@ -4,23 +4,23 @@ import { useSelector } from 'react-redux'
 
 function PrivateRoute({ children, isAdmin }) { 
 
-  const { isAuthenticated, loading, user } = useSelector(state => state.auth)
- 
+  const { isAuthenticated, loading, user } = useSelector( state => state.auth )
+
   return (
 
-    <Fragment>
+    <Fragment>                 
 
-        {loading === false && isAdmin && (          
+        { loading === false && !isAdmin && (
 
-          isAuthenticated && user.role === 'admin' ? children : <Navigate to="/" />   
-
-        )}        
-
-        {loading === false && !isAdmin && (
-
-            isAuthenticated ? children : <Navigate to="/" />   
+            isAuthenticated ? children : <Navigate to="/login" />   
             
-        )}   
+        )}         
+
+        { loading === false && isAdmin === true && (           
+
+            isAuthenticated && user.role === 'admin' ? children : <Navigate to="/login" />   
+
+        )}          
 
     </Fragment>
 

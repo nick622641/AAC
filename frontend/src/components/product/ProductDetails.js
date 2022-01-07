@@ -13,6 +13,7 @@ import Review from '../modals/Review'
 import Contact from '../modals/Contact'
 import ListReviews from '../review/ListReviews'
 import Lightbox from './Lightbox'
+import { NEW_REVIEW_RESET } from '../../constants/productConstants'
 
 const ProductDetails = () => {   
     
@@ -24,8 +25,23 @@ const ProductDetails = () => {
     const [ modalType, setIModalType ] = useState()    
     const [ isLightboxVisible, setIsLightboxVisible ] = useState(false)    
     const [ imageIndex, setIImageIndex ] = useState(0)  
-    const { loading, error, product } = useSelector(state => state.productDetails)
-    const { user } = useSelector(state => state.auth)   
+
+    const { error: reviewError, success } = useSelector( state => state.newReview )
+    const { loading, product, error } = useSelector( state => state.productDetails )
+    const { user } = useSelector( state => state.auth )   
+    const { isAuthenticated } = useSelector( state => state.auth )
+
+    let rating = 0
+    let comment = ''  
+
+    if ( user && product && product.numOfReviews > 0 ) {
+        for (let i = 0; i < product.numOfReviews; i++) {
+            if ( product.reviews[i].user === user._id ) {                    
+                rating = product.reviews[i].rating
+                comment = product.reviews[i].comment
+            }
+        }
+    }  
 
     const toggleModal = (modalType) => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)  
@@ -44,8 +60,17 @@ const ProductDetails = () => {
         if(error) { 
             alert.error(error)
             dispatch(clearErrors())
+        } 
+        if(reviewError) { 
+            alert.error(reviewError)
+            dispatch(clearErrors())
+         } 
+         if(success) {
+            alert.success('Review posted successfully')
+            dispatch({ type: NEW_REVIEW_RESET })
+            setIsModalVisible(false)
         }          
-    }, [dispatch, alert, error, id])
+    }, [dispatch, success, alert, error, reviewError, id])
 
     const addToCart = () => {
         dispatch(addItemToCart(id, quantity))
@@ -65,13 +90,19 @@ const ProductDetails = () => {
     }  
 
     return (
+
         <Fragment>  
+
             {loading ? <Loader /> : (
+
                 <Fragment>
+
                     <MetaData title={product.name} />
-                    <div className="bg-grey">
+
+                    <div className="bg-grey product-details">
                         <div className="container">         
                             <div className="wrapper">
+
                                 <div className={product.orientation !== 'Landscape' ? 'portrait parent' : 'landscape'}>
 
                                     <div>
@@ -95,12 +126,14 @@ const ProductDetails = () => {
                                     </div>                                    
 
                                     <div className="information parent">  
-                                        <h1 className="text-center">{product.name}</h1>
+
+                                        <h1 className="text-center">{product.name}</h1>                                        
+
                                         <table>  
-                                            <tbody>  
+                                            <tbody>                                                 
                                                 <tr>
                                                     <th><h6>Artist</h6></th>
-                                                    <td><Link to="!#"><b>{product.artist}</b></Link></td>
+                                                    <td><Link to="#!"><b>{product.artist}</b></Link></td>
                                                 </tr>       
                                                 <tr>
                                                     <th><h6>Dimensions</h6></th>
@@ -152,20 +185,38 @@ const ProductDetails = () => {
                                                     <td></td>
                                                     <td>
                                                     {user ? 
-                                                    <button onClick={() => {toggleModal(<Review />)}}>
-                                                        Post Review
+                                                    <button onClick={() => {
+                                                        toggleModal(
+                                                            <Review  rating={rating} comment={comment} />
+                                                        )}}
+                                                    >
+                                                        <i className="fa fa-pencil" />
+                                                        &nbsp; Post Review
                                                     </button>                         
                                                     : 
-                                                    <Link to="/login">Login to post a review</Link>
+                                                    <Link to={`/login?redirect=artwork/${id}`}>
+                                                        <i className="fa fa-lock" />
+                                                        &nbsp; Login to Post a Review
+                                                    </Link>
                                                     } 
                                                     </td>
                                                 </tr>
+                                                {isAuthenticated && user.role === 'admin' && (
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>
+                                                            <Link to={`/admin/product/${product._id}`}>
+                                                                <i className="fa fa-pencil"/> &nbsp;Edit
+                                                            </Link>
+                                                        </td>
+                                                    </tr>
+                                                )} 
                                             </tbody>     
                                         </table>  
 
                                         <div> 
                                             <div className="text-center">  
-                                                <button
+                                                <button                                                    
                                                     className="submit"
                                                     onClick={addToCart}
                                                     disabled={product.stock === 0 ? true : false}
@@ -181,8 +232,7 @@ const ProductDetails = () => {
                                                     <i className="fa fa-minus-circle"/>
                                                 </span>
 
-                                                <input 
-                                                    type="number" 
+                                                <input
                                                     value={product.stock === 0 ? 0 : quantity} 
                                                     readOnly 
                                                 />
@@ -207,23 +257,22 @@ const ProductDetails = () => {
                     <div className="container">	
                         <div className="wrapper">	
                             <div className="parent">        
-                                <div>
+                                <div className="col-6">
                                     <h3>Share</h3>                                
                                     <h2>Spread the word about {product.name}</h2>                                    
                                     <div className="icons">  
-                                        <Link to="!#" target="_blank">
+                                        <Link to="#!" target="_blank">
                                             <i className="fa fa-facebook" aria-hidden="true"></i>
                                         </Link>
-                                        <Link to="!#" target="_blank">
+                                        <Link to="#!" target="_blank">
                                             <i className="fa fa-twitter" aria-hidden="true"></i>
                                         </Link>
                                     </div>                                
                                 </div>
-                                <div style={{ width: "40px" }} />
-                                <div>
+                                <div className="col-6">
                                     <p>                                
                                         {product.description}
-                                        <br />                                        
+                                        <br /><br />                                        
                                         <button onClick={() => {toggleModal(<Contact />)}}>
                                             <i className="fa fa-envelope" aria-hidden="true"></i> 
                                             &nbsp; Contact Us

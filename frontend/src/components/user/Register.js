@@ -67,7 +67,7 @@ const Register = () => {
             <MetaData title={'Register User'} />
 
             <div className="container">
-                <div className="wrapper">
+                <div className="wrapper stage">
                     <form onSubmit={submitHandler}  className="user-form">
 
                         <h1>Register</h1>

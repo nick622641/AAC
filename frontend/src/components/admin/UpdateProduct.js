@@ -132,7 +132,7 @@ const UpdateProduct = () => {
 
                         <h1>Update Artwork</h1>
 
-                        <div className="user-form cart"> 
+                        <div className="user-form cart upload-product"> 
 
                             <form onSubmit={submitHandler} encType='multipart/form-data'>
 
@@ -144,45 +144,45 @@ const UpdateProduct = () => {
 
                                 <div className="parent">
 
-                                <label className="avatar">                                    
-                                    <input
-                                        type='file'   
-                                        name="product_images"                            
-                                        onChange={onChange}   
-                                        multiple                              
-                                    />                            
-                                    {oldImages[0] && (
-                                        <img 
-                                            src={oldImages[0].thumbUrl} 
-                                            alt={name}
-                                            className="centered-image"
-                                        />
-                                    )}   
-                                    {imagesPreview[0] && (
-                                        <img src={imagesPreview[0]} alt={name}/>
-                                    )}  
-                                        
-                                </label>  
-
-                                <table className="add-artwork-details">
-                                    <tbody>                                        
-                                       
+                                    <table className="middle-align">
+                                    <tbody>  
                                         <tr>
-                                            <th>
-                                                <h6>Stock</h6>
-                                            </th>
+                                            <td rowSpan="3">
+                                                <label className="avatar">                                    
+                                                    <input
+                                                        type='file'   
+                                                        name="product_images"                            
+                                                        onChange={onChange}   
+                                                        multiple                              
+                                                    />                            
+                                                    {oldImages[0] && (
+                                                        <img 
+                                                            src={oldImages[0].thumbUrl} 
+                                                            alt={name}
+                                                            className="centered-image"
+                                                        />
+                                                    )}   
+                                                    {imagesPreview[0] && (
+                                                        <img 
+                                                            src={imagesPreview[0]} 
+                                                            alt={name}
+                                                            className="centered-image"
+                                                        />
+                                                    )}  
+                                                        
+                                                </label>  
+                                            </td>
+                                            <th><h6>Stock</h6></th>
                                             <td>
                                                 <input
                                                     type="number"
                                                     value={stock} 
                                                     onChange={(e) => setStock(e.target.value)}
                                                 />                                     
-                                            </td>                                            
-                                        </tr>
+                                            </td> 
+                                        </tr> 
                                         <tr>
-                                            <th>
-                                                <h6>$ CAD</h6>
-                                            </th>
+                                            <th><h6>$ CAD</h6></th>
                                             <td>
                                                 <input
                                                     type="number"
@@ -192,9 +192,7 @@ const UpdateProduct = () => {
                                             </td>                                         
                                         </tr>
                                         <tr>
-                                            <th>
-                                                <h6>Published</h6>
-                                            </th>
+                                            <th><h6>Published</h6></th>
                                             <td>
                                                 <input
                                                     type="date"
@@ -205,38 +203,38 @@ const UpdateProduct = () => {
                                         </tr>
                                         
                                     </tbody>
-                                </table>
+                                    </table>
 
-                            </div>  
+                                </div>  
 
-                            <ul className="thumbnails">                          
+                                <ul className="thumbnails">                          
 
-                                {oldImages && oldImages.map((img, i) => (
-                                    <li key={i} >
-                                        <img 
-                                            key={i} 
-                                            src={img.thumbUrl} 
-                                            alt={img.url} 
-                                            className="centered-image"    
-                                        />
-                                    </li>
-                                ))}
+                                    {oldImages && oldImages.map((img, i) => (
+                                        <li key={i} >
+                                            <img 
+                                                key={i} 
+                                                src={img.thumbUrl} 
+                                                alt={img.url} 
+                                                className="centered-image"    
+                                            />
+                                        </li>
+                                    ))}
 
-                                {imagesPreview.map((img, i) => (
-                                    <li key={i} >
-                                        <img 
-                                            src={img} 
-                                            alt="Images Preview" 
-                                            className="centered-image"    
-                                        />
-                                    </li>
-                                ))}
+                                    {imagesPreview.map((img, i) => (
+                                        <li key={i} >
+                                            <img 
+                                                src={img} 
+                                                alt="Images Preview" 
+                                                className="centered-image"    
+                                            />
+                                        </li>
+                                    ))}
 
-                            </ul>  
+                                </ul>  
 
-                            <div>
+                                <div>
                                     <h4>Dimesions</h4>
-                                    <table className="admin-size-details">
+                                    <table>
                                         <tbody>
                                         <tr>
                                             <th>
@@ -245,7 +243,6 @@ const UpdateProduct = () => {
                                             <td>                                                
                                                 <input
                                                     type="number"
-                                                    placeholder="Width"
                                                     value={width}
                                                     onChange={(e) => setWidth(e.target.value)} 
                                                 />                                                
@@ -256,7 +253,6 @@ const UpdateProduct = () => {
                                             <td>                                                
                                                 <input
                                                     type="number"
-                                                    placeholder="Height"
                                                     value={height}
                                                     onChange={(e) => setHeight(e.target.value)} 
                                                 />
@@ -267,7 +263,6 @@ const UpdateProduct = () => {
                                             <td>
                                                 <input
                                                     type="number"
-                                                    placeholder="Depth"
                                                     value={depth}
                                                     onChange={(e) => setDepth(e.target.value)} 
                                                 />
@@ -279,9 +274,7 @@ const UpdateProduct = () => {
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <th>
-                                                    <h6>Artist</h6>
-                                                </th>
+                                                <th><h6>Artist</h6></th>
                                                 <td>
                                                     <select 
                                                         value={artist}
@@ -295,9 +288,7 @@ const UpdateProduct = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>
-                                                    <h6>Orientation</h6>
-                                                </th>
+                                                <th><h6>Orientation</h6></th>
                                                 <td>
                                                     <select 
                                                         value={orientation}
@@ -312,15 +303,12 @@ const UpdateProduct = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>
-                                                    <h6>Media</h6>
-                                                </th>
+                                                <th><h6>Media</h6></th>
                                                 <td>
                                                     <select 
                                                         value={medium}
                                                         onChange={(e) => setMedium(e.target.value)}                                    >
                                                         <option value=""></option>
-
                                                         {media && media.map(m => (
                                                             <option key={m._id} value={m.name}>{m.name}</option>
                                                         ))}  
@@ -339,8 +327,7 @@ const UpdateProduct = () => {
                                     ></textarea>
                                 </label> 
                                 <br /> 
-                                <br />                              
-                    
+                                <br />  
                                 <button
                                     className="submit"
                                     disabled={loading ? true : false}

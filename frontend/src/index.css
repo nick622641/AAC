@@ -31,15 +31,21 @@ body {
 #root {
   display: flex; 
   flex-direction: column;    
+  min-height: 100vh;
 }
 main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  min-height: 80vh;  
 }
-#root > div {
-  flex-grow: 1;  
+.main {
+  flex-grow: 1; 
+  min-height: 80vh; 
+}
+.stage {
+  min-height: 80vh; 
+  display: flex;   
 }
 footer {
   flex-shrink: 0;
@@ -51,8 +57,7 @@ footer {
 .text-center {
   text-align: center;
 }
-.centered-image,
-.avatar img {
+.centered-image {
   position: relative;
   top: 50%;
   left: 50%;
@@ -137,7 +142,10 @@ small {
 }
 /* Aside / Article Styles */
 aside {
-  flex: 0 0 25%;
+  flex: 0 0 20%;
+}
+article {
+  flex: 0 1 calc(80% - 40px);     
 }
 aside ul {
   margin: 10px 0 30px 0;
@@ -161,9 +169,6 @@ aside h4 {
 aside .fa {
   font-size: 22px;
   margin: 0 20px 20px 0;      
-}
-article {
-  flex: 0 1 calc(75% - 40px);     
 }
 .rc-slider {
   margin: 20px 0 50px 0;
@@ -268,7 +273,6 @@ button[disabled] {
 .submit {
   color: var(--primary-color); 
   text-transform: uppercase;
-  text-decoration: none;
   white-space: nowrap;  
   background: white;    
   display: inline-block;  
@@ -278,6 +282,7 @@ button[disabled] {
   border: solid 1px var(--primary-color); 
   font-weight: 300; 
   font-size: 18px;  
+  position: relative;
 }
 .submit:hover {
   color: white; 
@@ -285,14 +290,14 @@ button[disabled] {
 }
 button .fa-chevron-right,
 a .fa-chevron-right {
-  position: relative;
-  left: 0;
-  margin-left: 35px;   
+  position: absolute;
+  top: 17px;
+  right: 20px;  
   color: inherit; 
 }
 button:hover .fa-chevron-right,
 a:hover .fa-chevron-right {  
-  left: 5px;
+  right: 15px;
 }
 .filters { 
   color: #555;
@@ -313,6 +318,7 @@ a:hover .fa-chevron-right {
   box-shadow: 0 0 32px rgba(0,0,0,0.5);
   padding: 40px;
   max-width: 480px; 
+  flex-basis: 480px;
   position: relative;
   background: white;
 }
@@ -357,15 +363,11 @@ input[type=file] {
 }
 .avatar {
   margin-bottom: 20px;
-  width: 150px;  
-  height: 150px;
+  width: 190px;  
+  height: 190px;
   overflow: hidden;
-  cursor: pointer;
+  cursor: pointer;  
   border: solid 1px #ccc;
-}
-.avatar img {
-  height: 100%;
-  width: auto;
 }
 .cart-image {
   width: 50px;
@@ -430,6 +432,10 @@ th a, td a {
 .middle-align td {
   vertical-align: middle;
 }
+.upload-product td,
+.upload-product th {
+  padding: 0;
+}
 /* MDB Table Styles */
 .dataTables_wrapper div:nth-child(2) {
   overflow-x: auto;
@@ -482,10 +488,14 @@ th a, td a {
   width: 200px;
   margin-top: 20px;
 }
+section {
+  margin: 40px 0;
+  background-position: center;
+  background-size: cover;
+}
 section .callout {
   background: rgba(0,0,0,0.8);
-  width: 350px;
-  height: 100%;
+  width: 350px;  
 }
 section .callout h3 {
   color: #999;
@@ -534,6 +544,17 @@ a.admin:hover {
   background: rgba(0,0,0,0.2);
   margin-top: 20px;   
 }
+.admin p + p {
+  text-align: left;
+  padding-left: 10px; 
+}
+.admin .fa-chevron-right {
+  top: 7px;
+  right: 10px;
+}
+.admin:hover .fa-chevron-right {
+  right: 5px;
+}
 /* Product Page Styles */
 .portrait .parent {
   flex-direction: column;
@@ -544,6 +565,11 @@ a.admin:hover {
 }
 .landscape .information {
   display: flex;
+}
+.product-details button {
+  width: 200px;
+  text-align: left;
+  margin-top:20px;
 }
 /* Pagination Styles */
 .pagination {
@@ -582,7 +608,8 @@ a.admin:hover {
   white-space: nowrap;  
 }
 .stockcounter input {
-  width: 3rem;
+  width: 40px;
+  padding: 0;
   text-align: center;
 }
 .plus i, 
@@ -601,12 +628,6 @@ a.admin:hover {
     color: var(--secondary-color);
 }
 /* Image Styles */
-section {
-  height: 50vh;
-  margin: 40px 0;
-  background-position: center;
-  background-size: cover;
-}
 img {
   width: 100%; 
   height: auto; 
@@ -771,6 +792,10 @@ img {
   flex-grow: 2;
   text-align: center;
 }
+.showroom-item img {
+  width: 230px;
+  height: auto;
+}
 .showroom-item .portrait {
   height: 230px;
   width: auto;
@@ -778,10 +803,14 @@ img {
 .showroom-item small {
   margin: 26px 0;     
 }
+.showroom-item h6 {
+  text-align: center;     
+}
 .showroom-item span {  
   max-width: 240px; 
   color: var(--primary-color);
   font-size: 1.375rem;
+  overflow: hidden;
 }
 /* Review Star Styles */
 .star {
@@ -791,10 +820,16 @@ img {
   padding-left: 0.9rem;
   color: #ccc;
 }  
+.star .fa {
+  color: inherit;
+}
+.star .fa:hover {
+  color: inherit;
+}
 .star:first-child {
   padding-left: 0;
 }  
-.orange {
+.gold {
   color: var(--primary-color);
 }  
 .yellow {
@@ -828,9 +863,8 @@ img {
 } 
 /* Checkout Steps */ 
 .checkout-progress {
-  display: flex;   
-  justify-content: center;
-  margin: 20px auto; 
+  display: flex;     
+  margin: 0 auto 20px auto; 
 }  
 .step {
   border: 0;
@@ -924,6 +958,9 @@ img {
   }
   td, th {
     font-size: 12px;
+  }
+  .product-details h1 {
+    margin-top: 40px;
   }
 }
 @media ( max-width: 480px ) {

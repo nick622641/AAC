@@ -29,7 +29,7 @@ function Contact() {
 
             <form onSubmit={submitHandler}>
 
-                <table>
+                <table className="bordered-table">
                     <tbody>
                         <tr>
                             <th><h6>Name:</h6></th>

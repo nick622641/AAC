@@ -35,7 +35,7 @@ const ForgotPassword = () => {
             <MetaData title={'Forgot Password'} />
             
             <div className="container">
-                <div className="wrapper">
+                <div className="wrapper stage">
 
                     <form className="user-form" onSubmit={submitHandler}>
 

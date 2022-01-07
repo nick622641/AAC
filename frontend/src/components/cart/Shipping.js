@@ -11,7 +11,7 @@ const Shipping = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const countriesList = Object.values(countries)
-    const { shippingInfo } = useSelector(state => state.cart)    
+    const { shippingInfo } = useSelector( state => state.cart )    
     const [ address, setAddress       ] = useState(shippingInfo.address)
     const [ city, setCity             ] = useState(shippingInfo.city)
     const [ postalCode, setPostalCode ] = useState(shippingInfo.postalCode)
@@ -30,19 +30,15 @@ const Shipping = () => {
 
             <MetaData title={'Shipping Info'} />
 
-            <div className="container">            
+            <div className="container">                        
 
-                <div className="wrapper">
-
-                    <CheckoutSteps shipping />
-
-                    <br />
+                <div className="wrapper stage">  
 
                     <form className="user-form" onSubmit={submitHandler}>
 
-                        <h1>Shipping Info</h1>
+                        <CheckoutSteps shipping /> 
 
-                        <table>
+                        <table className="bordered-table">
                         <tbody>
                             <tr>
                                 <th>
@@ -51,7 +47,7 @@ const Shipping = () => {
                                 <td>
                                     <input
                                         placeholder="Address"
-                                        value={address}
+                                        value={address ? address : ''}
                                         onChange={(e) => setAddress(e.target.value)}
                                         required
                                     />
@@ -64,7 +60,7 @@ const Shipping = () => {
                                 <td>
                                     <input
                                         placeholder="City"
-                                        value={city}
+                                        value={city ? city : ''}
                                         onChange={(e) => setCity(e.target.value)}
                                         required
                                     />
@@ -77,7 +73,7 @@ const Shipping = () => {
                                 <td>
                                     <input
                                         placeholder="Telephone number"
-                                        value={phoneNo}
+                                        value={phoneNo ? phoneNo : ''}
                                         onChange={(e) => setPhoneNo(e.target.value)}
                                         required
                                     />
@@ -90,7 +86,7 @@ const Shipping = () => {
                                 <td>
                                     <input
                                         placeholder="Postal Code"
-                                        value={postalCode}
+                                        value={postalCode ? postalCode : ''}
                                         onChange={(e) => setPostalCode(e.target.value)}
                                         required
                                     />
@@ -102,7 +98,7 @@ const Shipping = () => {
                                 </th>
                                 <td>
                                     <select
-                                        value={country}
+                                        value={country ? country : ''}
                                         onChange={(e) => setCountry(e.target.value)}
                                         required
                                     >

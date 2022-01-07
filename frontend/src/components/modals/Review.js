@@ -1,19 +1,15 @@
 import { Fragment, useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { NEW_REVIEW_RESET } from '../../constants/productConstants'
-import { useAlert } from 'react-alert'
-import { useNavigate, useParams } from 'react-router-dom'
-import { newReview, clearErrors } from '../../actions/productActions'
+import { useParams } from 'react-router-dom'
+import { newReview } from '../../actions/productActions'
 
-function Review() {
-
+function Review(props) {
+    
     const id = useParams().id    
-    const navigate = useNavigate()
     const dispatch = useDispatch()
-    const alert = useAlert()
-    const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState('')
-    const { error: reviewError, success, loading } = useSelector(state => state.newReview)  
+    const [ rating, setRating   ] = useState(props.rating)
+    const [ comment, setComment ] = useState(props.comment)
+    const { loading } = useSelector( state => state.newReview )  
 
     function setUserRatings() {
         const stars = document.querySelectorAll('.star')
@@ -28,10 +24,10 @@ function Review() {
             stars.forEach((star, index) => {
                 if(e.type === 'click') {
                     if(index < this.starValue) {
-                        star.classList.add('orange')
+                        star.classList.add('gold')
                         setRating(this.starValue)
                     } else {
-                        star.classList.remove('orange')
+                        star.classList.remove('gold')
                     }
                 }
                 if(e.type === 'mouseover') {
@@ -48,18 +44,11 @@ function Review() {
         }
     }
     
-    useEffect(() => {   
+    useEffect(() => {  
+
         setUserRatings()
-        if(reviewError) { 
-           alert.error(reviewError)
-           dispatch(clearErrors())
-        }
-        if(success) {
-            alert.success('Review posted successfully')
-            dispatch({ type: NEW_REVIEW_RESET })
-            navigate(`/artwork/${id}`)   
-        }  
-    }, [dispatch, navigate, alert, success, reviewError, id])
+        
+    }, [])
 
     const reviewHandler = (e)  => {
         e.preventDefault()
@@ -79,12 +68,14 @@ function Review() {
             <form onSubmit={reviewHandler}>
 
                 <ul className="stars" >
-                    <li className="star"><i className="fa fa-star"></i></li>
-                    <li className="star"><i className="fa fa-star"></i></li>
-                    <li className="star"><i className="fa fa-star"></i></li>
-                    <li className="star"><i className="fa fa-star"></i></li>
-                    <li className="star"><i className="fa fa-star"></i></li>
-                </ul>               
+                    <li className={rating > 0 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
+                    <li className={rating > 1 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
+                    <li className={rating > 2 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
+                    <li className={rating > 3 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
+                    <li className={rating > 4 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
+                </ul>    
+
+                <br />           
 
                 <textarea 
                     placeholder="Review"
@@ -95,9 +86,11 @@ function Review() {
                 >
                 </textarea>
 
+                <br />
+                <br />
+
                 <button 
-                    className="submit" 
-                    onClick={reviewHandler}
+                    className="submit"                     
                     disabled={loading ? true : false}
                 >
                     {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i> : 'Submit'}                                                    
