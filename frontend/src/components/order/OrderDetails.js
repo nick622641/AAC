@@ -73,7 +73,7 @@ const OrderDetails = () => {
                                             <Link to={`/artwork/${item.product}`}>{item.name}</Link>
                                         </td>
                                         <td>{item.quantity}</td>
-                                        <td>
+                                        <td className="whitespace-nowrap">
                                             ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} CAD
                                         </td>                                                
                                     </tr>
@@ -84,15 +84,15 @@ const OrderDetails = () => {
                                 <table className="bordered-table">
                                 <tbody>                            
                                     <tr>
-                                        <th><h6>Name:</h6></th>
+                                        <th><h6>Name</h6></th>
                                         <td>{user && user.name}</td>
                                     </tr>  
                                     <tr>
-                                        <th><h6>Phone:</h6></th>
+                                        <th><h6>Phone</h6></th>
                                         <td>{shippingInfo && shippingInfo.phoneNo}</td>
                                     </tr>  
                                     <tr>
-                                        <th><h6>Address:</h6></th>
+                                        <th><h6>Address</h6></th>
                                         <td>
                                             {shippingInfo && shippingInfo.address}
                                             <br />
@@ -109,25 +109,25 @@ const OrderDetails = () => {
                                         </td>
                                     </tr> 
                                     <tr>
-                                        <th><h6>Oder ID:</h6></th>
+                                        <th><h6>Oder ID</h6></th>
                                         <td>{order._id}</td>
                                     </tr>  
                                     <tr>
-                                        <th><h6>Date:</h6></th>
+                                        <th><h6>Date</h6></th>
                                         <td>{createdAt}</td>
                                     </tr>
                                     <tr>
-                                        <th><h6>Amount:</h6></th>
+                                        <th><h6>Amount</h6></th>
                                         <td>${grandTotal} CAD</td>
                                     </tr>                                   
                                     <tr>
-                                        <th><h6>Payment Status:</h6></th>
+                                        <th><h6>Payment Status</h6></th>
                                         <td style={ isPaid ? {  color: "var(--cta-green)"} : { color: "red"} }>                                                
                                             <b>{ isPaid ? 'Paid': 'Pending' }</b>                                             
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th><h6>Process Status:</h6></th>
+                                        <th><h6>Process Status</h6></th>
                                         <td style={ order.orderStatus && String(order.orderStatus).includes('Delivered') ? { color: "var(--cta-green)" } : { color: "red" } }>
                                             <b>{ orderStatus }</b>
                                         </td>

@@ -99,9 +99,7 @@ const NewProduct = () => {
 
                     <aside><Sidebar /></aside>            
 
-                    <article>     
-
-                        <h1>Create Artwork</h1>                   
+                    <article>          
                             
                         <div className="user-form cart upload-product"> 
 
@@ -114,27 +112,26 @@ const NewProduct = () => {
                                     onChange={(e) => setName(e.target.value)} 
                                 />
 
-                                <div className="parent">
+                                <div className="parent reverse">
+
+                                    <label className="avatar">                                        
+                                        <input
+                                            type="file"   
+                                            name="product_images"                            
+                                            onChange={onChange}   
+                                            multiple                              
+                                        />                            
+                                        <img 
+                                            src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
+                                            alt='Avatar Preview' 
+                                            className="centered-image"
+                                        />
+                                    </label> 
 
                                     <table className="middle-align">
                                     <tbody> 
 
-                                        <tr>
-                                            <td rowSpan="3">
-                                                <label className="avatar">                                        
-                                                    <input
-                                                        type="file"   
-                                                        name="product_images"                            
-                                                        onChange={onChange}   
-                                                        multiple                              
-                                                    />                            
-                                                    <img 
-                                                        src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
-                                                        alt='Avatar Preview' 
-                                                        className="centered-image"
-                                                    />
-                                                </label> 
-                                            </td>
+                                        <tr>                                          
                                             <th><h6>Stock</h6></th>
                                             <td>
                                                 <input

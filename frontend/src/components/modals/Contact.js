@@ -32,7 +32,7 @@ function Contact() {
                 <table className="bordered-table">
                     <tbody>
                         <tr>
-                            <th><h6>Name:</h6></th>
+                            <th><h6>Name</h6></th>
                             <td>
                                 <input 
                                     placeholder="Name" 
@@ -43,7 +43,7 @@ function Contact() {
                             </td>
                         </tr>
                         <tr>
-                            <th><h6>Email:</h6></th>
+                            <th><h6>Email</h6></th>
                             <td>
                                 <input 
                                     type="email" 
@@ -55,7 +55,7 @@ function Contact() {
                         </tr>
                         <tr>
                             <th style={{ verticalAlign: "top" }}>
-                                <h6 style={{ paddingTop: "12px" }}>Message:</h6>
+                                <h6 style={{ paddingTop: "12px" }}>Message</h6>
                             </th>
                             <td>
                                 <textarea 

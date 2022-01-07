@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Loader from '../layouts/Loader'
 import MetaData from '../layouts/MetaData'
 
 const Profile = () => {
 
+    const navigate = useNavigate()
     const { user, loading } = useSelector( state => state.auth )
     const date  = new Date(user.createdAt)
     const day   = date.getDate()
@@ -88,6 +89,8 @@ const Profile = () => {
                                 </tr>                                   
                             </tbody>
                             </table>
+
+                            <button onClick={() => navigate(-1)}><i className="fa fa-times"/></button>
                         
                         </div>
                     </div>

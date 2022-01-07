@@ -120,19 +120,25 @@ const ProductsList = () => {
                     </aside>            
 
                     <article>
-                        <Fragment>
-                            <h1>All Artwork</h1>
+                        <Fragment>  
+
                             <div className="user-form cart mdb-table">
-                            {loading ? <Loader /> : (
-                                <MDBDataTable                                    
-                                    data={setProducts()}
-                                    bordered
-                                    striped
-                                    hover    
-                                />
-                            )}
+
+                                <h1>All Artwork</h1>
+
+                                {loading ? <Loader /> : (
+                                    <MDBDataTable                                    
+                                        data={setProducts()}
+                                        bordered
+                                        striped
+                                        hover    
+                                    />
+                                )}
+
                             <Link to="/dashboard"><i className="fa fa-times"></i></Link>
+
                             </div>
+
                         </Fragment>
 
                     </article>

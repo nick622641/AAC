@@ -89,15 +89,15 @@ const ConfirmOrder = () => {
                         <table className="bordered-table">
                         <tbody>                            
                             <tr>
-                                <th><h6>Name:</h6></th>
+                                <th><h6>Name</h6></th>
                                 <td>{user && user.name}</td>
                             </tr>
                             <tr>
-                                <th><h6>Phone:</h6></th>
+                                <th><h6>Phone</h6></th>
                                 <td>{shippingInfo.phoneNo}</td>
                             </tr>
                             <tr>
-                                <th><h6>Address:</h6></th>
+                                <th><h6>Address</h6></th>
                                 <td>
                                 {shippingInfo.address}
                                 <br />
@@ -115,7 +115,7 @@ const ConfirmOrder = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Subtotal:</h6>
+                                    <h6>Subtotal</h6>
                                 </th>
                                 <td>
                                     ${itemsPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
@@ -123,7 +123,7 @@ const ConfirmOrder = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Shipping:</h6>
+                                    <h6>Shipping</h6>
                                 </th>
                                 <td>
                                     ${shippingPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
@@ -131,7 +131,7 @@ const ConfirmOrder = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Tax:</h6>
+                                    <h6>Tax</h6>
                                 </th>
                                 <td>
                                     ${taxPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
@@ -139,7 +139,7 @@ const ConfirmOrder = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Total:</h6>
+                                    <h6>Total</h6>
                                 </th>
                                 <td>
                                     ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD

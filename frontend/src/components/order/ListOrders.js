@@ -31,7 +31,7 @@ const ListOrders = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'No of Items',
+                    label: 'Quantity',
                     field: 'numOfItems',
                     sort: 'asc'
                 },
@@ -80,11 +80,11 @@ const ListOrders = () => {
 
             <div className="container">
 
-                <div className="wrapper">
-
-                    <h1>My Orders</h1>
+                <div className="wrapper stage">                    
 
                     <div className="user-form cart">
+
+                        <h1>My Orders</h1>
 
                         {loading ? <Loader /> : (
 

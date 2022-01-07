@@ -21,7 +21,7 @@ const Gallery = () => {
     const alert = useAlert()
     const dispatch = useDispatch()
     const [ currentPage, setCurrentPage ] = useState(1)
-    const [ price, setPrice ] = useState([1, 5000])
+    const [ price, setPrice ] = useState([1, 10000])
     const [ artist, setArtist ] = useState('')
     const [ medium, setMedium ] = useState('')
     const [ orientation, setOrientation ] = useState('')
@@ -58,7 +58,7 @@ const Gallery = () => {
 
     let count = productsCount
  
-    if(keyword || artist || medium || orientation || price[0] !== 1 || price[1] !== 5000 || rating !== 0) {
+    if(keyword || artist || medium || orientation || price[0] !== 1 || price[1] !== 10000 || rating !== 0) {
         count = filteredProductsCount          
     }   
 
@@ -87,10 +87,10 @@ const Gallery = () => {
                             <h6>Artist</h6>
 
                             <ul className="list-style">                                    
-                                <li className={keyword || artist || orientation || medium || price[0] !== 1 || price[1] !== 5000 || rating !== 0 ? '' : 'link-active'}>
+                                <li className={keyword || artist || orientation || medium || price[0] !== 1 || price[1] !== 10000 || rating !== 0 ? '' : 'link-active'}>
                                     <small>
                                     <Link to="/gallery">
-                                        {keyword || artist || orientation || medium || price[0] !== 1 || price[1] !== 5000 || rating !== 0 ? 'Reset Filters' : 'All the Work'}
+                                        {keyword || artist || orientation || medium || price[0] !== 1 || price[1] !== 10000 || rating !== 0 ? 'Reset Filters' : 'All the Work'}
                                         
                                     </Link>
                                     </small>                                            
@@ -104,7 +104,7 @@ const Gallery = () => {
                                         setMedium('')
                                         setCurrentPage(1)
                                         setRating(0)
-                                        setPrice([1, 5000])
+                                        setPrice([1, 10000])
                                         window.scrollTo(0, 0)
                                     }}
                                     className={artist && artist === a.name ? 'link-active' : ''}
@@ -126,7 +126,7 @@ const Gallery = () => {
                                         setMedium('')
                                         setCurrentPage(1)
                                         setRating(0)
-                                        setPrice([1, 5000])
+                                        setPrice([1, 10000])
                                         window.scrollTo(0, 0)
                                     }}
                                     className={orientation && orientation === o.name ? 'link-active' : ''}
@@ -148,7 +148,7 @@ const Gallery = () => {
                                         setArtist('')
                                         setCurrentPage(1)
                                         setRating(0)
-                                        setPrice([1, 5000])
+                                        setPrice([1, 10000])
                                         window.scrollTo(0, 0)
                                     }}
                                     className={medium && medium === m.name ? 'link-active' : ''}
@@ -164,11 +164,11 @@ const Gallery = () => {
                             <Range 
                                 marks={{
                                     1 : `$1`,
-                                    5000 : `$5000`
+                                    10000 : `$10000`
                                 }}
                                 min={1}
-                                max={5000}
-                                defaultValue={[1, 5000]}
+                                max={10000}
+                                defaultValue={[1, 10000]}
                                 tipFormatter={value => `$${value}`}
                                 tipProps={{
                                     placement: "top"                                                    
@@ -176,6 +176,9 @@ const Gallery = () => {
                                 value={price}
                                 onChange={(price) => {
                                     setPrice(price)
+                                    setMedium('')
+                                    setOrientation('')
+                                    setArtist('')
                                     setCurrentPage(1)
                                     setRating(0)
                                     window.scrollTo(0, 0)}}
@@ -190,8 +193,11 @@ const Gallery = () => {
                                         key={star}
                                         onClick={() => {
                                             setRating(star)
+                                            setMedium('')
+                                            setOrientation('')
+                                            setArtist('')
                                             setCurrentPage(1)
-                                            setPrice([1, 5000])
+                                            setPrice([1, 10000])
                                             window.scrollTo(0, 0)}}
                                     >
                                         <div className="rating-outer">
@@ -233,7 +239,7 @@ const Gallery = () => {
                                 {rating ? ' Ratings ' + rating + ' - 5': ''}
                             </small>
                             <small>&nbsp;
-                                {price[0] > 1 || price[1] < 5000 ? ' From $' + price[0] + ' to $' + price[1]: ''}
+                                {price[0] > 1 || price[1] < 10000 ? ' From $' + price[0] + ' to $' + price[1]: ''}
                             </small>
 
                             <small style={{ float: "right" }}>

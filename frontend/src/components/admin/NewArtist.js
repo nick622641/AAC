@@ -46,11 +46,11 @@ const NewArtist = () => {
 
                     <aside><Sidebar /></aside>            
 
-                    <article>     
-
-                        <h1>New Artist</h1>                   
+                    <article>          
                             
                         <div className="user-form cart"> 
+
+                            <h1>New Artist</h1>   
 
                             <form onSubmit={submitHandler}>
 

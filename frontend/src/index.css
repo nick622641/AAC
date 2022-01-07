@@ -57,6 +57,9 @@ footer {
 .text-center {
   text-align: center;
 }
+.text-right {
+  text-align: right;
+}
 .centered-image {
   position: relative;
   top: 50%;
@@ -432,17 +435,36 @@ th a, td a {
 .middle-align td {
   vertical-align: middle;
 }
+.top-align th,
+.top-align td {
+  vertical-align: top;
+}
 .upload-product td,
 .upload-product th {
   padding: 0;
 }
+.dimensions input {
+  width: 60px;
+}
 /* MDB Table Styles */
-.dataTables_wrapper div:nth-child(2) {
+.dataTables_wrapper > div:first-child {
+  display: flex;
+  justify-content: space-between;
+}
+.dataTables_wrapper > div:nth-child(2) {
   overflow-x: auto;
   margin-bottom: 20px;
 }
 .mdb-table input {
   text-align: right;
+  border: solid 1px #ccc;  
+  position: relative;
+  top: 3px;
+}
+.mdb-table select {
+  border: solid 1px #ccc;
+  margin: 10px 0 20px 0 !important;
+  height: 39px;
 }
 .mdb-table table {       
     margin-bottom: 20px;
@@ -962,7 +984,7 @@ img {
   .product-details h1 {
     margin-top: 40px;
   }
-}
+ }
 @media ( max-width: 480px ) {
   .wrapper {
     padding: 20px;

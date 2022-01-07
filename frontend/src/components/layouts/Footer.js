@@ -12,7 +12,7 @@ const Footer = () => {
                 <div className="wrapper">
 
                     <nav>        
-                        <ul className="parent">
+                        <ul className="footer-nav">
                        
                             <li>
                                 <h6>Galleries</h6>                               
@@ -49,7 +49,7 @@ const Footer = () => {
                         <ul className="parent">
                             <li>
                             <div className="icons">  
-                                <Link to="!#" target="_blank">
+                                <Link to="#!" target="_blank">
                                     <i className="fa fa-facebook facebook"/>
                                 </Link>
                                 <Link to="!#" target="_blank">

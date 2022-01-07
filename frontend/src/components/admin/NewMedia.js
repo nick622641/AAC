@@ -46,11 +46,11 @@ const NewMedia = () => {
 
                     <aside><Sidebar /></aside>            
 
-                    <article>     
-
-                        <h1>New Media</h1>                   
+                    <article>       
                             
                         <div className="user-form cart"> 
+
+                            <h1>New Media</h1>   
 
                             <form onSubmit={submitHandler}>
 

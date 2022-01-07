@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { MDBDataTable } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getProductReviews, deleteReview, clearErrors } from '../../actions/productActions'
 import { DELETE_REVIEW_RESET } from '../../constants/productConstants'
 import MetaData from '../layouts/MetaData'
@@ -102,26 +103,31 @@ const ProductReviews = () => {
 
                     <aside><Sidebar /></aside>            
 
-                    <article>  
-
-                        <h1>Product Reviews</h1>
-
-                        <form onSubmit={submitHandler}>                            
-                            <input
-                                placeholder="Enter Product ID"
-                                value={productId}
-                                onChange={(e) => setProductId(e.target.value)}
-                            />
-                        </form>  
-
-                        <br />  
+                    <article>                            
 
                         <div className="user-form cart mdb-table"> 
+
+                            <h1>Product Reviews</h1>
+
+                            <form onSubmit={submitHandler}>                            
+                                <input
+                                    style={{ textAlign: "left"}}
+                                    placeholder="Enter Product ID"
+                                    value={productId}
+                                    onChange={(e) => setProductId(e.target.value)}
+                                />
+                            </form> 
+
+                            <br /> 
+
                             {reviews && reviews.length > 0 ? (
                                 <MDBDataTable data={setReviews()} />
                             ) : (
                                 <p>No Reviews</p>
                             )}
+
+                            <Link to="/dashboard"><i className="fa fa-times"></i></Link>
+
                         </div>
                        
                     </article>

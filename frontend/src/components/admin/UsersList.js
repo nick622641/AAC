@@ -105,20 +105,23 @@ const UsersList = () => {
 
                     <article>
 
-                        <Fragment>
-
-                            <h1>All Users</h1>
+                        <Fragment>                            
 
                             <div className="user-form cart mdb-table">
 
+                                <h1>All Users</h1>
+
                                 {loading ? <Loader /> : (
+
                                     <MDBDataTable
                                         data={setUsers()}
                                         bordered
                                         striped
                                         hover    
                                     />
+
                                 )}
+
                                 <Link to="/dashboard"><i className="fa fa-times"></i></Link>
 
                             </div>
@@ -134,6 +137,7 @@ const UsersList = () => {
         </Fragment>
 
     )
+    
 }
 
 export default UsersList

@@ -16,6 +16,11 @@ import Lightbox from './Lightbox'
 import { NEW_REVIEW_RESET } from '../../constants/productConstants'
 
 const ProductDetails = () => {   
+
+    const { error: reviewError, success } = useSelector( state => state.newReview )
+    const { loading, product, error } = useSelector( state => state.productDetails )
+    const { user } = useSelector( state => state.auth )   
+    const { isAuthenticated } = useSelector( state => state.auth )
     
     const id = useParams().id    
     const alert = useAlert()
@@ -24,12 +29,7 @@ const ProductDetails = () => {
     const [ isModalVisible, setIsModalVisible ] = useState(false)
     const [ modalType, setIModalType ] = useState()    
     const [ isLightboxVisible, setIsLightboxVisible ] = useState(false)    
-    const [ imageIndex, setIImageIndex ] = useState(0)  
-
-    const { error: reviewError, success } = useSelector( state => state.newReview )
-    const { loading, product, error } = useSelector( state => state.productDetails )
-    const { user } = useSelector( state => state.auth )   
-    const { isAuthenticated } = useSelector( state => state.auth )
+    const [ imageIndex, setIImageIndex ] = useState(0)      
 
     let rating = 0
     let comment = ''  
@@ -76,7 +76,7 @@ const ProductDetails = () => {
         dispatch(addItemToCart(id, quantity))
         alert.success('Item Added to Cart')
     }
-    const increaseQty = () => {
+    const increaseQty = () => {        
         const count = document.querySelector('.count')
         if(count.valueAsNumber >= product.stock) { return }
         const qty = count.valueAsNumber + 1
@@ -87,7 +87,7 @@ const ProductDetails = () => {
         if(count.valueAsNumber <= 1) { return }
         const qty = count.valueAsNumber - 1
         setQuantity(qty)
-    }  
+    }     
 
     return (
 
@@ -175,7 +175,10 @@ const ProductDetails = () => {
                                                     <th><h6>Reviews</h6></th>    
                                                     <td className="whitespace-nowrap">
                                                     <div className="rating-outer">
-                                                        <div className="rating-inner" style={{ width: `${( product.ratings / 5 ) * 100}%` }}></div>
+                                                        <div 
+                                                            className="rating-inner" 
+                                                            style={{ width: `${( product.ratings / 5 ) * 100}%` }}
+                                                        />
                                                     </div>
                                                     &nbsp;
                                                     <small>({product.numOfReviews} Reviews)</small>  
@@ -206,7 +209,7 @@ const ProductDetails = () => {
                                                         <td></td>
                                                         <td>
                                                             <Link to={`/admin/product/${product._id}`}>
-                                                                <i className="fa fa-pencil"/> &nbsp;Edit
+                                                                <i className="fa fa-pencil" /> &nbsp;Edit
                                                             </Link>
                                                         </td>
                                                     </tr>
@@ -222,34 +225,30 @@ const ProductDetails = () => {
                                                     disabled={product.stock === 0 ? true : false}
                                                 >
                                                     Add to Cart 
-                                                    <i className="fa fa-chevron-right"/>
+                                                    <i className="fa fa-chevron-right" />
                                                 </button>     
                                             </div>  
                                             <br />
                                             <div className="stockcounter text-center">
                                                 Quantity &nbsp;
-                                                <span className={quantity === 1 ? 'inactive minus' : 'minus'} onClick={decreaseQty}>
-                                                    <i className="fa fa-minus-circle"/>
+                                                <span className={quantity <= 1 ? 'inactive minus' : 'minus'} onClick={decreaseQty}>
+                                                    <i className="fa fa-minus-circle" />
                                                 </span>
 
                                                 <input
+                                                    type="number"
+                                                    className="count"
                                                     value={product.stock === 0 ? 0 : quantity} 
                                                     readOnly 
                                                 />
 
-                                                <span  className={quantity === product.stock ? 'inactive plus' : 'plus'} onClick={increaseQty}>
-                                                    <i className="fa fa-plus-circle"/>
+                                                <span  className={quantity === product.stock || product.stock <= 1 ? 'inactive plus' : 'plus'} onClick={increaseQty}>
+                                                    <i className="fa fa-plus-circle" />
                                                 </span>
                                             </div>  
                                         </div>
                                     </div>
-                                </div>  
-                                <br />                                                                  
-                                {product.reviews && product.reviews.length > 0 && (   
-                                    
-                                    <ListReviews reviews={product.reviews} />   
-                                                                  
-                                )}
+                                </div> 
                             </div>
                         </div>   
                     </div>
@@ -262,10 +261,10 @@ const ProductDetails = () => {
                                     <h2>Spread the word about {product.name}</h2>                                    
                                     <div className="icons">  
                                         <Link to="#!" target="_blank">
-                                            <i className="fa fa-facebook" aria-hidden="true"></i>
+                                            <i className="fa fa-facebook" />
                                         </Link>
                                         <Link to="#!" target="_blank">
-                                            <i className="fa fa-twitter" aria-hidden="true"></i>
+                                            <i className="fa fa-twitter" />
                                         </Link>
                                     </div>                                
                                 </div>
@@ -274,7 +273,7 @@ const ProductDetails = () => {
                                         {product.description}
                                         <br /><br />                                        
                                         <button onClick={() => {toggleModal(<Contact />)}}>
-                                            <i className="fa fa-envelope" aria-hidden="true"></i> 
+                                            <i className="fa fa-envelope" /> 
                                             &nbsp; Contact Us
                                         </button>
                                     </p>
@@ -289,6 +288,22 @@ const ProductDetails = () => {
                                 <img src={product.images[0].url} alt={product.name} />
                             )} 
                         </div>
+                    </div>
+
+                    <div className="bg-grey">
+
+                        <div className="container">
+                            <div className="wrapper">
+
+                                {product.reviews && product.reviews.length > 0 && (   
+                                        
+                                    <ListReviews reviews={product.reviews} />   
+                                                                    
+                                )}
+
+                            </div>
+                        </div>
+
                     </div>
                     
                     {isLightboxVisible && (

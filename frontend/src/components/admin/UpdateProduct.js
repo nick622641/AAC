@@ -3,7 +3,7 @@ import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { updateProduct, getProductDetails, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
@@ -118,6 +118,7 @@ const UpdateProduct = () => {
     }
 
     return (
+
         <Fragment>
 
             <MetaData title={'Update Product'} />
@@ -128,9 +129,7 @@ const UpdateProduct = () => {
 
                     <aside><Sidebar /></aside>            
 
-                    <article>
-
-                        <h1>Update Artwork</h1>
+                    <article>                        
 
                         <div className="user-form cart upload-product"> 
 
@@ -142,36 +141,35 @@ const UpdateProduct = () => {
                                     onChange={(e) => setName(e.target.value)} 
                                 />
 
-                                <div className="parent">
+                                <div className="parent reverse">
+
+                                    <label className="avatar">                                    
+                                        <input
+                                            type='file'   
+                                            name="product_images"                            
+                                            onChange={onChange}   
+                                            multiple                              
+                                        />                            
+                                        {oldImages[0] && (
+                                            <img 
+                                                src={oldImages[0].thumbUrl} 
+                                                alt={name}
+                                                className="centered-image"
+                                            />
+                                        )}   
+                                        {imagesPreview[0] && (
+                                            <img 
+                                                src={imagesPreview[0]} 
+                                                alt={name}
+                                                className="centered-image"
+                                            />
+                                        )}  
+                                            
+                                    </label>
 
                                     <table className="middle-align">
                                     <tbody>  
-                                        <tr>
-                                            <td rowSpan="3">
-                                                <label className="avatar">                                    
-                                                    <input
-                                                        type='file'   
-                                                        name="product_images"                            
-                                                        onChange={onChange}   
-                                                        multiple                              
-                                                    />                            
-                                                    {oldImages[0] && (
-                                                        <img 
-                                                            src={oldImages[0].thumbUrl} 
-                                                            alt={name}
-                                                            className="centered-image"
-                                                        />
-                                                    )}   
-                                                    {imagesPreview[0] && (
-                                                        <img 
-                                                            src={imagesPreview[0]} 
-                                                            alt={name}
-                                                            className="centered-image"
-                                                        />
-                                                    )}  
-                                                        
-                                                </label>  
-                                            </td>
+                                        <tr>                                            
                                             <th><h6>Stock</h6></th>
                                             <td>
                                                 <input
@@ -234,7 +232,7 @@ const UpdateProduct = () => {
 
                                 <div>
                                     <h4>Dimesions</h4>
-                                    <table>
+                                    <table className="dimensions">
                                         <tbody>
                                         <tr>
                                             <th>
@@ -337,7 +335,7 @@ const UpdateProduct = () => {
 
                             </form>
 
-                            <Link to="/admin/products"><i className="fa fa-times"/></Link>
+                            <button onClick={() => navigate(-1)}><i className="fa fa-times"/></button>
 
                         </div>
 

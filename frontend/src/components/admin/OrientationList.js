@@ -90,19 +90,25 @@ const OrientationList = () => {
                     <aside><Sidebar /></aside>            
 
                     <article>
-
-                        <h1>Orientation Category</h1>
                         
                         {loading ? <Loader /> : (
+
                             <div className="user-form cart mdb-table">
-                                <Link to="/admin/orientation">
-                                    Add &nbsp;
-                                    <i className="fa fa-plus" />
-                                </Link>
-                                <br /><br />
+
+                                <h1>Orientation Category</h1>
+
+                                <p className="text-right">
+                                    <Link to="/admin/orientation">
+                                        Add &nbsp;<i className="fa fa-plus" />
+                                    </Link>
+                                </p>  
+
                                 <MDBDataTable data={setCategories()} />
+
                                 <Link to="/dashboard"><i className="fa fa-times" /></Link>
+
                             </div>
+
                         )}
 
                     </article>

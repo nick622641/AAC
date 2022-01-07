@@ -61,9 +61,9 @@ const UpdateUser = () => {
 
                     <article>
 
-                        <h1>Update User</h1>
-
                         <div className="user-form cart">
+
+                            <h1>Update User</h1>
 
                             <form onSubmit={submitHandler}>
 

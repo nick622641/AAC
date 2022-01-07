@@ -122,6 +122,10 @@ footer {
 footer > div:first-child {
     border-bottom: solid 1px #333;
 }
+.footer-nav {
+    display: flex;
+    justify-content: space-between;
+}
 footer ul ul{
     margin-top: 10px;
 }
@@ -138,4 +142,10 @@ footer small {
 }  
 footer small span {
     color: var(--primary-color);
+}
+/* Media Queries */
+@media ( max-width: 768px ) {
+    footer .parent {        
+        align-items: center;
+    }
 }

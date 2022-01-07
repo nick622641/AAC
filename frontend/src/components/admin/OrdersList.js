@@ -111,13 +111,16 @@ const OrdersList = () => {
 
                         <Fragment>
 
-                            <h1>All Orders</h1>
-
                             <div className="user-form cart mdb-table">
 
+                                <h1>All Orders</h1>
+
                                 {loading ? <Loader /> : (
+
                                     <MDBDataTable data={setOrders()} />
+
                                 )}
+
                                 <Link to="/dashboard"><i className="fa fa-times"></i></Link>
                                 
                             </div>
@@ -127,10 +130,13 @@ const OrdersList = () => {
                     </article>   
 
                 </div>
+
             </div>
             
         </Fragment>
+
     )
+    
 }
 
 export default OrdersList

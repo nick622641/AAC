@@ -92,19 +92,25 @@ const ArtistList = () => {
                     <aside><Sidebar /></aside>            
 
                     <article>
-
-                        <h1>Media Category</h1>
                         
                         {loading ? <Loader /> : (
+
                             <div className="user-form cart mdb-table">
-                                <Link to="/admin/medium">
-                                    Add &nbsp;
-                                    <i className="fa fa-plus" />
-                                </Link>
-                                <br /><br />
+
+                                <h1>Media Category</h1>
+
+                                <p className="text-right">
+                                    <Link to="/admin/medium">
+                                        Add &nbsp;<i className="fa fa-plus" />
+                                    </Link>
+                                </p>                                
+
                                 <MDBDataTable data={setCategories()} />
+
                                 <Link to="/dashboard"><i className="fa fa-times" /></Link>
+
                             </div>
+
                         )}
 
                     </article>

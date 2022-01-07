@@ -42,7 +42,7 @@ const Shipping = () => {
                         <tbody>
                             <tr>
                                 <th>
-                                    <h6>Address:</h6>
+                                    <h6>Address</h6>
                                 </th>
                                 <td>
                                     <input
@@ -55,7 +55,7 @@ const Shipping = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>City:</h6>
+                                    <h6>City</h6>
                                 </th>
                                 <td>
                                     <input
@@ -68,7 +68,7 @@ const Shipping = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Phone:</h6>
+                                    <h6>Phone</h6>
                                 </th>
                                 <td>
                                     <input
@@ -81,7 +81,7 @@ const Shipping = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Code:</h6>
+                                    <h6>Code</h6>
                                 </th>
                                 <td>
                                     <input
@@ -94,7 +94,7 @@ const Shipping = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Country:</h6>
+                                    <h6>Country</h6>
                                 </th>
                                 <td>
                                     <select

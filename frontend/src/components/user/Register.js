@@ -72,7 +72,7 @@ const Register = () => {
 
                         <h1>Register</h1>
 
-                        <table  className="middle-align">
+                        <table className="top-align">
                             <tbody>
                                 <tr>
                                     <td rowSpan="3">
@@ -135,13 +135,17 @@ const Register = () => {
                             className="submit"
                             disabled={loading ? true : false}
                         >
-                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Sign Up'}
+                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> : 'Sign Up'}
                         </button>
+
+                        <br /><br />
 
                         <p className="parent">
                             <small>Already signed up?</small>
                             <Link to="/login">LOGIN</Link>
                         </p>
+
+                        <Link to="/login"><i className="fa fa-times" /></Link>
                             
                     </form>
 
