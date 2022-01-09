@@ -51,6 +51,12 @@ footer {
   flex-shrink: 0;
 }
 /* Helper Classes */
+.primary-color {
+  color: var(--primary-color);
+}
+.danger {
+  color: red;
+}
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -75,6 +81,18 @@ footer {
 .relative {
   position: relative;
 }
+.float-r {
+  float: right;
+}
+.background-cover { 
+  background-position: center;
+  background-size: cover;
+}
+.price span {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-family: "Monotype Corsiva", cursive;
+}
 /* Heading / Paragaraph Styles */
 h1 {
   font-size: 40px; 
@@ -91,6 +109,7 @@ h2 {
   letter-spacing: 0.04em;
   font-weight: 100;
   margin-bottom: 20px;
+  text-transform: capitalize;
 }
 h3 {
   font-size: 16px;
@@ -233,7 +252,9 @@ a:hover {
 button .fa-spinner {
   font-size: 32px; 
 }
-.fa-trash-o {
+.fa-trash,
+.fa-trash-o,
+.fa-ban {
   color: red;  
 }
 .fa-pencil,
@@ -255,7 +276,6 @@ li:hover > a > .fa,
 li:hover > .fa {
   color: var(--primary-color); 
 }
-.fa-trash-o:hover,
 .fa-pencil:hover,
 .fa-eye:hover,
 .fa-eye-slash:hover {
@@ -355,10 +375,13 @@ select {
   width: 100%;
   border: solid 1px transparent
 }
+textarea {
+  min-height: 100px;
+}
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
   outline: none;
 }
 input[type=file] {
@@ -444,7 +467,7 @@ th a, td a {
   padding: 0;
 }
 .dimensions input {
-  width: 60px;
+  width: 65px;
 }
 /* MDB Table Styles */
 .dataTables_wrapper > div:first-child {
@@ -522,10 +545,19 @@ section .callout {
 section .callout h3 {
   color: #999;
 }
+.cta-first-image {
+  align-self: end;
+  height: 400px;
+}
 .cta {
   position: absolute;
   right: 0;
-  width: 70%;
+  width: 50%;
+  height: 200px;
+  overflow: hidden;    
+}
+.cta-last-image {
+  height: 400px;
 }
 section .callout p {
   color: #ccc;
@@ -587,11 +619,11 @@ a.admin:hover {
 }
 .landscape .information {
   display: flex;
+  margin-top: 40px;
 }
 .product-details button {
   width: 200px;
   text-align: left;
-  margin-top:20px;
 }
 /* Pagination Styles */
 .pagination {
@@ -678,20 +710,22 @@ img {
   flex-wrap: wrap;  
 }
 .thumbnails li {
-  margin: 0 5px 5px 0;     
-  cursor: zoom-in; 
+  margin: 0 5px 5px 0;  
   width: 125px; 
   height: 75px; 
   overflow: hidden;
   border: solid 1px #ccc;
 }
-.thumbnails li:hover img {
+.product-details .thumbnails li:hover img {
+  cursor: zoom-in; 
   opacity: 0.5;
 }
 /* Carousel Styles */
 .carousel {
   width: 100%;
+  max-width: 860px;
   overflow: hidden;
+  margin: 0 auto;
 }
 .carousel ul {
   position: relative;
@@ -888,6 +922,21 @@ img {
   display: flex;     
   margin: 0 auto 20px auto; 
 }  
+.checkout-progress a {
+  flex-basis: calc(100% / 3);  
+  display: flex;
+}
+.triangle2-active {
+  width: 0;  
+  border-top: 20px solid var(--primary-color);
+  border-left: 15px solid #fff;
+  border-bottom: 20px solid var(--primary-color);
+}  
+.triangle2-incomplete {
+  border-top: 20px solid #eeeeee;
+  border-left: 15px solid #fff;
+  border-bottom: 20px solid #eeeeee;
+}
 .step {
   border: 0;
   letter-spacing: 1px;
@@ -895,8 +944,9 @@ img {
   padding: 5px 10px 5px 15px;
   color: grey;
   cursor: default;
-  font-weight: bold;
-  float: left;
+  font-weight: bold;  
+  flex-grow: 1;
+  text-align: center;
 }  
 .incomplete {
   background: #eeeeee;
@@ -905,35 +955,16 @@ img {
   background: var(--primary-color);
   color: #fff;
 }  
-.triangle-active {
-  float: left;
+.triangle-active {  
   border-top: 20px solid transparent;
   border-left: 15px solid var(--primary-color);
   border-bottom: 20px solid transparent;
-  margin-left: -1px;
-}  
-.triangle2-active {
-  width: 0;
-  float: left;
-  border-top: 20px solid var(--primary-color);
-  border-left: 15px solid #fff;
-  border-bottom: 20px solid var(--primary-color);
-  margin-right: -1px;
 }  
 .triangle-incomplete {
-  float: left;
   border-top: 20px solid transparent;
   border-left: 15px solid #eeeeee;
   border-bottom: 20px solid transparent;
-  margin-left: -1px;
 }  
-.triangle2-incomplete {
-  float: left;
-  border-top: 20px solid #eeeeee;
-  border-left: 15px solid #fff;
-  border-bottom: 20px solid #eeeeee;
-  margin-right: -1px;
-}
 /* Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 12px; 
@@ -975,8 +1006,14 @@ img {
     width: 50%;
     float: right;
   }
-  .last-image {
+  .cta-first-image {
+    width: 100%;
+    flex-basis: auto;
+  }
+  .cta-last-image {
     width: 50%;
+    height: 200px;
+    flex-basis: auto;
   }
   td, th {
     font-size: 12px;

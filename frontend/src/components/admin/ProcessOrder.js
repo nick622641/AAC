@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { getOrderDetails, updateOrder, clearErrors } from '../../actions/orderActions'
 import { UPDATE_ORDER_RESET } from '../../constants/orderConstants'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 const ProcessOrder = () => {
 
@@ -83,7 +84,7 @@ const ProcessOrder = () => {
                                             </td>
                                             <td><Link to={`/artwork/${item.product}`}>{item.name}</Link></td>                                            
                                             <td>
-                                                ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
+                                                <FormattedPrice number={item.price} />
                                             </td>
                                             <th>{item.quantity}</th> 
                                         </tr>

@@ -7,6 +7,7 @@ import { allUsers } from '../../actions/userActions'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 const Dashboard = () => {
 
@@ -57,7 +58,7 @@ const Dashboard = () => {
                                     <p>
                                         Total Amount
                                         <br /> 
-                                        <b>${totalAmount && totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} CAD</b>     
+                                        <b><FormattedPrice number={totalAmount} /></b>     
                                     </p>
                                             
                                 </div>

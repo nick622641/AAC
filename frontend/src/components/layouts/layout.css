@@ -140,9 +140,6 @@ footer small {
     line-height: 3rem; 
     color: #999;
 }  
-footer small span {
-    color: var(--primary-color);
-}
 /* Media Queries */
 @media ( max-width: 768px ) {
     footer .parent {        

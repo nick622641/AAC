@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 import { useAlert } from 'react-alert'
@@ -7,6 +7,8 @@ import { createOrder, clearErrors } from '../../actions/orderActions'
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { emptyCart } from '../../actions/cartActions'
+
 
 const options = {
     style: {
@@ -18,7 +20,6 @@ const options = {
         }
     }
 }
-
 const Payment = () => {
 
     const alert = useAlert()      
@@ -30,12 +31,15 @@ const Payment = () => {
     const { error } = useSelector(state => state.newOrder)
     const { cartItems, shippingInfo } = useSelector(state => state.cart)
 
+    const [ processing, setProcessing ] = useState(false)
+
     useEffect(() => {
         if(error) {
             alert.error(error)
             dispatch(clearErrors())
         }
     }, [dispatch, alert, error])
+
     const order = {
         orderItems: cartItems,
         shippingInfo
@@ -56,7 +60,7 @@ const Payment = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        document.querySelector('.submit').disabled = true
+        setProcessing(true)
         let res
         try {
             const config = {
@@ -64,7 +68,6 @@ const Payment = () => {
                     'Content-Type': 'application/json'
                 }
             }
-
             res = await axios.post('/api/v1/payment/process', paymentData, config)
             const clientSecret = res.data.client_secret
             if(!stripe || !elements) { return }
@@ -80,25 +83,28 @@ const Payment = () => {
             })
 
             if(result.error) {
+
                 alert.error(result.error.message);
-                document.querySelector('.submit').disabled = false;
+                setProcessing(false)   
+
             } else {
                 // The payment is processed or not
                 if(result.paymentIntent.status === 'succeeded') {                    
                     order.paymentInfo = {
                         id: result.paymentIntent.id,
                         status: result.paymentIntent.status
-                    }
+                    }                    
                     dispatch(createOrder(order))
+                    dispatch(emptyCart())
                     navigate('/success')                    
                 } else {
                     alert.error('There was an issue while processing payment')
                 }
             }
 
-        } catch (error) {
-            alert.error(error.response.data.message);
-            document.querySelector('.submit').disabled = false            
+        } catch (error) {    
+            setProcessing(false)      
+            alert.error(error.response.data.message)
         }
     }
 
@@ -146,8 +152,13 @@ const Payment = () => {
                         </table>
                         
                         <br />
-                        <button className="submit">
-                            {`Pay - $${orderInfo && orderInfo.totalPrice} CAD`}
+                        <button 
+                            className="submit"
+                            disabled={processing ? true : false}
+                        >    
+                            {processing 
+                                ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> 
+                                : `Pay - $${orderInfo && orderInfo.totalPrice} CAD`}
                         </button>
 
                         <Link to="/order/confirm"><i className="fa fa-times"/></Link>

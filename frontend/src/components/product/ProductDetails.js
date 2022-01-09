@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductDetails } from '../../actions/productActions'
-import { addItemToCart } from '../../actions/cartActions'
 import { Link, useParams } from 'react-router-dom'
+import { getProductDetails, getRelatedProducts } from '../../actions/productActions'
+import { addItemToCart } from '../../actions/cartActions'
+import { NEW_REVIEW_RESET } from '../../constants/productConstants'
 import { clearErrors } from '../../actions/userActions'
 import { useSpring } from 'react-spring'
 import Loader from '../layouts/Loader'
@@ -13,23 +14,26 @@ import Review from '../modals/Review'
 import Contact from '../modals/Contact'
 import ListReviews from '../review/ListReviews'
 import Lightbox from './Lightbox'
-import { NEW_REVIEW_RESET } from '../../constants/productConstants'
+import Callout from './Callout'
+import Social from '../layouts/Social'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 const ProductDetails = () => {   
 
-    const { error: reviewError, success } = useSelector( state => state.newReview )
-    const { loading, product, error } = useSelector( state => state.productDetails )
-    const { user } = useSelector( state => state.auth )   
-    const { isAuthenticated } = useSelector( state => state.auth )
-    
-    const id = useParams().id    
-    const alert = useAlert()
+    const id       = useParams().id    
+    const alert    = useAlert()
     const dispatch = useDispatch()
-    const [ quantity, setQuantity ] = useState(1)
-    const [ isModalVisible, setIsModalVisible ] = useState(false)
-    const [ modalType, setIModalType ] = useState()    
-    const [ isLightboxVisible, setIsLightboxVisible ] = useState(false)    
-    const [ imageIndex, setIImageIndex ] = useState(0)      
+
+    const { error: reviewError, success } = useSelector( state => state.newReview )
+    const { loading, product, error     } = useSelector( state => state.productDetails )
+    const { products                    } = useSelector( state => state.products )
+    const { user, isAuthenticated       } = useSelector( state => state.auth )   
+
+    const [ modalType,         setIModalType        ] = useState()    
+    const [ quantity,          setQuantity          ] = useState(1)
+    const [ imageIndex,        setIImageIndex       ] = useState(0)   
+    const [ isModalVisible,    setIsModalVisible    ] = useState(false)
+    const [ isLightboxVisible, setIsLightboxVisible ] = useState(false)          
 
     let rating = 0
     let comment = ''  
@@ -41,7 +45,7 @@ const ProductDetails = () => {
                 comment = product.reviews[i].comment
             }
         }
-    }  
+    } 
 
     const toggleModal = (modalType) => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)  
@@ -57,6 +61,7 @@ const ProductDetails = () => {
     })
     useEffect( () => {   
         dispatch(getProductDetails(id))
+        dispatch(getRelatedProducts(product.artist))
         if(error) { 
             alert.error(error)
             dispatch(clearErrors())
@@ -66,11 +71,11 @@ const ProductDetails = () => {
             dispatch(clearErrors())
          } 
          if(success) {
-            alert.success('Review posted successfully')
+            alert.success('Review Posted Successfully')
             dispatch({ type: NEW_REVIEW_RESET })
             setIsModalVisible(false)
         }          
-    }, [dispatch, success, alert, error, reviewError, id])
+    }, [dispatch, success, alert, error, reviewError, id, product.artist])
 
     const addToCart = () => {
         dispatch(addItemToCart(id, quantity))
@@ -87,7 +92,7 @@ const ProductDetails = () => {
         if(count.valueAsNumber <= 1) { return }
         const qty = count.valueAsNumber - 1
         setQuantity(qty)
-    }     
+    }         
 
     return (
 
@@ -129,7 +134,7 @@ const ProductDetails = () => {
 
                                         <h1 className="text-center">{product.name}</h1>                                        
 
-                                        <table>  
+                                        <table className="middle-align">  
                                             <tbody>                                                 
                                                 <tr>
                                                     <th><h6>Artist</h6></th>
@@ -153,7 +158,7 @@ const ProductDetails = () => {
                                                 </tr>
                                                 <tr>
                                                     <th><h6>Status</h6></th>
-                                                    <td>                                              
+                                                    <td className={product.stock === 0 ? "danger" : ""}>                                              
                                                         {product.stock > 0 ? product.stock : null}                                                     
                                                         &nbsp;
                                                         {product.stock > 0 ? 'in Stock' : 'Out of Stock'}
@@ -161,14 +166,12 @@ const ProductDetails = () => {
                                                 </tr>
                                                 <tr>
                                                     <th><h6>Price</h6></th>    
-                                                    <td className="whitespace-nowrap">
-                                                        $
-                                                        <b>
-                                                        {product.price && (
-                                                            product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                                                        )}
-                                                        </b>
-                                                        &nbsp;CAN 
+                                                    <td>
+                                                        <span className="price">                                                                                                              
+                                                            {product.price && (
+                                                                <FormattedPrice number={product.price} />
+                                                            )}  
+                                                        </span>
                                                     </td>
                                                 </tr>                                              
                                                 <tr>
@@ -209,13 +212,15 @@ const ProductDetails = () => {
                                                         <td></td>
                                                         <td>
                                                             <Link to={`/admin/product/${product._id}`}>
-                                                                <i className="fa fa-pencil" /> &nbsp;Edit
+                                                                <i className="fa fa-pencil" /> &nbsp;Edit Page
                                                             </Link>
                                                         </td>
                                                     </tr>
                                                 )} 
                                             </tbody>     
                                         </table>  
+
+                                        <br />
 
                                         <div> 
                                             <div className="text-center">  
@@ -236,7 +241,6 @@ const ProductDetails = () => {
                                                 </span>
 
                                                 <input
-                                                    type="number"
                                                     className="count"
                                                     value={product.stock === 0 ? 0 : quantity} 
                                                     readOnly 
@@ -247,6 +251,7 @@ const ProductDetails = () => {
                                                 </span>
                                             </div>  
                                         </div>
+                                        
                                     </div>
                                 </div> 
                             </div>
@@ -260,12 +265,7 @@ const ProductDetails = () => {
                                     <h3>Share</h3>                                
                                     <h2>Spread the word about {product.name}</h2>                                    
                                     <div className="icons">  
-                                        <Link to="#!" target="_blank">
-                                            <i className="fa fa-facebook" />
-                                        </Link>
-                                        <Link to="#!" target="_blank">
-                                            <i className="fa fa-twitter" />
-                                        </Link>
+                                        <Social />
                                     </div>                                
                                 </div>
                                 <div className="col-6">
@@ -290,22 +290,24 @@ const ProductDetails = () => {
                         </div>
                     </div>
 
-                    <div className="bg-grey">
-
-                        <div className="container">
-                            <div className="wrapper">
-
-                                {product.reviews && product.reviews.length > 0 && (   
-                                        
-                                    <ListReviews reviews={product.reviews} />   
-                                                                    
-                                )}
-
+                    {product.reviews && product.reviews.length > 0 && (  
+                        <div className="bg-grey">                                    
+                            <div className="container">
+                                <div className="wrapper">                                    
+                                    <ListReviews 
+                                        reviews={product.reviews} 
+                                        user={user} 
+                                        toggleModal={toggleModal}
+                                    />   
+                                </div>
                             </div>
-                        </div>
+                        </div>                                                        
+                    )}  
 
-                    </div>
-                    
+                    {products.length > 1 && (
+                        <Callout products={products} />                        
+                    )}                    
+
                     {isLightboxVisible && (
                         <Lightbox 
                             product={product} 
@@ -320,11 +322,16 @@ const ProductDetails = () => {
                         isModalVisible={isModalVisible} 
                         onBackdropClick={toggleModal}   
                         content={modalType}
-                    />        
+                    />  
+
                 </Fragment>
+
             )}
-        </Fragment>        
+
+        </Fragment>    
+
     )
+
 }
 
 export default ProductDetails

@@ -1,16 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from './layouts/MetaData'
-import Pagination from 'react-js-pagination'
-import Slider from 'rc-slider'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../actions/productActions'
-import { getArtists, getMedia, getOrientations } from '../actions/categoryActions'
 import { Link, useParams } from 'react-router-dom'
 import { useAlert } from 'react-alert'
-import Product from './product/Product'
-import Loader from './layouts/Loader'
 import { useMediaQuery } from 'react-responsive'
 import { useSpring, animated } from 'react-spring'
+import { getProducts } from '../actions/productActions'
+import { getArtists, getMedia, getOrientations } from '../actions/categoryActions'
+import MetaData from './layouts/MetaData'
+import Product from './product/Product'
+import Loader from './layouts/Loader'
+import Pagination from 'react-js-pagination'
+import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 
 const { createSliderWithTooltip } = Slider
@@ -18,26 +18,32 @@ const Range = createSliderWithTooltip(Slider.Range)
 
 const Gallery = () => {
 
-    const alert = useAlert()
     const dispatch = useDispatch()
-    const [ currentPage, setCurrentPage ] = useState(1)
-    const [ price, setPrice ] = useState([1, 10000])
-    const [ artist, setArtist ] = useState('')
-    const [ medium, setMedium ] = useState('')
-    const [ orientation, setOrientation ] = useState('')
-    const [ rating, setRating] = useState(0)
-    const [ isMenuOpen, setIsMenuOpen] = useState(false)
+    const alert    = useAlert()
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-    const keyword = useParams().keyword  
-    const { artists } = useSelector(state => state.artists)
-    const { media } = useSelector(state => state.media)
-    const { orientations } = useSelector(state => state.orientations)   
+    const keyword  = useParams().keyword      
+    const [ currentPage, setCurrentPage ] = useState(1)
+    const [ rating,      setRating      ] = useState(0)
+    const [ price,       setPrice       ] = useState([1, 10000])
+    const [ artist,      setArtist      ] = useState('')
+    const [ medium,      setMedium      ] = useState('')
+    const [ orientation, setOrientation ] = useState('') 
+    const [ isMenuOpen,  setIsMenuOpen  ] = useState(false)   
 
-    const { loading, products, error, productsCount, resPerPage, filteredProductsCount } = useSelector( state => state.products )
+    const { artists      } = useSelector( state => state.artists )
+    const { media        } = useSelector( state => state.media )
+    const { orientations } = useSelector( state => state.orientations )  
+    const { loading, products, productsCount, resPerPage, filteredProductsCount, error } = useSelector( state => state.products )
 
     const menuAppear = useSpring({
         transform: isMenuOpen && isMobile ? 'translateX(0)' : 'translateX(-100%)'
     })
+
+    const resetPage = () => {
+        setCurrentPage(1)
+        setIsMenuOpen(false)
+        window.scrollTo(0, 0)
+    }
 
     useEffect( () => {
         dispatch(getArtists())
@@ -45,10 +51,8 @@ const Gallery = () => {
         dispatch(getOrientations())
         if(error) {
             return alert.error(error)        
-        }
-         
-        dispatch(getProducts(keyword, currentPage, price, artist, orientation, medium, rating))
-    
+        }         
+        dispatch(getProducts(keyword, currentPage, price, artist, orientation, medium, rating))    
 
     }, [dispatch, alert, error, keyword, currentPage, price, artist, orientation, medium, rating])
 
@@ -58,7 +62,7 @@ const Gallery = () => {
 
     let count = productsCount
  
-    if(keyword || artist || medium || orientation || price[0] !== 1 || price[1] !== 10000 || rating !== 0) {
+    if(keyword || artist || medium || orientation || price[0] > 1 || price[1] < 10000 || rating > 0) {
         count = filteredProductsCount          
     }   
 
@@ -82,30 +86,26 @@ const Gallery = () => {
                         {(isMenuOpen || !isMobile) && (
                         <animated.div style={isMobile ? menuAppear : {}}>
 
-                            <h3>Filters</h3>                                
+                            <h3>
+                                Filters
+                                <Link to="/gallery" className="float-r">
+                                    <i className="fa fa-refresh" style={{ margin: 0 }} />
+                                </Link>
+                            </h3>                                
 
                             <h6>Artist</h6>
 
-                            <ul className="list-style">                                    
-                                <li className={keyword || artist || orientation || medium || price[0] !== 1 || price[1] !== 10000 || rating !== 0 ? '' : 'link-active'}>
-                                    <small>
-                                    <Link to="/gallery">
-                                        {keyword || artist || orientation || medium || price[0] !== 1 || price[1] !== 10000 || rating !== 0 ? 'Reset Filters' : 'All the Work'}
-                                        
-                                    </Link>
-                                    </small>                                            
-                                </li>
+                            <ul className="list-style">   
                                 {artists && artists.map(a => (
                                 <li                                           
                                     key={a.name}
                                     onClick={(e) => {
                                         setArtist(a.name) 
                                         setOrientation('')
-                                        setMedium('')
-                                        setCurrentPage(1)
+                                        setMedium('')                                        
                                         setRating(0)
-                                        setPrice([1, 10000])
-                                        window.scrollTo(0, 0)
+                                        setPrice([1, 10000])                                   
+                                        resetPage()
                                     }}
                                     className={artist && artist === a.name ? 'link-active' : ''}
                                 >
@@ -124,10 +124,9 @@ const Gallery = () => {
                                         setOrientation(o.name)
                                         setArtist('')
                                         setMedium('')
-                                        setCurrentPage(1)
                                         setRating(0)
                                         setPrice([1, 10000])
-                                        window.scrollTo(0, 0)
+                                        resetPage()
                                     }}
                                     className={orientation && orientation === o.name ? 'link-active' : ''}
                                 >
@@ -146,13 +145,11 @@ const Gallery = () => {
                                         setMedium(m.name)
                                         setOrientation('')
                                         setArtist('')
-                                        setCurrentPage(1)
                                         setRating(0)
                                         setPrice([1, 10000])
-                                        window.scrollTo(0, 0)
+                                        resetPage()
                                     }}
                                     className={medium && medium === m.name ? 'link-active' : ''}
-
                                 >
                                     {m.name}
                                 </li>
@@ -179,9 +176,9 @@ const Gallery = () => {
                                     setMedium('')
                                     setOrientation('')
                                     setArtist('')
-                                    setCurrentPage(1)
                                     setRating(0)
-                                    window.scrollTo(0, 0)}}
+                                    resetPage()
+                                }}
                             />
 
                             <h6>Ratings</h6>
@@ -196,18 +193,15 @@ const Gallery = () => {
                                             setMedium('')
                                             setOrientation('')
                                             setArtist('')
-                                            setCurrentPage(1)
                                             setPrice([1, 10000])
-                                            window.scrollTo(0, 0)}}
+                                            resetPage()
+                                        }}
                                     >
                                         <div className="rating-outer">
-                                            <div className="rating-inner"
-                                                style={{
-                                                    width: `${star * 20}%`                                                       
-                                                }}
-                                            >
-
-                                            </div>
+                                            <div 
+                                                className="rating-inner"
+                                                style={{ width: `${star * 20}%` }}
+                                            />
                                         </div>
                                     </li>
                                 ))}
@@ -215,8 +209,10 @@ const Gallery = () => {
 
                             <button 
                                 className="filters"
-                                onClick={() => {setIsMenuOpen(!isMenuOpen); window.scrollTo(0, 0)}}
-                            >Hide Menu</button>
+                                onClick={resetPage}
+                            >
+                                Hide Menu
+                            </button>
 
                         </animated.div>
                         )} 
@@ -230,34 +226,29 @@ const Gallery = () => {
                         <Fragment>
 
                         <h1>
-                            {!keyword && !artist && !orientation && !medium ? 'All the Work' : ''}
-                            { keyword && !artist && !orientation && !medium ? 'Results for: ' + keyword : ''}
-                            {artist ? artist : ''}
-                            {orientation ? orientation : ''}
-                            {medium ? medium : ''}
-                            <small>
-                                {rating ? ' Ratings ' + rating + ' - 5': ''}
-                            </small>
-                            <small>&nbsp;
-                                {price[0] > 1 || price[1] < 10000 ? ' From $' + price[0] + ' to $' + price[1]: ''}
-                            </small>
+                            {!keyword && !artist && !orientation && !medium && !rating && (price[0]=== 1 && price[1] === 10000) ? 'All the Work' : ''}
+                            { keyword && !artist && !orientation && !medium && !rating && (price[0]=== 1 && price[1] === 10000) ? 'Results for: ' + keyword : ''}
+                            { artist      ? artist      : ''}
+                            { orientation ? orientation : ''}
+                            { medium      ? medium      : ''}                            
+                            { rating      ? ' Ratings ' + rating + ' - 5': ''}    
+                            { price[0] > 1 || price[1] < 10000 ? ' From $' + price[0] + ' to $' + price[1]: ''}                        
 
-                            <small style={{ float: "right" }}>
+                            <small className="float-r">
                                 {resPerPage * (currentPage - 1) + 1} 
                                 &nbsp;-&nbsp; 
                                 {resPerPage * currentPage > count ? count : resPerPage * currentPage} 
-                                <b>&nbsp;&nbsp;/&nbsp;</b> {count}
+                                &nbsp;&nbsp;/&nbsp; {count}
                             </small>                          
                         </h1>
 
                         <div className="showroom">
-
-                            {products && count > 0 ?  products.map(product => (
-
-                                <Product key={product._id} product={product} />
-                                
-                            )) : <p>No Results Found</p>}                                
-
+                            {products && count > 0                             
+                                ?   products.map(product => (
+                                        <Product key={product._id} product={product} />                                    
+                                    )) 
+                                :   <p>No Results Found</p>
+                            }    
                         </div>
 
                         {resPerPage <= count && (

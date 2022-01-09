@@ -4,6 +4,7 @@ const router = express.Router()
 
 const { 
     getProducts, 
+    getRelatedProducts,
     getAdminProducts,
     newProduct, 
     getSingleProduct, 
@@ -53,6 +54,8 @@ router.route('/admin/artist/:id')
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteArtist)
 
 router.route('/products').get(getProducts)
+router.route('/products/related').get(getRelatedProducts)
+// router.route('/products').get(getRelatedProducts)
 router.route('/admin/products').get(getAdminProducts)
 router.route('/product/:id').get(getSingleProduct)
 

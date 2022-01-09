@@ -118,7 +118,7 @@ const Shipping = () => {
                     
                         <button className="submit">Continue</button>
 
-                        <Link to="/cart"><i className="fa fa-times"/></Link>
+                        <Link to="/cart"><i className="fa fa-times" /></Link>
 
                     </form>
 

@@ -5,7 +5,8 @@ import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { myOrders, clearErrors } from '../../actions/orderActions';
+import { myOrders, clearErrors } from '../../actions/orderActions'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 const ListOrders = () => {
 
@@ -55,10 +56,10 @@ const ListOrders = () => {
 
         orders && orders.forEach( order => {
 
-            data.rows.push({                
+            data.rows.push({                 
                 id: order._id,
                 numOfItems: order.orderItems.length,
-                amount: `$${order.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, 
+                amount: <FormattedPrice number={order.totalPrice} />, 
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
                     ? <p style={{ color:'var(--cta-green)' }} >{order.orderStatus}</p>
                     : <p style={{ color:'red' }} >{order.orderStatus}</p>,

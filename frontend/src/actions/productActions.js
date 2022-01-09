@@ -12,6 +12,9 @@ import {
     ALL_PRODUCTS_REQUEST, 
     ALL_PRODUCTS_SUCCESS, 
     ALL_PRODUCTS_FAIL, 
+    RELATED_PRODUCTS_REQUEST, 
+    RELATED_PRODUCTS_SUCCESS, 
+    RELATED_PRODUCTS_FAIL, 
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAIL,
@@ -33,20 +36,24 @@ import {
 export const getProducts = ( keyword = '', currentPage = 1, price, artist = '', orientation = '', medium = '', rating = 0) => async (dispatch) => {
     try {
 
-        dispatch({
-            type: ALL_PRODUCTS_REQUEST
-        })
+        dispatch({ type: ALL_PRODUCTS_REQUEST })
 
-        let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${rating}`
+        let link = `/api/v1/products?page=${currentPage}&keyword=${keyword}`
      
         if( artist ) {    
-            link = `/api/v1/products?page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&artist=${artist}&ratings[gte]=${rating}`
+            link = `/api/v1/products?page=${currentPage}&artist=${artist}`
         }   
         if( orientation ) {    
-            link = `/api/v1/products?page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&orientation=${orientation}&ratings[gte]=${rating}`
+            link = `/api/v1/products?page=${currentPage}&orientation=${orientation}`
         } 
         if( medium ) {    
-            link = `/api/v1/products?page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&media=${medium}&ratings[gte]=${rating}`
+            link = `/api/v1/products?page=${currentPage}&media=${medium}`
+        }
+        if( rating ) {    
+            link = `/api/v1/products?page=${currentPage}&ratings[gte]=${rating}`
+        }
+        if( price[0] > 1 || price[1] < 10000 ) {    
+            link = `/api/v1/products?page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
 
         const { data } = await axios.get(link)
@@ -66,14 +73,65 @@ export const getProducts = ( keyword = '', currentPage = 1, price, artist = '', 
     }
 }
 
+// Get related products limit 3
+export const getRelatedProducts = (artist = '') => async (dispatch) => {
+    try {
+
+        dispatch({ type: RELATED_PRODUCTS_REQUEST })
+
+        let link = '/api/v1/products/related'
+
+        if( artist ) {    
+            link = `/api/v1/products/related?artist=${artist}`
+        } 
+
+        const { data } = await axios.get(link)
+
+        dispatch({
+            type: RELATED_PRODUCTS_SUCCESS,
+            payload: data.relatedProducts
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: RELATED_PRODUCTS_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+
+// Get products - (Admin)
+export const getAdminProducts = () => async (dispatch) => {
+    try {
+
+        dispatch({ type: ADMIN_PRODUCTS_REQUEST })
+
+        const { data } = await axios.get('/api/v1/admin/products')
+
+        dispatch({
+            type: ADMIN_PRODUCTS_SUCCESS,
+            payload: data.products
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: ADMIN_PRODUCTS_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+
+// Get Single Product Details
 export const getProductDetails = (id) => async (dispatch) => {
     try {
 
-        dispatch({
-            type: PRODUCT_DETAILS_REQUEST
-        })
+        dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/v1/product/${id}`);
+        const { data } = await axios.get(`/api/v1/product/${id}`)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -183,30 +241,6 @@ export const newReview = (reviewData) => async (dispatch) => {
 
         dispatch({
             type: NEW_REVIEW_FAIL,
-            payload: error.response.data.message
-        })
-
-    }
-}
-// Get products - (Admin)
-export const getAdminProducts = () => async (dispatch) => {
-    try {
-
-        dispatch({
-            type: ADMIN_PRODUCTS_REQUEST
-        })
-
-        const { data } = await axios.get('/api/v1/admin/products');
-
-        dispatch({
-            type: ADMIN_PRODUCTS_SUCCESS,
-            payload: data.products
-        })
-        
-    } catch (error) {
-
-        dispatch({
-            type: ADMIN_PRODUCTS_FAIL,
             payload: error.response.data.message
         })
 

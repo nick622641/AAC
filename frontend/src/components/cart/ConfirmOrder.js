@@ -3,6 +3,7 @@ import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 const ConfirmOrder = () => {
 
@@ -60,23 +61,22 @@ const ConfirmOrder = () => {
                                     </Link>
                                 </td>
                                 <td>
-                                    <Link to={`/artwork/${item.product}`}>{item.name}</Link>
+                                    <Link to={`/artwork/${item.product}`}>
+                                        <small>{item.name}</small>
+                                    </Link>
                                 </td>
                                 
-                                <td style={{ whiteSpace: "nowrap" }}>
-                                <small>
-                                {item.quantity}
-                                &nbsp;x&nbsp;
-                                    ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 
-                                    &nbsp;CAD
-                                </small>
+                                <td>
+                                    <small>
+                                        {item.quantity}
+                                        &nbsp;x&nbsp;
+                                        <FormattedPrice number={item.price} />
+                                    </small>
                                 </td>
                                 <td> 
-                                <small>                                       
-                                    $
-                                    {(item.quantity * item.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                                    &nbsp;CAD  
-                                </small>                                    
+                                    <small>  
+                                        <FormattedPrice number={(item.quantity * item.price)} />  
+                                    </small>                                    
                                 </td>                                     
                             </tr>
                         ))}                           
@@ -118,7 +118,7 @@ const ConfirmOrder = () => {
                                     <h6>Subtotal</h6>
                                 </th>
                                 <td>
-                                    ${itemsPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
+                                    <FormattedPrice number={itemsPrice} /> 
                                 </td>
                             </tr>
                             <tr>
@@ -126,7 +126,7 @@ const ConfirmOrder = () => {
                                     <h6>Shipping</h6>
                                 </th>
                                 <td>
-                                    ${shippingPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
+                                    <FormattedPrice number={shippingPrice} /> 
                                 </td>
                             </tr>
                             <tr>
@@ -134,7 +134,7 @@ const ConfirmOrder = () => {
                                     <h6>Tax</h6>
                                 </th>
                                 <td>
-                                    ${taxPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
+                                    <FormattedPrice number={taxPrice} /> 
                                 </td>
                             </tr>
                             <tr>
@@ -142,7 +142,7 @@ const ConfirmOrder = () => {
                                     <h6>Total</h6>
                                 </th>
                                 <td>
-                                    ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD
+                                    <FormattedPrice number={totalPrice} /> 
                                 </td>
                             </tr>
                         </tbody>

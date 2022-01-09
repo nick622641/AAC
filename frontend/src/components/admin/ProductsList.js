@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions'
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 const ProductsList = () => {
 
@@ -85,7 +86,7 @@ const ProductsList = () => {
                     </Link>,
                 id: <small>{product._id}</small>,
                 name: product.name,
-                price: `$${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, 
+                price: <FormattedPrice number={product.price} />, 
                 stock: product.stock,
                 actions: <Fragment>
                     <Link to={`/admin/product/${product._id}`}>

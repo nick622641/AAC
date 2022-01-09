@@ -142,7 +142,7 @@ const UpdateProduct = () => {
                                 />
 
                                 <div className="parent reverse">
-
+                                    
                                     <label className="avatar">                                    
                                         <input
                                             type='file'   
@@ -166,7 +166,7 @@ const UpdateProduct = () => {
                                         )}  
                                             
                                     </label>
-
+                                    
                                     <table className="middle-align">
                                     <tbody>  
                                         <tr>                                            

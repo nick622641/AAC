@@ -10,14 +10,17 @@ import Search from './Search'
 import './layout.css'
 
 const Header = () => {
-    const alert = useAlert()
+
     const dispatch = useDispatch()
-    const { user, loading } = useSelector(state => state.auth)
-    const { cartItems } = useSelector(state => state.cart)
-    const [ isNavOpen, setIsNavOpen ] = useState(false)
-    const [ isModalVisible, setIsModalVisible ] = useState(false)
-    const [ isSearchVisible, setSearchVisible ] = useState(false)
-    const [ isMenuVisible, setMenuVisible ] = useState(false)
+    const alert    = useAlert()
+    
+    const { user, loading } = useSelector( state => state.auth )
+    const { cartItems     } = useSelector( state => state.cart )
+
+    const [ isNavOpen,       setIsNavOpen      ] = useState(false)
+    const [ isModalVisible,  setIsModalVisible ] = useState(false)
+    const [ isSearchVisible, setSearchVisible  ] = useState(false)
+    const [ isMenuVisible,   setMenuVisible    ] = useState(false)
 
     const logoutHandler = () => {
         dispatch(logout())
@@ -59,122 +62,136 @@ const Header = () => {
                     : {marginBottom: "0"} }
             >      
 
-                    <div className="logo">
+                <div className="logo">
 
-                        <Link to="/"><img src="/images/logo100.png" alt="Logo" /></Link>
+                    <Link to="/"><img src="/images/logo100.png" alt="Logo" /></Link>
 
-                    </div>
+                </div>
 
-                    <nav>
-        
-                        <ul>        
+                <nav>
+    
+                    <ul>        
 
-                            <li>                               
+                        <li>                               
 
-                                {isNavOpen && (  
+                            {isNavOpen && (  
 
-                                <animated.ul style={animation}>
+                            <animated.ul style={animation}>                            
                                 
-                                    <li>
-                                        <h5>Artists</h5>
-                                        <ul className="list-style">
-                        
-                                            <li>
-                                                <Link 
-                                                    to="/gallery" 
-                                                    onClick={() => setIsNavOpen(!isNavOpen)}
-                                                >
-                                                    All the work
-                                                </Link>
-                                            </li>
-                        
-                                        </ul>
-                                        
-                                    </li>
+                                <li>
+                                    <h5>About</h5>
+                                    <ul className="list-style">
+                    
+                                        <li>
+                                            <Link 
+                                                to="#!" 
+                                                onClick={() => setIsNavOpen(!isNavOpen)}
+                                            >
+                                                Meet the Team
+                                            </Link>
+                                        </li>                                     
+                    
+                                    </ul>                                        
+                                </li>
+                                <li>
+                                    <h5>Gallery</h5>
+                                    <ul className="list-style">
+                    
+                                        <li>
+                                            <Link 
+                                                to="/gallery" 
+                                                onClick={() => setIsNavOpen(!isNavOpen)}
+                                            >
+                                                All the work
+                                            </Link>
+                                        </li>                                     
+                    
+                                    </ul>                                        
+                                </li>
 
-                                </animated.ul> 
+                            </animated.ul> 
 
-                                )}
-                                        
-                            </li>                 
-            
-                        </ul>   
+                            )}
+                                    
+                        </li>                 
+        
+                    </ul>   
 
-                    </nav>            
+                </nav>            
 
-                    <div className="icons">
-                        <i 
-                            className="fa fa-bars" 
-                            onClick={() => setIsNavOpen(!isNavOpen)}
-                        />  
-                        <i 
-                            className="fa fa-search" 
-                            onClick={toggleSearch}
-                        />  
-                        <i 
-                            className="fa fa-envelope" 
-                            onClick={toggleModal}
-                        /> 
-                        <Link to="/cart" className="openCart">
-                            <i className="fa fa-shopping-cart" /> 
-                            <small>{cartItems.length}</small>   
-                        </Link>
-
-                        {user ? (
+                <div className="icons">
+                    <i 
+                        className="fa fa-ellipsis-v" 
+                        onClick={() => setIsNavOpen(!isNavOpen)}
+                    />  
+                    <i 
+                        className="fa fa-search" 
+                        onClick={toggleSearch}
+                    />                         
+                    <Link to="/cart" className="openCart">
+                        <i className="fa fa-shopping-cart" /> 
+                        <small>{cartItems.length}</small>   
+                    </Link>
+                    <i 
+                        className="fa fa-envelope" 
+                        onClick={toggleModal}
+                    /> 
+                    
+                    {user ? (
+                        <Fragment>
+                            <div className="relative">
+                                <figure onClick={toggleMenu}>
+                                    <img
+                                        src={user.avatar && user.avatar.url}
+                                        alt={user && user.name}  
+                                        className="centered-image"
+                                    /> 
+                                </figure>
+                            <small>{user && user.name}</small>
+                            </div>
+                            {isMenuVisible && ( 
                             <Fragment>
-                                <div className="relative">
-                                    <figure onClick={toggleMenu}>
-                                        <img
-                                            src={user.avatar && user.avatar.url}
-                                            alt={user && user.name}  
-                                            className="centered-image"
-                                        /> 
-                                    </figure>
-                                <small>{user && user.name}</small>
-                                </div>
-                                {isMenuVisible && ( 
-                                <Fragment>
-                                <div className="backdrop" onClick={toggleMenu} style={{ background: "none" }} />
-                                <animated.div className="dropdown-menu" style={menuAppear}>
-                                    {user && user.role === 'admin' && (
-                                        <Link to="/dashboard" onClick={toggleMenu}
-                                        >Dashboard 
-                                            <i className="fa fa-tachometer" />
-                                        </Link>
-                                    )}
-                                    <Link to="/orders/me" onClick={toggleMenu}>
-                                        Orders 
-                                        <i className="fa fa-cart-plus" />
+                            <div className="backdrop" onClick={toggleMenu} style={{ background: "none" }} />
+                            <animated.div className="dropdown-menu" style={menuAppear}>
+                                {user && user.role === 'admin' && (
+                                    <Link to="/dashboard" onClick={toggleMenu}
+                                    >Dashboard 
+                                        <i className="fa fa-tachometer" />
                                     </Link>
-                                    <Link to="/me" onClick={toggleMenu}>
-                                        Profile 
-                                        <i className="fa fa-user-circle-o" />
-                                    </Link>
-                                    <Link to="/" onClick={logoutHandler}>
-                                        Logout 
-                                        <i className="fa fa-sign-out" />
-                                    </Link>
-                                </animated.div>
-                                </Fragment>
                                 )}
+                                <Link to="/orders/me" onClick={toggleMenu}>
+                                    Orders 
+                                    <i className="fa fa-cart-plus" />
+                                </Link>
+                                <Link to="/me" onClick={toggleMenu}>
+                                    Profile 
+                                    <i className="fa fa-user-circle-o" />
+                                </Link>
+                                <Link to="/" onClick={logoutHandler}>
+                                    Logout 
+                                    <i className="fa fa-sign-out" />
+                                </Link>
+                            </animated.div>
                             </Fragment>
-                        ) : !loading && (
-                            <Link to="/login">
-                                <i className="fa fa-unlock-alt" />
-                            </Link>
-                        )}                          
-
-                        <Link to="#!" target="_blank">
-                            <i className="fa fa-facebook" />
+                            )}
+                        </Fragment>
+                    ) : !loading && (
+                        <Link to="/login">
+                            <i className="fa fa-unlock-alt" />
                         </Link>
+                    )}                          
 
-                        <Modal
-                            isModalVisible={isModalVisible} 
-                            onBackdropClick={toggleModal}   
-                            content={<Contact />}
-                        />
+                    <Link to="#!" target="_blank">
+                        <i className="fa fa-facebook" />
+                    </Link>
 
-                    </div>
+                    <Modal
+                        isModalVisible={isModalVisible} 
+                        onBackdropClick={toggleModal}   
+                        content={<Contact />}
+                    />
+
+                </div>
 
                 {isSearchVisible && ( 
 
@@ -192,7 +209,9 @@ const Header = () => {
             </header> 
             
         </Fragment>
+
     )
+    
 }
 
 export default Header

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { allOrders, deleteOrder, clearErrors } from '../../actions/orderActions'
 import { DELETE_ORDER_RESET } from '../../constants/orderConstants'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 const OrdersList = () => {
 
@@ -71,7 +72,7 @@ const OrdersList = () => {
             data.rows.push({
                 id: <small>{order._id}</small>,
                 numOfItems: order.orderItems.length,
-                amount: `$${order.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, 
+                amount: <FormattedPrice number={order.totalPrice} />, 
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
                 ? <p style={{ color: "var(--cta-green)" }} >{order.orderStatus}</p>
                 : <p style={{ color:"red"   }} >{order.orderStatus}</p>,

@@ -57,7 +57,7 @@ const NewOrientation = () => {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <th><h6>Artist Name</h6></th>
+                                            <th><h6>Orientation Name</h6></th>
                                             <td>
                                                 <input
                                                     placeholder="Orientation Name"

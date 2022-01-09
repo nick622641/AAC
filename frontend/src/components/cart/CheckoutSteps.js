@@ -12,7 +12,7 @@ const CheckoutSteps = ({ shipping, confirmOrder, payment }) => {
                         <div className="step active-step">Shipping</div>
                         <div className="triangle-active"></div>
                     </Link>
-                    : <Link to="#!" disabled>
+                    : <Link to="#!">
                         <div className="triangle2-incomplete"></div>
                         <div className="step incomplete">Shipping</div>
                         <div className="triangle-incomplete"></div>
@@ -24,7 +24,7 @@ const CheckoutSteps = ({ shipping, confirmOrder, payment }) => {
                         <div className="step active-step">Confirm</div>
                         <div className="triangle-active"></div>
                     </Link>
-                    : <Link to="#!" disabled>
+                    : <Link to="#!">
                         <div className="triangle2-incomplete"></div>
                         <div className="step incomplete">Confirm</div>
                         <div className="triangle-incomplete"></div>
@@ -36,7 +36,7 @@ const CheckoutSteps = ({ shipping, confirmOrder, payment }) => {
                         <div className="step active-step">Payment</div>
                         <div className="triangle-active"></div>
                     </Link>
-                    : <Link to="#!" disabled>
+                    : <Link to="#!">
                         <div className="triangle2-incomplete"></div>
                         <div className="step incomplete">Payment</div>
                         <div className="triangle-incomplete"></div>

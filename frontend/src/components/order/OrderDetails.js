@@ -6,6 +6,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrderDetails, clearErrors } from '../../actions/orderActions'
 import { useParams } from 'react-router-dom'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 const OrderDetails = () => {
 
@@ -14,7 +15,6 @@ const OrderDetails = () => {
     const dispatch = useDispatch()
     const { loading, error, order = {} } = useSelector(state => state.orderDetails)    
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
-    const grandTotal = totalPrice ? totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : totalPrice
     const date = new Date(order.createdAt)
     const day = date.getDate()
     const month = date.getMonth() + 1
@@ -57,26 +57,26 @@ const OrderDetails = () => {
                                         <td><h6>Price</h6></td>
                                     </tr>
                                     {orderItems && orderItems.map(item => (
-                                    <tr key={item.product}>
-                                        <td>
-                                            <Link to={`/artwork/${item.product}`}>
-                                                <div className="cart-image">
-                                                    <img 
-                                                        src={item.image} 
-                                                        alt={item.name} 
-                                                        className="centered-image"
-                                                    />
-                                                </div>
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <Link to={`/artwork/${item.product}`}>{item.name}</Link>
-                                        </td>
-                                        <td>{item.quantity}</td>
-                                        <td className="whitespace-nowrap">
-                                            ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} CAD
-                                        </td>                                                
-                                    </tr>
+                                        <tr key={item.product}>
+                                            <td>
+                                                <Link to={`/artwork/${item.product}`}>
+                                                    <div className="cart-image">
+                                                        <img 
+                                                            src={item.image} 
+                                                            alt={item.name} 
+                                                            className="centered-image"
+                                                        />
+                                                    </div>
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link to={`/artwork/${item.product}`}>{item.name}</Link>
+                                            </td>
+                                            <td>{item.quantity}</td>
+                                            <td>
+                                                <FormattedPrice number={item.price} />
+                                            </td>                                                
+                                        </tr>
                                     ))}
                                 </tbody>
                                 </table>  
@@ -118,7 +118,7 @@ const OrderDetails = () => {
                                     </tr>
                                     <tr>
                                         <th><h6>Amount</h6></th>
-                                        <td>${grandTotal} CAD</td>
+                                        <td>{totalPrice && <FormattedPrice number={totalPrice} />}</td>
                                     </tr>                                   
                                     <tr>
                                         <th><h6>Payment Status</h6></th>

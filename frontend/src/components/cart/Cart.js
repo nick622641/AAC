@@ -2,7 +2,8 @@ import React, { Fragment } from 'react'
 import { Link, useNavigate  } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
-import { addItemToCart, removeItemFromCart } from '../../actions/cartActions'
+import { addItemToCart, removeItemFromCart, emptyCart } from '../../actions/cartActions'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 const Cart = () => {    
     
@@ -11,12 +12,13 @@ const Cart = () => {
     const { cartItems } = useSelector( state => state.cart )
     const { isAuthenticated } = useSelector( state => state.auth )
 
-
     let totalPrice = cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
-    totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
     const removeCartItemHandler = (id) => {
         dispatch(removeItemFromCart(id))
+    }
+    const emptyCartHandler = () => {        
+        dispatch(emptyCart())
     }
     const increaseQty = (id, quantity, stock) => {
         const newQty = quantity + 1
@@ -45,7 +47,13 @@ const Cart = () => {
 
                     <div className="user-form">
 
-                    {cartItems.length === 0 ? <h2>Your Cart is Empty</h2> : (
+                    {cartItems.length === 0 
+                    ? ( <Fragment>
+                            <h2>Your Cart is Empty</h2> 
+                            <button onClick={() => navigate(-1)}><i className="fa fa-times"/></button>
+                        </Fragment>
+                    )
+                    : (
 
                         <Fragment>
                             
@@ -58,7 +66,12 @@ const Cart = () => {
                                     <td><h6>Title</h6></td>
                                     <td><h6>Price</h6></td>                                    
                                     <td><h6>Quantity</h6></td>                                    
-                                    <th><i className="fa fa-ban"/></th>
+                                    <th>
+                                        <i 
+                                            className="fa fa-trash"
+                                            onClick={emptyCartHandler}
+                                        />
+                                    </th>
                                 </tr>
                                 {cartItems.map(item => (
                                     <tr key={item.product}>
@@ -72,8 +85,8 @@ const Cart = () => {
                                         <td>
                                             <Link to={`/artwork/${item.product}`}>{item.name}</Link>
                                         </td>
-                                        <td className="whitespace-nowrap">
-                                            ${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} CAD
+                                        <td>
+                                            <FormattedPrice number={item.price} />                                            
                                         </td>
                                         <td className="stockcounter">
                                             <span 
@@ -115,9 +128,9 @@ const Cart = () => {
                                 </tr>
                                 <tr>
                                     <th><h6>Total</h6></th>
-                                    <td style={{ whiteSpace: "nowrap" }}>
-                                        <b style={{ color: "var(--primary-color)" }}>
-                                            ${totalPrice} CAD
+                                    <td>
+                                        <b className="primary-color">
+                                            <FormattedPrice number={totalPrice} /> 
                                         </b>                                                
                                     </td>
                                 </tr>
@@ -128,7 +141,10 @@ const Cart = () => {
                                 Check Out
                             </button>
 
-                            <button onClick={() => navigate(-1)}><i className="fa fa-times"/></button>
+                            <i 
+                                className="fa fa-times"
+                                onClick={() => navigate(-1)}
+                            />
 
                         </Fragment>
 

@@ -1,9 +1,16 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import { getRelatedProducts } from '../actions/productActions'
 import { animated, useTransition } from 'react-spring'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import MetaData from './layouts/MetaData'
+import Callout from './product/Callout'
+import Social from './layouts/Social'
 
-const Home = () => {    
+const Home = () => {  
+    
+    const dispatch = useDispatch()
+    const { products } = useSelector( state => state.products )
    
     const [ imgIndex, setImgIndex ] = useState(0)     
     const [ left,     setLeft     ] = useState(0)
@@ -80,6 +87,7 @@ const Home = () => {
     })
 
     useEffect(() => {  
+        dispatch(getRelatedProducts())
         
         let isMounted = true        
         setInterval(() => {
@@ -88,7 +96,7 @@ const Home = () => {
             }
         }, 10000)           
         return () => { isMounted = false }
-    }, [data.length])
+    }, [dispatch, data.length])
 
     return (
 
@@ -135,12 +143,7 @@ const Home = () => {
                             <h4>SPREAD THE WORD ABOUT ABSTRACT ART CANADA</h4>
 
                             <div className="icons">  
-                                <Link to="#!" target="_blank">
-                                    <i className="fa fa-facebook facebook" />
-                                </Link>
-                                <Link to="#!" target="_blank">
-                                    <i className="fa fa-twitter" />
-                                </Link>
+                                <Social />
                             </div> 
                         </div>
                         <div className="col-6">
@@ -203,32 +206,13 @@ const Home = () => {
                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
                     </div>
                 </div>
-            </div>
+            </div>               
 
-            <div className="bg-grey">
-                <div className="container">
-                    <div className="wrapper">
-                        <div className="parent reverse">
-                            <div className="col-6 no-font">
-                                <img src="https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/06/SRB-SEP.jpg?fit=1485%2C1080&ssl=1"  alt="" />
-                            </div>
-                            <div className="wrapper parent callout col-6">
-                                <h3>Sub Heading</h3>
-                                <h2>Heading</h2>
-                                <p>Paragraph text</p>
-                            </div>
-                        </div>
-                        <div className="parent">
-                            <div className="col-6 relative no-font">
-                                <img className="cta" src="https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/Magical-Sunset-e1626646282638.jpg?fit=559%2C442&ssl=1" alt="" />
-                            </div>
-                            <div className="col-6 last-image">                                
-                                <img src="https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/Fall-in-Love-e1626646166558.jpg?fit=1386%2C1023&ssl=1" alt="" />                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {products.length > 1 && (
+                <div className="bg-grey">
+                    <Callout products={products} />  
+                </div>                      
+            )}
 
         </Fragment>
     )

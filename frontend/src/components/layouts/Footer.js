@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Social from './Social'
 
 const Footer = () => {
 
@@ -49,12 +50,7 @@ const Footer = () => {
                         <ul className="parent">
                             <li>
                             <div className="icons">  
-                                <Link to="#!" target="_blank">
-                                    <i className="fa fa-facebook facebook"/>
-                                </Link>
-                                <Link to="!#" target="_blank">
-                                    <i className="fa fa-twitter"/>
-                                </Link>
+                                <Social />
                             </div>    
                             </li>  
                             <li>
@@ -67,7 +63,7 @@ const Footer = () => {
                 </div>                
             </div>
 
-            <small>Copyright &copy; <b>{process.env.REACT_APP_SITE_NAME}</b> <span>{new Date().getFullYear()}</span>. All Rights Reserved.</small>
+            <small>Copyright &copy; <b>{process.env.REACT_APP_SITE_NAME}</b> <span className="primary-color">{new Date().getFullYear()}</span>. All Rights Reserved.</small>
             
         </footer>
     )
