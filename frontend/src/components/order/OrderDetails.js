@@ -122,20 +122,20 @@ const OrderDetails = () => {
                                     </tr>                                   
                                     <tr>
                                         <th><h6>Payment Status</h6></th>
-                                        <td style={ isPaid ? {  color: "var(--cta-green)"} : { color: "red"} }>                                                
-                                            <b>{ isPaid ? 'Paid': 'Pending' }</b>                                             
+                                        <td className={isPaid ? "success" : "danger"}>                                                
+                                            <b>{isPaid ? 'Paid': 'Pending'}</b>                                             
                                         </td>
                                     </tr>
                                     <tr>
                                         <th><h6>Process Status</h6></th>
-                                        <td style={ order.orderStatus && String(order.orderStatus).includes('Delivered') ? { color: "var(--cta-green)" } : { color: "red" } }>
+                                        <td className={order.orderStatus && String(order.orderStatus).includes('Delivered') ? "success" : "danger" }>
                                             <b>{ orderStatus }</b>
                                         </td>
                                     </tr>                            
                                 </tbody>    
                                 </table>                           
 
-                                <Link to="/orders/me"><i className="fa fa-times"/></Link>                    
+                                <Link to="/orders/me"><i className="fa fa-times" /></Link>                    
                             
                             </div>
 

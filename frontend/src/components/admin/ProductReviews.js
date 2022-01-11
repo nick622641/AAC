@@ -35,7 +35,9 @@ const ProductReviews = () => {
     }, [dispatch, isDeleted, alert, error, productId, deleteError])
 
     const deleteReviewHandler = (id) => {
-        dispatch(deleteReview(id, productId))
+        if ( window.confirm("Are you Sure?") === true ) {
+            dispatch(deleteReview(id, productId))
+        }        
     }   
     const submitHandler = (e) => {
         e.preventDefault()
@@ -47,7 +49,7 @@ const ProductReviews = () => {
                 {
                     label: 'Review ID',
                     field: 'id',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'Rating',
@@ -57,7 +59,7 @@ const ProductReviews = () => {
                 {
                     label: 'Comment',
                     field: 'comment',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'User',
@@ -66,7 +68,8 @@ const ProductReviews = () => {
                 },
                 {
                     label: 'Actions',
-                    field: 'actions'                  
+                    field: 'actions',
+                    sort: 'disabled'                  
                 }
             ],
             rows: []
@@ -79,16 +82,16 @@ const ProductReviews = () => {
                 comment: review.comment, 
                 user: review.name,                
                 actions:                 
-                    <Fragment>   
-
+                    <Fragment> 
                         <button onClick={() => deleteReviewHandler(review._id)}> 
-                            <i className="fa fa-trash-o"/>
-                        </button>  
-
+                            <i className="fa fa-trash-o" />
+                        </button> 
                     </Fragment> 
             })
         })
+
         return data
+
     }
 
     return (
@@ -101,17 +104,20 @@ const ProductReviews = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
                     <article>                            
 
-                        <div className="user-form cart mdb-table"> 
+                        <div className="user-form cart"> 
 
                             <h1>Product Reviews</h1>
 
                             <form onSubmit={submitHandler}>                            
-                                <input
-                                    style={{ textAlign: "left"}}
+                                <input                                    
                                     placeholder="Enter Product ID"
                                     value={productId}
                                     onChange={(e) => setProductId(e.target.value)}
@@ -121,12 +127,15 @@ const ProductReviews = () => {
                             <br /> 
 
                             {reviews && reviews.length > 0 ? (
-                                <MDBDataTable data={setReviews()} />
+                                <MDBDataTable 
+                                    className="mdb-table"
+                                    data={setReviews()} 
+                                />
                             ) : (
                                 <p>No Reviews</p>
                             )}
 
-                            <Link to="/dashboard"><i className="fa fa-times"></i></Link>
+                            <Link to="/dashboard"><i className="fa fa-times" /></Link>
 
                         </div>
                        

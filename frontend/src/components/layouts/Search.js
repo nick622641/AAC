@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 
 const Search = (props) => {
 
-    const [keyword, setKeyword] = useState('')
     const navigate = useNavigate()    
+    const [ keyword, setKeyword ] = useState('')    
 
     const searchHandler = (e) => {
         if (e._reactName === 'onSubmit'){
@@ -19,6 +19,7 @@ const Search = (props) => {
     }
 
     return (
+
         <form onSubmit={searchHandler}>
 
             <div>
@@ -26,14 +27,19 @@ const Search = (props) => {
                 <input 
                     placeholder="Search Site" 
                     value={keyword}
-                    onChange={(e) => {setKeyword(e.target.value); searchHandler(e)}} 
+                    onChange={(e) => {
+                        setKeyword(e.target.value)
+                        searchHandler(e)
+                    }} 
                     autoFocus
                 />  
                 
             </div>  
             
         </form>
+
     )
+
 }
 
 export default Search

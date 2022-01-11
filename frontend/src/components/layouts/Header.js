@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
 import { useAlert } from 'react-alert'
 import { Link } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
+import { getArtists } from '../../actions/categoryActions'
 import Modal from '../modals/Modal'
 import Contact from '../modals/Contact'
 import Search from './Search'
@@ -16,6 +17,7 @@ const Header = () => {
     
     const { user, loading } = useSelector( state => state.auth )
     const { cartItems     } = useSelector( state => state.cart )
+    const { artists       } = useSelector( state => state.artists )
 
     const [ isNavOpen,       setIsNavOpen      ] = useState(false)
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
@@ -47,6 +49,13 @@ const Header = () => {
     const searchAppear = useSpring({
         transform: isSearchVisible ? "translateY(0)" : "translateY(-40px)",
     })
+
+    useEffect(() => {
+
+        dispatch(getArtists())       
+
+    }, [dispatch])
+   
     
     return (
 
@@ -56,10 +65,13 @@ const Header = () => {
                 <div className="backdrop" onClick={() => setIsNavOpen(!isNavOpen)} /> 
             )}  
 
-            <header 
-                style={ isSearchVisible 
-                    ? {marginBottom: "250px"} 
-                    : {marginBottom: "0"} }
+            <header            
+                style={
+                    {
+                        marginBottom: isSearchVisible ? "250px" : "0",
+                        position: isNavOpen ? "relative" : "sticky"
+                    }
+                }
             >      
 
                 <div className="logo">
@@ -76,8 +88,36 @@ const Header = () => {
 
                             {isNavOpen && (  
 
-                            <animated.ul style={animation}>                            
+                            <animated.ul style={animation}>   
                                 
+                                <li>
+                                    <h5>Galleries</h5>
+                                    <ul className="list-style">
+                    
+                                        <li>
+                                            <Link 
+                                                to="/gallery" 
+                                                onClick={() => setIsNavOpen(!isNavOpen)}
+                                            >
+                                                All the Work
+                                            </Link>
+                                        </li> 
+
+                                        {artists && artists.map( (artist, index) => ( 
+                                            <li key={artist._id}>
+                                                
+                                                <Link 
+                                                    // to={`gallery?artist=${artist.name.replace(/ /g, '-')}`}
+                                                    to={`gallery/artist/${artist.name.replace(/ /g, '-')}`}
+                                                    onClick={() => setIsNavOpen(!isNavOpen)}
+                                                >
+                                                    {artist.name}
+                                                </Link>                                               
+                                            </li>    
+                                        ))}                                                                         
+                    
+                                    </ul>                                        
+                                </li>
                                 <li>
                                     <h5>About</h5>
                                     <ul className="list-style">
@@ -88,21 +128,6 @@ const Header = () => {
                                                 onClick={() => setIsNavOpen(!isNavOpen)}
                                             >
                                                 Meet the Team
-                                            </Link>
-                                        </li>                                     
-                    
-                                    </ul>                                        
-                                </li>
-                                <li>
-                                    <h5>Gallery</h5>
-                                    <ul className="list-style">
-                    
-                                        <li>
-                                            <Link 
-                                                to="/gallery" 
-                                                onClick={() => setIsNavOpen(!isNavOpen)}
-                                            >
-                                                All the work
                                             </Link>
                                         </li>                                     
                     
@@ -122,7 +147,10 @@ const Header = () => {
                 <div className="icons">
                     <i 
                         className="fa fa-ellipsis-v" 
-                        onClick={() => setIsNavOpen(!isNavOpen)}
+                        onClick={() => {
+                            setIsNavOpen(!isNavOpen)
+                            window.scrollTo(0, 0)
+                        }}
                     />  
                     <i 
                         className="fa fa-search" 

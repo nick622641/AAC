@@ -52,15 +52,17 @@ header nav > ul > li > ul {
     background: white;     
 }
 header nav > ul > li > ul > li {
-  margin: 0 40px;
+    margin: 0 40px;
+}
+header nav ul ul ul {
+    columns: 130px 3;
 }
 header nav ul ul ul li {
     white-space: nowrap;
 }
 header nav a {
-    line-height: 3;
-    display: inline-block;
-    width: 100%;
+    font-size: 12px;
+    line-height: 3;   
     padding: 0 20px 0 0;
 }
 .logo {
@@ -131,8 +133,8 @@ footer ul ul{
 }
 footer ul a {
     color: #999; 
-    line-height: 2em;
-    font-size: 0.75rem;
+    line-height: 2;
+    font-size: 12px;
 } 
 footer small {
     display: block;
@@ -141,8 +143,8 @@ footer small {
     color: #999;
 }  
 /* Media Queries */
-@media ( max-width: 768px ) {
-    footer .parent {        
+@media ( max-width: 768px ) {    
+    footer nav .parent {        
         align-items: center;
     }
 }

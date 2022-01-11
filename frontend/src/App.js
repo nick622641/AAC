@@ -103,6 +103,10 @@ function App() {
             <Route path="/"                      element={<Home                                                         />} />
             <Route path="/gallery"               element={<Gallery                                                      />} />
             <Route path="/gallery/:keyword"      element={<Gallery                                                      />} />
+            <Route path="/gallery/artist/:artist" element={<Gallery                                                      />} />
+            <Route path="/gallery/orientation/:orientation" element={<Gallery                                                      />} />
+            <Route path="/gallery/medium/:medium" element={<Gallery                                                      />} />
+            <Route path="/gallery/rating/:rating" element={<Gallery                                                      />} />
             <Route path="/artwork/:id"           element={<ProductDetails                                               />} />             
             <Route path="/terms"                 element={<Terms                                                        />} />
             <Route path="/privacy"               element={<Privacy                                                      />} />

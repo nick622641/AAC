@@ -58,7 +58,11 @@ const Dashboard = () => {
                                     <p>
                                         Total Amount
                                         <br /> 
-                                        <b><FormattedPrice number={totalAmount} /></b>     
+                                        <b>
+                                            {totalAmount && (
+                                                 <FormattedPrice number={totalAmount} />
+                                            )}                                           
+                                        </b>     
                                     </p>
                                             
                                 </div>

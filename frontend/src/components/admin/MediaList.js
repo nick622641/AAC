@@ -18,7 +18,9 @@ const ArtistList = () => {
     const { error: deleteError, isDeleted } = useSelector(state => state.medium)
 
     useEffect(() => {
+
         dispatch(getMedia())
+
         if(error) {
             alert.error(error)
             dispatch(clearErrors())
@@ -28,14 +30,17 @@ const ArtistList = () => {
             dispatch(clearErrors())
         }      
         if(isDeleted) {
-            alert.success('Media deleted successfully')            
+            alert.success('Media Deleted Successfully')            
             dispatch({ type: DELETE_MEDIA_RESET })
             navigate('/admin/media')
         }
+
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
 
     const deleteCategoryHandler = (id) => {
-        dispatch(deleteMedia(id))
+        if ( window.confirm("Are you Sure?") === true ) {
+            dispatch(deleteMedia(id))
+        }         
     }
 
     const setCategories = () => {
@@ -44,7 +49,7 @@ const ArtistList = () => {
                 {
                     label: 'Media ID',
                     field: 'id',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'Name',
@@ -53,7 +58,8 @@ const ArtistList = () => {
                 },  
                 {
                     label: 'Actions',
-                    field: 'actions'                  
+                    field: 'actions',
+                    sort: 'disabled'                  
                 }
             ],
             rows: []
@@ -63,16 +69,17 @@ const ArtistList = () => {
             data.rows.push({                
                 id: <small>{m._id}</small>,
                 name: m.name,
-                actions: <Fragment>
-                    <Link to={`/admin/media/${m._id}`}>
-                        <i className="fa fa-pencil"/>
-                    </Link>   
-                    &nbsp; &nbsp;                  
-                    <i 
-                        className="fa fa-trash-o"
-                        onClick={() => deleteCategoryHandler(m._id)}
-                    /> 
-                </Fragment> 
+                actions: 
+                    <Fragment>
+                        <Link to={`/admin/media/${m._id}`}>
+                            <i className="fa fa-pencil" />
+                        </Link>   
+                        &nbsp; &nbsp;                  
+                        <i 
+                            className="fa fa-trash-o"
+                            onClick={() => deleteCategoryHandler(m._id)}
+                        /> 
+                    </Fragment> 
             })
         })    
        
@@ -89,13 +96,17 @@ const ArtistList = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
                     <article>
                         
                         {loading ? <Loader /> : (
 
-                            <div className="user-form cart mdb-table">
+                            <div className="user-form cart">
 
                                 <h1>Media Category</h1>
 
@@ -105,7 +116,10 @@ const ArtistList = () => {
                                     </Link>
                                 </p>                                
 
-                                <MDBDataTable data={setCategories()} />
+                                <MDBDataTable 
+                                    className="mdb-table"
+                                    data={setCategories()} 
+                                />
 
                                 <Link to="/dashboard"><i className="fa fa-times" /></Link>
 

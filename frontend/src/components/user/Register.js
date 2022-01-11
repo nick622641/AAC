@@ -67,7 +67,9 @@ const Register = () => {
             <MetaData title={'Register User'} />
 
             <div className="container">
+
                 <div className="wrapper stage">
+
                     <form onSubmit={submitHandler}  className="user-form">
 
                         <h1>Register</h1>
@@ -81,8 +83,7 @@ const Register = () => {
                                                 type='file'   
                                                 name="avatar"                            
                                                 accept="images/*"
-                                                onChange={onChange} 
-                                                required                                
+                                                onChange={onChange}                                                                                 
                                             />                            
                                             <img src={avatarPreview} alt="Avatar Preview"/>
                                         </label>
@@ -154,7 +155,9 @@ const Register = () => {
             </div>               
 
         </Fragment>
+
     )
+    
 }
 
 export default Register

@@ -57,7 +57,11 @@ const UpdateUser = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
                     <article>
 
@@ -103,16 +107,14 @@ const UpdateUser = () => {
                                         
                                     </tbody>
                                 </table>
-
                                 
-                             
-                           
+                                <br />
 
                                 <button className="submit">Update</button>
 
                             </form>
 
-                            <Link to="/admin/users"><i className="fa fa-times"></i></Link>
+                            <Link to="/admin/users"><i className="fa fa-times" /></Link>
 
                         </div>
 

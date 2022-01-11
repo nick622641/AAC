@@ -15,10 +15,11 @@ const OrdersList = () => {
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { loading, error, orders } = useSelector(state => state.allOrders)
-    const { isDeleted } = useSelector(state => state.order)
+    const { loading, error, orders } = useSelector( state => state.allOrders )
+    const { isDeleted              } = useSelector( state => state.order )
 
     useEffect(() => {
+
         dispatch(allOrders())
 
         if(error) {
@@ -26,14 +27,16 @@ const OrdersList = () => {
             dispatch(clearErrors())
         }   
         if(isDeleted) {
-            alert.success('Order deleted successfully')            
+            alert.success('Order Deleted Successfully')            
             dispatch({ type: DELETE_ORDER_RESET })
-            navigate('/admin/orders')
         }
+        
     }, [dispatch, navigate,  alert, error, isDeleted ])
 
     const deleteOrderHandler = (id) => {
-        dispatch(deleteOrder(id))
+        if ( window.confirm("Are you Sure?") === true ) {
+            dispatch(deleteOrder(id))
+        }         
     }
 
     const setOrders = () => {
@@ -42,27 +45,27 @@ const OrdersList = () => {
                 {
                     label: 'Order ID',
                     field: 'id',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
-                    label: 'No of Items',
+                    label: 'Qty',
                     field: 'numOfItems',
                     sort: 'asc'
                 },
                 {
                     label: 'Amount',
                     field: 'amount',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'Status',
                     field: 'status',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'Actions',
-                    field: 'actions'
-                  
+                    field: 'actions',
+                    sort: 'disabled'                  
                 }
             ],
             rows: []
@@ -74,21 +77,18 @@ const OrdersList = () => {
                 numOfItems: order.orderItems.length,
                 amount: <FormattedPrice number={order.totalPrice} />, 
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
-                ? <p style={{ color: "var(--cta-green)" }} >{order.orderStatus}</p>
-                : <p style={{ color:"red"   }} >{order.orderStatus}</p>,
-                actions: 
-                
+                ? <p className="success">{order.orderStatus}</p>
+                : <p className="danger">{order.orderStatus}</p>,
+                actions:                 
                     <Fragment>
-
                         <Link to={`/admin/order/${order._id}`}>
-                            <i className="fa fa-eye"></i>
+                            <i className="fa fa-eye" />
                         </Link> 
                         &nbsp; &nbsp;
                         <i 
                             className="fa fa-trash-o"
                             onClick={() => deleteOrderHandler(order._id)}
                         />
-
                     </Fragment> 
             })
         })
@@ -106,23 +106,30 @@ const OrdersList = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>
+                    <aside>
+
+                        <Sidebar />
+
+                    </aside>
 
                     <article>      
 
                         <Fragment>
 
-                            <div className="user-form cart mdb-table">
+                            <div className="user-form cart">
 
                                 <h1>All Orders</h1>
 
                                 {loading ? <Loader /> : (
 
-                                    <MDBDataTable data={setOrders()} />
+                                    <MDBDataTable 
+                                        className="mdb-table"
+                                        data={setOrders()} 
+                                    />
 
                                 )}
 
-                                <Link to="/dashboard"><i className="fa fa-times"></i></Link>
+                                <Link to="/dashboard"><i className="fa fa-times" /></Link>
                                 
                             </div>
 

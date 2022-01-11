@@ -18,16 +18,21 @@ const Range = createSliderWithTooltip(Slider.Range)
 
 const Gallery = () => {
 
-    const dispatch = useDispatch()
     const alert    = useAlert()
+    const dispatch = useDispatch()
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-    const keyword  = useParams().keyword      
+    const keyword  = useParams().keyword    
+    const artistQuery      = useParams().artist 
+    const orientationQuery = useParams().orientation 
+    const mediumQuery      = useParams().medium 
+    const ratingQuery      = useParams().rating 
+    const artist      = artistQuery      ? artistQuery.replace(/-/g, ' ')      : ''
+    const orientation = orientationQuery ? orientationQuery.replace(/-/g, ' ') : ''
+    const medium      = mediumQuery      ? mediumQuery.replace(/-/g, ' ')      : ''
+    const rating      = ratingQuery      ? ratingQuery.replace(/-/g, ' ')      : ''   
+
     const [ currentPage, setCurrentPage ] = useState(1)
-    const [ rating,      setRating      ] = useState(0)
-    const [ price,       setPrice       ] = useState([1, 10000])
-    const [ artist,      setArtist      ] = useState('')
-    const [ medium,      setMedium      ] = useState('')
-    const [ orientation, setOrientation ] = useState('') 
+    const [ price,       setPrice       ] = useState([1, 10000])    
     const [ isMenuOpen,  setIsMenuOpen  ] = useState(false)   
 
     const { artists      } = useSelector( state => state.artists )
@@ -42,7 +47,7 @@ const Gallery = () => {
     const resetPage = () => {
         setCurrentPage(1)
         setIsMenuOpen(false)
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0)           
     }
 
     useEffect( () => {
@@ -81,80 +86,19 @@ const Gallery = () => {
                         <button 
                             className="filters"
                             onClick={() => {setIsMenuOpen(!isMenuOpen)}}
-                        >Show Menu</button>
+                        >
+                            Show Menu
+                        </button>
 
                         {(isMenuOpen || !isMobile) && (
                         <animated.div style={isMobile ? menuAppear : {}}>
 
                             <h3>
-                                Filters
-                                <Link to="/gallery" className="float-r">
+                                Filters &nbsp; &nbsp;
+                                <Link to="/gallery">
                                     <i className="fa fa-refresh" style={{ margin: 0 }} />
                                 </Link>
-                            </h3>                                
-
-                            <h6>Artist</h6>
-
-                            <ul className="list-style">   
-                                {artists && artists.map(a => (
-                                <li                                           
-                                    key={a.name}
-                                    onClick={(e) => {
-                                        setArtist(a.name) 
-                                        setOrientation('')
-                                        setMedium('')                                        
-                                        setRating(0)
-                                        setPrice([1, 10000])                                   
-                                        resetPage()
-                                    }}
-                                    className={artist && artist === a.name ? 'link-active' : ''}
-                                >
-                                    {a.name}
-                                </li>
-                                ))}
-                            </ul>
-
-                            <h6>Orientation</h6>
-
-                            <ul className="list-style">
-                                {orientations && orientations.map(o => (
-                                <li                                           
-                                    key={o.name}
-                                    onClick={() => {
-                                        setOrientation(o.name)
-                                        setArtist('')
-                                        setMedium('')
-                                        setRating(0)
-                                        setPrice([1, 10000])
-                                        resetPage()
-                                    }}
-                                    className={orientation && orientation === o.name ? 'link-active' : ''}
-                                >
-                                    {o.name}
-                                </li>
-                                ))}
-                            </ul>
-
-                            <h6>Media</h6>
-
-                            <ul className="list-style">
-                                {media && media.map(m => (
-                                <li                                           
-                                    key={m.name}
-                                    onClick={() => {
-                                        setMedium(m.name)
-                                        setOrientation('')
-                                        setArtist('')
-                                        setRating(0)
-                                        setPrice([1, 10000])
-                                        resetPage()
-                                    }}
-                                    className={medium && medium === m.name ? 'link-active' : ''}
-                                >
-                                    {m.name}
-                                </li>
-                                ))}
-                            </ul>
+                            </h3>    
 
                             <h6>Price Range</h6>
 
@@ -172,14 +116,49 @@ const Gallery = () => {
                                 }}
                                 value={price}
                                 onChange={(price) => {
-                                    setPrice(price)
-                                    setMedium('')
-                                    setOrientation('')
-                                    setArtist('')
-                                    setRating(0)
+                                    setPrice(price)                          
                                     resetPage()
                                 }}
-                            />
+                            />                            
+
+                            <h6>Artist</h6>
+
+                            <ul className="list-style">   
+                                {artists && artists.map(a => (
+                                    <li                                           
+                                        key={a.name}                             
+                                        className={artist === a.name ? 'link-active' : ''}
+                                    >                                        
+                                        <Link to={`/gallery/artist/${a.name.replace(/ /g, '-')}`}>{a.name}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <h6>Orientation</h6>
+
+                            <ul className="list-style">
+                                {orientations && orientations.map(o => (
+                                <li                                           
+                                    key={o.name}                               
+                                    className={orientation === o.name ? 'link-active' : ''}
+                                >
+                                    <Link to={`/gallery/orientation/${o.name.replace(/ /g, '-')}`}>{o.name}</Link>
+                                </li>
+                                ))}
+                            </ul>
+
+                            <h6>Media</h6>
+
+                            <ul className="list-style">
+                                {media && media.map(m => (
+                                <li                                           
+                                    key={m.name}                                    
+                                    className={medium && medium === m.name ? 'link-active' : ''}
+                                >
+                                    <Link to={`/gallery/medium/${m.name.replace(/ /g, '-')}`}>{m.name}</Link>
+                                </li>
+                                ))}
+                            </ul>                            
 
                             <h6>Ratings</h6>
 
@@ -187,22 +166,16 @@ const Gallery = () => {
                                 {[5, 4, 3, 2, 1].map(star => (
                                     <li
                                         style={{cursor: 'pointer', listStyleType: 'none'}}
-                                        key={star}
-                                        onClick={() => {
-                                            setRating(star)
-                                            setMedium('')
-                                            setOrientation('')
-                                            setArtist('')
-                                            setPrice([1, 10000])
-                                            resetPage()
-                                        }}
+                                        key={star}                                
                                     >
-                                        <div className="rating-outer">
-                                            <div 
-                                                className="rating-inner"
-                                                style={{ width: `${star * 20}%` }}
-                                            />
-                                        </div>
+                                        <Link to={`/gallery/rating/${star}`}>
+                                            <div className="rating-outer">
+                                                <div 
+                                                    className="rating-inner"
+                                                    style={{ width: `${star * 20}%` }}
+                                                />
+                                            </div>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>
@@ -231,9 +204,14 @@ const Gallery = () => {
                             { artist      ? artist      : ''}
                             { orientation ? orientation : ''}
                             { medium      ? medium      : ''}                            
-                            { rating      ? ' Ratings ' + rating + ' - 5': ''}    
-                            { price[0] > 1 || price[1] < 10000 ? ' From $' + price[0] + ' to $' + price[1]: ''}                        
-
+                            { rating      ? ' Ratings ' + rating + ' - 5': ''}   
+                            <small 
+                                style={{ 
+                                    fontSize: artist || orientation || medium || rating ? "" : "inherit"
+                                }}
+                            >
+                                { price[0] > 1 || price[1] < 10000 ? ' From $' + price[0] + ' to $' + price[1]: ''}                        
+                            </small> 
                             <small className="float-r">
                                 {resPerPage * (currentPage - 1) + 1} 
                                 &nbsp;-&nbsp; 

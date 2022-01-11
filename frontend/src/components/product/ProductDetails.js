@@ -105,7 +105,9 @@ const ProductDetails = () => {
                     <MetaData title={product.name} />
 
                     <div className="bg-grey product-details">
-                        <div className="container">         
+
+                        <div className="container"> 
+                                
                             <div className="wrapper">
 
                                 <div className={product.orientation !== 'Landscape' ? 'portrait parent' : 'landscape'}>

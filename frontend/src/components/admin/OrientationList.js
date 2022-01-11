@@ -18,7 +18,9 @@ const OrientationList = () => {
     const { error: deleteError, isDeleted } = useSelector(state => state.orientation)
 
     useEffect(() => {
+
         dispatch(getOrientations())
+
         if(error) {
             alert.error(error)
             dispatch(clearErrors())
@@ -28,14 +30,17 @@ const OrientationList = () => {
             dispatch(clearErrors())
         }      
         if(isDeleted) {
-            alert.success('Orientation deleted successfully')            
+            alert.success('Orientation Deleted Successfully')            
             dispatch({ type: DELETE_ORIENTATION_RESET })
             navigate('/admin/orientations')
         }
+
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
 
     const deleteCategoryHandler = (id) => {
-        dispatch(deleteOrientation(id))
+        if ( window.confirm("Are you Sure?") === true ) {
+            dispatch(deleteOrientation(id))
+        }         
     }
 
     const setCategories = () => {
@@ -44,7 +49,7 @@ const OrientationList = () => {
                 {
                     label: 'Orientation ID',
                     field: 'id',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'Name',
@@ -53,7 +58,8 @@ const OrientationList = () => {
                 },  
                 {
                     label: 'Actions',
-                    field: 'actions'                  
+                    field: 'actions',
+                    sort: 'disabled'                  
                 }
             ],
             rows: []
@@ -62,16 +68,17 @@ const OrientationList = () => {
             data.rows.push({                
                 id: <small>{orientation._id}</small>,
                 name: orientation.name,
-                actions: <Fragment>
-                    <Link to={`/admin/orientation/${orientation._id}`}>
-                        <i className="fa fa-pencil"/>
-                    </Link>  
-                    &nbsp; &nbsp;                   
-                    <i 
-                        className="fa fa-trash-o"
-                        onClick={() => deleteCategoryHandler(orientation._id)}
-                    /> 
-                </Fragment> 
+                actions: 
+                    <Fragment>
+                        <Link to={`/admin/orientation/${orientation._id}`}>
+                            <i className="fa fa-pencil" />
+                        </Link>  
+                        &nbsp; &nbsp;                   
+                        <i 
+                            className="fa fa-trash-o"
+                            onClick={() => deleteCategoryHandler(orientation._id)}
+                        /> 
+                    </Fragment> 
             })
         })
         return data
@@ -87,13 +94,17 @@ const OrientationList = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
                     <article>
                         
                         {loading ? <Loader /> : (
 
-                            <div className="user-form cart mdb-table">
+                            <div className="user-form cart">
 
                                 <h1>Orientation Category</h1>
 
@@ -103,7 +114,10 @@ const OrientationList = () => {
                                     </Link>
                                 </p>  
 
-                                <MDBDataTable data={setCategories()} />
+                                <MDBDataTable 
+                                    className="mdb-table"
+                                    data={setCategories()} 
+                                />
 
                                 <Link to="/dashboard"><i className="fa fa-times" /></Link>
 

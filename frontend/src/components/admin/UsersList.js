@@ -14,24 +14,28 @@ const UsersList = () => {
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { loading, error, users } = useSelector(state => state.allUsers)
-    const { isDeleted } = useSelector(state => state.user)
+    const { loading, error, users } = useSelector( state => state.allUsers )
+    const { isDeleted             } = useSelector( state => state.user )
 
     useEffect(() => {
+
         dispatch(allUsers())
+
         if(error) {
             alert.error(error)
             dispatch(clearErrors())
         }  
         if(isDeleted) {
-            alert.success('User deleted successfully')            
+            alert.success('User Deleted Successfully')            
             dispatch({ type: DELETE_USER_RESET })
-            navigate('/admin/users')
         }
+
     }, [dispatch, navigate, isDeleted, alert, error ])
 
     const deleteUserHandler = (id) => {
-        dispatch(deleteUser(id))
+        if ( window.confirm("Are you Sure?") === true ) {
+            dispatch(deleteUser(id))
+        }       
     }
 
     const setUsers = () => {
@@ -40,7 +44,7 @@ const UsersList = () => {
                 {
                     label: 'User ID',
                     field: 'id',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'Name',
@@ -59,7 +63,8 @@ const UsersList = () => {
                 },
                 {
                     label: 'Actions',
-                    field: 'actions'
+                    field: 'actions',
+                    sort: 'disabled'
                   
                 }
             ],
@@ -73,17 +78,15 @@ const UsersList = () => {
                 email: user.email, 
                 role: user.role,                
                 actions:                 
-                    <Fragment>
-                        
+                    <Fragment>                        
                         <Link to={`/admin/user/${user._id}`} className="btn btn-primary py-1 px-2">
-                            <i className="fa fa-pencil"></i>
+                            <i className="fa fa-pencil" />
                         </Link> 
                         &nbsp; &nbsp;
                         <i 
                             className="fa fa-trash-o"
                             onClick={() => deleteUserHandler(user._id)}
                         />
-
                     </Fragment> 
             })
         })
@@ -101,28 +104,30 @@ const UsersList = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>                     
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>                     
 
                     <article>
 
                         <Fragment>                            
 
-                            <div className="user-form cart mdb-table">
+                            <div className="user-form cart">
 
                                 <h1>All Users</h1>
 
                                 {loading ? <Loader /> : (
 
                                     <MDBDataTable
-                                        data={setUsers()}
-                                        bordered
-                                        striped
-                                        hover    
+                                        className=" mdb-table"
+                                        data={setUsers()}                                        
                                     />
 
                                 )}
 
-                                <Link to="/dashboard"><i className="fa fa-times"></i></Link>
+                                <Link to="/dashboard"><i className="fa fa-times" /></Link>
 
                             </div>
 

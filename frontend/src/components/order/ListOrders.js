@@ -1,26 +1,28 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { myOrders, clearErrors } from '../../actions/orderActions'
 import FormattedPrice from '../layouts/FormattedPrice'
+import MetaData from '../layouts/MetaData'
+import Loader from '../layouts/Loader'
 
 const ListOrders = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
-    const { loading, error, orders } = useSelector(state => state.myOrders)
+    const { loading, error, orders } = useSelector( state => state.myOrders )
 
     useEffect(() => {
+
         dispatch(myOrders())
 
         if(error) {
             alert.error(error)
             dispatch(clearErrors())
         }
+        
     }, [dispatch, alert, error])
 
     const setOrders = () => {
@@ -29,7 +31,7 @@ const ListOrders = () => {
                 {
                     label: 'Order No',
                     field: 'id',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'Quantity',
@@ -39,16 +41,17 @@ const ListOrders = () => {
                 {
                     label: 'Amount',
                     field: 'amount',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'Status',
                     field: 'status',
-                    sort: 'asc'
+                    sort: 'disabled'
                 },
                 {
                     label: 'Browse',
-                    field: 'actions'
+                    field: 'actions',
+                    sort: 'disabled'
                 }
             ],
             rows: []
@@ -61,11 +64,11 @@ const ListOrders = () => {
                 numOfItems: order.orderItems.length,
                 amount: <FormattedPrice number={order.totalPrice} />, 
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
-                    ? <p style={{ color:'var(--cta-green)' }} >{order.orderStatus}</p>
-                    : <p style={{ color:'red' }} >{order.orderStatus}</p>,
+                ? <p className="success">{order.orderStatus}</p>
+                : <p className="danger">{order.orderStatus}</p>,
                 actions:
                     <Link to={`/order/${order._id}`}>
-                        <i className="fa fa-eye"/>
+                        <i className="fa fa-eye" />
                     </Link>    
             })
         })
@@ -96,7 +99,7 @@ const ListOrders = () => {
 
                         )}
 
-                        <Link to="/me"><i className="fa fa-times"></i></Link>
+                        <Link to="/me"><i className="fa fa-times" /></Link>
 
                     </div>
 
@@ -105,7 +108,9 @@ const ListOrders = () => {
             </div>
 
         </Fragment>
+
     )
+
 }
 
 export default ListOrders

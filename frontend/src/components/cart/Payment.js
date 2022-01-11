@@ -8,6 +8,7 @@ import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcEl
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { emptyCart } from '../../actions/cartActions'
+import FormattedPrice from '../layouts/FormattedPrice'
 
 
 const options = {
@@ -158,7 +159,8 @@ const Payment = () => {
                         >    
                             {processing 
                                 ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> 
-                                : `Pay - $${orderInfo && orderInfo.totalPrice} CAD`}
+                                : <FormattedPrice number={orderInfo && orderInfo.totalPrice} />
+                            }
                         </button>
 
                         <Link to="/order/confirm"><i className="fa fa-times"/></Link>
