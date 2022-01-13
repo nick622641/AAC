@@ -66,16 +66,22 @@ const Gallery = () => {
     }
 
     let count = productsCount
+    let title = 'All the Work'
  
-    if(keyword || artist || medium || orientation || price[0] > 1 || price[1] < 10000 || rating > 0) {
+    if (keyword || artist || medium || orientation || price[0] > 1 || price[1] < 10000 || rating > 0) {
         count = filteredProductsCount          
-    }   
+    }  
+    if ( keyword     ) { title = keyword }
+    if ( artist      ) { title = artist }
+    if ( orientation ) { title = orientation }
+    if ( medium      ) { title = medium }
+    if ( rating      ) { title = `Rating ${rating} / 5` }    
 
     return (       
 
         <Fragment>
 
-            <MetaData title={'Gallery'} />        
+            <MetaData title={`Gallery - ${title}`} />        
 
             <div className="container">
 
@@ -96,7 +102,7 @@ const Gallery = () => {
                             <h3>
                                 Filters &nbsp; &nbsp;
                                 <Link to="/gallery">
-                                    <i className="fa fa-refresh" style={{ margin: 0 }} />
+                                    <i className="fa fa-refresh float-r" style={{ margin: 0 }} />
                                 </Link>
                             </h3>    
 
@@ -123,39 +129,60 @@ const Gallery = () => {
 
                             <h6>Artist</h6>
 
-                            <ul className="list-style">   
+                            <ul>   
                                 {artists && artists.map(a => (
                                     <li                                           
                                         key={a.name}                             
                                         className={artist === a.name ? 'link-active' : ''}
-                                    >                                        
-                                        <Link to={`/gallery/artist/${a.name.replace(/ /g, '-')}`}>{a.name}</Link>
+                                    >                                                                          
+                                        <Link to={`/gallery/artist/${a.name.replace(/ /g, '-')}`}>
+                                            <input 
+                                                type="checkbox" 
+                                                checked={artist === a.name ? true : false}
+                                                readOnly
+                                            />      
+                                            {a.name}
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>
 
                             <h6>Orientation</h6>
 
-                            <ul className="list-style">
+                            <ul>
                                 {orientations && orientations.map(o => (
                                 <li                                           
                                     key={o.name}                               
                                     className={orientation === o.name ? 'link-active' : ''}
                                 >
-                                    <Link to={`/gallery/orientation/${o.name.replace(/ /g, '-')}`}>{o.name}</Link>
+                                    <Link to={`/gallery/orientation/${o.name.replace(/ /g, '-')}`}>
+                                        <input 
+                                            type="checkbox" 
+                                            checked={orientation === o.name ? true : false}
+                                            readOnly
+                                        />
+                                        {o.name}
+                                    </Link>
                                 </li>
                                 ))}
                             </ul>
 
                             <h6>Media</h6>
 
-                            <ul className="list-style">
+                            <ul>
                                 {media && media.map(m => (
                                 <li                                           
                                     key={m.name}                                    
-                                    className={medium && medium === m.name ? 'link-active' : ''}
+                                    className={medium === m.name ? 'link-active' : ''}
                                 >
-                                    <Link to={`/gallery/medium/${m.name.replace(/ /g, '-')}`}>{m.name}</Link>
+                                    <Link to={`/gallery/medium/${m.name.replace(/ /g, '-')}`}>
+                                        <input 
+                                            type="checkbox" 
+                                            checked={medium === m.name ? true : false}
+                                            readOnly
+                                        />
+                                        {m.name}
+                                    </Link>
                                 </li>
                                 ))}
                             </ul>                            
@@ -199,19 +226,20 @@ const Gallery = () => {
                         <Fragment>
 
                         <h1>
-                            {!keyword && !artist && !orientation && !medium && !rating && (price[0]=== 1 && price[1] === 10000) ? 'All the Work' : ''}
+                            {/* {!keyword && !artist && !orientation && !medium && !rating && (price[0]=== 1 && price[1] === 10000) ? 'All the Work' : ''}
                             { keyword && !artist && !orientation && !medium && !rating && (price[0]=== 1 && price[1] === 10000) ? 'Results for: ' + keyword : ''}
                             { artist      ? artist      : ''}
                             { orientation ? orientation : ''}
                             { medium      ? medium      : ''}                            
-                            { rating      ? ' Ratings ' + rating + ' - 5': ''}   
-                            <small 
+                            { rating      ? ' Ratings ' + rating + ' - 5': ''}    */}
+                            {title}
+                            <span 
                                 style={{ 
-                                    fontSize: artist || orientation || medium || rating ? "" : "inherit"
+                                    fontSize: artist || orientation || medium || rating ? "18px" : "inherit"
                                 }}
                             >
                                 { price[0] > 1 || price[1] < 10000 ? ' From $' + price[0] + ' to $' + price[1]: ''}                        
-                            </small> 
+                            </span> 
                             <small className="float-r">
                                 {resPerPage * (currentPage - 1) + 1} 
                                 &nbsp;-&nbsp; 

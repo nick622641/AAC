@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Link, useNavigate  } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart, removeItemFromCart, emptyCart } from '../../actions/cartActions'
 import FormattedPrice from '../layouts/FormattedPrice'
+import Modal from '../modals/Modal'
+import Confirm from '../modals/Confirm'
 
 const Cart = () => {    
     
@@ -11,6 +13,8 @@ const Cart = () => {
     const navigate = useNavigate()
     const { cartItems } = useSelector( state => state.cart )
     const { isAuthenticated } = useSelector( state => state.auth )
+
+    const [ isModalVisible,  setIsModalVisible ] = useState(false)
 
     let totalPrice = cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
 
@@ -20,9 +24,7 @@ const Cart = () => {
         } 
     }
     const emptyCartHandler = () => {   
-        if ( window.confirm("Are you Sure?") === true ) {
-            dispatch(emptyCart())
-        }  
+        dispatch(emptyCart())
     }
     const increaseQty = (id, quantity, stock) => {
         const newQty = quantity + 1
@@ -33,6 +35,9 @@ const Cart = () => {
         const newQty = quantity - 1
         if(newQty <= 0) { return }
         dispatch(addItemToCart(id, newQty))
+    }
+    const toggleModal = () => {
+        setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
     const checkoutHandler = () => {    
         const link = isAuthenticated ? '/shipping' : '/login?redirect=shipping'    
@@ -73,7 +78,9 @@ const Cart = () => {
                                     <th>
                                         <i 
                                             className="fa fa-trash"
-                                            onClick={emptyCartHandler}
+                                            onClick={() => {
+                                                setIsModalVisible(!isModalVisible)
+                                            }}
                                         />
                                     </th>
                                 </tr>
@@ -113,7 +120,10 @@ const Cart = () => {
                                             </span> 
                                         </td>
                                         <th>                                  
-                                            <i className="fa fa-trash-o" onClick={() => removeCartItemHandler(item.product)}/>
+                                            <i 
+                                                className="fa fa-trash-o" 
+                                                onClick={() => removeCartItemHandler(item.product)
+                                            }/>
                                         </th>                                        
                                     </tr>
                                 ))}    
@@ -159,6 +169,18 @@ const Cart = () => {
                 </div>
 
             </div>
+
+            <Modal
+                isModalVisible={isModalVisible} 
+                onBackdropClick={toggleModal}   
+                content={
+                    <Confirm 
+                        onBackdropClick={toggleModal} 
+                        onConfirm={() => emptyCartHandler()} 
+                        message="Empty Your Cart"
+                    />
+                }
+            />
 
         </Fragment>
 

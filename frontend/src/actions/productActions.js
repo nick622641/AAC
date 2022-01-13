@@ -38,23 +38,23 @@ export const getProducts = ( keyword = '', currentPage = 1, price, artist = '', 
 
         dispatch({ type: ALL_PRODUCTS_REQUEST })
 
-        let link = `/api/v1/products?page=${currentPage}&keyword=${keyword}`
+        let link = `/api/v1/products?page=${currentPage}&keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}`
      
         if( artist ) {    
-            link = `/api/v1/products?page=${currentPage}&artist=${artist}`
+            link = `/api/v1/products?page=${currentPage}&artist=${artist}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         }   
         if( orientation ) {    
-            link = `/api/v1/products?page=${currentPage}&orientation=${orientation}`
+            link = `/api/v1/products?page=${currentPage}&orientation=${orientation}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         } 
         if( medium ) {    
-            link = `/api/v1/products?page=${currentPage}&media=${medium}`
+            link = `/api/v1/products?page=${currentPage}&media=${medium}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
         if( rating ) {    
-            link = `/api/v1/products?page=${currentPage}&ratings[gte]=${rating}`
+            link = `/api/v1/products?page=${currentPage}&ratings[gte]=${rating}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
-        if( price[0] > 1 || price[1] < 10000 ) {    
-            link = `/api/v1/products?page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
-        }
+        // if( price[0] > 1 || price[1] < 10000 ) {    
+        //     link = `/api/v1/products?page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+        // }
 
         const { data } = await axios.get(link)
 

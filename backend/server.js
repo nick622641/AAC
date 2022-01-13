@@ -24,6 +24,15 @@ cloudinary.config({
     api_secret : process.env.CLOUDINARY_API_SECRET,
 })
 
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
     console.log(`server started on PORT: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`)
 })
+
+// Handle Unhandled Promise rejections
+// process.on('unhandledRejection', err => {
+//     console.log(`ERROR: ${err.stack}`);
+//     console.log('Shutting down the server due to Unhandled Promise rejection')
+//     server.close(() => {
+//         process.exit(1)
+//     })
+// })

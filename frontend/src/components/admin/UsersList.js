@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom';
 import { allUsers, deleteUser, clearErrors } from '../../actions/userActions'
 import { DELETE_USER_RESET } from '../../constants/userConstants'
+import Modal from '../modals/Modal'
+import Confirm from '../modals/Confirm'
 
 const UsersList = () => {
 
@@ -16,6 +18,9 @@ const UsersList = () => {
     const navigate = useNavigate()
     const { loading, error, users } = useSelector( state => state.allUsers )
     const { isDeleted             } = useSelector( state => state.user )
+
+    const [ isModalVisible,  setIsModalVisible ] = useState(false)
+    const [ id,  setId ] = useState('')
 
     useEffect(() => {
 
@@ -33,9 +38,11 @@ const UsersList = () => {
     }, [dispatch, navigate, isDeleted, alert, error ])
 
     const deleteUserHandler = (id) => {
-        if ( window.confirm("Are you Sure?") === true ) {
-            dispatch(deleteUser(id))
-        }       
+        dispatch(deleteUser(id))
+    }
+
+    const toggleModal = () => {
+        setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
 
     const setUsers = () => {
@@ -79,13 +86,16 @@ const UsersList = () => {
                 role: user.role,                
                 actions:                 
                     <Fragment>                        
-                        <Link to={`/admin/user/${user._id}`} className="btn btn-primary py-1 px-2">
+                        <Link to={`/admin/user/${user._id}`}>
                             <i className="fa fa-pencil" />
                         </Link> 
                         &nbsp; &nbsp;
                         <i 
                             className="fa fa-trash-o"
-                            onClick={() => deleteUserHandler(user._id)}
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setId(user._id)
+                            }}
                         />
                     </Fragment> 
             })
@@ -138,6 +148,18 @@ const UsersList = () => {
                 </div>
 
             </div>
+
+            <Modal
+                isModalVisible={isModalVisible} 
+                onBackdropClick={toggleModal}   
+                content={
+                    <Confirm 
+                        onBackdropClick={toggleModal} 
+                        onConfirm={() => deleteUserHandler(id)} 
+                        message="Delete User"
+                    />
+                }
+            />
             
         </Fragment>
 

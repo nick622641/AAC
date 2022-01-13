@@ -177,6 +177,10 @@ article {
   flex: 0 1 calc(80% - 80px);  
   width: calc(80% - 80px);   
 }
+.dashboard article {
+  flex: 0 1 80%;  
+  width: 80%; 
+}
 aside ul {
   margin: 10px 0 30px 0;
 }
@@ -189,7 +193,7 @@ aside li a {
 aside li,
 aside li a {
   position: relative;
-  line-height: 26px;
+  padding: 2px 0;
   font-size: 12px;
   cursor: pointer;
 }
@@ -199,6 +203,9 @@ aside h4 {
 aside .fa {
   font-size: 22px;
   margin: 0 20px 20px 0;      
+}
+aside li:hover input[type=checkbox] {
+  border-color: var(--primary-color);
 }
 .rc-slider {
   width: 170px;
@@ -230,7 +237,7 @@ a:hover {
   border-top: solid 1px var(--primary-color);
   border-bottom: solid 1px var(--primary-color);
   font-weight: bold;
-  pointer-events: none;
+  pointer-events: none;  
 }
 /* Fontawesome styles */
 .fa {
@@ -344,6 +351,30 @@ a:hover .fa-chevron-right {
   color: white; 
   background: #88744a;
 }
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+.cancel {
+  border: solid 1px #ccc;
+  flex-basis: 100px;
+  padding: 10px 20px;
+}
+.confirm {
+  background: var(--primary-color);
+  color: white;
+  flex-basis: 100px;
+  padding: 10px 20px;
+}
+.cancel:hover {
+  background: var(--primary-color);
+  color: white;
+}
+.confirm:hover {
+  background: white;
+  color: var(--primary-color);
+  border: solid 1px #ccc;
+}
 /* Form Styles */
 .user-form {    
   margin: auto;
@@ -383,9 +414,30 @@ select {
   padding: 10px;
   width: 100%;
   border-bottom: solid 1px #ccc;
+  transition: all var(--speed);
 }
 textarea {
   min-height: 100px;
+}
+input[type=checkbox] { 
+  padding: 0;
+  height: 14px;
+  width: 14px;
+  appearance: none;
+  margin-right: 10px;
+  border: solid 1px #ccc;
+  cursor: pointer;
+}
+input[type=checkbox]:checked {
+  border-color: var(--primary-color);
+  color: var(--primary-color);  
+  text-align: center;
+  
+  font-family: FontAwesome;
+  font-size: 10px;  
+}
+input[type=checkbox]:checked:after {
+  content: "\f00c"; 
 }
 input:focus,
 select:focus,
@@ -394,8 +446,12 @@ textarea:focus {
   outline: none;
 }
 input[type=file] {
-  display: none;   
+  position: absolute;
+  opacity: 0; 
 }
+/* input:invalid {
+  background: #ffefea;
+} */
 .avatar {
   margin-bottom: 20px;
   width: 190px;  
@@ -865,10 +921,10 @@ img {
   flex-direction: column; 
   flex: 1 0 200px;
   background: #ececec; 
-  height: 450px; 
+  height: 390px; 
   padding: 20px; 
-  margin: 0 15px 20px 15px;                              
-  transition: all 0.3s;
+  margin: 0 15px 30px 15px;                              
+  transition: all var(--speed);
 }
 .showroom-item:hover {
   transform: scale(1.05);
@@ -899,10 +955,12 @@ img {
   width: auto;
 }
 .showroom-item small {
-  margin: 26px 0;     
+  margin:20px 0; 
+  font-weight: bold;    
 }
 .showroom-item h6 {
-  text-align: center;     
+  text-align: center;  
+  margin-top: 20px;   
 }
 .showroom-item span {  
   max-width: 240px; 
@@ -946,6 +1004,7 @@ img {
 }  
 .rating-outer::before {
   content: '\f006 \f006 \f006 \f006 \f006';
+  font-size: 16px;
 }  
 .rating-inner {
   position: absolute;
@@ -955,9 +1014,10 @@ img {
   overflow: hidden;
   width: 0;   
   font-family: FontAwesome; 
+  font-size: 16px;
 }  
 .rating-inner::before {
-  content: '\f005 \f005 \f005 \f005 \f005';     
+  content: '\f005 \f005 \f005 \f005 \f005';   
 } 
 /* Checkout Steps */ 
 .checkout-progress {

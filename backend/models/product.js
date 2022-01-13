@@ -60,7 +60,7 @@ const productSchema = new mongoose.Schema({
     ],
     artist: {
         type: String,
-        required: [true, 'Please select an artists'],       
+        required: [true, 'Please select an artist'],       
     },
     orientation: {
         type: String,

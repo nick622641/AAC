@@ -79,6 +79,7 @@ const UpdatePassword = () => {
                                 placeholder="New Password"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
+                                minLength="6"
                                 required
                             />
                             <i 

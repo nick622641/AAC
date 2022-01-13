@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { MDBDataTable } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,6 +9,8 @@ import FormattedPrice from '../layouts/FormattedPrice'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
+import Modal from '../modals/Modal'
+import Confirm from '../modals/Confirm'
 
 const ProductsList = () => {
 
@@ -18,6 +20,9 @@ const ProductsList = () => {
 
     const { loading, error, products      } = useSelector( state => state.products )
     const { error: deleteError, isDeleted } = useSelector( state => state.product  )
+
+    const [ isModalVisible,  setIsModalVisible ] = useState(false)
+    const [ id,  setId ] = useState('')
 
     useEffect(() => {
 
@@ -37,6 +42,14 @@ const ProductsList = () => {
         }
         
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
+
+    const toggleModal = () => {
+        setIsModalVisible(wasModalVisible => !wasModalVisible)
+    }
+
+    const deleteProductHandler = (id) => {
+        dispatch(deleteProduct(id))
+    }
 
     const setProducts = () => {
         const data = {
@@ -98,20 +111,17 @@ const ProductsList = () => {
                         &nbsp; &nbsp;                    
                         <i 
                             className="fa fa-trash-o"
-                            onClick={() => deleteProductHandler(product._id)}
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setId(product._id)
+                            }}
                         />
                     </Fragment> 
             })
         })
 
         return data
-    }
-
-    const deleteProductHandler = (id) => {
-        if ( window.confirm("Are you Sure?") === true ) {
-            dispatch(deleteProduct(id))
-        }       
-    }
+    }   
 
     return (
 
@@ -155,6 +165,18 @@ const ProductsList = () => {
                 </div>
 
             </div>
+
+            <Modal
+                isModalVisible={isModalVisible} 
+                onBackdropClick={toggleModal}   
+                content={
+                    <Confirm 
+                        onBackdropClick={toggleModal} 
+                        onConfirm={() => deleteProductHandler(id)} 
+                        message="Delete artwork"
+                    />
+                }
+            />
             
         </Fragment>
 

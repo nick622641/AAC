@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layouts/MetaData'
@@ -8,14 +8,19 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrientations, deleteOrientation, clearErrors } from '../../actions/categoryActions'
 import { DELETE_ORIENTATION_RESET } from '../../constants/categoryConstants'
+import Modal from '../modals/Modal'
+import Confirm from '../modals/Confirm'
 
 const OrientationList = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { loading, error, orientations } = useSelector(state => state.orientations)
-    const { error: deleteError, isDeleted } = useSelector(state => state.orientation)
+    const { loading, error, orientations }  = useSelector( state => state.orientations )
+    const { error: deleteError, isDeleted } = useSelector( state => state.orientation )
+
+    const [ isModalVisible,  setIsModalVisible ] = useState(false)
+    const [ id,  setId ] = useState('')
 
     useEffect(() => {
 
@@ -32,15 +37,16 @@ const OrientationList = () => {
         if(isDeleted) {
             alert.success('Orientation Deleted Successfully')            
             dispatch({ type: DELETE_ORIENTATION_RESET })
-            navigate('/admin/orientations')
         }
 
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
 
+    const toggleModal = () => {
+        setIsModalVisible(wasModalVisible => !wasModalVisible)
+    }
+
     const deleteCategoryHandler = (id) => {
-        if ( window.confirm("Are you Sure?") === true ) {
-            dispatch(deleteOrientation(id))
-        }         
+        dispatch(deleteOrientation(id))
     }
 
     const setCategories = () => {
@@ -76,7 +82,10 @@ const OrientationList = () => {
                         &nbsp; &nbsp;                   
                         <i 
                             className="fa fa-trash-o"
-                            onClick={() => deleteCategoryHandler(orientation._id)}
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setId(orientation._id)
+                            }}
                         /> 
                     </Fragment> 
             })
@@ -130,6 +139,18 @@ const OrientationList = () => {
                 </div>
 
             </div>
+
+            <Modal
+                isModalVisible={isModalVisible} 
+                onBackdropClick={toggleModal}   
+                content={
+                    <Confirm 
+                        onBackdropClick={toggleModal} 
+                        onConfirm={() => deleteCategoryHandler(id)} 
+                        message="Delete Orientation"
+                    />
+                }
+            />
             
         </Fragment>
 

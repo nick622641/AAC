@@ -1,24 +1,23 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import MetaData from '../layouts/MetaData'
-import { useAlert } from 'react-alert';
+import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { register, clearErrors } from '../../actions/userActions'
 import { useNavigate, Link } from 'react-router-dom'
 
 const Register = () => {
 
-    const navigate = useNavigate()
-    const [user, setUser] = useState({
-        name: '',
-        email: '',
-        password: ''
-    }) 
-    const { name, email, password } = user    
-    const [avatar, setAvatar] = useState('') 
-    const [avatarPreview, setAvatarPreview] = useState('/images/default-avatar.jpg')   
-    const dispatch = useDispatch()
     const alert = useAlert()
-    const { isAuthenticated, error, loading } = useSelector(state => state.auth )
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const { loading, isAuthenticated, error } = useSelector( state => state.auth )
+   
+    const [user, setUser] = useState({ name: '', email: '', password: '' }) 
+    
+    const { name, email, password } = user    
+    const [ avatar,          setAvatar          ] = useState('') 
+    const [ avatarPreview,   setAvatarPreview   ] = useState('/images/default-avatar.jpg')     
     const [ passwordVisible, setPasswordVisible ] = useState()
 
     const togglePassword = () => {
@@ -38,10 +37,10 @@ const Register = () => {
     const submitHandler = (e) => {        
         e.preventDefault()
         const formData = new FormData()
-        formData.set('name', name)
-        formData.set('email', email)
+        formData.set('name'    , name)
+        formData.set('email'   , email)
         formData.set('password', password)
-        formData.set('avatar', avatar)
+        formData.set('avatar'  , avatar)
         dispatch(register(formData))
     }
 
@@ -75,68 +74,80 @@ const Register = () => {
                         <h1>Register</h1>
 
                         <table className="top-align">
-                            <tbody>
-                                <tr>
-                                    <td rowSpan="3">
-                                        <label className="avatar">                            
-                                            <input
-                                                type='file'   
-                                                name="avatar"                            
-                                                accept="images/*"
-                                                onChange={onChange}                                                                                 
-                                            />                            
-                                            <img src={avatarPreview} alt="Avatar Preview"/>
-                                        </label>
-                                    </td>
-                                    <td>                                        
+                        <tbody>
+                            <tr>
+                                <td rowSpan="3">
+                                    <label className="avatar">                            
+                                        <input
+                                            type='file'   
+                                            name="avatar"                            
+                                            accept="images/*"
+                                            onChange={onChange}    
+                                            required                                                                             
+                                        />                            
+                                        <img 
+                                            src={avatarPreview} 
+                                            alt="Avatar Preview" 
+                                            className="centered-image"
+                                        />
+                                    </label>
+                                </td>
+                                <td>                                        
+                                    <input 
+                                        type="text" 
+                                        placeholder="Name"   
+                                        name="name"                      
+                                        value={name}
+                                        onChange={onChange}  
+                                        required                                      
+                                    /> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>                                       
+                                    <input 
+                                        type="email" 
+                                        placeholder="Email" 
+                                        name="email"                        
+                                        value={email}
+                                        onChange={onChange}   
+                                        required                                     
+                                    />  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>
                                         <input 
-                                            type="text" 
-                                            placeholder="Name"   
-                                            name="name"                      
-                                            value={name}
-                                            onChange={onChange}
-                                            required
-                                        /> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>                                       
-                                        <input 
-                                            type="email" 
-                                            placeholder="Email" 
-                                            name="email"                        
-                                            value={email}
-                                            onChange={onChange}
-                                            required
-                                        />  
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label>
-                                            <input 
-                                                type={passwordVisible ? 'text' : 'password'}
-                                                placeholder="Password" 
-                                                name="password"
-                                                value={password}
-                                                onChange={onChange} 
-                                                required
-                                            />                
-                                            <i 
-                                                className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                                onClick={togglePassword}
-                                            />
-                                        </label>
-                                    </td>
-                                </tr>
-                            </tbody>
+                                            type={passwordVisible ? 'text' : 'password'}
+                                            placeholder="Password" 
+                                            name="password"
+                                            value={password}
+                                            onChange={onChange}  
+                                            minLength="6"
+                                            required                                           
+                                        />                
+                                        <i 
+                                            className={passwordVisible 
+                                                ? 'fa fa-eye' 
+                                                : 'fa fa-eye-slash'
+                                            }
+                                            onClick={togglePassword}
+                                        />
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
                         </table>
                        
                         <button 
                             className="submit"
                             disabled={loading ? true : false}
                         >
-                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> : 'Sign Up'}
+                            {loading 
+                                ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> 
+                                : 'Sign Up'
+                            }
                         </button>
 
                         <br /><br />

@@ -24,7 +24,7 @@ const Product = ({ product }) => {
                 <small>{product.artist}</small>  
                 
                 <span>
-                    <FormattedPrice number={product.price} />
+                    {product.stock > 0 ? <FormattedPrice number={product.price} /> : 'SOLD'}                    
                 </span>                        
             </div>
 

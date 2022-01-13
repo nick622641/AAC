@@ -71,7 +71,7 @@ const Header = () => {
                         marginBottom: isSearchVisible ? "250px" : "0",
                         position: isNavOpen ? "relative" : "sticky"
                     }
-                }
+                }                
             >      
 
                 <div className="logo">
@@ -107,7 +107,6 @@ const Header = () => {
                                             <li key={artist._id}>
                                                 
                                                 <Link 
-                                                    // to={`gallery?artist=${artist.name.replace(/ /g, '-')}`}
                                                     to={`gallery/artist/${artist.name.replace(/ /g, '-')}`}
                                                     onClick={() => setIsNavOpen(!isNavOpen)}
                                                 >
@@ -154,21 +153,36 @@ const Header = () => {
                     />  
                     <i 
                         className="fa fa-search" 
-                        onClick={toggleSearch}
+                        onClick={() => {
+                            toggleSearch()
+                            setIsNavOpen(false)
+                        }}
                     />                         
-                    <Link to="/cart" className="openCart">
+                    <Link 
+                        to="/cart" 
+                        className="openCart"
+                        onClick={() => {setIsNavOpen(false)}}
+                    >
                         <i className="fa fa-shopping-cart" /> 
                         <small>{cartItems.length}</small>   
                     </Link>
                     <i 
                         className="fa fa-envelope" 
-                        onClick={toggleModal}
+                        onClick={() => { 
+                            toggleModal()
+                            setIsNavOpen(false)
+                        }}
                     /> 
                     
                     {user ? (
                         <Fragment>
                             <div className="relative">
-                                <figure onClick={toggleMenu}>
+                                <figure 
+                                    onClick={() => {
+                                        toggleMenu()
+                                        setIsNavOpen(false)
+                                    }}
+                                >
                                     <img
                                         src={user.avatar && user.avatar.url}
                                         alt={user && user.name}  
@@ -204,12 +218,15 @@ const Header = () => {
                             )}
                         </Fragment>
                     ) : !loading && (
-                        <Link to="/login">
+                        <Link 
+                            to="/login"
+                            onClick={() => {setIsNavOpen(false)}}
+                        >
                             <i className="fa fa-unlock-alt" />
                         </Link>
                     )}                          
 
-                    <Link to="#!" target="_blank">
+                    <Link to="#!">
                         <i className="fa fa-facebook" />
                     </Link>
 
@@ -224,12 +241,22 @@ const Header = () => {
                 {isSearchVisible && ( 
 
                     <Fragment>
-                        <div className="backdrop" onClick={toggleSearch} style={{ background: "none" }} />
+
+                        <div 
+                            className="backdrop" 
+                            onClick={toggleSearch} 
+                            style={{ background: "none" }} 
+                        />
+
                         <animated.div style={searchAppear} className="searchform">
 
-                        <Search setIsSearchVisible={setSearchVisible} isSearchVisible={isSearchVisible} />  
+                            <Search 
+                                setIsSearchVisible={setSearchVisible} 
+                                isSearchVisible={isSearchVisible} 
+                            />  
 
                         </animated.div>  
+
                     </Fragment>                             
 
                 )}

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layouts/MetaData'
@@ -8,14 +8,19 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMedia, deleteMedia, clearErrors } from '../../actions/categoryActions'
 import { DELETE_MEDIA_RESET } from '../../constants/categoryConstants'
+import Modal from '../modals/Modal'
+import Confirm from '../modals/Confirm'
 
 const ArtistList = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { loading, error, media } = useSelector(state => state.media)
-    const { error: deleteError, isDeleted } = useSelector(state => state.medium)
+    const { loading, error, media         } = useSelector( state => state.media )
+    const { error: deleteError, isDeleted } = useSelector( state => state.medium )
+
+    const [ isModalVisible,  setIsModalVisible ] = useState(false)
+    const [ id,  setId ] = useState('')
 
     useEffect(() => {
 
@@ -32,15 +37,16 @@ const ArtistList = () => {
         if(isDeleted) {
             alert.success('Media Deleted Successfully')            
             dispatch({ type: DELETE_MEDIA_RESET })
-            navigate('/admin/media')
         }
 
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
 
+    const toggleModal = () => {
+        setIsModalVisible(wasModalVisible => !wasModalVisible)
+    }
+
     const deleteCategoryHandler = (id) => {
-        if ( window.confirm("Are you Sure?") === true ) {
-            dispatch(deleteMedia(id))
-        }         
+        dispatch(deleteMedia(id))
     }
 
     const setCategories = () => {
@@ -77,7 +83,10 @@ const ArtistList = () => {
                         &nbsp; &nbsp;                  
                         <i 
                             className="fa fa-trash-o"
-                            onClick={() => deleteCategoryHandler(m._id)}
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setId(m._id)
+                            }}
                         /> 
                     </Fragment> 
             })
@@ -132,6 +141,18 @@ const ArtistList = () => {
                 </div>
 
             </div>
+
+            <Modal
+                isModalVisible={isModalVisible} 
+                onBackdropClick={toggleModal}   
+                content={
+                    <Confirm 
+                        onBackdropClick={toggleModal} 
+                        onConfirm={() => deleteCategoryHandler(id)} 
+                        message="Delete Medium"
+                    />
+                }
+            />
             
         </Fragment>
 

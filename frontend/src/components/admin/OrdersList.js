@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
@@ -9,6 +9,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import { allOrders, deleteOrder, clearErrors } from '../../actions/orderActions'
 import { DELETE_ORDER_RESET } from '../../constants/orderConstants'
 import FormattedPrice from '../layouts/FormattedPrice'
+import Modal from '../modals/Modal'
+import Confirm from '../modals/Confirm'
 
 const OrdersList = () => {
 
@@ -17,6 +19,9 @@ const OrdersList = () => {
     const navigate = useNavigate()
     const { loading, error, orders } = useSelector( state => state.allOrders )
     const { isDeleted              } = useSelector( state => state.order )
+
+    const [ isModalVisible,  setIsModalVisible ] = useState(false)
+    const [ id,  setId ] = useState('')
 
     useEffect(() => {
 
@@ -33,10 +38,12 @@ const OrdersList = () => {
         
     }, [dispatch, navigate,  alert, error, isDeleted ])
 
+    const toggleModal = () => {
+        setIsModalVisible(wasModalVisible => !wasModalVisible)
+    }
+
     const deleteOrderHandler = (id) => {
-        if ( window.confirm("Are you Sure?") === true ) {
-            dispatch(deleteOrder(id))
-        }         
+        dispatch(deleteOrder(id))
     }
 
     const setOrders = () => {
@@ -87,7 +94,10 @@ const OrdersList = () => {
                         &nbsp; &nbsp;
                         <i 
                             className="fa fa-trash-o"
-                            onClick={() => deleteOrderHandler(order._id)}
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setId(order._id)
+                            }}
                         />
                     </Fragment> 
             })
@@ -140,6 +150,18 @@ const OrdersList = () => {
                 </div>
 
             </div>
+
+            <Modal
+                isModalVisible={isModalVisible} 
+                onBackdropClick={toggleModal}   
+                content={
+                    <Confirm 
+                        onBackdropClick={toggleModal} 
+                        onConfirm={() => deleteOrderHandler(id)} 
+                        message="Delete Order"
+                    />
+                }
+            />
             
         </Fragment>
 

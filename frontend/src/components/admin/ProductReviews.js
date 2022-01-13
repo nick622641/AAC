@@ -7,6 +7,8 @@ import { getProductReviews, deleteReview, clearErrors } from '../../actions/prod
 import { DELETE_REVIEW_RESET } from '../../constants/productConstants'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
+import Modal from '../modals/Modal'
+import Confirm from '../modals/Confirm'
 
 const ProductReviews = () => {
    
@@ -15,6 +17,9 @@ const ProductReviews = () => {
     const [ productId, setProductId ] = useState('')
     const { error, reviews } = useSelector( state => state.productReviews )
     const { isDeleted, error: deleteError } = useSelector( state => state.review )
+
+    const [ isModalVisible,  setIsModalVisible ] = useState(false)
+    const [ reviewId,  setReviewId ] = useState('')
 
     useEffect(() => {
         if(error) {
@@ -35,10 +40,11 @@ const ProductReviews = () => {
     }, [dispatch, isDeleted, alert, error, productId, deleteError])
 
     const deleteReviewHandler = (id) => {
-        if ( window.confirm("Are you Sure?") === true ) {
-            dispatch(deleteReview(id, productId))
-        }        
+        dispatch(deleteReview(id, productId))
     }   
+    const toggleModal = () => {
+        setIsModalVisible(wasModalVisible => !wasModalVisible)
+    }
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(getProductReviews(productId))
@@ -83,7 +89,12 @@ const ProductReviews = () => {
                 user: review.name,                
                 actions:                 
                     <Fragment> 
-                        <button onClick={() => deleteReviewHandler(review._id)}> 
+                        <button 
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setReviewId(review._id)
+                            }}
+                        > 
                             <i className="fa fa-trash-o" />
                         </button> 
                     </Fragment> 
@@ -144,6 +155,18 @@ const ProductReviews = () => {
                 </div>
 
             </div>
+
+            <Modal
+                isModalVisible={isModalVisible} 
+                onBackdropClick={toggleModal}   
+                content={
+                    <Confirm 
+                        onBackdropClick={toggleModal} 
+                        onConfirm={() => deleteReviewHandler(reviewId)} 
+                        message="Delete Review"
+                    />
+                }
+            />
             
         </Fragment>
 

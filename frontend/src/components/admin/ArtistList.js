@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layouts/MetaData'
@@ -8,6 +8,8 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getArtists, deleteArtist, clearErrors } from '../../actions/categoryActions'
 import { DELETE_ARTIST_RESET } from '../../constants/categoryConstants'
+import Modal from '../modals/Modal'
+import Confirm from '../modals/Confirm'
 
 const ArtistList = () => {
 
@@ -16,6 +18,9 @@ const ArtistList = () => {
     const navigate = useNavigate()
     const { loading, error, artists       } = useSelector( state => state.artists )
     const { error: deleteError, isDeleted } = useSelector( state => state.artist )
+
+    const [ isModalVisible,  setIsModalVisible ] = useState(false)
+    const [ id,  setId ] = useState('')
 
     useEffect(() => {
 
@@ -32,15 +37,16 @@ const ArtistList = () => {
         if(isDeleted) {
             alert.success('Artist Deleted Successfully')            
             dispatch({ type: DELETE_ARTIST_RESET })
-            navigate('/admin/artists')
         }
 
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
 
     const deleteCategoryHandler = (id) => {
-        if ( window.confirm("Are you Sure?") === true ) {
-            dispatch(deleteArtist(id))
-        }         
+        dispatch(deleteArtist(id))
+    }
+
+    const toggleModal = () => {
+        setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
 
     const setCategories = () => {
@@ -76,7 +82,10 @@ const ArtistList = () => {
                         &nbsp; &nbsp;                    
                         <i 
                             className="fa fa-trash-o"
-                            onClick={() => deleteCategoryHandler(artist._id)}
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setId(artist._id)
+                            }}
                         />
                     </Fragment> 
             })
@@ -131,6 +140,18 @@ const ArtistList = () => {
                 </div>
 
             </div>
+
+            <Modal
+                isModalVisible={isModalVisible} 
+                onBackdropClick={toggleModal}   
+                content={
+                    <Confirm 
+                        onBackdropClick={toggleModal} 
+                        onConfirm={() => deleteCategoryHandler(id)} 
+                        message="Delete Artist"
+                    />
+                }
+            />
             
         </Fragment>
 

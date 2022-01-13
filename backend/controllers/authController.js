@@ -10,13 +10,25 @@ const cloudinary = require('cloudinary')
 exports.registerUser = catchAsyncErrors( async (req, res, next) => {
     const { name, email, password, avatar } = req.body
     // Checks if name, email and password is entered by user
-    if(!name || !email || !password || !avatar) {
-        return next(new ErrorHandler('Please complete all fields', 400))
+    if(!avatar) {
+        return next(new ErrorHandler('Please choose an avatar', 400))
+    }
+    if(!name) {
+        return next(new ErrorHandler('Please enter your name', 400))
+    }
+    if(!email) {
+        return next(new ErrorHandler('Please enter your email', 400))
+    }
+    if(!password) {
+        return next(new ErrorHandler('Please enter a password', 400))
+    }
+    if(password.length < 6) {
+        return next(new ErrorHandler('Password must contain at least 6 characters', 400))
     }
     const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
         folder: 'avatars',
         width: 150,
-        crop: "scale"
+        crop: 'scale'
     })
     
     const user = await User.create({

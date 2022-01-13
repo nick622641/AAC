@@ -23,7 +23,7 @@ function Modal(props) {
 
           {props.content}
 
-          <i className="fa fa-times" onClick={props.onBackdropClick}/>
+          <i className="fa fa-times" onClick={props.onBackdropClick} />
 
         </animated.div>
 

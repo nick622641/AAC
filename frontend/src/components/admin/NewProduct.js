@@ -33,6 +33,7 @@ const NewProduct = () => {
     const { artists } = useSelector(state => state.artists)
 
     useEffect(() => {
+        
         dispatch(getMedia())        
         dispatch(getOrientations())        
         dispatch(getArtists())        
