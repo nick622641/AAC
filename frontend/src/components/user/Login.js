@@ -60,7 +60,6 @@ const Login = () => {
                                         placeholder="Email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        required
                                     />                
                                 </label>
 
@@ -72,7 +71,6 @@ const Login = () => {
                                         placeholder="Password" 
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        required
                                     />                
                                     <i                         
                                         className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
@@ -86,10 +84,10 @@ const Login = () => {
 
                                 <br /><br />
 
-                                <p className="parent">
+                                <div className="parent">
                                     <Link to="/password/forgot">Forgot Password?</Link>                               
                                     <Link to="/register">New User?</Link>
-                               </p>
+                               </div>
 
                             </form>
 

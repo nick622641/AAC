@@ -41,59 +41,69 @@ const NewPassword = () => {
     }
 
     return (
+
         <Fragment>
+
             <MetaData title={'New Password Reset'} />
 
             <div className="container">
 
                 <div className="wrapper">
+
                     <form className="user-form" onSubmit={submitHandler}>
 
-                        <h2>New Password</h2>
+                        <h1>New Password</h1>
                         
                         <label>
-                            <i className="fa fa-unlock-alt"/>
+                            <i className="fa fa-unlock-alt" />
                             <input
                                 type={passwordVisible ? 'text' : 'password'}
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                minLength="6"
-                                required
                             />
                             <i 
                                 className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
                                 onClick={togglePassword}
-                            ></i>
+                            />
                         </label>
                        
                         <label>
-                            <i className="fa fa-unlock-alt"/>
+                            <i className="fa fa-unlock-alt" />
                             <input
                                 type={passwordVisible ? 'text' : 'password'}
                                 placeholder="Confirm"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                required
                             />
                             <i 
                                 className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
                                 onClick={togglePassword}
-                            ></i>
+                            />
                         </label>
+
                         <br />
+                        
                         <button
                             className="submit"
                             disabled={loading ? true : false}
                         >
-                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Set Password'}
+                            {loading 
+                                ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> 
+                                : 'Set Password'
+                            }
                         </button>
 
                     </form>
+
                 </div>
+
             </div>
+
         </Fragment>
+
     )
+
 }
 
 export default NewPassword

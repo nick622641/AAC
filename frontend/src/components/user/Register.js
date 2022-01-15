@@ -79,11 +79,10 @@ const Register = () => {
                                 <td rowSpan="3">
                                     <label className="avatar">                            
                                         <input
-                                            type='file'   
+                                            type="file"   
                                             name="avatar"                            
                                             accept="images/*"
-                                            onChange={onChange}    
-                                            required                                                                             
+                                            onChange={onChange}                                                                                                                             
                                         />                            
                                         <img 
                                             src={avatarPreview} 
@@ -98,8 +97,7 @@ const Register = () => {
                                         placeholder="Name"   
                                         name="name"                      
                                         value={name}
-                                        onChange={onChange}  
-                                        required                                      
+                                        onChange={onChange}                                                                                
                                     /> 
                                 </td>
                             </tr>
@@ -110,8 +108,7 @@ const Register = () => {
                                         placeholder="Email" 
                                         name="email"                        
                                         value={email}
-                                        onChange={onChange}   
-                                        required                                     
+                                        onChange={onChange}                                                                                
                                     />  
                                 </td>
                             </tr>
@@ -124,8 +121,6 @@ const Register = () => {
                                             name="password"
                                             value={password}
                                             onChange={onChange}  
-                                            minLength="6"
-                                            required                                           
                                         />                
                                         <i 
                                             className={passwordVisible 
@@ -152,10 +147,10 @@ const Register = () => {
 
                         <br /><br />
 
-                        <p className="parent">
+                        <div className="parent">
                             <small>Already signed up?</small>
                             <Link to="/login">LOGIN</Link>
-                        </p>
+                        </div>
 
                         <Link to="/login"><i className="fa fa-times" /></Link>
                             

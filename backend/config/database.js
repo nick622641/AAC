@@ -2,8 +2,11 @@ const mongoose = require('mongoose')
 
 const connectDatabase = () => {
 
-    mongoose.connect(process.env.DB_LOCAL_URI)
-    // mongoose.connect(process.env.DB_URI)
+    const db = process.env.NODE_ENV === 'PRODUCTION' 
+        ? process.env.DB_URI 
+        : process.env.DB_LOCAL_URI
+
+    mongoose.connect(db)
         .then(con => {
 
             console.log(`MongoDB Database connected with HOST: ${con.connection.host}`)
@@ -12,8 +15,7 @@ const connectDatabase = () => {
 
             console.log("Error Connecting to the Mongodb Database")            
 
-        })
-    
+        })    
 }
 
 module.exports = connectDatabase

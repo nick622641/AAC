@@ -225,17 +225,12 @@ const Gallery = () => {
 
                         <Fragment>
 
-                        <h1>
-                            {/* {!keyword && !artist && !orientation && !medium && !rating && (price[0]=== 1 && price[1] === 10000) ? 'All the Work' : ''}
-                            { keyword && !artist && !orientation && !medium && !rating && (price[0]=== 1 && price[1] === 10000) ? 'Results for: ' + keyword : ''}
-                            { artist      ? artist      : ''}
-                            { orientation ? orientation : ''}
-                            { medium      ? medium      : ''}                            
-                            { rating      ? ' Ratings ' + rating + ' - 5': ''}    */}
+                        <h1>             
                             {title}
                             <span 
                                 style={{ 
-                                    fontSize: artist || orientation || medium || rating ? "18px" : "inherit"
+                                    fontSize:"18px",
+                                    display: "block"
                                 }}
                             >
                                 { price[0] > 1 || price[1] < 10000 ? ' From $' + price[0] + ' to $' + price[1]: ''}                        
@@ -244,7 +239,7 @@ const Gallery = () => {
                                 {resPerPage * (currentPage - 1) + 1} 
                                 &nbsp;-&nbsp; 
                                 {resPerPage * currentPage > count ? count : resPerPage * currentPage} 
-                                &nbsp;&nbsp;/&nbsp; {count}
+                                &nbsp;  / &nbsp;{count}
                             </small>                          
                         </h1>
 

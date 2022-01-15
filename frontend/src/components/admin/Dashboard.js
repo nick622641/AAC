@@ -35,7 +35,7 @@ const Dashboard = () => {
 
             <div className="container">
 
-                <div className="wrapper parent">
+                <div className="wrapper parent dashboard">
 
                     <aside>
 

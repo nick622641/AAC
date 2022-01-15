@@ -53,7 +53,7 @@ const Sidebar = () => {
                            
                             <i className="fa fa-picture-o" /> 
                             Artwork
-                            <i className={isMenuVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} />
+                            <i className={isMenuVisible ? 'fa fa-chevron-up' : 'fa fa-chevron-down'} />
                        
                             {isMenuVisible && ( 
                             <animated.div className="dropdown-menu" style={menuAppear}>  
@@ -73,7 +73,7 @@ const Sidebar = () => {
                            
                             <i className="fa fa-tags" /> 
                             Categories
-                            <i className={isCategoriesVisible ? 'fa fa-caret-up' : 'fa fa-caret-down'} />
+                            <i className={isCategoriesVisible ? 'fa fa-chevron-up' : 'fa fa-chevron-down'} />
                         
                             {isCategoriesVisible && ( 
                             <animated.div className="dropdown-menu" style={categoriesAppear}>  

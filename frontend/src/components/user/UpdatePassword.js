@@ -64,8 +64,7 @@ const UpdatePassword = () => {
                                 type={oldPasswordVisible ? 'text' : 'password'}
                                 placeholder="Old Password"
                                 value={oldPassword}
-                                onChange={(e) => setOldPassword(e.target.value)}
-                                required
+                                onChange={(e) => setOldPassword(e.target.value)}                                
                             />
                             <i 
                                 className={oldPasswordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
@@ -79,8 +78,6 @@ const UpdatePassword = () => {
                                 placeholder="New Password"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
-                                minLength="6"
-                                required
                             />
                             <i 
                                 className={newPasswordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}

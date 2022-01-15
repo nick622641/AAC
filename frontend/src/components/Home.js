@@ -10,7 +10,7 @@ import Social from './layouts/Social'
 const Home = () => {  
     
     const dispatch = useDispatch()
-    const { products } = useSelector( state => state.products )
+    const { relatedProducts } = useSelector( state => state.products )
    
     const [ imgIndex, setImgIndex ] = useState(0)     
     const [ left,     setLeft     ] = useState(0)
@@ -208,9 +208,9 @@ const Home = () => {
                 </div>
             </div>               
 
-            {products.length > 1 && (
+            {relatedProducts && relatedProducts.length > 2 && (
                 <div className="bg-grey">
-                    <Callout products={products} />  
+                    <Callout relatedProducts={relatedProducts} />  
                 </div>                      
             )}
 

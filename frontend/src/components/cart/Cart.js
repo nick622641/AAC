@@ -19,9 +19,7 @@ const Cart = () => {
     let totalPrice = cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
 
     const removeCartItemHandler = (id) => {
-        if ( window.confirm("Are you Sure?") === true ) {
-            dispatch(removeItemFromCart(id))
-        } 
+        dispatch(removeItemFromCart(id))
     }
     const emptyCartHandler = () => {   
         dispatch(emptyCart())

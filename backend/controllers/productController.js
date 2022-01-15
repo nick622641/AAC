@@ -9,7 +9,7 @@ const cloudinary = require('cloudinary')
 
 // Get all Artists => /api/v1/admin/artists
 exports.getArtists = catchAsyncErrors(async (req, res, next) => {
-    const artists = await Artist.find()
+    const artists = await Artist.find().sort({ name: 1 })
     res.status(200).json({
         success: true,
         artists
@@ -68,7 +68,7 @@ exports.deleteArtist = catchAsyncErrors(async (req, res, next) => {
 
 // Get all Orientation types => /api/v1/admin/orientations
 exports.getOrientations = catchAsyncErrors(async (req, res, next) => {
-    const orientations = await Orientation.find()
+    const orientations = await Orientation.find().sort({ name: 1 })
     res.status(200).json({
         success: true,
         orientations
@@ -127,7 +127,7 @@ exports.deleteOrientation = catchAsyncErrors(async (req, res, next) => {
 
 // Get all Media types => /api/v1/admin/mediums
 exports.getMedia = catchAsyncErrors(async (req, res, next) => {
-    const media = await Medium.find()
+    const media = await Medium.find().sort({ name: 1 })
     res.status(200).json({
         success: true,
         media

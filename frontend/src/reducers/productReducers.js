@@ -57,14 +57,13 @@ export const productsReducer = ( state = { products: [] }, action ) => {
                 filteredProductsCount: action.payload.filteredProductsCount
             }
 
-            // case RELATED_PRODUCTS_SUCCESS:
-            //     return {
-            //         loading: false,
-            //         products: action.payload.products                    
-            //     }
+        case RELATED_PRODUCTS_SUCCESS:
+            return {
+                loading: false,
+                relatedProducts: action.payload                 
+            }
         
         case ADMIN_PRODUCTS_SUCCESS:
-        case RELATED_PRODUCTS_SUCCESS:
             return {
                 loading: false,
                 products: action.payload

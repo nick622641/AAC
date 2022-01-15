@@ -26,7 +26,7 @@ const ProductDetails = () => {
 
     const { error: reviewError, success } = useSelector( state => state.newReview )
     const { loading, product, error     } = useSelector( state => state.productDetails )
-    const { products                    } = useSelector( state => state.products )
+    const { relatedProducts             } = useSelector( state => state.products )
     const { user, isAuthenticated       } = useSelector( state => state.auth )   
 
     const [ modalType,         setIModalType        ] = useState()    
@@ -306,8 +306,8 @@ const ProductDetails = () => {
                         </div>                                                        
                     )}  
 
-                    {products.length > 1 && (
-                        <Callout products={products} />                        
+                    {relatedProducts && relatedProducts.length > 2 && (
+                        <Callout relatedProducts={relatedProducts} />                        
                     )}                    
 
                     {isLightboxVisible && (

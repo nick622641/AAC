@@ -1,24 +1,24 @@
 [{
   "_id": {
-    "$oid": "61c82c052cf693a32ba5d224"
+    "$oid": "61c33b4e12e4d1c4468694ea"
   },
   "name": "Landscape",
   "__v": 0
 },{
   "_id": {
-    "$oid": "61c82c052cf693a32ba5d225"
+    "$oid": "61c33b4e12e4d1c4468694eb"
   },
   "name": "Portrait",
   "__v": 0
 },{
   "_id": {
-    "$oid": "61c82c052cf693a32ba5d226"
+    "$oid": "61c33b4e12e4d1c4468694ec"
   },
   "name": "Square",
   "__v": 0
 },{
   "_id": {
-    "$oid": "61c82c052cf693a32ba5d227"
+    "$oid": "61c33b4e12e4d1c4468694ed"
   },
   "name": "3 Dimensional",
   "__v": 0

@@ -1,25 +1,26 @@
 import React, { Fragment, useState } from 'react'
-import { countries } from 'countries-list'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingInfo } from '../../actions/cartActions'
 import { useNavigate, Link } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
+import Countries from '../layouts/Countries'
 
 const Shipping = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const countriesList = Object.values(countries)
     const { shippingInfo } = useSelector( state => state.cart )    
-    const [ address, setAddress       ] = useState(shippingInfo.address)
-    const [ city, setCity             ] = useState(shippingInfo.city)
-    const [ postalCode, setPostalCode ] = useState(shippingInfo.postalCode)
-    const [ phoneNo, setPhoneNo       ] = useState(shippingInfo.phoneNo)
-    const [ country, setCountry       ] = useState(shippingInfo.country)    
+    const [ address,      setAddress    ] = useState(shippingInfo.address)
+    const [ city,         setCity       ] = useState(shippingInfo.city)
+    const [ postalCode,   setPostalCode ] = useState(shippingInfo.postalCode)
+    const [ phoneNo,      setPhoneNo    ] = useState(shippingInfo.phoneNo)
+    const [ country,      setCountry    ] = useState(shippingInfo.country)    
+    const [ isSelectOpen, setSelectOpen ] = useState(false)   
 
     const submitHandler = (e) => {
         e.preventDefault()
+        if ( !country ) return
         dispatch(saveShippingInfo( { address, city, postalCode, phoneNo, country } ))
         navigate('/order/confirm')
     }
@@ -28,7 +29,7 @@ const Shipping = () => {
 
         <Fragment>
 
-            <MetaData title={'Shipping Info'} />
+            <MetaData title={'Shipping Info'} />                     
 
             <div className="container">                        
 
@@ -81,34 +82,29 @@ const Shipping = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Code</h6>
+                                    <h6>Post Code</h6>
                                 </th>
                                 <td>
                                     <input
                                         placeholder="Postal Code"
                                         value={postalCode ? postalCode : ''}
-                                        onChange={(e) => setPostalCode(e.target.value)}
+                                        onChange={(e) => setPostalCode(e.target.value.toUpperCase())}
                                         required
                                     />
                                 </td>
-                            </tr>
+                            </tr>                            
                             <tr>
                                 <th>
                                     <h6>Country</h6>
                                 </th>
-                                <td>
-                                    <select
-                                        value={country ? country : ''}
-                                        onChange={(e) => setCountry(e.target.value)}
-                                        required
-                                    >
-                                        <option>Country</option>
-                                        {countriesList.map(country => (
-                                            <option key={country.name} value={country.name}>
-                                                {country.name}
-                                            </option>
-                                        ))}  
-                                    </select>
+                                <td className="relative">
+                                    <Countries
+                                        country={country}
+                                        setCountry={setCountry}
+                                        setSelectOpen={setSelectOpen}
+                                        isSelectOpen={isSelectOpen}
+                                    /> 
+                                     <input className="hidden-input" value={country ? country : ''} onChange={(e) => setCountry(e.target.value.toUpperCase())} required/>                                  
                                 </td>
                             </tr>
                         </tbody>
@@ -124,7 +120,7 @@ const Shipping = () => {
 
                 </div>
 
-            </div>
+            </div>                     
 
         </Fragment>
 

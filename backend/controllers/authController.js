@@ -14,7 +14,7 @@ exports.registerUser = catchAsyncErrors( async (req, res, next) => {
         return next(new ErrorHandler('Please choose an avatar', 400))
     }
     if(!name) {
-        return next(new ErrorHandler('Please enter your name', 400))
+        return next(new ErrorHandler('Please enter a name', 400))
     }
     if(!email) {
         return next(new ErrorHandler('Please enter your email', 400))

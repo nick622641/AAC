@@ -96,6 +96,11 @@ footer {
   font-size: 24px;
   font-family: "Monotype Corsiva", cursive;
 }
+.sticky {
+  position: sticky;
+  top: 0;
+  background: white;
+}
 /* Heading / Paragaraph Styles */
 h1 {
   font-size: 40px; 
@@ -169,6 +174,9 @@ span {
   left: 0; 
   z-index: 1;
 }
+.backdrop.clear {
+  background: none;
+}
 /* Aside / Article Styles */
 aside {
   flex: 0 0 20%;
@@ -202,7 +210,13 @@ aside h4 {
 }
 aside .fa {
   font-size: 22px;
-  margin: 0 20px 20px 0;      
+  margin: 0 20px 0 0;      
+}
+.dashboard aside ul {
+  margin-bottom: 10px ;
+}
+.dashboard aside li {
+  padding: 10px 0;
 }
 aside li:hover input[type=checkbox] {
   border-color: var(--primary-color);
@@ -254,7 +268,6 @@ a:hover {
   right: 10px;
   color: #999999;  
   cursor: pointer;
-  z-index: 1;
 }
 .fa-times:hover {
   color: var(--primary-color); 
@@ -281,12 +294,12 @@ button .fa-spinner {
 .fa-check {
   color: var(--cta-green);
 }
-.fa-caret-down,
-.fa-caret-up {
-    font-size: 12px !important;    
-    position: absolute;
-    top: 6px;
-    right: 0;
+.fa-chevron-down,
+.fa-chevron-up {
+  font-size: 12px !important;    
+  position: absolute;
+  top: 15px;
+  right: 0;
 }
 li:hover > a > .fa,
 li:hover > .fa {
@@ -404,6 +417,9 @@ a:hover .fa-chevron-right {
     margin-bottom: 40px;
     text-transform: capitalize;
 }
+::placeholder {
+  color: #999;
+}
 label {
   display: block;
   position: relative;
@@ -415,6 +431,17 @@ select {
   width: 100%;
   border-bottom: solid 1px #ccc;
   transition: all var(--speed);
+}
+.hidden-input {
+  padding: 0;
+  opacity: 0;
+  border: none;
+  position: absolute;
+  top: 30px;
+  left: 0;
+}
+option {
+  color: black;
 }
 textarea {
   min-height: 100px;
@@ -448,6 +475,8 @@ textarea:focus {
 input[type=file] {
   position: absolute;
   opacity: 0; 
+  width: 0;
+  padding: 0;
 }
 /* input:invalid {
   background: #ffefea;
@@ -492,6 +521,90 @@ label i.fa-eye-slash {
 .user-form button {
   width: 100%;
 }
+/* Custom Country Dropdown */
+.custom-select >  li {
+  position: relative;
+  cursor: pointer;
+  border-bottom: solid 1px #ccc;  
+}
+.custom-select > li.open {
+  border-color: var(--primary-color);
+}
+.custom-select > li >  div > span {
+  color: #999;
+}
+.custom-select .set {
+  color: black;
+}
+.custom-select-dropdown {
+  width: 100%;
+  height: 40vh;
+  position: absolute;
+  top: calc( (40vh + 20px) * -1 );
+  z-index: 1;
+  overflow-y: scroll;
+  background: white;
+  box-shadow: 0 0 32px rgb(0 0 0 / 50%); 
+}
+.custom-select ul {
+  padding: 10px 0 10px 0;  
+}
+.custom-select-dropdown li {
+  padding: 3px 10px;
+  transition: all var(--speed);
+  white-space: nowrap;
+}
+.custom-select-dropdown .selected {
+  background: var(--primary-color);
+  color: white;
+}
+.custom-select-dropdown li:hover {
+  background: #ccc;
+  color: white;
+}
+.custom-select div:first-child {
+  padding: 10px;
+}
+.custom-select input {
+  text-indent: 40px;
+}
+.custom-select .fa-search {
+  position: absolute;
+  left: 10px;
+  line-height: 35px;
+  font-size: 22px;
+  color: #ccc;
+}
+.custom-select img {
+  width: 20px;
+  margin-right: 20px;
+  border: solid 1px #ccc;
+}
+/* Alert Box Styles */
+#__react-alert__ div > div > div {
+  background: white !important;
+  color: var(--primary-color) !important;
+  width: auto !important;  
+  box-shadow: 0 0 32px rgba(0,0,0,0.5) !important;
+}
+#__react-alert__ button {
+  background-color: #ccc !important;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#__react-alert__ button:hover {
+  background-color: var(--primary-color) !important;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* Tables */
 table {
 	border-collapse: collapse;
@@ -514,7 +627,8 @@ th {
 }
 th,
 td {
-  padding: 10px;   
+  padding: 10px;  
+  font-size: 12px; 
 }
 th a, td a {
   font-size: inherit;
@@ -1096,7 +1210,7 @@ img {
   }
   article {    
     margin-left: 0;
-    width: 100%;
+    width: 100% !important;
   }
   .user-form {
     padding: 20px;

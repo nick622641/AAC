@@ -1,6 +1,8 @@
-import { Fragment, useRef } from "react"
+import { Fragment, useRef, useState } from "react"
 
 function Contact() {
+
+    const [ loading, setLoading ] = useState(false)
 
     const nameInputRef = useRef()
     const emailInputRef = useRef()
@@ -8,6 +10,7 @@ function Contact() {
 
     function submitHandler(e) {
         e.preventDefault()
+        setLoading(true)
         const enteredName = nameInputRef.current.value
         const enteredEmail = emailInputRef.current.value
         const enteredMessage = messageInputRef.current.value
@@ -17,8 +20,9 @@ function Contact() {
             email: enteredEmail,
             message: enteredMessage
         }
-
         console.log(contactData)
+        setLoading(false)
+        
     }
     
     return (  
@@ -72,7 +76,15 @@ function Contact() {
 
                 <br />
 
-                <button className="submit">Send</button>
+                <button 
+                    className="submit"
+                    disabled={loading === true ? true : false}
+                >
+                    {loading === true 
+                        ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> 
+                        : 'Send'
+                    }
+                </button>
                     
             </form>     
 

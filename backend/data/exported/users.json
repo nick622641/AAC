@@ -1,33 +1,33 @@
 [{
   "_id": {
-    "$oid": "61c82b569a7afa05d215e98e"
+    "$oid": "61b7bae1939ff81896b8cd56"
   },
-  "name": "Nick",
+  "name": "Nick Dittmer",
   "email": "info@fishslates.com",
-  "password": "$2a$10$UGfVTlbgdUliaD8bM3PMmezwSWUec33UN53pbyPH/UzAma2GMvj/K",
+  "password": "$2a$10$0esPtMYdGfI6Cg22Qr9hQOo//mrbx59/LrsLeN9xoAEdNx./oG.te",
   "avatar": {
-    "public_id": "avatars/tnzdsr6mvw4sv4k0g8vc",
-    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640508246/avatars/tnzdsr6mvw4sv4k0g8vc.jpg"
+    "public_id": "avatars/gccxbl5yi157sfrqtqcv",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641222575/avatars/gccxbl5yi157sfrqtqcv.jpg"
   },
   "role": "admin",
   "createdAt": {
-    "$date": "2021-12-26T08:44:06.578Z"
+    "$date": "2021-12-13T21:28:01.344Z"
   },
   "__v": 0
 },{
   "_id": {
-    "$oid": "61c8f6b8b264b7bb87c9e3ea"
+    "$oid": "61b8e83dcd01879d0d09d28c"
   },
-  "name": "Jenny",
-  "email": "jane@gmail.com",
-  "password": "$2a$10$GzXsoLAVyBalMSKQFXLcBup8.PFOnVrdm2UWQiqbB4QfiR6aQHG56",
+  "name": "Jenny Flex",
+  "email": "jenny@gmail.com",
+  "password": "$2a$10$k4SGzhdZy6rH6gSJL/AvWOs6xNtSQA0RFiHSMTBshSI/6/FIHV5Wq",
   "avatar": {
-    "public_id": "avatars/hpm5fqbrtebnspnijjyu",
-    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640560317/avatars/hpm5fqbrtebnspnijjyu.jpg"
+    "public_id": "avatars/nqxrn00z4pp7ypkkxdyn",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641227518/avatars/nqxrn00z4pp7ypkkxdyn.jpg"
   },
   "role": "user",
   "createdAt": {
-    "$date": "2021-12-26T23:11:52.801Z"
+    "$date": "2021-12-14T18:53:49.425Z"
   },
   "__v": 0
 }]
