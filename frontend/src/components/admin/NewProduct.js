@@ -188,12 +188,12 @@ const NewProduct = () => {
                                   
 
                                 <div>
-                                    <h4>Dimensions</h4>
+                                    <h4>Dimensions <small className="primary-color">&bull; (cm)</small></h4>
                                     <table>
                                         <tbody>
                                         <tr>
                                             <th>
-                                                <h6>Width &bull; <small>cm</small></h6>
+                                                <h6>Width</h6>
                                             </th>                                            
                                             <td>                                                
                                                 <input
@@ -203,7 +203,7 @@ const NewProduct = () => {
                                                 />
                                             </td>
                                             <th>
-                                            <h6>Height &bull; <small>cm</small></h6>
+                                            <h6>Height</h6>
                                             </th>
                                             <td>                                                
                                                 <input
@@ -213,7 +213,7 @@ const NewProduct = () => {
                                                 />
                                             </td>
                                             <th>
-                                            <h6>Depth &bull; <small>cm</small></h6>
+                                            <h6>Depth</h6>
                                             </th>
                                             <td>
                                                 <input

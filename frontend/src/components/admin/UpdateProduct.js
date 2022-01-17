@@ -232,12 +232,12 @@ const UpdateProduct = () => {
                                 </ul>  
 
                                 <div>
-                                    <h4>Dimesions</h4>
+                                    <h4>Dimensions <small className="primary-color">&bull; (cm)</small></h4>
                                     <table className="dimensions">
                                         <tbody>
                                         <tr>
                                             <th>
-                                                <h6>Width &bull; <small><b>CM</b></small></h6>
+                                                <h6>Width</h6>
                                             </th>                                            
                                             <td>                                                
                                                 <input
@@ -247,7 +247,7 @@ const UpdateProduct = () => {
                                                 />                                                
                                             </td>
                                             <th>
-                                                <h6>Height &bull; <small><b>CM</b></small></h6>
+                                                <h6>Height</h6>
                                             </th>
                                             <td>                                                
                                                 <input
@@ -257,7 +257,7 @@ const UpdateProduct = () => {
                                                 />
                                             </td>
                                             <th>
-                                                <h6>Depth &bull; <small><b>CM</b></small></h6>
+                                                <h6>Depth</h6>
                                             </th>
                                             <td>
                                                 <input

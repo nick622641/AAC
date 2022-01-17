@@ -1,27 +1,24 @@
-import { Fragment, useRef, useState } from "react"
+import { Fragment, useState } from 'react'
+import RichText from '../layouts/RichText'
 
 function Contact() {
 
-    const [ loading, setLoading ] = useState(false)
 
-    const nameInputRef = useRef()
-    const emailInputRef = useRef()
-    const messageInputRef = useRef()
+    const [ name, setName ] = useState('')
+    const [ email, setEmail ] = useState('')
+    const [ message, setMessage ] = useState('')
 
     function submitHandler(e) {
-        e.preventDefault()
-        setLoading(true)
-        const enteredName = nameInputRef.current.value
-        const enteredEmail = emailInputRef.current.value
-        const enteredMessage = messageInputRef.current.value
 
-        const contactData = {
-            name: enteredName,
-            email: enteredEmail,
-            message: enteredMessage
-        }
-        console.log(contactData)
-        setLoading(false)
+        e.preventDefault()       
+
+        const formData = new FormData()
+
+        formData.set('name', name)
+        formData.set('email', email)
+        formData.set('message', message)
+
+        console.log(`Name: ${name}, Email: ${email} and message: ${message}`)
         
     }
     
@@ -33,14 +30,14 @@ function Contact() {
 
             <form onSubmit={submitHandler}>
 
-                <table className="bordered-table">
+                <table className="bordered-table fixed-table">
                     <tbody>
                         <tr>
-                            <th><h6>Name</h6></th>
+                            <th style={{ width: "100px" }}><h6>Name</h6></th>
                             <td>
                                 <input 
                                     placeholder="Name" 
-                                    ref={nameInputRef}
+                                    onChange={(e) => setName(e.target.value)}
                                     required
                                     autoFocus 
                                 />
@@ -52,7 +49,7 @@ function Contact() {
                                 <input 
                                     type="email" 
                                     placeholder="Email" 
-                                    ref={emailInputRef}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     required
                                 /> 
                             </td>
@@ -61,13 +58,19 @@ function Contact() {
                             <th style={{ verticalAlign: "top" }}>
                                 <h6 style={{ paddingTop: "12px" }}>Message</h6>
                             </th>
-                            <td>
-                                <textarea 
-                                    rows="4" 
-                                    ref={messageInputRef} 
-                                    placeholder="Message" 
-                                    required
-                                /> 
+                            <td>                              
+                                <div className="relative">
+                                    <RichText
+                                        text={message}
+                                        setText={setMessage}
+                                    />
+                                    <input 
+                                        className="hidden-input" 
+                                        value={message ? message : ''} 
+                                        onChange={(e) => setMessage(e.target.value)} 
+                                        required
+                                    />
+                                </div>
                             </td>
                         </tr>
                         
@@ -75,16 +78,9 @@ function Contact() {
                 </table>   
 
                 <br />
+                <br />
 
-                <button 
-                    className="submit"
-                    disabled={loading === true ? true : false}
-                >
-                    {loading === true 
-                        ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> 
-                        : 'Send'
-                    }
-                </button>
+                <button className="submit">Send</button>
                     
             </form>     
 
