@@ -28,7 +28,7 @@ header figure + small {
 }
 header .dropdown-menu {
     position: absolute;
-    top: calc(100% + 15px);
+    top: calc(100% + 20px);
     right: 40px;
     background: white;
     padding: 20px;
@@ -36,6 +36,10 @@ header .dropdown-menu {
     text-align: right;    
     box-shadow: 0 0 32px rgba(0,0,0,0.5);   
     z-index: 1;
+}
+header .dropdown-menu .fa {
+    font-size: 22px;
+    margin-left: 10px;
 }
 header .dropdown-menu a {
     display: block;

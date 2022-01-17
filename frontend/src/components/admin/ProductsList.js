@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions'
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
-import FormattedPrice from '../layouts/FormattedPrice'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
@@ -72,7 +71,7 @@ const ProductsList = () => {
                 {
                     label: 'Price',
                     field: 'price',
-                    sort: 'disabled'
+                    sort: 'asc'
                 },
                 {
                     label: 'Stock',
@@ -101,7 +100,7 @@ const ProductsList = () => {
                     </Link>,
                 id: <small>{product._id}</small>,
                 name: product.name,
-                price: <FormattedPrice number={product.price} />, 
+                price: `$${product.price}`, 
                 stock: product.stock,
                 actions: 
                     <Fragment>

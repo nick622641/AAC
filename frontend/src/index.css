@@ -664,8 +664,17 @@ th a, td a {
   justify-content: space-between;
 }
 .dataTables_wrapper > div:nth-child(2) {
-  overflow-x: auto;
+  overflow: auto;
+  max-height: 500px;
   margin-bottom: 20px;
+  border-top: solid 1px #ccc;
+}
+.mdb-table thead:first-child {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+  box-shadow: 0 0 22px rgba(0,0,0,0.2);  
 }
 .mdb-table input {
   text-align: right;
@@ -681,12 +690,21 @@ th a, td a {
 .mdb-table table {       
     margin-bottom: 20px;
     border: solid 1px #ccc;
+    border-top: none;
+}
+.mdb-table th {
+  text-align: left;
+  font-weight: bold; 
+  position: relative;
+  cursor: pointer; 
+  line-height: 30px;
 }
 .mdb-table td {    
   background: #eee;
   transition: all var(--speed);
   cursor: auto;
   vertical-align: middle;
+  line-height: 30px;
 }
 .mdb-table tr:nth-child(even) td {
   background: #f6f5f5;
@@ -704,16 +722,12 @@ th a, td a {
   font-size: 0;  
 }
 .mdb-table .pagination li:first-child a:after {
-  content: '⟨';   
+  font-family: "FontAwesome";
+  content: '\f053';   
 }
 .mdb-table .pagination li:last-child a:after{
-  content: '⟩'; 
-}
-.mdb-table th {
-  text-align: left;
-  font-weight: bold; 
-  position: relative;
-  cursor: pointer; 
+  font-family: "FontAwesome";
+  content: '\f054'; 
 }
 .mdb-table .sorting,
 .mdb-table .sorting_asc,
@@ -725,7 +739,7 @@ th a, td a {
   right: 14px;
   font-family: "FontAwesome";
   position: absolute;
-  bottom: 0.9em;
+  top: 10px;
   opacity: .3;
 }
 .mdb-table .sorting:before, 
@@ -785,6 +799,10 @@ section .callout p {
   color: #ccc;
 }
 /* Dashboard Styles */
+.dashboard aside li,
+.dashboard aside li a {
+  font-size: 14px;
+}
 .admin {
   color: white;  
   border-radius: 5px;
@@ -816,9 +834,11 @@ a.admin:hover {
   color: white;
 }
 .admin p {
-  border-top: solid 1px #555;
-  background: rgba(0,0,0,0.2);
-  margin-top: 20px;   
+  margin-top: 20px; 
+}
+.admin p.relative {
+  border-top: solid 1px #777;
+  background: rgba(0,0,0,0.1);    
 }
 .admin p + p {
   text-align: left;

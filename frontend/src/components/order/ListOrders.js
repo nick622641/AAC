@@ -4,7 +4,6 @@ import { MDBDataTable } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { myOrders, clearErrors } from '../../actions/orderActions'
-import FormattedPrice from '../layouts/FormattedPrice'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 
@@ -41,7 +40,7 @@ const ListOrders = () => {
                 {
                     label: 'Amount',
                     field: 'amount',
-                    sort: 'disabled'
+                    sort: 'asc'
                 },
                 {
                     label: 'Status',
@@ -62,10 +61,10 @@ const ListOrders = () => {
             data.rows.push({                 
                 id: order._id,
                 numOfItems: order.orderItems.length,
-                amount: <FormattedPrice number={order.totalPrice} />, 
+                amount: `$${order.totalPrice}`, 
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
-                ? <p className="success">{order.orderStatus}</p>
-                : <p className="danger">{order.orderStatus}</p>,
+                ? <span className="success">{order.orderStatus}</span>
+                : <span className="danger">{order.orderStatus}</span>,
                 actions:
                     <Link to={`/order/${order._id}`}>
                         <i className="fa fa-eye" />

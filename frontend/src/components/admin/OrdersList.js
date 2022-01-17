@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { allOrders, deleteOrder, clearErrors } from '../../actions/orderActions'
 import { DELETE_ORDER_RESET } from '../../constants/orderConstants'
-import FormattedPrice from '../layouts/FormattedPrice'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
 
@@ -62,7 +61,7 @@ const OrdersList = () => {
                 {
                     label: 'Amount',
                     field: 'amount',
-                    sort: 'disabled'
+                    sort: 'asc'
                 },
                 {
                     label: 'Status',
@@ -82,10 +81,10 @@ const OrdersList = () => {
             data.rows.push({
                 id: <small>{order._id}</small>,
                 numOfItems: order.orderItems.length,
-                amount: <FormattedPrice number={order.totalPrice} />, 
+                amount: `$${order.totalPrice}`, 
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
-                ? <p className="success">{order.orderStatus}</p>
-                : <p className="danger">{order.orderStatus}</p>,
+                ? <span className="success">{order.orderStatus}</span>
+                : <span className="danger">{order.orderStatus}</span>,
                 actions:                 
                     <Fragment>
                         <Link to={`/admin/order/${order._id}`}>
@@ -132,7 +131,7 @@ const OrdersList = () => {
 
                                 {loading ? <Loader /> : (
 
-                                    <MDBDataTable 
+                                    <MDBDataTable
                                         className="mdb-table"
                                         data={setOrders()} 
                                     />
