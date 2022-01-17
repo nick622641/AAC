@@ -7,6 +7,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { newProduct, clearErrors } from '../../actions/productActions'
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
+import RichText from '../layouts/RichText'
 
 const NewProduct = () => {
 
@@ -279,17 +280,17 @@ const NewProduct = () => {
                                             </tr>
                                         </tbody>
                                     </table>  
-                                </div>         
+                                </div>   
 
-                                <label>
-                                    <textarea 
-                                        rows="2" 
-                                        placeholder="Please enter a comprehensive description"
-                                        value={description} 
-                                        onChange={(e) => setDescription(e.target.value)}
-                                    ></textarea>
-                                </label>                                
-                                <br /><br />
+                                <br /><br />    
+                                
+                                <RichText 
+                                    text={description}
+                                    setText={setDescription}
+                                />
+
+                                <br /><br />    
+
                                 <button
                                     className="submit"
                                     disabled={loading ? true : false}

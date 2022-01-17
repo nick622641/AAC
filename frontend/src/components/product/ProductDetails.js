@@ -17,6 +17,7 @@ import Lightbox from './Lightbox'
 import Callout from './Callout'
 import Social from '../layouts/Social'
 import FormattedPrice from '../layouts/FormattedPrice'
+import parse from 'html-react-parser'
 
 const ProductDetails = () => {   
 
@@ -271,14 +272,14 @@ const ProductDetails = () => {
                                     </div>                                
                                 </div>
                                 <div className="col-6">
-                                    <p>                                
-                                        {product.description}
-                                        <br /><br />                                        
-                                        <button onClick={() => {toggleModal(<Contact />)}}>
-                                            <i className="fa fa-envelope" /> 
-                                            &nbsp; Contact Us
-                                        </button>
-                                    </p>
+                                                                
+                                    {product.description && parse(product.description)}
+                                    <br /><br />                                        
+                                    <button onClick={() => {toggleModal(<Contact />)}}>
+                                        <i className="fa fa-envelope" /> 
+                                        &nbsp; Contact Us
+                                    </button>
+                                 
                                 </div>                                
                             </div>                             
                         </div>                        

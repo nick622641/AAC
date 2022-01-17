@@ -583,6 +583,10 @@ label i.fa-eye-slash {
   margin-right: 20px;
   border: solid 1px #ccc;
 }
+.ck.ck-editor__main>.ck-editor__editable.ck-focused {
+  border-color: #ccc;
+  border-bottom-color: var(--primary-color);
+}
 /* Alert Box Styles */
 #__react-alert__ div > div > div {
   background: white !important;
@@ -1053,7 +1057,7 @@ img {
               0 41.8px 33.4px rgb(0 0 0 / 9%), 
               0 100px 80px    rgb(0 0 0 / 12%);
 }
-.showroom-item >  div {
+.showroom-item > div {
   display: flex; 
   flex-direction: column; 
   justify-content: space-between;

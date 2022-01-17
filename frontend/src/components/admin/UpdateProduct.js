@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { updateProduct, getProductDetails, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
+import RichText from '../layouts/RichText'
 
 const UpdateProduct = () => {
     
@@ -317,13 +318,14 @@ const UpdateProduct = () => {
                                     </table>  
                                 </div>  
 
-                                <label>
-                                    <textarea 
-                                        value={description} 
-                                        onChange={(e) => setDescription(e.target.value)}
-                                        rows="4"
-                                    ></textarea>
-                                </label> 
+                                <br />
+                                <br />
+
+                                <RichText 
+                                    text={description}
+                                    setText={setDescription}
+                                />
+                     
                                 <br /> 
                                 <br />  
                                 <button
