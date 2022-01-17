@@ -455,6 +455,9 @@ input[type=checkbox] {
   border: solid 1px #ccc;
   cursor: pointer;
 }
+input[type=checkbox]:hover {
+  border-color: var(--primary-color);
+}
 input[type=checkbox]:checked {
   border-color: var(--primary-color);
   color: var(--primary-color);  
@@ -1032,8 +1035,9 @@ img {
 }
 .showroom-item {
   display: flex; 
-  flex-direction: column; 
+  flex-direction: column;   
   flex: 1 0 200px;
+  align-items: center;
   background: #ececec; 
   height: 390px; 
   padding: 20px; 
@@ -1049,27 +1053,42 @@ img {
               0 41.8px 33.4px rgb(0 0 0 / 9%), 
               0 100px 80px    rgb(0 0 0 / 12%);
 }
-.showroom-item div, 
-.showroom-item figure {
+.showroom-item >  div {
   display: flex; 
   flex-direction: column; 
+  justify-content: space-between;
+  align-items: center;  
+  height: 30%;
+  width: 100%;
+  max-width: 240px;
+  /* background: yellow */
+}
+.showroom-item figure {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 170px;
+  overflow: hidden;
+  /* background: blue; */
+}
+.showroom-item > div:first-child {   
   justify-content: center;
   align-items: center;
-}
-.showroom-item figure {   
-  flex-grow: 2;
-  text-align: center;
+  height: 70%;
+  /* background: red; */
 }
 .showroom-item img {
-  width: 230px;
-  height: auto;
+  object-fit: contain;
 }
 .showroom-item .portrait {
-  height: 230px;
+  height: 100%;
   width: auto;
 }
+.showroom-item p {
+  text-align: center;
+  margin-bottom: 10px;
+}
 .showroom-item small {
-  margin:20px 0; 
   font-weight: bold;    
 }
 .showroom-item h6 {
