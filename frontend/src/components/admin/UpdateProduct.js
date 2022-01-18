@@ -285,7 +285,6 @@ const UpdateProduct = () => {
                                                     <select 
                                                         value={artist}
                                                         onChange={(e) => setArtist(e.target.value)}                                    >
-                                                        <option value=""></option>
 
                                                         {artists && artists.map(a => (
                                                             <option key={a._id} value={a.name}>{a.name}</option>
@@ -299,12 +298,10 @@ const UpdateProduct = () => {
                                                     <select 
                                                         value={orientation}
                                                         onChange={(e) => setOrientation(e.target.value)}                                    >
-                                                        <option value=""></option>
 
                                                         {orientations && orientations.map(o => (
                                                             <option key={o._id} value={o.name}>{o.name}</option>
-                                                        ))}                                    
-                                                        
+                                                        ))}  
                                                     </select>
                                                 </td>
                                             </tr>
@@ -314,7 +311,6 @@ const UpdateProduct = () => {
                                                     <select 
                                                         value={medium}
                                                         onChange={(e) => setMedium(e.target.value)}                                    >
-                                                        <option value=""></option>
                                                         {media && media.map(m => (
                                                             <option key={m._id} value={m.name}>{m.name}</option>
                                                         ))}  

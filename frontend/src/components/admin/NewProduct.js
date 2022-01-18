@@ -243,12 +243,11 @@ const NewProduct = () => {
                                                     <select 
                                                         value={artist}
                                                         onChange={(e) => setArtist(e.target.value)}                                    >
-                                                        <option value=""></option>
+                                                        <option value="">Select an artist</option>
 
                                                         {artists && artists.map(a => (
                                                             <option key={a._id} value={a.name}>{a.name}</option>
-                                                        ))}                                    
-                                                        
+                                                        ))}   
                                                     </select>
                                                 </td>
                                             </tr>
@@ -259,13 +258,13 @@ const NewProduct = () => {
                                                 <td>
                                                     <select 
                                                         value={orientation}
-                                                        onChange={(e) => setOrientation(e.target.value)}                                    >
-                                                        <option value=""></option>
+                                                        onChange={(e) => setOrientation(e.target.value)}                                    
+                                                    >
+                                                        <option value="">Select an orientation</option>
 
                                                         {orientations && orientations.map(o => (
                                                             <option key={o._id} value={o.name}>{o.name}</option>
-                                                        ))}                                    
-                                                        
+                                                        ))}  
                                                     </select>
                                                 </td>
                                             </tr>
@@ -277,7 +276,7 @@ const NewProduct = () => {
                                                     <select 
                                                         value={medium}
                                                         onChange={(e) => setMedium(e.target.value)}                                    >
-                                                        <option value=""></option>
+                                                        <option value="">Select a medium</option>
 
                                                         {media && media.map(m => (
                                                             <option key={m._id} value={m.name}>{m.name}</option>
