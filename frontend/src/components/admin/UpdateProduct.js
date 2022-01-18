@@ -3,7 +3,7 @@ import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { updateProduct, getProductDetails, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
@@ -72,7 +72,7 @@ const UpdateProduct = () => {
         }
         if(isUpdated) {            
             alert.success('Artwork updated successfully')
-            navigate('/admin/products')
+            // navigate('/admin/products')
             dispatch({ type: UPDATE_PRODUCT_RESET })           
         }
     }, [dispatch, navigate, product, productId, alert, error, isUpdated, updateError])
@@ -177,6 +177,7 @@ const UpdateProduct = () => {
                                                     type="number"
                                                     value={stock} 
                                                     onChange={(e) => setStock(e.target.value)}
+                                                    min="0"
                                                 />                                     
                                             </td> 
                                         </tr> 
@@ -187,6 +188,7 @@ const UpdateProduct = () => {
                                                     type="number"
                                                     value={price}
                                                     onChange={(e) => setPrice(e.target.value)} 
+                                                    min="0"
                                                 />  
                                             </td>                                         
                                         </tr>
@@ -244,6 +246,7 @@ const UpdateProduct = () => {
                                                     type="number"
                                                     value={width}
                                                     onChange={(e) => setWidth(e.target.value)} 
+                                                    min="0"
                                                 />                                                
                                             </td>
                                             <th>
@@ -254,6 +257,7 @@ const UpdateProduct = () => {
                                                     type="number"
                                                     value={height}
                                                     onChange={(e) => setHeight(e.target.value)} 
+                                                    min="0"
                                                 />
                                             </td>
                                             <th>
@@ -264,16 +268,19 @@ const UpdateProduct = () => {
                                                     type="number"
                                                     value={depth}
                                                     onChange={(e) => setDepth(e.target.value)} 
+                                                    min="0"
                                                 />
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <h4>Categories</h4>
-                                    <table>
+                                    <table className="fixed-table categories">
                                         <tbody>
                                             <tr>
-                                                <th><h6>Artist</h6></th>
+                                                <th>
+                                                    <h6>Artist</h6>
+                                                </th>
                                                 <td>
                                                     <select 
                                                         value={artist}
@@ -318,16 +325,16 @@ const UpdateProduct = () => {
                                     </table>  
                                 </div>  
 
-                                <br />
-                                <br />
-
-                                <RichText 
-                                    text={description}
-                                    setText={setDescription}
-                                />
+                                <h4>Description</h4> 
+                                {description && (
+                                    <RichText 
+                                        text={description}
+                                        setText={setDescription}
+                                    />
+                                )}                                
                      
-                                <br /> 
-                                <br />  
+                                <br /><br />  
+                                
                                 <button
                                     className="submit"
                                     disabled={loading ? true : false}
@@ -336,6 +343,14 @@ const UpdateProduct = () => {
                                 </button>
 
                             </form>
+
+                            <Link 
+                                to={`/artwork/${product._id}`} 
+                                title="View page in a new tab"
+                                target="_blank"
+                            >
+                                <i className="fa fa-desktop" />
+                            </Link>
 
                             <button onClick={() => navigate(-1)}><i className="fa fa-times"/></button>
 

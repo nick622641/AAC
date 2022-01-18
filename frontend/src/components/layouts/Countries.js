@@ -66,6 +66,106 @@ const Countries = ({ country, setCountry, setSelectOpen, isSelectOpen }) => {
                                 <i className="fa fa-search" />
                         </label>
                         <ul>
+                            <li className="text-right"><b><small>Frequently selected</small></b></li>
+                            <li 
+                                className={`list-item ${country === 'Canada'  && "selected"}`}                                                                          
+                                onClick={(e) => {
+                                    setCountry(e.target.textContent)
+                                    seFlagIcon('https://flagcdn.com/ca.svg')
+                                    setSelectOpen(false)
+                                }}                               
+                            >
+                                 <img
+                                    alt="Canada" 
+                                    src={'https://flagcdn.com/ca.svg'}
+                                />
+                                Canada
+                            </li>
+                            <li 
+                                className={`list-item ${country === 'Singapore'  && "selected"}`}                                                                          
+                                onClick={(e) => {
+                                    setCountry(e.target.textContent)
+                                    seFlagIcon('https://flagcdn.com/sg.svg')
+                                    setSelectOpen(false)
+                                }}                               
+                            >
+                                 <img
+                                    alt="Singapore" 
+                                    src={'https://flagcdn.com/sg.svg'}
+                                />
+                                Singapore
+                            </li>
+                            <li 
+                                className={`list-item ${country === 'United States'  && "selected"}`}                                                                          
+                                onClick={(e) => {
+                                    setCountry(e.target.textContent)
+                                    seFlagIcon('https://flagcdn.com/us.svg')
+                                    setSelectOpen(false)
+                                }}                               
+                            >
+                                 <img
+                                    alt="United States" 
+                                    src={'https://flagcdn.com/us.svg'}
+                                />
+                                United States
+                            </li>
+                            <li 
+                                className={`list-item ${country === 'United Kingdom'  && "selected"}`}                                                                          
+                                onClick={(e) => {
+                                    setCountry(e.target.textContent)
+                                    seFlagIcon('https://flagcdn.com/gb.svg')
+                                    setSelectOpen(false)
+                                }}                               
+                            >
+                                 <img
+                                    alt="United Kingdom" 
+                                    src={'https://flagcdn.com/gb.svg'}
+                                />
+                                United Kingdom
+                            </li> 
+                            <li 
+                                className={`list-item ${country === 'Australia'  && "selected"}`}                                                                          
+                                onClick={(e) => {
+                                    setCountry(e.target.textContent)
+                                    seFlagIcon('https://flagcdn.com/au.svg')
+                                    setSelectOpen(false)
+                                }}                               
+                            >
+                                 <img
+                                    alt="Australia" 
+                                    src={'https://flagcdn.com/au.svg'}
+                                />
+                                Australia
+                            </li>                           
+                            <li 
+                                className={`list-item ${country === 'France'  && "selected"}`}                                                                          
+                                onClick={(e) => {
+                                    setCountry(e.target.textContent)
+                                    seFlagIcon('https://flagcdn.com/fr.svg')
+                                    setSelectOpen(false)
+                                }}                               
+                            >
+                                 <img
+                                    alt="France" 
+                                    src={'https://flagcdn.com/fr.svg'}
+                                />
+                                France
+                            </li>
+                            <li 
+                                className={`list-item ${country === 'Germany'  && "selected"}`}                                                                          
+                                onClick={(e) => {
+                                    setCountry(e.target.textContent)
+                                    seFlagIcon('https://flagcdn.com/de.svg')
+                                    setSelectOpen(false)
+                                }}                               
+                            >
+                                 <img
+                                    alt="Germany" 
+                                    src={'https://flagcdn.com/de.svg'}
+                                />
+                                Germany
+                            </li>                            
+                            <li className="text-right"><b><small>Alphabetical order</small></b></li>
                             {countriesList.map(c => (                                
                                 <li 
                                     className={`list-item ${c.name === country && "selected"}`}

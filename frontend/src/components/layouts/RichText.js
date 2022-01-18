@@ -9,7 +9,7 @@ const RichText = ({ text, setText }) => {
         <Fragment>
 
             <CKEditor
-                editor={ClassicEditor}
+                editor={ClassicEditor}               
                 data={text}
                 onChange={(event, editor) => {
                     const data = editor.getData()

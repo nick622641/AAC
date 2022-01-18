@@ -1,37 +1,37 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { newProduct, clearErrors } from '../../actions/productActions'
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
+import MetaData from '../layouts/MetaData'
+import Sidebar from '../admin/Sidebar'
 import RichText from '../layouts/RichText'
 
 const NewProduct = () => {
 
-    const [ name, setName ] = useState('')
-    const [ price, setPrice ] = useState(0)
-    const [ width, setWidth ] = useState(0)
-    const [ height, setHeight ] = useState(0)
-    const [ depth, setDepth ] = useState(0)
-    const [ description, setDescription ] = useState('')
-    const [ artist, setArtist ] = useState('')
-    const [ orientation, setOrientation ] = useState('')
-    const [ medium, setMedium ] = useState('')
-    const [ stock, setStock ] = useState(0)
+    const [ name,          setName          ] = useState('')
+    const [ price,         setPrice         ] = useState(0)
+    const [ width,         setWidth         ] = useState(0)
+    const [ height,        setHeight        ] = useState(0)
+    const [ depth,         setDepth         ] = useState(0)
+    const [ description,   setDescription   ] = useState('Please enter a comprehensive description')
+    const [ artist,        setArtist        ] = useState('')
+    const [ orientation,   setOrientation   ] = useState('')
+    const [ medium,        setMedium        ] = useState('')
+    const [ stock,         setStock         ] = useState(0)
     const [ datePublished, setDatePublished ] = useState('')
-    const [ images, setImages ] = useState([])
+    const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
 
     const alert = useAlert()
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { loading, error, success } = useSelector(state => state.newProduct)
-    const { media } = useSelector(state => state.media)
-    const { orientations } = useSelector(state => state.orientations)
-    const { artists } = useSelector(state => state.artists)
+    const { loading, error, success } = useSelector( state => state.newProduct )
+    const { media                   } = useSelector( state => state.media )
+    const { orientations            } = useSelector( state => state.orientations )
+    const { artists                 } = useSelector( state => state.artists )
 
     useEffect(() => {
         
@@ -99,7 +99,11 @@ const NewProduct = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
                     <article>          
                             
@@ -200,6 +204,7 @@ const NewProduct = () => {
                                                     type="number"
                                                     value={width}
                                                     onChange={(e) => setWidth(e.target.value)} 
+                                                    min="0"
                                                 />
                                             </td>
                                             <th>
@@ -210,6 +215,7 @@ const NewProduct = () => {
                                                     type="number"
                                                     value={height}
                                                     onChange={(e) => setHeight(e.target.value)} 
+                                                    min="0"
                                                 />
                                             </td>
                                             <th>
@@ -220,16 +226,17 @@ const NewProduct = () => {
                                                     type="number"
                                                     value={depth}
                                                     onChange={(e) => setDepth(e.target.value)} 
+                                                    min="0"
                                                 />
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <h4>Categories</h4>
-                                    <table>
+                                    <table className="fixed-table categories">
                                         <tbody>
                                             <tr>
-                                                <th>
+                                                <th style={{ width: "100px" }}>
                                                     <h6>Artist</h6>
                                                 </th>
                                                 <td>
@@ -282,7 +289,7 @@ const NewProduct = () => {
                                     </table>  
                                 </div>   
 
-                                <br /><br />    
+                                <h4>Description</h4> 
                                 
                                 <RichText 
                                     text={description}

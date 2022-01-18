@@ -4,6 +4,7 @@
   --secondary-color: #555;
   --cta-green: #13ae4b;
   --speed: 500ms;  
+  --box-shadow-lg: 0 0 32px rgba(0,0,0,0.5);
 }
 /* CSS Reset */
 * {
@@ -261,16 +262,28 @@ a:hover {
 .fa:hover {
   color: var(--primary-color);
 }
-.fa-times {   
+.fa-times,
+.fa-desktop {   
   font-size: 22px;
   position: absolute;
   top: 10px;
   right: 10px;
   color: #999999;  
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+  text-align: center;
+  border-radius: 100%;  
+  text-indent: 2px;;
 }
-.fa-times:hover {
+.fa-desktop {
+  right: 60px;
+}
+.fa-times:hover,
+.fa-desktop:hover {
   color: var(--primary-color); 
+  box-shadow: var(--box-shadow-lg);  
 }
 .fa-spinner {   
   font-size: 60px; 
@@ -651,12 +664,15 @@ th a, td a {
 .top-align td {
   vertical-align: top;
 }
-.upload-product td,
-.upload-product th {
-  padding: 0;
+.dimensions td {
+  padding: 0 10px;
 }
-.dimensions input {
-  width: 65px;
+.dimensions th {
+  padding-left: 0;
+}
+.categories th {
+  width: 100px;
+  padding-left: 0;
 }
 /* MDB Table Styles */
 .dataTables_wrapper > div:first-child {
@@ -704,7 +720,6 @@ th a, td a {
   transition: all var(--speed);
   cursor: auto;
   vertical-align: middle;
-  line-height: 30px;
 }
 .mdb-table tr:nth-child(even) td {
   background: #f6f5f5;
@@ -1240,13 +1255,16 @@ img {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--primary-color); 
-  border-radius:10px; 
-  border:solid 3px #fff;
+  border-radius: 10px; 
+  border: solid 3px #fff;
 }
 /* Media Queries */
 @media ( max-width: 768px ) {
   .container {
     max-width: 480px;
+  }
+  .wrapper {
+    padding: 40px 20px;
   }
   .parent {
     flex-direction: column;
@@ -1259,7 +1277,7 @@ img {
     width: 100% !important;
   }
   .user-form {
-    padding: 20px;
+    padding: 40px 20px;
   }
   .filters {
     display: inline-block;
@@ -1290,6 +1308,6 @@ img {
  }
 @media ( max-width: 480px ) {
   .wrapper {
-    padding: 20px;
+    padding: 20px 10px;
   }
 }
