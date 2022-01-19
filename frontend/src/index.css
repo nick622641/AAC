@@ -27,6 +27,7 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   overflow-x: hidden;   
+  background: white;
 }
 /* Sticky Footer */
 #root {
@@ -925,18 +926,18 @@ a.admin:hover {
 }
 .plus i, 
 .minus i {
-    color: var(--primary-color);
-    cursor: pointer;
+  color: var(--primary-color);
+  cursor: pointer;
 }
 .plus i:hover, 
 .minus i:hover {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 .inactive {
   pointer-events: none;
 }
 .inactive i {   
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 /* Image Styles */
 img {
