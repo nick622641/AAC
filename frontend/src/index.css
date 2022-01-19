@@ -950,6 +950,7 @@ img {
   position: relative;
   height: 80vh;
   margin-bottom: 10vh;
+  background: white;
 }
 .slideshow > div {
   position: absolute;
