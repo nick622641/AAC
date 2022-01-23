@@ -1,6 +1,10 @@
 import React, { Fragment, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { animated } from 'react-spring'
+import CloseIcon from '@mui/icons-material/Close'
+import { IconButton } from '@mui/material'
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
+import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
 
 const Lightbox = (props) => { 
 
@@ -21,16 +25,11 @@ const Lightbox = (props) => {
       
         <Fragment>
 
-            <div className="backdrop" />
-
-            <div className="lightbox-stage">
+            <div className="backdrop">
 
             <animated.div style={props.slideTopAnimation} className="lightbox">
 
-                <div 
-                    className="slide-container"
-                    style={{ left: `${left}px` }}
-                > 
+                <div className="slide-container" style={{ left: `${left}px` }}> 
 
                     {props.product.images && props.product.images.map((image, index) => (
 
@@ -38,7 +37,6 @@ const Lightbox = (props) => {
                             <img                         
                                 src={image.url} 
                                 alt={props.product.name} 
-                                className={props.product.width > props.product.height ? 'landscape' : 'portrait'}
                             />
                         </div>
 
@@ -49,17 +47,33 @@ const Lightbox = (props) => {
             </animated.div> 
 
             <div className="arrow-buttons">
-                <i 
-                    className={imgIndex > 0 ? 'fa fa-chevron-left' : ''} 
+         
+                <IconButton 
                     onClick={moveLeft}
-                />
-                <i 
-                    className={imgIndex < (props.product.images.length - 1) ? 'fa fa-chevron-right' : ''}
-                    onClick={moveRight}
-                />
-            </div>
-            <i className="fa fa-times" onClick={props.toggleLightbox}/>
+                    style={{ display: imgIndex === 0 && "none" }}
+                    sx={{ color: "#999999" }}
+                >
+                    <ArrowBackIosOutlinedIcon />
+                </IconButton>     
 
+                <IconButton 
+                    className="float-r"
+                    onClick={moveRight}
+                    style={{ display: imgIndex === (props.product.images.length - 1) && "none" }}
+                    sx={{ color: "#999999" }}
+                >
+                    <ArrowForwardIosOutlinedIcon />
+                </IconButton>
+
+            </div>
+
+            <IconButton 
+                className="close" 
+                onClick={props.toggleLightbox}  
+                sx={{ backgroundColor: "transparent", color: "#999999" }}              
+            >
+                <CloseIcon />
+            </IconButton>
             </div>
 
         </Fragment>,

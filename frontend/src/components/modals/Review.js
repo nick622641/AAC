@@ -1,7 +1,8 @@
-import { Fragment, useState, useEffect } from "react"
+import { Fragment, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { newReview } from '../../actions/productActions'
+import Rating from '@mui/material/Rating'
 
 function Review(props) {
     
@@ -11,44 +12,7 @@ function Review(props) {
     const [ comment, setComment ] = useState(props.comment)
     const { loading } = useSelector( state => state.newReview )  
 
-    function setUserRatings() {
-        const stars = document.querySelectorAll('.star')
-        stars.forEach((star, index) => {
-            star.starValue = index + 1;
-            ['click', 'mouseover', 'mouseout'].forEach( function(e) {
-                star.addEventListener(e, showRatings)
-            })
-        })
-
-        function showRatings(e) {
-            stars.forEach((star, index) => {
-                if(e.type === 'click') {
-                    if(index < this.starValue) {
-                        star.classList.add('gold')
-                        setRating(this.starValue)
-                    } else {
-                        star.classList.remove('gold')
-                    }
-                }
-                if(e.type === 'mouseover') {
-                    if(index < this.starValue) {
-                        star.classList.add('yellow')
-                    } else {
-                        star.classList.remove('yellow')
-                    }
-                }
-                if(e.type === 'mouseout') {                    
-                    star.classList.remove('yellow')              
-                }
-            })
-        }
-    }
     
-    useEffect(() => {  
-
-        setUserRatings()
-        
-    }, [])
 
     const reviewHandler = (e)  => {
         e.preventDefault()
@@ -66,14 +30,15 @@ function Review(props) {
             <h2>Submit Review</h2>
 
             <form onSubmit={reviewHandler}>
-
-                <ul className="stars" >
-                    <li className={rating > 0 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
-                    <li className={rating > 1 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
-                    <li className={rating > 2 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
-                    <li className={rating > 3 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
-                    <li className={rating > 4 ? "star gold" : "star"}><i className="fa fa-star"></i></li>
-                </ul>    
+                <Rating
+                    value={rating}
+                    sx={{ color: "var(--primary-color)" }}    
+                    style={{ fontSize: "32px" }}  
+                    size="large"               
+                    onChange={(event, newValue) => {
+                        setRating(newValue)
+                    }} 
+                />  
 
                 <br />           
 

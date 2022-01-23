@@ -1,15 +1,20 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { useSpring, animated } from 'react-spring'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import Backdrop from '@mui/material/Backdrop'
 
-function Modal(props) {
+function Modal({ isModalVisible, content, onBackdropClick  }) {
+
+  const [open] = useState(true)
 
     const animation = useSpring({     
-      opacity: props.isModalVisible ? 1 : 0,
-      transform: props.isModalVisible ? `translateY(-50%)` : `translateY(-100%)`
+      opacity: isModalVisible ? 1 : 0,
+      transform: isModalVisible ? `translateY(-50%)` : `translateY(-100%)`
     })
   
-    if(!props.isModalVisible) {
+    if(!isModalVisible) {
       return null
     }
 
@@ -17,13 +22,19 @@ function Modal(props) {
 
       <Fragment>
 
-       <div className='backdrop' onClick={props.onBackdropClick} />
+        <Backdrop
+            sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+            onClick={onBackdropClick}
+        />
 
         <animated.div style={animation} className="modal user-form">                    
 
-          {props.content}
+          {content}
 
-          <i className="fa fa-times" onClick={props.onBackdropClick} />
+          <Fab size="small" className="close" onClick={onBackdropClick}  color="primary">
+            <CloseIcon />
+          </Fab>
 
         </animated.div>
 

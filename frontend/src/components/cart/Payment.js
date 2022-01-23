@@ -1,15 +1,17 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import CheckoutSteps from './CheckoutSteps'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { createOrder, clearErrors } from '../../actions/orderActions'
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import { emptyCart } from '../../actions/cartActions'
+import MetaData from '../layouts/MetaData'
+import CheckoutSteps from './CheckoutSteps'
+import axios from 'axios'
 import FormattedPrice from '../layouts/FormattedPrice'
-
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const options = {
     style: {
@@ -116,7 +118,7 @@ const Payment = () => {
 
             <div className="container">            
 
-            <div className="wrapper stage">
+            <div className="wrapper">
 
                     <form className="user-form" onSubmit={submitHandler}>
 
@@ -154,16 +156,20 @@ const Payment = () => {
                         
                         <br />
                         <button 
-                            className="submit"
+                            className="submit relative"
                             disabled={processing ? true : false}
                         >    
                             {processing 
-                                ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> 
+                                ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
                                 : <FormattedPrice number={orderInfo && orderInfo.totalPrice} />
                             }
                         </button>
 
-                        <Link to="/order/confirm"><i className="fa fa-times"/></Link>
+                        <Link to="/order/confirm">                              
+                            <Fab size="small" className="close">
+                                <CloseIcon />
+                            </Fab>
+                        </Link>  
             
                     </form>
                 </div>

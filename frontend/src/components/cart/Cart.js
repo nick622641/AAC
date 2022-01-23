@@ -6,6 +6,14 @@ import { addItemToCart, removeItemFromCart, emptyCart } from '../../actions/cart
 import FormattedPrice from '../layouts/FormattedPrice'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import IconButton from '@mui/material/IconButton'
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import Avatar from '@mui/material/Avatar'
 
 const Cart = () => {    
     
@@ -50,21 +58,24 @@ const Cart = () => {
 
             <div className="container">
 
-                <div className="wrapper stage">
+                <div className="wrapper">
 
                     <div className="user-form">
 
                     {cartItems.length === 0 
                     ? ( <Fragment>
                             <h2>Your Cart is Empty</h2> 
-                            <button onClick={() => navigate(-1)}><i className="fa fa-times"/></button>
+                            <Fab size="small" className="close" onClick={() => navigate(-1)}>
+                                <CloseIcon />
+                            </Fab>
                         </Fragment>
                     )
                     : (
-
                         <Fragment>
                             
-                            <h1>Your Cart <small><b>({cartItems.length} items)</b></small></h1> 
+                            <h1>Your Cart</h1> 
+
+                            <p><small><b>({cartItems.length} items)</b></small></p>
 
                             <table className="middle-align bordered-table">
                             <tbody>
@@ -73,22 +84,21 @@ const Cart = () => {
                                     <td><h6>Title</h6></td>
                                     <td><h6>Price</h6></td>                                    
                                     <td><h6>Quantity</h6></td>                                    
-                                    <th>
-                                        <i 
-                                            className="fa fa-trash"
-                                            onClick={() => {
-                                                setIsModalVisible(!isModalVisible)
-                                            }}
-                                        />
+                                    <th>                                   
+                                        <IconButton onClick={() => {setIsModalVisible(!isModalVisible)}}>
+                                            <DeleteForeverIcon sx={{ color: "red" }} />
+                                        </IconButton>
                                     </th>
                                 </tr>
                                 {cartItems.map(item => (
                                     <tr key={item.product}>
                                         <td>
                                             <Link to={`/artwork/${item.product}`}>
-                                                <div className="cart-image">
-                                                    <img src={item.image} alt={item.name} className="centered-image" />
-                                                </div>
+                                                <Avatar
+                                                    src={item.image} 
+                                                    alt={item.name} 
+                                                    sx={{ width: 50, height: 50 }}
+                                                />                                          
                                             </Link>
                                         </td>
                                         <td>
@@ -97,31 +107,38 @@ const Cart = () => {
                                         <td>
                                             <FormattedPrice number={item.price} />                                            
                                         </td>
-                                        <td className="stockcounter">
-                                            <span 
-                                                className={item.quantity === 1 ? 'inactive minus' : 'minus'}
+                                        <td className="stockcounter">   
+
+                                            <IconButton 
+                                                className={item.quantity === 1 ? 'inactive' : ''}                                                 
                                                 onClick={() => decreaseQty(item.product, item.quantity)}
                                             >
-                                                <i className="fa fa-minus-circle"/>
-                                            </span>
+                                                <RemoveCircleIcon 
+                                                    fontSize="small" 
+                                                    color={item.quantity === 1 ? 'disabled' : 'primary'}
+                                                />
+                                            </IconButton>  
 
                                             <input                                                
                                                 value={item.quantity} 
                                                 readOnly 
                                             />
 
-                                            <span 
-                                                className={item.quantity === item.stock ? 'inactive plus' : 'plus'} 
+                                            <IconButton 
+                                                className={item.quantity === item.stock ? 'inactive' : ''} 
                                                 onClick={() => increaseQty(item.product, item.quantity, item.stock)}
                                             >
-                                                <i className="fa fa-plus-circle" />
-                                            </span> 
+                                                <AddCircleIcon 
+                                                    fontSize="small" 
+                                                    color={item.quantity === item.stock ? 'disabled' : 'primary'}
+                                                />
+                                            </IconButton>
+                                    
                                         </td>
-                                        <th>                                  
-                                            <i 
-                                                className="fa fa-trash-o" 
-                                                onClick={() => removeCartItemHandler(item.product)
-                                            }/>
+                                        <th>     
+                                            <IconButton onClick={() => removeCartItemHandler(item.product)}>
+                                                <DeleteOutlineIcon sx={{ color: "red" }} />
+                                            </IconButton>
                                         </th>                                        
                                     </tr>
                                 ))}    
@@ -152,11 +169,10 @@ const Cart = () => {
                             <button className="submit" onClick={checkoutHandler}>
                                 Check Out
                             </button>
-
-                            <i 
-                                className="fa fa-times"
-                                onClick={() => navigate(-1)}
-                            />
+                         
+                            <Fab size="small"  color="primary" className="close" onClick={() => navigate(-1)}>
+                                <CloseIcon />
+                            </Fab>
 
                         </Fragment>
 

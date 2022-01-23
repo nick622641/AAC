@@ -5,6 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updatePassword, clearErrors } from '../../actions/userActions'
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants'
 import MetaData from '../layouts/MetaData'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const UpdatePassword = () => {    
     
@@ -53,7 +59,7 @@ const UpdatePassword = () => {
             <MetaData title={'Update Password'} />
 
             <div className="container">
-                <div className="wrapper stage">
+                <div className="wrapper">
 
                     <form className="user-form" onSubmit={submitHandler}>
 
@@ -66,10 +72,13 @@ const UpdatePassword = () => {
                                 value={oldPassword}
                                 onChange={(e) => setOldPassword(e.target.value)}                                
                             />
-                            <i 
-                                className={oldPasswordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                onClick={toggleOldPassword}
-                            />
+                            <IconButton className="eye" onClick={toggleOldPassword}>
+                                {oldPasswordVisible ? (
+                                    <VisibilityIcon fontSize="small" />
+                                ):(
+                                    <VisibilityOffIcon fontSize="small" />
+                                )}
+                            </IconButton>  
                         </label> 
                         <br />                     
                         <label>
@@ -79,20 +88,30 @@ const UpdatePassword = () => {
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                             />
-                            <i 
-                                className={newPasswordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                onClick={toggleNewPassword}
-                            />
+                            <IconButton className="eye" onClick={toggleNewPassword}>
+                                {newPasswordVisible ? (
+                                    <VisibilityIcon fontSize="small" />
+                                ):(
+                                    <VisibilityOffIcon fontSize="small" />
+                                )}
+                            </IconButton>                             
                         </label>
                         <br /><br />
                         <button 
                             className="submit" 
                             disabled={loading ? true : false}
                         >
-                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Update Password'}
+                            {loading 
+                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} />
+                                : 'Update Password'
+                            }
                         </button>
 
-                        <Link to="/me"><i className="fa fa-times"/></Link>
+                        <Link to="/me">                              
+                            <Fab size="small" className="close">
+                                <CloseIcon />
+                            </Fab>
+                        </Link>
 
                     </form>
 

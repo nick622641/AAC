@@ -8,6 +8,9 @@ import { getMedia, getOrientations, getArtists } from '../../actions/categoryAct
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import RichText from '../layouts/RichText'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import Avatar from '@mui/material/Avatar'
 
 const NewProduct = () => {
 
@@ -120,18 +123,18 @@ const NewProduct = () => {
 
                                 <div className="parent reverse">
 
-                                    <label className="avatar">                                        
+                                    <label>                                        
                                         <input
                                             type="file"   
                                             name="product_images"                            
                                             onChange={onChange}   
                                             multiple                              
-                                        />                            
-                                        <img 
+                                        /> 
+                                        <Avatar
                                             src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
                                             alt='Avatar Preview' 
-                                            className="centered-image"
-                                        />
+                                            sx={{ width: 150, height: 150 }}
+                                        /> 
                                     </label> 
 
                                     <table className="middle-align">
@@ -306,7 +309,11 @@ const NewProduct = () => {
 
                             </form>
 
-                            <Link to="/dashboard"><i className="fa fa-times"></i></Link>
+                            <Link to="/dashboard">
+                                <Fab size="small" className="close">
+                                    <CloseIcon />
+                                </Fab>
+                            </Link>
                         </div>
                         
                     </article>

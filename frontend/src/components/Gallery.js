@@ -11,6 +11,14 @@ import Product from './product/Product'
 import Loader from './layouts/Loader'
 import Pagination from 'react-js-pagination'
 import Slider from 'rc-slider'
+import IconButton from '@mui/material/IconButton'
+import AutorenewIcon from '@mui/icons-material/Autorenew'
+import Checkbox from '@mui/material/Checkbox'
+import FirstPageIcon from '@mui/icons-material/FirstPage'
+import LastPageIcon from '@mui/icons-material/LastPage'
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
+import Rating from '@mui/material/Rating'
 import 'rc-slider/assets/index.css'
 
 const { createSliderWithTooltip } = Slider
@@ -81,201 +89,196 @@ const Gallery = () => {
 
         <Fragment>
 
-            <MetaData title={`Gallery - ${title}`} />        
+            {loading ? <Loader /> : (
 
-            <div className="container">
+                <Fragment>
 
-                <div className="wrapper parent">  
+                    <MetaData title={`Gallery - ${title}`} />        
 
-                    <aside>
+                    <div className="container">
 
-                        <button 
-                            className="filters"
-                            onClick={() => {setIsMenuOpen(!isMenuOpen)}}
-                        >
-                            Show Menu
-                        </button>
+                        <div className="wrapper parent">  
 
-                        {(isMenuOpen || !isMobile) && (
-                        <animated.div style={isMobile ? menuAppear : {}}>
+                            <aside>
 
-                            <h3>
-                                Filters &nbsp; &nbsp;
-                                <Link to="/gallery">
-                                    <i className="fa fa-refresh float-r" style={{ margin: 0 }} />
-                                </Link>
-                            </h3>    
+                                <button 
+                                    className="filters"
+                                    onClick={() => {setIsMenuOpen(!isMenuOpen)}}
+                                >
+                                    Show Menu
+                                </button>
 
-                            <h6>Price Range</h6>
+                                {(isMenuOpen || !isMobile) && (
+                                <animated.div style={isMobile ? menuAppear : {}}>
 
-                            <Range 
-                                marks={{
-                                    1 : `$1`,
-                                    10000 : `$10000`
-                                }}
-                                min={1}
-                                max={10000}
-                                defaultValue={[1, 10000]}
-                                tipFormatter={value => `$${value}`}
-                                tipProps={{
-                                    placement: "top"                                                    
-                                }}
-                                value={price}
-                                onChange={(price) => {
-                                    setPrice(price)                          
-                                    resetPage()
-                                }}
-                            />                            
-
-                            <h6>Artist</h6>
-
-                            <ul>   
-                                {artists && artists.map(a => (
-                                    <li                                           
-                                        key={a.name}                             
-                                        className={artist === a.name ? 'link-active' : ''}
-                                    >                                                                          
-                                        <Link to={`/gallery/artist/${a.name.replace(/ /g, '-')}`}>
-                                            <input 
-                                                type="checkbox" 
-                                                checked={artist === a.name ? true : false}
-                                                readOnly
-                                            />      
-                                            {a.name}
+                                    <h3>
+                                        Filters
+                                        <Link to="/gallery">
+                                            <IconButton className="float-r">
+                                                <AutorenewIcon />
+                                            </IconButton>
                                         </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                                    </h3>    
 
-                            <h6>Orientation</h6>
+                                    <h6>Price Range</h6>
 
-                            <ul>
-                                {orientations && orientations.map(o => (
-                                <li                                           
-                                    key={o.name}                               
-                                    className={orientation === o.name ? 'link-active' : ''}
-                                >
-                                    <Link to={`/gallery/orientation/${o.name.replace(/ /g, '-')}`}>
-                                        <input 
-                                            type="checkbox" 
-                                            checked={orientation === o.name ? true : false}
-                                            readOnly
-                                        />
-                                        {o.name}
-                                    </Link>
-                                </li>
-                                ))}
-                            </ul>
+                                    <Range 
+                                        marks={{
+                                            1 : `$1`,
+                                            10000 : `$10000`
+                                        }}
+                                        min={1}
+                                        max={10000}
+                                        defaultValue={[1, 10000]}
+                                        tipFormatter={value => `$${value}`}
+                                        tipProps={{
+                                            placement: "top"                                                    
+                                        }}
+                                        value={price}
+                                        onChange={(price) => {
+                                            setPrice(price)                          
+                                            resetPage()
+                                        }}
+                                    />                            
 
-                            <h6>Media</h6>
+                                    <h6>Artist</h6>
 
-                            <ul>
-                                {media && media.map(m => (
-                                <li                                           
-                                    key={m.name}                                    
-                                    className={medium === m.name ? 'link-active' : ''}
-                                >
-                                    <Link to={`/gallery/medium/${m.name.replace(/ /g, '-')}`}>
-                                        <input 
-                                            type="checkbox" 
-                                            checked={medium === m.name ? true : false}
-                                            readOnly
-                                        />
-                                        {m.name}
-                                    </Link>
-                                </li>
-                                ))}
-                            </ul>                            
+                                    <ul>   
+                                        {artists && artists.map(a => (
+                                            <li                                           
+                                                key={a.name}                             
+                                                className={artist === a.name ? 'link-active' : ''}
+                                            >                                                                          
+                                                <Link to={`/gallery/artist/${a.name.replace(/ /g, '-')}`}>
+                                                    <Checkbox 
+                                                        checked={artist === a.name ? true : false} 
+                                                        size="small"
+                                                        style={{ color: "var(--primary-color)", padding: "3px 0", marginRight: "10px" }}
+                                                    />                                      
+                                                    {a.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
 
-                            <h6>Ratings</h6>
+                                    <h6>Orientation</h6>
 
-                            <ul>
-                                {[5, 4, 3, 2, 1].map(star => (
-                                    <li
-                                        style={{cursor: 'pointer', listStyleType: 'none'}}
-                                        key={star}                                
+                                    <ul>
+                                        {orientations && orientations.map(o => (
+                                            <li                                           
+                                                key={o.name}                               
+                                                className={orientation === o.name ? 'link-active' : ''}
+                                            >
+                                                <Link to={`/gallery/orientation/${o.name.replace(/ /g, '-')}`}>
+                                                    <Checkbox 
+                                                        checked={orientation === o.name ? true : false} 
+                                                        size="small"
+                                                        style={{ color: "var(--primary-color)", padding: "3px 0", marginRight: "10px" }}
+                                                    />                                            
+                                                    {o.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <h6>Media</h6>
+
+                                    <ul>
+                                        {media && media.map(m => (
+                                            <li                                           
+                                                key={m.name}                                    
+                                                className={medium === m.name ? 'link-active' : ''}
+                                            >
+                                                <Link to={`/gallery/medium/${m.name.replace(/ /g, '-')}`}>
+                                                    <Checkbox 
+                                                        checked={medium === m.name ? true : false} 
+                                                        size="small"
+                                                        style={{ color: "var(--primary-color)", padding: "3px 0", marginRight: "10px" }}
+                                                    />                                       
+                                                    {m.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>                            
+
+                                    <h6>Ratings</h6>
+
+                                    <ul>
+                                        {[5, 4, 3, 2, 1].map(star => (
+                                            <li key={star}>
+                                                <Link to={`/gallery/rating/${star}`}>
+                                                    <Rating 
+                                                        value={star} 
+                                                        sx={{ color: "var(--primary-color)" }} 
+                                                        readOnly
+                                                    />                                            
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <button 
+                                        className="filters"
+                                        onClick={resetPage}
                                     >
-                                        <Link to={`/gallery/rating/${star}`}>
-                                            <div className="rating-outer">
-                                                <div 
-                                                    className="rating-inner"
-                                                    style={{ width: `${star * 20}%` }}
-                                                />
-                                            </div>
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                                        Hide Menu
+                                    </button>
 
-                            <button 
-                                className="filters"
-                                onClick={resetPage}
-                            >
-                                Hide Menu
-                            </button>
+                                </animated.div>
+                                
+                                )} 
 
-                        </animated.div>
-                        )} 
+                            </aside>
 
-                    </aside>
+                            <article>                         
 
-                    <article>  
+                                <h1>{title}</h1>
 
-                        {loading ? <Loader /> : ( 
+                                <div className="parent">
+                                    <span>
+                                        { price[0] > 1 || price[1] < 10000 ? ' From $' + price[0] + ' to $' + price[1]: ''}                        
+                                    </span> 
+                                    <small>
+                                        {resPerPage * (currentPage - 1) + 1} 
+                                        &nbsp;-&nbsp; 
+                                        {resPerPage * currentPage > count ? count : resPerPage * currentPage} 
+                                        &nbsp;  / &nbsp;{count}
+                                    </small> 
+                                </div>
 
-                        <Fragment>
+                                <div className="showroom">
+                                    {products && count > 0                             
+                                        ?   products.map(product => (
+                                                <Product key={product._id} product={product} />                                    
+                                            )) 
+                                        :   <p>No Results Found</p>
+                                    }    
+                                </div>
 
-                        <h1>             
-                            {title}
-                            <span 
-                                style={{ 
-                                    fontSize:"18px",
-                                    display: "block"
-                                }}
-                            >
-                                { price[0] > 1 || price[1] < 10000 ? ' From $' + price[0] + ' to $' + price[1]: ''}                        
-                            </span> 
-                            <small className="float-r">
-                                {resPerPage * (currentPage - 1) + 1} 
-                                &nbsp;-&nbsp; 
-                                {resPerPage * currentPage > count ? count : resPerPage * currentPage} 
-                                &nbsp;  / &nbsp;{count}
-                            </small>                          
-                        </h1>
+                                {resPerPage <= count && (
+                                    <div onClick={() => window.scrollTo(0, 0)}>
+                                        <Pagination
+                                            activePage={currentPage}
+                                            itemsCountPerPage={resPerPage}
+                                            totalItemsCount={count}                        
+                                            onChange={setCurrentPageNo}   
+                                            nextPageText={<KeyboardArrowRightIcon />}  
+                                            prevPageText={<KeyboardArrowLeftIcon />} 
+                                            firstPageText={<FirstPageIcon />} 
+                                            lastPageText={<LastPageIcon />}  
+                                        />
+                                    </div>
+                                )}   
 
-                        <div className="showroom">
-                            {products && count > 0                             
-                                ?   products.map(product => (
-                                        <Product key={product._id} product={product} />                                    
-                                    )) 
-                                :   <p>No Results Found</p>
-                            }    
+                            </article> 
+
                         </div>
 
-                        {resPerPage <= count && (
-                            <div onClick={() => window.scrollTo(0, 0)}>
-                                <Pagination
-                                activePage={currentPage}
-                                itemsCountPerPage={resPerPage}
-                                totalItemsCount={count}                        
-                                onChange={setCurrentPageNo}   
-                                nextPageText={'⟩'}  
-                                prevPageText={'⟨'} 
-                                firstPageText={'«'} 
-                                lastPageText={'»'}  
-                                />
-                            </div>
-                        )} 
+                    </div>  
 
-                        </Fragment>
-
-                        )}
-
-                    </article> 
-
-                </div>
-
-            </div>    
+                </Fragment> 
+            
+            )}
 
         </Fragment>       
 

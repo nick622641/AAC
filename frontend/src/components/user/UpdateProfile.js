@@ -5,6 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateProfile, loadUser, clearErrors } from '../../actions/userActions'
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 import MetaData from '../layouts/MetaData'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import Avatar from '@mui/material/Avatar'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const UpdateProfile = () => {
     
@@ -63,7 +67,7 @@ const UpdateProfile = () => {
             <MetaData title={'Update Profile'} />
 
             <div className="container">
-                <div className="wrapper stage">  
+                <div className="wrapper">  
 
                     <form className="user-form" onSubmit={submitHandler} encType='multipart/form-data'>
                       
@@ -73,12 +77,12 @@ const UpdateProfile = () => {
                             <tbody>
                                 <tr>                                    
                                     <td>
-                                        <label className="avatar">                                          
-                                            <img 
+                                        <label>  
+                                            <Avatar 
                                                 src={avatarPreview} 
                                                 alt='Avatar Preview' 
-                                                className="centered-image"
-                                            />                                            
+                                                sx={{ width: 175, height: 175 }}
+                                            />                                 
                                             <input
                                                 type='file'   
                                                 onChange={onChange} 
@@ -113,10 +117,17 @@ const UpdateProfile = () => {
                             className="submit"
                             disabled={loading ? true : false}
                         >
-                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Update'}
+                            {loading 
+                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} />
+                                : 'Update'
+                            }
                         </button>
 
-                        <Link to="/me"><i className="fa fa-times"/></Link>
+                        <Link to="/me">                              
+                            <Fab size="small" className="close">
+                                <CloseIcon />
+                            </Fab>
+                        </Link>
 
                     </form>
 

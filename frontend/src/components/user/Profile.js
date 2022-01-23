@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Loader from '../layouts/Loader'
 import MetaData from '../layouts/MetaData'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import Avatar from '@mui/material/Avatar'
 
 const Profile = () => {
 
     const { user, loading } = useSelector( state => state.auth )
-    const date  = new Date(user.createdAt)
-    const day   = date.getDate()
-    const month = date.getMonth() + 1
-    const year  = date.getFullYear()
-    const createdAt = day + ' / ' + month + ' / ' + year
+    const date      = new Date(user.createdAt)
+    const createdAt = date.getDate() + ' / ' + date.getMonth() + ' / ' + date.getFullYear()
 
     return (
 
@@ -24,77 +27,81 @@ const Profile = () => {
                 <MetaData title={'My Profile'} />
 
                 <div className="container">
-                    <div className="wrapper stage">
+                    <div className="wrapper">
                         <div className="user-form">
 
                             <h1>My Profile</h1>
 
                             <table className="middle-align">
-                            <tbody>
-                                <tr>
-                                    <td rowSpan="3">
-                                        <figure className="avatar">
-                                            <img 
+                                <tbody>
+                                    <tr>
+                                        <td rowSpan="3">                                        
+                                            <Avatar 
                                                 src={user.avatar.url} 
                                                 alt={user.name} 
-                                                className="centered-image"
-                                            /> 
-                                        </figure>
-                                    </td>
-                                    <td >
-                                        <h6>Name</h6>
-                                        <p>{user.name}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h6>Email</h6>
-                                        <p>{user.email}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h6>Date Joined</h6>
-                                        <p>{createdAt}</p>
-                                    </td>
-                                </tr>                                  
-                                <tr>
-                                    <td colSpan="2">
-                                        <Link to="/me/update">                                            
-                                            <small>
-                                                <i className="fa fa-pencil" /> 
-                                                &nbsp; Update Profile
-                                            </small>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <Link to="/password/update">
-                                            <small>
-                                                <i className="fa fa-pencil" /> 
-                                                &nbsp; Update Password
-                                            </small>
-                                        </Link>
-                                    </td>
-                                    <td>                                           
-                                        <Link to="/orders/me">
-                                            <small>
-                                                <i className="fa fa-eye" /> 
-                                                &nbsp; My Orders
-                                            </small>
-                                        </Link>                                           
-                                    </td>
-                                </tr>                                   
-                            </tbody>
+                                                sx={{ width: 175, height: 175 }}
+                                            />
+                                        </td>
+                                        <td >
+                                            <h6>Name</h6>
+                                            <p>{user.name}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>Email</h6>
+                                            <p>{user.email}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>Date Joined</h6>
+                                            <p>{createdAt}</p>
+                                        </td>
+                                    </tr>                                  
+                                    <tr>
+                                        <td>
+                                            <Link to="/me/update"> 
+                                                <IconButton>
+                                                    <EditOutlinedIcon fontSize="small" />
+                                                </IconButton>
+                                                Update Profile
+                                            </Link> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <Link to="/password/update">
+                                                <IconButton>
+                                                    <EditOutlinedIcon fontSize="small" />
+                                                </IconButton>
+                                                Update Password
+                                            </Link>
+                                        </td>
+                                        <td>                                           
+                                            <Link to="/orders/me">
+                                                <IconButton>
+                                                    <VisibilityIcon fontSize="small" />
+                                                </IconButton>
+                                                My Orders
+                                            </Link>                                           
+                                        </td>
+                                    </tr>                                   
+                                </tbody>
                             </table>
 
-                            <Link to="/"><i className="fa fa-times"/></Link>
+                            <Link to="/">                              
+                                <Fab size="small" className="close">
+                                    <CloseIcon />
+                                </Fab>
+                            </Link>
                         
-                        </div>
+                        </div>                        
                     </div>
                 </div>
+
             </Fragment>
+
         )}
             
         </Fragment>

@@ -2,6 +2,20 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring'
 import { useMediaQuery } from 'react-responsive'
+import IconButton from '@mui/material/IconButton'
+import SpeedIcon from '@mui/icons-material/Speed'
+import ImageSearchIcon from '@mui/icons-material/ImageSearch'
+import CategoryIcon from '@mui/icons-material/Category'
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
+import StarIcon from '@mui/icons-material/Star'
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import AddIcon from '@mui/icons-material/Add'
+import PersonIcon from '@mui/icons-material/Person'
+import ExploreIcon from '@mui/icons-material/Explore'
+import ColorLensIcon from '@mui/icons-material/ColorLens'
+import BrushIcon from '@mui/icons-material/Brush'
 
 const Sidebar = () => {
 
@@ -32,12 +46,12 @@ const Sidebar = () => {
     return (
 
         <Fragment>
-
+            
             <button 
                 className="filters show-filter"
                 onClick={() => {setSideBarOpen(!isSidebarOpen)}}
             >
-                SHOW MENU
+                {isSidebarOpen ? 'Hide Menu' : 'Show Menu'}
             </button>
 
             {(isSidebarOpen || !isMobile) && (
@@ -47,58 +61,119 @@ const Sidebar = () => {
                     <ul>
 
                         <li>
-                            <Link to="/dashboard"><i className="fa fa-tachometer" />Dashboard</Link>
+                            <Link to="/dashboard">
+                                <IconButton>
+                                    <SpeedIcon />
+                                </IconButton>
+                                &nbsp; Dashboard
+                            </Link>
                         </li>                    
                         <li onClick={() => {toggleMenu()}}>                        
                            
-                            <i className="fa fa-picture-o" /> 
-                            Artwork
-                            <i className={isMenuVisible ? 'fa fa-chevron-up' : 'fa fa-chevron-down'} />
+                            <IconButton>
+                                <BrushIcon />
+                            </IconButton>
+                            &nbsp; Artwork
+                            <IconButton className="float-r">
+                                {isMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
                        
                             {isMenuVisible && ( 
                             <animated.div className="dropdown-menu" style={menuAppear}>  
                                 <ul>                            
                                     <li>
-                                        <Link to="/admin/products"><i className="fa fa-clipboard" /> All</Link>
+                                        <Link to="/admin/products">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
                                     </li>
                         
                                     <li>
-                                        <Link to="/admin/product"><i className="fa fa-plus" /> Create</Link>
+                                        <Link to="/admin/product">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
                                     </li>
                                 </ul>
                             </animated.div>
                             )}
                         </li>
-                        <li onClick={() => {toggleCategories()}}>                        
+                        <li onClick={() => {toggleCategories()}}>                      
                            
-                            <i className="fa fa-tags" /> 
-                            Categories
-                            <i className={isCategoriesVisible ? 'fa fa-chevron-up' : 'fa fa-chevron-down'} />
+                            <IconButton>
+                                <CategoryIcon />
+                            </IconButton>
+                            &nbsp; Categories
+                            <IconButton className="float-r">
+                                {isCategoriesVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
                         
                             {isCategoriesVisible && ( 
-                            <animated.div className="dropdown-menu" style={categoriesAppear}>  
-                                <ul>                            
-                                    <li>
-                                        <Link to="/admin/artists"><i className="fa fa-user" /> Artists</Link>
-                                    </li>                    
-                                    <li>
-                                        <Link to="/admin/orientations"><i className="fa fa-compass" /> Orientations</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/admin/media"><i className="fa fa-paint-brush" /> Media</Link>
-                                    </li>
-                                </ul>
-                            </animated.div>
+                                <animated.div className="dropdown-menu" style={categoriesAppear}>  
+                                    <ul>                            
+                                        <li>
+                                            <Link to="/admin/artists">
+                                                <IconButton>
+                                                    <PersonIcon />
+                                                </IconButton>
+                                                &nbsp; Artists
+                                            </Link>
+                                        </li>                    
+                                        <li>
+                                            <Link to="/admin/orientations">
+                                                <IconButton>
+                                                    <ExploreIcon />
+                                                </IconButton>
+                                                &nbsp; Orientations
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/admin/media">
+                                                <IconButton>
+                                                    <ColorLensIcon />
+                                                </IconButton>
+                                                &nbsp; Media
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </animated.div>
                             )}
                         </li>    
                         <li>
-                            <Link to="/admin/orders"><i className="fa fa-shopping-basket"/>Orders</Link>
+                            <Link to="/admin/orders">
+                                <IconButton>
+                                    <ShoppingBasketIcon />
+                                </IconButton>
+                                &nbsp; Orders
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/admin/users"><i className="fa fa-users"/>Users</Link>
+                            <Link to="/admin/users">
+                                <IconButton>
+                                    <PeopleAltIcon />
+                                </IconButton>
+                                &nbsp; Users
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/admin/reviews"><i className="fa fa-star"/>Reviews</Link>
+                            <Link to="/admin/reviews">
+                                <IconButton>
+                                    <StarIcon />
+                                </IconButton>
+                                &nbsp; Reviews
+                            </Link>
                         </li>
                 
                 </ul>

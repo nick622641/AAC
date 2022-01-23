@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { MDBDataTable } from 'mdbreact'
+import { MDBDataTableV5 } from 'mdbreact'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from './Sidebar'
@@ -10,6 +10,12 @@ import { getOrientations, deleteOrientation, clearErrors } from '../../actions/c
 import { DELETE_ORIENTATION_RESET } from '../../constants/categoryConstants'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import AddIcon from '@mui/icons-material/Add'
 
 const OrientationList = () => {
 
@@ -55,7 +61,8 @@ const OrientationList = () => {
                 {
                     label: 'Orientation ID',
                     field: 'id',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 200
                 },
                 {
                     label: 'Name',
@@ -65,31 +72,35 @@ const OrientationList = () => {
                 {
                     label: 'Actions',
                     field: 'actions',
-                    sort: 'disabled'                  
+                    sort: 'disabled',
+                    width: 100                  
                 }
             ],
             rows: []
         }   
         orientations && orientations.forEach( orientation => {
             data.rows.push({                
-                id: <small>{orientation._id}</small>,
+                id: orientation._id,
                 name: orientation.name,
                 actions: 
-                    <Fragment>
-                        <Link to={`/admin/orientation/${orientation._id}`}>
-                            <i className="fa fa-pencil" />
-                        </Link>  
-                        &nbsp; &nbsp;                   
-                        <i 
-                            className="fa fa-trash-o"
-                            onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setId(orientation._id)
-                            }}
-                        /> 
-                    </Fragment> 
+                <Fragment>
+                    <Link to={`/admin/orientation/${orientation._id}`}>
+                        <IconButton>
+                            <EditOutlinedIcon />
+                        </IconButton>
+                    </Link> 
+                    <IconButton 
+                        onClick={() => {
+                            setIsModalVisible(!isModalVisible)
+                            setId(orientation._id)
+                        }}
+                    >
+                        <DeleteOutlineIcon sx={{ color: "red" }} />
+                    </IconButton>     
+                </Fragment> 
             })
         })
+
         return data
     }    
 
@@ -119,16 +130,27 @@ const OrientationList = () => {
 
                                 <p className="text-right">
                                     <Link to="/admin/orientation">
-                                        Add &nbsp;<i className="fa fa-plus" />
+                                        Add
+                                        <IconButton>
+                                            <AddIcon />
+                                        </IconButton>
                                     </Link>
                                 </p>  
 
-                                <MDBDataTable 
-                                    className="mdb-table"
-                                    data={setCategories()} 
+                                <MDBDataTableV5 
+                                    data={setCategories()}   
+                                    fullPagination   
+                                    scrollX  
+                                    scrollY   
+                                    searchTop
+                                    searchBottom={false}  
                                 />
 
-                                <Link to="/dashboard"><i className="fa fa-times" /></Link>
+                                <Link to="/dashboard">
+                                    <Fab size="small" className="close">
+                                        <CloseIcon />
+                                    </Fab>
+                                </Link>
 
                             </div>
 

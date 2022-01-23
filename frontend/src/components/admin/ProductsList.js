@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { MDBDataTable } from 'mdbreact'
+import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,6 +10,12 @@ import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import Avatar from '@mui/material/Avatar'
 
 const ProductsList = () => {
 
@@ -56,32 +62,38 @@ const ProductsList = () => {
                 {
                     label: 'Preview',
                     field: 'url',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 75
                 },
                 {
                     label: 'Artwork ID',
                     field: 'id',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 200
                 },
                 {
                     label: 'Name',
                     field: 'name',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 200
                 },
                 {
                     label: 'Price',
                     field: 'price',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 100
                 },
                 {
                     label: 'Stock',
                     field: 'stock',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 100
                 },
                 {
                     label: 'Actions',
                     field: 'actions',
-                    sort: 'disabled'                
+                    sort: 'disabled',
+                    width: 120                
                 }
             ],
             rows: []
@@ -90,13 +102,11 @@ const ProductsList = () => {
         products && products.forEach( product => {
             data.rows.push({
                 url: <Link to={`/artwork/${product._id}`}>
-                        <div className="cart-image">
-                            <img 
-                                src={product.images[0].thumbUrl} 
-                                alt={product.name} 
-                                className="centered-image"
-                            />
-                        </div>
+                        <Avatar
+                            src={product.images[0].thumbUrl} 
+                            alt={product.name} 
+                            sx={{ width: 50, height: 50 }}
+                        />          
                     </Link>,
                 id: <small>{product._id}</small>,
                 name: product.name,
@@ -105,16 +115,18 @@ const ProductsList = () => {
                 actions: 
                     <Fragment>
                         <Link to={`/admin/product/${product._id}`}>
-                            <i className="fa fa-pencil" />
+                            <IconButton>
+                                <EditOutlinedIcon fontSize="Default" />
+                            </IconButton>
                         </Link> 
-                        &nbsp; &nbsp;                    
-                        <i 
-                            className="fa fa-trash-o"
-                            onClick={() => {
+                        <IconButton 
+                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
                                 setId(product._id)
                             }}
-                        />
+                        >
+                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                        </IconButton>  
                     </Fragment> 
             })
         })
@@ -147,13 +159,22 @@ const ProductsList = () => {
                                 <h1>All Artwork</h1>
 
                                 {loading ? <Loader /> : (
-                                    <MDBDataTable  
-                                        className="mdb-table"                                  
-                                        data={setProducts()}                                
-                                    />
+                               
+                                    <MDBDataTableV5 
+                                        data={setProducts()}   
+                                        fullPagination   
+                                        scrollX  
+                                        scrollY   
+                                        searchTop
+                                        searchBottom={false}  
+                                    /> 
                                 )}
 
-                                <Link to="/dashboard"><i className="fa fa-times" /></Link>
+                                <Link to="/dashboard">
+                                    <Fab size="small" className="close">
+                                        <CloseIcon />
+                                    </Fab>
+                                </Link>
 
                             </div>
 

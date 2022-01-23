@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { NEW_MEDIA_RESET } from '../../constants/categoryConstants'
 import { newMedia, clearErrors } from '../../actions/categoryActions'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const NewMedia = () => {
     
@@ -44,7 +47,11 @@ const NewMedia = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
                     <article>       
                             
@@ -73,12 +80,19 @@ const NewMedia = () => {
                                     className="submit"
                                     disabled={loading ? true : false}
                                 >
-                                    {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i> : 'CREATE'}
+                                    {loading 
+                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        : 'Create'
+                                    }
                                 </button>
 
                             </form>
                    
-                            <Link to="/admin/media"><i className="fa fa-times"/></Link>
+                            <Link to="/admin/media">
+                                <Fab size="small" className="close">
+                                    <CloseIcon />
+                                </Fab>
+                            </Link>
                         </div>
                         
                     </article>

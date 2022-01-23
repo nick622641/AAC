@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import { UPDATE_ORIENTATION_RESET } from '../../constants/categoryConstants'
 import { getOrientationDetails, updateOrientation, clearErrors } from '../../actions/categoryActions'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const UpdateOrientation = () => {
 
@@ -32,7 +35,8 @@ const UpdateOrientation = () => {
             dispatch(clearErrors())
         }
         if(isUpdated) {            
-            alert.success('Orientation updated successfully')
+            alert.success('Orientation Updated Successfully')
+            dispatch(getOrientationDetails(id))
             navigate('/admin/orientations')
             dispatch({ type: UPDATE_ORIENTATION_RESET })            
         }
@@ -54,7 +58,11 @@ const UpdateOrientation = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
                     <article>      
                             
@@ -83,12 +91,19 @@ const UpdateOrientation = () => {
                                     className="submit"
                                     disabled={loading ? true : false}
                                 >
-                                    {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i> : 'UPDATE'}
+                                    {loading 
+                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        : 'Update'
+                                    }
                                 </button>
 
                             </form>
                    
-                            <Link to="/admin/orientations"><i className="fa fa-times"/></Link>
+                            <Link to="/admin/orientations">
+                                <Fab size="small" className="close">
+                                    <CloseIcon />
+                                </Fab>
+                            </Link>
                             
                         </div>
                         

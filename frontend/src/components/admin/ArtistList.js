@@ -1,15 +1,21 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { MDBDataTable } from 'mdbreact'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from './Sidebar'
+import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getArtists, deleteArtist, clearErrors } from '../../actions/categoryActions'
 import { DELETE_ARTIST_RESET } from '../../constants/categoryConstants'
+import MetaData from '../layouts/MetaData'
+import Loader from '../layouts/Loader'
+import Sidebar from './Sidebar'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import AddIcon from '@mui/icons-material/Add'
 
 const ArtistList = () => {
 
@@ -17,10 +23,10 @@ const ArtistList = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { loading, error, artists       } = useSelector( state => state.artists )
-    const { error: deleteError, isDeleted } = useSelector( state => state.artist )
+    const { error: deleteError, isDeleted } = useSelector( state => state.artist  )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
-    const [ id,  setId ] = useState('')
+    const [ id,              setId             ] = useState('')
 
     useEffect(() => {
 
@@ -55,7 +61,8 @@ const ArtistList = () => {
                 {
                     label: 'Artist ID',
                     field: 'id',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 200
                 },
                 {
                     label: 'Name',
@@ -65,33 +72,37 @@ const ArtistList = () => {
                 {
                     label: 'Actions',
                     field: 'actions',
-                    sort: 'disabled'                  
+                    sort: 'disabled'  ,
+                    width: 100                
                 }
             ],
             rows: []
         }      
         artists && artists.forEach( artist => {
             data.rows.push({                
-                id: <small>{artist._id}</small>,
+                id: artist._id,
                 name: artist.name,
                 actions: 
                     <Fragment>
                         <Link to={`/admin/artist/${artist._id}`}>
-                            <i className="fa fa-pencil" />
+                            <IconButton>
+                                <EditOutlinedIcon />
+                            </IconButton>
                         </Link> 
-                        &nbsp; &nbsp;                    
-                        <i 
-                            className="fa fa-trash-o"
+                        <IconButton 
                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
                                 setId(artist._id)
                             }}
-                        />
+                        >
+                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                        </IconButton>   
                     </Fragment> 
             })
         }) 
 
         return data
+
     }    
 
     return (
@@ -120,16 +131,27 @@ const ArtistList = () => {
 
                                 <p className="text-right">
                                     <Link to="/admin/artist">
-                                        Add &nbsp;<i className="fa fa-plus" />
+                                        Add
+                                        <IconButton>
+                                            <AddIcon />
+                                        </IconButton>
                                     </Link> 
                                 </p>                                                              
+                                
+                                <MDBDataTableV5 
+                                    data={setCategories()}   
+                                    fullPagination   
+                                    scrollX  
+                                    scrollY   
+                                    searchTop
+                                    searchBottom={false}  
+                                />                       
 
-                                <MDBDataTable 
-                                    className="mdb-table"
-                                    data={setCategories()}                                     
-                                />
-
-                                <Link to="/dashboard"><i className="fa fa-times" /></Link>
+                                <Link to="/dashboard">
+                                    <Fab size="small" className="close">
+                                        <CloseIcon />
+                                    </Fab>
+                                </Link>
 
                             </div>
 

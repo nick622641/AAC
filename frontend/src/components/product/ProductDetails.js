@@ -18,6 +18,13 @@ import Callout from './Callout'
 import Social from '../layouts/Social'
 import FormattedPrice from '../layouts/FormattedPrice'
 import parse from 'html-react-parser'
+import IconButton from '@mui/material/IconButton'
+import EmailIcon from '@mui/icons-material/Email'
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import LoginIcon from '@mui/icons-material/Login'
+import Quantity from '../layouts/Quantity'
+import Rating from '@mui/material/Rating'
 
 const ProductDetails = () => {   
 
@@ -81,19 +88,7 @@ const ProductDetails = () => {
     const addToCart = () => {
         dispatch(addItemToCart(id, quantity))
         alert.success('Item Added to Cart')
-    }
-    const increaseQty = () => {        
-        const count = document.querySelector('.count')
-        if(count.valueAsNumber >= product.stock) { return }
-        const qty = count.valueAsNumber + 1
-        setQuantity(qty)
-    }
-    const decreaseQty = () => {
-        const count = document.querySelector('.count')
-        if(count.valueAsNumber <= 1) { return }
-        const qty = count.valueAsNumber - 1
-        setQuantity(qty)
-    }         
+    }        
 
     return (
 
@@ -180,33 +175,33 @@ const ProductDetails = () => {
                                                 <tr>
                                                     <th><h6>Reviews</h6></th>    
                                                     <td className="whitespace-nowrap">
-                                                    <div className="rating-outer">
-                                                        <div 
-                                                            className="rating-inner" 
-                                                            style={{ width: `${( product.ratings / 5 ) * 100}%` }}
-                                                        />
-                                                    </div>
-                                                    &nbsp;
-                                                    <small>({product.numOfReviews} Reviews)</small>  
+                                                        <Rating                                                            
+                                                            value={product.ratings} 
+                                                            sx={{ color: "var(--primary-color)" }} 
+                                                            precision={0.5} 
+                                                            readOnly 
+                                                        /> 
+                                                        <br />                                                      
+                                                        ({product.numOfReviews} Reviews)
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
                                                     <td>
                                                     {user ? 
-                                                    <button onClick={() => {
-                                                        toggleModal(
-                                                            <Review  rating={rating} comment={comment} />
-                                                        )}}
-                                                    >
-                                                        <i className="fa fa-pencil" />
-                                                        &nbsp; Post Review
-                                                    </button>                         
+                                                        <Fragment>
+                                                            <IconButton onClick={() => {toggleModal(<Review  rating={rating} comment={comment} />)}}>
+                                                                <EditOutlinedIcon />
+                                                            </IconButton>
+                                                            Post Review  
+                                                        </Fragment>      
                                                     : 
-                                                    <Link to={`/login?redirect=artwork/${id}`}>
-                                                        <i className="fa fa-lock" />
-                                                        &nbsp; Login to Post a Review
-                                                    </Link>
+                                                        <Link to={`/login?redirect=artwork/${id}`}>
+                                                            <IconButton>
+                                                                <LoginIcon />
+                                                            </IconButton>    
+                                                            Login to Post a Review                                                      
+                                                        </Link>
                                                     } 
                                                     </td>
                                                 </tr>
@@ -215,7 +210,10 @@ const ProductDetails = () => {
                                                         <td></td>
                                                         <td>
                                                             <Link to={`/admin/product/${product._id}`}>
-                                                                <i className="fa fa-pencil" /> &nbsp;Edit Page
+                                                                <IconButton>
+                                                                    <EditOutlinedIcon />
+                                                                </IconButton>  
+                                                                Edit Page                                                            
                                                             </Link>
                                                         </td>
                                                     </tr>
@@ -228,30 +226,22 @@ const ProductDetails = () => {
                                         <div> 
                                             <div className="text-center">  
                                                 <button                                                    
-                                                    className="submit"
+                                                    className="submit chevron-hover"
                                                     onClick={addToCart}
                                                     disabled={product.stock === 0 ? true : false}
                                                 >
                                                     Add to Cart 
-                                                    <i className="fa fa-chevron-right" />
+                                                    <ArrowForwardIosOutlinedIcon className="btn-chevron-right" />
                                                 </button>     
                                             </div>  
                                             <br />
                                             <div className="stockcounter text-center">
-                                                Quantity &nbsp;
-                                                <span className={quantity <= 1 ? 'inactive minus' : 'minus'} onClick={decreaseQty}>
-                                                    <i className="fa fa-minus-circle" />
-                                                </span>
-
-                                                <input
-                                                    className="count"
-                                                    value={product.stock === 0 ? 0 : quantity} 
-                                                    readOnly 
-                                                />
-
-                                                <span  className={quantity === product.stock || product.stock <= 1 ? 'inactive plus' : 'plus'} onClick={increaseQty}>
-                                                    <i className="fa fa-plus-circle" />
-                                                </span>
+                                                Quantity &nbsp;                                               
+                                                <Quantity 
+                                                    quantity={quantity}
+                                                    stock={product.stock}
+                                                    setQuantity={setQuantity}                                                       
+                                                />                                               
                                             </div>  
                                         </div>
                                         
@@ -272,13 +262,16 @@ const ProductDetails = () => {
                                     </div>                                
                                 </div>
                                 <div className="col-6">
-                                                                
-                                    {product.description && parse(product.description)}
-                                    <br /><br />                                        
-                                    <button onClick={() => {toggleModal(<Contact />)}}>
-                                        <i className="fa fa-envelope" /> 
-                                        &nbsp; Contact Us
-                                    </button>
+
+                                    {product.description && parse(product.description)}                                                               
+                                    
+                                    <br /><br />  
+
+                                    <small>Contact Us</small>  
+
+                                    <IconButton onClick={() => {toggleModal(<Contact />)}} color="primary">
+                                        <EmailIcon />                                        
+                                    </IconButton>                                       
                                  
                                 </div>                                
                             </div>                             

@@ -1,50 +1,41 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment } from 'react'
+import Box from '@mui/material/Box'
+import Stepper from '@mui/material/Stepper'
+import Step from '@mui/material/Step'
+import StepLabel from '@mui/material/StepLabel'
 
 const CheckoutSteps = ({ shipping, confirmOrder, payment }) => {
 
+    const steps = [
+        'Shipping',
+        'Confirm',
+        'Payment',
+    ]
+    let activeStep 
+    if (shipping)     { activeStep = 0 }
+    if (confirmOrder) { activeStep = 1 }
+    if (payment)      { activeStep = 2 }
+
     return (
+
+        <Fragment>
+
+            <Box sx={{ mb: 2 }}>
         
-        <div className="checkout-progress">
-            
-            {shipping ? <Link to="/shipping">
-                        <div className="triangle2-active"></div>
-                        <div className="step active-step">Shipping</div>
-                        <div className="triangle-active"></div>
-                    </Link>
-                    : <Link to="#!">
-                        <div className="triangle2-incomplete"></div>
-                        <div className="step incomplete">Shipping</div>
-                        <div className="triangle-incomplete"></div>
-                    </Link>
-            }
+                <Stepper activeStep={activeStep} alternativeLabel>
+                    {steps.map((label) => (
+                        <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>  
 
-            {confirmOrder ? <Link to="/order/confirm">
-                        <div className="triangle2-active"></div>
-                        <div className="step active-step">Confirm</div>
-                        <div className="triangle-active"></div>
-                    </Link>
-                    : <Link to="#!">
-                        <div className="triangle2-incomplete"></div>
-                        <div className="step incomplete">Confirm</div>
-                        <div className="triangle-incomplete"></div>
-                    </Link>
-            }
+            </Box>
 
-            {payment ? <Link to="/payment">
-                        <div className="triangle2-active"></div>
-                        <div className="step active-step">Payment</div>
-                        <div className="triangle-active"></div>
-                    </Link>
-                    : <Link to="#!">
-                        <div className="triangle2-incomplete"></div>
-                        <div className="step incomplete">Payment</div>
-                        <div className="triangle-incomplete"></div>
-                    </Link>
-            }
+        </Fragment>
 
-        </div>
     )
+
 }
 
 export default CheckoutSteps

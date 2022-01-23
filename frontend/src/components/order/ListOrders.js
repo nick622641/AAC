@@ -1,11 +1,15 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { MDBDataTable } from 'mdbreact'
+import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { myOrders, clearErrors } from '../../actions/orderActions'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import VisibilityIcon from '@mui/icons-material/Visibility'
 
 const ListOrders = () => {
 
@@ -30,17 +34,20 @@ const ListOrders = () => {
                 {
                     label: 'Order No',
                     field: 'id',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 200
                 },
                 {
                     label: 'Quantity',
                     field: 'numOfItems',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 100
                 },
                 {
                     label: 'Amount',
                     field: 'amount',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 100
                 },
                 {
                     label: 'Status',
@@ -50,7 +57,8 @@ const ListOrders = () => {
                 {
                     label: 'Browse',
                     field: 'actions',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 100
                 }
             ],
             rows: []
@@ -67,7 +75,9 @@ const ListOrders = () => {
                 : <span className="danger">{order.orderStatus}</span>,
                 actions:
                     <Link to={`/order/${order._id}`}>
-                        <i className="fa fa-eye" />
+                        <IconButton>
+                            <VisibilityIcon fontSize="small" />
+                        </IconButton>
                     </Link>    
             })
         })
@@ -83,7 +93,7 @@ const ListOrders = () => {
 
             <div className="container">
 
-                <div className="wrapper stage">                    
+                <div className="wrapper">                    
 
                     <div className="user-form cart">
 
@@ -91,14 +101,23 @@ const ListOrders = () => {
 
                         {loading ? <Loader /> : (
 
-                            <MDBDataTable
-                                className="mdb-table"
+                            <MDBDataTableV5
                                 data={setOrders()}
+                                fullPagination   
+                                scrollX  
+                                scrollY   
+                                searchTop
+                                searchBottom={false}  
                             />
 
                         )}
 
-                        <Link to="/me"><i className="fa fa-times" /></Link>
+                        <Link to="/me">                              
+                            <Fab size="small" className="close">
+                                <CloseIcon />
+                            </Fab>
+                        </Link>
+
 
                     </div>
 

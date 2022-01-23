@@ -5,26 +5,10 @@ header {
     position: sticky;
     top: 0;     
     align-items: center;
-    box-shadow: 0 0 32px rgba(0,0,0,0.5);
+    box-shadow: var(--box-shadow);
     z-index: 1;
     display: flex;
     justify-content: space-between;
-}
-header figure {
-    position: relative;
-    top: 4px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    margin: 0 15px;
-    border-radius: 100%;  
-    overflow: hidden;
-}
-header figure + small {
-    position: absolute;
-    top: 100%; 
-    right: 15px;  
-    white-space: nowrap;  
 }
 header .dropdown-menu {
     position: absolute;
@@ -34,12 +18,8 @@ header .dropdown-menu {
     padding: 20px;
     width: 200px;
     text-align: right;    
-    box-shadow: 0 0 32px rgba(0,0,0,0.5);   
-    z-index: 1;
-}
-header .dropdown-menu .fa {
-    font-size: 22px;
-    margin-left: 10px;
+    box-shadow: var(--box-shadow);   
+    z-index: 2000;
 }
 header .dropdown-menu a {
     display: block;
@@ -76,30 +56,6 @@ header nav a {
 .logo img:hover {
     transform: scale(1.05);
 }
-.icons {
-    display: flex;
-    position: relative;
-}
-.icons i {
-    cursor: pointer;
-    padding: 12px;  
-    font-size: 1.2rem;      
-}
-header .fa-facebook {
-    border-left: solid 1px #ddd;
-    margin-left: 12px;
-    padding-left: 20px;   
-}
-.openCart small {
-    background: var(--primary-color);
-    border-radius: 50%;
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-    color: white;
-    text-align: center;   
-    margin: 0 10px 0 -10px;
-}
 /* search */
 .searchform {
     position: absolute;
@@ -107,8 +63,8 @@ header .fa-facebook {
     left: 0;
     top: 100%;
     background: white;
-    box-shadow: 0 0 32px rgba(0,0,0,0.5);
-    z-index: 1;
+    box-shadow: var(--box-shadow);
+    z-index: 2000;
 }
 .searchform input {    
     text-align: center; 
@@ -147,8 +103,11 @@ footer small {
     color: #999;
 }  
 /* Media Queries */
-@media ( max-width: 768px ) {    
+@media ( max-width: 768px ) {  
+    header {
+        padding: 0 20px;
+    }  
     footer nav .parent {        
         align-items: center;
-    }
+    }    
 }

@@ -8,6 +8,11 @@ import { useParams, Link } from 'react-router-dom'
 import { getOrderDetails, updateOrder, clearErrors } from '../../actions/orderActions'
 import { UPDATE_ORDER_RESET } from '../../constants/orderConstants'
 import FormattedPrice from '../layouts/FormattedPrice'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import AddTaskIcon from '@mui/icons-material/AddTask'
+import Avatar from '@mui/material/Avatar'
 
 const ProcessOrder = () => {
 
@@ -50,7 +55,11 @@ const ProcessOrder = () => {
 
                 <div className="wrapper parent dashboard">
 
-                <aside><Sidebar /></aside>            
+                <aside>
+                    
+                    <Sidebar />
+                    
+                </aside>            
 
                 <article>                                            
 
@@ -77,9 +86,11 @@ const ProcessOrder = () => {
                                         <tr key={item.product}>
                                             <td>
                                                 <Link to={`/artwork/${item.product}`}>
-                                                    <div className="cart-image">
-                                                        <img src={item.image} alt={item.name} className="centered-image" />
-                                                    </div>
+                                                    <Avatar
+                                                        src={item.image} 
+                                                        alt={item.name}
+                                                        sx={{ width: 50, height: 50 }}
+                                                    /> 
                                                 </Link>
                                             </td>
                                             <td><Link to={`/artwork/${item.product}`}>{item.name}</Link></td>                                            
@@ -134,12 +145,10 @@ const ProcessOrder = () => {
                                                 <option value="Delivered">Delivered</option>
                                             </select>
                                         </td>
-                                        <th>
-                                            <button                                                          
-                                                onClick={() => updateOrderHandler(order._id)
-                                            }>                                                
-                                               <i className="fa fa-pencil" />                                          
-                                            </button>
+                                        <th>                                      
+                                            <IconButton onClick={() => updateOrderHandler(order._id)}>
+                                                <AddTaskIcon />
+                                            </IconButton>
                                         </th>
                                     </tr>                          
                                     <tr>
@@ -172,7 +181,11 @@ const ProcessOrder = () => {
                                 </tbody>
                                 </table>
                              
-                                <Link to="/admin/orders"><i className="fa fa-times"/></Link>
+                                <Link to="/admin/orders">
+                                    <Fab size="small" className="close">
+                                        <CloseIcon />
+                                    </Fab>
+                                </Link>
                                 
                             </div>
 
@@ -186,7 +199,9 @@ const ProcessOrder = () => {
             </div>
             
         </Fragment>
+
     )
+
 }
 
 export default ProcessOrder

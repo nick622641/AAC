@@ -4,6 +4,9 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { forgotPassword, clearErrors } from '../../actions/userActions'
 import MetaData from '../layouts/MetaData'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const ForgotPassword = () => {
 
@@ -35,7 +38,7 @@ const ForgotPassword = () => {
             <MetaData title={'Forgot Password'} />
             
             <div className="container">
-                <div className="wrapper stage">
+                <div className="wrapper">
 
                     <form className="user-form" onSubmit={submitHandler}>
 
@@ -56,10 +59,17 @@ const ForgotPassword = () => {
                             className="submit"
                             disabled={loading ? true : false}
                         >
-                            {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Send Email'}
+                            {loading 
+                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} /> 
+                                : 'Send Email'
+                            }
                         </button>
 
-                        <Link to="/login"><i className="fa fa-times"/></Link>
+                        <Link to="/login">                              
+                            <Fab size="small" className="close">
+                                <CloseIcon />
+                            </Fab>
+                        </Link>
 
                     </form>
 

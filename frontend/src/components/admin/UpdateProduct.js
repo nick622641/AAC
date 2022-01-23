@@ -1,40 +1,46 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { updateProduct, getProductDetails, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
+import MetaData from '../layouts/MetaData'
+import Sidebar from '../admin/Sidebar'
 import RichText from '../layouts/RichText'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress'
+import IconButton from '@mui/material/IconButton'
+import TvIcon from '@mui/icons-material/Tv'
+import Avatar from '@mui/material/Avatar'
 
 const UpdateProduct = () => {
     
-    const [ name, setName ] = useState('')
-    const [ price, setPrice ] = useState(0)
-    const [ width, setWidth ] = useState(0)
-    const [ height, setHeight ] = useState(0)
-    const [ depth, setDepth ] = useState(0)
-    const [ description, setDescription ] = useState('')
-    const [ artist, setArtist ] = useState('')
-    const [ orientation, setOrientation ] = useState('')
-    const [ medium, setMedium ] = useState('')
-    const [ stock, setStock ] = useState(0)
+    const [ name,          setName          ] = useState('')
+    const [ price,         setPrice         ] = useState(0)
+    const [ width,         setWidth         ] = useState(0)
+    const [ height,        setHeight        ] = useState(0)
+    const [ depth,         setDepth         ] = useState(0)
+    const [ description,   setDescription   ] = useState('')
+    const [ artist,        setArtist        ] = useState('')
+    const [ orientation,   setOrientation   ] = useState('')
+    const [ medium,        setMedium        ] = useState('')
+    const [ stock,         setStock         ] = useState(0)
     const [ datePublished, setDatePublished ] = useState('')
-    const [ images, setImages ] = useState([])   
-    const [ oldImages, setOldImages ] = useState([])
+    const [ images,        setImages        ] = useState([])   
+    const [ oldImages,     setOldImages     ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])   
 
-    const productId = useParams().id
     const alert = useAlert()
+    const productId = useParams().id   
     const navigate = useNavigate()    
     const dispatch = useDispatch()
-    const { error, product } = useSelector(state => state.productDetails)
+    const { error, product                         } = useSelector(state => state.productDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.product)
-    const { media } = useSelector(state => state.media)
-    const { orientations } = useSelector(state => state.orientations)
-    const { artists } = useSelector(state => state.artists)
+    const { media                                  } = useSelector(state => state.media)
+    const { orientations                           } = useSelector(state => state.orientations)
+    const { artists                                } = useSelector(state => state.artists)
 
     useEffect(() => {
         dispatch(getMedia()) 
@@ -71,8 +77,8 @@ const UpdateProduct = () => {
             dispatch(clearErrors())
         }
         if(isUpdated) {            
-            alert.success('Artwork updated successfully')
-            // navigate('/admin/products')
+            alert.success('Artwork Updated Successfully')
+            dispatch(getProductDetails(productId))  
             dispatch({ type: UPDATE_PRODUCT_RESET })           
         }
     }, [dispatch, navigate, product, productId, alert, error, isUpdated, updateError])
@@ -128,7 +134,11 @@ const UpdateProduct = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                    
+                    </aside>            
 
                     <article>                        
 
@@ -144,7 +154,7 @@ const UpdateProduct = () => {
 
                                 <div className="parent reverse">
                                     
-                                    <label className="avatar">                                    
+                                    <label>                                    
                                         <input
                                             type='file'   
                                             name="product_images"                            
@@ -152,18 +162,18 @@ const UpdateProduct = () => {
                                             multiple                              
                                         />                            
                                         {oldImages[0] && (
-                                            <img 
+                                            <Avatar
                                                 src={oldImages[0].thumbUrl} 
                                                 alt={name}
-                                                className="centered-image"
-                                            />
+                                                sx={{ width: 150, height: 150 }}
+                                            />                                   
                                         )}   
                                         {imagesPreview[0] && (
-                                            <img 
+                                            <Avatar
                                                 src={imagesPreview[0]} 
                                                 alt={name}
-                                                className="centered-image"
-                                            />
+                                                sx={{ width: 150, height: 150 }}
+                                            />                                           
                                         )}  
                                             
                                     </label>
@@ -335,7 +345,10 @@ const UpdateProduct = () => {
                                     className="submit"
                                     disabled={loading ? true : false}
                                 >
-                                    {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/> : 'Update'}
+                                    {loading 
+                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        : 'Update'
+                                    }
                                 </button>
 
                             </form>
@@ -345,10 +358,14 @@ const UpdateProduct = () => {
                                 title="View page in a new tab"
                                 target="_blank"
                             >
-                                <i className="fa fa-desktop" />
+                                <IconButton className="monitor">
+                                    <TvIcon />
+                                </IconButton>
                             </Link>
 
-                            <button onClick={() => navigate(-1)}><i className="fa fa-times"/></button>
+                            <Fab size="small" className="close" onClick={() => navigate(-1)}>
+                                <CloseIcon />
+                            </Fab>
 
                         </div>
 

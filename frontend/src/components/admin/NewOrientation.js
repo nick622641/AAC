@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { NEW_ORIENTATION_RESET } from '../../constants/categoryConstants'
 import { newOrientation, clearErrors } from '../../actions/categoryActions'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const NewOrientation = () => {
     
@@ -44,7 +47,11 @@ const NewOrientation = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
                     <article>         
                             
@@ -73,12 +80,19 @@ const NewOrientation = () => {
                                     className="submit"
                                     disabled={loading ? true : false}
                                 >
-                                    {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i> : 'CREATE'}
+                                    {loading 
+                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        : 'Create'
+                                    }
                                 </button>
 
                             </form>
                    
-                            <Link to="/admin/orientations"><i className="fa fa-times"/></Link>
+                            <Link to="/admin/orientations">
+                                <Fab size="small" className="close">
+                                    <CloseIcon />
+                                </Fab>
+                            </Link>
                         </div>
                         
                     </article>

@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import { MDBDataTable } from 'mdbreact'
+import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -9,6 +9,10 @@ import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
 const ProductReviews = () => {
    
@@ -55,27 +59,32 @@ const ProductReviews = () => {
                 {
                     label: 'Review ID',
                     field: 'id',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 200
                 },
                 {
                     label: 'Rating',
                     field: 'rating',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 75
                 },
                 {
                     label: 'Comment',
                     field: 'comment',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 100
                 },
                 {
                     label: 'User',
                     field: 'user',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 120
                 },
                 {
                     label: 'Actions',
                     field: 'actions',
-                    sort: 'disabled'                  
+                    sort: 'disabled',
+                    width: 100                  
                 }
             ],
             rows: []
@@ -83,20 +92,20 @@ const ProductReviews = () => {
 
         reviews.forEach( review => {
             data.rows.push({
-                id: <small>{review._id}</small>,
+                id: review._id,
                 rating: review.rating,
                 comment: review.comment, 
                 user: review.name,                
                 actions:                 
                     <Fragment> 
-                        <button 
+                        <IconButton 
                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
                                 setReviewId(review._id)
                             }}
-                        > 
-                            <i className="fa fa-trash-o" />
-                        </button> 
+                        >
+                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                        </IconButton> 
                     </Fragment> 
             })
         })
@@ -138,15 +147,23 @@ const ProductReviews = () => {
                             <br /> 
 
                             {reviews && reviews.length > 0 ? (
-                                <MDBDataTable 
-                                    className="mdb-table"
-                                    data={setReviews()} 
-                                />
+                                <MDBDataTableV5 
+                                    data={setReviews()}   
+                                    fullPagination   
+                                    scrollX  
+                                    scrollY   
+                                    searchTop
+                                    searchBottom={false}  
+                                /> 
                             ) : (
                                 <p>No Reviews</p>
                             )}
 
-                            <Link to="/dashboard"><i className="fa fa-times" /></Link>
+                            <Link to="/dashboard">
+                                <Fab size="small" className="close">
+                                    <CloseIcon />
+                                </Fab>
+                            </Link>
 
                         </div>
                        

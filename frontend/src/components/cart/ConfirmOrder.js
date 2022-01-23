@@ -4,6 +4,9 @@ import CheckoutSteps from './CheckoutSteps'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import FormattedPrice from '../layouts/FormattedPrice'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import Avatar from '@mui/material/Avatar'
 
 const ConfirmOrder = () => {
 
@@ -35,7 +38,7 @@ const ConfirmOrder = () => {
 
             <div className="container">            
 
-                <div className="wrapper stage">                                  
+                <div className="wrapper">                                  
 
                     <div className="user-form"> 
 
@@ -55,28 +58,25 @@ const ConfirmOrder = () => {
                             <tr key={item.product}>
                                 <td>
                                     <Link to={`/artwork/${item.product}`}>
-                                        <div className="cart-image">
-                                            <img src={item.image}alt={item.name} className="centered-image" />
-                                        </div>
+                                        <Avatar
+                                            src={item.image} 
+                                            alt={item.name} 
+                                            sx={{ width: 50, height: 50 }}
+                                        />                                 
                                     </Link>
                                 </td>
                                 <td>
                                     <Link to={`/artwork/${item.product}`}>
-                                        <small>{item.name}</small>
+                                        {item.name}
                                     </Link>
+                                </td>                                
+                                <td>                                    
+                                    {item.quantity}
+                                    &nbsp;x&nbsp;
+                                    <FormattedPrice number={item.price} />                                    
                                 </td>
-                                
                                 <td>
-                                    <small>
-                                        {item.quantity}
-                                        &nbsp;x&nbsp;
-                                        <FormattedPrice number={item.price} />
-                                    </small>
-                                </td>
-                                <td> 
-                                    <small>  
-                                        <FormattedPrice number={(item.quantity * item.price)} />  
-                                    </small>                                    
+                                    <FormattedPrice number={(item.quantity * item.price)} />                                                                          
                                 </td>                                     
                             </tr>
                         ))}                           
@@ -152,7 +152,11 @@ const ConfirmOrder = () => {
 
                         <button className="submit" onClick={proceedToPayment}>Proceed to Payment</button>   
 
-                        <Link to="/shipping"><i className="fa fa-times"/></Link>
+                        <Link to="/shipping">                              
+                            <Fab size="small" className="close">
+                                <CloseIcon />
+                            </Fab>
+                        </Link>  
 
                     </div>              
                     
@@ -161,7 +165,9 @@ const ConfirmOrder = () => {
             </div>
 
         </Fragment>
+
     )
+    
 }
 
 export default ConfirmOrder

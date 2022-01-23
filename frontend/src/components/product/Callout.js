@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import IconButton from '@mui/material/IconButton'
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 
 const Callout = ({ relatedProducts }) => {
 
@@ -21,7 +23,9 @@ const Callout = ({ relatedProducts }) => {
                         <p>
                             {relatedProducts[0].description.substring(0, 200)}...
                             <Link to={`/artwork/${relatedProducts[0]._id}`}>
-                            <i className="fa fa-book" />
+                                <IconButton color="primary">
+                                    <MenuBookOutlinedIcon />
+                                </IconButton>
                             </Link>
                         </p>
                     </div>

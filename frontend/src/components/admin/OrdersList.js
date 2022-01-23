@@ -1,15 +1,20 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { MDBDataTable } from 'mdbreact'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from '../admin/Sidebar'
+import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { allOrders, deleteOrder, clearErrors } from '../../actions/orderActions'
 import { DELETE_ORDER_RESET } from '../../constants/orderConstants'
+import MetaData from '../layouts/MetaData'
+import Loader from '../layouts/Loader'
+import Sidebar from '../admin/Sidebar'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
 const OrdersList = () => {
 
@@ -51,27 +56,32 @@ const OrdersList = () => {
                 {
                     label: 'Order ID',
                     field: 'id',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 200
                 },
                 {
                     label: 'Qty',
                     field: 'numOfItems',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 74
                 },
                 {
                     label: 'Amount',
                     field: 'amount',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 100
                 },
                 {
                     label: 'Status',
                     field: 'status',
-                    sort: 'disabled'
+                    sort: 'asc',
+                    width: 100
                 },
                 {
                     label: 'Actions',
                     field: 'actions',
-                    sort: 'disabled'                  
+                    sort: 'disabled',
+                    width: 100                  
                 }
             ],
             rows: []
@@ -79,7 +89,7 @@ const OrdersList = () => {
 
         orders && orders.forEach( order => {
             data.rows.push({
-                id: <small>{order._id}</small>,
+                id: order._id,
                 numOfItems: order.orderItems.length,
                 amount: `$${order.totalPrice}`, 
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
@@ -88,16 +98,18 @@ const OrdersList = () => {
                 actions:                 
                     <Fragment>
                         <Link to={`/admin/order/${order._id}`}>
-                            <i className="fa fa-eye" />
+                            <IconButton>
+                            <   VisibilityIcon fontSize="default" />
+                            </IconButton>
                         </Link> 
-                        &nbsp; &nbsp;
-                        <i 
-                            className="fa fa-trash-o"
+                        <IconButton 
                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
                                 setId(order._id)
                             }}
-                        />
+                        >
+                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                        </IconButton>            
                     </Fragment> 
             })
         })
@@ -131,14 +143,22 @@ const OrdersList = () => {
 
                                 {loading ? <Loader /> : (
 
-                                    <MDBDataTable
-                                        className="mdb-table"
-                                        data={setOrders()} 
-                                    />
+                                    <MDBDataTableV5 
+                                        data={setOrders()}   
+                                        fullPagination   
+                                        scrollX  
+                                        scrollY   
+                                        searchTop
+                                        searchBottom={false}  
+                                    />                              
 
                                 )}
 
-                                <Link to="/dashboard"><i className="fa fa-times" /></Link>
+                                <Link to="/dashboard">
+                                    <Fab size="small" className="close">
+                                        <CloseIcon />
+                                    </Fab>
+                                </Link>
                                 
                             </div>
 

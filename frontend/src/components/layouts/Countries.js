@@ -1,6 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useSpring, animated } from 'react-spring'
 import countryList from './countryList'
+import IconButton from '@mui/material/IconButton'
+import SearchIcon from '@mui/icons-material/Search'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import ExpandLessIcon from '@mui/icons-material/ExpandLess'
+import Backdrop from '@mui/material/Backdrop'
 
 const Countries = ({ country, setCountry, setSelectOpen, isSelectOpen }) => {
 
@@ -34,15 +39,17 @@ const Countries = ({ country, setCountry, setSelectOpen, isSelectOpen }) => {
         <Fragment>
 
         {isSelectOpen && (
-            <div 
-                className="backdrop clear" 
-                onClick={() => setSelectOpen(false)}                 
-            />
+            <Backdrop
+                invisible={true}
+                open={isSelectOpen}
+                onClick={() => setSelectOpen(false)}
+            />         
         )}   
 
         <ul className="custom-select">
             <li className={isSelectOpen ? 'open' : ''}>
-                <div 
+                <div
+                    className="relative" 
                     onClick={() => setSelectOpen(!isSelectOpen)}
                     
                 >   
@@ -50,7 +57,14 @@ const Countries = ({ country, setCountry, setSelectOpen, isSelectOpen }) => {
                     <span className={country ? 'set' : ''}>
                         {country ?  country : 'Country'}
                     </span> 
-                    <i className={`fa fa-chevron-${isSelectOpen ? "up" : "down"} float-r`} />
+                    <IconButton className="select-chevron">
+                        {isSelectOpen ? (
+                            <ExpandLessIcon />
+                        ):(
+                            <ExpandMoreIcon />
+                        )}
+                        
+                    </IconButton>
                 </div>
 
                 {isSelectOpen && (
@@ -63,7 +77,9 @@ const Countries = ({ country, setCountry, setSelectOpen, isSelectOpen }) => {
                                     placeholder="Search.." 
                                     onKeyUp={filterFunction}                              
                                 />
-                                <i className="fa fa-search" />
+                                <IconButton className="select-search">
+                                    <SearchIcon />
+                                </IconButton>
                         </label>
                         <ul>
                             <li className="text-right"><b><small>Frequently selected</small></b></li>

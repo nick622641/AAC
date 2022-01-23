@@ -1,10 +1,13 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import Loader from '../layouts/Loader'
-import MetaData from '../layouts/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, clearErrors } from '../../actions/userActions'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
+import Loader from '../layouts/Loader'
+import MetaData from '../layouts/MetaData'
+import IconButton from '@mui/material/IconButton'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 
 const Login = () => {
         
@@ -48,7 +51,7 @@ const Login = () => {
                     <MetaData title={'Login'} />
 
                     <div className="container">
-                        <div className="wrapper stage">
+                        <div className="wrapper">
 
                             <form onSubmit={submitHandler} className="user-form">
 
@@ -71,11 +74,15 @@ const Login = () => {
                                         placeholder="Password" 
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                    />                
-                                    <i                         
-                                        className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                        onClick={togglePassword}
-                                    />
+                                    /> 
+                                    <IconButton className="eye" onClick={togglePassword}>
+                                        {passwordVisible ? (
+                                            <VisibilityIcon fontSize="small" />
+                                        ):(
+                                            <VisibilityOffIcon fontSize="small" />
+                                        )}
+                                    </IconButton>                
+                          
                                 </label>  
 
                                 <br /><br />                              

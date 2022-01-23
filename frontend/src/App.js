@@ -77,12 +77,15 @@ function App() {
     enter: { opacity: 1,   transform: "translate(   0%, 0%)" },
     leave: { opacity: 0.5, transform: "translate(-100%, 0%)", position: "absolute", top: "94px", width: "100%" }
   })
+ 
+  // console.log('location: ' + location.search)     
+  // console.log('pathname: ' + location.pathname)     
 
-  const redirect = !loggingOut &&
-                    location.pathname !== `/artwork/${product._id}` &&                    
-                    location.pathname !== '/shipping' && 
-                    location.pathname !== '/login' 
-                  ? false : true
+  const redirect =  loggingOut ||
+                    location.pathname === `/artwork/${product._id}` ||                    
+                    location.pathname === '/shipping' || 
+                    location.pathname === '/login' 
+                  ? true : false
 
   return (    
     
@@ -91,7 +94,7 @@ function App() {
       <Header />        
 
       {transitions((props, item) => (      
-        <animated.div style={props} className="main">
+        <animated.main style={props}>
 
         {stripeApiKey && 
         <Elements stripe={location.pathname === '/payment' ? loadStripe(stripeApiKey) : null}>
@@ -151,7 +154,7 @@ function App() {
         </Elements>
         }        
 
-        </animated.div>       
+        </animated.main>       
       ))}         
 
       <Footer />

@@ -5,6 +5,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 import Countries from '../layouts/Countries'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
 
 const Shipping = () => {
 
@@ -20,7 +22,6 @@ const Shipping = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        if ( !country ) return
         dispatch(saveShippingInfo( { address, city, postalCode, phoneNo, country } ))
         navigate('/order/confirm')
     }
@@ -33,7 +34,7 @@ const Shipping = () => {
 
             <div className="container">                        
 
-                <div className="wrapper stage">  
+                <div className="wrapper">  
 
                     <form className="user-form" onSubmit={submitHandler}>
 
@@ -114,7 +115,11 @@ const Shipping = () => {
                     
                         <button className="submit">Continue</button>
 
-                        <Link to="/cart"><i className="fa fa-times" /></Link>
+                        <Link to="/cart">                              
+                            <Fab size="small" className="close">
+                                <CloseIcon />
+                            </Fab>
+                        </Link>                           
 
                     </form>
 
@@ -125,6 +130,7 @@ const Shipping = () => {
         </Fragment>
 
     )
+
 }
 
 export default Shipping

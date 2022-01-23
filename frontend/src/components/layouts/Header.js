@@ -2,17 +2,44 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
 import { useAlert } from 'react-alert'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
 import { getArtists } from '../../actions/categoryActions'
 import Modal from '../modals/Modal'
 import Contact from '../modals/Contact'
 import Search from './Search'
+import { styled } from '@mui/material/styles'
+import IconButton from '@mui/material/IconButton'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import SearchIcon from '@mui/icons-material/Search'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import Badge from '@mui/material/Badge'
+import EmailIcon from '@mui/icons-material/Email'
+import Avatar from '@mui/material/Avatar'
+import FacebookSharpIcon from '@mui/icons-material/FacebookSharp'
+import SpeedIcon from '@mui/icons-material/Speed'
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
+import LogoutIcon from '@mui/icons-material/Logout'
+import Divider from '@mui/material/Divider'
+import LoginIcon from '@mui/icons-material/Login'
+import Backdrop from '@mui/material/Backdrop'
 import './layout.css'
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      right: -3,
+      border: '2px solid white',
+      padding: '0 4px',
+      backgroundColor: 'var(--primary-color)',
+      lineHeight: '18px'
+    },
+  }))
 
 const Header = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const alert    = useAlert()
     
     const { user, loading } = useSelector( state => state.auth )
@@ -62,7 +89,12 @@ const Header = () => {
         <Fragment>
 
             {isNavOpen && ( 
-                <div className="backdrop" onClick={() => setIsNavOpen(!isNavOpen)} /> 
+
+                <Backdrop
+                    sx={{ zIndex: 1 }}
+                    open={isNavOpen}
+                    onClick={() => setIsNavOpen(!isNavOpen)}
+                />
             )}  
 
             <header            
@@ -143,76 +175,114 @@ const Header = () => {
 
                 </nav>            
 
-                <div className="icons">
-                    <i 
-                        className="fa fa-ellipsis-v" 
+                <div className="relative d-flex">
+
+                    <IconButton
                         onClick={() => {
                             setIsNavOpen(!isNavOpen)
                             window.scrollTo(0, 0)
                         }}
-                    />  
-                    <i 
-                        className="fa fa-search" 
+                    >
+                        <MoreVertIcon />
+                    </IconButton>
+                    &nbsp;
+                    <IconButton
                         onClick={() => {
                             toggleSearch()
                             setIsNavOpen(false)
                         }}
-                    />                         
-                    <Link 
-                        to="/cart" 
-                        className="openCart"
-                        onClick={() => {setIsNavOpen(false)}}
                     >
-                        <i className="fa fa-shopping-cart" /> 
-                        <small>{cartItems.length}</small>   
-                    </Link>
-                    <i 
-                        className="fa fa-envelope" 
+                        <SearchIcon />
+                    </IconButton>                                                        
+                    &nbsp;
+                    <IconButton
+                        onClick={() => {
+                            setIsNavOpen(false)
+                            navigate('/cart')
+                        }}
+                    >
+                        <StyledBadge                             
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                            badgeContent={cartItems.length} 
+                            color="primary"
+                        >
+                            <ShoppingCartIcon />
+                        </StyledBadge>
+                    </IconButton>   
+                    &nbsp;&nbsp;
+                    <IconButton
                         onClick={() => { 
                             toggleModal()
                             setIsNavOpen(false)
                         }}
-                    /> 
-                    
+                    >
+                        <EmailIcon />
+                    </IconButton>              
+                    &nbsp;
                     {user ? (
                         <Fragment>
-                            <div className="relative">
-                                <figure 
+                            <div className="relative">   
+                                <IconButton 
                                     onClick={() => {
                                         toggleMenu()
                                         setIsNavOpen(false)
                                     }}
+                                >                                                  
+                                    <Avatar 
+                                        alt={user && user.name} 
+                                        src={user.avatar && user.avatar.url}                                         
+                                    />
+                                </IconButton>  
+                                
+                                <small 
+                                    className="whitespace-nowrap absolute"
+                                    style={{ right: 0, top: "100%" }}
                                 >
-                                    <img
-                                        src={user.avatar && user.avatar.url}
-                                        alt={user && user.name}  
-                                        className="centered-image"
-                                    /> 
-                                </figure>
-                            <small>{user && user.name}</small>
+                                    {user && user.name}
+                                </small>                            
                             </div>
                             {isMenuVisible && ( 
                             <Fragment>
-                            <div className="backdrop" onClick={toggleMenu} style={{ background: "none" }} />
+
+                            <Backdrop
+                                sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                                invisible={true}
+                                open={isMenuVisible}
+                                onClick={toggleMenu}
+                            /> 
+
                             <animated.div className="dropdown-menu" style={menuAppear}>
+
                                 {user && user.role === 'admin' && (
-                                    <Link to="/dashboard" onClick={toggleMenu}
-                                    >Dashboard 
-                                        <i className="fa fa-tachometer" />
+                                    <Link to="/dashboard" onClick={toggleMenu}>
+                                        Dashboard &nbsp;
+                                        <IconButton>
+                                            <SpeedIcon />
+                                        </IconButton>
                                     </Link>
                                 )}
-                                <Link to="/orders/me" onClick={toggleMenu}>
-                                    Orders 
-                                    <i className="fa fa-cart-plus" />
-                                </Link>
+
                                 <Link to="/me" onClick={toggleMenu}>
-                                    Profile 
-                                    <i className="fa fa-user-circle-o" />
+                                    Profile &nbsp; 
+                                    <IconButton>
+                                        <PersonOutlineIcon />
+                                    </IconButton>
                                 </Link>
+
+                                <Link to="/orders/me" onClick={toggleMenu}>
+                                    Orders &nbsp; 
+                                    <IconButton>
+                                        <ShoppingBasketIcon />
+                                    </IconButton>
+                                </Link>
+                                
                                 <Link to="/" onClick={logoutHandler}>
-                                    Logout 
-                                    <i className="fa fa-sign-out" />
+                                    Logout &nbsp; 
+                                    <IconButton>
+                                        <LogoutIcon />
+                                    </IconButton>
                                 </Link>
+
                             </animated.div>
                             </Fragment>
                             )}
@@ -222,13 +292,17 @@ const Header = () => {
                             to="/login"
                             onClick={() => {setIsNavOpen(false)}}
                         >
-                            <i className="fa fa-unlock-alt" />
+                            <IconButton>
+                                <LoginIcon />
+                            </IconButton>
                         </Link>
-                    )}                          
+                    )}  
 
-                    <Link to="#!">
-                        <i className="fa fa-facebook" />
-                    </Link>
+                    <Divider orientation="vertical" flexItem  style={{ margin: "0 10px" }}/> 
+
+                    <IconButton>
+                        <FacebookSharpIcon/>
+                    </IconButton>
 
                     <Modal
                         isModalVisible={isModalVisible} 
@@ -242,11 +316,11 @@ const Header = () => {
 
                     <Fragment>
 
-                        <div 
-                            className="backdrop" 
-                            onClick={toggleSearch} 
-                            style={{ background: "none" }} 
-                        />
+                        <Backdrop
+                            sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                            open={isSearchVisible}
+                            onClick={toggleSearch}
+                        />                  
 
                         <animated.div style={searchAppear} className="searchform">
 

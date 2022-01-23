@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const OrderSuccess = () => {
 
@@ -12,22 +15,23 @@ const OrderSuccess = () => {
 
             <div className="container parent" style={{ minHeight: "60vh", alignItems: "center" }}>
 
-                <div className="wrapper stage">
+                <div className="wrapper">
 
                     <div className="user-form text-center">                
 
                         <h1>Your Order has been placed successfully.</h1>
 
                         <p>
-                            <i 
-                                className="fa fa-check-circle"
-                                style={{ fontSize: "136px", color: "#5cdb5c" }}
-                            />
+                            <CheckCircleIcon sx={{ fontSize:136, color: "var(--cta-green)" }} />                    
                         </p>
 
                         <Link to="/orders/me">Go to Orders</Link>
 
-                        <Link to="/"><i className="fa fa-times"/></Link>
+                        <Link to="/">                              
+                            <Fab size="small" className="close">
+                                <CloseIcon />
+                            </Fab>
+                        </Link> 
 
                     </div>
 

@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { MDBDataTable } from 'mdbreact'
+import { MDBDataTableV5 } from 'mdbreact'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
@@ -10,6 +10,11 @@ import { allUsers, deleteUser, clearErrors } from '../../actions/userActions'
 import { DELETE_USER_RESET } from '../../constants/userConstants'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
 const UsersList = () => {
 
@@ -51,28 +56,32 @@ const UsersList = () => {
                 {
                     label: 'User ID',
                     field: 'id',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 200
                 },
                 {
                     label: 'Name',
                     field: 'name',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 100
                 },
                 {
                     label: 'Email',
                     field: 'email',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 150
                 },
                 {
                     label: 'Role',
                     field: 'role',
-                    sort: 'asc'
+                    sort: 'asc',
+                    width: 100
                 },
                 {
                     label: 'Actions',
                     field: 'actions',
-                    sort: 'disabled'
-                  
+                    sort: 'disabled',
+                    width: 100
                 }
             ],
             rows: []
@@ -80,23 +89,25 @@ const UsersList = () => {
 
         users.forEach( user => {
             data.rows.push({
-                id: <small>{user._id}</small>,
+                id: user._id,
                 name: user.name,
                 email: user.email, 
                 role: user.role,                
                 actions:                 
                     <Fragment>                        
                         <Link to={`/admin/user/${user._id}`}>
-                            <i className="fa fa-pencil" />
+                            <IconButton>
+                                <EditOutlinedIcon />
+                            </IconButton>
                         </Link> 
-                        &nbsp; &nbsp;
-                        <i 
-                            className="fa fa-trash-o"
+                        <IconButton 
                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
                                 setId(user._id)
                             }}
-                        />
+                        >
+                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                        </IconButton>                       
                     </Fragment> 
             })
         })
@@ -130,14 +141,22 @@ const UsersList = () => {
 
                                 {loading ? <Loader /> : (
 
-                                    <MDBDataTable
-                                        className=" mdb-table"
-                                        data={setUsers()}                                        
+                                    <MDBDataTableV5 
+                                        data={setUsers()}   
+                                        fullPagination   
+                                        scrollX  
+                                        scrollY   
+                                        searchTop
+                                        searchBottom={false}  
                                     />
 
                                 )}
 
-                                <Link to="/dashboard"><i className="fa fa-times" /></Link>
+                                <Link to="/dashboard">
+                                    <Fab size="small" className="close">
+                                        <CloseIcon />
+                                    </Fab>
+                                </Link>
 
                             </div>
 

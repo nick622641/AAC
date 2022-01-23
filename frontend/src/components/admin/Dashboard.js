@@ -8,6 +8,7 @@ import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
 import FormattedPrice from '../layouts/FormattedPrice'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 
 const Dashboard = () => {
 
@@ -71,25 +72,25 @@ const Dashboard = () => {
 
                                     <Link to="/admin/products" className="admin admin-products">                                        
                                         <p>Artwork<br /> <b>{products && products.length}</b></p>                                        
-                                        <p className="relative">
+                                        <p className="absolute chevron-hover">
                                             <small>View Details</small>
-                                            <i className="fa fa-chevron-right"/>
+                                            <KeyboardArrowRightIcon className="btn-chevron-right" fontSize="small" />
                                         </p>
                                     </Link>
 
                                     <Link to="/admin/orders" className="admin admin-orders">                                        
                                         <p>Orders<br /> <b>{orders && orders.length}</b></p>
-                                        <p className="relative">
+                                        <p className="absolute chevron-hover">
                                             <small>View Details</small>
-                                            <i className="fa fa-chevron-right" />
+                                            <KeyboardArrowRightIcon className="btn-chevron-right" fontSize="small" />
                                         </p>                                            
                                     </Link>
 
                                     <Link to="/admin/users" className="admin admin-users">  
                                         <p>Users<br /> <b>{users && users.length}</b></p>                                        
-                                        <p className="relative">
+                                        <p className="absolute chevron-hover">
                                             <small>View Details</small>
-                                            <i className="fa fa-chevron-right" />
+                                            <KeyboardArrowRightIcon className="btn-chevron-right" fontSize="small" />
                                         </p>   
                                     </Link>
 

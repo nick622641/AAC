@@ -1,9 +1,16 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import MetaData from '../layouts/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { register, clearErrors } from '../../actions/userActions'
 import { useNavigate, Link } from 'react-router-dom'
+import MetaData from '../layouts/MetaData'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import CircularProgress from '@mui/material/CircularProgress'
+import Avatar from '@mui/material/Avatar'
 
 const Register = () => {
 
@@ -67,7 +74,7 @@ const Register = () => {
 
             <div className="container">
 
-                <div className="wrapper stage">
+                <div className="wrapper">
 
                     <form onSubmit={submitHandler}  className="user-form">
 
@@ -83,12 +90,12 @@ const Register = () => {
                                             name="avatar"                            
                                             accept="images/*"
                                             onChange={onChange}                                                                                                                             
-                                        />                            
-                                        <img 
+                                        />
+                                        <Avatar 
                                             src={avatarPreview} 
                                             alt="Avatar Preview" 
-                                            className="centered-image"
-                                        />
+                                            sx={{ width: 175, height: 175 }}
+                                        />  
                                     </label>
                                 </td>
                                 <td>                                        
@@ -121,14 +128,14 @@ const Register = () => {
                                             name="password"
                                             value={password}
                                             onChange={onChange}  
-                                        />                
-                                        <i 
-                                            className={passwordVisible 
-                                                ? 'fa fa-eye' 
-                                                : 'fa fa-eye-slash'
-                                            }
-                                            onClick={togglePassword}
-                                        />
+                                        /> 
+                                        <IconButton className="eye" onClick={togglePassword}>
+                                            {passwordVisible ? (
+                                                <VisibilityIcon fontSize="default" />
+                                            ):(
+                                                <VisibilityOffIcon fontSize="default" />
+                                            )}
+                                        </IconButton>    
                                     </label>
                                 </td>
                             </tr>
@@ -140,7 +147,7 @@ const Register = () => {
                             disabled={loading ? true : false}
                         >
                             {loading 
-                                ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> 
+                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} />
                                 : 'Sign Up'
                             }
                         </button>
@@ -152,7 +159,11 @@ const Register = () => {
                             <Link to="/login">LOGIN</Link>
                         </div>
 
-                        <Link to="/login"><i className="fa fa-times" /></Link>
+                        <Link to="/login">
+                            <Fab size="small" className="close" color="primary">
+                                <CloseIcon />
+                            </Fab>
+                        </Link>
                             
                     </form>
 

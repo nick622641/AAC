@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom'
 import MetaData from './layouts/MetaData'
 import Callout from './product/Callout'
 import Social from './layouts/Social'
+import IconButton from '@mui/material/IconButton'
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
+import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
 
 const Home = () => {  
     
@@ -130,9 +133,9 @@ const Home = () => {
 
                             <p>Striking and affordable original works of abstract art by global artists. Inspired in Canada, driven by emotion and powered by colour and texture.</p>
                          
-                            <Link className="submit" to="/artwork/61c8b87881e3744d5c99d26b">
+                            <Link className="submit chevron-hover" to="/artwork/61c8b87881e3744d5c99d26b">
                                 Shop Now 
-                                <i className="fa fa-chevron-right" />
+                                <ArrowForwardIosOutlinedIcon className="btn-chevron-right" />
                             </Link>
                         </div>
                     </div>   
@@ -163,9 +166,9 @@ const Home = () => {
                     <h2>Songs-P2448_01</h2>
                     <p>From his Songs series, Songs-P2448_01, artist Quentin Caron describes each as "an abstract, playful and surreal contemporary painting." Quentin creates each one as a poem.</p>
 
-                    <Link className="submit" to="/artwork/61c8cad58eae4a8146dacc80">
+                    <Link className="submit chevron-hover" to="/artwork/61c8cad58eae4a8146dacc80">
                         Explore
-                        <i className="fa fa-chevron-right" />
+                        <ArrowForwardIosOutlinedIcon className="btn-chevron-right" />
                     </Link>
                 </div>
             </section>
@@ -190,14 +193,19 @@ const Home = () => {
                         </ul>
                     </div>
                     <div className="arrow-buttons">
-                        <i 
-                            className={imgIndex > 0 ? 'fa fa-chevron-left' : ''} 
-                            onClick={moveLeft}
-                        />
-                        <i 
-                            className={imgIndex < 6 ? 'fa fa-chevron-right' : ''}
-                            onClick={moveRight}
-                        />
+                    
+                        <IconButton onClick={moveLeft}>
+                            <ArrowBackIosOutlinedIcon 
+                                style={{ display: imgIndex === 0 && "none" }}
+                            />
+                        </IconButton>     
+
+                        <IconButton className="float-r" onClick={moveRight}>
+                            <ArrowForwardIosOutlinedIcon 
+                                style={{ display: imgIndex === 6 && "none" }}
+                            />
+                        </IconButton>
+
                     </div>
                 </div>
                 <div className="wrapper">

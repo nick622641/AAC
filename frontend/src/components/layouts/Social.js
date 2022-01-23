@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import IconButton from '@mui/material/IconButton'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 
 const Social = () => {
 
@@ -7,12 +9,13 @@ const Social = () => {
 
         <Fragment>
 
-            <Link to="#!">
-                <i className="fa fa-facebook facebook"/>
-            </Link>
-            <Link to="#!">
-                <i className="fa fa-twitter"/>
-            </Link>
+            <IconButton color="primary">
+                <FacebookOutlinedIcon/>
+            </IconButton>
+            
+            <IconButton color="primary">
+                <TwitterIcon/>
+            </IconButton>
 
         </Fragment>
 

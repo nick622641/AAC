@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getOrderDetails, clearErrors } from '../../actions/orderActions'
 import { useParams } from 'react-router-dom'
 import FormattedPrice from '../layouts/FormattedPrice'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import Avatar from '@mui/material/Avatar'
 
 const OrderDetails = () => {
 
@@ -59,14 +62,12 @@ const OrderDetails = () => {
                                     {orderItems && orderItems.map(item => (
                                         <tr key={item.product}>
                                             <td>
-                                                <Link to={`/artwork/${item.product}`}>
-                                                    <div className="cart-image">
-                                                        <img 
-                                                            src={item.image} 
-                                                            alt={item.name} 
-                                                            className="centered-image"
-                                                        />
-                                                    </div>
+                                                <Link to={`/artwork/${item.product}`}>                                                   
+                                                    <Avatar
+                                                        src={item.image} 
+                                                        alt={item.name} 
+                                                        sx={{ width: 50, height: 50 }}
+                                                    />  
                                                 </Link>
                                             </td>
                                             <td>
@@ -135,7 +136,11 @@ const OrderDetails = () => {
                                 </tbody>    
                                 </table>                           
 
-                                <Link to="/orders/me"><i className="fa fa-times" /></Link>                    
+                                <Link to="/orders/me">                              
+                                    <Fab size="small" className="close">
+                                        <CloseIcon />
+                                    </Fab>
+                                </Link>                  
                             
                             </div>
 

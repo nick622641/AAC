@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import { UPDATE_ARTIST_RESET } from '../../constants/categoryConstants'
 import { getArtistDetails, updateArtist, clearErrors } from '../../actions/categoryActions'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const UpdateArtist = () => {
 
@@ -32,7 +35,8 @@ const UpdateArtist = () => {
             dispatch(clearErrors())
         }
         if(isUpdated) {            
-            alert.success('Artist updated successfully')
+            alert.success('Artist Updated Successfully')
+            dispatch(getArtistDetails(id))
             navigate('/admin/artists')
             dispatch({ type: UPDATE_ARTIST_RESET })            
         }
@@ -54,7 +58,11 @@ const UpdateArtist = () => {
 
                 <div className="wrapper parent dashboard">
 
-                    <aside><Sidebar /></aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
                     <article>        
                             
@@ -83,12 +91,19 @@ const UpdateArtist = () => {
                                     className="submit"
                                     disabled={loading ? true : false}
                                 >
-                                    {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i> : 'UPDATE'}
+                                    {loading 
+                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        : 'Update'
+                                    }
                                 </button>
 
                             </form>
                    
-                            <Link to="/admin/artists"><i className="fa fa-times"/></Link>
+                            <Link to="/admin/artists">
+                                <Fab size="small" className="close">
+                                    <CloseIcon />
+                                </Fab>
+                            </Link>
                             
                         </div>
                         

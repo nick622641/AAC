@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { getUserDetails, updateUser, clearErrors } from '../../actions/userActions'
 import { UPDATE_USER_RESET } from '../../constants/userConstants'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const UpdateUser = () => {    
 
@@ -17,7 +20,7 @@ const UpdateUser = () => {
     const [ email, setEmail  ] = useState('')
     const [ role, setRole    ] = useState('')   
     const { user             } = useSelector(state => state.userDetails )
-    const { error, isUpdated } = useSelector(state => state.user )
+    const { loading, error, isUpdated } = useSelector(state => state.user )
 
     useEffect(() => {
         if (user && user._id !== userId) {
@@ -32,7 +35,8 @@ const UpdateUser = () => {
             dispatch(clearErrors())
         }
         if (isUpdated) {
-            alert.success('User updated successfully')
+            alert.success('User Updated Successfully')
+            dispatch(getUserDetails(userId))
             navigate('/admin/users')            
             dispatch({ type: UPDATE_USER_RESET })
         }
@@ -99,8 +103,8 @@ const UpdateUser = () => {
                                                     value={role}
                                                     onChange={(e) => setRole(e.target.value)}
                                                 >
-                                                    <option value="user">user</option>
-                                                    <option value="admin">admin</option>
+                                                    <option value="user">User</option>
+                                                    <option value="admin">Admin</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -110,11 +114,23 @@ const UpdateUser = () => {
                                 
                                 <br />
 
-                                <button className="submit">Update</button>
+                                <button
+                                    className="submit"
+                                    disabled={loading ? true : false}
+                                >
+                                    {loading 
+                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        : 'Update'
+                                    }
+                                </button>
 
                             </form>
 
-                            <Link to="/admin/users"><i className="fa fa-times" /></Link>
+                            <Link to="/admin/users">
+                                <Fab size="small" className="close">
+                                    <CloseIcon />
+                                </Fab>
+                            </Link>
 
                         </div>
 

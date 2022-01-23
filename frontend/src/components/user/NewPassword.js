@@ -5,6 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { resetPassword, clearErrors } from '../../actions/userActions'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import IconButton from '@mui/material/IconButton'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const NewPassword = () => {
 
@@ -16,9 +20,13 @@ const NewPassword = () => {
     const alert = useAlert()
     const {  error, success, loading } = useSelector(state => state.forgotPassword )
     const [ passwordVisible, setPasswordVisible ] = useState()
+    const [ confirmPasswordVisible, setConfirmPasswordVisible ] = useState()
 
     const togglePassword = () => {
         setPasswordVisible(!passwordVisible)
+    }
+    const toggleConfirmPassword = () => {
+        setConfirmPasswordVisible(!confirmPasswordVisible)
     }
 
     useEffect(() => {    
@@ -27,7 +35,7 @@ const NewPassword = () => {
             dispatch(clearErrors())
         }
         if(success) {
-            alert.success('Password updated successfully') 
+            alert.success('Password Updated Successfully') 
             navigate('/login')          
         }
     }, [dispatch, navigate, alert, error, success])
@@ -55,31 +63,35 @@ const NewPassword = () => {
                         <h1>New Password</h1>
                         
                         <label>
-                            <i className="fa fa-unlock-alt" />
                             <input
                                 type={passwordVisible ? 'text' : 'password'}
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            <i 
-                                className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                onClick={togglePassword}
-                            />
+                            <IconButton className="eye" onClick={togglePassword}>
+                                {passwordVisible ? (
+                                    <VisibilityIcon fontSize="default" />
+                                ):(
+                                    <VisibilityOffIcon fontSize="default" />
+                                )}
+                            </IconButton>                            
                         </label>
                        
                         <label>
-                            <i className="fa fa-unlock-alt" />
                             <input
-                                type={passwordVisible ? 'text' : 'password'}
+                                type={confirmPasswordVisible ? 'text' : 'password'}
                                 placeholder="Confirm"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                             />
-                            <i 
-                                className={passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'}
-                                onClick={togglePassword}
-                            />
+                            <IconButton className="eye" onClick={toggleConfirmPassword}>
+                                {confirmPasswordVisible ? (
+                                    <VisibilityIcon fontSize="default" />
+                                ):(
+                                    <VisibilityOffIcon fontSize="default" />
+                                )}
+                            </IconButton>                          
                         </label>
 
                         <br />
@@ -89,7 +101,7 @@ const NewPassword = () => {
                             disabled={loading ? true : false}
                         >
                             {loading 
-                                ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> 
+                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} /> 
                                 : 'Set Password'
                             }
                         </button>

@@ -1,5 +1,8 @@
 import React, { Fragment } from 'react'
 import Review from '../modals/Review'
+import IconButton from '@mui/material/IconButton'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import Rating from '@mui/material/Rating'
 
 const ListReviews = ({ reviews, user, toggleModal }) => {
 
@@ -14,24 +17,19 @@ const ListReviews = ({ reviews, user, toggleModal }) => {
             {reviews && reviews.map(review => (
 
                 <div key={review._id}>
-                    
-                    <div className="rating-outer">
-                        <div 
-                            className="rating-inner" 
-                            style={{ width: `${(review.rating / 5) * 100}%` }}
-                        />
-                    </div>
+                    <Rating 
+                        value={review.rating} 
+                        sx={{ color: "var(--primary-color)" }} 
+                        readOnly
+                    />   
                     <p>
                         by <b>{review.name}</b> &nbsp; 
                         {user && user._id === review.user && (
-                            <button 
-                                onClick={() => {
-                                    toggleModal(
-                                        <Review rating={review.rating} comment={review.comment} />
-                                )}}              
-                            >
-                                <i className="fa fa-pencil" />                               
-                            </button>
+                          
+                            <IconButton onClick={() => {toggleModal(<Review rating={review.rating} comment={review.comment} />)}}>
+                                <EditOutlinedIcon/>
+                            </IconButton>                              
+                      
                         )}
                     </p>
                     <p>{review.comment}</p>

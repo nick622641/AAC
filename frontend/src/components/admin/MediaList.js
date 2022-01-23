@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { MDBDataTable } from 'mdbreact'
+import { MDBDataTableV5 } from 'mdbreact'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from './Sidebar'
@@ -10,6 +10,12 @@ import { getMedia, deleteMedia, clearErrors } from '../../actions/categoryAction
 import { DELETE_MEDIA_RESET } from '../../constants/categoryConstants'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import Fab from '@mui/material/Fab'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import AddIcon from '@mui/icons-material/Add'
 
 const ArtistList = () => {
 
@@ -55,7 +61,8 @@ const ArtistList = () => {
                 {
                     label: 'Media ID',
                     field: 'id',
-                    sort: 'disabled'
+                    sort: 'disabled',
+                    width: 200
                 },
                 {
                     label: 'Name',
@@ -65,7 +72,8 @@ const ArtistList = () => {
                 {
                     label: 'Actions',
                     field: 'actions',
-                    sort: 'disabled'                  
+                    sort: 'disabled',
+                    width: '100'                 
                 }
             ],
             rows: []
@@ -73,22 +81,24 @@ const ArtistList = () => {
      
         media && media.forEach( m => {
             data.rows.push({                
-                id: <small>{m._id}</small>,
+                id: m._id,
                 name: m.name,
                 actions: 
-                    <Fragment>
-                        <Link to={`/admin/media/${m._id}`}>
-                            <i className="fa fa-pencil" />
-                        </Link>   
-                        &nbsp; &nbsp;                  
-                        <i 
-                            className="fa fa-trash-o"
-                            onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setId(m._id)
-                            }}
-                        /> 
-                    </Fragment> 
+                <Fragment>
+                    <Link to={`/admin/media/${m._id}`}>
+                        <IconButton>
+                            <EditOutlinedIcon />
+                        </IconButton>
+                    </Link> 
+                    <IconButton 
+                        onClick={() => {
+                            setIsModalVisible(!isModalVisible)
+                            setId(m._id)
+                        }}
+                    >
+                        <DeleteOutlineIcon sx={{ color: "red" }} />
+                    </IconButton>    
+                </Fragment> 
             })
         })    
        
@@ -121,16 +131,27 @@ const ArtistList = () => {
 
                                 <p className="text-right">
                                     <Link to="/admin/medium">
-                                        Add &nbsp;<i className="fa fa-plus" />
+                                        Add
+                                        <IconButton>
+                                            <AddIcon />
+                                        </IconButton>
                                     </Link>
                                 </p>                                
 
-                                <MDBDataTable 
-                                    className="mdb-table"
-                                    data={setCategories()} 
-                                />
+                                <MDBDataTableV5 
+                                    data={setCategories()}   
+                                    fullPagination   
+                                    scrollX  
+                                    scrollY   
+                                    searchTop
+                                    searchBottom={false}  
+                                /> 
 
-                                <Link to="/dashboard"><i className="fa fa-times" /></Link>
+                                <Link to="/dashboard">
+                                    <Fab size="small" className="close">
+                                        <CloseIcon />
+                                    </Fab>
+                                </Link>
 
                             </div>
 
