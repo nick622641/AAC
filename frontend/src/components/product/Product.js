@@ -11,11 +11,7 @@ const Product = ({ product }) => {
             <div> 
 
                 <figure>
-                    <img 
-                        className={product.width >= product.height
-                            ? 'landscape' 
-                            : 'portrait'
-                        }
+                    <img                      
                         src={product.images[0].thumbUrl} 
                         alt={product.name} 
                     /> 
@@ -25,11 +21,11 @@ const Product = ({ product }) => {
 
             <div>    
 
-                <h6>{product.name}</h6> 
+                <h6 className="text-center">{product.name}</h6> 
 
                 <div className="text-center">
 
-                    <p><small>{product.artist}</small></p>  
+                    <p><b><small>{product.artist}</small></b></p>  
                     
                     <span>
                         {product.stock > 0 

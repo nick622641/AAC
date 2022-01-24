@@ -26,7 +26,8 @@ const Quantity = ({ quantity, stock, setQuantity  }) => {
         </IconButton>
 
         <input
-            className="count"
+            className="count text-center"
+            style={{ width: '40px' }}
             value={stock === 0 ? 0 : quantity} 
             readOnly 
         />

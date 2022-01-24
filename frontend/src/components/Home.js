@@ -133,9 +133,10 @@ const Home = () => {
 
                             <p>Striking and affordable original works of abstract art by global artists. Inspired in Canada, driven by emotion and powered by colour and texture.</p>
                          
+                            <br />
+
                             <Link className="submit chevron-hover" to="/artwork/61c8b87881e3744d5c99d26b">
                                 Shop Now 
-                                <ArrowForwardIosOutlinedIcon className="btn-chevron-right" />
                             </Link>
                         </div>
                     </div>   
@@ -160,15 +161,19 @@ const Home = () => {
                 </div>
             </div>  
             
-            <section style={{ backgroundImage: "url(https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Songs-P2448_01.jpg?fit=1920%2C957&ssl=1)" }}>
+            <section 
+                style={{ backgroundImage: "url(https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Songs-P2448_01.jpg?fit=1920%2C957&ssl=1)" }}
+                className="background-cover"
+            >
                 <div className="wrapper callout parent">
                     <h3>Quentin Caron</h3>
                     <h2>Songs-P2448_01</h2>
                     <p>From his Songs series, Songs-P2448_01, artist Quentin Caron describes each as "an abstract, playful and surreal contemporary painting." Quentin creates each one as a poem.</p>
 
+                    <br />
+
                     <Link className="submit chevron-hover" to="/artwork/61c8cad58eae4a8146dacc80">
                         Explore
-                        <ArrowForwardIosOutlinedIcon className="btn-chevron-right" />
                     </Link>
                 </div>
             </section>

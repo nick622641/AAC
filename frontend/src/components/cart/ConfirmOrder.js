@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
-import MetaData from '../layouts/MetaData'
-import CheckoutSteps from './CheckoutSteps'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import MetaData from '../layouts/MetaData'
+import CheckoutSteps from './CheckoutSteps'
 import FormattedPrice from '../layouts/FormattedPrice'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
@@ -11,8 +11,8 @@ import Avatar from '@mui/material/Avatar'
 const ConfirmOrder = () => {
 
     const navigate = useNavigate()
-    const { cartItems, shippingInfo } = useSelector(state => state.cart)
-    const { user } = useSelector(state => state.auth)
+    const { cartItems, shippingInfo } = useSelector( state => state.cart )
+    const { user                    } = useSelector( state => state.auth )
     // Calculate Order Prices
     const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
     const shippingPrice = itemsPrice > 200 ? 0 : 25
@@ -44,103 +44,112 @@ const ConfirmOrder = () => {
 
                         <CheckoutSteps shipping confirmOrder /> 
 
-                        <table className="middle-align bordered-table">
-                        <tbody>                               
-
-                        <tr className="bg-grey">
-                            <td><h6>Item</h6></td>
-                            <td><h6>Title</h6></td>
-                            <td><h6>Price</h6></td>
-                            <td><h6>Sub total</h6></td>
-                        </tr>
-                            
-                        {cartItems.map(item => (
-                            <tr key={item.product}>
-                                <td>
-                                    <Link to={`/artwork/${item.product}`}>
-                                        <Avatar
-                                            src={item.image} 
-                                            alt={item.name} 
-                                            sx={{ width: 50, height: 50 }}
-                                        />                                 
-                                    </Link>
-                                </td>
-                                <td>
-                                    <Link to={`/artwork/${item.product}`}>
-                                        {item.name}
-                                    </Link>
-                                </td>                                
-                                <td>                                    
-                                    {item.quantity}
-                                    &nbsp;x&nbsp;
-                                    <FormattedPrice number={item.price} />                                    
-                                </td>
-                                <td>
-                                    <FormattedPrice number={(item.quantity * item.price)} />                                                                          
-                                </td>                                     
-                            </tr>
-                        ))}                           
-
-                        </tbody>
-                        </table>          
-
-                        <h4>Shipping Details</h4>                   
-
                         <table className="bordered-table">
-                        <tbody>                            
+                            <tbody>                               
+
+                                <tr className="bg-grey">
+                                    <th>Item</th>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>Sub total</th>
+                                </tr>
+                                    
+                                {cartItems.map(item => (
+                                    <tr key={item.product}>
+                                        <td>
+                                            <Link to={`/artwork/${item.product}`}>
+                                                <Avatar
+                                                    src={item.image} 
+                                                    alt={item.name} 
+                                                    sx={{ width: 50, height: 50 }}
+                                                />                                 
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <Link to={`/artwork/${item.product}`}>
+                                                {item.name}
+                                            </Link>
+                                        </td>                                
+                                        <td>                                    
+                                            {item.quantity}
+                                            &nbsp;x&nbsp;
+                                            <FormattedPrice number={item.price} />                                    
+                                        </td>
+                                        <td>
+                                            <FormattedPrice number={(item.quantity * item.price)} />                                                                          
+                                        </td>                                     
+                                    </tr>
+                                ))}                           
+
+                            </tbody>
+                        </table>                                        
+
+                        <table className="top-align">
+                        <tbody> 
                             <tr>
-                                <th><h6>Name</h6></th>
+                                <td colSpan="2">
+                                    <h4>Shipping Details</h4>      
+                                </td>                                
+                            </tr>                           
+                            <tr>
+                                <td>
+                                    <h6 className="text-right">Name</h6>
+                                </td>
                                 <td>{user && user.name}</td>
                             </tr>
                             <tr>
-                                <th><h6>Phone</h6></th>
+                                <td>
+                                    <h6 className="text-right">Phone</h6>
+                                </td>
                                 <td>{shippingInfo.phoneNo}</td>
                             </tr>
                             <tr>
-                                <th><h6>Address</h6></th>
                                 <td>
-                                {shippingInfo.address}
-                                <br />
-                                {shippingInfo.city}
-                                <br />
-                                {shippingInfo.postalCode.toUpperCase()}
-                                <br />
-                                {shippingInfo.country}
+                                    <h6 className="text-right">Address</h6>
+                                </td>
+                                <td>
+                                    {shippingInfo.address}
+                                    <br />
+                                    {shippingInfo.city}
+                                    <br />
+                                    {shippingInfo.postalCode.toUpperCase()}
+                                    <br />
+                                    {shippingInfo.country}
                                 </td>
                             </tr>   
                             <tr>
-                                <td colSpan="2" className="spacer-cell">
+                                <td colSpan="2">
                                     <h4>Order Summary</h4>
                                 </td>                                
                             </tr>
                             <tr>
-                                <th>
-                                    <h6>Subtotal</h6>
-                                </th>
+                                <td>
+                                    <h6 className="text-right">Subtotal</h6>
+                                </td>
                                 <td>
                                     <FormattedPrice number={itemsPrice} /> 
                                 </td>
                             </tr>
                             <tr>
-                                <th>
-                                    <h6>Shipping</h6>
-                                </th>
+                                <td>
+                                    <h6 className="text-right">Shipping</h6>
+                                </td>
                                 <td>
                                     <FormattedPrice number={shippingPrice} /> 
                                 </td>
                             </tr>
                             <tr>
-                                <th>
-                                    <h6>Tax</h6>
-                                </th>
+                                <td>
+                                    <h6 className="text-right">Tax</h6>
+                                </td>
                                 <td>
                                     <FormattedPrice number={taxPrice} /> 
                                 </td>
                             </tr>
                             <tr>
-                                <th>
-                                    <h6>Total</h6>
-                                </th>
+                                <td>
+                                    <h6 className="text-right">Total</h6>
+                                </td>
                                 <td>
                                     <FormattedPrice number={totalPrice} /> 
                                 </td>
@@ -150,10 +159,12 @@ const ConfirmOrder = () => {
 
                         <br />
 
-                        <button className="submit" onClick={proceedToPayment}>Proceed to Payment</button>   
+                        <button className="submit" onClick={proceedToPayment}>
+                            Proceed to Payment
+                        </button>   
 
                         <Link to="/shipping">                              
-                            <Fab size="small" className="close">
+                            <Fab size="small" className="close" color="primary">
                                 <CloseIcon />
                             </Fab>
                         </Link>  

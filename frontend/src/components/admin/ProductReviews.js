@@ -160,7 +160,7 @@ const ProductReviews = () => {
                             )}
 
                             <Link to="/dashboard">
-                                <Fab size="small" className="close">
+                                <Fab size="small" className="close" color="primary">
                                     <CloseIcon />
                                 </Fab>
                             </Link>

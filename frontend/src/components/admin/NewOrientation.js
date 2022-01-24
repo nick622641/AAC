@@ -81,7 +81,7 @@ const NewOrientation = () => {
                                     disabled={loading ? true : false}
                                 >
                                     {loading 
-                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        ? <CircularProgress color="primary" />
                                         : 'Create'
                                     }
                                 </button>
@@ -89,7 +89,7 @@ const NewOrientation = () => {
                             </form>
                    
                             <Link to="/admin/orientations">
-                                <Fab size="small" className="close">
+                                <Fab size="small" className="close" color="primary">
                                     <CloseIcon />
                                 </Fab>
                             </Link>

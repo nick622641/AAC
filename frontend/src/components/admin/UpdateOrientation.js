@@ -100,7 +100,7 @@ const UpdateOrientation = () => {
                             </form>
                    
                             <Link to="/admin/orientations">
-                                <Fab size="small" className="close">
+                                <Fab size="small" className="close" color="primary">
                                     <CloseIcon />
                                 </Fab>
                             </Link>

@@ -89,7 +89,7 @@ const NewArtist = () => {
                             </form>
                    
                             <Link to="/admin/artists">
-                                <Fab size="small" className="close">
+                                <Fab size="small" className="close" color="primary">
                                     <CloseIcon />
                                 </Fab>
                             </Link>

@@ -11,6 +11,7 @@ import RichText from '../layouts/RichText'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const NewProduct = () => {
 
@@ -304,13 +305,16 @@ const NewProduct = () => {
                                     className="submit"
                                     disabled={loading ? true : false}
                                 >
-                                    {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i> : 'CREATE'}
+                                    {loading 
+                                        ? <CircularProgress color="primary" />
+                                        : 'CREATE'
+                                    }
                                 </button>
 
                             </form>
 
                             <Link to="/dashboard">
-                                <Fab size="small" className="close">
+                                <Fab size="small" className="close" color="primary">
                                     <CloseIcon />
                                 </Fab>
                             </Link>

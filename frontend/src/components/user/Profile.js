@@ -91,7 +91,7 @@ const Profile = () => {
                             </table>
 
                             <Link to="/">                              
-                                <Fab size="small" className="close">
+                                <Fab size="small" className="close" color="primary">
                                     <CloseIcon />
                                 </Fab>
                             </Link>

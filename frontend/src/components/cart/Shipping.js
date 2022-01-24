@@ -44,7 +44,7 @@ const Shipping = () => {
                         <tbody>
                             <tr>
                                 <th>
-                                    <h6>Address</h6>
+                                    <h6 className="text-right">Address</h6>
                                 </th>
                                 <td>
                                     <input
@@ -57,7 +57,7 @@ const Shipping = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>City</h6>
+                                    <h6 className="text-right">City</h6>
                                 </th>
                                 <td>
                                     <input
@@ -70,7 +70,7 @@ const Shipping = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Phone</h6>
+                                    <h6 className="text-right">Phone</h6>
                                 </th>
                                 <td>
                                     <input
@@ -83,7 +83,7 @@ const Shipping = () => {
                             </tr>
                             <tr>
                                 <th>
-                                    <h6>Post Code</h6>
+                                    <h6 className="text-right">Post Code</h6>
                                 </th>
                                 <td>
                                     <input
@@ -96,7 +96,7 @@ const Shipping = () => {
                             </tr>                            
                             <tr>
                                 <th>
-                                    <h6>Country</h6>
+                                    <h6 className="text-right">Country</h6>
                                 </th>
                                 <td className="relative">
                                     <Countries
@@ -116,7 +116,7 @@ const Shipping = () => {
                         <button className="submit">Continue</button>
 
                         <Link to="/cart">                              
-                            <Fab size="small" className="close">
+                            <Fab size="small" className="close" color="primary">
                                 <CloseIcon />
                             </Fab>
                         </Link>                           

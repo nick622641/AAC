@@ -8,7 +8,17 @@ import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
 import FormattedPrice from '../layouts/FormattedPrice'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
+
+import { styled } from '@mui/material/styles'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
+
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
 const Dashboard = () => {
 
@@ -24,6 +34,13 @@ const Dashboard = () => {
         }
     })
 
+    const Item = styled(Paper)(({ theme }) => ({
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+      }))
+
     useEffect(() => {
         dispatch(getAdminProducts())
         dispatch(allOrders())
@@ -32,83 +49,170 @@ const Dashboard = () => {
 
     return (
 
-        <Fragment>
+        <Fragment>            
 
-            <div className="container">
-
-                <div className="wrapper parent dashboard">
-
-                    <aside>
-
-                        <Sidebar />
-
-                    </aside>
-
-                    <article>
-
-                        <h1>Dashboard</h1>
-
-                        {loading ? <Loader /> : (
+            {loading ? <Loader /> : (
                             
-                            <Fragment>
+                <Fragment>
 
-                                <MetaData title={'Admin Dashboard'} />
+                    <MetaData title={'Admin Dashboard'} />
 
-                                <div className="admin admin-total">                                
-                                   
-                                    <p>
-                                        Total Amount
-                                        <br /> 
-                                        <b>
-                                            {totalAmount && (
-                                                 <FormattedPrice number={totalAmount} />
-                                            )}                                           
-                                        </b>     
-                                    </p>
-                                            
-                                </div>
+                    <div className="container">
 
-                                <div className="parent">
+                        <div className="wrapper parent dashboard">
 
-                                    <Link to="/admin/products" className="admin admin-products">                                        
-                                        <p>Artwork<br /> <b>{products && products.length}</b></p>                                        
-                                        <p className="absolute chevron-hover">
-                                            <small>View Details</small>
-                                            <KeyboardArrowRightIcon className="btn-chevron-right" fontSize="small" />
-                                        </p>
-                                    </Link>
+                            <aside>
 
-                                    <Link to="/admin/orders" className="admin admin-orders">                                        
-                                        <p>Orders<br /> <b>{orders && orders.length}</b></p>
-                                        <p className="absolute chevron-hover">
-                                            <small>View Details</small>
-                                            <KeyboardArrowRightIcon className="btn-chevron-right" fontSize="small" />
-                                        </p>                                            
-                                    </Link>
+                                <Sidebar />
 
-                                    <Link to="/admin/users" className="admin admin-users">  
-                                        <p>Users<br /> <b>{users && users.length}</b></p>                                        
-                                        <p className="absolute chevron-hover">
-                                            <small>View Details</small>
-                                            <KeyboardArrowRightIcon className="btn-chevron-right" fontSize="small" />
-                                        </p>   
-                                    </Link>
+                            </aside>
 
-                                    <div className="admin admin-stock">  
-                                        <p>Out of Stock<br /><b>{outOfStock}</b></p>                                       
-                                    </div>
+                            <article>
 
-                                </div>
+                                <h1>Dashboard</h1>  
 
-                            </Fragment>
+                                <Box sx={{ width: '100%' }}>
 
-                        )}                    
-                        
-                    </article>
-                    
-                </div>
+                                    <Grid container>
+                                        <Grid item xs={12} sx={{ mb: 2 }}>
+                                            <Item>
+                                                <Card sx={{ background: 'var(--primary-color)' }}>
+                                                    <CardContent>
+                                                        <Typography gutterBottom color="white">
+                                                            Total Amount
+                                                        </Typography>
+                                                        <Typography variant="h5" color="white">
+                                                            {totalAmount && <FormattedPrice number={totalAmount} />} 
+                                                        </Typography>                                                                        
+                                                    </CardContent>                                                            
+                                                </Card>                                                        
+                                            </Item>
+                                        </Grid>
 
-            </div>
+                                        <Grid container columnSpacing={2}>
+
+                                            <Grid item xs={12} md={3} sx={{ mb: 2 }}>
+
+                                                <Item>
+
+                                                    <Link to="/admin/products">   
+
+                                                        <Card  sx={{ background: 'var(--cta-green)' }}>
+                                                            <CardContent>
+                                                                <Typography gutterBottom color="white">
+                                                                    Artwork
+                                                                </Typography>
+                                                                <Typography variant="h5" color="white">
+                                                                    {products && products.length}
+                                                                </Typography>                                                                        
+                                                            </CardContent>
+
+                                                            <CardActions>
+                                                                <Button 
+                                                                    size="small" 
+                                                                    sx={{ color: 'white', width: '100%' }}
+                                                                >
+                                                                    View Details
+                                                                </Button>
+                                                            </CardActions>
+                                                        </Card>
+                                                
+                                                    </Link>
+                                                </Item>
+                                            </Grid>
+
+                                            <Grid item xs={12} md={3} sx={{ mb: 2 }}>
+                                                <Item>
+                                                    <Link to="/admin/orders">  
+
+                                                        <Card sx={{ background: '#ffbb00'}}>
+                                                            <CardContent>
+                                                                <Typography gutterBottom color="white">
+                                                                    Orders
+                                                                </Typography>
+                                                                <Typography variant="h5" color="white">
+                                                                    {orders && orders.length}
+                                                                </Typography>                                                                        
+                                                            </CardContent>
+
+                                                            <CardActions>
+                                                                <Button 
+                                                                    size="small" 
+                                                                    sx={{ color: 'white', width: '100%' }}
+                                                                >
+                                                                    View Details
+                                                                </Button>
+                                                            </CardActions>
+                                                        </Card>                                     
+                                                                                                
+                                                    </Link>
+                                                </Item>
+                                            </Grid>
+
+                                            <Grid item xs={12} md={3} sx={{ mb: 2 }}>
+                                                <Item>
+                                                    <Link to="/admin/users">  
+
+                                                        <Card sx={{ background: '#0b97bb'}}>
+                                                            <CardContent>
+                                                                <Typography gutterBottom color="white">
+                                                                    User
+                                                                </Typography>
+                                                                <Typography variant="h5" color="white">
+                                                                    {users && users.length}
+                                                                </Typography>                                                                        
+                                                            </CardContent>
+
+                                                            <CardActions>
+                                                                <Button 
+                                                                    size="small" 
+                                                                    sx={{ color: 'white', width: '100%' }}
+                                                                >
+                                                                    View Details
+                                                                </Button>
+                                                            </CardActions>
+                                                        </Card>
+                                                        
+                                                    </Link>
+                                                </Item>
+                                            </Grid>
+
+                                            <Grid item xs={12} md={3}>
+                                                <Item>
+                                                    <Card sx={{ background: '#ea4845' }}>
+
+                                                        <CardContent>
+                                                            <Typography gutterBottom color="white">
+                                                                Out of Stock
+                                                            </Typography>
+                                                            <Typography variant="h5" color="white">
+                                                                {outOfStock}
+                                                            </Typography>                                                                        
+                                                        </CardContent>
+
+                                                        <CardActions>
+                                                            <Button size="small">&nbsp;</Button>
+                                                        </CardActions>
+                                                       
+                                                    </Card>                                                   
+                                                </Item>
+                                            </Grid>
+
+                                        </Grid>
+
+                                    </Grid>
+
+                                </Box>                                                              
+                                
+                            </article>
+                            
+                        </div>
+
+                    </div>
+
+                </Fragment>
+
+            )}  
             
         </Fragment>
 

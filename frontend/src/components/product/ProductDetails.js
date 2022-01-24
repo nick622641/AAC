@@ -20,7 +20,6 @@ import FormattedPrice from '../layouts/FormattedPrice'
 import parse from 'html-react-parser'
 import IconButton from '@mui/material/IconButton'
 import EmailIcon from '@mui/icons-material/Email'
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import LoginIcon from '@mui/icons-material/Login'
 import Quantity from '../layouts/Quantity'
@@ -226,16 +225,15 @@ const ProductDetails = () => {
                                         <div> 
                                             <div className="text-center">  
                                                 <button                                                    
-                                                    className="submit chevron-hover"
+                                                    className="submit"
                                                     onClick={addToCart}
                                                     disabled={product.stock === 0 ? true : false}
                                                 >
                                                     Add to Cart 
-                                                    <ArrowForwardIosOutlinedIcon className="btn-chevron-right" />
                                                 </button>     
                                             </div>  
                                             <br />
-                                            <div className="stockcounter text-center">
+                                            <div className="whitespace-nowrap text-center">
                                                 Quantity &nbsp;                                               
                                                 <Quantity 
                                                     quantity={quantity}

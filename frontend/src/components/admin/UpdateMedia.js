@@ -100,7 +100,7 @@ const UpdateArtist = () => {
                             </form>
                    
                             <Link to="/admin/media">
-                                <Fab size="small" className="close">
+                                <Fab size="small" className="close" color="primary">
                                     <CloseIcon />
                                 </Fab>
                             </Link>

@@ -1,4 +1,4 @@
-/* Helper (BootStrap...ish) Classes */
+/* Helper Classes */
 .bg-grey {
   background: #edecec;
 }
@@ -103,27 +103,14 @@ aside h4 {
 .dashboard aside li {
   padding: 10px 0;
 }
-aside li:hover input[type=checkbox] {
-  border-color: var(--primary-color);
-}
 .rc-slider {
   margin: 20px 0 50px 0;
 }
 /* MUI Icon styles */
-.close,
-.monitor {    
+.close {    
   position: absolute !important;
   top: 10px;
   right: 10px;  
-}
-.monitor { 
-  right: 60px;
-}
-.select-chevron {
-  font-size: 12px !important;    
-  position: absolute !important;
-  top: 0;
-  right: 0;
 }
 label .eye {  
   position: absolute;  
@@ -134,15 +121,11 @@ label .eye {
   position: fixed;
   top: calc((50vh - 94px) - 20px);
 }
-.btn-chevron-right {
-  position: absolute;
-  top: calc(50% - 0.5em);
-  right: 15px;  
-  color: inherit; 
-  transition: all var(--speed);
-}
-.chevron-hover:hover .btn-chevron-right {  
-  right: 5px;
+.select-chevron {
+  font-size: 12px !important;    
+  position: absolute !important;
+  top: 0;
+  right: 0;
 }
 /* Button Styles */
 button {
@@ -350,123 +333,31 @@ input[type=file] {
   border-color: #ccc;
   border-bottom-color: var(--primary-color);
 }
-/* Alert Box Styles */
-#__react-alert__ div > div > div {
-  background: white !important;
-  color: var(--primary-color) !important;
-  width: auto !important;  
-  box-shadow: var(--box-shadow) !important;
-}
-#__react-alert__ button {
-  background-color: #ccc !important;
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#__react-alert__ button:hover {
-  background-color: var(--primary-color) !important;
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/* Tables */
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-  width: 100%;
-}
-.bordered-table {
-  border: solid 1px #ccc;
-}
-.fixed-table {
-  table-layout: fixed;
-}
-.spacer-cell {
-  border: solid 1px #ccc;
-  border-left-color: white;
-  border-right-color: white;
-  padding: 0;
-}
-th {
-  text-align: left; 
-  font-weight: 500;
-  color: var(--primary-color);
-  white-space: nowrap;
-}
-th h6 {
-  text-align: right;
-}
-th,
-td {
-  padding: 10px;  
-  font-size: 12px; 
-}
-th a, td a {
-  font-size: inherit;
-}
-.middle-align th,
-.middle-align td {
-  vertical-align: middle;
-}
-.top-align th,
-.top-align td {
-  vertical-align: top;
-}
-.dimensions td {
-  padding: 0 10px;
-}
-.dimensions th {
-  padding-left: 0;
-}
-.categories th {
-  width: 100px;
-  padding-left: 0;
-}
 /* MDB Table Styles */
 .mdb-datatable > div:nth-child(2) {
   border: solid 1px #ccc;
+  margin-top: 20px;
 }
 .mdb-datatable tr:nth-child(even) {
   background: #f6f5f5;
-}
-.mdb-datatable td {
-  padding: 0 10px;
-  vertical-align: middle;
-}
-.mdb-datatable input {
-  margin: 0 0 20px 0;
 }
 /* Home Page Styles */
 .callout {
   flex-direction: column;
   justify-content: center;
 }
-.callout .submit {
-  width: 200px;
-  margin-top: 20px;
-}
 section {
-  margin: 40px 0;
-  background-position: center;
-  background-size: cover;
+  margin: 40px 0; 
 }
 section .callout {
   background: rgba(0,0,0,0.8);
   width: 350px;  
+  color: #ccc;
 }
 section .callout h3 {
   color: #999;
 }
-.cta-first-image {
-  align-self: end;
-  height: 400px;
-}
+/* CTA styles */
 .cta {
   position: absolute;
   right: 0;
@@ -474,117 +365,41 @@ section .callout h3 {
   height: 200px;
   overflow: hidden;    
 }
-.cta-last-image {
+.cta-first-image {
+  align-self: end;
   height: 400px;
 }
-section .callout p {
-  color: #ccc;
-}
-/* Dashboard Styles */
-.admin {
-  color: white;  
-  border-radius: 5px;
-  flex: 0 1 calc(25% - 10px);
-  text-align: center;
-  padding-top: 20px;      
-  margin-bottom: 10px;
-  position: relative;
-}
-.admin-total {
-  background: var(--primary-color);   
-  padding-bottom: 40px;
-}
-.admin-products {
-  background: var(--cta-green);
-}
-.admin-orders {
-  background: #ffbb00;
-}
-.admin-users {
-  background: #0b97bb;
-}
-.admin-stock {
-  background: #ea4845;  
-  padding-bottom: 40px;  
-}
-a.admin:hover {
-  box-shadow:var(--box-shadow);
-  transform: scale(1.05);
-  color: white;
-}
-.admin p {
-  margin-top: 20px; 
-}
-.admin .absolute {
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.1);   
-  width: 100%;
-  text-align: left;
-  padding-left: 10px; 
-}
-/* Product Page Styles */
-.portrait .parent {
-  flex-direction: column;
-  justify-content: center;
-}
-.portrait > div {
-  flex-basis: calc(50% - 20px);
-}
-.landscape .information {
-  display: flex;
-  margin-top: 40px;
-}
-.product-details .submit {
-  width: 200px;
-  text-align: left;
-}
-.product-details .price span {
-  font-family: "Monotype Corsiva", cursive;
-  color: var(--primary-color);
-  font-size: 24px;  
+.cta-last-image {
+  height: 400px;
 }
 /* Pagination Styles */
 .pagination {
   display: flex;
   justify-content: center;
 }
-.pagination li {  
-  text-align: center;  
-}
 .pagination a {
-  height: 40px; 
-  line-height: 40px; 
-  width: 40px;
-  text-decoration: none;
+  height: 30px; 
+  line-height: 30px; 
+  width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1px #eee;    
-  cursor: pointer;  
-}
-.pagination li.active a {
-  color:#fff; 
-  background: var(--primary-color); 
-  border-color: var(--primary-color);
-  pointer-events: none;
 }
 .pagination li.disabled a {
   pointer-events: none;
+  opacity: 0.4; 
+}
+.pagination li.active a {
+  color: #fff; 
+  background: var(--primary-color); 
+  border-color: var(--primary-color);
+  border-radius: 100%;
+  pointer-events: none;
 }
 .pagination a:hover {
-  color:#fff; 
+  color: #fff; 
   background: var(--secondary-color); 
   border-color: var(--secondary-color);
-}
-/* Quantity Button Styles */
-.stockcounter {
-  white-space: nowrap;  
-}
-.stockcounter input {
-  width: 40px;
-  padding: 0;
-  text-align: center;
 }
 /* Slideshow Styles */
 .slideshow {
@@ -607,6 +422,7 @@ a.admin:hover {
   height: 75px;  
   display: flex; 
   flex-wrap: wrap;  
+  margin-bottom: 20px;
 }
 .thumbnails li {
   margin: 0 5px 5px 0;  
@@ -730,9 +546,7 @@ a.admin:hover {
 }
 .showroom-item figure {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  min-width: 170px;
+  width: 90%;
   overflow: hidden;
 }
 .showroom-item > div:first-child {   
@@ -743,26 +557,15 @@ a.admin:hover {
 .showroom-item img {
   object-fit: contain;
 }
-.showroom-item .portrait {
-  height: 100%;
-  width: auto;
-}
-.showroom-item p {
-  text-align: center;
-  margin-bottom: 10px;
-}
-.showroom-item small {
-  font-weight: bold;    
-}
 .showroom-item h6 {
-  text-align: center;  
   margin-top: 20px;   
 }
+.showroom-item p {
+  margin-bottom: 10px;
+}
 .showroom-item span {  
-  max-width: 240px; 
   color: var(--primary-color);
-  font-size: 1.375rem;
-  overflow: hidden;
+  font-size: 1.375rem;  
 }
 /* Media Queries */
 @media ( max-width: 768px ) {
@@ -770,7 +573,7 @@ a.admin:hover {
     max-width: 480px;
   }
   .wrapper {
-    padding: 40px 20px;
+    padding: 30px;
   }
   .parent {
     flex-direction: column;
@@ -779,11 +582,7 @@ a.admin:hover {
     flex-direction: column-reverse;
   }
   article {    
-    margin-left: 0;
-    width: 100% !important;
-  }
-  .user-form {
-    padding: 40px 20px;
+    width: 100%;
   }
   .filters {
     display: inline-block;
@@ -802,12 +601,4 @@ a.admin:hover {
     height: 200px;
     flex-basis: auto;
   }
-  .product-details h1 {
-    margin-top: 40px;
-  }
  }
-@media ( max-width: 480px ) {
-  .wrapper {
-    padding: 20px 10px;
-  }
-}

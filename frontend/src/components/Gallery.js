@@ -153,7 +153,8 @@ const Gallery = () => {
                                                     <Checkbox 
                                                         checked={artist === a.name ? true : false} 
                                                         size="small"
-                                                        style={{ color: "var(--primary-color)", padding: "3px 0", marginRight: "10px" }}
+                                                        sx={{ py: 0.3 }}
+                                                        color="primary"
                                                     />                                      
                                                     {a.name}
                                                 </Link>
@@ -173,7 +174,8 @@ const Gallery = () => {
                                                     <Checkbox 
                                                         checked={orientation === o.name ? true : false} 
                                                         size="small"
-                                                        style={{ color: "var(--primary-color)", padding: "3px 0", marginRight: "10px" }}
+                                                        sx={{ py: 0.3 }}
+                                                        color="primary"
                                                     />                                            
                                                     {o.name}
                                                 </Link>
@@ -193,7 +195,8 @@ const Gallery = () => {
                                                     <Checkbox 
                                                         checked={medium === m.name ? true : false} 
                                                         size="small"
-                                                        style={{ color: "var(--primary-color)", padding: "3px 0", marginRight: "10px" }}
+                                                        sx={{ py: 0.3 }}
+                                                        color="primary"
                                                     />                                       
                                                     {m.name}
                                                 </Link>

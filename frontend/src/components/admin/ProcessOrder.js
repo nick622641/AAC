@@ -182,7 +182,7 @@ const ProcessOrder = () => {
                                 </table>
                              
                                 <Link to="/admin/orders">
-                                    <Fab size="small" className="close">
+                                    <Fab size="small" className="close" color="primary">
                                         <CloseIcon />
                                     </Fab>
                                 </Link>

@@ -82,6 +82,35 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+/* Tables */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+  width: 100%;
+}
+.bordered-table {
+  border: solid 1px #ccc;
+}
+.fixed-table {
+  table-layout: fixed;
+}
+th,
+td {
+  font-size: 12px; 
+  vertical-align: middle;
+  padding: 4px 10px;
+}
+th {
+  text-align: left; 
+  font-weight: 500;
+  padding: 16px 10px;
+  color: var(--primary-color);
+  white-space: nowrap;
+}
+.top-align th,
+.top-align td {
+  vertical-align: top;
+}
 /* Helper (BootStrap...ish) Classes */
 .d-flex {
   display: flex;

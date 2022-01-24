@@ -127,7 +127,7 @@ const UpdateUser = () => {
                             </form>
 
                             <Link to="/admin/users">
-                                <Fab size="small" className="close">
+                                <Fab size="small" className="close" color="primary">
                                     <CloseIcon />
                                 </Fab>
                             </Link>

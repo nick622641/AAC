@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { updateProduct, getProductDetails, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
@@ -11,8 +11,6 @@ import RichText from '../layouts/RichText'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import CircularProgress from '@mui/material/CircularProgress'
-import IconButton from '@mui/material/IconButton'
-import TvIcon from '@mui/icons-material/Tv'
 import Avatar from '@mui/material/Avatar'
 
 const UpdateProduct = () => {
@@ -351,19 +349,9 @@ const UpdateProduct = () => {
                                     }
                                 </button>
 
-                            </form>
+                            </form>                            
 
-                            <Link 
-                                to={`/artwork/${product._id}`} 
-                                title="View page in a new tab"
-                                target="_blank"
-                            >
-                                <IconButton className="monitor">
-                                    <TvIcon />
-                                </IconButton>
-                            </Link>
-
-                            <Fab size="small" className="close" onClick={() => navigate(-1)}>
+                            <Fab size="small" className="close" onClick={() => navigate(-1)} color="primary">
                                 <CloseIcon />
                             </Fab>
 

@@ -66,7 +66,7 @@ const ForgotPassword = () => {
                         </button>
 
                         <Link to="/login">                              
-                            <Fab size="small" className="close">
+                            <Fab size="small" className="close" color="primary">
                                 <CloseIcon />
                             </Fab>
                         </Link>

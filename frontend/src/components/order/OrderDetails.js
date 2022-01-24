@@ -54,10 +54,10 @@ const OrderDetails = () => {
                                 <table className="middle-align bordered-table">
                                 <tbody>
                                     <tr className="bg-grey">
-                                        <td><h6>Item</h6></td>
-                                        <td><h6>Title</h6></td>                                                
-                                        <td><h6>Quantity</h6></td>
-                                        <td><h6>Price</h6></td>
+                                        <th>Item</th>
+                                        <th>Title</th>                                                
+                                        <th>Quantity</th>
+                                        <th>Price</th>
                                     </tr>
                                     {orderItems && orderItems.map(item => (
                                         <tr key={item.product}>
@@ -81,19 +81,30 @@ const OrderDetails = () => {
                                     ))}
                                 </tbody>
                                 </table>  
-                                <h4>Shipping Details</h4>
-                                <table className="bordered-table">
-                                <tbody>                            
+                                
+                                <table className="top-align">
+                                <tbody>  
                                     <tr>
-                                        <th><h6>Name</h6></th>
+                                        <td colSpan="2">
+                                        <h4>Shipping Details</h4>
+                                        </td>
+                                    </tr>                           
+                                    <tr>
+                                        <td>
+                                            <h6 className="text-right">Name</h6>
+                                        </td>
                                         <td>{user && user.name}</td>
                                     </tr>  
                                     <tr>
-                                        <th><h6>Phone</h6></th>
+                                        <td>
+                                            <h6 className="text-right">Phone</h6>
+                                        </td>
                                         <td>{shippingInfo && shippingInfo.phoneNo}</td>
                                     </tr>  
                                     <tr>
-                                        <th><h6>Address</h6></th>
+                                        <td>
+                                            <h6 className="text-right">Address</h6>
+                                        </td>
                                         <td>
                                             {shippingInfo && shippingInfo.address}
                                             <br />
@@ -105,30 +116,40 @@ const OrderDetails = () => {
                                         </td>
                                     </tr>                              
                                     <tr>
-                                        <td colSpan="2" className="spacer-cell">
+                                        <td colSpan="2">
                                             <h4>Order Status</h4>
                                         </td>
                                     </tr> 
                                     <tr>
-                                        <th><h6>Oder ID</h6></th>
+                                        <td>
+                                            <h6 className="text-right">Oder ID</h6>
+                                        </td>
                                         <td>{order._id}</td>
                                     </tr>  
                                     <tr>
-                                        <th><h6>Date</h6></th>
+                                        <td>
+                                            <h6 className="text-right">Date</h6>
+                                        </td>
                                         <td>{createdAt}</td>
                                     </tr>
                                     <tr>
-                                        <th><h6>Amount</h6></th>
+                                        <td>
+                                            <h6 className="text-right">Amount</h6>
+                                        </td>
                                         <td>{totalPrice && <FormattedPrice number={totalPrice} />}</td>
                                     </tr>                                   
                                     <tr>
-                                        <th><h6>Payment Status</h6></th>
+                                        <td>
+                                            <h6 className="text-right">Payment Status</h6>
+                                        </td>
                                         <td className={isPaid ? "success" : "danger"}>                                                
                                             <b>{isPaid ? 'Paid': 'Pending'}</b>                                             
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th><h6>Process Status</h6></th>
+                                        <td>
+                                            <h6 className="text-right">Process Status</h6>
+                                        </td>
                                         <td className={order.orderStatus && String(order.orderStatus).includes('Delivered') ? "success" : "danger" }>
                                             <b>{ orderStatus }</b>
                                         </td>
@@ -137,7 +158,7 @@ const OrderDetails = () => {
                                 </table>                           
 
                                 <Link to="/orders/me">                              
-                                    <Fab size="small" className="close">
+                                    <Fab size="small" className="close" color="primary">
                                         <CloseIcon />
                                     </Fab>
                                 </Link>                  
