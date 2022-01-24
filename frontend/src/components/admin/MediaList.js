@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { MDBDataTableV5 } from 'mdbreact'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMedia, deleteMedia, clearErrors } from '../../actions/categoryActions'
 import { DELETE_MEDIA_RESET } from '../../constants/categoryConstants'
+import MetaData from '../layouts/MetaData'
+import Loader from '../layouts/Loader'
+import Sidebar from './Sidebar'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
 import Fab from '@mui/material/Fab'
@@ -26,7 +26,7 @@ const ArtistList = () => {
     const { error: deleteError, isDeleted } = useSelector( state => state.medium )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
-    const [ id,  setId ] = useState('')
+    const [ id,              setId             ] = useState('')
 
     useEffect(() => {
 
@@ -96,7 +96,7 @@ const ArtistList = () => {
                             setId(m._id)
                         }}
                     >
-                        <DeleteOutlineIcon sx={{ color: "red" }} />
+                        <DeleteOutlineIcon color="danger" />
                     </IconButton>    
                 </Fragment> 
             })
@@ -113,7 +113,7 @@ const ArtistList = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -121,7 +121,7 @@ const ArtistList = () => {
                         
                     </aside>            
 
-                    <article>
+                    <article className="relative">
                         
                         {loading ? <Loader /> : (
 
@@ -148,7 +148,12 @@ const ArtistList = () => {
                                 /> 
 
                                 <Link to="/dashboard">
-                                    <Fab size="small" className="close" color="primary">
+                                    <Fab 
+                                        size="small" 
+                                        className="close" 
+                                        color="primary"
+                                        sx={{ position: 'absolute', top: 10, right: 10 }}
+                                    >
                                         <CloseIcon />
                                     </Fab>
                                 </Link>

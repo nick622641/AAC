@@ -89,153 +89,157 @@ const Gallery = () => {
 
         <Fragment>
 
-            {loading ? <Loader /> : (
+            <MetaData title={`Gallery - ${title}`} />                                      
 
-                <Fragment>
+            <div className="container">
 
-                    <MetaData title={`Gallery - ${title}`} />        
+                <div className="wrapper parent">  
 
-                    <div className="container">
+                    <aside>
 
-                        <div className="wrapper parent">  
+                        <button 
+                            className="filters"
+                            onClick={() => {setIsMenuOpen(!isMenuOpen)}}
+                        >
+                            Show Menu
+                        </button>
 
-                            <aside>
+                        {(isMenuOpen || !isMobile) && (
+                        <animated.div style={isMobile ? menuAppear : {}}>
 
-                                <button 
-                                    className="filters"
-                                    onClick={() => {setIsMenuOpen(!isMenuOpen)}}
-                                >
-                                    Show Menu
-                                </button>
+                            <h3>
+                                Filters
+                                <Link to="/gallery">
+                                    <IconButton className="float-r">
+                                        <AutorenewIcon />
+                                    </IconButton>
+                                </Link>
+                            </h3>    
 
-                                {(isMenuOpen || !isMobile) && (
-                                <animated.div style={isMobile ? menuAppear : {}}>
+                            <h6>Price Range</h6>
 
-                                    <h3>
-                                        Filters
-                                        <Link to="/gallery">
-                                            <IconButton className="float-r">
-                                                <AutorenewIcon />
-                                            </IconButton>
+                            <Range 
+                                marks={{
+                                    1 : `$1`,
+                                    10000 : `$10000`
+                                }}
+                                min={1}
+                                max={10000}
+                                defaultValue={[1, 10000]}
+                                tipFormatter={value => `$${value}`}
+                                tipProps={{
+                                    placement: "top"                                                    
+                                }}
+                                value={price}
+                                onChange={(price) => {
+                                    setPrice(price)                          
+                                    resetPage()
+                                }}
+                                style={{ margin: "20px 0 50px 0" }}
+                            />                            
+
+                            <h6>Artist</h6>
+
+                            <ul>   
+                                {artists && artists.map(a => (
+                                    <li                                           
+                                        key={a.name}                             
+                                        className={artist === a.name ? 'link-active' : ''}
+                                    >                                                                          
+                                        <Link 
+                                            to={`/gallery/artist/${a.name.replace(/ /g, '-')}`}
+                                            className="whitespace-nowrap"
+                                        >
+                                            <Checkbox 
+                                                checked={artist === a.name ? true : false} 
+                                                size="small"
+                                                sx={{ py: 0.3 }}
+                                                color="primary"
+                                            />                                      
+                                            {a.name}
                                         </Link>
-                                    </h3>    
+                                    </li>
+                                ))}
+                            </ul>
 
-                                    <h6>Price Range</h6>
+                            <h6>Orientation</h6>
 
-                                    <Range 
-                                        marks={{
-                                            1 : `$1`,
-                                            10000 : `$10000`
-                                        }}
-                                        min={1}
-                                        max={10000}
-                                        defaultValue={[1, 10000]}
-                                        tipFormatter={value => `$${value}`}
-                                        tipProps={{
-                                            placement: "top"                                                    
-                                        }}
-                                        value={price}
-                                        onChange={(price) => {
-                                            setPrice(price)                          
-                                            resetPage()
-                                        }}
-                                    />                            
-
-                                    <h6>Artist</h6>
-
-                                    <ul>   
-                                        {artists && artists.map(a => (
-                                            <li                                           
-                                                key={a.name}                             
-                                                className={artist === a.name ? 'link-active' : ''}
-                                            >                                                                          
-                                                <Link to={`/gallery/artist/${a.name.replace(/ /g, '-')}`}>
-                                                    <Checkbox 
-                                                        checked={artist === a.name ? true : false} 
-                                                        size="small"
-                                                        sx={{ py: 0.3 }}
-                                                        color="primary"
-                                                    />                                      
-                                                    {a.name}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <h6>Orientation</h6>
-
-                                    <ul>
-                                        {orientations && orientations.map(o => (
-                                            <li                                           
-                                                key={o.name}                               
-                                                className={orientation === o.name ? 'link-active' : ''}
-                                            >
-                                                <Link to={`/gallery/orientation/${o.name.replace(/ /g, '-')}`}>
-                                                    <Checkbox 
-                                                        checked={orientation === o.name ? true : false} 
-                                                        size="small"
-                                                        sx={{ py: 0.3 }}
-                                                        color="primary"
-                                                    />                                            
-                                                    {o.name}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <h6>Media</h6>
-
-                                    <ul>
-                                        {media && media.map(m => (
-                                            <li                                           
-                                                key={m.name}                                    
-                                                className={medium === m.name ? 'link-active' : ''}
-                                            >
-                                                <Link to={`/gallery/medium/${m.name.replace(/ /g, '-')}`}>
-                                                    <Checkbox 
-                                                        checked={medium === m.name ? true : false} 
-                                                        size="small"
-                                                        sx={{ py: 0.3 }}
-                                                        color="primary"
-                                                    />                                       
-                                                    {m.name}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>                            
-
-                                    <h6>Ratings</h6>
-
-                                    <ul>
-                                        {[5, 4, 3, 2, 1].map(star => (
-                                            <li key={star}>
-                                                <Link to={`/gallery/rating/${star}`}>
-                                                    <Rating 
-                                                        value={star} 
-                                                        sx={{ color: "var(--primary-color)" }} 
-                                                        readOnly
-                                                    />                                            
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <button 
-                                        className="filters"
-                                        onClick={resetPage}
+                            <ul>
+                                {orientations && orientations.map(o => (
+                                    <li                                           
+                                        key={o.name}                               
+                                        className={orientation === o.name ? 'link-active' : ''}
                                     >
-                                        Hide Menu
-                                    </button>
+                                        <Link to={`/gallery/orientation/${o.name.replace(/ /g, '-')}`}>
+                                            <Checkbox 
+                                                checked={orientation === o.name ? true : false} 
+                                                size="small"
+                                                sx={{ py: 0.3 }}
+                                                color="primary"
+                                            />                                            
+                                            {o.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
 
-                                </animated.div>
-                                
-                                )} 
+                            <h6>Media</h6>
 
-                            </aside>
+                            <ul>
+                                {media && media.map(m => (
+                                    <li                                           
+                                        key={m.name}                                    
+                                        className={medium === m.name ? 'link-active' : ''}
+                                    >
+                                        <Link to={`/gallery/medium/${m.name.replace(/ /g, '-')}`}>
+                                            <Checkbox 
+                                                checked={medium === m.name ? true : false} 
+                                                size="small"
+                                                sx={{ py: 0.3 }}
+                                                color="primary"
+                                            />                                       
+                                            {m.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>                            
 
-                            <article>                         
+                            <h6>Ratings</h6>
 
-                                <h1>{title}</h1>
+                            <ul>
+                                {[5, 4, 3, 2, 1].map(star => (
+                                    <li key={star}>
+                                        <Link to={`/gallery/rating/${star}`}>
+                                            <Rating 
+                                                value={star} 
+                                                sx={{ color: "var(--primary-color)" }} 
+                                                readOnly
+                                            />                                            
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <button 
+                                className="filters"
+                                onClick={resetPage}
+                            >
+                                Hide Menu
+                            </button>
+
+                        </animated.div>
+                        
+                        )} 
+
+                    </aside>
+
+                    <article className="relative">                         
+
+                        <h1>{title}</h1>
+
+                        {loading ? <Loader /> : (  
+
+                            <Fragment>
 
                                 <div className="parent">
                                     <span>
@@ -271,17 +275,17 @@ const Gallery = () => {
                                             lastPageText={<LastPageIcon />}  
                                         />
                                     </div>
-                                )}   
+                                )} 
 
-                            </article> 
+                            </Fragment> 
+                        
+                        )}
 
-                        </div>
+                    </article> 
 
-                    </div>  
+                </div>
 
-                </Fragment> 
-            
-            )}
+            </div>  
 
         </Fragment>       
 

@@ -1,29 +1,20 @@
-import React, { Fragment, useState } from 'react'
-import Backdrop from '@mui/material/Backdrop'
+import React, { Fragment } from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
 
 const Loader = () => {
-
-    const [open, setOpen] = useState(true)
-
-    const handleClose = () => {
-        setOpen(false)
-    }
 
     return (
 
         <Fragment>
 
-            <Backdrop
-                sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                invisible={true}
-                open={open}
-                onClick={handleClose}
+            <div
+                className="d-flex justify-content-center align-items-center absolute"
+                style={{ zIndex: 1, width: "100%", height: "100%" }}
             >
 
                 <CircularProgress className="loader" color="primary" /> 
 
-            </Backdrop>             
+            </div>
 
         </Fragment>
 

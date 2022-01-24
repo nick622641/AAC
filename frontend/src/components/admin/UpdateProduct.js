@@ -5,9 +5,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { updateProduct, getProductDetails, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
-import RichText from '../layouts/RichText'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -130,7 +131,7 @@ const UpdateProduct = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -145,21 +146,25 @@ const UpdateProduct = () => {
                             <form onSubmit={submitHandler} encType='multipart/form-data'>
 
                                 <input
-                                    className="add-product-title"
+                                    className="primary-color"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)} 
+                                    style={{ fontSize: '32px', padding: 0 }}
                                 />
+
+                                <br /><br />
 
                                 <div className="parent reverse">
                                     
                                     <label>                                    
                                         <input
                                             type='file'   
+                                            className="hidden-input"
                                             name="product_images"                            
                                             onChange={onChange}   
                                             multiple                              
                                         />                            
-                                        {oldImages[0] && (
+                                        {oldImages[0] && !imagesPreview && (
                                             <Avatar
                                                 src={oldImages[0].thumbUrl} 
                                                 alt={name}
@@ -179,7 +184,9 @@ const UpdateProduct = () => {
                                     <table className="middle-align">
                                     <tbody>  
                                         <tr>                                            
-                                            <th><h6>Stock</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Stock</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     type="number"
@@ -190,7 +197,9 @@ const UpdateProduct = () => {
                                             </td> 
                                         </tr> 
                                         <tr>
-                                            <th><h6>$ CAD</h6></th>
+                                            <th>
+                                                <h6 className="text-right">$ CAD</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     type="number"
@@ -201,7 +210,9 @@ const UpdateProduct = () => {
                                             </td>                                         
                                         </tr>
                                         <tr>
-                                            <th><h6>Published</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Published</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     type="date"
@@ -215,10 +226,11 @@ const UpdateProduct = () => {
                                     </table>
 
                                 </div>  
+                                <br />
 
                                 <ul className="thumbnails">                          
 
-                                    {oldImages && oldImages.map((img, i) => (
+                                    {oldImages && !imagesPreview && oldImages.map((img, i) => (
                                         <li key={i} >
                                             <img 
                                                 key={i} 
@@ -242,8 +254,8 @@ const UpdateProduct = () => {
                                 </ul>  
 
                                 <div>
-                                    <h4>Dimensions <small className="primary-color">&bull; (cm)</small></h4>
-                                    <table className="dimensions">
+                                    <h4>Dimensions <small>&bull; (cm)</small></h4>
+                                    <table>
                                         <tbody>
                                         <tr>
                                             <th>
@@ -283,11 +295,11 @@ const UpdateProduct = () => {
                                         </tbody>
                                     </table>
                                     <h4>Categories</h4>
-                                    <table className="fixed-table categories">
+                                    <table>
                                         <tbody>
                                             <tr>
                                                 <th>
-                                                    <h6>Artist</h6>
+                                                    <h6 className="text-right">Artist</h6>
                                                 </th>
                                                 <td>
                                                     <select 
@@ -301,7 +313,9 @@ const UpdateProduct = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th><h6>Orientation</h6></th>
+                                                <th>
+                                                    <h6 className="text-right">Orientation</h6>
+                                                </th>
                                                 <td>
                                                     <select 
                                                         value={orientation}
@@ -314,7 +328,9 @@ const UpdateProduct = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th><h6>Media</h6></th>
+                                                <th>
+                                                    <h6 className="text-right">Media</h6>
+                                                </th>
                                                 <td>
                                                     <select 
                                                         value={medium}
@@ -330,10 +346,14 @@ const UpdateProduct = () => {
                                 </div>  
 
                                 <h4>Description</h4> 
-                                {description && (
-                                    <RichText 
-                                        text={description}
-                                        setText={setDescription}
+                                {description && (                                 
+                                    <CKEditor
+                                        editor={ClassicEditor}               
+                                        data={description}
+                                        onChange={(event, editor) => {
+                                            const data = editor.getData()
+                                            setDescription(data)
+                                        }}
                                     />
                                 )}                                
                      
@@ -344,14 +364,20 @@ const UpdateProduct = () => {
                                     disabled={loading ? true : false}
                                 >
                                     {loading 
-                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        ? <CircularProgress color="primary" />
                                         : 'Update'
                                     }
                                 </button>
 
                             </form>                            
 
-                            <Fab size="small" className="close" onClick={() => navigate(-1)} color="primary">
+                            <Fab 
+                                size="small" 
+                                className="close" 
+                                color="primary"
+                                onClick={() => navigate(-1)} 
+                                sx={{ position: 'absolute', top: 10, right: 10 }}
+                            >
                                 <CloseIcon />
                             </Fab>
 
@@ -364,7 +390,9 @@ const UpdateProduct = () => {
             </div>    
 
         </Fragment>
+
     )
+
 }
 
 

@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react'
+import Button from '@mui/material/Button'
+import ButtonGroup from '@mui/material/ButtonGroup'
 
 const Confirm = (props) => {
 
@@ -6,30 +8,28 @@ const Confirm = (props) => {
 
         <Fragment>
 
-            <h3>{props.message}?</h3>
+            <h3>{props.message}?</h3> 
 
-            <div className="buttons">
+            <div className="text-center">        
 
-                <button 
-                    className="confirm"
-                    onClick={() => {
-                        props.onConfirm()
-                        props.onBackdropClick()
-                    }}
-                >
-                    OK
-                </button>
+                <ButtonGroup variant="contained">
+                    <Button
+                        onClick={() => {
+                            props.onConfirm()
+                            props.onBackdropClick()
+                        }}
+                    >
+                        OK
+                    </Button>
+                    <Button
+                        onClick={props.onBackdropClick}
+                        variant="outlined"
+                    >
+                        Cancel
+                    </Button>
+                </ButtonGroup>
 
-                &nbsp; &nbsp;
-
-                <button 
-                    className="cancel"
-                    onClick={props.onBackdropClick}
-                >
-                    Cancel
-                </button>
-
-            </div>
+            </div>   
             
         </Fragment>
 

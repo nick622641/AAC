@@ -15,11 +15,11 @@ const UpdateProfile = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const alert = useAlert()
-    const [ name, setName ] = useState('')
-    const [ email, setEmail ] = useState('')
-    const [ avatar, setAvatar ] = useState('')
+    const [ name,          setName          ] = useState('')
+    const [ email,         setEmail         ] = useState('')
+    const [ avatar,        setAvatar        ] = useState('')
     const [ avatarPreview, setAvatarPreview ] = useState('/images/default-avatar.jpg')   
-    const { user } = useSelector( state => state.auth )
+    const { user                      } = useSelector( state => state.auth )
     const { loading, isUpdated, error } = useSelector( state => state.user )
 
     useEffect(() => {
@@ -67,6 +67,7 @@ const UpdateProfile = () => {
             <MetaData title={'Update Profile'} />
 
             <div className="container">
+
                 <div className="wrapper">  
 
                     <form className="user-form" onSubmit={submitHandler} encType='multipart/form-data'>
@@ -84,7 +85,8 @@ const UpdateProfile = () => {
                                                 sx={{ width: 175, height: 175 }}
                                             />                                 
                                             <input
-                                                type='file'   
+                                                type='file' 
+                                                className="hidden-input"  
                                                 onChange={onChange} 
                                             />         
                                         </label>
@@ -118,13 +120,18 @@ const UpdateProfile = () => {
                             disabled={loading ? true : false}
                         >
                             {loading 
-                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} />
+                                ? <CircularProgress color="primary" />
                                 : 'Update'
                             }
                         </button>
 
                         <Link to="/me">                              
-                            <Fab size="small" className="close" color="primary">
+                            <Fab 
+                                size="small" 
+                                className="close" 
+                                color="primary"
+                                sx={{ position: 'absolute', top: 10, right: 10 }}
+                            >
                                 <CloseIcon />
                             </Fab>
                         </Link>
@@ -136,7 +143,9 @@ const UpdateProfile = () => {
             </div>
 
         </Fragment>
+
     )
+
 }
 
 export default UpdateProfile

@@ -116,7 +116,7 @@ const ProductsList = () => {
                     <Fragment>
                         <Link to={`/admin/product/${product._id}`}>
                             <IconButton>
-                                <EditOutlinedIcon fontSize="Default" />
+                                <EditOutlinedIcon />
                             </IconButton>
                         </Link> 
                         <IconButton 
@@ -125,7 +125,7 @@ const ProductsList = () => {
                                 setId(product._id)
                             }}
                         >
-                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                            <DeleteOutlineIcon color="danger" />
                         </IconButton>  
                     </Fragment> 
             })
@@ -142,7 +142,7 @@ const ProductsList = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
 
@@ -150,16 +150,16 @@ const ProductsList = () => {
 
                     </aside>            
 
-                    <article>
+                    <article className="relative" style={{overflow: 'hidden' }}>
 
-                        <Fragment>  
+                        {loading ? <Loader /> : (
 
-                            <div className="user-form cart">
+                            <Fragment>  
 
-                                <h1>All Artwork</h1>
+                                <div className="user-form cart">
 
-                                {loading ? <Loader /> : (
-                               
+                                    <h1>All Artwork</h1>                                
+                                
                                     <MDBDataTableV5 
                                         data={setProducts()}   
                                         fullPagination   
@@ -167,18 +167,24 @@ const ProductsList = () => {
                                         scrollY   
                                         searchTop
                                         searchBottom={false}  
-                                    /> 
-                                )}
+                                    />                                 
 
-                                <Link to="/dashboard">
-                                    <Fab size="small" className="close" color="primary">
-                                        <CloseIcon />
-                                    </Fab>
-                                </Link>
+                                    <Link to="/dashboard">
+                                        <Fab 
+                                            size="small" 
+                                            className="close" 
+                                            color="primary"
+                                            sx={{ position: 'absolute', top: 10, right: 10 }}
+                                        >
+                                            <CloseIcon />
+                                        </Fab>
+                                    </Link>
 
-                            </div>
+                                </div>
 
-                        </Fragment>
+                            </Fragment>
+
+                        )}
 
                     </article>
 

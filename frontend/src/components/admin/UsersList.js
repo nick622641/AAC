@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { MDBDataTableV5 } from 'mdbreact'
+import { useAlert } from 'react-alert'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, Link } from 'react-router-dom'
+import { allUsers, deleteUser, clearErrors } from '../../actions/userActions'
+import { DELETE_USER_RESET } from '../../constants/userConstants'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
-import { useAlert } from 'react-alert'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom';
-import { allUsers, deleteUser, clearErrors } from '../../actions/userActions'
-import { DELETE_USER_RESET } from '../../constants/userConstants'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
 import Fab from '@mui/material/Fab'
@@ -25,7 +25,7 @@ const UsersList = () => {
     const { isDeleted             } = useSelector( state => state.user )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
-    const [ id,  setId ] = useState('')
+    const [ id,              setId             ] = useState('')
 
     useEffect(() => {
 
@@ -106,13 +106,13 @@ const UsersList = () => {
                                 setId(user._id)
                             }}
                         >
-                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                            <DeleteOutlineIcon color="danger" />
                         </IconButton>                       
                     </Fragment> 
             })
         })
 
-        return data;
+        return data
     }
     
     return (
@@ -123,7 +123,7 @@ const UsersList = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -131,15 +131,15 @@ const UsersList = () => {
                         
                     </aside>                     
 
-                    <article>
+                    <article className="relative"> 
 
-                        <Fragment>                            
+                        {loading ? <Loader /> : (
 
-                            <div className="user-form cart">
+                            <Fragment>                            
 
-                                <h1>All Users</h1>
+                                <div className="user-form cart">
 
-                                {loading ? <Loader /> : (
+                                    <h1>All Users</h1>                                
 
                                     <MDBDataTableV5 
                                         data={setUsers()}   
@@ -148,19 +148,24 @@ const UsersList = () => {
                                         scrollY   
                                         searchTop
                                         searchBottom={false}  
-                                    />
+                                    />                                
 
-                                )}
+                                    <Link to="/dashboard">
+                                        <Fab 
+                                            size="small" 
+                                            className="close" 
+                                            color="primary"
+                                            sx={{ position: 'absolute', top: 10, right: 10 }}
+                                        >
+                                            <CloseIcon />
+                                        </Fab>
+                                    </Link>
 
-                                <Link to="/dashboard">
-                                    <Fab size="small" className="close" color="primary">
-                                        <CloseIcon />
-                                    </Fab>
-                                </Link>
+                                </div>
 
-                            </div>
+                            </Fragment>
 
-                        </Fragment>
+                        )}
 
                     </article>
 

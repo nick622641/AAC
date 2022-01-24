@@ -3,6 +3,7 @@ import Review from '../modals/Review'
 import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import Rating from '@mui/material/Rating'
+import parse from 'html-react-parser'
 
 const ListReviews = ({ reviews, user, toggleModal }) => {
 
@@ -14,29 +15,33 @@ const ListReviews = ({ reviews, user, toggleModal }) => {
 
             <div className="parent">
 
-            {reviews && reviews.map(review => (
+                {reviews && reviews.map(review => (
 
-                <div key={review._id}>
-                    <Rating 
-                        value={review.rating} 
-                        sx={{ color: "var(--primary-color)" }} 
-                        readOnly
-                    />   
-                    <p>
-                        by <b>{review.name}</b> &nbsp; 
-                        {user && user._id === review.user && (
-                          
-                            <IconButton onClick={() => {toggleModal(<Review rating={review.rating} comment={review.comment} />)}}>
-                                <EditOutlinedIcon/>
-                            </IconButton>                              
-                      
-                        )}
-                    </p>
-                    <p>{review.comment}</p>
+                    <div key={review._id}>
 
-                </div>
+                        <Rating 
+                            value={review.rating} 
+                            sx={{ color: "var(--primary-color)" }} 
+                            readOnly
+                        />  
+                         
+                        <p>
+                            by <b>{review.name}</b> &nbsp; 
+                            
+                            {user && user._id === review.user && (
+                            
+                                <IconButton onClick={() => {toggleModal(<Review rating={review.rating} comment={review.comment} />)}}>
+                                    <EditOutlinedIcon/>
+                                </IconButton>                              
+                        
+                            )}
+                        </p>
 
-            ))}
+                        {parse(review.comment)}
+
+                    </div>
+
+                ))}
 
             </div>
                 

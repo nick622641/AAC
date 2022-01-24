@@ -69,46 +69,18 @@ aside {
 }
 article {
   flex: 0 1 calc(80% - 80px);  
-  width: calc(80% - 80px);   
 }
 aside ul {
-  margin: 10px 0 30px 0;
-}
-aside ul ul {
-  padding-left: 20px;
-}
-aside li a {
-  display: inline-block; 
+  margin: 20px 0 30px 0;
 }
 aside li{
   padding: 2px 0;
 }
-aside h4 {
-  margin: 0 0 30px 0;
-}
-.rc-slider {
-  margin: 20px 0 50px 0;
-}
 /* MUI Icon styles */
-.close {    
-  position: absolute !important;
-  top: 10px;
-  right: 10px;  
-}
 label .eye {  
   position: absolute;  
   right: 0;  
   line-height: 32px;
-}
-.loader {
-  position: fixed;
-  top: calc((50vh - 94px) - 20px);
-}
-.select-chevron {
-  font-size: 12px !important;    
-  position: absolute !important;
-  top: 0;
-  right: 0;
 }
 /* Button Styles */
 button {
@@ -150,30 +122,6 @@ button[disabled] {
   color: white; 
   background: #88744a;
 }
-.buttons {
-  display: flex;
-  justify-content: center;
-}
-.cancel {
-  border: solid 1px #ccc;
-  flex-basis: 100px;
-  padding: 10px 20px;
-}
-.confirm {
-  background: var(--primary-color);
-  color: white;
-  flex-basis: 100px;
-  padding: 10px 20px;
-}
-.cancel:hover {
-  background: var(--primary-color);
-  color: white;
-}
-.confirm:hover {
-  background: white;
-  color: var(--primary-color);
-  border: solid 1px #ccc;
-}
 /* Form Styles */
 .user-form {    
   margin: auto;
@@ -194,14 +142,6 @@ button[disabled] {
   top: 50%;
   margin: auto;  
   z-index: 2000; 
-}
-.add-product-title,
-.add-product-title::placeholder {
-    font-size: 32px;
-    color: var(--primary-color);
-    padding: 0;
-    margin-bottom: 40px;
-    text-transform: capitalize;
 }
 ::placeholder {
   color: #999;
@@ -227,25 +167,11 @@ select {
   top: 30px;
   left: 0;
 }
-option {
-  color: black;
-}
 input:focus,
 select:focus,
 textarea:focus {
   border-bottom-color: var(--primary-color);
   outline: none;
-}
-input[type=file] {
-  position: absolute;
-  opacity: 0; 
-  width: 0;
-  padding: 0;
-}
-.order-summary {
-  padding: 20px;
-  margin-left: 40px;
-  box-shadow: var(--box-shadow);   
 }
 .user-form p {
   line-height: 2.5em;
@@ -304,17 +230,15 @@ input[type=file] {
   position: absolute;
   left: 10px;
   line-height: 35px;
-  font-size: 22px;
-  color: #ccc;
 }
 .custom-select img {
   width: 20px;
   margin-right: 20px;
   border: solid 1px #ccc;
 }
-.ck.ck-editor__main>.ck-editor__editable.ck-focused {
-  border-color: #ccc;
-  border-bottom-color: var(--primary-color);
+.ck-focused {
+  border-color: #ccc !important;
+  border-bottom-color: var(--primary-color) !important;
 }
 /* MDB Table Styles */
 .mdb-datatable > div:nth-child(2) {
@@ -325,6 +249,10 @@ input[type=file] {
   background: #f6f5f5;
 }
 /* Home Page Styles */
+.portrait .parent {
+  flex-direction: column;
+  justify-content: center;
+}
 .callout {
   flex-direction: column;
   justify-content: center;
@@ -401,8 +329,7 @@ section .callout h3 {
   background-size: cover;    
 }
 /* Thumbnail Styles */
-.thumbnails {  
-  height: 75px;  
+.thumbnails {    
   display: flex; 
   flex-wrap: wrap;  
   margin-bottom: 20px;
@@ -413,8 +340,9 @@ section .callout h3 {
   height: 75px; 
   overflow: hidden;
   border: solid 1px #ccc;
+  flex: 1 0 125px;
 }
-.product-details .thumbnails li:hover img {
+.thumbnails .thumb:hover {
   cursor: zoom-in; 
   opacity: 0.5;
 }
@@ -453,7 +381,7 @@ section .callout h3 {
 }
 /* Lightbox */
 .backdrop {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
   height: 100%;
   width: 100%;
@@ -464,8 +392,9 @@ section .callout h3 {
 .lightbox {  
   width: 90vw;
   height: 90vh;
-  margin: 5vh 5vw; 
+  margin: 5vh auto; 
   overflow: hidden;  
+  position: relative;
 }
 .lightbox .slide-container {  
   position: absolute;  
@@ -478,10 +407,6 @@ section .callout h3 {
   display: inline-block;
   width: 100%;
   height: 100%;
-}
-.lightbox img {
-  height: 100%;
-  object-fit: contain;
 }
 .arrow-buttons {
   position: absolute;
@@ -537,19 +462,6 @@ section .callout h3 {
   align-items: center;
   height: 70%;
 }
-.showroom-item img {
-  object-fit: contain;
-}
-.showroom-item h6 {
-  margin-top: 20px;   
-}
-.showroom-item p {
-  margin-bottom: 10px;
-}
-.showroom-item span {  
-  color: var(--primary-color);
-  font-size: 1.375rem;  
-}
 /* Media Queries */
 @media ( max-width: 768px ) {
   .container {
@@ -563,9 +475,6 @@ section .callout h3 {
   }
   .reverse {
     flex-direction: column-reverse;
-  }
-  article {    
-    width: 100%;
   }
   .filters {
     display: inline-block;

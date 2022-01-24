@@ -17,13 +17,12 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 const ProductReviews = () => {
    
     const alert = useAlert()
-    const dispatch = useDispatch()
-    const [ productId, setProductId ] = useState('')
-    const { error, reviews } = useSelector( state => state.productReviews )
+    const dispatch = useDispatch() 
+    const { error, reviews                } = useSelector( state => state.productReviews )
     const { isDeleted, error: deleteError } = useSelector( state => state.review )
-
+    const [ productId,       setProductId      ] = useState('')
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
-    const [ reviewId,  setReviewId ] = useState('')
+    const [ reviewId,        setReviewId       ] = useState('')
 
     useEffect(() => {
         if(error) {
@@ -104,7 +103,7 @@ const ProductReviews = () => {
                                 setReviewId(review._id)
                             }}
                         >
-                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                            <DeleteOutlineIcon color="danger" />
                         </IconButton> 
                     </Fragment> 
             })
@@ -122,7 +121,7 @@ const ProductReviews = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -160,7 +159,12 @@ const ProductReviews = () => {
                             )}
 
                             <Link to="/dashboard">
-                                <Fab size="small" className="close" color="primary">
+                                <Fab 
+                                    size="small" 
+                                    className="close" 
+                                    color="primary"
+                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                >
                                     <CloseIcon />
                                 </Fab>
                             </Link>

@@ -1,11 +1,10 @@
 import React, { Fragment, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrderDetails, clearErrors } from '../../actions/orderActions'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+import MetaData from '../layouts/MetaData'
+import Loader from '../layouts/Loader'
 import FormattedPrice from '../layouts/FormattedPrice'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
@@ -19,10 +18,7 @@ const OrderDetails = () => {
     const { loading, error, order = {} } = useSelector(state => state.orderDetails)    
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
     const date = new Date(order.createdAt)
-    const day = date.getDate()
-    const month = date.getMonth() + 1
-    const year = new Date(date).getFullYear()
-    const createdAt = day + '/' + month + '/' + year
+    const createdAt = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()
 
     useEffect(() => {
         dispatch(getOrderDetails(id))
@@ -51,7 +47,7 @@ const OrderDetails = () => {
 
                                 <h1>Order Details</h1>
 
-                                <table className="middle-align bordered-table">
+                                <table className="bordered-table">
                                 <tbody>
                                     <tr className="bg-grey">
                                         <th>Item</th>
@@ -122,7 +118,7 @@ const OrderDetails = () => {
                                     </tr> 
                                     <tr>
                                         <td>
-                                            <h6 className="text-right">Oder ID</h6>
+                                            <h6 className="text-right">Order ID</h6>
                                         </td>
                                         <td>{order._id}</td>
                                     </tr>  
@@ -158,7 +154,12 @@ const OrderDetails = () => {
                                 </table>                           
 
                                 <Link to="/orders/me">                              
-                                    <Fab size="small" className="close" color="primary">
+                                    <Fab 
+                                        size="small" 
+                                        className="close" 
+                                        color="primary"
+                                        sx={{ position: 'absolute', top: 10, right: 10 }}
+                                    >
                                         <CloseIcon />
                                     </Fab>
                                 </Link>                  

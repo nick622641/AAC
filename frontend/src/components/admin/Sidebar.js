@@ -58,7 +58,7 @@ const Sidebar = () => {
             <animated.div style={isMobile ? sidebarAppear : {}}>
             
                 <nav>
-                    <ul>
+                    <ul style={{ marginTop: 0 }}>
 
                         <li>
                             <Link to="/dashboard">

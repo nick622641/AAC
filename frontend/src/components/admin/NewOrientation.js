@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { NEW_ORIENTATION_RESET } from '../../constants/categoryConstants'
 import { newOrientation, clearErrors } from '../../actions/categoryActions'
+import MetaData from '../layouts/MetaData'
+import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -16,7 +16,7 @@ const NewOrientation = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [ name, setName ] = useState('')  
-    const { loading, error, success } = useSelector(state => state.newOrientation)
+    const { loading, error, success } = useSelector( state => state.newOrientation )
 
     useEffect(() => { 
         if(error) {
@@ -24,7 +24,7 @@ const NewOrientation = () => {
             dispatch(clearErrors())
         }
         if(success) {            
-            alert.success('Orientation created successfully')
+            alert.success('Orientation Created Successfully')
             navigate('/admin/orientations')
             dispatch({ type: NEW_ORIENTATION_RESET })            
         }
@@ -45,7 +45,7 @@ const NewOrientation = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -64,7 +64,9 @@ const NewOrientation = () => {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <th><h6>Orientation Name</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Orientation Name</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     placeholder="Orientation Name"
@@ -89,7 +91,12 @@ const NewOrientation = () => {
                             </form>
                    
                             <Link to="/admin/orientations">
-                                <Fab size="small" className="close" color="primary">
+                                <Fab 
+                                    size="small" 
+                                    className="close" 
+                                    color="primary"
+                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                >
                                     <CloseIcon />
                                 </Fab>
                             </Link>
@@ -102,7 +109,9 @@ const NewOrientation = () => {
             </div>
             
         </Fragment>
+
     )
+    
 }
 
 export default NewOrientation

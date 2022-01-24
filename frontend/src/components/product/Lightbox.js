@@ -37,6 +37,7 @@ const Lightbox = (props) => {
                             <img                         
                                 src={image.url} 
                                 alt={props.product.name} 
+                                className="object-fit"
                             />
                         </div>
 
@@ -70,7 +71,7 @@ const Lightbox = (props) => {
             <IconButton 
                 className="close" 
                 onClick={props.toggleLightbox}  
-                sx={{ backgroundColor: "transparent", color: "#999999" }}              
+                sx={{ backgroundColor: "transparent", color: "#999999",position: 'absolute', top: 10, right: 10 }}              
             >
                 <CloseIcon />
             </IconButton>

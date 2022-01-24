@@ -37,8 +37,7 @@ const Dashboard = () => {
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+        textAlign: 'center'
       }))
 
     useEffect(() => {
@@ -49,25 +48,25 @@ const Dashboard = () => {
 
     return (
 
-        <Fragment>            
+        <Fragment>              
 
-            {loading ? <Loader /> : (
-                            
-                <Fragment>
+            <MetaData title={'Admin Dashboard'} />
 
-                    <MetaData title={'Admin Dashboard'} />
+            <div className="container">
 
-                    <div className="container">
+                <div className="wrapper parent">
 
-                        <div className="wrapper parent dashboard">
+                    <aside>
 
-                            <aside>
+                        <Sidebar />
 
-                                <Sidebar />
+                    </aside>
 
-                            </aside>
+                    <article className="relative">
 
-                            <article>
+                        {loading ? <Loader /> : (
+                    
+                            <Fragment>
 
                                 <h1>Dashboard</h1>  
 
@@ -193,7 +192,7 @@ const Dashboard = () => {
                                                         <CardActions>
                                                             <Button size="small">&nbsp;</Button>
                                                         </CardActions>
-                                                       
+                                                    
                                                     </Card>                                                   
                                                 </Item>
                                             </Grid>
@@ -202,17 +201,17 @@ const Dashboard = () => {
 
                                     </Grid>
 
-                                </Box>                                                              
-                                
-                            </article>
-                            
-                        </div>
+                                </Box>  
 
-                    </div>
+                            </Fragment>
 
-                </Fragment>
+                            )}                                                              
+                        
+                    </article>
+                    
+                </div>
 
-            )}  
+            </div>                
             
         </Fragment>
 

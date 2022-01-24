@@ -57,7 +57,10 @@ const Countries = ({ country, setCountry, setSelectOpen, isSelectOpen }) => {
                     <span className={country ? 'set' : ''}>
                         {country ?  country : 'Country'}
                     </span> 
-                    <IconButton className="select-chevron">
+                    <IconButton 
+                        className="select-chevron" 
+                        sx={{ position: 'absolute', top: 0, right: 0 }}
+                    >
                         {isSelectOpen ? (
                             <ExpandLessIcon />
                         ):(

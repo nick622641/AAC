@@ -76,6 +76,14 @@ img {
   display: inline-block;  
   transition: all var(--speed);
 }
+.object-fit {
+  object-fit: contain;
+  height: 100%;
+}
+.background-cover { 
+  background-position: center;
+  background-size: cover;
+}
 .centered-image {
   position: relative;
   top: 50%;
@@ -90,9 +98,6 @@ table {
 }
 .bordered-table {
   border: solid 1px #ccc;
-}
-.fixed-table {
-  table-layout: fixed;
 }
 th,
 td {
@@ -117,6 +122,9 @@ th {
 }
 .justify-content-between {
   justify-content: space-between;
+}
+.justify-content-center {
+  justify-content: center;
 }
 .justify-content-end {
   justify-content: flex-end;
@@ -153,10 +161,6 @@ th {
 }
 .float-r {
   float: right;
-}
-.background-cover { 
-  background-position: center;
-  background-size: cover;
 }
 .inactive {
   pointer-events: none;

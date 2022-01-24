@@ -44,65 +44,62 @@ const Login = () => {
         
         <Fragment>
 
-            {loading ? <Loader /> : (
-                
-                <Fragment>
+            <MetaData title={'Login'} />
 
-                    <MetaData title={'Login'} />
+            {loading ? <Loader /> : (                        
 
-                    <div className="container">
-                        <div className="wrapper">
+                <div className="container">
 
-                            <form onSubmit={submitHandler} className="user-form">
+                    <div className="wrapper">
 
-                                <h1>Login</h1>
+                        <form onSubmit={submitHandler} className="user-form">
 
-                                <label>
-                                    <input 
-                                        type="email" 
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />                
-                                </label>
+                            <h1>Login</h1>
 
-                                <br />
+                            <label>
+                                <input 
+                                    type="email" 
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />                
+                            </label>
 
-                                <label>
-                                    <input 
-                                        type={passwordVisible ? 'text' : 'password'} 
-                                        placeholder="Password" 
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    /> 
-                                    <IconButton className="eye" onClick={togglePassword}>
-                                        {passwordVisible ? (
-                                            <VisibilityIcon fontSize="small" />
-                                        ):(
-                                            <VisibilityOffIcon fontSize="small" />
-                                        )}
-                                    </IconButton>                
-                          
-                                </label>  
+                            <br />
 
-                                <br /><br />                              
+                            <label>
+                                <input 
+                                    type={passwordVisible ? 'text' : 'password'} 
+                                    placeholder="Password" 
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                /> 
+                                <IconButton className="eye" onClick={togglePassword}>
+                                    {passwordVisible ? (
+                                        <VisibilityIcon fontSize="small" />
+                                    ):(
+                                        <VisibilityOffIcon fontSize="small" />
+                                    )}
+                                </IconButton>                
+                        
+                            </label>  
 
-                                <button className="submit">Login</button>
+                            <br /><br />                              
 
-                                <br /><br />
+                            <button className="submit">Login</button>
 
-                                <div className="parent">
-                                    <Link to="/password/forgot">Forgot Password?</Link>                               
-                                    <Link to="/register">New User?</Link>
-                               </div>
+                            <br /><br />
 
-                            </form>
+                            <div className="parent">
+                                <Link to="/password/forgot">Forgot Password?</Link>                               
+                                <Link to="/register">New User?</Link>
+                            </div>
 
-                        </div>
+                        </form>
 
                     </div>
-                   
-                </Fragment>
+
+                </div>                   
 
             )}
 

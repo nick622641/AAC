@@ -173,9 +173,9 @@ const Cart = () => {
 
                         <Fab 
                             size="small" 
-                            color="primary" 
-                            className="close" 
+                            color="primary"                             
                             onClick={() => navigate(-1)}
+                            sx={{ position: 'absolute', top: 10, right: 10 }}
                         >
                             <CloseIcon />
                         </Fab>

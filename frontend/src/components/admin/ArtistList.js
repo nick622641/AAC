@@ -95,7 +95,7 @@ const ArtistList = () => {
                                 setId(artist._id)
                             }}
                         >
-                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                            <DeleteOutlineIcon color="danger" />
                         </IconButton>   
                     </Fragment> 
             })
@@ -113,7 +113,7 @@ const ArtistList = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -121,9 +121,9 @@ const ArtistList = () => {
                         
                     </aside>            
 
-                    <article>                        
-                        
-                        {loading ? <Loader /> : (
+                    <article className="relative">  
+
+                        {loading ? <Loader /> : ( 
 
                             <div className="user-form cart">
 
@@ -136,7 +136,7 @@ const ArtistList = () => {
                                             <AddIcon />
                                         </IconButton>
                                     </Link> 
-                                </p>                                                              
+                                </p>                                                                                                 
                                 
                                 <MDBDataTableV5 
                                     data={setCategories()}   
@@ -145,16 +145,21 @@ const ArtistList = () => {
                                     scrollY   
                                     searchTop
                                     searchBottom={false}  
-                                />                       
+                                />  
 
                                 <Link to="/dashboard">
-                                    <Fab size="small" className="close" color="primary">
+                                    <Fab 
+                                        size="small" 
+                                        className="close" 
+                                        color="primary"
+                                        sx={{ position: 'absolute', top: 10, right: 10 }}
+                                    >
                                         <CloseIcon />
                                     </Fab>
                                 </Link>
 
-                            </div>
-
+                            </div> 
+                        
                         )}
 
                     </article>

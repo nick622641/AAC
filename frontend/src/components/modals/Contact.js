@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react'
-import RichText from '../layouts/RichText'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 function Contact() {
 
@@ -30,10 +31,10 @@ function Contact() {
 
             <form onSubmit={submitHandler}>
 
-                <table className="bordered-table fixed-table">
+                <table className="top-align" style={{ tableLayout: 'fixed' }}>
                     <tbody>
                         <tr>
-                            <th style={{ width: "100px" }}><h6>Name</h6></th>
+                            <th style={{ width: "100px" }} className="text-right">Name</th>
                             <td>
                                 <input 
                                     placeholder="Name" 
@@ -44,7 +45,7 @@ function Contact() {
                             </td>
                         </tr>
                         <tr>
-                            <th><h6>Email</h6></th>
+                            <th className="text-right">Email</th>
                             <td>
                                 <input 
                                     type="email" 
@@ -55,14 +56,18 @@ function Contact() {
                             </td>
                         </tr>
                         <tr>
-                            <th style={{ verticalAlign: "top" }}>
-                                <h6 style={{ paddingTop: "12px" }}>Message</h6>
+                            <th className="text-right">
+                                Message
                             </th>
                             <td>                              
                                 <div className="relative">
-                                    <RichText
-                                        text={message}
-                                        setText={setMessage}
+                                    <CKEditor
+                                        editor={ClassicEditor}               
+                                        data={message}
+                                        onChange={(event, editor) => {
+                                            const data = editor.getData()
+                                            setMessage(data)
+                                        }}
                                     />
                                     <input 
                                         className="hidden-input" 
@@ -87,6 +92,7 @@ function Contact() {
         </Fragment>
 
     )
+
 }
 
 export default Contact

@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import IconButton from '@mui/material/IconButton'
+import SearchIcon from '@mui/icons-material/Search'
 
 const Search = (props) => {
 
@@ -20,21 +22,24 @@ const Search = (props) => {
 
     return (
 
-        <form onSubmit={searchHandler}>
+        <form onSubmit={searchHandler} className="relative">            
 
-            <div>
+            <input 
+                placeholder="Search Site" 
+                value={keyword}
+                onChange={(e) => {
+                    setKeyword(e.target.value)
+                    searchHandler(e)
+                }} 
+                autoFocus
+            /> 
 
-                <input 
-                    placeholder="Search Site" 
-                    value={keyword}
-                    onChange={(e) => {
-                        setKeyword(e.target.value)
-                        searchHandler(e)
-                    }} 
-                    autoFocus
-                />  
-                
-            </div>  
+            <IconButton 
+                sx={{ position: "absolute", top: 40, right: 0 }} 
+                type="submit"
+            >
+                <SearchIcon fontSize="large" />
+            </IconButton>
             
         </form>
 

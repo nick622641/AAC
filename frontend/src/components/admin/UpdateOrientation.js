@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import { UPDATE_ORIENTATION_RESET } from '../../constants/categoryConstants'
 import { getOrientationDetails, updateOrientation, clearErrors } from '../../actions/categoryActions'
+import MetaData from '../layouts/MetaData'
+import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -17,10 +17,11 @@ const UpdateOrientation = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [ name, setName ] = useState('')  
-    const { error, orientation } = useSelector(state => state.orientationDetails)
+    const { error, orientation                     } = useSelector(state => state.orientationDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.orientation)
 
     useEffect(() => { 
+
         if (orientation && orientation._id !== id) {
             dispatch(getOrientationDetails(id))
         } else {
@@ -56,7 +57,7 @@ const UpdateOrientation = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -75,7 +76,9 @@ const UpdateOrientation = () => {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <th><h6>Orientation Name</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Orientation Name</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     placeholder="Orientation Name"
@@ -92,7 +95,7 @@ const UpdateOrientation = () => {
                                     disabled={loading ? true : false}
                                 >
                                     {loading 
-                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        ? <CircularProgress color="primary" />
                                         : 'Update'
                                     }
                                 </button>
@@ -100,7 +103,12 @@ const UpdateOrientation = () => {
                             </form>
                    
                             <Link to="/admin/orientations">
-                                <Fab size="small" className="close" color="primary">
+                                <Fab 
+                                    size="small" 
+                                    className="close" 
+                                    color="primary"
+                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                >
                                     <CloseIcon />
                                 </Fab>
                             </Link>
@@ -114,7 +122,9 @@ const UpdateOrientation = () => {
             </div>
             
         </Fragment>
+
     )
+
 }
 
 export default UpdateOrientation

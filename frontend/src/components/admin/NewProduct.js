@@ -5,9 +5,10 @@ import { useNavigate, Link } from 'react-router-dom'
 import { newProduct, clearErrors } from '../../actions/productActions'
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
-import RichText from '../layouts/RichText'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
@@ -48,7 +49,7 @@ const NewProduct = () => {
             dispatch(clearErrors())
         }
         if(success) {            
-            alert.success('Product created successfully')
+            alert.success('Product Created Successfully')
             dispatch({ type: NEW_PRODUCT_RESET })
             navigate('/admin/products')
         }
@@ -101,7 +102,7 @@ const NewProduct = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -116,17 +117,21 @@ const NewProduct = () => {
                             <form onSubmit={submitHandler} encType='multipart/form-data'>
 
                                 <input
-                                    className="add-product-title"
-                                    placeholder="Artwork title"
+                                    className="primary-color"
+                                    placeholder="Artwork Title"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)} 
+                                    style={{ fontSize: '32px', padding: 0 }}
                                 />
+
+                                <br /><br />
 
                                 <div className="parent reverse">
 
                                     <label>                                        
                                         <input
                                             type="file"   
+                                            className="hidden-input"
                                             name="product_images"                            
                                             onChange={onChange}   
                                             multiple                              
@@ -142,7 +147,9 @@ const NewProduct = () => {
                                     <tbody> 
 
                                         <tr>                                          
-                                            <th><h6>Stock</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Stock</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     type="number"
@@ -153,7 +160,9 @@ const NewProduct = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th><h6>$ CAD</h6></th>
+                                            <th>
+                                                <h6 className="text-right">$ CAD</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     type="number"
@@ -164,7 +173,9 @@ const NewProduct = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th><h6>Published</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Published</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     type="date"
@@ -196,7 +207,7 @@ const NewProduct = () => {
                                   
 
                                 <div>
-                                    <h4>Dimensions <small className="primary-color">&bull; (cm)</small></h4>
+                                    <h4>Dimensions <small>&bull; (cm)</small></h4>
                                     <table>
                                         <tbody>
                                         <tr>
@@ -236,12 +247,14 @@ const NewProduct = () => {
                                         </tr>
                                         </tbody>
                                     </table>
+
                                     <h4>Categories</h4>
-                                    <table className="fixed-table categories">
+
+                                    <table>
                                         <tbody>
                                             <tr>
                                                 <th style={{ width: "100px" }}>
-                                                    <h6>Artist</h6>
+                                                    <h6 className="text-right">Artist</h6>
                                                 </th>
                                                 <td>
                                                     <select 
@@ -257,7 +270,7 @@ const NewProduct = () => {
                                             </tr>
                                             <tr>
                                                 <th>
-                                                    <h6>Orientation</h6>
+                                                    <h6 className="text-right">Orientation</h6>
                                                 </th>
                                                 <td>
                                                     <select 
@@ -274,7 +287,7 @@ const NewProduct = () => {
                                             </tr>
                                             <tr>
                                                 <th>
-                                                    <h6>Media</h6>
+                                                    <h6 className="text-right">Media</h6>
                                                 </th>
                                                 <td>
                                                     <select 
@@ -292,11 +305,15 @@ const NewProduct = () => {
                                     </table>  
                                 </div>   
 
-                                <h4>Description</h4> 
-                                
-                                <RichText 
-                                    text={description}
-                                    setText={setDescription}
+                                <h4>Description</h4>  
+
+                                <CKEditor
+                                    editor={ClassicEditor}               
+                                    data={description}
+                                    onChange={(event, editor) => {
+                                        const data = editor.getData()
+                                        setDescription(data)
+                                    }}
                                 />
 
                                 <br /><br />    
@@ -314,7 +331,12 @@ const NewProduct = () => {
                             </form>
 
                             <Link to="/dashboard">
-                                <Fab size="small" className="close" color="primary">
+                                <Fab 
+                                    size="small" 
+                                    className="close" 
+                                    color="primary"
+                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                >
                                     <CloseIcon />
                                 </Fab>
                             </Link>
@@ -327,7 +349,9 @@ const NewProduct = () => {
             </div>
             
         </Fragment>
+
     )
+
 }
 
 export default NewProduct

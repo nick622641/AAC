@@ -25,7 +25,7 @@ const OrdersList = () => {
     const { isDeleted              } = useSelector( state => state.order )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
-    const [ id,  setId ] = useState('')
+    const [ id,              setId             ] = useState('')
 
     useEffect(() => {
 
@@ -40,7 +40,7 @@ const OrdersList = () => {
             dispatch({ type: DELETE_ORDER_RESET })
         }
         
-    }, [dispatch, navigate,  alert, error, isDeleted ])
+    }, [dispatch, navigate,  alert, error, isDeleted])
 
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
@@ -63,7 +63,7 @@ const OrdersList = () => {
                     label: 'Qty',
                     field: 'numOfItems',
                     sort: 'asc',
-                    width: 74
+                    width: 75
                 },
                 {
                     label: 'Amount',
@@ -92,14 +92,12 @@ const OrdersList = () => {
                 id: order._id,
                 numOfItems: order.orderItems.length,
                 amount: `$${order.totalPrice}`, 
-                status: order.orderStatus && String(order.orderStatus).includes('Delivered')
-                ? <span className="success">{order.orderStatus}</span>
-                : <span className="danger">{order.orderStatus}</span>,
+                status: order.orderStatus,
                 actions:                 
                     <Fragment>
                         <Link to={`/admin/order/${order._id}`}>
                             <IconButton>
-                            <   VisibilityIcon fontSize="default" />
+                            <   VisibilityIcon fontSize="small" />
                             </IconButton>
                         </Link> 
                         <IconButton 
@@ -108,7 +106,7 @@ const OrdersList = () => {
                                 setId(order._id)
                             }}
                         >
-                            <DeleteOutlineIcon sx={{ color: "red" }} />
+                            <DeleteOutlineIcon color="danger" />
                         </IconButton>            
                     </Fragment> 
             })
@@ -125,7 +123,7 @@ const OrdersList = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
 
@@ -133,15 +131,15 @@ const OrdersList = () => {
 
                     </aside>
 
-                    <article>      
+                    <article className="relative"> 
 
-                        <Fragment>
+                        {loading ? <Loader /> : (     
 
-                            <div className="user-form cart">
+                            <Fragment>
 
-                                <h1>All Orders</h1>
+                                <div className="user-form cart">
 
-                                {loading ? <Loader /> : (
+                                    <h1>All Orders</h1>                                
 
                                     <MDBDataTableV5 
                                         data={setOrders()}   
@@ -150,19 +148,24 @@ const OrdersList = () => {
                                         scrollY   
                                         searchTop
                                         searchBottom={false}  
-                                    />                              
+                                    />   
 
-                                )}
+                                    <Link to="/dashboard">
+                                        <Fab 
+                                            size="small" 
+                                            className="close" 
+                                            color="primary"
+                                            sx={{ position: 'absolute', top: 10, right: 10 }}
+                                        >
+                                            <CloseIcon />
+                                        </Fab>
+                                    </Link>
+                                    
+                                </div>
 
-                                <Link to="/dashboard">
-                                    <Fab size="small" className="close" color="primary">
-                                        <CloseIcon />
-                                    </Fab>
-                                </Link>
-                                
-                            </div>
+                            </Fragment>
 
-                        </Fragment>
+                        )}
 
                     </article>   
 

@@ -99,7 +99,7 @@ const ProductDetails = () => {
 
                     <MetaData title={product.name} />
 
-                    <div className="bg-grey product-details">
+                    <div className="bg-grey">
 
                         <div className="container"> 
                                 
@@ -120,33 +120,33 @@ const ProductDetails = () => {
                                                 <img 
                                                     src={image.thumbUrl} 
                                                     alt={product.name} 
-                                                    className="centered-image"
+                                                    className="centered-image thumb"
                                                 />
                                             </li>
                                         ))}
                                         </ul>                                       
                                     </div>                                    
 
-                                    <div className="information parent">  
+                                    <div className="parent">  
 
                                         <h1 className="text-center">{product.name}</h1>                                        
 
-                                        <table className="middle-align">  
+                                        <table>  
                                             <tbody>                                                 
                                                 <tr>
-                                                    <th><h6>Artist</h6></th>
+                                                    <th className="text-right">Artist</th>
                                                     <td><Link to="#!"><b>{product.artist}</b></Link></td>
                                                 </tr>       
                                                 <tr>
-                                                    <th><h6>Dimensions</h6></th>
+                                                    <th className="text-right">Dimensions</th>
                                                     <td>{product.width} cm <small>x</small> {product.height} cm</td>
                                                 </tr>
                                                 <tr>
-                                                    <th><h6>Media</h6></th>
+                                                    <th className="text-right">Media</th>
                                                     <td>{product.media}</td>
                                                 </tr>                    
                                                 <tr>
-                                                    <th><h6>Published</h6></th>
+                                                    <th className="text-right">Published</th>
                                                     <td>                                                       
                                                         {product.datePublished && (                                                        
                                                             new Date(product.datePublished).getFullYear()                                                       
@@ -154,7 +154,7 @@ const ProductDetails = () => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th><h6>Status</h6></th>
+                                                    <th className="text-right">Status</th>
                                                     <td className={product.stock === 0 ? "danger" : ""}>                                              
                                                         {product.stock > 0 ? product.stock : null}                                                     
                                                         &nbsp;
@@ -162,7 +162,7 @@ const ProductDetails = () => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th><h6>Price</h6></th>    
+                                                    <th className="text-right">Price</th>    
                                                     <td>
                                                         <span className="price">                                                                                                              
                                                             {product.price && (
@@ -172,7 +172,7 @@ const ProductDetails = () => {
                                                     </td>
                                                 </tr>                                              
                                                 <tr>
-                                                    <th><h6>Reviews</h6></th>    
+                                                    <th className="text-right">Reviews</th>    
                                                     <td className="whitespace-nowrap">
                                                         <Rating                                                            
                                                             value={product.ratings} 
@@ -255,9 +255,7 @@ const ProductDetails = () => {
                                 <div className="col-6">
                                     <h3>Share</h3>                                
                                     <h2>Spread the word about {product.name}</h2>                                    
-                                    <div className="icons">  
-                                        <Social />
-                                    </div>                                
+                                    <Social />
                                 </div>
                                 <div className="col-6">
 
@@ -277,7 +275,7 @@ const ProductDetails = () => {
                     </div>  
 
                     <div className={product.orientation !== 'Landscape' ? 'container' : ''}>
-                        <div className="wrapper full-size">                              
+                        <div className="wrapper">                              
                             {product.images && (
                                 <img src={product.images[0].url} alt={product.name} />
                             )} 

@@ -5,10 +5,10 @@ import { useAlert } from 'react-alert'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
 import { getArtists } from '../../actions/categoryActions'
+import { styled } from '@mui/material/styles'
 import Modal from '../modals/Modal'
 import Contact from '../modals/Contact'
 import Search from './Search'
-import { styled } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import SearchIcon from '@mui/icons-material/Search'
@@ -298,7 +298,7 @@ const Header = () => {
                         </Link>
                     )}  
 
-                    <Divider orientation="vertical" flexItem  style={{ margin: "0 10px" }}/> 
+                    <Divider orientation="vertical" flexItem  sx={{ mx: 1 }}/> 
 
                     <IconButton>
                         <FacebookSharpIcon/>

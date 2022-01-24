@@ -20,8 +20,7 @@ const Register = () => {
 
     const { loading, isAuthenticated, error } = useSelector( state => state.auth )
    
-    const [user, setUser] = useState({ name: '', email: '', password: '' }) 
-    
+    const [ user,           setUser             ] = useState({ name: '', email: '', password: '' })     
     const { name, email, password } = user    
     const [ avatar,          setAvatar          ] = useState('') 
     const [ avatarPreview,   setAvatarPreview   ] = useState('/images/default-avatar.jpg')     
@@ -32,6 +31,7 @@ const Register = () => {
     }
 
     useEffect(() => {
+
         if(isAuthenticated) {
             navigate('/')            
         }
@@ -86,7 +86,8 @@ const Register = () => {
                                 <td rowSpan="3">
                                     <label className="avatar">                            
                                         <input
-                                            type="file"   
+                                            type="file"  
+                                            className="hidden-input" 
                                             name="avatar"                            
                                             accept="images/*"
                                             onChange={onChange}                                                                                                                             
@@ -131,9 +132,9 @@ const Register = () => {
                                         /> 
                                         <IconButton className="eye" onClick={togglePassword}>
                                             {passwordVisible ? (
-                                                <VisibilityIcon fontSize="default" />
+                                                <VisibilityIcon fontSize="small" />
                                             ):(
-                                                <VisibilityOffIcon fontSize="default" />
+                                                <VisibilityOffIcon fontSize="small" />
                                             )}
                                         </IconButton>    
                                     </label>
@@ -147,7 +148,7 @@ const Register = () => {
                             disabled={loading ? true : false}
                         >
                             {loading 
-                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} />
+                                ? <CircularProgress color="primary" />
                                 : 'Sign Up'
                             }
                         </button>
@@ -156,11 +157,16 @@ const Register = () => {
 
                         <div className="parent">
                             <small>Already signed up?</small>
-                            <Link to="/login">LOGIN</Link>
+                            <Link to="/login">Login</Link>
                         </div>
 
                         <Link to="/login">
-                            <Fab size="small" className="close" color="primary">
+                            <Fab 
+                                size="small" 
+                                className="close" 
+                                color="primary"
+                                sx={{ position: 'absolute', top: 10, right: 10 }}
+                            >
                                 <CloseIcon />
                             </Fab>
                         </Link>

@@ -14,6 +14,7 @@ const Product = ({ product }) => {
                     <img                      
                         src={product.images[0].thumbUrl} 
                         alt={product.name} 
+                        className="object-fit"
                     /> 
                 </figure>  
                 
@@ -21,13 +22,22 @@ const Product = ({ product }) => {
 
             <div>    
 
-                <h6 className="text-center">{product.name}</h6> 
+                <h6 
+                    className="text-center"
+                    style={{ marginTop: "20px" }}
+                >
+                    {product.name}
+                </h6> 
 
                 <div className="text-center">
 
-                    <p><b><small>{product.artist}</small></b></p>  
+                    <p style={{ marginBottom: "10px" }}>
+                        <b>
+                            <small>{product.artist}</small>
+                        </b>
+                    </p>  
                     
-                    <span>
+                    <span className="primary-color" style={{ fontSize: "22px" }}>
                         {product.stock > 0 
                             ? <FormattedPrice number={product.price} /> 
                             : 'Sold'

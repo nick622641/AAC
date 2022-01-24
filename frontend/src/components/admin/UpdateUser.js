@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { getUserDetails, updateUser, clearErrors } from '../../actions/userActions'
 import { UPDATE_USER_RESET } from '../../constants/userConstants'
+import MetaData from '../layouts/MetaData'
+import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -59,7 +59,7 @@ const UpdateUser = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -78,7 +78,7 @@ const UpdateUser = () => {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <th><h6>Name:</h6></th>
+                                            <th className="text-right">Name</th>
                                             <td>
                                                 <input 
                                                     value={name}
@@ -87,7 +87,7 @@ const UpdateUser = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th><h6>Email:</h6></th>
+                                            <th className="text-right">Email</th>
                                             <td>
                                                 <input
                                                     type="email"
@@ -97,7 +97,7 @@ const UpdateUser = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th><h6>Role:</h6></th>
+                                            <th className="text-right">Role</th>
                                             <td>
                                                 <select
                                                     value={role}
@@ -119,7 +119,7 @@ const UpdateUser = () => {
                                     disabled={loading ? true : false}
                                 >
                                     {loading 
-                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        ? <CircularProgress color="primary" />
                                         : 'Update'
                                     }
                                 </button>
@@ -127,7 +127,12 @@ const UpdateUser = () => {
                             </form>
 
                             <Link to="/admin/users">
-                                <Fab size="small" className="close" color="primary">
+                                <Fab 
+                                    size="small" 
+                                    className="close" 
+                                    color="primary"
+                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                >
                                     <CloseIcon />
                                 </Fab>
                             </Link>

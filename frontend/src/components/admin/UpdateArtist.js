@@ -17,10 +17,11 @@ const UpdateArtist = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [ name, setName ] = useState('')  
-    const { error, artist } = useSelector(state => state.artistDetails)
+    const { error, artist                          } = useSelector(state => state.artistDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.artist)
 
     useEffect(() => { 
+        
         if (artist && artist._id !== id) {
             dispatch(getArtistDetails(id))
         } else {
@@ -56,7 +57,7 @@ const UpdateArtist = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -75,7 +76,9 @@ const UpdateArtist = () => {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <th><h6>Artist Name</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Artist Name</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     placeholder="Artist Name"
@@ -86,13 +89,15 @@ const UpdateArtist = () => {
                                         </tr>
                                     </tbody>
                                 </table>
+
                                 <br />
+
                                 <button
                                     className="submit"
                                     disabled={loading ? true : false}
                                 >
                                     {loading 
-                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        ? <CircularProgress color="primary" />
                                         : 'Update'
                                     }
                                 </button>
@@ -100,7 +105,12 @@ const UpdateArtist = () => {
                             </form>
                    
                             <Link to="/admin/artists">
-                                <Fab size="small" className="close" color="primary">
+                                <Fab 
+                                    size="small" 
+                                    className="close" 
+                                    color="primary"
+                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                >
                                     <CloseIcon />
                                 </Fab>
                             </Link>
@@ -114,7 +124,9 @@ const UpdateArtist = () => {
             </div>
             
         </Fragment>
+
     )
+
 }
 
 export default UpdateArtist

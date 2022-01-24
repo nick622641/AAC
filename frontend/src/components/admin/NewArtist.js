@@ -16,7 +16,7 @@ const NewArtist = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [ name, setName ] = useState('')  
-    const { loading, error, success } = useSelector(state => state.newArtist)
+    const { loading, error, success } = useSelector( state => state.newArtist )
 
     useEffect(() => { 
         if(error) {
@@ -24,7 +24,7 @@ const NewArtist = () => {
             dispatch(clearErrors())
         }
         if(success) {            
-            alert.success('Artist created successfully')
+            alert.success('Artist Created Ssuccessfully')
             navigate('/admin/artists')
             dispatch({ type: NEW_ARTIST_RESET })            
         }
@@ -45,7 +45,7 @@ const NewArtist = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -64,7 +64,9 @@ const NewArtist = () => {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <th><h6>Artist Name</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Artist Name</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     placeholder="Artist Name"
@@ -81,7 +83,7 @@ const NewArtist = () => {
                                     disabled={loading ? true : false}
                                 >
                                     {loading 
-                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        ? <CircularProgress color="primary" />
                                         : 'Create'
                                     }
                                 </button>
@@ -89,7 +91,12 @@ const NewArtist = () => {
                             </form>
                    
                             <Link to="/admin/artists">
-                                <Fab size="small" className="close" color="primary">
+                                <Fab 
+                                        size="small" 
+                                        className="close" 
+                                        color="primary"
+                                        sx={{ position: 'absolute', top: 10, right: 10 }}
+                                    >
                                     <CloseIcon />
                                 </Fab>
                             </Link>
@@ -102,7 +109,9 @@ const NewArtist = () => {
             </div>
             
         </Fragment>
+
     )
+
 }
 
 export default NewArtist

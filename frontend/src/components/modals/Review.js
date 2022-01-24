@@ -3,16 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { newReview } from '../../actions/productActions'
 import Rating from '@mui/material/Rating'
+import CircularProgress from '@mui/material/CircularProgress'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 function Review(props) {
     
     const id = useParams().id    
     const dispatch = useDispatch()
-    const [ rating, setRating   ] = useState(props.rating)
-    const [ comment, setComment ] = useState(props.comment)
-    const { loading } = useSelector( state => state.newReview )  
-
-    
+    const [ rating, setRating   ] = useState( props.rating )
+    const [ comment, setComment ] = useState( props.comment )
+    const { loading } = useSelector( state => state.newReview )      
 
     const reviewHandler = (e)  => {
         e.preventDefault()
@@ -40,25 +41,35 @@ function Review(props) {
                     }} 
                 />  
 
-                <br />           
+                <br /><br />      
 
-                <textarea 
-                    placeholder="Review"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    rows="4"
-                    required
-                >
-                </textarea>
+                <div className="relative">
+                    <CKEditor
+                        editor={ClassicEditor}               
+                        data={comment}
+                        onChange={(event, editor) => {
+                            const data = editor.getData()
+                            setComment(data)
+                        }}
+                    />
+                    <input 
+                        className="hidden-input" 
+                        value={comment ? comment : ''} 
+                        onChange={(e) => setComment(e.target.value)} 
+                        required
+                    />
+                </div>
 
-                <br />
-                <br />
+                <br /><br />
 
                 <button 
                     className="submit"                     
                     disabled={loading ? true : false}
                 >
-                    {loading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i> : 'Submit'}                                                    
+                    {loading 
+                        ? <CircularProgress color="primary" /> 
+                        : 'Submit'
+                    }                                                    
                 </button>                               
                     
             </form>     
@@ -66,6 +77,7 @@ function Review(props) {
         </Fragment>
 
     )
+
 }
 
 export default Review

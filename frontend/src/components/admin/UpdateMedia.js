@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import { UPDATE_MEDIA_RESET } from '../../constants/categoryConstants'
 import { getMediaDetails, updateMedia, clearErrors } from '../../actions/categoryActions'
+import MetaData from '../layouts/MetaData'
+import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -17,10 +17,11 @@ const UpdateArtist = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [ name, setName ] = useState('')  
-    const { error, medium } = useSelector(state => state.mediaDetails)
+    const { error, medium                          } = useSelector(state => state.mediaDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.medium)
 
     useEffect(() => { 
+
         if (medium && medium._id !== id) {
             dispatch(getMediaDetails(id))
         } else {
@@ -48,6 +49,7 @@ const UpdateArtist = () => {
         formData.set('name', name)       
         dispatch(updateMedia(medium._id, formData))
     }   
+
     return (
 
         <Fragment>
@@ -56,7 +58,7 @@ const UpdateArtist = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -75,7 +77,9 @@ const UpdateArtist = () => {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <th><h6>Media Name</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Media Name</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     placeholder="Media Name"
@@ -86,13 +90,15 @@ const UpdateArtist = () => {
                                         </tr>
                                     </tbody>
                                 </table>
+
                                 <br />
+
                                 <button
                                     className="submit"
                                     disabled={loading ? true : false}
                                 >
                                     {loading 
-                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        ? <CircularProgress color="primary" />
                                         : 'Update'
                                     }
                                 </button>
@@ -100,7 +106,12 @@ const UpdateArtist = () => {
                             </form>
                    
                             <Link to="/admin/media">
-                                <Fab size="small" className="close" color="primary">
+                                <Fab 
+                                    size="small" 
+                                    className="close" 
+                                    color="primary"
+                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                >
                                     <CloseIcon />
                                 </Fab>
                             </Link>
@@ -114,7 +125,9 @@ const UpdateArtist = () => {
             </div>
             
         </Fragment>
+
     )
+    
 }
 
 export default UpdateArtist

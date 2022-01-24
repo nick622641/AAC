@@ -38,6 +38,7 @@ const ForgotPassword = () => {
             <MetaData title={'Forgot Password'} />
             
             <div className="container">
+                
                 <div className="wrapper">
 
                     <form className="user-form" onSubmit={submitHandler}>
@@ -60,13 +61,18 @@ const ForgotPassword = () => {
                             disabled={loading ? true : false}
                         >
                             {loading 
-                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} /> 
+                                ? <CircularProgress color="primary" /> 
                                 : 'Send Email'
                             }
                         </button>
 
                         <Link to="/login">                              
-                            <Fab size="small" className="close" color="primary">
+                            <Fab 
+                                size="small" 
+                                className="close" 
+                                color="primary"
+                                sx={{ position: 'absolute', top: 10, right: 10 }}
+                            >
                                 <CloseIcon />
                             </Fab>
                         </Link>
@@ -74,6 +80,7 @@ const ForgotPassword = () => {
                     </form>
 
                 </div>
+
             </div>
 
         </Fragment>

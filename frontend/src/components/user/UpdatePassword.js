@@ -59,6 +59,7 @@ const UpdatePassword = () => {
             <MetaData title={'Update Password'} />
 
             <div className="container">
+
                 <div className="wrapper">
 
                     <form className="user-form" onSubmit={submitHandler}>
@@ -102,13 +103,18 @@ const UpdatePassword = () => {
                             disabled={loading ? true : false}
                         >
                             {loading 
-                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} />
+                                ? <CircularProgress color="primary" />
                                 : 'Update Password'
                             }
                         </button>
 
                         <Link to="/me">                              
-                            <Fab size="small" className="close" color="primary">
+                            <Fab 
+                                size="small" 
+                                className="close" 
+                                color="primary"
+                                sx={{ position: 'absolute', top: 10, right: 10 }}
+                            >
                                 <CloseIcon />
                             </Fab>
                         </Link>
@@ -116,6 +122,7 @@ const UpdatePassword = () => {
                     </form>
 
                 </div>
+                
             </div>
 
         </Fragment>

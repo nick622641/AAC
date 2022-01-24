@@ -32,7 +32,12 @@ function Modal({ isModalVisible, content, onBackdropClick  }) {
 
           {content}
 
-          <Fab size="small" className="close" onClick={onBackdropClick}  color="primary">
+          <Fab 
+            size="small" 
+            onClick={onBackdropClick}  
+            color="primary"
+            sx={{ position: 'absolute', top: 10, right: 10 }}
+          >
             <CloseIcon />
           </Fab>
 

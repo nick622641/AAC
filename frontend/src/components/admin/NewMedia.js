@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { NEW_MEDIA_RESET } from '../../constants/categoryConstants'
 import { newMedia, clearErrors } from '../../actions/categoryActions'
+import MetaData from '../layouts/MetaData'
+import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -24,7 +24,7 @@ const NewMedia = () => {
             dispatch(clearErrors())
         }
         if(success) {            
-            alert.success('Media created successfully')
+            alert.success('Media Created Successfully')
             navigate('/admin/media')
             dispatch({ type: NEW_MEDIA_RESET })            
         }
@@ -45,7 +45,7 @@ const NewMedia = () => {
 
             <div className="container">
 
-                <div className="wrapper parent dashboard">
+                <div className="wrapper parent">
 
                     <aside>
                         
@@ -64,7 +64,9 @@ const NewMedia = () => {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <th><h6>Media Name</h6></th>
+                                            <th>
+                                                <h6 className="text-right">Media Name</h6>
+                                            </th>
                                             <td>
                                                 <input
                                                     placeholder="Media Name"
@@ -81,7 +83,7 @@ const NewMedia = () => {
                                     disabled={loading ? true : false}
                                 >
                                     {loading 
-                                        ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
+                                        ? <CircularProgress color="primary" />
                                         : 'Create'
                                     }
                                 </button>
@@ -89,7 +91,12 @@ const NewMedia = () => {
                             </form>
                    
                             <Link to="/admin/media">
-                                <Fab size="small" className="close" color="primary">
+                                <Fab 
+                                    size="small" 
+                                    className="close" 
+                                    color="primary"
+                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                >
                                     <CloseIcon />
                                 </Fab>
                             </Link>
@@ -102,7 +109,9 @@ const NewMedia = () => {
             </div>
             
         </Fragment>
+
     )
+
 }
 
 export default NewMedia

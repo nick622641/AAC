@@ -52,7 +52,8 @@ const ListOrders = () => {
                 {
                     label: 'Status',
                     field: 'status',
-                    sort: 'disabled'
+                    sort: 'asc',
+                    width: 100
                 },
                 {
                     label: 'Browse',
@@ -70,9 +71,7 @@ const ListOrders = () => {
                 id: order._id,
                 numOfItems: order.orderItems.length,
                 amount: `$${order.totalPrice}`, 
-                status: order.orderStatus && String(order.orderStatus).includes('Delivered')
-                ? <span className="success">{order.orderStatus}</span>
-                : <span className="danger">{order.orderStatus}</span>,
+                status: order.orderStatus,
                 actions:
                     <Link to={`/order/${order._id}`}>
                         <IconButton>
@@ -91,15 +90,15 @@ const ListOrders = () => {
 
             <MetaData title={'My Orders'} />
 
-            <div className="container">
+            {loading ? <Loader /> : (                     
 
-                <div className="wrapper">                    
+                <div className="container">
 
-                    <div className="user-form cart">
+                    <div className="wrapper">                                     
 
-                        <h1>My Orders</h1>
+                        <div className="user-form cart">
 
-                        {loading ? <Loader /> : (
+                            <h1>My Orders</h1>                        
 
                             <MDBDataTableV5
                                 data={setOrders()}
@@ -108,22 +107,26 @@ const ListOrders = () => {
                                 scrollY   
                                 searchTop
                                 searchBottom={false}  
-                            />
+                            />                       
 
-                        )}
+                            <Link to="/me">                              
+                                <Fab 
+                                    size="small" 
+                                    className="close" 
+                                    color="primary"
+                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                >
+                                    <CloseIcon />
+                                </Fab>
+                            </Link>
 
-                        <Link to="/me">                              
-                            <Fab size="small" className="close" color="primary">
-                                <CloseIcon />
-                            </Fab>
-                        </Link>
-
+                        </div>                    
 
                     </div>
 
                 </div>
 
-            </div>
+            )}
 
         </Fragment>
 

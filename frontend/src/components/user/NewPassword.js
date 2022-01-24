@@ -12,14 +12,14 @@ import CircularProgress from '@mui/material/CircularProgress'
 
 const NewPassword = () => {
 
-    const navigate = useNavigate()
-    const token = useParams().token
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')   
-    const dispatch = useDispatch()
     const alert = useAlert()
-    const {  error, success, loading } = useSelector(state => state.forgotPassword )
-    const [ passwordVisible, setPasswordVisible ] = useState()
+    const token = useParams().token
+    const dispatch = useDispatch()
+    const navigate = useNavigate()   
+    const {  error, success, loading } = useSelector( state => state.forgotPassword ) 
+    const [ password,               setPassword               ] = useState('')
+    const [ confirmPassword,        setConfirmPassword        ] = useState('')      
+    const [ passwordVisible,        setPasswordVisible        ] = useState()
     const [ confirmPasswordVisible, setConfirmPasswordVisible ] = useState()
 
     const togglePassword = () => {
@@ -29,7 +29,8 @@ const NewPassword = () => {
         setConfirmPasswordVisible(!confirmPasswordVisible)
     }
 
-    useEffect(() => {    
+    useEffect(() => {   
+         
         if(error) { 
             alert.error(error)
             dispatch(clearErrors())
@@ -71,9 +72,9 @@ const NewPassword = () => {
                             />
                             <IconButton className="eye" onClick={togglePassword}>
                                 {passwordVisible ? (
-                                    <VisibilityIcon fontSize="default" />
+                                    <VisibilityIcon fontSize="small" />
                                 ):(
-                                    <VisibilityOffIcon fontSize="default" />
+                                    <VisibilityOffIcon fontSize="small" />
                                 )}
                             </IconButton>                            
                         </label>
@@ -87,9 +88,9 @@ const NewPassword = () => {
                             />
                             <IconButton className="eye" onClick={toggleConfirmPassword}>
                                 {confirmPasswordVisible ? (
-                                    <VisibilityIcon fontSize="default" />
+                                    <VisibilityIcon fontSize="small" />
                                 ):(
-                                    <VisibilityOffIcon fontSize="default" />
+                                    <VisibilityOffIcon fontSize="small" />
                                 )}
                             </IconButton>                          
                         </label>
@@ -101,7 +102,7 @@ const NewPassword = () => {
                             disabled={loading ? true : false}
                         >
                             {loading 
-                                ? <CircularProgress sx={{ color: "var(--primary-color)" }} /> 
+                                ? <CircularProgress color="primary" /> 
                                 : 'Set Password'
                             }
                         </button>

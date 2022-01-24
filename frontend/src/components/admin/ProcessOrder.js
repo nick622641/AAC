@@ -55,146 +55,154 @@ const ProcessOrder = () => {
 
                 <div className="wrapper parent dashboard">
 
-                <aside>
-                    
-                    <Sidebar />
-                    
-                </aside>            
+                    <aside>
+                        
+                        <Sidebar />
+                        
+                    </aside>            
 
-                <article>                                            
+                    <article className="relative">                                            
 
-                    {loading ? <Loader /> : (
+                        {loading ? <Loader /> : (
 
-<                       Fragment>                               
+    <                       Fragment>                               
 
-                            <div className="user-form">
+                                <div className="user-form">
 
-                                <h1 >
-                                    Order 
-                                    <small style={{ float: "right" }}># {order._id}</small>
-                                </h1>
+                                    <h1>Order</h1>
 
-                                <table className="middle-align bordered-table">
-                                <tbody>
-                                    <tr className="bg-grey">
-                                        <td><h6>Item</h6></td>
-                                        <td><h6>Title</h6></td>
-                                        <td><h6>Price</h6></td>
-                                        <th><h6>Quantity</h6></th>
-                                    </tr>
-                                    {orderItems && orderItems.map(item => (
-                                        <tr key={item.product}>
-                                            <td>
-                                                <Link to={`/artwork/${item.product}`}>
-                                                    <Avatar
-                                                        src={item.image} 
-                                                        alt={item.name}
-                                                        sx={{ width: 50, height: 50 }}
-                                                    /> 
-                                                </Link>
+                                    <table className="middle-align bordered-table">
+                                        <tbody>
+                                            <tr className="bg-grey">
+                                                <td>Item</td>
+                                                <td>Title</td>
+                                                <td>Price</td>
+                                                <th>Quantity</th>
+                                            </tr>
+                                            {orderItems && orderItems.map(item => (
+                                                <tr key={item.product}>
+                                                    <td>
+                                                        <Link to={`/artwork/${item.product}`}>
+                                                            <Avatar
+                                                                src={item.image} 
+                                                                alt={item.name}
+                                                                sx={{ width: 50, height: 50 }}
+                                                            /> 
+                                                        </Link>
+                                                    </td>
+                                                    <td><Link to={`/artwork/${item.product}`}>{item.name}</Link></td>                                            
+                                                    <td>
+                                                        <FormattedPrice number={item.price} />
+                                                    </td>
+                                                    <td>{item.quantity}</td> 
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>                                
+
+                                    <table className="top-align">
+                                        <tbody>
+                                        <tr>
+                                            <td colSpan="3">
+                                                <h4>Summary</h4>
                                             </td>
-                                            <td><Link to={`/artwork/${item.product}`}>{item.name}</Link></td>                                            
-                                            <td>
-                                                <FormattedPrice number={item.price} />
-                                            </td>
-                                            <th>{item.quantity}</th> 
                                         </tr>
-                                    ))}
-                                </tbody>
-                                </table>
-
-                                <h4>Summary</h4>
-
-                                <table className="bordered-table">
-                                    <tbody>
-                                    <tr>
-                                        <th><h6>Name:</h6></th>
-                                        <td>{user && user.name}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><h6>Phone:</h6></th>
-                                        <td>{shippingInfo && shippingInfo.phoneNo}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><h6>Address:</h6></th>
-                                        <td>
-                                            {shippingInfo && shippingInfo.address}
-                                            <br />
-                                            {shippingInfo && shippingInfo.city}
-                                            <br />
-                                            {shippingInfo && shippingInfo.postalCode}
-                                            <br />
-                                            {shippingInfo && shippingInfo.country}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><h6>Amount:</h6></th>
-                                        <td>${totalPrice && totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}&nbsp;CAD</td>
-                                    </tr>
+                                        <tr>
+                                            <td><h6 className="text-right">Order ID</h6></td>
+                                            <td># {order._id}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6 className="text-right">Name</h6></td>
+                                            <td>{user && user.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6 className="text-right">Phone</h6></td>
+                                            <td>{shippingInfo && shippingInfo.phoneNo}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6 className="text-right">Address</h6></td>
+                                            <td>
+                                                {shippingInfo && shippingInfo.address}
+                                                <br />
+                                                {shippingInfo && shippingInfo.city}
+                                                <br />
+                                                {shippingInfo && shippingInfo.postalCode}
+                                                <br />
+                                                {shippingInfo && shippingInfo.country}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6 className="text-right">Amount</h6></td>
+                                            <td><FormattedPrice number={totalPrice}/></td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td><h6 className="text-right">Status</h6></td>
+                                            <td>
+                                                <select
+                                                    style={{ width: "auto", padding: 0 }}
+                                                    value={status ? status : order.orderStatus}
+                                                    onChange={(e) => setStatus(e.target.value)}
+                                                >
+                                                    <option value="Processing">Processing</option>
+                                                    <option value="Shipped">Shipped</option>
+                                                    <option value="Delivered">Delivered</option>
+                                                </select>
+                                            </td>
+                                            <td>                                      
+                                                <IconButton onClick={() => updateOrderHandler(order._id)}>
+                                                    <AddTaskIcon />
+                                                </IconButton>
+                                            </td>
+                                        </tr>                          
+                                        <tr>
+                                            <td colSpan="3">
+                                                <h4>Payment</h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6 className="text-right">Stripe ID</h6></td>
+                                            <td><small>{paymentInfo && paymentInfo.id}</small></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6 className="text-right">Payment Status</h6></td>
+                                            <td>
+                                                <p className={isPaid ? "success" : "danger"}>
+                                                    <b>{isPaid ? 'Paid': 'Pending'}</b>
+                                                </p>
+                                            </td>
+                                        </tr>                                    
+                                        <tr>
+                                            <td><h6 className="text-right">Order Status</h6></td>
+                                            <td>
+                                                <p className={order.orderStatus && String(order.orderStatus).includes('Delivered') ? "success" : "danger"}>
+                                                    <b>{orderStatus}</b>
+                                                </p> 
+                                            </td>
+                                        </tr>                                                
+                                    </tbody>
+                                    </table>
                                 
-                                    <tr>
-                                        <th><h6>Status</h6></th>
-                                        <td>
-                                            <select
-                                                style={{ width: "auto", padding: 0 }}
-                                                value={status ? status : order.orderStatus}
-                                                onChange={(e) => setStatus(e.target.value)}
-                                            >
-                                                <option value="Processing">Processing</option>
-                                                <option value="Shipped">Shipped</option>
-                                                <option value="Delivered">Delivered</option>
-                                            </select>
-                                        </td>
-                                        <th>                                      
-                                            <IconButton onClick={() => updateOrderHandler(order._id)}>
-                                                <AddTaskIcon />
-                                            </IconButton>
-                                        </th>
-                                    </tr>                          
-                                    <tr>
-                                        <td colSpan="3" className="spacer-cell">
-                                            <h4>Payment</h4>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><h6>Stripe ID:</h6></th>
-                                        <td><small>{paymentInfo && paymentInfo.id}</small></td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h6>Payment Status:</h6>
-                                        </th>
-                                        <td>
-                                            <p className={isPaid ? "success" : "danger"}>
-                                                <b>{isPaid ? 'Paid': 'Pending'}</b>
-                                            </p>
-                                        </td>
-                                    </tr>                                    
-                                    <tr>
-                                        <th><h6>Order Status:</h6></th>
-                                        <td>
-                                            <p className={order.orderStatus && String(order.orderStatus).includes('Delivered') ? "success" : "danger"}>
-                                                <b>{orderStatus}</b>
-                                            </p> 
-                                        </td>
-                                    </tr>                                                
-                                </tbody>
-                                </table>
-                             
-                                <Link to="/admin/orders">
-                                    <Fab size="small" className="close" color="primary">
-                                        <CloseIcon />
-                                    </Fab>
-                                </Link>
-                                
-                            </div>
+                                    <Link to="/admin/orders">
+                                        <Fab 
+                                            size="small" 
+                                            className="close" 
+                                            color="primary"
+                                            sx={{ position: 'absolute', top: 10, right: 10 }}
+                                        >
+                                            <CloseIcon />
+                                        </Fab>
+                                    </Link>
+                                    
+                                </div>
 
                             </Fragment>
+
                         )}                    
 
-                </article>
-                
-            </div>
+                    </article>
+                    
+                </div>
 
             </div>
             

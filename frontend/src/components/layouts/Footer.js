@@ -72,7 +72,9 @@ const Footer = () => {
             <small>Copyright &copy; <b>{process.env.REACT_APP_SITE_NAME}</b> <span className="primary-color">{new Date().getFullYear()}</span>. All Rights Reserved.</small>
             
         </footer>
+
     )
+    
 }
 
 export default Footer

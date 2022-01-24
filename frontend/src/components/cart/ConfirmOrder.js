@@ -164,7 +164,12 @@ const ConfirmOrder = () => {
                         </button>   
 
                         <Link to="/shipping">                              
-                            <Fab size="small" className="close" color="primary">
+                            <Fab 
+                                size="small" 
+                                className="close" 
+                                color="primary"
+                                sx={{ position: 'absolute', top: 10, right: 10 }}
+                            >
                                 <CloseIcon />
                             </Fab>
                         </Link>  
