@@ -107,7 +107,7 @@ const ProductDetails = () => {
 
                                 <div className={product.orientation !== 'Landscape' ? 'portrait parent' : 'landscape'}>
 
-                                    <div>
+                                    <div className={product.orientation !== 'Landscape' ? 'col-6' : '' }>
                                         {product.images && (
                                             <img src={product.images[0].url} alt={product.name} />
                                         )}
@@ -127,7 +127,7 @@ const ProductDetails = () => {
                                         </ul>                                       
                                     </div>                                    
 
-                                    <div className="parent">  
+                                    <div className={`parent ${product.orientation !== 'Landscape' ? 'col-6' : ''}`}>  
 
                                         <h1 className="text-center">{product.name}</h1>                                        
 

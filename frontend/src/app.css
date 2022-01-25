@@ -332,7 +332,7 @@ section .callout h3 {
 .thumbnails {    
   display: flex; 
   flex-wrap: wrap;  
-  margin-bottom: 20px;
+  margin: 0 -5px 20px 0;
 }
 .thumbnails li {
   margin: 0 5px 5px 0;  
@@ -340,7 +340,8 @@ section .callout h3 {
   height: 75px; 
   overflow: hidden;
   border: solid 1px #ccc;
-  flex: 1 0 125px;
+  flex: 1 0 175px;
+  max-width: 240px;
 }
 .thumbnails .thumb:hover {
   cursor: zoom-in; 

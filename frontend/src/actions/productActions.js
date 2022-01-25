@@ -30,6 +30,9 @@ import {
     DELETE_REVIEW_REQUEST,
     DELETE_REVIEW_SUCCESS,
     DELETE_REVIEW_FAIL,
+    DELETE_IMAGE_REQUEST,
+    DELETE_IMAGE_SUCCESS,
+    DELETE_IMAGE_FAIL,
     CLEAR_ERRORS 
 } from '../constants/productConstants'
 
@@ -51,10 +54,7 @@ export const getProducts = ( keyword = '', currentPage = 1, price, artist = '', 
         }
         if( rating ) {    
             link = `/api/v1/products?page=${currentPage}&ratings[gte]=${rating}&price[lte]=${price[1]}&price[gte]=${price[0]}`
-        }
-        // if( price[0] > 1 || price[1] < 10000 ) {    
-        //     link = `/api/v1/products?page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
-        // }
+        }       
 
         const { data } = await axios.get(link)
 
@@ -202,7 +202,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 
         dispatch({ type: DELETE_PRODUCT_REQUEST })      
 
-        const { data } = await axios.delete(`/api/v1/admin/product/${id}`);
+        const { data } = await axios.delete(`/api/v1/admin/product/${id}`)
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
@@ -213,6 +213,28 @@ export const deleteProduct = (id) => async (dispatch) => {
 
         dispatch({
             type: DELETE_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+// Delete image (Admin)
+export const deleteImage = (id, imgIndex, imgId) => async (dispatch) => {
+    try {
+
+        dispatch({ type: DELETE_IMAGE_REQUEST })      
+
+        const { data } = await axios.delete(`/api/v1/image?id=${id}&imgIndex=${imgIndex}&imgId=${imgId}`)
+
+        dispatch({
+            type: DELETE_IMAGE_SUCCESS,
+            payload: data.success
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: DELETE_IMAGE_FAIL,
             payload: error.response.data.message
         })
 

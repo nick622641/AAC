@@ -27,7 +27,8 @@ const {
     getArtist,
     newArtist,
     updateArtist,
-    deleteArtist
+    deleteArtist,
+    deleteImage
 } = require('../controllers/productController')
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth')
@@ -55,7 +56,6 @@ router.route('/admin/artist/:id')
 
 router.route('/products').get(getProducts)
 router.route('/products/related').get(getRelatedProducts)
-// router.route('/products').get(getRelatedProducts)
 router.route('/admin/products').get(getAdminProducts)
 router.route('/product/:id').get(getSingleProduct)
 
@@ -67,5 +67,8 @@ router.route('/admin/product/:id')
 router.route('/review' ).put   (isAuthenticatedUser, createProductReview)
 router.route('/reviews').get   (isAuthenticatedUser, getProductReviews)
 router.route('/reviews').delete(isAuthenticatedUser, deleteReview)
+
+router.route('/image')
+    .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteImage)
 
 module.exports = router

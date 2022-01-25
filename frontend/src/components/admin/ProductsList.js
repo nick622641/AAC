@@ -63,37 +63,37 @@ const ProductsList = () => {
                     label: 'Preview',
                     field: 'url',
                     sort: 'disabled',
-                    width: 75
+                    width: 50
                 },
                 {
                     label: 'Artwork ID',
                     field: 'id',
                     sort: 'disabled',
-                    width: 200
+                    width: 160
                 },
                 {
                     label: 'Name',
                     field: 'name',
                     sort: 'asc',
-                    width: 200
+                    width: 100
                 },
                 {
                     label: 'Price',
                     field: 'price',
                     sort: 'asc',
-                    width: 100
+                    width: 75
                 },
                 {
                     label: 'Stock',
                     field: 'stock',
                     sort: 'asc',
-                    width: 100
+                    width: 75
                 },
                 {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'disabled',
-                    width: 120                
+                    width: 100                
                 }
             ],
             rows: []
@@ -150,7 +150,7 @@ const ProductsList = () => {
 
                     </aside>            
 
-                    <article className="relative" style={{overflow: 'hidden' }}>
+                    <article className="relative">
 
                         {loading ? <Loader /> : (
 

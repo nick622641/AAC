@@ -263,13 +263,8 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
         if(!media)  { return next(new ErrorHandler('Please select a media type', 400)) }    
         if(!description)  { return next(new ErrorHandler('Please provide a description', 400)) }
 
-        if (images !== undefined) {
-            // Deleting images associated with the product
-            for (let i = 0; i < product.images.length; i++) {
-                await cloudinary.v2.uploader.destroy(product.images[i].public_id)
-                await cloudinary.v2.uploader.destroy(product.images[i].thumb_id)
-            }
-            let imagesLinks = []
+        if (images !== undefined) {         
+            let imagesLinks = product.images
             for (let i = 0; i < images.length; i++) {
                 const thumb = await cloudinary.v2.uploader.upload(images[i], {
                     folder: "products",            
@@ -379,7 +374,6 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
         const product = await Product.findById(req.params.id)   
         // Deleting images
         for(let i = 0; i < product.images.length; i++) {
-            // const result = await cloudinary.v2.uploader.destroy(product.images[i].public_id)
             await cloudinary.v2.uploader.destroy(product.images[i].public_id)
             await cloudinary.v2.uploader.destroy(product.images[i].thumb_id)
         }        
@@ -390,6 +384,34 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
         })
     } catch (error) {
         return next(new ErrorHandler('Product not found', 404)) 
+    }
+})
+
+// Delete Image => /api/v1/image
+exports.deleteImage = catchAsyncErrors(async (req, res, next) => {
+
+    try { 
+        const product = await Product.findById(req.query.id)
+        const images  = product.images.filter(image => image._id.toString() !== req.query.imgId.toString())
+
+        await cloudinary.v2.uploader.destroy(product.images[req.query.imgIndex].public_id)
+        await cloudinary.v2.uploader.destroy(product.images[req.query.imgIndex].thumb_id)               
+        
+        await Product.findByIdAndUpdate(req.query.id, {
+            images
+            
+        }, {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        })
+
+        res.status(200).json({
+            success: true,
+            // message: 'Image was Deleted'
+        })
+    } catch (error) {
+        return next(new ErrorHandler('Image not found', 404)) 
     }
 })
 
