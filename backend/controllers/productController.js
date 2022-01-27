@@ -246,8 +246,8 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 
         const { name, stock, price, width, height, datePublished, artist, orientation, media, description } = req.body
 
-        let images = []
-        if (typeof req.body.images === 'string') {
+        let images = []        
+        if (typeof req.body.images === 'string') {   // if a new image has been added          
             images.push(req.body.images)
         } else {
             images = req.body.images
@@ -408,10 +408,39 @@ exports.deleteImage = catchAsyncErrors(async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            // message: 'Image was Deleted'
         })
     } catch (error) {
-        return next(new ErrorHandler('Image not found', 404)) 
+        return next(new ErrorHandler('Product not found', 404)) 
+    }
+})
+
+// Update images => /api/v1/image
+exports.updateImages = catchAsyncErrors(async (req, res, next) => {
+
+    try { 
+        const product = await Product.findById(req.query.id)
+        const init = req.query.initPos
+        const img = product.images[init]
+        const final = req.query.finPos
+        
+        let images  = product.images.filter( image => product.images[init] !== image )  
+        
+        images.splice(final, 0, img)
+        
+        await Product.findByIdAndUpdate(req.query.id, {
+            images
+            
+        }, {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        })
+
+        res.status(200).json({
+            success: true,
+        })
+    } catch (error) {
+        return next(new ErrorHandler('Product not found', 404)) 
     }
 })
 

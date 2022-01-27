@@ -38,6 +38,10 @@ import {
     DELETE_IMAGE_SUCCESS,
     DELETE_IMAGE_RESET,
     DELETE_IMAGE_FAIL,
+    UPDATE_IMAGE_REQUEST,
+    UPDATE_IMAGE_SUCCESS,
+    UPDATE_IMAGE_RESET,
+    UPDATE_IMAGE_FAIL,
     CLEAR_ERRORS 
 } from '../constants/productConstants';
 
@@ -133,6 +137,7 @@ export const productReducer = ( state = {}, action ) => {
     switch (action.type) {
 
         case DELETE_IMAGE_REQUEST:
+        case UPDATE_IMAGE_REQUEST:
         case DELETE_PRODUCT_REQUEST:
         case UPDATE_PRODUCT_REQUEST:
             return {
@@ -146,7 +151,8 @@ export const productReducer = ( state = {}, action ) => {
                 loading: false,
                 isDeleted: action.payload
             }   
-         case UPDATE_PRODUCT_SUCCESS:
+        case UPDATE_PRODUCT_SUCCESS:
+        case UPDATE_IMAGE_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -155,6 +161,7 @@ export const productReducer = ( state = {}, action ) => {
         
         case DELETE_PRODUCT_FAIL:
         case DELETE_IMAGE_FAIL:
+        case UPDATE_IMAGE_FAIL:
         case UPDATE_PRODUCT_FAIL:
                 return {
                     ...state,
@@ -163,6 +170,7 @@ export const productReducer = ( state = {}, action ) => {
                 }
         case DELETE_PRODUCT_RESET:
         case DELETE_IMAGE_RESET:
+        case UPDATE_IMAGE_RESET:
             return {
                 ...state,
                 isDeleted: false

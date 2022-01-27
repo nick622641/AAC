@@ -165,6 +165,9 @@ th {
 .inactive {
   pointer-events: none;
 }
+.round {
+  border-radius: 100%;
+}
 /* Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 12px; 

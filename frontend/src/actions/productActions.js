@@ -33,6 +33,9 @@ import {
     DELETE_IMAGE_REQUEST,
     DELETE_IMAGE_SUCCESS,
     DELETE_IMAGE_FAIL,
+    UPDATE_IMAGE_REQUEST,
+    UPDATE_IMAGE_SUCCESS,
+    UPDATE_IMAGE_FAIL,
     CLEAR_ERRORS 
 } from '../constants/productConstants'
 
@@ -240,6 +243,29 @@ export const deleteImage = (id, imgIndex, imgId) => async (dispatch) => {
 
     }
 }
+// Update images
+export const updateImages = (id, initPos, finPos) => async (dispatch) => {
+    try {
+
+        dispatch({ type: UPDATE_IMAGE_REQUEST })      
+
+        const { data } = await axios.put(`/api/v1/image?id=${id}&initPos=${initPos}&finPos=${finPos}`)
+
+        dispatch({
+            type: UPDATE_IMAGE_SUCCESS,
+            payload: data.success
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: UPDATE_IMAGE_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+
 // Add new review
 export const newReview = (reviewData) => async (dispatch) => {
     try {

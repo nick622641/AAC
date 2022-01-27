@@ -28,7 +28,8 @@ const {
     newArtist,
     updateArtist,
     deleteArtist,
-    deleteImage
+    deleteImage,
+    updateImages
 } = require('../controllers/productController')
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth')
@@ -69,6 +70,7 @@ router.route('/reviews').get   (isAuthenticatedUser, getProductReviews)
 router.route('/reviews').delete(isAuthenticatedUser, deleteReview)
 
 router.route('/image')
+    .put(isAuthenticatedUser, authorizeRoles('admin'), updateImages)
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteImage)
 
 module.exports = router

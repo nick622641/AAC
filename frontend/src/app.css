@@ -69,6 +69,7 @@ aside {
 }
 article {
   flex: 0 1 calc(80% - 80px);  
+  width: calc(80% - 80px) 
 }
 aside ul {
   margin: 20px 0 30px 0;
@@ -347,6 +348,9 @@ section .callout h3 {
   cursor: zoom-in; 
   opacity: 0.5;
 }
+.dragging {
+  opacity: 0.5;
+}
 /* Carousel Styles */
 .carousel {
   width: 100%;
@@ -474,6 +478,9 @@ section .callout h3 {
   .parent {
     flex-direction: column;
   }
+  article {
+    width: 100%;
+  }
   .reverse {
     flex-direction: column-reverse;
   }
@@ -493,5 +500,9 @@ section .callout h3 {
     width: 50%;
     height: 200px;
     flex-basis: auto;
+  }
+  .thumbnails li { 
+    max-width: 50%;
+    margin: 0;
   }
  }

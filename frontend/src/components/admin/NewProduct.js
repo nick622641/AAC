@@ -189,18 +189,21 @@ const NewProduct = () => {
                                 </table>                                 
                                     
                                 </div>
+
+                                <br />
+                                
                                 {imagesPreview.length > 0 && (
-                                    <ul className="thumbnails">
+                                    <ul className="d-flex">
 
                                     {imagesPreview.map(img => (
-                                        <li key={img} >
-                                            <img                                             
-                                                src={img}                                             
-                                                alt="Images Preview"  
-                                                className="centered-image"                                       
-                                            />
+                                        <li 
+                                            key={img} 
+                                            className="relative round background-cover" 
+                                            style={{ marginRight: '10px', width: '40px', height: '40px', backgroundImage: `url(${img})` }}
+                                        >                                           
                                         </li>
                                     ))}  
+                                 
     
                                     </ul> 
                                 )}

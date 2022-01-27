@@ -2,11 +2,11 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { updateProduct, getProductDetails, deleteImage, clearErrors } from '../../actions/productActions'
+import { updateProduct, getProductDetails, updateImages, deleteImage, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
+import { DELETE_IMAGE_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
-import { DELETE_IMAGE_RESET } from '../../constants/productConstants'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
@@ -39,6 +39,8 @@ const UpdateProduct = () => {
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ imgIndex,        setImageIndex     ] = useState('')
     const [ imgId,           setImageId        ] = useState('')
+    const [ init,            setInit           ] = useState(0)
+    const [ final,           setFinal          ] = useState(0)
 
     const alert = useAlert()
     const productId = useParams().id   
@@ -91,7 +93,6 @@ const UpdateProduct = () => {
         if(isUpdated) {            
             alert.success('Artwork Updated Successfully')
             dispatch(getProductDetails(productId))  
-            navigate('/admin/products')
             dispatch({ type: UPDATE_PRODUCT_RESET })           
         }
         if(deleteError) {
@@ -106,6 +107,9 @@ const UpdateProduct = () => {
     }, [dispatch, navigate, product, productId, alert, error, isUpdated, updateError, isDeleted, deleteError])
 
     const submitHandler = (e) => {
+
+        window.scrollTo(0,0)
+        setImagesPreview([])
 
         e.preventDefault()
         const formData = new FormData()
@@ -132,7 +136,6 @@ const UpdateProduct = () => {
         const files = Array.from(e.target.files)
         setImagesPreview([])
         setImages([])
-        // setOldImages([])
 
         files.forEach(file => {
             const reader = new FileReader()
@@ -148,8 +151,58 @@ const UpdateProduct = () => {
 
     const deleteImageHandler = (id, imgIndex, imgId) => {
         dispatch(deleteImage(id, imgIndex, imgId))
+    }  
+    const updateImagesHandler = (id, initPos, finPos) => {
+        dispatch(updateImages(id, initPos, finPos))
+    }   
+
+    const dragStartHandler = (el) => {
+        const container = document.querySelector('.dragContainer')
+        el.classList.add('dragging')
+        for (let i = 0; i < container.children.length; i++) {
+            if (container.children[i].classList.contains('dragging')) {
+                setInit(i)
+            }            
+        }         
+    }
+    const dragEndHandler = (el) => {
+        el.classList.remove('dragging')
+        updateImagesHandler(productId, init, final)  
+    }
+    const handleContainerDrag = (e) => {
+        
+        e.preventDefault()
+        const container = document.querySelector('.dragContainer')
+        const draggable = document.querySelector('.dragging')
+        const afterElement = getDragAfterElement(e.clientX)
+        for (let i = 0; i < container.children.length; i++) {
+            if (container.children[i].classList.contains('dragging')) {
+                setFinal(i)
+            }            
+        }        
+        if (afterElement === null) {
+            container.appendChild(draggable)
+        } else {
+            container.insertBefore(draggable, afterElement)
+        } 
     }
 
+    const getDragAfterElement = (x) => {
+        const container = document.querySelector('.dragContainer')
+        const draggableElements = [ ...container.querySelectorAll('.draggable:not(.dragging)')]
+
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect()
+            const offset = x - box.left - box.width / 2
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child }
+            } else {
+                return closest 
+            }
+
+        }, {offset: Number.NEGATIVE_INFINITY}).element
+    }
+ 
     return (
 
         <Fragment>
@@ -192,7 +245,8 @@ const UpdateProduct = () => {
                                                 name="product_images"                            
                                                 onChange={onChange}   
                                                 multiple                              
-                                            />                            
+                                            />   
+                                                                 
                                             {oldImages[0] && !imagesPreview[0]  && (
                                                 <Avatar
                                                     src={oldImages[0].thumbUrl} 
@@ -206,7 +260,7 @@ const UpdateProduct = () => {
                                                     alt={name}
                                                     sx={{ width: 150, height: 150 }}
                                                 />                                           
-                                            )}  
+                                            )}                                            
                                                 
                                         </label>
                                         
@@ -256,40 +310,41 @@ const UpdateProduct = () => {
 
                                     </div>  
 
-                                    <br />
-
-                                    <ul className="thumbnails">                          
-
-                                        {oldImages && oldImages.map((img, i) => (
-                                            <li key={i} className="relative">
-                                                <img                                                 
-                                                    src={img.thumbUrl} 
-                                                    alt={img.url} 
-                                                    className="object-fit"                                                 
-                                                />
+                                    <br />                                  
+                                  
+                                    <ul onDragOver={handleContainerDrag} className="dragContainer d-flex">                          
+                                       
+                                        {oldImages && oldImages.map((img, index) => (                                                                                      
+                                            
+                                            <li 
+                                                key={img._id} 
+                                                className="relative draggable round background-cover" 
+                                                draggable="true"
+                                                onDragStart={(e) => dragStartHandler(e.target)}
+                                                onDragEnd={(e) => dragEndHandler(e.target)}
+                                                style={{ marginRight: '10px', width: '40px', height: '40px', backgroundImage: `url(${img.thumbUrl})` }}
+                                            >                                               
                                                 <IconButton 
                                                     onClick={() => {
                                                         setIsModalVisible(!isModalVisible)   
-                                                        setImageIndex(i)  
+                                                        setImageIndex(index)  
                                                         setImageId(img._id)                                               
                                                     }}
                                                     sx={{ position: 'absolute', top: 0, right: 0 }}                                                
                                                 >
                                                     <DeleteOutlineIcon sx={{ color: '#ccc' }} />
                                                 </IconButton>
-                                            </li>
+                                            </li>                                           
                                         ))}
 
-                                        {imagesPreview.map((img, i) => (
-                                            <li key={i} >
-                                                <img 
-                                                    src={img} 
-                                                    alt="Images Preview"                                                  
-                                                />
-                                            </li>
+                                        {imagesPreview.map((img, i) => (                                           
+                                            <li 
+                                                key={i} 
+                                                className="relative round background-cover" 
+                                                style={{ marginRight: '10px', width: '40px', height: '40px', backgroundImage: `url(${img})` }}
+                                            />                                           
                                         ))}
-
-                                    </ul>  
+                                    </ul>                                      
 
                                     <div>
                                         <h4>Dimensions <small>&bull; (cm)</small></h4>
@@ -342,8 +397,8 @@ const UpdateProduct = () => {
                                                     <td>
                                                         <select 
                                                             value={artist}
-                                                            onChange={(e) => setArtist(e.target.value)}                                    >
-
+                                                            onChange={(e) => setArtist(e.target.value)}                                    
+                                                        >
                                                             {artists && artists.map(a => (
                                                                 <option key={a._id} value={a.name}>{a.name}</option>
                                                             ))}   
@@ -357,7 +412,8 @@ const UpdateProduct = () => {
                                                     <td>
                                                         <select 
                                                             value={orientation}
-                                                            onChange={(e) => setOrientation(e.target.value)}                                    >
+                                                            onChange={(e) => setOrientation(e.target.value)}
+                                                        >
 
                                                             {orientations && orientations.map(o => (
                                                                 <option key={o._id} value={o.name}>{o.name}</option>
@@ -372,7 +428,8 @@ const UpdateProduct = () => {
                                                     <td>
                                                         <select 
                                                             value={medium}
-                                                            onChange={(e) => setMedium(e.target.value)}                                    >
+                                                            onChange={(e) => setMedium(e.target.value)}                                    
+                                                        >
                                                             {media && media.map(m => (
                                                                 <option key={m._id} value={m.name}>{m.name}</option>
                                                             ))}  
@@ -442,7 +499,6 @@ const UpdateProduct = () => {
             /> 
 
         </Fragment>
-
     )
 
 }

@@ -105,7 +105,7 @@ const Home = () => {
 
         <Fragment>
 
-            <MetaData title={'Home'} /> 
+            <MetaData title={'Home'} />             
 
             <div className="slideshow">
                 {transitions((style, index) => (
@@ -116,7 +116,7 @@ const Home = () => {
                         }} 
                     />
                 ))}
-            </div>         
+            </div>             
 
             <div className="container">
 
