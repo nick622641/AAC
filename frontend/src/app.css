@@ -462,7 +462,11 @@ section .callout h3 {
   height: 70%;
 }
 .MuiButtonBase-root {
-  padding: 8px!important;
+  padding: 8px !important;
+}
+.MuiButtonBase-root.close {
+  position: absolute !important;
+  border-radius: 100% !important;
 }
 /* Media Queries */
 @media ( max-width: 768px ) {

@@ -154,7 +154,8 @@ const Payment = () => {
                             </tbody>
                         </table>
                         
-                        <br />
+                        <br /><br />
+                        
                         <button 
                             className="submit relative"
                             disabled={processing ? true : false}

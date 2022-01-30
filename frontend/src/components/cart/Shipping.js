@@ -111,7 +111,7 @@ const Shipping = () => {
                         </tbody>
                         </table> 
 
-                        <br />  
+                        <br /><br />  
                     
                         <button className="submit">Continue</button>
 
