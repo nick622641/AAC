@@ -102,6 +102,9 @@ table {
 .bordered-table {
   border: solid 1px #ccc;
 }
+.fixed-table {
+  table-layout: fixed;
+}
 th,
 td {
   font-size: 12px; 
@@ -134,6 +137,9 @@ th {
 }
 .align-items-center {
   align-items: center;
+}
+.scrollX {
+  overflow-x: auto;
 }
 .primary-color {
   color: var(--primary-color);

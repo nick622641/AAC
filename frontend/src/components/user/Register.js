@@ -74,7 +74,7 @@ const Register = () => {
 
             <div className="container">
 
-                <div className="wrapper">
+                <div className="wrapper d-flex">
 
                     <form onSubmit={submitHandler}  className="user-form">
 

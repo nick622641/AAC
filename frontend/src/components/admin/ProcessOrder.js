@@ -166,18 +166,14 @@ const ProcessOrder = () => {
                                         </tr>
                                         <tr>
                                             <td><h6 className="text-right">Payment Status</h6></td>
-                                            <td>
-                                                <p className={isPaid ? "success" : "danger"}>
-                                                    <b>{isPaid ? 'Paid': 'Pending'}</b>
-                                                </p>
+                                            <td className={isPaid ? "success" : "danger"}>
+                                                <b>{isPaid ? 'Paid': 'Pending'}</b>
                                             </td>
                                         </tr>                                    
                                         <tr>
                                             <td><h6 className="text-right">Order Status</h6></td>
-                                            <td>
-                                                <p className={order.orderStatus && String(order.orderStatus).includes('Delivered') ? "success" : "danger"}>
-                                                    <b>{orderStatus}</b>
-                                                </p> 
+                                            <td className={order.orderStatus && String(order.orderStatus).includes('Delivered') ? "success" : "danger"}>
+                                                <b>{orderStatus}</b>
                                             </td>
                                         </tr>                                                
                                     </tbody>

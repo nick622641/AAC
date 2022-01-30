@@ -57,7 +57,7 @@ const NewPassword = () => {
 
             <div className="container">
 
-                <div className="wrapper">
+                <div className="wrapper d-flex">
 
                     <form className="user-form" onSubmit={submitHandler}>
 

@@ -94,7 +94,7 @@ const ListOrders = () => {
 
                 <div className="container">
 
-                    <div className="wrapper">                                     
+                    <div className="wrapper d-flex">                                     
 
                         <div className="user-form cart">
 

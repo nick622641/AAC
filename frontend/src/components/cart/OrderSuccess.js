@@ -15,7 +15,7 @@ const OrderSuccess = () => {
 
             <div className="container parent" style={{ minHeight: "60vh", alignItems: "center" }}>
 
-                <div className="wrapper">
+                <div className="wrapper d-flex">
 
                     <div className="user-form text-center">                
 

@@ -31,7 +31,7 @@ function Contact() {
 
             <form onSubmit={submitHandler}>
 
-                <table className="top-align" style={{ tableLayout: 'fixed' }}>
+                <table className="top-align fixed-table">
                     <tbody>
                         <tr>
                             <th style={{ width: "100px" }} className="text-right">Name</th>

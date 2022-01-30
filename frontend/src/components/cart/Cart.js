@@ -58,7 +58,7 @@ const Cart = () => {
 
             <div className="container">
 
-                <div className="wrapper">
+                <div className="wrapper d-flex">
 
                     <div className="user-form">
 
@@ -72,75 +72,79 @@ const Cart = () => {
                             
                             <h1>Your Cart</h1> 
 
-                            <table className="bordered-table">
-                                <tbody>
-                                    <tr className="bg-grey">
-                                        <th>Item</th>
-                                        <th>Title</th>
-                                        <th>Price</th>                                    
-                                        <th>Quantity</th>                                    
-                                        <th>                                   
-                                            <IconButton onClick={() => {setIsModalVisible(!isModalVisible)}}>
-                                                <DeleteForeverIcon color="danger" />
-                                            </IconButton>
-                                        </th>
-                                    </tr>
-                                    {cartItems.map(item => (
-                                        <tr key={item.product}>
-                                            <td>
-                                                <Link to={`/artwork/${item.product}`}>
-                                                    <Avatar
-                                                        src={item.image} 
-                                                        alt={item.name} 
-                                                        sx={{ width: 50, height: 50 }}
-                                                    />                                          
-                                                </Link>
-                                            </td>
-                                            <td>
-                                                <Link to={`/artwork/${item.product}`}>{item.name}</Link>
-                                            </td>
-                                            <td>
-                                                <FormattedPrice number={item.price} />                                            
-                                            </td>
-                                            <td className="whitespace-nowrap">   
+                            <div className="scrollX">
 
-                                                <IconButton 
-                                                    className={item.quantity === 1 ? 'inactive' : ''}                                                 
-                                                    onClick={() => decreaseQty(item.product, item.quantity)}
-                                                >
-                                                    <RemoveCircleIcon 
-                                                        fontSize="small" 
-                                                        color={item.quantity === 1 ? 'disabled' : 'primary'}
-                                                    />
-                                                </IconButton>  
-
-                                                <input 
-                                                    className="text-center"
-                                                    style={{ width: '40px' }}                                              
-                                                    value={item.quantity} 
-                                                    readOnly 
-                                                />
-
-                                                <IconButton 
-                                                    className={item.quantity === item.stock ? 'inactive' : ''} 
-                                                    onClick={() => increaseQty(item.product, item.quantity, item.stock)}
-                                                >
-                                                    <AddCircleIcon 
-                                                        fontSize="small" 
-                                                        color={item.quantity === item.stock ? 'disabled' : 'primary'}
-                                                    />
+                                <table className="bordered-table">
+                                    <tbody>
+                                        <tr className="bg-grey">
+                                            <th>Item</th>
+                                            <th>Title</th>
+                                            <th>Price</th>                                    
+                                            <th>Quantity</th>                                    
+                                            <th>                                   
+                                                <IconButton onClick={() => {setIsModalVisible(!isModalVisible)}}>
+                                                    <DeleteForeverIcon color="danger" />
                                                 </IconButton>
-                                        
-                                            </td>
-                                            <th>     
-                                                <IconButton onClick={() => removeCartItemHandler(item.product)}>
-                                                    <DeleteOutlineIcon color="danger" />
-                                                </IconButton>
-                                            </th>                                        
+                                            </th>
                                         </tr>
-                                    ))}    
-                                </tbody>
-                            </table>
+                                        {cartItems.map(item => (
+                                            <tr key={item.product}>
+                                                <td>
+                                                    <Link to={`/artwork/${item.product}`}>
+                                                        <Avatar
+                                                            src={item.image} 
+                                                            alt={item.name} 
+                                                            sx={{ width: 50, height: 50 }}
+                                                        />                                          
+                                                    </Link>
+                                                </td>
+                                                <td>
+                                                    <Link to={`/artwork/${item.product}`}>{item.name}</Link>
+                                                </td>
+                                                <td>
+                                                    <FormattedPrice number={item.price} />                                            
+                                                </td>
+                                                <td className="whitespace-nowrap">   
+
+                                                    <IconButton 
+                                                        className={item.quantity === 1 ? 'inactive' : ''}                                                 
+                                                        onClick={() => decreaseQty(item.product, item.quantity)}
+                                                    >
+                                                        <RemoveCircleIcon 
+                                                            fontSize="small" 
+                                                            color={item.quantity === 1 ? 'disabled' : 'primary'}
+                                                        />
+                                                    </IconButton>  
+
+                                                    <input 
+                                                        className="text-center"
+                                                        style={{ width: '40px' }}                                              
+                                                        value={item.quantity} 
+                                                        readOnly 
+                                                    />
+
+                                                    <IconButton 
+                                                        className={item.quantity === item.stock ? 'inactive' : ''} 
+                                                        onClick={() => increaseQty(item.product, item.quantity, item.stock)}
+                                                    >
+                                                        <AddCircleIcon 
+                                                            fontSize="small" 
+                                                            color={item.quantity === item.stock ? 'disabled' : 'primary'}
+                                                        />
+                                                    </IconButton>
+                                            
+                                                </td>
+                                                <th>     
+                                                    <IconButton onClick={() => removeCartItemHandler(item.product)}>
+                                                        <DeleteOutlineIcon color="danger" />
+                                                    </IconButton>
+                                                </th>                                        
+                                            </tr>
+                                        ))}    
+                                    </tbody>
+                                </table>
+
+                            </div>
 
                             <h4>Order Summary</h4>
                             

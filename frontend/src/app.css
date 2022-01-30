@@ -51,10 +51,12 @@ div {
 .container {
   max-width: 1280px; 
   margin: auto;
+  min-height: 80vh;
 }
 .wrapper {
   width: 100%; 
   padding: 40px;
+  min-height: 80vh;
 }
 .parent {
   display: flex;
@@ -462,6 +464,9 @@ section .callout h3 {
   align-items: center;
   height: 70%;
 }
+.MuiButtonBase-root {
+  padding: 8px!important;
+}
 /* Media Queries */
 @media ( max-width: 768px ) {
   .container {
@@ -469,6 +474,10 @@ section .callout h3 {
   }
   .wrapper {
     padding: 30px;
+  }
+  .wrapper.d-flex {
+    display: block;
+    min-height: 0;
   }
   .parent {
     flex-direction: column;
@@ -478,6 +487,9 @@ section .callout h3 {
   }
   .reverse {
     flex-direction: column-reverse;
+  }
+  .container, main {
+    min-height: 0;
   }
   .filters {
     display: inline-block;
