@@ -58,34 +58,31 @@ import UpdateMedia                       from './components/admin/UpdateMedia'
 
 function App() {  
 
-  const { product    } = useSelector( state => state.productDetails )  
   const { loggingOut } = useSelector( state => state.auth )
 
-  const [ stripeApiKey, setStripeApiKey ] = useState('')    
+  const [ stripeApiKey, setStripeApiKey ] = useState('')   
+
   useEffect(() => {
+
     store.dispatch(loadUser())
+
     async function getStripApiKey() {
       const { data } = await axios.get('/api/v1/stripeapi')
       setStripeApiKey(data.stripeApiKey)
     }
+
     getStripApiKey()
+
   }, [])
 
   const location = useLocation()
+  const redirect = loggingOut ? true : false
+
   const transitions = useTransition( location, {
     from:  { opacity: 0,   transform: "translate( 100%, 0%)" },
     enter: { opacity: 1,   transform: "translate(   0%, 0%)" },
-    leave: { opacity: 0.5, transform: "translate(-100%, 0%)", position: "absolute", top: "94px", width: "100%" }
-  })
- 
-  // console.log('location: ' + location.search)     
-  // console.log('pathname: ' + location.pathname)     
-
-  const redirect =  loggingOut ||
-                    location.pathname === `/artwork/${product._id}` ||                    
-                    location.pathname === '/shipping' || 
-                    location.pathname === '/login' 
-                  ? true : false
+    leave: { opacity: 0.5, transform: "translate(-100%, 0%)", position: "absolute", top: "90px", width: "100%" }
+  })  
 
   return (    
     
@@ -108,6 +105,7 @@ function App() {
             <Route path="/gallery/:keyword"      element={<Gallery                                                      />} />
             <Route path="/gallery/artist/:artist" element={<Gallery                                                      />} />
             <Route path="/gallery/orientation/:orientation" element={<Gallery                                                      />} />
+            <Route path="/gallery/medium/:medium" element={<Gallery                                                      />} />
             <Route path="/gallery/medium/:medium" element={<Gallery                                                      />} />
             <Route path="/gallery/rating/:rating" element={<Gallery                                                      />} />
             <Route path="/artwork/:id"           element={<ProductDetails                                               />} />             

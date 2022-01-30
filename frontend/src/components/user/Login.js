@@ -14,18 +14,20 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
-    const alert = useAlert()
-    const [ email, setEmail ] = useState('')
-    const [ password, setPassword ] = useState('')    
+    const alert    = useAlert()
+    const path = location.search  ? `/${location.search.split('=')[1]}` : '/'  
+    const [ email,           setEmail           ] = useState('')
+    const [ password,        setPassword        ] = useState('')    
     const [ passwordVisible, setPasswordVisible ] = useState()
-    const { loading, isAuthenticated, error } = useSelector( state => state.auth )
-    const redirect = location.search  ? `/${location.search.split('=')[1]}` : '/'  
+    const [ redirect                            ] = useState(path)
+    const { loading, isAuthenticated, error } = useSelector( state => state.auth )     
 
     const togglePassword = () => {
         setPasswordVisible(!passwordVisible)
-    }
+    }    
    
     useEffect(() => {
+
         if(isAuthenticated) {
             navigate(redirect)   
         }

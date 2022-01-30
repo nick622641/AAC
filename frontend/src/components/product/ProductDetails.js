@@ -120,7 +120,7 @@ const ProductDetails = () => {
                                                 <img 
                                                     src={image.thumbUrl} 
                                                     alt={product.name} 
-                                                    className="centered-image thumb"
+                                                    className="object-fit"
                                                 />
                                             </li>
                                         ))}

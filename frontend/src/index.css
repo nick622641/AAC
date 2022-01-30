@@ -90,6 +90,9 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.dragging {
+  opacity: 0.5;
+}
 /* Tables */
 table {
 	border-collapse: collapse;

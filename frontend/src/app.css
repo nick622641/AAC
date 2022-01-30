@@ -341,14 +341,9 @@ section .callout h3 {
   height: 75px; 
   overflow: hidden;
   border: solid 1px #ccc;
-  flex: 1 0 175px;
-  max-width: 240px;
 }
-.thumbnails .thumb:hover {
+.thumbnails img:hover {
   cursor: zoom-in; 
-  opacity: 0.5;
-}
-.dragging {
   opacity: 0.5;
 }
 /* Carousel Styles */
