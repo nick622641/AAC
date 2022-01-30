@@ -64,7 +64,8 @@ const Cart = () => {
 
                     {cartItems.length === 0 
                     ? ( <Fragment>
-                            <h1>Your Cart is Empty</h1>                             
+                            <h1>Your Cart</h1> 
+                            <p>You have not added anything to your shopping cart yet</p>                            
                         </Fragment>
                     )
                     : (

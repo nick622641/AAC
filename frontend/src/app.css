@@ -130,7 +130,6 @@ button[disabled] {
   margin: auto;
   box-shadow: var(--box-shadow);
   padding: 40px;
-  max-width: 480px; 
   flex-basis: 480px;
   position: relative;
   background: white;  
@@ -176,11 +175,9 @@ textarea:focus {
   border-bottom-color: var(--primary-color);
   outline: none;
 }
-.user-form p {
-  line-height: 2.5em;
-}
 .user-form .submit {
-  width: 100%;
+  display: block;
+ margin: 0 auto;
 }
 /* Custom Country Dropdown */
 .custom-select >  li {

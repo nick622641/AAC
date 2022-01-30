@@ -113,7 +113,9 @@ const UpdateProfile = () => {
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>        
+                        </table>  
+
+                        <br />      
                        
                         <button 
                             className="submit"
