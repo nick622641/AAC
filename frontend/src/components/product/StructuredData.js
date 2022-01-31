@@ -8,17 +8,17 @@ const StructuredData = ({ title, description, thumb, image, date, artist, medium
         '@context': 'https://schema.org',
         '@type': 'CreativeWork',
         headline: {title},
-        description: {text},
-        image: {image},
-        thumbnailUrl: {thumb},
-        datePublished: new Date(date).getFullYear(),
-        genre: 'Abstract Art',
-        material: {medium},
+        // description: {text},
+        // image: {image},
+        // thumbnailUrl: {thumb},
+        // datePublished: new Date(date).getFullYear(),
+        // genre: 'Abstract Art',
+        // material: {medium},
         // aggregateRating: {rating},
-        author: {
-            '@type': 'Person',
-            name: {artist}
-        }    
+        // author: {
+        //     '@type': 'Person',
+        //     name: {artist}
+        // }    
     }
 
   return (
