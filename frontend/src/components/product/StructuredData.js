@@ -14,10 +14,10 @@ const StructuredData = ({ title, description, thumb, image, date, artist, medium
         datePublished: new Date(date).getFullYear(),
         genre: 'Abstract Art',
         material: {medium},
-        aggregateRating: {rating},
+        // aggregateRating: {rating},
         author: {
-        '@type': 'Person',
-        name: {artist}
+            '@type': 'Person',
+            name: {artist}
         }    
     }
 
