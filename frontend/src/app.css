@@ -55,7 +55,9 @@ div {
 }
 .wrapper {
   width: 100%; 
-  padding: 40px;
+  padding: 40px;  
+}
+.wrapper.d-flex {
   min-height: 80vh;
 }
 .parent {

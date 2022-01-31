@@ -105,7 +105,7 @@ const Home = () => {
 
         <Fragment>
 
-            <MetaData title={'Home'} />             
+            <MetaData title={'Home'} description="Bold and beautiful abstract works of art by Canadian artists" />             
 
             <div className="slideshow">
                 {transitions((style, index) => (

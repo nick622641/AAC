@@ -67,8 +67,11 @@ const ProductDetails = () => {
         transform: isLightboxVisible ? `translateY(0%)` : `translateY(-100%)`
     })
     useEffect( () => {   
+
         dispatch(getProductDetails(id))
+
         dispatch(getRelatedProducts(product.artist))
+        
         if(error) { 
             alert.error(error)
             dispatch(clearErrors())
@@ -97,7 +100,7 @@ const ProductDetails = () => {
 
                 <Fragment>
 
-                    <MetaData title={product.name} />
+                    <MetaData title={product.name} description={product.description} />
 
                     <div className="bg-grey">
 

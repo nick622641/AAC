@@ -65,7 +65,6 @@ exports.deleteArtist = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Artist not found', 404)) 
     }
 })
-
 // Get all Orientation types => /api/v1/admin/orientations
 exports.getOrientations = catchAsyncErrors(async (req, res, next) => {
     const orientations = await Orientation.find().sort({ name: 1 })
@@ -124,7 +123,6 @@ exports.deleteOrientation = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Orientation not found', 404)) 
     }
 })
-
 // Get all Media types => /api/v1/admin/mediums
 exports.getMedia = catchAsyncErrors(async (req, res, next) => {
     const media = await Medium.find().sort({ name: 1 })
@@ -153,7 +151,6 @@ exports.newMedium = catchAsyncErrors(async (req, res, next) => {
         medium
     })
 })
-
 // Update Media => /api/v1/admin/medium/:id
 exports.updateMedium = catchAsyncErrors(async (req, res, next) => {
     try {    
@@ -184,7 +181,6 @@ exports.deleteMedium = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Medium not found', 404)) 
     }
 })
-
 // Create new product => /api/v1/admin/product/new
 exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
@@ -237,7 +233,6 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
         product
     })
 })
-
 // Update Product => /api/v1/admin/product/:id
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {    
 
@@ -299,7 +294,6 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Product not found', 404))        
     }
 })
-
 // Get all products => /api/v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {       
 
@@ -325,17 +319,20 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     })  
     
 })
-
 // Get products related to a particular artist => /api/v1/products/related
 exports.getRelatedProducts = async (req, res, next) => {   
 
+    // const apiFeatures = new APIFeatures(
+    //     Product
+    //         .find()
+    //         .sort({ numOfReviews: -1 })
+    //         .limit(3), req.query
+    // )
+    //     .filter()
+
     const apiFeatures = new APIFeatures(
-        Product
-            .find()
-            .sort({ numOfReviews: -1 })
-            .limit(3), req.query
+        Product.aggregate([ { $sample: { size: 3 } } ])
     )
-        .filter()
 
     const relatedProducts = await apiFeatures.query
 

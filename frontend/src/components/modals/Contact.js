@@ -33,6 +33,7 @@ function Contact() {
 
                 <table className="top-align fixed-table">
                     <tbody>
+                        
                         <tr>
                             <th style={{ width: "100px" }} className="text-right">Name</th>
                             <td>
