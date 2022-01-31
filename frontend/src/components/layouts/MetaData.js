@@ -10,7 +10,7 @@ const MetaData = ({ title, description }) => {
             <meta 
                 name="description" 
                 content={description 
-                    ? description.replace(/(<([^>]+)>)/gi, "") 
+                    ? description.replace(/(<([^>]+)>)/gi, "").substring(0, 155) + '...' 
                     : 'Bold and beautiful abstract works of art by Canadian artists'
                 } 
             />

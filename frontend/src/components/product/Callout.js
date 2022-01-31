@@ -22,6 +22,7 @@ const Callout = ({ relatedProducts }) => {
                         <h2>{relatedProducts[0].name}</h2>
                         <p>
                             {relatedProducts[0].description.substring(0, 200)}...
+                            <br />
                             <Link to={`/artwork/${relatedProducts[0]._id}`}>
                                 <IconButton color="primary">
                                     <MenuBookOutlinedIcon />

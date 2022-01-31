@@ -24,6 +24,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import LoginIcon from '@mui/icons-material/Login'
 import Quantity from '../layouts/Quantity'
 import Rating from '@mui/material/Rating'
+import StructuredData from './StructuredData'
 
 const ProductDetails = () => {   
 
@@ -102,6 +103,20 @@ const ProductDetails = () => {
 
                     <MetaData title={product.name} description={product.description} />
 
+                    {product.images && (
+                        <StructuredData
+                            title={product.name}
+                            description={product.description}
+                            thumb={product.images[0].thumbUrl}
+                            image={product.images[0].url}
+                            date={product.datePublished}
+                            artist={product.artist}
+                            medium={product.media}
+                            rating={product.ratings}
+                        />
+                    )}
+
+                    
                     <div className="bg-grey">
 
                         <div className="container"> 
