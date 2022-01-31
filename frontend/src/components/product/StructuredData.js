@@ -9,12 +9,12 @@ const StructuredData = ({ title, description, thumb, image, date, artist, medium
         "@type": "CreativeWork",
         "name": {title},
         "description": {text},
-        // "image": {image},
+        "image": {image},
         "thumbnailUrl": {thumb},
         "datePublished": new Date(date).getFullYear(),
         "genre": "Abstract Art",
         "material": {medium},
-        // "aggregateRating": {rating},
+        "aggregateRating": {rating},
         "author": {
             "@type": "Person",
             "name": {artist}
