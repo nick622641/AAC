@@ -7,17 +7,17 @@ const StructuredData = ({ title, description, thumb, image, date, artist, medium
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "CreativeWork",
-        "name": {title},
-        "description": {text},
-        "image": {image},
-        "thumbnailUrl": {thumb},
+        "name": title,
+        "description": text,
+        "image": image,
+        "thumbnailUrl": thumb,
         "datePublished": new Date(date).getFullYear(),
         "genre": "Abstract Art",
-        "material": {medium},
-        "aggregateRating": {rating},
+        "material": medium,
+        "aggregateRating": rating,
         "author": {
             "@type": "Person",
-            "name": {artist}
+            "name": artist
         }    
     }
 
