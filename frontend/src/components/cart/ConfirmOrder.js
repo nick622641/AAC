@@ -159,18 +159,14 @@ const ConfirmOrder = () => {
                         </tbody>
                         </table>
 
-                        <div className="text-center">
-
-                            <Button 
-                                variant="contained" 
-                                onClick={proceedToPayment}
-                                endIcon={<SendIcon />}
-                                sx={{ mt: 4 }}
-                            >
-                                Proceed to Payment
-                            </Button>
-
-                        </div>                        
+                        <Button 
+                            variant="contained" 
+                            onClick={proceedToPayment}
+                            endIcon={<SendIcon />}
+                            sx={{ width: '100%', mt: 4 }}
+                        >
+                            Proceed to Payment
+                        </Button>
 
                         <Link to="/shipping">                              
                             <Fab 

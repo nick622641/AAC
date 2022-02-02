@@ -73,6 +73,11 @@ header nav a {
     font-size: 68px;    
     border: solid 1px #ccc;
     margin: 40px 0;
+    width: 100%;
+    font-weight: 100;
+}
+.searchform input:focus {    
+    border-color: var(--primary-color);
 }
 .searchform input::placeholder {
     color:#ccc;

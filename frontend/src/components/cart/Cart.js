@@ -168,20 +168,17 @@ const Cart = () => {
                                     </td>
                                 </tr>
                             </tbody>
-                            </table>  
-                             
-                            <div className="text-center">
+                            </table>                               
 
-                                <Button 
-                                    variant="contained" 
-                                    onClick={checkoutHandler}
-                                    endIcon={<SendIcon />}
-                                    sx={{ mt: 4 }}
-                                >
-                                    Check Out
-                                </Button>
+                            <Button 
+                                variant="contained" 
+                                onClick={checkoutHandler}
+                                endIcon={<SendIcon />}
+                                sx={{ width: '100%', mt: 4 }}
+                            >
+                                Check Out
+                            </Button>
 
-                            </div>                   
 
                         </Fragment>
 
