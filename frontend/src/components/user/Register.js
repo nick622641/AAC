@@ -3,14 +3,16 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { register, clearErrors } from '../../actions/userActions'
 import { useNavigate, Link } from 'react-router-dom'
+import { FormControl, Input, InputAdornment, InputLabel, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import CircularProgress from '@mui/material/CircularProgress'
 import Avatar from '@mui/material/Avatar'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import SendIcon from '@mui/icons-material/Send'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 const Register = () => {
 
@@ -20,7 +22,7 @@ const Register = () => {
 
     const { loading, isAuthenticated, error } = useSelector( state => state.auth )
    
-    const [ user,           setUser             ] = useState({ name: '', email: '', password: '' })     
+    const [ user,            setUser            ] = useState({ name: '', email: '', password: '' })     
     const { name, email, password } = user    
     const [ avatar,          setAvatar          ] = useState('') 
     const [ avatarPreview,   setAvatarPreview   ] = useState('/images/default-avatar.jpg')     
@@ -36,7 +38,7 @@ const Register = () => {
             navigate('/')            
         }
         if(error) {             
-            alert.error(error);
+            alert.error(error)
             dispatch(clearErrors())
         }
     }, [dispatch, alert, isAuthenticated, error, navigate])
@@ -99,61 +101,68 @@ const Register = () => {
                                         />  
                                     </label>
                                 </td>
-                                <td>                                        
-                                    <input 
-                                        type="text" 
-                                        placeholder="Name"   
-                                        name="name"                      
-                                        value={name}
-                                        onChange={onChange}                                                                                
-                                    /> 
+                                <td>  
+                                    <FormControl fullWidth>
+                                        <TextField 
+                                            label="Name" 
+                                            name="name"
+                                            value={name}
+                                            variant="standard"
+                                            onChange={onChange} 
+                                        />                                 
+                                    </FormControl> 
                                 </td>
                             </tr>
                             <tr>
-                                <td>                                       
-                                    <input 
-                                        type="email" 
-                                        placeholder="Email" 
-                                        name="email"                        
-                                        value={email}
-                                        onChange={onChange}                                                                                
-                                    />  
+                                <td> 
+                                    <FormControl fullWidth>
+                                        <TextField 
+                                            label="Email" 
+                                            type="email"
+                                            name="email"
+                                            value={email}
+                                            variant="standard"
+                                            onChange={onChange} 
+                                        />                                 
+                                    </FormControl>  
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <label>
-                                        <input 
+                                <td>                                
+                                    <FormControl sx={{ mb: 4 }} variant="standard" fullWidth>
+                                        <InputLabel>Password</InputLabel>
+                                        <Input
                                             type={passwordVisible ? 'text' : 'password'}
-                                            placeholder="Password" 
-                                            name="password"
                                             value={password}
-                                            onChange={onChange}  
-                                        /> 
-                                        <IconButton className="eye" onClick={togglePassword}>
-                                            {passwordVisible ? (
-                                                <VisibilityIcon fontSize="small" />
-                                            ):(
-                                                <VisibilityOffIcon fontSize="small" />
-                                            )}
-                                        </IconButton>    
-                                    </label>
+                                            name="password"
+                                            onChange={onChange} 
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton onClick={togglePassword}>
+                                                        {passwordVisible 
+                                                            ? <Visibility fontSize="small" /> 
+                                                            : <VisibilityOff fontSize="small" />
+                                                        }
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                        />
+                                    </FormControl>
                                 </td>
                             </tr>
                         </tbody>
-                        </table>
-                       
-                        <button 
-                            className="submit"
-                            disabled={loading ? true : false}
+                        </table>    
+                
+                        <LoadingButton 
+                            loading={loading}
+                            loadingPosition="end"
+                            variant="contained" 
+                            onClick={submitHandler}
+                            endIcon={<SendIcon />}
+                            sx={{ mb: 4, width: '100%' }}
                         >
-                            {loading 
-                                ? <CircularProgress color="primary" />
-                                : 'Sign Up'
-                            }
-                        </button>
-
-                        <br /><br />
+                            Sign Up
+                        </LoadingButton>
 
                         <div className="parent">
                             <small>Already signed up?</small>

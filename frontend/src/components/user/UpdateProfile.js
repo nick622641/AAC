@@ -3,25 +3,30 @@ import { useAlert } from 'react-alert'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProfile, loadUser, clearErrors } from '../../actions/userActions'
+import { FormControl, TextField } from '@mui/material'
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 import MetaData from '../layouts/MetaData'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
-import CircularProgress from '@mui/material/CircularProgress'
+import SendIcon from '@mui/icons-material/Send'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 const UpdateProfile = () => {
+
+    const alert = useAlert()
     
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const alert = useAlert()
+    const navigate = useNavigate()   
+
+    const { user                      } = useSelector( state => state.auth )
+    const { loading, isUpdated, error } = useSelector( state => state.user )
+
     const [ name,          setName          ] = useState('')
     const [ email,         setEmail         ] = useState('')
     const [ avatar,        setAvatar        ] = useState('')
     const [ avatarPreview, setAvatarPreview ] = useState('/images/default-avatar.jpg')   
-    const { user                      } = useSelector( state => state.auth )
-    const { loading, isUpdated, error } = useSelector( state => state.user )
-
+    
     useEffect(() => {
         if(user) {
             setName(user.name)  
@@ -91,41 +96,41 @@ const UpdateProfile = () => {
                                             />         
                                         </label>
                                     </td>
-                                    <td>
-                                        <label>
-                                            <input 
-                                                type="name" 
-                                                placeholder="Name"
+                                    <td>                               
+                                        <FormControl fullWidth>
+                                            <TextField 
+                                                label="Name" 
                                                 value={name}
+                                                variant="standard"
                                                 onChange={(e) => setName(e.target.value)}
-                                                required
-                                            />
-                                        </label>
-                                        <label>
-                                            <input
+                                                sx={{ mb: 2 }}
+                                            />                                 
+                                        </FormControl> 
+
+                                        <FormControl fullWidth>
+                                            <TextField 
+                                                label="Email" 
                                                 type="email"
-                                                placeholder="Email"
                                                 value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                                required
-                                            />
-                                        </label>
+                                                variant="standard"
+                                                onChange={(e) => setEmail(e.target.value)}                                                
+                                            />                                 
+                                        </FormControl>                                       
                                     </td>
                                 </tr>
                             </tbody>
                         </table>  
 
-                        <br />      
-                       
-                        <button 
-                            className="submit"
-                            disabled={loading ? true : false}
+                        <LoadingButton 
+                            loading={loading}
+                            loadingPosition="end"
+                            variant="contained" 
+                            onClick={submitHandler}
+                            endIcon={<SendIcon />}
+                            sx={{ mt: 4, width: '100%' }}
                         >
-                            {loading 
-                                ? <CircularProgress color="primary" />
-                                : 'Update'
-                            }
-                        </button>
+                            Update
+                        </LoadingButton>
 
                         <Link to="/me">                              
                             <Fab 

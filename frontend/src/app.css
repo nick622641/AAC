@@ -135,9 +135,6 @@ button[disabled] {
   position: relative;
   background: white;  
 }
-.cart {
-  max-width: 100%;
-}
 .modal { 
   position: fixed;   
   left: 0;
@@ -145,6 +142,7 @@ button[disabled] {
   top: 50%;
   margin: auto;  
   z-index: 2000; 
+  max-width: 480px;
 }
 ::placeholder {
   color: #999;
@@ -180,66 +178,8 @@ textarea:focus {
   display: block;
  margin: 0 auto;
 }
-/* Custom Country Dropdown */
-.custom-select >  li {
-  position: relative;
-  cursor: pointer;
-  border-bottom: solid 1px #ccc;  
-}
-.custom-select > li.open {
-  border-color: var(--primary-color);
-}
-.custom-select > li >  div > span {
-  color: #999;
-}
-.custom-select .set {
-  color: black;
-}
-.custom-select-dropdown {
-  width: 100%;
-  height: 40vh;
-  position: absolute;
-  top: calc( (40vh + 20px) * -1 );
-  z-index: 1;
-  overflow-y: scroll;
-  background: white;
-  box-shadow: var(--box-shadow); 
-}
-.custom-select ul {
-  padding: 10px 0 10px 0;  
-}
-.custom-select-dropdown li {
-  padding: 3px 10px;
-  transition: all var(--speed);
-  white-space: nowrap;
-}
-.custom-select-dropdown .selected {
-  background: var(--primary-color);
-  color: white;
-}
-.custom-select-dropdown li:hover {
-  background: #ccc;
-  color: white;
-}
-.custom-select div:first-child {
-  padding: 10px;
-}
-.custom-select input {
-  text-indent: 40px;
-}
-.custom-select .select-search {
-  position: absolute;
-  left: 10px;
-  line-height: 35px;
-}
-.custom-select img {
-  width: 20px;
-  margin-right: 20px;
-  border: solid 1px #ccc;
-}
-.ck-focused {
-  border-color: #ccc !important;
-  border-bottom-color: var(--primary-color) !important;
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #fff inset;
 }
 /* MDB Table Styles */
 .mdb-datatable > div:nth-child(2) {
@@ -462,12 +402,28 @@ section .callout h3 {
   align-items: center;
   height: 70%;
 }
-.MuiButtonBase-root {
-  padding: 8px !important;
+/* Alert Styles */
+#__react-alert__ > div:before {
+  content: '';
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  width: 100vw;
+  height: 200vh; 
 }
-.MuiButtonBase-root.close {
-  position: absolute !important;
-  border-radius: 100% !important;
+#__react-alert__ > div > div > div {
+  background: white !important;
+  color: #333 !important; 
+  text-transform: capitalize !important;  
+  padding: 40px !important;
+  position: relative;
+}
+#__react-alert__ button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#__react-alert__ button svg {
+  stroke: #333 !important;    
 }
 /* Media Queries */
 @media ( max-width: 768px ) {

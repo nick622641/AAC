@@ -8,7 +8,9 @@ import { UPDATE_ARTIST_RESET } from '../../constants/categoryConstants'
 import { getArtistDetails, updateArtist, clearErrors } from '../../actions/categoryActions'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import CircularProgress from '@mui/material/CircularProgress'
+import { FormControl, TextField } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
 
 const UpdateArtist = () => {
 
@@ -73,34 +75,26 @@ const UpdateArtist = () => {
 
                             <form onSubmit={submitHandler}>
 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th>
-                                                <h6 className="text-right">Artist Name</h6>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    placeholder="Artist Name"
-                                                    value={name}
-                                                    onChange={(e) => setName(e.target.value)} 
-                                                />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Artist Name" 
+                                        value={name}
+                                        variant="standard"
+                                        onChange={(e) => setName(e.target.value)} 
+                                        sx={{ mb: 1 }}
+                                    />                                 
+                                </FormControl>   
 
-                                <br />
-
-                                <button
-                                    className="submit"
-                                    disabled={loading ? true : false}
+                                <LoadingButton 
+                                    loading={loading}
+                                    loadingPosition="end"
+                                    variant="contained" 
+                                    type="submit"
+                                    endIcon={<SendIcon />}
+                                    sx={{ mt: 4, width: '100%' }}
                                 >
-                                    {loading 
-                                        ? <CircularProgress color="primary" />
-                                        : 'Update'
-                                    }
-                                </button>
+                                    Update
+                                </LoadingButton> 
 
                             </form>
                    

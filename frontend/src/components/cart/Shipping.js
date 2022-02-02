@@ -1,29 +1,38 @@
 import React, { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { saveShippingInfo } from '../../actions/cartActions'
 import { useNavigate, Link } from 'react-router-dom'
+import { FormControl, InputLabel, MenuItem, TextField, Select, Button } from '@mui/material'
+import { saveShippingInfo } from '../../actions/cartActions'
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
-import Countries from '../layouts/Countries'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
+import SendIcon from '@mui/icons-material/Send'
+import countryList from '../layouts/countryList'
 
-const Shipping = () => {
+const Shipping = () => {    
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { shippingInfo } = useSelector( state => state.cart )    
-    const [ address,      setAddress    ] = useState(shippingInfo.address)
-    const [ city,         setCity       ] = useState(shippingInfo.city)
-    const [ postalCode,   setPostalCode ] = useState(shippingInfo.postalCode)
-    const [ phoneNo,      setPhoneNo    ] = useState(shippingInfo.phoneNo)
-    const [ country,      setCountry    ] = useState(shippingInfo.country)    
-    const [ isSelectOpen, setSelectOpen ] = useState(false)   
+
+    const countriesList = Object.values( countryList )
+
+    const { shippingInfo } = useSelector( state => state.cart )   
+
+    const [ address,    setAddress    ] = useState( shippingInfo.address    || '' )
+    const [ city,       setCity       ] = useState( shippingInfo.city       || '' )
+    const [ postalCode, setPostalCode ] = useState( shippingInfo.postalCode || '' )
+    const [ phoneNo,    setPhoneNo    ] = useState( shippingInfo.phoneNo    || '' )
+    const [ country,    setCountry    ] = useState( shippingInfo.country    || '' )    
 
     const submitHandler = (e) => {
+
         e.preventDefault()
+
         dispatch(saveShippingInfo( { address, city, postalCode, phoneNo, country } ))
+
         navigate('/order/confirm')
+        
     }
 
     return (
@@ -40,85 +49,73 @@ const Shipping = () => {
 
                         <CheckoutSteps shipping /> 
 
-                        <table className="bordered-table">
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <h6 className="text-right">Address</h6>
-                                </th>
-                                <td>
-                                    <input
-                                        placeholder="Address"
-                                        value={address ? address : ''}
-                                        onChange={(e) => setAddress(e.target.value)}
-                                        required
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <h6 className="text-right">City</h6>
-                                </th>
-                                <td>
-                                    <input
-                                        placeholder="City"
-                                        value={city ? city : ''}
-                                        onChange={(e) => setCity(e.target.value)}
-                                        required
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <h6 className="text-right">Phone</h6>
-                                </th>
-                                <td>
-                                    <input
-                                        placeholder="Telephone number"
-                                        value={phoneNo ? phoneNo : ''}
-                                        onChange={(e) => setPhoneNo(e.target.value)}
-                                        required
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <h6 className="text-right">Post Code</h6>
-                                </th>
-                                <td>
-                                    <input
-                                        placeholder="Postal Code"
-                                        value={postalCode ? postalCode : ''}
-                                        onChange={(e) => setPostalCode(e.target.value.toUpperCase())}
-                                        required
-                                    />
-                                </td>
-                            </tr>                            
-                            <tr>
-                                <th>
-                                    <h6 className="text-right">Country</h6>
-                                </th>
-                                <td className="relative">
-                                    <Countries
-                                        country={country}
-                                        setCountry={setCountry}
-                                        setSelectOpen={setSelectOpen}
-                                        isSelectOpen={isSelectOpen}
-                                    /> 
-                                     <input className="hidden-input" value={country ? country : ''} onChange={(e) => setCountry(e.target.value.toUpperCase())} required/>                                  
-                                </td>
-                            </tr>
-                        </tbody>
-                        </table> 
+                        <FormControl fullWidth>
+                            <TextField 
+                                label="Address" 
+                                value={address}
+                                variant="standard"
+                                onChange={(e) => setAddress(e.target.value)}
+                                sx={{ mb: 2 }}
+                                required
+                            />                      
+                            <TextField 
+                                label="City" 
+                                value={city}
+                                variant="standard"
+                                onChange={(e) => setCity(e.target.value)}
+                                sx={{ mb: 2 }}
+                                required
+                            />
+                            <TextField 
+                                label="Telephone number" 
+                                value={phoneNo}
+                                variant="standard"
+                                onChange={(e) => setPhoneNo(e.target.value)}
+                                sx={{ mb: 2 }}
+                                required
+                            />
+                            <TextField 
+                                label="Postal Code" 
+                                value={postalCode}
+                                variant="standard"
+                                onChange={(e) => setPostalCode(e.target.value.toUpperCase())}
+                                sx={{ mb: 2 }}
+                                required
+                            />                           
+                        </FormControl>
+                        <FormControl variant="standard" fullWidth required>
+                            <InputLabel>Country</InputLabel>
+                            <Select 
+                                label="Country"
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)} 
+                                sx={{ mb: 4 }}
+                            >
+                                {countriesList.map(c => (                                
+                                    <MenuItem key={c.name} value={c.name}>         
+                                        <img
+                                            alt={c.name} 
+                                            src={`https://flagcdn.com/${c.code.toLowerCase()}.svg`}
+                                            style={{ width: '20px', marginRight: '10px' }}
+                                        />                                    
+                                        {c.name} 
+                                    </MenuItem>                                                
+                                ))} 
+                            </Select>
+                        </FormControl>                      
 
-                        <br /><br />  
-                    
-                        <button className="submit">Continue</button>
+                        <Button 
+                            variant="contained" 
+                            type="submit" 
+                            endIcon={<SendIcon />}
+                            sx={{ width: '100%' }}
+                        >
+                            Continue
+                        </Button>
 
                         <Link to="/cart">                              
                             <Fab 
                                 size="small" 
-                                className="close" 
                                 color="primary"
                                 sx={{ position: 'absolute', top: 10, right: 10 }}
                             >

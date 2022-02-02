@@ -7,7 +7,7 @@ const FormattedPrice = ({ number }) => {
         <Fragment>
 
             <span className="whitespace-nowrap">
-            
+
                 ${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} CAN
 
             </span>

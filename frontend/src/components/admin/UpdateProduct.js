@@ -6,18 +6,22 @@ import { updateProduct, getProductDetails, updateImages, deleteImage, clearError
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import CircularProgress from '@mui/material/CircularProgress'
 import Avatar from '@mui/material/Avatar'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
-import Loader from '../layouts/Loader'
 import DragnDrop from './DragnDrop'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
 
 const UpdateProduct = () => {
     
@@ -41,10 +45,10 @@ const UpdateProduct = () => {
     const [ init,            setInit           ] = useState(0)
     const [ final,           setFinal          ] = useState(0)
 
-    const alert = useAlert()
+    const alert     = useAlert()
     const productId = useParams().id   
-    const navigate = useNavigate()    
-    const dispatch = useDispatch()
+    const navigate  = useNavigate()    
+    const dispatch  = useDispatch()
     const { error, product                         } = useSelector(state => state.productDetails)
     const { loading, error: updateError, isUpdated, error: deleteError, isDeleted } = useSelector(state => state.product)
     const { media                                  } = useSelector(state => state.media)
@@ -107,7 +111,6 @@ const UpdateProduct = () => {
 
     const submitHandler = (e) => {
 
-        window.scrollTo(0,0)
         setImagesPreview([])
 
         e.preventDefault()
@@ -171,246 +174,237 @@ const UpdateProduct = () => {
                     
                     </aside>            
 
-                    <article className="relative"> 
+                    <article> 
 
-                        {loading ? <Loader /> : (                       
+                        <div className="user-form"> 
 
-                            <div className="user-form cart upload-product"> 
-
-                                <form onSubmit={submitHandler} encType='multipart/form-data'>
-
-                                    <input
-                                        className="primary-color"
+                            <form onSubmit={submitHandler} encType='multipart/form-data'>
+                            
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Artwork Title" 
                                         value={name}
+                                        variant="standard"
                                         onChange={(e) => setName(e.target.value)} 
-                                        style={{ fontSize: '32px', padding: 0 }}
-                                    />
+                                        sx={{ mb: 1 }}
+                                    />                                 
+                                </FormControl>                              
 
-                                    <br /><br />
-
-                                    <div className="parent reverse">
-                                        
-                                        <label>                                    
-                                            <input
-                                                type='file'   
-                                                className="hidden-input"
-                                                name="product_images"                            
-                                                onChange={onChange}   
-                                                multiple                              
-                                            />   
-                                                                 
-                                            {oldImages[0] && !imagesPreview[0]  && (
-                                                <Avatar
-                                                    src={oldImages[0].thumbUrl} 
-                                                    alt={name}
-                                                    sx={{ width: 150, height: 150 }}
-                                                />                                   
-                                            )}   
-                                            {imagesPreview[0] && (
-                                                <Avatar
-                                                    src={imagesPreview[0]} 
-                                                    alt={name}
-                                                    sx={{ width: 150, height: 150 }}
-                                                />                                           
-                                            )}                                            
-                                                
-                                        </label>
-                                        
-                                        <table className="middle-align">
-                                        <tbody>  
-                                            <tr>                                            
-                                                <th>
-                                                    <h6 className="text-right">Stock</h6>
-                                                </th>
-                                                <td>
-                                                    <input
-                                                        type="number"
-                                                        value={stock} 
-                                                        onChange={(e) => setStock(e.target.value)}
-                                                        min="0"
-                                                    />                                     
-                                                </td> 
-                                            </tr> 
-                                            <tr>
-                                                <th>
-                                                    <h6 className="text-right">$ CAD</h6>
-                                                </th>
-                                                <td>
-                                                    <input
-                                                        type="number"
-                                                        value={price}
-                                                        onChange={(e) => setPrice(e.target.value)} 
-                                                        min="0"
-                                                    />  
-                                                </td>                                         
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    <h6 className="text-right">Published</h6>
-                                                </th>
-                                                <td>
-                                                    <input
-                                                        type="date"
-                                                        value={datePublished}
-                                                        onChange={(e) => setDatePublished(e.target.value)} 
-                                                    />
-                                                </td>
-                                            </tr>
+                                <div className="parent reverse">
+                                    
+                                    <label>                                    
+                                        <input
+                                            type='file'   
+                                            className="hidden-input"
+                                            name="product_images"                            
+                                            onChange={onChange}   
+                                            multiple                              
+                                        />   
+                                                                
+                                        {oldImages[0] && !imagesPreview[0]  && (
+                                            <Avatar
+                                                src={oldImages[0].thumbUrl} 
+                                                alt={name}
+                                                sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
+                                            />                                   
+                                        )}   
+                                        {imagesPreview[0] && (
+                                            <Avatar
+                                                src={imagesPreview[0]} 
+                                                alt={name}
+                                                sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
+                                            />                                           
+                                        )}                                            
                                             
-                                        </tbody>
-                                        </table>
-
-                                    </div>  
-
-                                    <br />                                      
-
-                                    <DragnDrop 
-                                        setIsModalVisible={setIsModalVisible}
-                                        setImageIndex={setImageIndex}
-                                        setImageId={setImageId}
-                                        setInit={setInit}
-                                        setFinal={setFinal}
-                                        updateImagesHandler={updateImagesHandler}
-                                        productId={productId}                                        
-                                        init={init}
-                                        final={final}
-                                        oldImages={oldImages}
-                                        imagesPreview={imagesPreview}
-                                    />  
+                                    </label>
 
                                     <div>
-                                        <h4>Dimensions <small>&bull; (cm)</small></h4>
-                                        <table>
-                                            <tbody>
-                                            <tr>
-                                                <th>
-                                                    <h6>Width</h6>
-                                                </th>                                            
-                                                <td>                                                
-                                                    <input
-                                                        type="number"
-                                                        value={width}
-                                                        onChange={(e) => setWidth(e.target.value)} 
-                                                        min="0"
-                                                    />                                                
-                                                </td>
-                                                <th>
-                                                    <h6>Height</h6>
-                                                </th>
-                                                <td>                                                
-                                                    <input
-                                                        type="number"
-                                                        value={height}
-                                                        onChange={(e) => setHeight(e.target.value)} 
-                                                        min="0"
-                                                    />
-                                                </td>
-                                                <th>
-                                                    <h6>Depth</h6>
-                                                </th>
-                                                <td>
-                                                    <input
-                                                        type="number"
-                                                        value={depth}
-                                                        onChange={(e) => setDepth(e.target.value)} 
-                                                        min="0"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <h4>Categories</h4>
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <th>
-                                                        <h6 className="text-right">Artist</h6>
-                                                    </th>
-                                                    <td>
-                                                        <select 
-                                                            value={artist}
-                                                            onChange={(e) => setArtist(e.target.value)}                                    
-                                                        >
-                                                            {artists && artists.map(a => (
-                                                                <option key={a._id} value={a.name}>{a.name}</option>
-                                                            ))}   
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>
-                                                        <h6 className="text-right">Orientation</h6>
-                                                    </th>
-                                                    <td>
-                                                        <select 
-                                                            value={orientation}
-                                                            onChange={(e) => setOrientation(e.target.value)}
-                                                        >
 
-                                                            {orientations && orientations.map(o => (
-                                                                <option key={o._id} value={o.name}>{o.name}</option>
-                                                            ))}  
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>
-                                                        <h6 className="text-right">Media</h6>
-                                                    </th>
-                                                    <td>
-                                                        <select 
-                                                            value={medium}
-                                                            onChange={(e) => setMedium(e.target.value)}                                    
-                                                        >
-                                                            {media && media.map(m => (
-                                                                <option key={m._id} value={m.name}>{m.name}</option>
-                                                            ))}  
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>  
-                                    </div>  
+                                        <FormControl fullWidth sx={{ mb: 1 }}>
+                                            <TextField 
+                                                label="Stock" 
+                                                InputProps={{ inputProps: { min: 0 } }}
+                                                type="number"
+                                                value={stock} 
+                                                variant="standard"
+                                                onChange={(e) => setStock(e.target.value)}
+                                            />                                 
+                                        </FormControl>
 
-                                    <h4>Description</h4> 
-                                    {description && (                                 
-                                        <CKEditor
-                                            editor={ClassicEditor}               
-                                            data={description}
-                                            onChange={(event, editor) => {
-                                                const data = editor.getData()
-                                                setDescription(data)
-                                            }}
-                                        />
-                                    )}                                
-                        
-                                    <br /><br />  
+                                        <FormControl fullWidth sx={{ mb: 1 }}>
+                                            <TextField 
+                                                label="Price $ CAD" 
+                                                InputProps={{ inputProps: { min: 0 } }}
+                                                type="number"
+                                                value={price} 
+                                                variant="standard"
+                                                onChange={(e) => setPrice(e.target.value)}
+                                            />                                 
+                                        </FormControl>                                               
                                     
-                                    <button
-                                        className="submit"
-                                        disabled={loading ? true : false}
-                                    >
-                                        {loading 
-                                            ? <CircularProgress color="primary" />
-                                            : 'Update'
-                                        }
-                                    </button>
+                                        <FormControl fullWidth sx={{ mb: 1 }}>                                            
+                                            <LocalizationProvider dateAdapter={AdapterDateFns}>                                                        
+                                                <DesktopDatePicker                                                    
+                                                    label="Date published"
+                                                    inputFormat="dd/MM/yyyy"
+                                                    format="dd/MM/yyyy"
+                                                    value={datePublished}
+                                                    onChange={(newValue) => setDatePublished(newValue)} 
+                                                    renderInput={(params) => <TextField variant="standard" {...params} />}
+                                                />
+                                            </LocalizationProvider>
+                                        </FormControl>  
 
-                                </form>                            
+                                    </div>                           
 
-                                <Fab 
-                                    size="small" 
-                                    className="close" 
-                                    color="primary"
-                                    onClick={() => navigate(-1)} 
-                                    sx={{ position: 'absolute', top: 10, right: 10 }}
+                                </div>  
+
+                                <DragnDrop 
+                                    setIsModalVisible={setIsModalVisible}
+                                    setImageIndex={setImageIndex}
+                                    setImageId={setImageId}
+                                    setInit={setInit}
+                                    setFinal={setFinal}
+                                    updateImagesHandler={updateImagesHandler}
+                                    productId={productId}                                        
+                                    init={init}
+                                    final={final}
+                                    oldImages={oldImages}
+                                    imagesPreview={imagesPreview}
+                                />  
+
+                                <div>
+                                    <h4>Dimensions <small>&bull; (cm)</small></h4>
+
+                                    <div className="d-flex">
+                            
+                                        <FormControl fullWidth sx={{ mr: 2 }}>
+                                            <TextField 
+                                                label="Width" 
+                                                InputProps={{ inputProps: { min: 0 } }}
+                                                type="number"
+                                                value={width} 
+                                                variant="standard"
+                                                onChange={(e) => setWidth(e.target.value)}
+                                            />                                 
+                                        </FormControl>
+                                    
+                                        <FormControl fullWidth sx={{ mr: 2 }}>
+                                            <TextField 
+                                                label="Height" 
+                                                InputProps={{ inputProps: { min: 0 } }}
+                                                type="number"
+                                                value={height} 
+                                                variant="standard"
+                                                onChange={(e) => setHeight(e.target.value)}
+                                            />                                 
+                                        </FormControl>
+                                                                        
+                                        <FormControl fullWidth>
+                                            <TextField 
+                                                label="Depth" 
+                                                InputProps={{ inputProps: { min: 0 } }}
+                                                type="number"
+                                                value={depth} 
+                                                variant="standard"
+                                                onChange={(e) => setDepth(e.target.value)}
+                                            />                                 
+                                        </FormControl>   
+
+                                    </div>
+                            
+                                    <h4>Categories</h4>
+
+                                    {artists.length > 0 && (
+                                        <FormControl variant="standard" fullWidth sx={{ mb: 1 }}>
+                                            <InputLabel>Artist</InputLabel>
+                                            <Select 
+                                                label="Artist"
+                                                value={artist}
+                                                onChange={(e) => setArtist(e.target.value)}                                             
+                                            >
+                                                {artists.map(a => (                                
+                                                    <MenuItem key={a._id} value={a.name}>  
+                                                        {a.name} 
+                                                    </MenuItem>                                                
+                                                ))} 
+                                            </Select>
+                                        </FormControl> 
+                                    )}
+
+                                    {orientations.length > 0 && (
+                                        <FormControl variant="standard" fullWidth sx={{ mb: 1 }}>
+                                            <InputLabel>Orientation</InputLabel>
+                                            <Select 
+                                                label="Orientation"
+                                                value={orientation}
+                                                onChange={(e) => setOrientation(e.target.value)}                                             
+                                            >
+                                                {orientations.map(o => (                                
+                                                    <MenuItem key={o._id} value={o.name}>  
+                                                        {o.name} 
+                                                    </MenuItem>                                                
+                                                ))} 
+                                            </Select>
+                                        </FormControl> 
+                                    )}                                                                
+
+                                    {media.length > 0 && (
+                                        <FormControl variant="standard" fullWidth>
+                                            <InputLabel>Media</InputLabel>
+                                            <Select 
+                                                label="Media"
+                                                value={medium}
+                                                onChange={(e) => setMedium(e.target.value)}                                             
+                                            >
+                                                {media.map(m => (                                
+                                                    <MenuItem key={m._id} value={m.name}>  
+                                                        {m.name} 
+                                                    </MenuItem>                                                
+                                                ))} 
+                                            </Select>
+                                        </FormControl>   
+                                    )}   
+
+                                </div>  
+
+                                <h4>Description</h4> 
+
+                                {description && (                                 
+                                    <CKEditor
+                                        editor={ClassicEditor}               
+                                        data={description}
+                                        onChange={(event, editor) => {
+                                            const data = editor.getData()
+                                            setDescription(data)
+                                        }}
+                                    />
+                                )}                                
+                    
+                                <LoadingButton 
+                                    loading={loading}
+                                    loadingPosition="end"
+                                    variant="contained" 
+                                    type="submit"
+                                    endIcon={<SendIcon />}
+                                    sx={{ mt: 4, width: '100%' }}
                                 >
-                                    <CloseIcon />
-                                </Fab>
+                                    Update
+                                </LoadingButton>
 
-                            </div>
+                            </form>                            
 
-                        )}
+                            <Fab 
+                                size="small" 
+                                className="close" 
+                                color="primary"
+                                onClick={() => navigate(-1)} 
+                                sx={{ position: 'absolute', top: 10, right: 10 }}
+                            >
+                                <CloseIcon />
+                            </Fab>
+
+                        </div>
 
                     </article>
 

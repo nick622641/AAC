@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { newProduct, clearErrors } from '../../actions/productActions'
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MetaData from '../layouts/MetaData'
@@ -12,12 +13,20 @@ import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
-import CircularProgress from '@mui/material/CircularProgress'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
+import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
 
 const NewProduct = () => {
 
+    const alert    = useAlert()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const [ name,          setName          ] = useState('')
-    const [ price,         setPrice         ] = useState(0)
+    const [ price,         setPrice         ] = useState('')
     const [ width,         setWidth         ] = useState(0)
     const [ height,        setHeight        ] = useState(0)
     const [ depth,         setDepth         ] = useState(0)
@@ -25,14 +34,11 @@ const NewProduct = () => {
     const [ artist,        setArtist        ] = useState('')
     const [ orientation,   setOrientation   ] = useState('')
     const [ medium,        setMedium        ] = useState('')
-    const [ stock,         setStock         ] = useState(0)
-    const [ datePublished, setDatePublished ] = useState('')
+    const [ stock,         setStock         ] = useState('')
+    const [ datePublished, setDatePublished ] = useState(Date.now())
     const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
-
-    const alert = useAlert()
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+    
     const { loading, error, success } = useSelector( state => state.newProduct )
     const { media                   } = useSelector( state => state.media )
     const { orientations            } = useSelector( state => state.orientations )
@@ -112,19 +118,19 @@ const NewProduct = () => {
 
                     <article>          
                             
-                        <div className="user-form cart upload-product"> 
+                        <div className="user-form"> 
 
                             <form onSubmit={submitHandler} encType='multipart/form-data'>
 
-                                <input
-                                    className="primary-color"
-                                    placeholder="Artwork Title"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)} 
-                                    style={{ fontSize: '32px', padding: 0 }}
-                                />
-
-                                <br /><br />
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Artwork Title" 
+                                        value={name}
+                                        variant="standard"
+                                        onChange={(e) => setName(e.target.value)} 
+                                        sx={{ mb: 1 }}
+                                    />                                 
+                                </FormControl>
 
                                 <div className="parent reverse">
 
@@ -139,174 +145,154 @@ const NewProduct = () => {
                                         <Avatar
                                             src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
                                             alt='Avatar Preview' 
-                                            sx={{ width: 150, height: 150 }}
+                                            sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
                                         /> 
                                     </label> 
 
-                                    <table className="middle-align">
-                                    <tbody> 
-
-                                        <tr>                                          
-                                            <th>
-                                                <h6 className="text-right">Stock</h6>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="number"
-                                                    min="0"
-                                                    value={stock} 
-                                                    onChange={(e) => setStock(e.target.value)}
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <h6 className="text-right">$ CAD</h6>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="number"
-                                                    min="0"
-                                                    value={price}
-                                                    onChange={(e) => setPrice(e.target.value)} 
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <h6 className="text-right">Published</h6>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="date"
+                                    <div>                                                                            
+                                        <FormControl fullWidth sx={{ mb: 1 }}>
+                                            <TextField 
+                                                label="Stock" 
+                                                InputProps={{ inputProps: { min: 0 } }}
+                                                type="number"
+                                                value={stock} 
+                                                variant="standard"
+                                                onChange={(e) => setStock(e.target.value)}
+                                            />                                 
+                                        </FormControl>
+                                    
+                                        <FormControl fullWidth sx={{ mb: 1 }}>
+                                            <TextField 
+                                                label="Price $ CAD" 
+                                                InputProps={{ inputProps: { min: 0 } }}
+                                                type="number"
+                                                value={price} 
+                                                variant="standard"
+                                                onChange={(e) => setPrice(e.target.value)}
+                                            />                                 
+                                        </FormControl>                                               
+                                    
+                                        <FormControl fullWidth sx={{ mb: 1 }}>                                            
+                                            <LocalizationProvider dateAdapter={AdapterDateFns}>                                                        
+                                                <DesktopDatePicker                                                    
+                                                    label="Date published"
+                                                    inputFormat="dd/MM/yyyy"
+                                                    format="dd/MM/yyyy"
                                                     value={datePublished}
-                                                    onChange={(e) => setDatePublished(e.target.value)} 
+                                                    onChange={(newValue) => setDatePublished(newValue)} 
+                                                    renderInput={(params) => <TextField variant="standard" {...params} />}
                                                 />
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>                                 
+                                            </LocalizationProvider>
+                                        </FormControl>    
+                                    </div>                         
                                     
                                 </div>
-
-                                <br />
                                 
                                 {imagesPreview.length > 0 && (
                                     <ul className="d-flex">
-
-                                    {imagesPreview.map(img => (
-                                        <li 
-                                            key={img} 
-                                            className="relative round background-cover" 
-                                            style={{ marginRight: '10px', width: '40px', height: '40px', backgroundImage: `url(${img})` }}
-                                        >                                           
-                                        </li>
-                                    ))}  
-                                 
-    
+                                        {imagesPreview.map(img => (
+                                            <li 
+                                                key={img} 
+                                                className="relative round background-cover" 
+                                                style={{ marginRight: '10px', width: '40px', height: '40px', backgroundImage: `url(${img})` }}
+                                            >                                           
+                                            </li>
+                                        ))} 
                                     </ul> 
+                                )}                                  
+
+                              
+                                <h4>Dimensions <small>&bull; (cm)</small></h4>
+
+                                <div className="d-flex">
+                                
+                                    <FormControl fullWidth sx={{ mr: 2 }}>
+                                        <TextField 
+                                            label="Width" 
+                                            InputProps={{ inputProps: { min: 0 } }}
+                                            type="number"
+                                            value={width} 
+                                            variant="standard"
+                                            onChange={(e) => setWidth(e.target.value)}
+                                        />                                 
+                                    </FormControl>
+                                
+                                    <FormControl fullWidth sx={{ mr: 2 }}>
+                                        <TextField 
+                                            label="Height" 
+                                            InputProps={{ inputProps: { min: 0 } }}
+                                            type="number"
+                                            value={height} 
+                                            variant="standard"
+                                            onChange={(e) => setHeight(e.target.value)}
+                                        />                                 
+                                    </FormControl>
+                                                                    
+                                    <FormControl fullWidth>
+                                        <TextField 
+                                            label="Depth" 
+                                            InputProps={{ inputProps: { min: 0 } }}
+                                            type="number"
+                                            value={depth} 
+                                            variant="standard"
+                                            onChange={(e) => setDepth(e.target.value)}
+                                        />                                 
+                                    </FormControl>   
+
+                                </div>
+
+                                <h4>Categories</h4>  
+
+                                {artists.length > 0 && (
+                                    <FormControl variant="standard" fullWidth sx={{ mb: 1 }}>
+                                        <InputLabel>Artist</InputLabel>
+                                        <Select 
+                                            label="Artist"
+                                            value={artist}
+                                            onChange={(e) => setArtist(e.target.value)}                                             
+                                        >
+                                            {artists.map(a => (                                
+                                                <MenuItem key={a._id} value={a.name}>  
+                                                    {a.name} 
+                                                </MenuItem>                                                
+                                            ))} 
+                                        </Select>
+                                    </FormControl> 
                                 )}
-                                  
 
-                                <div>
-                                    <h4>Dimensions <small>&bull; (cm)</small></h4>
-                                    <table>
-                                        <tbody>
-                                        <tr>
-                                            <th>
-                                                <h6>Width</h6>
-                                            </th>                                            
-                                            <td>                                                
-                                                <input
-                                                    type="number"
-                                                    value={width}
-                                                    onChange={(e) => setWidth(e.target.value)} 
-                                                    min="0"
-                                                />
-                                            </td>
-                                            <th>
-                                            <h6>Height</h6>
-                                            </th>
-                                            <td>                                                
-                                                <input
-                                                    type="number"
-                                                    value={height}
-                                                    onChange={(e) => setHeight(e.target.value)} 
-                                                    min="0"
-                                                />
-                                            </td>
-                                            <th>
-                                            <h6>Depth</h6>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="number"
-                                                    value={depth}
-                                                    onChange={(e) => setDepth(e.target.value)} 
-                                                    min="0"
-                                                />
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                {orientations.length > 0 && (
+                                    <FormControl variant="standard" fullWidth sx={{ mb: 1 }}>
+                                        <InputLabel>Orientation</InputLabel>
+                                        <Select 
+                                            label="Orientation"
+                                            value={orientation}
+                                            onChange={(e) => setOrientation(e.target.value)}                                             
+                                        >
+                                            {orientations.map(o => (                                
+                                                <MenuItem key={o._id} value={o.name}>  
+                                                    {o.name} 
+                                                </MenuItem>                                                
+                                            ))} 
+                                        </Select>
+                                    </FormControl> 
+                                )}                                                                
 
-                                    <h4>Categories</h4>
-
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th style={{ width: "100px" }}>
-                                                    <h6 className="text-right">Artist</h6>
-                                                </th>
-                                                <td>
-                                                    <select 
-                                                        value={artist}
-                                                        onChange={(e) => setArtist(e.target.value)}                                    >
-                                                        <option value="">Select an artist</option>
-
-                                                        {artists && artists.map(a => (
-                                                            <option key={a._id} value={a.name}>{a.name}</option>
-                                                        ))}   
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    <h6 className="text-right">Orientation</h6>
-                                                </th>
-                                                <td>
-                                                    <select 
-                                                        value={orientation}
-                                                        onChange={(e) => setOrientation(e.target.value)}                                    
-                                                    >
-                                                        <option value="">Select an orientation</option>
-
-                                                        {orientations && orientations.map(o => (
-                                                            <option key={o._id} value={o.name}>{o.name}</option>
-                                                        ))}  
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    <h6 className="text-right">Media</h6>
-                                                </th>
-                                                <td>
-                                                    <select 
-                                                        value={medium}
-                                                        onChange={(e) => setMedium(e.target.value)}                                    >
-                                                        <option value="">Select a medium</option>
-
-                                                        {media && media.map(m => (
-                                                            <option key={m._id} value={m.name}>{m.name}</option>
-                                                        ))}  
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>  
-                                </div>   
+                                {media.length > 0 && (
+                                    <FormControl variant="standard" fullWidth>
+                                        <InputLabel>Media</InputLabel>
+                                        <Select 
+                                            label="Media"
+                                            value={medium}
+                                            onChange={(e) => setMedium(e.target.value)}                                             
+                                        >
+                                            {media.map(m => (                                
+                                                <MenuItem key={m._id} value={m.name}>  
+                                                    {m.name} 
+                                                </MenuItem>                                                
+                                            ))} 
+                                        </Select>
+                                    </FormControl>   
+                                )}                                
 
                                 <h4>Description</h4>  
 
@@ -319,24 +305,22 @@ const NewProduct = () => {
                                     }}
                                 />
 
-                                <br /><br />    
-
-                                <button
-                                    className="submit"
-                                    disabled={loading ? true : false}
+                                <LoadingButton 
+                                    loading={loading}
+                                    loadingPosition="end"
+                                    variant="contained" 
+                                    type="submit"
+                                    endIcon={<SendIcon />}
+                                    sx={{ mt: 4, width: '100%' }}
                                 >
-                                    {loading 
-                                        ? <CircularProgress color="primary" />
-                                        : 'CREATE'
-                                    }
-                                </button>
+                                    Create
+                                </LoadingButton>
 
                             </form>
 
                             <Link to="/dashboard">
                                 <Fab 
                                     size="small" 
-                                    className="close" 
                                     color="primary"
                                     sx={{ position: 'absolute', top: 10, right: 10 }}
                                 >

@@ -4,24 +4,29 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updatePassword, clearErrors } from '../../actions/userActions'
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants'
+import { FormControl, Input, InputAdornment, InputLabel } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import CircularProgress from '@mui/material/CircularProgress'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import SendIcon from '@mui/icons-material/Send'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 const UpdatePassword = () => {    
+
+    const alert = useAlert() 
     
     const dispatch = useDispatch()      
     const navigate = useNavigate()     
-    const alert = useAlert() 
-    const [ newPassword, setNewPassword ] = useState('') 
-    const [ oldPassword, setOldPassword ] = useState('')       
-    const [ oldPasswordVisible, setOldPasswordVisible ] = useState(false)
-    const [ newPasswordVisible, setNewPasswordVisible ] = useState(false)
+    
     const { loading, isUpdated, error } = useSelector( state => state.user )
+
+    const [ newPassword,       setNewPassword         ] = useState('') 
+    const [ oldPassword,        setOldPassword        ] = useState('')       
+    const [ oldPasswordVisible, setOldPasswordVisible ] = useState(false)
+    const [ newPasswordVisible, setNewPasswordVisible ] = useState(false)   
 
     const toggleOldPassword = () => {
         setOldPasswordVisible(!oldPasswordVisible)
@@ -64,49 +69,56 @@ const UpdatePassword = () => {
 
                     <form className="user-form" onSubmit={submitHandler}>
 
-                        <h1>Update Password</h1>
-                        
-                        <label>
-                            <input
+                        <h1>Update Password</h1>                        
+                       
+                        <FormControl sx={{ mb: 2 }} variant="standard" fullWidth>
+                            <InputLabel>Old Password</InputLabel>
+                            <Input
                                 type={oldPasswordVisible ? 'text' : 'password'}
-                                placeholder="Old Password"
                                 value={oldPassword}
-                                onChange={(e) => setOldPassword(e.target.value)}                                
+                                onChange={(e) => setOldPassword(e.target.value)}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton onClick={toggleOldPassword}>
+                                            {oldPasswordVisible 
+                                                ? <Visibility fontSize="small" /> 
+                                                : <VisibilityOff fontSize="small" />
+                                            }
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
                             />
-                            <IconButton className="eye" onClick={toggleOldPassword}>
-                                {oldPasswordVisible ? (
-                                    <VisibilityIcon fontSize="small" />
-                                ):(
-                                    <VisibilityOffIcon fontSize="small" />
-                                )}
-                            </IconButton>  
-                        </label> 
-                        <br />                     
-                        <label>
-                            <input
+                        </FormControl>
+
+                        <FormControl sx={{ mb: 4 }} variant="standard" fullWidth>
+                            <InputLabel>New Password</InputLabel>
+                            <Input
                                 type={newPasswordVisible ? 'text' : 'password'}
-                                placeholder="New Password"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton onClick={toggleNewPassword}>
+                                            {newPasswordVisible 
+                                                ? <Visibility fontSize="small" /> 
+                                                : <VisibilityOff fontSize="small" />
+                                            }
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
                             />
-                            <IconButton className="eye" onClick={toggleNewPassword}>
-                                {newPasswordVisible ? (
-                                    <VisibilityIcon fontSize="small" />
-                                ):(
-                                    <VisibilityOffIcon fontSize="small" />
-                                )}
-                            </IconButton>                             
-                        </label>
-                        <br /><br />
-                        <button 
-                            className="submit" 
-                            disabled={loading ? true : false}
+                        </FormControl>
+
+                        <LoadingButton 
+                            type="submit"
+                            loading={loading}
+                            loadingPosition="end"
+                            variant="contained" 
+                            endIcon={<SendIcon />}
+                            sx={{ width: '100%' }}
                         >
-                            {loading 
-                                ? <CircularProgress color="primary" />
-                                : 'Update Password'
-                            }
-                        </button>
+                            Update Password
+                        </LoadingButton>  
 
                         <Link to="/me">                              
                             <Fab 

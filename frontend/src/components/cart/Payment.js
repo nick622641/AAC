@@ -10,31 +10,23 @@ import CheckoutSteps from './CheckoutSteps'
 import axios from 'axios'
 import FormattedPrice from '../layouts/FormattedPrice'
 import Fab from '@mui/material/Fab'
+import SendIcon from '@mui/icons-material/Send'
 import CloseIcon from '@mui/icons-material/Close'
-import CircularProgress from '@mui/material/CircularProgress'
+import LoadingButton from '@mui/lab/LoadingButton'
 
-const options = {
-    style: {
-        base: {
-            fontSize: '16px'
-        },
-        invalid: {
-            color: '#9e2146'
-        }
-    }
-}
 const Payment = () => {
 
-    const alert = useAlert()      
-    const stripe = useStripe()
-    const elements = useElements()
     const dispatch = useDispatch()
     const navigate = useNavigate()  
-    const { user } = useSelector(state => state.auth)    
-    const { error } = useSelector(state => state.newOrder)
-    const { cartItems, shippingInfo } = useSelector(state => state.cart)
+    const alert    = useAlert()      
+    const stripe   = useStripe()
+    const elements = useElements()   
 
-    const [ processing, setProcessing ] = useState(false)
+    const { user                    } = useSelector( state => state.auth )    
+    const { error                   } = useSelector( state => state.newOrder )
+    const { cartItems, shippingInfo } = useSelector( state => state.cart )
+
+    const [ loading, setLoading ] = useState(false)
 
     useEffect(() => {
         if(error) {
@@ -63,7 +55,7 @@ const Payment = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        setProcessing(true)
+        setLoading(true)
         let res
         try {
             const config = {
@@ -88,7 +80,7 @@ const Payment = () => {
             if(result.error) {
 
                 alert.error(result.error.message);
-                setProcessing(false)   
+                setLoading(false)   
 
             } else {
                 // The payment is processed or not
@@ -102,74 +94,57 @@ const Payment = () => {
                     navigate('/success')                    
                 } else {
                     alert.error('There was an issue while processing payment')
+                    setLoading(false)    
                 }
             }
 
         } catch (error) {    
-            setProcessing(false)      
+            setLoading(false)      
             alert.error(error.response.data.message)
         }
     }
 
     return (
+
         <Fragment>
 
             <MetaData title={'Payment'} />
 
             <div className="container">            
 
-            <div className="wrapper d-flex">
+                <div className="wrapper d-flex">
 
-                    <form className="user-form" onSubmit={submitHandler}>
+                    <form className="user-form">
 
                         <CheckoutSteps shipping confirmOrder payment />
+                        <br />
+                        <h6>Card Number</h6>                        
+                        <br />   
+                        <CardNumberElement />                                        
+                        <p><small style={{ color: "grey" }}>Test data: 4000 0027 6000 3184</small></p>
+                        <br />
+                        <h6>Card Expiry</h6>
+                        <br />                                                                    
+                        <CardExpiryElement />                                        
+                        <br />
+                        <h6>Card CVC</h6>
+                        <br />                                                                    
+                        <CardCvcElement />  
 
-                        <table className="bordered-table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h6>Card Number</h6>                        
-                                        <br />   
-                                        <CardNumberElement
-                                            className="input" 
-                                            options={options}
-                                        />                                        
-                                        <p><small style={{ color: "grey" }}>Test data: 4000 0027 6000 3184</small></p>
-                                        <br />
-                                        <h6>Card Expiry</h6>
-                                        <br />                                                                    
-                                        <CardExpiryElement
-                                            className="input"   
-                                            options={options}
-                                        />                                        
-                                        <br />
-                                        <h6>Card CVC</h6>
-                                        <br />                                                                    
-                                        <CardCvcElement
-                                            className="input"   
-                                            options={options}
-                                        />                                        
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <br /><br />
-                        
-                        <button 
-                            className="submit relative"
-                            disabled={processing ? true : false}
-                        >    
-                            {processing 
-                                ? <CircularProgress sx={{ color: "var(--primary-color)"}} />
-                                : <FormattedPrice number={orderInfo && orderInfo.totalPrice} />
-                            }
-                        </button>
+                        <LoadingButton 
+                            loading={loading}
+                            loadingPosition="end"
+                            variant="contained" 
+                            onClick={submitHandler}
+                            endIcon={<SendIcon />}
+                            sx={{ mt: 4, width: '100%' }}
+                        >
+                            <FormattedPrice number={orderInfo && orderInfo.totalPrice} />
+                        </LoadingButton>
 
                         <Link to="/order/confirm">                              
                             <Fab 
                                 size="small" 
-                                className="close" 
                                 color="primary"
                                 sx={{ position: 'absolute', top: 10, right: 10 }}
                             >
@@ -178,11 +153,15 @@ const Payment = () => {
                         </Link>  
             
                     </form>
+
                 </div>
+
             </div>
 
         </Fragment>
+
     )
+
 }
 
 export default Payment

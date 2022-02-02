@@ -2,18 +2,21 @@ import { Fragment, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { newReview } from '../../actions/productActions'
-import Rating from '@mui/material/Rating'
-import CircularProgress from '@mui/material/CircularProgress'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
+import Rating from '@mui/material/Rating'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
 
 function Review(props) {
     
     const id = useParams().id    
     const dispatch = useDispatch()
-    const [ rating, setRating   ] = useState( props.rating )
-    const [ comment, setComment ] = useState( props.comment )
-    const { loading } = useSelector( state => state.newReview )      
+
+    const { loading } = useSelector( state => state.newReview ) 
+    
+    const [ rating,  setRating  ] = useState( props.rating )
+    const [ comment, setComment ] = useState( props.comment )         
 
     const reviewHandler = (e)  => {
         e.preventDefault()
@@ -34,14 +37,12 @@ function Review(props) {
                 <Rating
                     value={rating}
                     sx={{ color: "var(--primary-color)" }}    
-                    style={{ fontSize: "32px" }}  
+                    style={{ fontSize: "32px", marginBottom: "20px" }}  
                     size="large"               
                     onChange={(event, newValue) => {
                         setRating(newValue)
                     }} 
-                />  
-
-                <br /><br />      
+                />               
 
                 <div className="relative">
                     <CKEditor
@@ -59,18 +60,17 @@ function Review(props) {
                         required
                     />
                 </div>
-
-                <br /><br />
-
-                <button 
-                    className="submit"                     
-                    disabled={loading ? true : false}
+  
+                <LoadingButton 
+                    type="submit"
+                    loading={loading}
+                    loadingPosition="end"
+                    variant="contained"                    
+                    endIcon={<SendIcon />}
+                    sx={{ mt: 4, width: '100%' }}
                 >
-                    {loading 
-                        ? <CircularProgress color="primary" /> 
-                        : 'Submit'
-                    }                                                    
-                </button>                               
+                    Submit
+                </LoadingButton>                            
                     
             </form>     
 

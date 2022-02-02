@@ -13,6 +13,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import AddTaskIcon from '@mui/icons-material/AddTask'
 import Avatar from '@mui/material/Avatar'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 const ProcessOrder = () => {
 
@@ -91,9 +92,7 @@ const ProcessOrder = () => {
                                                         </Link>
                                                     </td>
                                                     <td><Link to={`/artwork/${item.product}`}>{item.name}</Link></td>                                            
-                                                    <td>
-                                                        <FormattedPrice number={item.price} />
-                                                    </td>
+                                                    <td><FormattedPrice number={item.price} /></td>
                                                     <td>{item.quantity}</td> 
                                                 </tr>
                                             ))}
@@ -133,21 +132,31 @@ const ProcessOrder = () => {
                                         </tr>
                                         <tr>
                                             <td><h6 className="text-right">Amount</h6></td>
-                                            <td><FormattedPrice number={totalPrice}/></td>
-                                        </tr>
-                                    
+                                            <td>
+                                                {totalPrice && totalPrice !== 'undefined' && (
+                                                     <FormattedPrice number={totalPrice}/>
+                                                )}
+                                               
+                                            </td>
+                                        </tr>                                    
                                         <tr>
                                             <td><h6 className="text-right">Status</h6></td>
                                             <td>
-                                                <select
-                                                    style={{ width: "auto", padding: 0 }}
-                                                    value={status ? status : order.orderStatus}
-                                                    onChange={(e) => setStatus(e.target.value)}
-                                                >
-                                                    <option value="Processing">Processing</option>
-                                                    <option value="Shipped">Shipped</option>
-                                                    <option value="Delivered">Delivered</option>
-                                                </select>
+                                                {order.orderStatus && (
+                                                     <FormControl variant="standard" fullWidth sx={{ mb: 1 }}>
+                                                        <InputLabel>Status</InputLabel>
+                                                        <Select 
+                                                            label="Status"
+                                                            value={status ? status : order.orderStatus}
+                                                            onChange={(e) => setStatus(e.target.value)}                                          
+                                                        >                                                                             
+                                                            <MenuItem value="Processing">Processing</MenuItem> 
+                                                            <MenuItem value="Shipped">Shipped</MenuItem> 
+                                                            <MenuItem value="Delivered">Delivered</MenuItem> 
+    
+                                                        </Select>
+                                                    </FormControl> 
+                                                )}                                                                                               
                                             </td>
                                             <td>                                      
                                                 <IconButton onClick={() => updateOrderHandler(order._id)}>

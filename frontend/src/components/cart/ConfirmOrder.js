@@ -6,7 +6,9 @@ import CheckoutSteps from './CheckoutSteps'
 import FormattedPrice from '../layouts/FormattedPrice'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
+import SendIcon from '@mui/icons-material/Send'
 import Avatar from '@mui/material/Avatar'
+import { Button } from '@mui/material'
 
 const ConfirmOrder = () => {
 
@@ -157,11 +159,18 @@ const ConfirmOrder = () => {
                         </tbody>
                         </table>
 
-                        <br />
+                        <div className="text-center">
 
-                        <button className="submit" onClick={proceedToPayment}>
-                            Proceed to Payment
-                        </button>   
+                            <Button 
+                                variant="contained" 
+                                onClick={proceedToPayment}
+                                endIcon={<SendIcon />}
+                                sx={{ mt: 4 }}
+                            >
+                                Proceed to Payment
+                            </Button>
+
+                        </div>                        
 
                         <Link to="/shipping">                              
                             <Fab 

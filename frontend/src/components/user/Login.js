@@ -6,21 +6,27 @@ import { useNavigate, Link, useLocation } from 'react-router-dom'
 import Loader from '../layouts/Loader'
 import MetaData from '../layouts/MetaData'
 import IconButton from '@mui/material/IconButton'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import SendIcon from '@mui/icons-material/Send'
+import { Button, FormControl, Input, InputAdornment, InputLabel, TextField } from '@mui/material'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import Visibility from '@mui/icons-material/Visibility'
 
 const Login = () => {
         
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
     const location = useLocation()
     const alert    = useAlert()
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    
     const path = location.search  ? `/${location.search.split('=')[1]}` : '/'  
+
+    const { loading, isAuthenticated, error } = useSelector( state => state.auth )  
+
     const [ email,           setEmail           ] = useState('')
     const [ password,        setPassword        ] = useState('')    
     const [ passwordVisible, setPasswordVisible ] = useState()
-    const [ redirect                            ] = useState(path)
-    const { loading, isAuthenticated, error } = useSelector( state => state.auth )     
+    const [ redirect                            ] = useState(path)       
 
     const togglePassword = () => {
         setPasswordVisible(!passwordVisible)
@@ -35,10 +41,10 @@ const Login = () => {
             alert.error(error)
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, isAuthenticated, error, redirect, navigate])
+    }, [dispatch, navigate, alert, isAuthenticated, redirect, error])
 
-    const submitHandler = (e) => {        
-        e.preventDefault()
+    const submitHandler = (e) => {  
+        e.preventDefault()      
         dispatch(login(email, password))
     }
 
@@ -56,41 +62,45 @@ const Login = () => {
 
                         <form onSubmit={submitHandler} className="user-form">
 
-                            <h1>Login</h1>
+                            <h1>Login</h1>                          
 
-                            <label>
-                                <input 
-                                    type="email" 
-                                    placeholder="Email"
+                            <FormControl fullWidth>
+                                <TextField 
+                                    label="Email" 
+                                    type="email"
                                     value={email}
+                                    variant="standard"
                                     onChange={(e) => setEmail(e.target.value)}
-                                />                
-                            </label>
+                                />                                 
+                            </FormControl>                                       
 
-                            <br />
-
-                            <label>
-                                <input 
-                                    type={passwordVisible ? 'text' : 'password'} 
-                                    placeholder="Password" 
+                            <FormControl sx={{ mt: 2, mb: 4 }} variant="standard" fullWidth>
+                                <InputLabel>Password</InputLabel>
+                                <Input
+                                    type={passwordVisible ? 'text' : 'password'}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                /> 
-                                <IconButton className="eye" onClick={togglePassword}>
-                                    {passwordVisible ? (
-                                        <VisibilityIcon fontSize="small" />
-                                    ):(
-                                        <VisibilityOffIcon fontSize="small" />
-                                    )}
-                                </IconButton>                
-                        
-                            </label>  
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton onClick={togglePassword}>
+                                                {passwordVisible 
+                                                    ? <Visibility fontSize="small" /> 
+                                                    : <VisibilityOff fontSize="small" />
+                                                }
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                />
+                            </FormControl>
 
-                            <br /><br />                              
-
-                            <button className="submit">Login</button>
-
-                            <br /><br />
+                            <Button 
+                                variant="contained" 
+                                type="submit" 
+                                endIcon={<SendIcon />}
+                                sx={{ width: '100%', mb: 4 }}
+                            >
+                                Login
+                            </Button>
 
                             <div className="parent">
                                 <Link to="/password/forgot">Forgot Password?</Link>                               

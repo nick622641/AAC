@@ -8,7 +8,9 @@ import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import CircularProgress from '@mui/material/CircularProgress'
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
 
 const UpdateUser = () => {    
 
@@ -75,54 +77,49 @@ const UpdateUser = () => {
 
                             <form onSubmit={submitHandler}>
 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th className="text-right">Name</th>
-                                            <td>
-                                                <input 
-                                                    value={name}
-                                                    onChange={(e) => setName(e.target.value)}
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th className="text-right">Email</th>
-                                            <td>
-                                                <input
-                                                    type="email"
-                                                    value={email}
-                                                    onChange={(e) => setEmail(e.target.value)}
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th className="text-right">Role</th>
-                                            <td>
-                                                <select
-                                                    value={role}
-                                                    onChange={(e) => setRole(e.target.value)}
-                                                >
-                                                    <option value="user">User</option>
-                                                    <option value="admin">Admin</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                                
-                                <br />
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Name" 
+                                        value={name}
+                                        variant="standard"
+                                        onChange={(e) => setName(e.target.value)} 
+                                        sx={{ mb: 1 }}
+                                    />                                 
+                                </FormControl> 
 
-                                <button
-                                    className="submit"
-                                    disabled={loading ? true : false}
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        type="email"
+                                        label="Email" 
+                                        value={email}
+                                        variant="standard"
+                                        onChange={(e) => setEmail(e.target.value)} 
+                                        sx={{ mb: 1 }}
+                                    />                                 
+                                </FormControl> 
+
+                                <FormControl variant="standard" fullWidth sx={{ mb: 1 }}>
+                                    <InputLabel>Role</InputLabel>
+                                    <Select 
+                                        label="Role"
+                                        value={role}
+                                        onChange={(e) => setRole(e.target.value)}                                        
+                                    >                                                                             
+                                        <MenuItem value="user">User</MenuItem> 
+                                        <MenuItem value="admin">Admin</MenuItem> 
+                                    </Select>
+                                </FormControl> 
+             
+                                <LoadingButton 
+                                    loading={loading}
+                                    loadingPosition="end"
+                                    variant="contained" 
+                                    type="submit"
+                                    endIcon={<SendIcon />}
+                                    sx={{ mt: 4, width: '100%' }}
                                 >
-                                    {loading 
-                                        ? <CircularProgress color="primary" />
-                                        : 'Update'
-                                    }
-                                </button>
+                                    Update
+                                </LoadingButton>                               
 
                             </form>
 

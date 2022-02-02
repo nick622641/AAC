@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { forgotPassword, clearErrors } from '../../actions/userActions'
+import { FormControl, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import CircularProgress from '@mui/material/CircularProgress'
+import SendIcon from '@mui/icons-material/Send'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 const ForgotPassword = () => {
 
@@ -21,7 +23,7 @@ const ForgotPassword = () => {
             dispatch(clearErrors())
         }
         if(message) {
-            alert.success(message)          
+            alert.success(message)    
         }
     }, [dispatch, alert, message, error])
 
@@ -43,28 +45,29 @@ const ForgotPassword = () => {
 
                     <form className="user-form" onSubmit={submitHandler}>
 
-                        <h1>Forgot Password</h1>
-                       
-                        <label>
-                            <input
+                        <h1>Forgot Password</h1>                       
+                    
+                        <FormControl fullWidth>
+                            <TextField 
+                                label="Email" 
                                 type="email"
-                                placeholder="Email"
                                 value={email}
+                                variant="standard"
                                 onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </label>
-
-                        <br /><br />
-
-                        <button
-                            className="submit"
-                            disabled={loading ? true : false}
+                                
+                            />                                 
+                        </FormControl> 
+                       
+                        <LoadingButton 
+                            type="submit"
+                            loading={loading}
+                            loadingPosition="end"
+                            variant="contained"                            
+                            endIcon={<SendIcon />}
+                            sx={{ mt: 4, width: '100%' }}
                         >
-                            {loading 
-                                ? <CircularProgress color="primary" /> 
-                                : 'Send Email'
-                            }
-                        </button>
+                            Send Email
+                        </LoadingButton>
 
                         <Link to="/login">                              
                             <Fab 

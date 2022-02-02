@@ -1,22 +1,26 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import MetaData from '../layouts/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetPassword, clearErrors } from '../../actions/userActions'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import { FormControl, Input, InputAdornment, InputLabel } from '@mui/material'
+import MetaData from '../layouts/MetaData'
 import IconButton from '@mui/material/IconButton'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import CircularProgress from '@mui/material/CircularProgress'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import SendIcon from '@mui/icons-material/Send'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 const NewPassword = () => {
 
     const alert = useAlert()
     const token = useParams().token
     const dispatch = useDispatch()
-    const navigate = useNavigate()   
-    const {  error, success, loading } = useSelector( state => state.forgotPassword ) 
+    const navigate = useNavigate()  
+
+    const { loading, error, success } = useSelector( state => state.forgotPassword ) 
+
     const [ password,               setPassword               ] = useState('')
     const [ confirmPassword,        setConfirmPassword        ] = useState('')      
     const [ passwordVisible,        setPasswordVisible        ] = useState()
@@ -62,50 +66,55 @@ const NewPassword = () => {
                     <form className="user-form" onSubmit={submitHandler}>
 
                         <h1>New Password</h1>
-                        
-                        <label>
-                            <input
+             
+                        <FormControl sx={{ mb: 2 }} variant="standard" fullWidth>
+                            <InputLabel>Password</InputLabel>
+                            <Input
                                 type={passwordVisible ? 'text' : 'password'}
-                                placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton onClick={togglePassword}>
+                                            {passwordVisible 
+                                                ? <Visibility fontSize="small" /> 
+                                                : <VisibilityOff fontSize="small" />
+                                            }
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
                             />
-                            <IconButton className="eye" onClick={togglePassword}>
-                                {passwordVisible ? (
-                                    <VisibilityIcon fontSize="small" />
-                                ):(
-                                    <VisibilityOffIcon fontSize="small" />
-                                )}
-                            </IconButton>                            
-                        </label>
-                       
-                        <label>
-                            <input
+                        </FormControl>
+
+                        <FormControl sx={{ mb: 4 }} variant="standard" fullWidth>
+                            <InputLabel>Confirm</InputLabel>
+                            <Input
                                 type={confirmPasswordVisible ? 'text' : 'password'}
-                                placeholder="Confirm"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton onClick={toggleConfirmPassword}>
+                                            {confirmPasswordVisible 
+                                                ? <Visibility fontSize="small" /> 
+                                                : <VisibilityOff fontSize="small" />
+                                            }
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
                             />
-                            <IconButton className="eye" onClick={toggleConfirmPassword}>
-                                {confirmPasswordVisible ? (
-                                    <VisibilityIcon fontSize="small" />
-                                ):(
-                                    <VisibilityOffIcon fontSize="small" />
-                                )}
-                            </IconButton>                          
-                        </label>
-
-                        <br />
-                        
-                        <button
-                            className="submit"
-                            disabled={loading ? true : false}
+                        </FormControl>      
+ 
+                        <LoadingButton 
+                            type="submit"
+                            loading={loading}
+                            loadingPosition="end"
+                            variant="contained" 
+                            endIcon={<SendIcon />}
+                            sx={{ width: '100%' }}
                         >
-                            {loading 
-                                ? <CircularProgress color="primary" /> 
-                                : 'Set Password'
-                            }
-                        </button>
+                            Set Password
+                        </LoadingButton> 
 
                     </form>
 

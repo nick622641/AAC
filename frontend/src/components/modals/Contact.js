@@ -1,6 +1,9 @@
 import { Fragment, useState } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { FormControl, TextField } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
 
 function Contact() {
 
@@ -8,10 +11,13 @@ function Contact() {
     const [ name, setName ] = useState('')
     const [ email, setEmail ] = useState('')
     const [ message, setMessage ] = useState('')
+    const [ loading, setLoading ] = useState(false)
 
     function submitHandler(e) {
 
-        e.preventDefault()       
+        e.preventDefault() 
+        
+        setLoading(true)
 
         const formData = new FormData()
 
@@ -30,63 +36,56 @@ function Contact() {
             <h2>Contact Us</h2>
 
             <form onSubmit={submitHandler}>
-
-                <table className="top-align fixed-table">
-                    <tbody>
+                              
+                <FormControl fullWidth>
+                    <TextField 
+                        label="Name" 
+                        value={name}
+                        variant="standard"
+                        onChange={(e) => setName(e.target.value)}
+                        sx={{ mb: 2 }}
+                        required
+                        autoFocus
+                    />                                 
+                </FormControl>
+                       
+                <FormControl fullWidth>
+                    <TextField 
+                        label="Email" 
+                        name="email"
+                        value={email}
+                        variant="standard"
+                        onChange={(e) => setEmail(e.target.value)}
+                        sx={{ mb: 4 }}
+                        required
+                    />                                 
+                </FormControl>                       
                         
-                        <tr>
-                            <th style={{ width: "100px" }} className="text-right">Name</th>
-                            <td>
-                                <input 
-                                    placeholder="Name" 
-                                    onChange={(e) => setName(e.target.value)}
-                                    required
-                                    autoFocus 
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th className="text-right">Email</th>
-                            <td>
-                                <input 
-                                    type="email" 
-                                    placeholder="Email" 
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                /> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <th className="text-right">
-                                Message
-                            </th>
-                            <td>                              
-                                <div className="relative">
-                                    <CKEditor
-                                        editor={ClassicEditor}               
-                                        data={message}
-                                        onChange={(event, editor) => {
-                                            const data = editor.getData()
-                                            setMessage(data)
-                                        }}
-                                    />
-                                    <input 
-                                        className="hidden-input" 
-                                        value={message ? message : ''} 
-                                        onChange={(e) => setMessage(e.target.value)} 
-                                        required
-                                    />
-                                </div>
-                            </td>
-                        </tr>
-                        
-                    </tbody>
-                </table>   
-
-                <br />
-                <br />
-
-                <button className="submit">Send</button>
+                <CKEditor
+                    editor={ClassicEditor}               
+                    data={message}
+                    onChange={(event, editor) => {
+                        const data = editor.getData()
+                        setMessage(data)
+                    }}
+                />
+                <input 
+                    className="hidden-input" 
+                    value={message ? message : ''} 
+                    onChange={(e) => setMessage(e.target.value)} 
+                    required
+                />
+                             
+                <LoadingButton 
+                    loading={loading}
+                    loadingPosition="end"
+                    variant="contained" 
+                    onClick={submitHandler}
+                    endIcon={<SendIcon />}
+                    sx={{ mt: 4, width: '100%' }}
+                >
+                    Send
+                </LoadingButton>
                     
             </form>     
 

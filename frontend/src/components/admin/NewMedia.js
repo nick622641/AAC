@@ -8,7 +8,9 @@ import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import CircularProgress from '@mui/material/CircularProgress'
+import { FormControl, TextField } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
 
 const NewMedia = () => {
     
@@ -61,33 +63,27 @@ const NewMedia = () => {
 
                             <form onSubmit={submitHandler}>
 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th>
-                                                <h6 className="text-right">Media Name</h6>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    placeholder="Media Name"
-                                                    value={name}
-                                                    onChange={(e) => setName(e.target.value)} 
-                                                />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <br />
-                                <button
-                                    className="submit"
-                                    disabled={loading ? true : false}
-                                >
-                                    {loading 
-                                        ? <CircularProgress color="primary" />
-                                        : 'Create'
-                                    }
-                                </button>
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Media Name" 
+                                        value={name}
+                                        variant="standard"
+                                        onChange={(e) => setName(e.target.value)} 
+                                        sx={{ mb: 1 }}
+                                    />                                 
+                                </FormControl>
 
+                                <LoadingButton 
+                                    loading={loading}
+                                    loadingPosition="end"
+                                    variant="contained" 
+                                    type="submit"
+                                    endIcon={<SendIcon />}
+                                    sx={{ mt: 4, width: '100%' }}
+                                >
+                                    Create
+                                </LoadingButton>   
+                              
                             </form>
                    
                             <Link to="/admin/media">

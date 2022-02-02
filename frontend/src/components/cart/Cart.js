@@ -11,9 +11,11 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
+import SendIcon from '@mui/icons-material/Send'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Avatar from '@mui/material/Avatar'
+import { Button } from '@mui/material'
 
 const Cart = () => {    
     
@@ -166,11 +168,20 @@ const Cart = () => {
                                     </td>
                                 </tr>
                             </tbody>
-                            </table>                                
-                            <br />
-                            <button className="submit" onClick={checkoutHandler}>
-                                Check Out
-                            </button>                      
+                            </table>  
+                             
+                            <div className="text-center">
+
+                                <Button 
+                                    variant="contained" 
+                                    onClick={checkoutHandler}
+                                    endIcon={<SendIcon />}
+                                    sx={{ mt: 4 }}
+                                >
+                                    Check Out
+                                </Button>
+
+                            </div>                   
 
                         </Fragment>
 

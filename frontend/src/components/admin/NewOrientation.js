@@ -8,7 +8,9 @@ import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import CircularProgress from '@mui/material/CircularProgress'
+import SendIcon from '@mui/icons-material/Send'
+import { FormControl, TextField } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 const NewOrientation = () => {
     
@@ -61,32 +63,26 @@ const NewOrientation = () => {
 
                             <form onSubmit={submitHandler}>
 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th>
-                                                <h6 className="text-right">Orientation Name</h6>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    placeholder="Orientation Name"
-                                                    value={name}
-                                                    onChange={(e) => setName(e.target.value)} 
-                                                />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <br />
-                                <button
-                                    className="submit"
-                                    disabled={loading ? true : false}
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Orientation Name" 
+                                        value={name}
+                                        variant="standard"
+                                        onChange={(e) => setName(e.target.value)} 
+                                        sx={{ mb: 1 }}
+                                    />                                 
+                                </FormControl>
+
+                                <LoadingButton 
+                                    loading={loading}
+                                    loadingPosition="end"
+                                    variant="contained" 
+                                    type="submit"
+                                    endIcon={<SendIcon />}
+                                    sx={{ mt: 4, width: '100%' }}
                                 >
-                                    {loading 
-                                        ? <CircularProgress color="primary" />
-                                        : 'Create'
-                                    }
-                                </button>
+                                    Create
+                                </LoadingButton>   
 
                             </form>
                    
