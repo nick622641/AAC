@@ -15,7 +15,9 @@ import './app.css'
 const theme = createTheme({
   palette: {
     primary: {main: '#88744a'},
-    danger: {main: 'red'}
+    danger: {main: 'red'},
+    stripe: {main: '#6772e5'},
+    paypal: {main: '#002c8a'}
   }
 })
 

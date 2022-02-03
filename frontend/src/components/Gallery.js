@@ -26,8 +26,8 @@ const Range = createSliderWithTooltip(Slider.Range)
 
 const Gallery = () => {
 
-    const alert    = useAlert()
     const dispatch = useDispatch()
+    const alert    = useAlert()    
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const keyword  = useParams().keyword    
     const artistQuery      = useParams().artist 

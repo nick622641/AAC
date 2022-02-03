@@ -13,6 +13,7 @@ import Fab from '@mui/material/Fab'
 import SendIcon from '@mui/icons-material/Send'
 import CloseIcon from '@mui/icons-material/Close'
 import LoadingButton from '@mui/lab/LoadingButton'
+import { Divider } from '@mui/material'
 
 const Payment = () => {
 
@@ -117,19 +118,22 @@ const Payment = () => {
                     <form className="user-form">
 
                         <CheckoutSteps shipping confirmOrder payment />
+                        <p><small style={{ color: "grey" }}>Test data: 4000 0027 6000 3184</small></p>
                         <br />
                         <h6>Card Number</h6>                        
                         <br />   
-                        <CardNumberElement />                                        
-                        <p><small style={{ color: "grey" }}>Test data: 4000 0027 6000 3184</small></p>
+                        <CardNumberElement />   
+                        <Divider />     
                         <br />
                         <h6>Card Expiry</h6>
                         <br />                                                                    
-                        <CardExpiryElement />                                        
+                        <CardExpiryElement />   
+                        <Divider />                                      
                         <br />
                         <h6>Card CVC</h6>
                         <br />                                                                    
                         <CardCvcElement />  
+                        <Divider /> 
 
                         <LoadingButton 
                             loading={loading}

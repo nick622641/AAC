@@ -1,25 +1,55 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { Button } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 import FormattedPrice from '../layouts/FormattedPrice'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import SendIcon from '@mui/icons-material/Send'
 import Avatar from '@mui/material/Avatar'
-import { Button } from '@mui/material'
 
 const ConfirmOrder = () => {
 
+    const paypal = useRef()
     const navigate = useNavigate()
+
     const { cartItems, shippingInfo } = useSelector( state => state.cart )
     const { user                    } = useSelector( state => state.auth )
+    
     // Calculate Order Prices
     const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
     const shippingPrice = itemsPrice > 200 ? 0 : 25
     const taxPrice = Number((0.05 * itemsPrice).toFixed(2))
     const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2)
+
+    useEffect(() => {
+        window.paypal
+            .Buttons({
+                createOrder: (data, actions, err) => {
+                return actions.order.create({
+                    intent: "CAPTURE",
+                    purchase_units: [
+                    {
+                        description: "Artwork",
+                        amount: {
+                        currency_code: "CAD",
+                        value: totalPrice,
+                        },
+                    },
+                    ],
+                })
+                },
+                onApprove: async (data, actions) => {
+                const order = await actions.order.capture()
+                console.log(order)
+                },
+                onError: (err) => {
+                console.log(err)
+                },
+            })
+            .render(paypal.current)
+    }, [totalPrice])
 
     const proceedToPayment = () => {
         const data = {
@@ -84,17 +114,14 @@ const ConfirmOrder = () => {
                                 ))}                           
 
                             </tbody>
-                        </table>                                        
+                        </table>   
+
+                        <h4 className="text-center">Shipping Details</h4>                                       
 
                         <table className="top-align">
-                        <tbody> 
+                        <tbody>                                                   
                             <tr>
-                                <td colSpan="2">
-                                    <h4>Shipping Details</h4>      
-                                </td>                                
-                            </tr>                           
-                            <tr>
-                                <td>
+                                <td style={{ width: '50%' }}>
                                     <h6 className="text-right">Name</h6>
                                 </td>
                                 <td>{user && user.name}</td>
@@ -119,13 +146,15 @@ const ConfirmOrder = () => {
                                     {shippingInfo.country}
                                 </td>
                             </tr>   
+                        </tbody>
+                        </table>
+
+                        <h4 className="text-center">Order Summary</h4>
+
+                        <table>
+                        <tbody>
                             <tr>
-                                <td colSpan="2">
-                                    <h4>Order Summary</h4>
-                                </td>                                
-                            </tr>
-                            <tr>
-                                <td>
+                                <td style={{ width: '50%' }}>
                                     <h6 className="text-right">Subtotal</h6>
                                 </td>
                                 <td>
@@ -155,17 +184,32 @@ const ConfirmOrder = () => {
                                 <td>
                                     <FormattedPrice number={totalPrice} /> 
                                 </td>
-                            </tr>
+                            </tr>                        
                         </tbody>
-                        </table>
+                        </table>     
 
-                        <Button 
-                            variant="contained" 
+                        <h4 className="text-center">Choose a Payment Method</h4> 
+
+                        <div>
+                            <div ref={paypal}></div>
+                            
+                        </div>  
+
+                        {/* <Button 
+                            variant="outlined"
+                            color="paypal"        
+                            sx={{ width: '100%', mt: 1 }}
+                        >       
+                            <img src="/images/paypal.png" alt="Stripe Payment" style={{ width: '86px' }} />
+                        </Button> */}
+
+                        <Button  
+                            variant="contained"   
+                            color="stripe"                        
                             onClick={proceedToPayment}
-                            endIcon={<SendIcon />}
-                            sx={{ width: '100%', mt: 4 }}
-                        >
-                            Proceed to Payment
+                            sx={{ width: '100%', mt: 3 }}
+                        >                           
+                            <img src="/images/stripe.png" alt="Stripe Payment" style={{ width: '50px' }} />
                         </Button>
 
                         <Link to="/shipping">                              
