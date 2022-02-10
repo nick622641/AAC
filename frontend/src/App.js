@@ -55,6 +55,12 @@ import UpdateOrientation                 from './components/admin/UpdateOrientat
 import MediaList                         from './components/admin/MediaList'
 import NewMedia                          from './components/admin/NewMedia'
 import UpdateMedia                       from './components/admin/UpdateMedia'
+import NewBlog from './components/admin/NewBlog'
+import BlogsList from './components/admin/BlogsList'
+import UpdateBlog from './components/admin/UpdateBlog'
+import Blogs from './components/Blogs'
+import BlogDetails from './components/blog/BlogDetails'
+import BlogComments from './components/admin/BlogComments'
 
 function App() {  
 
@@ -101,13 +107,13 @@ function App() {
           <Routes location={redirect ? null : item} >
 
             <Route path="/"                      element={<Home                                                         />} />
+            <Route path="/blogs"                 element={<Blogs                                                        />} />
             <Route path="/gallery"               element={<Gallery                                                      />} />
             <Route path="/gallery/:keyword"      element={<Gallery                                                      />} />
-            <Route path="/gallery/artist/:artist" element={<Gallery                                                      />} />
-            <Route path="/gallery/orientation/:orientation" element={<Gallery                                                      />} />
-            <Route path="/gallery/medium/:medium" element={<Gallery                                                      />} />
-            <Route path="/gallery/medium/:medium" element={<Gallery                                                      />} />
-            <Route path="/gallery/rating/:rating" element={<Gallery                                                      />} />
+            <Route path="/gallery/artist/:artist" element={<Gallery                                                     />} />
+            <Route path="/gallery/orientation/:orientation" element={<Gallery                                           />} />
+            <Route path="/gallery/medium/:medium" element={<Gallery                                                     />} />
+            <Route path="/gallery/rating/:rating" element={<Gallery                                                     />} />
             <Route path="/artwork/:id"           element={<ProductDetails                                               />} />             
             <Route path="/terms"                 element={<Terms                                                        />} />
             <Route path="/privacy"               element={<Privacy                                                      />} />
@@ -147,6 +153,12 @@ function App() {
             <Route path="/admin/medium"          element={<PrivateRoute isAdmin={true}><NewMedia         /></PrivateRoute>} />
             <Route path="/admin/media/:id"       element={<PrivateRoute isAdmin={true}><UpdateMedia      /></PrivateRoute>} />
 
+            <Route path="/admin/blog"            element={<PrivateRoute isAdmin={true}><NewBlog          /></PrivateRoute>} />
+            <Route path="/admin/blogs"           element={<PrivateRoute isAdmin={true}><BlogsList        /></PrivateRoute>} /> 
+            <Route path="/admin/blog/:id"        element={<PrivateRoute isAdmin={true}><UpdateBlog       /></PrivateRoute>} />
+            <Route path="/admin/comments"        element={<PrivateRoute isAdmin={true}><BlogComments     /></PrivateRoute>} />
+            <Route path="/blog/:id"              element={<BlogDetails                                                  />} />            
+            
           </Routes>   
 
         </Elements>

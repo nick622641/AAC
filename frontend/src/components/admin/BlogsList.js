@@ -3,8 +3,8 @@ import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
-import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions'
-import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
+import { getAdminBlogs, deleteBlog, clearErrors } from '../../actions/blogActions'
+import { DELETE_BLOG_RESET } from '../../constants/blogConstants'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
@@ -17,21 +17,21 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Avatar from '@mui/material/Avatar'
 
-const ProductsList = () => {
+const BlogsList = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { loading, error, products      } = useSelector( state => state.products )
-    const { loading: isLoading, error: deleteError, isDeleted } = useSelector( state => state.product  )
+    const { loading, error, blogs         } = useSelector( state => state.blogs )
+    const { loading: isLoading, error: deleteError, isDeleted } = useSelector( state => state.blog  )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,  setId ] = useState('')
 
     useEffect(() => {
 
-        dispatch(getAdminProducts())
+        dispatch(getAdminBlogs())
 
         if(error) {
             alert.error(error)
@@ -42,8 +42,8 @@ const ProductsList = () => {
             dispatch(clearErrors())
         }
         if(isDeleted) {
-            alert.success('Artwork Deleted Successfully')    
-            dispatch({ type: DELETE_PRODUCT_RESET })            
+            alert.success('Blog Deleted Successfully')    
+            dispatch({ type: DELETE_BLOG_RESET })            
         }
         
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
@@ -52,11 +52,11 @@ const ProductsList = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
 
-    const deleteProductHandler = (id) => {
-        dispatch(deleteProduct(id))
+    const deleteBlogHandler = (id) => {
+        dispatch(deleteBlog(id))
     }
 
-    const setProducts = () => {
+    const setBlogs = () => {
         const data = {
             columns: [
                 {
@@ -66,28 +66,16 @@ const ProductsList = () => {
                     width: 50
                 },
                 {
-                    label: 'Artwork ID',
+                    label: 'Blog ID',
                     field: 'id',
                     sort: 'disabled',
                     width: 160
                 },
                 {
-                    label: 'Name',
-                    field: 'name',
+                    label: 'Title',
+                    field: 'title',
                     sort: 'asc',
                     width: 100
-                },
-                {
-                    label: 'Price',
-                    field: 'price',
-                    sort: 'asc',
-                    width: 75
-                },
-                {
-                    label: 'Stock',
-                    field: 'stock',
-                    sort: 'asc',
-                    width: 75
                 },
                 {
                     label: 'Actions',
@@ -99,22 +87,20 @@ const ProductsList = () => {
             rows: []
         }
 
-        products && products.forEach( product => {
+        blogs && blogs.forEach( blog => {
             data.rows.push({
-                url: <Link to={`/artwork/${product._id}`}>
+                url: <Link to={`/blog/${blog._id}`}>
                         <Avatar
-                            src={product.images[0].thumbUrl} 
-                            alt={product.name} 
+                            src={blog.images[0].thumbUrl} 
+                            alt={blog.name} 
                             sx={{ width: 50, height: 50 }}
                         />          
                     </Link>,
-                id: <small>{product._id}</small>,
-                name: product.name,
-                price: `$${product.price}`, 
-                stock: product.stock,
+                id: <small>{blog._id}</small>,
+                title: blog.title,               
                 actions: 
                     <Fragment>
-                        <Link to={`/admin/product/${product._id}`}>
+                        <Link to={`/admin/blog/${blog._id}`}>
                             <IconButton>
                                 <EditOutlinedIcon />
                             </IconButton>
@@ -122,7 +108,7 @@ const ProductsList = () => {
                         <IconButton 
                              onClick={() => {
                                 setIsModalVisible(!isModalVisible)
-                                setId(product._id)
+                                setId(blog._id)
                             }}
                         >
                             <DeleteOutlineIcon color="danger" />
@@ -156,12 +142,12 @@ const ProductsList = () => {
 
                             <Fragment>  
 
-                                <div className="user-form cart">
+                                <div className="user-form">
 
-                                    <h1>All Artwork</h1>                                
+                                    <h1>All Blogs</h1>                                
                                 
                                     <MDBDataTableV5 
-                                        data={setProducts()}   
+                                        data={setBlogs()}   
                                         fullPagination   
                                         scrollX  
                                         scrollY   
@@ -172,7 +158,6 @@ const ProductsList = () => {
                                     <Link to="/dashboard">
                                         <Fab 
                                             size="small" 
-                                            className="close" 
                                             color="primary"
                                             sx={{ position: 'absolute', top: 10, right: 10 }}
                                         >
@@ -198,8 +183,8 @@ const ProductsList = () => {
                 content={
                     <Confirm 
                         onBackdropClick={toggleModal} 
-                        onConfirm={() => deleteProductHandler(id)} 
-                        message="Delete artwork"
+                        onConfirm={() => deleteBlogHandler(id)} 
+                        message="Delete blog"
                     />
                 }
             />
@@ -210,4 +195,4 @@ const ProductsList = () => {
 
 }
 
-export default ProductsList
+export default BlogsList

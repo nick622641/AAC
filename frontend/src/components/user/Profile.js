@@ -14,7 +14,7 @@ const Profile = () => {
 
     const { user, loading } = useSelector( state => state.auth )
     const date      = new Date(user.createdAt)
-    const createdAt = date.getDate() + ' / ' + date.getMonth() + ' / ' + date.getFullYear()
+    const createdAt = date.getDate() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getFullYear()
 
     return (
 

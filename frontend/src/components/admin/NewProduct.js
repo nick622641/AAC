@@ -98,7 +98,7 @@ const NewProduct = () => {
             }
             reader.readAsDataURL(file)
         })   
-    }   
+    }  
 
     return (
 

@@ -160,7 +160,15 @@ const Header = () => {
                                             >
                                                 Meet the Team
                                             </Link>
-                                        </li>                                     
+                                        </li>   
+                                        <li>
+                                            <Link 
+                                                to="blogs" 
+                                                onClick={() => setIsNavOpen(!isNavOpen)}
+                                            >
+                                                Blogs
+                                            </Link>
+                                        </li>                                  
                     
                                     </ul>                                        
                                 </li>

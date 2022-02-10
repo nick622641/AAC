@@ -25,6 +25,9 @@ const ProcessOrder = () => {
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
     const { error, isUpdated } = useSelector(state => state.order)
 
+    const date = new Date(order.createdAt)
+    const createdAt = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
+
     useEffect(() => {
 
         dispatch(getOrderDetails(orderId))
@@ -109,6 +112,10 @@ const ProcessOrder = () => {
                                         <tr>
                                             <td><h6 className="text-right">Order ID</h6></td>
                                             <td># {order._id}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6 className="text-right">Date</h6></td>
+                                            <td>{createdAt}</td>
                                         </tr>
                                         <tr>
                                             <td><h6 className="text-right">Name</h6></td>

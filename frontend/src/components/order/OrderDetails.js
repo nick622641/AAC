@@ -18,7 +18,7 @@ const OrderDetails = () => {
     const { loading, error, order = {} } = useSelector(state => state.orderDetails)    
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
     const date = new Date(order.createdAt)
-    const createdAt = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()
+    const createdAt = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
 
     useEffect(() => {
         dispatch(getOrderDetails(id))

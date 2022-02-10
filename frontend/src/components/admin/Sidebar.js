@@ -16,10 +16,13 @@ import PersonIcon from '@mui/icons-material/Person'
 import ExploreIcon from '@mui/icons-material/Explore'
 import ColorLensIcon from '@mui/icons-material/ColorLens'
 import BrushIcon from '@mui/icons-material/Brush'
+import PushPinIcon from '@mui/icons-material/PushPin'
+import StarsIcon from '@mui/icons-material/Stars'
 
 const Sidebar = () => {
 
     const [ isSidebarOpen, setSideBarOpen ] = useState(false)
+    const [ isBlogMenuVisible, setBlogMenuVisible ] = useState(false)
     const [ isMenuVisible, setMenuVisible ] = useState(false)
     const [ isCategoriesVisible, setCategoriesVisible ] = useState(false)
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
@@ -28,6 +31,9 @@ const Sidebar = () => {
         transform: isSidebarOpen && isMobile ? 'translateX(0)' : 'translateX(-100%)'
     })
 
+    const toggleBlogMenu = () => {
+        setBlogMenuVisible(isBlogMenuVisible => !isBlogMenuVisible)
+    }
     const toggleMenu = () => {
         setMenuVisible(isMenuVisible => !isMenuVisible)
     }
@@ -37,6 +43,10 @@ const Sidebar = () => {
     const menuAppear = useSpring({
         transform: isMenuVisible ? "translateY(0)" : "translateY(-40px)",
         opacity: isMenuVisible ? 1 : 0
+    })
+    const blogMenuAppear = useSpring({
+        transform: isBlogMenuVisible ? "translateY(0)" : "translateY(-40px)",
+        opacity: isBlogMenuVisible ? 1 : 0
     })
     const categoriesAppear = useSpring({
         transform: isCategoriesVisible ? "translateY(0)" : "translateY(-40px)",
@@ -68,6 +78,44 @@ const Sidebar = () => {
                                 &nbsp; Dashboard
                             </Link>
                         </li>                    
+                        <li onClick={() => {toggleBlogMenu()}}>                        
+                           
+                            <IconButton>
+                                <PushPinIcon />
+                            </IconButton>
+                            &nbsp; Blogs
+                            <IconButton className="float-r">
+                                {isBlogMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isBlogMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={blogMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/blogs">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/blog">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>
                         <li onClick={() => {toggleMenu()}}>                        
                            
                             <IconButton>
@@ -173,6 +221,14 @@ const Sidebar = () => {
                                     <StarIcon />
                                 </IconButton>
                                 &nbsp; Reviews
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/admin/comments">
+                                <IconButton>
+                                    <StarsIcon />
+                                </IconButton>
+                                &nbsp; Comments
                             </Link>
                         </li>
                 
