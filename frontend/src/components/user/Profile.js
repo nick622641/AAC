@@ -9,12 +9,11 @@ import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import Avatar from '@mui/material/Avatar'
+import FormattedDate from '../layouts/FormattedDate'
 
 const Profile = () => {
 
     const { user, loading } = useSelector( state => state.auth )
-    const date      = new Date(user.createdAt)
-    const createdAt = date.getDate() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getFullYear()
 
     return (
 
@@ -56,7 +55,7 @@ const Profile = () => {
                                         <tr>
                                             <td>
                                                 <h6>Date Joined</h6>
-                                                <p>{createdAt}</p>
+                                                <p><FormattedDate iso={user.createdAt} format="date" /></p>
                                             </td>
                                         </tr>                                  
                                         <tr>

@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import Rating from '@mui/material/Rating'
 import parse from 'html-react-parser'
+import FormattedDate from '../layouts/FormattedDate'
 
 const ListReviews = ({ reviews, user, toggleModal }) => {
 
@@ -26,7 +27,7 @@ const ListReviews = ({ reviews, user, toggleModal }) => {
                         />  
                          
                         <p>
-                            by <b>{review.name}</b> &nbsp; 
+                            by <b>{review.name}</b> on <FormattedDate iso={review.reviewCreatedAt} format="dateTime" />
                             
                             {user && user._id === review.user && (
                             

@@ -9,6 +9,7 @@ import FormattedPrice from '../layouts/FormattedPrice'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
+import FormattedDate from '../layouts/FormattedDate'
 
 const OrderDetails = () => {
 
@@ -17,8 +18,6 @@ const OrderDetails = () => {
     const dispatch = useDispatch()
     const { loading, error, order = {} } = useSelector(state => state.orderDetails)    
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
-    const date = new Date(order.createdAt)
-    const createdAt = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
 
     useEffect(() => {
         dispatch(getOrderDetails(id))
@@ -126,7 +125,7 @@ const OrderDetails = () => {
                                         <td>
                                             <h6 className="text-right">Date</h6>
                                         </td>
-                                        <td>{createdAt}</td>
+                                        <td><FormattedDate iso={order.createdAt} format="dateTime" /></td>
                                     </tr>
                                     <tr>
                                         <td>

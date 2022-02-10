@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { useSpring, animated } from 'react-spring'
 import { Link } from 'react-router-dom'
+import FormattedDate from '../layouts/FormattedDate'
 
 const Sidebar = ({ blogs }) => {
 
@@ -43,7 +44,7 @@ const Sidebar = ({ blogs }) => {
                                 to={`/blog/${blog._id}`}
                                 className="whitespace-nowrap"
                             >                                                                   
-                                {new Date(blog.createdAt).getDate()+ '/' + (new Date(blog.createdAt).getMonth() + 1) + '/' + new Date(blog.createdAt).getFullYear()}
+                                <FormattedDate iso={blog.createdAt} format="date" />
                             </Link>
                         </li>
                     ))}

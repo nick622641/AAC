@@ -3,6 +3,7 @@ import Comment from '../modals/Comment'
 import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import parse from 'html-react-parser'
+import FormattedDate from '../layouts/FormattedDate'
 
 const ListComments = ({ comments, user, toggleModal }) => {
 
@@ -19,8 +20,8 @@ const ListComments = ({ comments, user, toggleModal }) => {
                     <div key={comment._id}>              
                          
                         <p>
-                            by <b>{comment.name}</b> on 
-                            <b> {new Date(comment.commentCreatedAt).getDate()+ '/' + (new Date(comment.commentCreatedAt).getMonth() + 1) + '/' + new Date(comment.commentCreatedAt).getFullYear()}</b> &nbsp; 
+                            by <b>{comment.name}</b> on &nbsp;
+                            <FormattedDate iso={comment.commentCreatedAt} format="dateTime" />
                             
                             {user && user._id === comment.user && (
                             

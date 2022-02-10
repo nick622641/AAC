@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton'
 import AddTaskIcon from '@mui/icons-material/AddTask'
 import Avatar from '@mui/material/Avatar'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import FormattedDate from '../layouts/FormattedDate'
 
 const ProcessOrder = () => {
 
@@ -24,9 +25,6 @@ const ProcessOrder = () => {
     const { loading, order = {} } = useSelector(state => state.orderDetails)
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
     const { error, isUpdated } = useSelector(state => state.order)
-
-    const date = new Date(order.createdAt)
-    const createdAt = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
 
     useEffect(() => {
 
@@ -115,7 +113,7 @@ const ProcessOrder = () => {
                                         </tr>
                                         <tr>
                                             <td><h6 className="text-right">Date</h6></td>
-                                            <td>{createdAt}</td>
+                                            <td><FormattedDate iso={order.createdAt} format="dateTime" /></td>
                                         </tr>
                                         <tr>
                                             <td><h6 className="text-right">Name</h6></td>

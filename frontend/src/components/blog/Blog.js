@@ -1,10 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import FormattedDate from '../layouts/FormattedDate'
 
 const Blog = ({ blog }) => {
-
-    const date = new Date(blog.createdAt)
-    const createdAt = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
 
     return (
         
@@ -37,7 +35,7 @@ const Blog = ({ blog }) => {
                         
                             <small>
                                 By <b>{blog.name} </b>
-                                on <b>{createdAt}</b>
+                                on <b><FormattedDate iso={blog.createdAt} format="date" /></b>
                             </small>
                        
                     </p>                

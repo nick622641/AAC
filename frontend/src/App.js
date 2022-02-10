@@ -104,7 +104,7 @@ function App() {
 
           <ScrollToTop />
           
-          <Routes location={redirect ? null : item} >
+          <Routes location={redirect ? null : item}>
 
             <Route path="/"                      element={<Home                                                         />} />
             <Route path="/blogs"                 element={<Blogs                                                        />} />
