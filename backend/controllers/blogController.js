@@ -58,8 +58,9 @@ exports.updateBlog = catchAsyncErrors(async (req, res, next) => {
 
         const { title, tags, description } = req.body
 
-        let images = []        
-        if (typeof req.body.images === 'string') {   // if a new image has been added          
+        let images = []       
+         
+        if (typeof req.body.images === 'string') { // if a new image has been added                   
             images.push(req.body.images)
         } else {
             images = req.body.images
@@ -69,8 +70,10 @@ exports.updateBlog = catchAsyncErrors(async (req, res, next) => {
         if(!description) { return next(new ErrorHandler('Please provide a description',    400)) }    
         if(!tags)        { return next(new ErrorHandler('Please provide at least one tag', 400)) }    
 
-        if (images !== undefined) {         
+        if (images !== undefined) {       
+              
             let imagesLinks = blog.images
+
             for (let i = 0; i < images.length; i++) {
                 const thumb = await cloudinary.v2.uploader.upload(images[i], {
                     folder: "blogs",            

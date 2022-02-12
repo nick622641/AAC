@@ -2,8 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { getBlogDetails, getBlogs } from '../../actions/blogActions'
-import { NEW_COMMENT_RESET } from '../../constants/blogConstants'
+import { getBlogDetails, getBlogs, deleteComment } from '../../actions/blogActions'
+import { NEW_COMMENT_RESET, DELETE_COMMENT_RESET } from '../../constants/blogConstants'
 import { clearErrors } from '../../actions/userActions'
 import { useSpring } from 'react-spring'
 import Loader from '../layouts/Loader'
@@ -21,6 +21,7 @@ import Sidebar from './Sidebar'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import Comment from '../modals/Comment'
 import ListComments from './ListComments'
+import FormattedDate from '../layouts/FormattedDate'
 
 const BlogDetails = () => {   
 
@@ -29,15 +30,17 @@ const BlogDetails = () => {
     const dispatch = useDispatch()
 
     const { error: commentError, success } = useSelector( state => state.newComment )
-    const { blogs                } = useSelector( state => state.blogs )
-    const { loading, blog, error } = useSelector( state => state.blogDetails )
-    const { user                 } = useSelector( state => state.auth )   
+    const { blogs                        } = useSelector( state => state.blogs )
+    const { loading, blog, error         } = useSelector( state => state.blogDetails )
+    const { user                         } = useSelector( state => state.auth )  
+    const { isDeleted, error: deleteError } = useSelector( state => state.comment ) 
 
     const [ modalType,         setIModalType        ] = useState()    
     const [ imageIndex,        setIImageIndex       ] = useState(0)   
     const [ isModalVisible,    setIsModalVisible    ] = useState(false)
-    const [ isLightboxVisible, setIsLightboxVisible ] = useState(false)          
+    const [ isLightboxVisible, setIsLightboxVisible ] = useState(false)      
 
+    const tags = blog.tags ? blog.tags.split(',') : ''
     let comment = ''  
 
     if ( user && blog && blog.numOfComments > 0 ) {
@@ -60,6 +63,11 @@ const BlogDetails = () => {
         opacity: isLightboxVisible ? 1 : 0,
         transform: isLightboxVisible ? `translateY(0%)` : `translateY(-100%)`
     })
+
+    const deleteCommentHandler = (id) => {
+        dispatch(deleteComment(id, blog._id))        
+    }
+
     useEffect( () => {   
 
         dispatch(getBlogDetails(id))
@@ -78,13 +86,19 @@ const BlogDetails = () => {
             alert.success('Comment Posted Successfully')
             dispatch({ type: NEW_COMMENT_RESET })
             setIsModalVisible(false)
+        }    
+        
+        if (deleteError) {
+            alert.error(error)
+            dispatch(clearErrors())
         }          
-    }, [dispatch, alert, error, id, success, commentError ])      
-    
-    const date = new Date(blog.createdAt)
-    const createdAt = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
+      
+        if(isDeleted) {
+            alert.success('Comment Deleted Successfully')            
+            dispatch({ type: DELETE_COMMENT_RESET })
+        } 
 
-    const tags = blog.tags ? blog.tags.split(',') : ''
+    }, [dispatch, alert, error, id, success, commentError, isDeleted, deleteError ])      
 
     return (
 
@@ -100,7 +114,7 @@ const BlogDetails = () => {
 
                         <div className="container"> 
                                 
-                            <div className="wrapper">
+                            <div className="wrapper" style={{ paddingBottom: "5px" }}>
                                  
                                 {blog.images && (
                                     <img src={blog.images[0].url} alt={blog.title} />
@@ -142,7 +156,7 @@ const BlogDetails = () => {
 
                                 <div  style={{ marginBottom: "10px" }}>
 
-                                    <small>Created on <b>{createdAt}</b> by <b>{blog.name}</b></small>
+                                    <small>Created on <b><FormattedDate iso={blog.createdAt} /></b> by <b>{blog.name}</b></small>
 
                                 </div>
                                 
@@ -159,7 +173,7 @@ const BlogDetails = () => {
                                     ))}
                                 </div>
 
-                                <div style={{ marginBottom: "40px" }}>
+                                <div className="blog-content" style={{ marginBottom: "40px" }}>
 
                                     {blog.description && parse(blog.description)}  
 
@@ -202,6 +216,7 @@ const BlogDetails = () => {
                                         comments={blog.comments} 
                                         user={user} 
                                         toggleModal={toggleModal}
+                                        deleteCommentHandler={deleteCommentHandler}
                                     />   
                                 </div>
                             </div>

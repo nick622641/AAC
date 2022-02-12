@@ -6,8 +6,6 @@ import { updateBlog, getBlogDetails, updateImages, deleteImage, clearErrors } fr
 import { UPDATE_BLOG_RESET } from '../../constants/blogConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/blogConstants'
 import { FormControl, TextField } from '@mui/material'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -18,6 +16,11 @@ import SendIcon from '@mui/icons-material/Send'
 import DragnDrop from './DragnDrop'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import { Editor } from "react-draft-wysiwyg"
+import { EditorState, ContentState, convertToRaw } from 'draft-js'
+import htmlToDraft from 'html-to-draftjs'
+import draftToHtml from 'draftjs-to-html'
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const UpdateBlog = () => {
 
@@ -26,7 +29,7 @@ const UpdateBlog = () => {
     const navigate  = useNavigate()    
     const dispatch  = useDispatch()
 
-    const { error, blog                            } = useSelector( state => state.blogDetails )
+    const { error, blog } = useSelector( state => state.blogDetails )
     const { loading, isUpdated, error: updateError, error: deleteError, isDeleted } = useSelector( state => state.blog )  
     
     const [ title,           setTitle          ] = useState('')
@@ -41,6 +44,14 @@ const UpdateBlog = () => {
     const [ imgId,           setImageId        ] = useState('')
     const [ init,            setInit           ] = useState(0)
     const [ final,           setFinal          ] = useState(0)
+
+    const [editorState, setEditorState] = useState(
+        () => EditorState.createEmpty(),
+    )  
+    const handleEditorChange = (state) => {
+        setEditorState(state)
+        setDescription(draftToHtml(convertToRaw(state.getCurrentContent())))
+    } 
 
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
@@ -57,14 +68,20 @@ const UpdateBlog = () => {
 
         if (blog && blog._id !== blogId) {    
 
-            dispatch(getBlogDetails(blogId))  
+            dispatch(getBlogDetails(blogId))             
 
         } else {
             
             setTitle(blog.title)
             setTags(blog.tags)            
             setDescription(blog.description)          
-            setOldImages(blog.images)    
+            setOldImages(blog.images)   
+            
+            const contentBlock = htmlToDraft(blog.description)
+            const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks)
+            const _editorState = EditorState.createWithContent(contentState)
+
+            setEditorState(_editorState)
         }
 
         if(error) {
@@ -80,13 +97,15 @@ const UpdateBlog = () => {
         if(isUpdated) {            
             alert.success('Blog Updated Successfully')
             dispatch(getBlogDetails(blogId))  
-            dispatch({ type: UPDATE_BLOG_RESET })           
+            dispatch({ type: UPDATE_BLOG_RESET })    
+            setImages([])       
         } 
         
         if(deleteError) {
             alert.error(deleteError)
             dispatch(clearErrors())
         }
+
         if(isDeleted) {
             alert.success('Image Deleted Successfully') 
             dispatch(getBlogDetails(blogId))    
@@ -149,17 +168,7 @@ const UpdateBlog = () => {
 
                         <div className="user-form"> 
 
-                            <form onSubmit={submitHandler} encType='multipart/form-data'>
-                            
-                                <FormControl fullWidth>
-                                    <TextField 
-                                        label="Blog Title" 
-                                        value={title}
-                                        variant="standard"
-                                        onChange={(e) => setTitle(e.target.value)} 
-                                        sx={{ mb: 1 }}
-                                    />                                 
-                                </FormControl>                              
+                            <form onSubmit={submitHandler} encType='multipart/form-data'>  
 
                                 <div className="parent reverse">
                                     
@@ -189,7 +198,17 @@ const UpdateBlog = () => {
                                             
                                     </label>
 
-                                    <div>
+                                    <div style={{ flexGrow: 1 }}>
+
+                                        <FormControl fullWidth>
+                                            <TextField 
+                                                label="Blog Title" 
+                                                value={title}
+                                                variant="standard"
+                                                onChange={(e) => setTitle(e.target.value)} 
+                                                sx={{ mb: 1 }}
+                                            />                                 
+                                        </FormControl>     
 
                                         <FormControl fullWidth sx={{ mb: 1 }}>
                                             <TextField 
@@ -218,18 +237,17 @@ const UpdateBlog = () => {
                                     imagesPreview={imagesPreview}
                                 />  
 
-                                <h4>Description</h4> 
+                                <h4>Content</h4> 
 
                                 {description && (                                 
-                                    <CKEditor
-                                        editor={ClassicEditor}               
-                                        data={description}
-                                        onChange={(event, editor) => {
-                                            const data = editor.getData()
-                                            setDescription(data)
-                                        }}
-                                    />
-                                )}                                
+                                     <Editor
+                                        editorState={editorState}
+                                        onEditorStateChange={handleEditorChange}  
+                                        editorClassName="editor-area"   
+                                        toolbarClassName="richtext-editor" 
+                                        placeholder="Please enter your content here"                              
+                                    /> 
+                                )}                                                           
                     
                                 <LoadingButton 
                                     loading={loading}

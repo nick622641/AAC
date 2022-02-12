@@ -84,7 +84,7 @@ const Sidebar = () => {
                                 <PushPinIcon />
                             </IconButton>
                             &nbsp; Blogs
-                            <IconButton className="float-r">
+                            <IconButton className="arrow-down">
                                 {isBlogMenuVisible ? (
                                     <ArrowDropUpIcon />
                                 ):(
@@ -122,7 +122,7 @@ const Sidebar = () => {
                                 <BrushIcon />
                             </IconButton>
                             &nbsp; Artwork
-                            <IconButton className="float-r">
+                            <IconButton className="arrow-down">
                                 {isMenuVisible ? (
                                     <ArrowDropUpIcon />
                                 ):(
@@ -160,7 +160,7 @@ const Sidebar = () => {
                                 <CategoryIcon />
                             </IconButton>
                             &nbsp; Categories
-                            <IconButton className="float-r">
+                            <IconButton className="arrow-down">
                                 {isCategoriesVisible ? (
                                     <ArrowDropUpIcon />
                                 ):(

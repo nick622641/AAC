@@ -55,7 +55,7 @@ const DragnDrop = ({ setIsModalVisible, setImageIndex, setImageId, setInit, setF
 
         <ul onDragOver={handleContainerDrag} className="dragContainer d-flex">                          
                                        
-            {oldImages && oldImages.map((img, index) => (                                                                                      
+            {oldImages && oldImages.map((img, i) => (                                                                                      
                 
                 <li 
                     key={img._id} 
@@ -64,17 +64,20 @@ const DragnDrop = ({ setIsModalVisible, setImageIndex, setImageId, setInit, setF
                     onDragStart={(e) => dragStartHandler(e.target)}
                     onDragEnd={(e) => dragEndHandler(e.target)}
                     style={{ marginRight: '10px', width: '40px', height: '40px', backgroundImage: `url(${img.thumbUrl})` }}
-                >                                               
-                    <IconButton 
-                        onClick={() => {
-                            setIsModalVisible(true)   
-                            setImageIndex(index)  
-                            setImageId(img._id)                                               
-                        }}
-                        sx={{ position: 'absolute', top: 0, right: 0 }}                                                
-                    >
-                        <DeleteOutlineIcon sx={{ color: '#ccc' }} />
-                    </IconButton>
+                > 
+                    {i !== 0 && (
+                        <IconButton 
+                            onClick={() => {
+                                setIsModalVisible(true)   
+                                setImageIndex(i)  
+                                setImageId(img._id)                                               
+                            }}
+                            sx={{ position: 'absolute', top: 0, right: 0 }}                                                
+                        >
+                            <DeleteOutlineIcon sx={{ color: '#ccc' }} />
+                        </IconButton> 
+                    )}   
+                                       
                 </li>                                           
             ))}
 

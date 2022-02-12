@@ -191,7 +191,7 @@ const Header = () => {
                             window.scrollTo(0, 0)
                         }}
                     >
-                        <MoreVertIcon />
+                        <MoreVertIcon color="secondary" />
                     </IconButton>
                     &nbsp;
                     <IconButton
@@ -200,7 +200,7 @@ const Header = () => {
                             setIsNavOpen(false)
                         }}
                     >
-                        <SearchIcon />
+                        <SearchIcon color="secondary" />
                     </IconButton>                                                        
                     &nbsp;
                     <IconButton
@@ -214,7 +214,7 @@ const Header = () => {
                             badgeContent={cartItems.length} 
                             color="primary"
                         >
-                            <ShoppingCartIcon />
+                            <ShoppingCartIcon color="secondary" />
                         </StyledBadge>
                     </IconButton>   
                     &nbsp;&nbsp;
@@ -224,7 +224,7 @@ const Header = () => {
                             setIsNavOpen(false)
                         }}
                     >
-                        <EmailIcon />
+                        <EmailIcon color="secondary" />
                     </IconButton>              
                     &nbsp;
                     {user ? (
@@ -244,7 +244,7 @@ const Header = () => {
                                 
                                 <small 
                                     className="whitespace-nowrap absolute"
-                                    style={{ right: 0, top: "100%" }}
+                                    style={{ right: 0, top: "90%" }}
                                 >
                                     {user && user.name}
                                 </small>                            
@@ -308,9 +308,16 @@ const Header = () => {
 
                     <Divider orientation="vertical" flexItem  sx={{ mx: 1 }}/> 
 
+                    
                     <IconButton>
-                        <FacebookSharpIcon/>
-                    </IconButton>
+                        <a 
+                            href="https://www.facebook.com/abstractartcanada/" 
+                            target="_biank"
+                            style={{ fontSize: 0 }}
+                        >
+                            <FacebookSharpIcon color="facebook" sx={{ fontSize: "32px" }} />
+                        </a>
+                    </IconButton>                   
 
                     <Modal
                         isModalVisible={isModalVisible} 

@@ -23,7 +23,7 @@ const ProductsList = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { loading, error, products      } = useSelector( state => state.products )
+    const { loading, error, products } = useSelector( state => state.products )
     const { loading: isLoading, error: deleteError, isDeleted } = useSelector( state => state.product  )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)

@@ -12,7 +12,7 @@ header {
 }
 header .dropdown-menu {
     position: absolute;
-    top: calc(100% + 20px);
+    top: calc(100% + 12px);
     right: 40px;
     background: white;
     padding: 20px;
@@ -56,6 +56,9 @@ header nav a {
 }
 .logo img:hover {
     transform: scale(1.05);
+}
+header button:hover svg {
+    color: var(--primary-color);
 }
 /* search */
 .searchform {

@@ -5,8 +5,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { newBlog, clearErrors } from '../../actions/blogActions'
 import { NEW_BLOG_RESET } from '../../constants/blogConstants'
 import { FormControl, TextField } from '@mui/material'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -14,8 +12,12 @@ import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
+import { Editor } from "react-draft-wysiwyg"
+import { EditorState, convertToRaw } from 'draft-js'
+import draftToHtml from 'draftjs-to-html'
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
-const NewBlog = () => {
+const NewBlog = () => {    
 
     const alert    = useAlert()
     const navigate = useNavigate()
@@ -23,13 +25,21 @@ const NewBlog = () => {
 
     const [ title,         setTitle         ] = useState('')
     const [ tags,          setTags          ] = useState('')   
-    const [ description,   setDescription   ] = useState('Please enter a comprehensive description')
+    const [ description,   setDescription   ] = useState('')
   
     const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
     
     const { loading, error, success } = useSelector( state => state.newBlog )
     const { user                    } = useSelector( state => state.auth )   
+    
+    const [editorState, setEditorState] = useState(
+        () => EditorState.createEmpty(),
+    )
+    const handleEditorChange = (state) => {
+        setEditorState(state)
+        setDescription(draftToHtml(convertToRaw(state.getCurrentContent())))
+    }
 
     useEffect(() => {  
 
@@ -96,17 +106,7 @@ const NewBlog = () => {
                             
                         <div className="user-form"> 
 
-                            <form onSubmit={submitHandler} encType='multipart/form-data'>
-
-                                <FormControl fullWidth>
-                                    <TextField 
-                                        label="Blog Title" 
-                                        value={title}
-                                        variant="standard"
-                                        onChange={(e) => setTitle(e.target.value)} 
-                                        sx={{ mb: 1 }}
-                                    />                                 
-                                </FormControl>
+                            <form onSubmit={submitHandler} encType='multipart/form-data'>                                
 
                                 <div className="parent reverse">
 
@@ -125,7 +125,18 @@ const NewBlog = () => {
                                         /> 
                                     </label> 
 
-                                    <div>                                                                            
+                                    <div style={{ flexGrow: 1 }}>   
+
+                                        <FormControl fullWidth>
+                                            <TextField 
+                                                label="Blog Title" 
+                                                value={title}
+                                                variant="standard"
+                                                onChange={(e) => setTitle(e.target.value)} 
+                                                sx={{ mb: 1 }}
+                                            />                                 
+                                        </FormControl>
+
                                         <FormControl fullWidth sx={{ mb: 1 }}>
                                             <TextField 
                                                 label="Tags" 
@@ -152,16 +163,15 @@ const NewBlog = () => {
                                     </ul> 
                                 )}  
                               
-                                <h4>Description</h4>  
+                                <h4>Content</h4>                          
 
-                                <CKEditor
-                                    editor={ClassicEditor}               
-                                    data={description}
-                                    onChange={(event, editor) => {
-                                        const data = editor.getData()
-                                        setDescription(data)
-                                    }}
-                                />
+                                <Editor
+                                    editorState={editorState}
+                                    onEditorStateChange={handleEditorChange}  
+                                    editorClassName="editor-area"   
+                                    toolbarClassName="richtext-editor"   
+                                    placeholder="Please enter your content here"        
+                                />   
 
                                 <LoadingButton 
                                     loading={loading}

@@ -2,9 +2,9 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { getProductDetails, getRelatedProducts } from '../../actions/productActions'
+import { getProductDetails, getRelatedProducts, deleteReview } from '../../actions/productActions'
 import { addItemToCart } from '../../actions/cartActions'
-import { NEW_REVIEW_RESET } from '../../constants/productConstants'
+import { NEW_REVIEW_RESET, DELETE_REVIEW_RESET } from '../../constants/productConstants'
 import { clearErrors } from '../../actions/userActions'
 import { useSpring } from 'react-spring'
 import Loader from '../layouts/Loader'
@@ -32,10 +32,11 @@ const ProductDetails = () => {
     const alert    = useAlert()
     const dispatch = useDispatch()
 
-    const { error: reviewError, success } = useSelector( state => state.newReview )
-    const { loading, product, error     } = useSelector( state => state.productDetails )
-    const { relatedProducts             } = useSelector( state => state.products )
-    const { user, isAuthenticated       } = useSelector( state => state.auth )   
+    const { error: reviewError, success   } = useSelector( state => state.newReview )
+    const { loading, product, error       } = useSelector( state => state.productDetails )
+    const { relatedProducts               } = useSelector( state => state.products )
+    const { user, isAuthenticated         } = useSelector( state => state.auth )  
+    const { isDeleted, error: deleteError } = useSelector( state => state.review ) 
 
     const [ modalType,         setIModalType        ] = useState()    
     const [ quantity,          setQuantity          ] = useState(1)
@@ -67,6 +68,11 @@ const ProductDetails = () => {
         opacity: isLightboxVisible ? 1 : 0,
         transform: isLightboxVisible ? `translateY(0%)` : `translateY(-100%)`
     })
+
+    const deleteReviewHandler = (id) => {
+        dispatch(deleteReview(id, product._id))        
+    }
+
     useEffect( () => {   
 
         dispatch(getProductDetails(id))
@@ -85,8 +91,17 @@ const ProductDetails = () => {
             alert.success('Review Posted Successfully')
             dispatch({ type: NEW_REVIEW_RESET })
             setIsModalVisible(false)
+        } 
+        if (deleteError) {
+            alert.error(error)
+            dispatch(clearErrors())
         }          
-    }, [dispatch, success, alert, error, reviewError, id, product.artist])
+      
+        if(isDeleted) {
+            alert.success('Review Deleted Successfully')            
+            dispatch({ type: DELETE_REVIEW_RESET })
+        }         
+    }, [dispatch, success, alert, error, reviewError, id, product.artist, deleteError, isDeleted ])
 
     const addToCart = () => {
         dispatch(addItemToCart(id, quantity))
@@ -308,6 +323,7 @@ const ProductDetails = () => {
                                         reviews={product.reviews} 
                                         user={user} 
                                         toggleModal={toggleModal}
+                                        deleteReviewHandler={deleteReviewHandler}
                                     />   
                                 </div>
                             </div>

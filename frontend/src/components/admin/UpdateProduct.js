@@ -96,7 +96,8 @@ const UpdateProduct = () => {
         if(isUpdated) {            
             alert.success('Artwork Updated Successfully')
             dispatch(getProductDetails(productId))  
-            dispatch({ type: UPDATE_PRODUCT_RESET })           
+            dispatch({ type: UPDATE_PRODUCT_RESET })     
+            setImages([])           
         }
         if(deleteError) {
             alert.error(deleteError)

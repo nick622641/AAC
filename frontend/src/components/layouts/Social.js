@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
-import IconButton from '@mui/material/IconButton'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
+import React, { Fragment }  from 'react'
+import IconButton           from '@mui/material/IconButton'
+import TwitterIcon          from '@mui/icons-material/Twitter'
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined'
 
 const Social = () => {
 
