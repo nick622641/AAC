@@ -2,25 +2,14 @@ import { Fragment, useState } from 'react'
 import { FormControl, TextField } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
-import { Editor } from "react-draft-wysiwyg"
-import { EditorState, convertToRaw } from 'draft-js'
-import draftToHtml from 'draftjs-to-html'
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import RichtextEdittor from "../layouts/RichtextEdittor"
 
 function Contact() {
 
     const [ name, setName ] = useState('')
     const [ email, setEmail ] = useState('')
     const [ message, setMessage ] = useState('')
-    const [ loading, setLoading ] = useState(false)
-
-    const [editorState, setEditorState] = useState(
-        () => EditorState.createEmpty(),
-    )
-    const handleEditorChange = (state) => {
-        setEditorState(state)
-        setMessage(draftToHtml(convertToRaw(state.getCurrentContent())))
-    }
+    const [ loading, setLoading ] = useState(false) 
 
     function submitHandler(e) {
 
@@ -70,30 +59,7 @@ function Contact() {
                     />                                 
                 </FormControl>  
 
-                <Editor
-                    editorState={editorState}
-                    onEditorStateChange={handleEditorChange}  
-                    editorClassName="editor-area"   
-                    toolbarClassName="richtext-editor"                                     
-                    placeholder="Please enter your Message here"
-                    stripPastedStyles
-                    spellCheck
-                    toolbar={{
-                        image: {                                    
-                                alt: {
-                                    present: true,
-                                    mandatory: true
-                                    }
-                        }
-                    }}        
-                />                      
-               
-                <input 
-                    className="hidden-input" 
-                    value={message ? message : ''} 
-                    onChange={(e) => setMessage(e.target.value)} 
-                    required
-                />
+                <RichtextEdittor text={message} setText={setMessage} />                    
                              
                 <LoadingButton 
                     loading={loading}

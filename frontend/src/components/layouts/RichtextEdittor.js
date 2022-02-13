@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Editor } from "react-draft-wysiwyg"
 import { EditorState, ContentState, convertToRaw } from 'draft-js'
 import htmlToDraft from 'html-to-draftjs'
@@ -7,6 +7,8 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const RichtextEdittor = ({ text, setText }) => {
 
+    const [ comment, setComment ] = useState(text)
+
     const [editorState, setEditorState] = useState(
         () => EditorState.createEmpty(),
     )  
@@ -14,37 +16,42 @@ const RichtextEdittor = ({ text, setText }) => {
         setEditorState(state)
         setText(draftToHtml(convertToRaw(state.getCurrentContent())))
     }
+    const getComment = useCallback((text) => {
+        setComment(text)
+      }, [])
 
-    useEffect(() => {
+    useEffect(() => {    
 
-        const contentBlock = htmlToDraft(text)
+        getComment(comment)
+
+        const contentBlock = htmlToDraft(comment)
         const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks)
         const _editorState = EditorState.createWithContent(contentState)   
         setEditorState(_editorState)  
               
-    }, [ ])   // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ comment, getComment ])  
 
-  return (
+    return (
 
-    <Editor
-        editorState={editorState}
-        onEditorStateChange={handleEditorChange}  
-        editorClassName="editor-area"   
-        toolbarClassName="richtext-editor" 
-        placeholder="Please enter your content here"
-        stripPastedStyles
-        spellCheck  
-        toolbar={{
-            image: {                                    
-                alt: {
-                        present: true,
-                        mandatory: true
-                    }
-            }
-        }}                             
-    />
+        <Editor
+            editorState={editorState}
+            onEditorStateChange={handleEditorChange}  
+            editorClassName="editor-area"   
+            toolbarClassName="richtext-editor" 
+            placeholder="Please enter your content here"
+            stripPastedStyles
+            spellCheck  
+            toolbar={{
+                image: {                                    
+                    alt: {
+                            present: true,
+                            mandatory: true
+                        }
+                }
+            }}                             
+        />
 
-  )
+    )
 
 }
 
