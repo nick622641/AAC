@@ -41,6 +41,10 @@ main {
 footer {
   flex-shrink: 0;
 }
+/* Inline Element Styles */
+small {
+  font-size: 12px;
+}
 /* List Styles */
 ul {
   list-style: none;

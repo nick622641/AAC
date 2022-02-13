@@ -262,7 +262,7 @@ const Header = () => {
                             <animated.div className="dropdown-menu" style={menuAppear}>
 
                                 {user && user.role === 'admin' && (
-                                    <Link to="/dashboard" onClick={toggleMenu}>
+                                    <Link to="/admin/dashboard" onClick={toggleMenu}>
                                         Dashboard &nbsp;
                                         <IconButton>
                                             <SpeedIcon />

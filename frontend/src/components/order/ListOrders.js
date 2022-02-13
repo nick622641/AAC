@@ -104,7 +104,7 @@ const ListOrders = () => {
                                 data={setOrders()}
                                 fullPagination   
                                 scrollX  
-                                scrollY   
+                                // scrollY   
                                 searchTop
                                 searchBottom={false}  
                             />                       

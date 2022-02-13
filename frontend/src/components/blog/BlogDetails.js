@@ -68,11 +68,35 @@ const BlogDetails = () => {
         dispatch(deleteComment(id, blog._id))        
     }
 
+    const captionImages = (imgs) => {     
+        for(let i = 0; i < imgs.length; i++) {
+            imgs[i].setAttribute('title', imgs[i].alt)   
+            const nextEl = imgs[i].nextElementSibling  
+            const parent = imgs[i].parentNode
+            const figure = document.createElement("figure")               
+            const figCap = document.createElement("figcaption")   
+            figCap.innerText = imgs[i].alt            
+            figure.appendChild(imgs[i])    
+            figure.appendChild(figCap)    
+            parent.insertBefore(figure, nextEl)            
+        }        
+    }
+
+    useEffect(() => {
+        if(!loading) {
+            const imgs = document.querySelectorAll('.blog-content img')
+            const figures = document.querySelectorAll('.blog-content figure')
+            if(imgs.length > 0 && figures.length === 0) {
+                captionImages(imgs)
+            }            
+        } 
+    }, [loading])
+
     useEffect( () => {   
 
         dispatch(getBlogDetails(id))
 
-        dispatch(getBlogs(1))
+        dispatch(getBlogs(1))      
         
         if(error) { 
             alert.error(error)
@@ -177,24 +201,27 @@ const BlogDetails = () => {
 
                                     {blog.description && parse(blog.description)}  
 
-                                </div>                               
+                                </div>  
 
-                                {user ? 
-                                    <Fragment>
-                                        <IconButton onClick={() => {toggleModal(<Comment comment={comment} />)}}>
-                                            <EditOutlinedIcon />
-                                        </IconButton>
-                                        Post Comment  
-                                    </Fragment>      
-                                : 
-                                    <Link to={`/login?redirect=blog/${id}`}>
-                                        <IconButton>
-                                            <LoginIcon />
-                                        </IconButton>    
-                                        Login to Post a Comment                                                      
-                                    </Link>                                }                                 
+                                <div style={{ clear: "both" }}>                            
 
-                                <br />
+                                    {user ? 
+                                        <Fragment>
+                                            <IconButton onClick={() => {toggleModal(<Comment comment={comment} />)}}>
+                                                <EditOutlinedIcon />
+                                            </IconButton>
+                                            Post Comment  
+                                        </Fragment>      
+                                    : 
+                                        <Link to={`/login?redirect=blog/${id}`}>
+                                            <IconButton>
+                                                <LoginIcon />
+                                            </IconButton>    
+                                            Login to Post a Comment                                                      
+                                        </Link>                                
+                                    }                                 
+
+                                </div> 
 
                                 <Social />                              
 

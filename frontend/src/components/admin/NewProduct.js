@@ -5,9 +5,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { newProduct, clearErrors } from '../../actions/productActions'
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { FormControl, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -18,6 +16,11 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
+import { Editor } from "react-draft-wysiwyg"
+import { EditorState, convertToRaw } from 'draft-js'
+import draftToHtml from 'draftjs-to-html'
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const NewProduct = () => {
 
@@ -38,11 +41,20 @@ const NewProduct = () => {
     const [ datePublished, setDatePublished ] = useState(Date.now())
     const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
+    const [ fullscreen,    setFullscreen    ] = useState(false)
     
     const { loading, error, success } = useSelector( state => state.newProduct )
     const { media                   } = useSelector( state => state.media )
     const { orientations            } = useSelector( state => state.orientations )
     const { artists                 } = useSelector( state => state.artists )
+
+    const [editorState, setEditorState] = useState(
+        () => EditorState.createEmpty(),
+    )
+    const handleEditorChange = (state) => {
+        setEditorState(state)
+        setDescription(draftToHtml(convertToRaw(state.getCurrentContent())))
+    }
 
     useEffect(() => {
         
@@ -116,7 +128,7 @@ const NewProduct = () => {
                         
                     </aside>            
 
-                    <article>          
+                    <article className={fullscreen ? 'fullscreen' : ''}>          
                             
                         <div className="user-form"> 
 
@@ -294,16 +306,25 @@ const NewProduct = () => {
                                     </FormControl>   
                                 )}                                
 
-                                <h4>Description</h4>  
+                                <h4>Description</h4> 
 
-                                <CKEditor
-                                    editor={ClassicEditor}               
-                                    data={description}
-                                    onChange={(event, editor) => {
-                                        const data = editor.getData()
-                                        setDescription(data)
-                                    }}
-                                />
+                                <Editor
+                                    editorState={editorState}
+                                    onEditorStateChange={handleEditorChange}  
+                                    editorClassName="editor-area"   
+                                    toolbarClassName="richtext-editor"                                     
+                                    placeholder="Please enter a description here"
+                                    stripPastedStyles
+                                    spellCheck
+                                    toolbar={{
+                                        image: {                                    
+                                             alt: {
+                                                    present: true,
+                                                    mandatory: true
+                                                  }
+                                        }
+                                    }}        
+                                />                                 
 
                                 <LoadingButton 
                                     loading={loading}
@@ -318,7 +339,7 @@ const NewProduct = () => {
 
                             </form>
 
-                            <Link to="/dashboard">
+                            <Link to="/admin/dashboard">
                                 <Fab 
                                     size="small" 
                                     color="primary"
@@ -327,6 +348,14 @@ const NewProduct = () => {
                                     <CloseIcon />
                                 </Fab>
                             </Link>
+
+                            <IconButton 
+                                color="primary" 
+                                sx={{ position: 'absolute', top: 10, left: 10 }}
+                                onClick={() => setFullscreen(!fullscreen)}
+                            >
+                                <FitScreenIcon />
+                            </IconButton>
                         </div>
                         
                     </article>

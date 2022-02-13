@@ -146,7 +146,7 @@ const BlogComments = () => {
                                     data={setComments()}   
                                     fullPagination   
                                     scrollX  
-                                    scrollY   
+                                    // scrollY   
                                     searchTop
                                     searchBottom={false}  
                                 /> 
@@ -154,7 +154,7 @@ const BlogComments = () => {
                                 <p>No Comments</p>
                             )}
 
-                            <Link to="/dashboard">
+                            <Link to="/admin/dashboard">
                                 <Fab 
                                     size="small" 
                                     color="primary"

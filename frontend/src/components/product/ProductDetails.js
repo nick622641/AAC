@@ -71,7 +71,31 @@ const ProductDetails = () => {
 
     const deleteReviewHandler = (id) => {
         dispatch(deleteReview(id, product._id))        
+    }  
+
+    const captionImages = (imgs) => {     
+        for(let i = 0; i < imgs.length; i++) {
+            imgs[i].setAttribute('title', imgs[i].alt)   
+            const nextEl = imgs[i].nextElementSibling  
+            const parent = imgs[i].parentNode
+            const figure = document.createElement("figure")               
+            const figCap = document.createElement("figcaption")   
+            figCap.innerText = imgs[i].alt            
+            figure.appendChild(imgs[i])    
+            figure.appendChild(figCap)    
+            parent.insertBefore(figure, nextEl)            
+        }        
     }
+
+    useEffect(() => {
+        if(!loading) {
+            const imgs = document.querySelectorAll('.blog-content img')
+            const figures = document.querySelectorAll('.blog-content figure')
+            if(imgs.length > 0 && figures.length === 0) {
+                captionImages(imgs)
+            }            
+        } 
+    }, [loading])
 
     useEffect( () => {   
 
@@ -290,17 +314,19 @@ const ProductDetails = () => {
                                     <h2>Spread the word about {product.name}</h2>                                    
                                     <Social />
                                 </div>
-                                <div className="col-6">
+                                <div className="col-6" style={{ fontSize: "14px" }}>
 
                                     {product.description && parse(product.description)}                                                               
                                     
-                                    <br /><br />  
+                                    <div style={{ clear: "both" }}>         
 
-                                    <small>Contact Us</small>  
+                                        <small>Contact Us</small>  
 
-                                    <IconButton onClick={() => {toggleModal(<Contact />)}} color="primary">
-                                        <EmailIcon />                                        
-                                    </IconButton>                                       
+                                        <IconButton onClick={() => {toggleModal(<Contact />)}} color="primary">
+                                            <EmailIcon />                                        
+                                        </IconButton>    
+
+                                    </div>                                   
                                  
                                 </div>                                
                             </div>                             

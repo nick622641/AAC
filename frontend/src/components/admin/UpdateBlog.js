@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { updateBlog, getBlogDetails, updateImages, deleteImage, clearErrors } from '../../actions/blogActions'
 import { UPDATE_BLOG_RESET } from '../../constants/blogConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/blogConstants'
-import { FormControl, TextField } from '@mui/material'
+import { FormControl, IconButton, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -20,6 +20,7 @@ import { Editor } from "react-draft-wysiwyg"
 import { EditorState, ContentState, convertToRaw } from 'draft-js'
 import htmlToDraft from 'html-to-draftjs'
 import draftToHtml from 'draftjs-to-html'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const UpdateBlog = () => {
@@ -44,6 +45,7 @@ const UpdateBlog = () => {
     const [ imgId,           setImageId        ] = useState('')
     const [ init,            setInit           ] = useState(0)
     const [ final,           setFinal          ] = useState(0)
+    const [ fullscreen,      setFullscreen     ] = useState(false)
 
     const [editorState, setEditorState] = useState(
         () => EditorState.createEmpty(),
@@ -164,7 +166,7 @@ const UpdateBlog = () => {
                     
                     </aside>            
 
-                    <article> 
+                    <article className={fullscreen ? 'fullscreen' : ''}> 
 
                         <div className="user-form"> 
 
@@ -215,6 +217,7 @@ const UpdateBlog = () => {
                                                 label="Tags" 
                                                 value={tags} 
                                                 variant="standard"
+                                                multiline
                                                 onChange={(e) => setTags(e.target.value)}
                                             />                                 
                                         </FormControl>    
@@ -245,7 +248,17 @@ const UpdateBlog = () => {
                                         onEditorStateChange={handleEditorChange}  
                                         editorClassName="editor-area"   
                                         toolbarClassName="richtext-editor" 
-                                        placeholder="Please enter your content here"                              
+                                        placeholder="Please enter your content here"  
+                                        stripPastedStyles
+                                        spellCheck
+                                        toolbar={{
+                                            image: {                                    
+                                                 alt: {
+                                                        present: true,
+                                                        mandatory: true
+                                                      }
+                                            }
+                                        }}                             
                                     /> 
                                 )}                                                           
                     
@@ -272,7 +285,15 @@ const UpdateBlog = () => {
                                 <CloseIcon />
                             </Fab>
 
-                        </div>
+                            <IconButton 
+                                color="primary" 
+                                sx={{ position: 'absolute', top: 10, left: 10 }}
+                                onClick={() => setFullscreen(!fullscreen)}
+                            >
+                                <FitScreenIcon />
+                            </IconButton>
+
+                        </div>                        
 
                     </article>
 

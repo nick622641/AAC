@@ -69,25 +69,19 @@ const ProductsList = () => {
                     label: 'Artwork ID',
                     field: 'id',
                     sort: 'disabled',
-                    width: 160
+                    width: 200
                 },
                 {
                     label: 'Name',
                     field: 'name',
                     sort: 'asc',
                     width: 100
-                },
-                {
-                    label: 'Price',
-                    field: 'price',
-                    sort: 'asc',
-                    width: 75
-                },
+                },                
                 {
                     label: 'Stock',
                     field: 'stock',
                     sort: 'asc',
-                    width: 75
+                    width: 50
                 },
                 {
                     label: 'Actions',
@@ -108,9 +102,8 @@ const ProductsList = () => {
                             sx={{ width: 50, height: 50 }}
                         />          
                     </Link>,
-                id: <small>{product._id}</small>,
+                id: product._id,
                 name: product.name,
-                price: `$${product.price}`, 
                 stock: product.stock,
                 actions: 
                     <Fragment>
@@ -164,12 +157,12 @@ const ProductsList = () => {
                                         data={setProducts()}   
                                         fullPagination   
                                         scrollX  
-                                        scrollY   
+                                        // scrollY   
                                         searchTop
                                         searchBottom={false}  
                                     />                                 
 
-                                    <Link to="/dashboard">
+                                    <Link to="/admin/dashboard">
                                         <Fab 
                                             size="small" 
                                             className="close" 

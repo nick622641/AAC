@@ -142,12 +142,12 @@ const ArtistList = () => {
                                     data={setCategories()}   
                                     fullPagination   
                                     scrollX  
-                                    scrollY   
+                                    // scrollY   
                                     searchTop
                                     searchBottom={false}  
                                 />  
 
-                                <Link to="/dashboard">
+                                <Link to="/admin/dashboard">
                                     <Fab 
                                         size="small" 
                                         className="close" 

@@ -150,7 +150,7 @@ const UsersList = () => {
                                         searchBottom={false}  
                                     />                                
 
-                                    <Link to="/dashboard">
+                                    <Link to="/admin/dashboard">
                                         <Fab 
                                             size="small" 
                                             className="close" 

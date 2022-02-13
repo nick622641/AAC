@@ -64,7 +64,7 @@ import BlogComments from './components/admin/BlogComments'
 
 function App() {  
 
-  const { loggingOut } = useSelector( state => state.auth )
+  const { loggingOut } = useSelector(state => state.auth)
 
   const [ stripeApiKey, setStripeApiKey ] = useState('')   
 
@@ -108,6 +108,7 @@ function App() {
 
             <Route path="/"                      element={<Home                                                         />} />
             <Route path="/blogs"                 element={<Blogs                                                        />} />
+            <Route path="/blog/:id"              element={<BlogDetails                                                  />} />
             <Route path="/gallery"               element={<Gallery                                                      />} />
             <Route path="/gallery/:keyword"      element={<Gallery                                                      />} />
             <Route path="/gallery/artist/:artist" element={<Gallery                                                     />} />
@@ -134,7 +135,7 @@ function App() {
             <Route path="/payment"               element={<PrivateRoute><Payment                         /></PrivateRoute>} />            
             <Route path="/success"               element={<PrivateRoute><OrderSuccess                    /></PrivateRoute>} />
             
-            <Route path="/dashboard"             element={<PrivateRoute isAdmin={true}><Dashboard        /></PrivateRoute>} />
+            <Route path="/admin/dashboard"       element={<PrivateRoute isAdmin={true}><Dashboard        /></PrivateRoute>} />
             <Route path="/admin/products"        element={<PrivateRoute isAdmin={true}><ProductsList     /></PrivateRoute>} />                
             <Route path="/admin/product"         element={<PrivateRoute isAdmin={true}><NewProduct       /></PrivateRoute>} />
             <Route path="/admin/product/:id"     element={<PrivateRoute isAdmin={true}><UpdateProduct    /></PrivateRoute>} />
@@ -156,8 +157,7 @@ function App() {
             <Route path="/admin/blog"            element={<PrivateRoute isAdmin={true}><NewBlog          /></PrivateRoute>} />
             <Route path="/admin/blogs"           element={<PrivateRoute isAdmin={true}><BlogsList        /></PrivateRoute>} /> 
             <Route path="/admin/blog/:id"        element={<PrivateRoute isAdmin={true}><UpdateBlog       /></PrivateRoute>} />
-            <Route path="/admin/comments"        element={<PrivateRoute isAdmin={true}><BlogComments     /></PrivateRoute>} />
-            <Route path="/blog/:id"              element={<BlogDetails                                                  />} />            
+            <Route path="/admin/comments"        element={<PrivateRoute isAdmin={true}><BlogComments     /></PrivateRoute>} />                        
             
           </Routes>   
 
@@ -165,9 +165,11 @@ function App() {
         }        
 
         </animated.main>       
-      ))}         
+      ))}   
 
-      <Footer />
+      {!location.pathname.includes('admin') && (
+        <Footer />
+      )}  
 
     </Fragment>
 

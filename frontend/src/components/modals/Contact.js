@@ -1,17 +1,26 @@
 import { Fragment, useState } from 'react'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { FormControl, TextField } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
+import { Editor } from "react-draft-wysiwyg"
+import { EditorState, convertToRaw } from 'draft-js'
+import draftToHtml from 'draftjs-to-html'
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 function Contact() {
-
 
     const [ name, setName ] = useState('')
     const [ email, setEmail ] = useState('')
     const [ message, setMessage ] = useState('')
     const [ loading, setLoading ] = useState(false)
+
+    const [editorState, setEditorState] = useState(
+        () => EditorState.createEmpty(),
+    )
+    const handleEditorChange = (state) => {
+        setEditorState(state)
+        setMessage(draftToHtml(convertToRaw(state.getCurrentContent())))
+    }
 
     function submitHandler(e) {
 
@@ -59,16 +68,26 @@ function Contact() {
                         sx={{ mb: 4 }}
                         required
                     />                                 
-                </FormControl>                       
-                        
-                <CKEditor
-                    editor={ClassicEditor}               
-                    data={message}
-                    onChange={(event, editor) => {
-                        const data = editor.getData()
-                        setMessage(data)
-                    }}
-                />
+                </FormControl>  
+
+                <Editor
+                    editorState={editorState}
+                    onEditorStateChange={handleEditorChange}  
+                    editorClassName="editor-area"   
+                    toolbarClassName="richtext-editor"                                     
+                    placeholder="Please enter your Message here"
+                    stripPastedStyles
+                    spellCheck
+                    toolbar={{
+                        image: {                                    
+                                alt: {
+                                    present: true,
+                                    mandatory: true
+                                    }
+                        }
+                    }}        
+                />                      
+               
                 <input 
                     className="hidden-input" 
                     value={message ? message : ''} 

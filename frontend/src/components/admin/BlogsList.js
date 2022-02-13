@@ -69,13 +69,13 @@ const BlogsList = () => {
                     label: 'Blog ID',
                     field: 'id',
                     sort: 'disabled',
-                    width: 160
+                    width: 200
                 },
                 {
                     label: 'Title',
                     field: 'title',
                     sort: 'asc',
-                    width: 100
+                    width: 120
                 },
                 {
                     label: 'Actions',
@@ -96,7 +96,7 @@ const BlogsList = () => {
                             sx={{ width: 50, height: 50 }}
                         />          
                     </Link>,
-                id: <small>{blog._id}</small>,
+                id: blog._id,
                 title: blog.title,               
                 actions: 
                     <Fragment>
@@ -150,12 +150,12 @@ const BlogsList = () => {
                                         data={setBlogs()}   
                                         fullPagination   
                                         scrollX  
-                                        scrollY   
+                                        // scrollY   
                                         searchTop
                                         searchBottom={false}  
                                     />                                 
 
-                                    <Link to="/dashboard">
+                                    <Link to="/admin/dashboard">
                                         <Fab 
                                             size="small" 
                                             color="primary"

@@ -11,14 +11,18 @@ const FormattedDate = ({ iso, format }) => {
     const hours   = d.getHours() + 1
     const minutes = d.getMinutes() + 1
 
-    const date    = `${day} / ${month} / ${year}`
+    const date    = `${day}/ ${month}/ ${year}`
     const time    = `${hours}:${minutes}`
 
   return (
 
     <Fragment>
+
+      {date}
+
+      {format === 'dateTime' && <b> at </b>}
         
-        {format === 'dateTime' ? `${date} at ${time}` : date}
+      {format === 'dateTime' && time}   
 
     </Fragment>
 

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { newBlog, clearErrors } from '../../actions/blogActions'
 import { NEW_BLOG_RESET } from '../../constants/blogConstants'
-import { FormControl, TextField } from '@mui/material'
+import { FormControl, IconButton, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -15,6 +15,7 @@ import SendIcon from '@mui/icons-material/Send'
 import { Editor } from "react-draft-wysiwyg"
 import { EditorState, convertToRaw } from 'draft-js'
 import draftToHtml from 'draftjs-to-html'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const NewBlog = () => {    
@@ -29,6 +30,7 @@ const NewBlog = () => {
   
     const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
+    const [ fullscreen,    setFullscreen    ] = useState(false)
     
     const { loading, error, success } = useSelector( state => state.newBlog )
     const { user                    } = useSelector( state => state.auth )   
@@ -102,7 +104,7 @@ const NewBlog = () => {
                         
                     </aside>            
 
-                    <article>          
+                    <article className={fullscreen ? 'fullscreen' : ''}>          
                             
                         <div className="user-form"> 
 
@@ -142,6 +144,7 @@ const NewBlog = () => {
                                                 label="Tags" 
                                                 value={tags} 
                                                 variant="standard"
+                                                multiline
                                                 onChange={(e) => setTags(e.target.value)}
                                             />                                 
                                         </FormControl>    
@@ -169,8 +172,18 @@ const NewBlog = () => {
                                     editorState={editorState}
                                     onEditorStateChange={handleEditorChange}  
                                     editorClassName="editor-area"   
-                                    toolbarClassName="richtext-editor"   
-                                    placeholder="Please enter your content here"        
+                                    toolbarClassName="richtext-editor"                                     
+                                    placeholder="Please enter your content here"
+                                    stripPastedStyles
+                                    spellCheck
+                                    toolbar={{
+                                        image: {                                    
+                                             alt: {
+                                                    present: true,
+                                                    mandatory: true
+                                                  }
+                                        }
+                                    }}        
                                 />   
 
                                 <LoadingButton 
@@ -186,7 +199,7 @@ const NewBlog = () => {
 
                             </form>
 
-                            <Link to="/dashboard">
+                            <Link to="/admin/dashboard">
                                 <Fab 
                                     size="small" 
                                     color="primary"
@@ -195,6 +208,14 @@ const NewBlog = () => {
                                     <CloseIcon />
                                 </Fab>
                             </Link>
+
+                            <IconButton 
+                                color="primary" 
+                                sx={{ position: 'absolute', top: 10, left: 10 }}
+                                onClick={() => setFullscreen(!fullscreen)}
+                            >
+                                <FitScreenIcon />
+                            </IconButton>
                         </div>
                         
                     </article>

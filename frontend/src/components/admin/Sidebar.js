@@ -71,7 +71,7 @@ const Sidebar = () => {
                     <ul style={{ marginTop: 0 }}>
 
                         <li>
-                            <Link to="/dashboard">
+                            <Link to="/admin/dashboard">
                                 <IconButton>
                                     <SpeedIcon />
                                 </IconButton>

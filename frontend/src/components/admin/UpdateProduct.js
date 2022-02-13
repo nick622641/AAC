@@ -6,9 +6,7 @@ import { updateProduct, getProductDetails, updateImages, deleteImage, clearError
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { FormControl, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -22,6 +20,12 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
+import { Editor } from "react-draft-wysiwyg"
+import { EditorState, ContentState, convertToRaw } from 'draft-js'
+import htmlToDraft from 'html-to-draftjs'
+import draftToHtml from 'draftjs-to-html'
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const UpdateProduct = () => {
     
@@ -44,6 +48,7 @@ const UpdateProduct = () => {
     const [ imgId,           setImageId        ] = useState('')
     const [ init,            setInit           ] = useState(0)
     const [ final,           setFinal          ] = useState(0)
+    const [ fullscreen,      setFullscreen     ] = useState(false)
 
     const alert     = useAlert()
     const productId = useParams().id   
@@ -54,6 +59,14 @@ const UpdateProduct = () => {
     const { media                                  } = useSelector(state => state.media)
     const { orientations                           } = useSelector(state => state.orientations)
     const { artists                                } = useSelector(state => state.artists)
+
+    const [editorState, setEditorState] = useState(
+        () => EditorState.createEmpty(),
+    )  
+    const handleEditorChange = (state) => {
+        setEditorState(state)
+        setDescription(draftToHtml(convertToRaw(state.getCurrentContent())))
+    }
 
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
@@ -84,6 +97,12 @@ const UpdateProduct = () => {
             setDatePublished(createdAt)
             setStock(product.stock)
             setOldImages(product.images)    
+
+            const contentBlock = htmlToDraft(product.description)
+            const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks)
+            const _editorState = EditorState.createWithContent(contentState)
+
+            setEditorState(_editorState)
         }
         if(error) {
             alert.error(error)
@@ -175,7 +194,7 @@ const UpdateProduct = () => {
                     
                     </aside>            
 
-                    <article> 
+                    <article className={fullscreen ? 'fullscreen' : ''}> 
 
                         <div className="user-form"> 
 
@@ -371,15 +390,26 @@ const UpdateProduct = () => {
 
                                 <h4>Description</h4> 
 
-                                {description && (                                 
-                                    <CKEditor
-                                        editor={ClassicEditor}               
-                                        data={description}
-                                        onChange={(event, editor) => {
-                                            const data = editor.getData()
-                                            setDescription(data)
-                                        }}
+                                {description && (     
+                                    
+                                    <Editor
+                                        editorState={editorState}
+                                        onEditorStateChange={handleEditorChange}  
+                                        editorClassName="editor-area"   
+                                        toolbarClassName="richtext-editor" 
+                                        placeholder="Please enter your content here"
+                                        stripPastedStyles
+                                        spellCheck  
+                                        toolbar={{
+                                            image: {                                    
+                                                 alt: {
+                                                        present: true,
+                                                        mandatory: true
+                                                      }
+                                            }
+                                        }}                             
                                     />
+
                                 )}                                
                     
                                 <LoadingButton 
@@ -404,6 +434,14 @@ const UpdateProduct = () => {
                             >
                                 <CloseIcon />
                             </Fab>
+
+                            <IconButton 
+                                color="primary" 
+                                sx={{ position: 'absolute', top: 10, left: 10 }}
+                                onClick={() => setFullscreen(!fullscreen)}
+                            >
+                                <FitScreenIcon />
+                            </IconButton>
 
                         </div>
 

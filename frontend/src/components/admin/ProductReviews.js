@@ -153,7 +153,7 @@ const ProductReviews = () => {
                                     data={setReviews()}   
                                     fullPagination   
                                     scrollX  
-                                    scrollY   
+                                    // scrollY   
                                     searchTop
                                     searchBottom={false}  
                                 /> 
@@ -161,7 +161,7 @@ const ProductReviews = () => {
                                 <p>No Reviews</p>
                             )}
 
-                            <Link to="/dashboard">
+                            <Link to="/admin/dashboard">
                                 <Fab 
                                     size="small" 
                                     color="primary"
