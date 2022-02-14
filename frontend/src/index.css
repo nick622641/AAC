@@ -45,6 +45,9 @@ footer {
 small {
   font-size: 12px;
 }
+button[disabled] {
+  pointer-events: none;
+}
 /* List Styles */
 ul {
   list-style: none;
@@ -180,6 +183,9 @@ th {
 }
 .round {
   border-radius: 100%;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 /* Scrollbar Styles */
 ::-webkit-scrollbar {

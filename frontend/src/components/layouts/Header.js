@@ -4,8 +4,9 @@ import { useSpring, animated } from 'react-spring'
 import { useAlert } from 'react-alert'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
-import { getArtists } from '../../actions/categoryActions'
+import { getArtists, getMedia } from '../../actions/categoryActions'
 import { styled } from '@mui/material/styles'
+import { useMediaQuery } from 'react-responsive'
 import Modal from '../modals/Modal'
 import Contact from '../modals/Contact'
 import Search from './Search'
@@ -41,15 +42,19 @@ const Header = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const alert    = useAlert()
+    const isMobile = useMediaQuery({ query: '(max-width: 1024px)' })
     
     const { user, loading } = useSelector( state => state.auth )
     const { cartItems     } = useSelector( state => state.cart )
     const { artists       } = useSelector( state => state.artists )
+    const { media         } = useSelector( state => state.media )
 
     const [ isNavOpen,       setIsNavOpen      ] = useState(false)
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ isSearchVisible, setSearchVisible  ] = useState(false)
     const [ isMenuVisible,   setMenuVisible    ] = useState(false)
+    const [ menuItem,        setMenuItem       ] = useState(0)
+    const [ isMenuOpen,      setIsMenuOpen     ] = useState(false)  
 
     const logoutHandler = () => {
         dispatch(logout())
@@ -65,6 +70,20 @@ const Header = () => {
     const toggleMenu = () => {
         setMenuVisible(isMenuVisible => !isMenuVisible)
     }
+    const handleNavigation = (e, item) => {
+        if(!isNavOpen || (isNavOpen && item === menuItem)) {
+            setIsNavOpen(!isNavOpen)
+        }
+        const links = document.querySelectorAll('header > nav > ul > li')
+        for(let i = 0; i < links.length; i++ ) {
+            links[i].classList.remove('open')
+        }
+        if (!isNavOpen || (isNavOpen && item !== menuItem)) {
+            e.target.parentNode.classList.add('open')
+        }        
+        setMenuItem(item)       
+        window.scrollTo(0, 0)
+    }
     const menuAppear = useSpring({
         transform: isMenuVisible ? "translateY(0)" : "translateY(-40px)",
         opacity: isMenuVisible ? 1 : 0
@@ -76,10 +95,13 @@ const Header = () => {
     const searchAppear = useSpring({
         transform: isSearchVisible ? "translateY(0)" : "translateY(-40px)",
     })
+    const navMenuAppear = useSpring({
+        transform: isMenuOpen && isMobile ? 'translateX(0)' : 'translateX(-100%)'
+    })
 
     useEffect(() => {
-
-        dispatch(getArtists())       
+        dispatch(getArtists())  
+        dispatch(getMedia())             
 
     }, [dispatch])
    
@@ -88,14 +110,15 @@ const Header = () => {
 
         <Fragment>
 
-            {isNavOpen && ( 
-
-                <Backdrop
-                    sx={{ zIndex: 1 }}
-                    open={isNavOpen}
-                    onClick={() => setIsNavOpen(!isNavOpen)}
-                />
-            )}  
+            <Backdrop
+                sx={{ zIndex: 1 }}
+                open={isNavOpen || isMenuOpen}
+                onClick={() => {
+                    setIsMenuOpen(false)
+                    setIsNavOpen(false)
+                    }                  
+                }
+            /> 
 
             <header            
                 style={
@@ -113,34 +136,46 @@ const Header = () => {
                 </div>
 
                 <nav>
-    
-                    <ul>        
 
-                        <li>                               
+                {(isMenuOpen || !isMobile) && (
+                    <animated.ul style={isMobile ? navMenuAppear : {}} className="d-flex">        
 
-                            {isNavOpen && (  
+                        <li>
+                            <span
+                                onClick={(e) => handleNavigation(e, 0)}
+                                className="cursor-pointer"
+                            >
+                                Galleries
+                            </span>                         
+
+                            {isNavOpen && menuItem === 0 && (  
 
                             <animated.ul style={animation}>   
                                 
                                 <li>
-                                    <h5>Galleries</h5>
-                                    <ul className="list-style">
-                    
+                                    <h5>Gallery by Artist</h5>
+                                    <ul className="list-style">                    
                                         <li>
                                             <Link 
                                                 to="/gallery" 
-                                                onClick={() => setIsNavOpen(!isNavOpen)}
+                                                onClick={() => {
+                                                        setIsMenuOpen(false)
+                                                        setIsNavOpen(false)
+                                                    }
+                                                }
                                             >
                                                 All the Work
                                             </Link>
                                         </li> 
-
                                         {artists && artists.map( (artist, index) => ( 
-                                            <li key={artist._id}>
-                                                
+                                            <li key={artist._id}>                                                
                                                 <Link 
                                                     to={`gallery/artist/${artist.name.replace(/ /g, '-')}`}
-                                                    onClick={() => setIsNavOpen(!isNavOpen)}
+                                                    onClick={() => {
+                                                                setIsMenuOpen(false)
+                                                                setIsNavOpen(!false)
+                                                            }
+                                                        }
                                                 >
                                                     {artist.name}
                                                 </Link>                                               
@@ -148,48 +183,88 @@ const Header = () => {
                                         ))}                                                                         
                     
                                     </ul>                                        
-                                </li>
+                                </li>    
+
                                 <li>
-                                    <h5>About</h5>
-                                    <ul className="list-style">
-                    
-                                        <li>
-                                            <Link 
-                                                to="#!" 
-                                                onClick={() => setIsNavOpen(!isNavOpen)}
-                                            >
-                                                Meet the Team
-                                            </Link>
-                                        </li>   
-                                        <li>
-                                            <Link 
-                                                to="blogs" 
-                                                onClick={() => setIsNavOpen(!isNavOpen)}
-                                            >
-                                                Blogs
-                                            </Link>
-                                        </li>                                  
+                                    <h5>Gallery by Media</h5>
+                                    <ul className="list-style">    
+
+                                        {media && media.map( (medium, index) => ( 
+                                            <li key={medium._id}>                                                
+                                                <Link 
+                                                    to={`gallery/medium/${medium.name.replace(/ /g, '-')}`}
+                                                    onClick={() => {
+                                                            setIsNavOpen(!isNavOpen)
+                                                            setIsMenuOpen(false)
+                                                        }
+                                                    }
+                                                >
+                                                    {medium.name}
+                                                </Link>                                               
+                                            </li>    
+                                        ))}                                                                         
                     
                                     </ul>                                        
-                                </li>
+                                </li>                             
 
                             </animated.ul> 
 
                             )}
                                     
-                        </li>                 
+                        </li> 
+                        
+                        <li>
+                            <span
+                                onClick={(e) => handleNavigation(e, 1)}
+                                className="cursor-pointer"
+                            >
+                                Community
+                            </span> 
+
+                            {isNavOpen && menuItem === 1 && (  
+
+                                <animated.ul style={animation}>
+
+                                    <li>
+                                        <h5>About</h5>
+                                        <ul className="list-style"> 
+                                            <li>
+                                                <Link 
+                                                    to="blogs" 
+                                                    onClick={() => {
+                                                            setIsNavOpen(!isNavOpen)
+                                                            setIsMenuOpen(false)
+                                                        }
+                                                    }
+                                                >
+                                                    Blogs
+                                                </Link>
+                                            </li>                                  
+                        
+                                        </ul>                                        
+                                    </li>
+
+                                </animated.ul>
+
+                            )}
+                            
+                        </li>                
         
-                    </ul>   
+                    </animated.ul> 
+                )}  
 
                 </nav>            
 
                 <div className="relative d-flex">
 
-                    <IconButton
+                    <IconButton 
                         onClick={() => {
-                            setIsNavOpen(!isNavOpen)
-                            window.scrollTo(0, 0)
-                        }}
+                            setIsMenuOpen(!isMenuOpen)
+                            if(isNavOpen) {
+                                setIsNavOpen(false)
+                            }
+                        }} 
+                        className="mobile-menu"
                     >
                         <MoreVertIcon color="secondary" />
                     </IconButton>
