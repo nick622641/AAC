@@ -21,11 +21,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import { Editor } from "react-draft-wysiwyg"
-import { EditorState, ContentState, convertToRaw } from 'draft-js'
-import htmlToDraft from 'html-to-draftjs'
-import draftToHtml from 'draftjs-to-html'
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import RichtextEdittor from "../layouts/RichtextEdittor"
 
 const UpdateProduct = () => {
     
@@ -60,14 +56,6 @@ const UpdateProduct = () => {
     const { orientations                           } = useSelector(state => state.orientations)
     const { artists                                } = useSelector(state => state.artists)
 
-    const [editorState, setEditorState] = useState(
-        () => EditorState.createEmpty(),
-    )  
-    const handleEditorChange = (state) => {
-        setEditorState(state)
-        setDescription(draftToHtml(convertToRaw(state.getCurrentContent())))
-    }
-
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
@@ -96,13 +84,7 @@ const UpdateProduct = () => {
             setMedium(product.media)
             setDatePublished(createdAt)
             setStock(product.stock)
-            setOldImages(product.images)    
-
-            const contentBlock = htmlToDraft(product.description)
-            const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks)
-            const _editorState = EditorState.createWithContent(contentState)
-
-            setEditorState(_editorState)
+            setOldImages(product.images)             
         }
         if(error) {
             alert.error(error)
@@ -390,25 +372,9 @@ const UpdateProduct = () => {
 
                                 <h4>Description</h4> 
 
-                                {description && (     
+                                {description && (  
                                     
-                                    <Editor
-                                        editorState={editorState}
-                                        onEditorStateChange={handleEditorChange}  
-                                        editorClassName="editor-area"   
-                                        toolbarClassName="richtext-editor" 
-                                        placeholder="Please enter your content here"
-                                        stripPastedStyles
-                                        spellCheck  
-                                        toolbar={{
-                                            image: {                                    
-                                                 alt: {
-                                                        present: true,
-                                                        mandatory: true
-                                                      }
-                                            }
-                                        }}                             
-                                    />
+                                    <RichtextEdittor text={description} setText={setDescription} />               
 
                                 )}                                
                     

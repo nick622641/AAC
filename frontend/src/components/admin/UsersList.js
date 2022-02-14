@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import { Avatar } from '@mui/material'
 
 const UsersList = () => {
 
@@ -54,6 +55,12 @@ const UsersList = () => {
         const data = {
             columns: [
                 {
+                    label: 'Preview',
+                    field: 'url',
+                    sort: 'disabled',
+                    width: 50
+                },
+                {
                     label: 'User ID',
                     field: 'id',
                     sort: 'disabled',
@@ -64,13 +71,7 @@ const UsersList = () => {
                     field: 'name',
                     sort: 'asc',
                     width: 100
-                },
-                {
-                    label: 'Email',
-                    field: 'email',
-                    sort: 'asc',
-                    width: 150
-                },
+                },                
                 {
                     label: 'Role',
                     field: 'role',
@@ -89,9 +90,14 @@ const UsersList = () => {
 
         users.forEach( user => {
             data.rows.push({
+                url: 
+                    <Avatar
+                        src={user.avatar.url} 
+                        alt={user.name} 
+                        sx={{ width: 50, height: 50 }}
+                    />,
                 id: user._id,
                 name: user.name,
-                email: user.email, 
                 role: user.role,                
                 actions:                 
                     <Fragment>                        

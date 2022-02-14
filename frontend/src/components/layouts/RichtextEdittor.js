@@ -12,18 +12,22 @@ const RichtextEdittor = ({ text, setText }) => {
     const [editorState, setEditorState] = useState(
         () => EditorState.createEmpty(),
     )  
-    const handleEditorChange = (state) => {
+    const handleEditorChange = (state) => {   
         setEditorState(state)
-        setText(draftToHtml(convertToRaw(state.getCurrentContent())))
+        if (editorState.getCurrentContent().hasText()) {
+            setText(draftToHtml(convertToRaw(state.getCurrentContent())))     
+        } else {
+            setText('')           
+        }
+          
     }
     const getComment = useCallback((text) => {
         setComment(text)
-      }, [])
+      }, [ ])
 
-    useEffect(() => {    
+    useEffect(() => {  
 
         getComment(comment)
-
         const contentBlock = htmlToDraft(comment)
         const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks)
         const _editorState = EditorState.createWithContent(contentState)   

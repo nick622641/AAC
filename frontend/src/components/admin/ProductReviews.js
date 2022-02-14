@@ -55,13 +55,7 @@ const ProductReviews = () => {
     }
     const setReviews = () => {
         const data = {
-            columns: [
-                {
-                    label: 'Review ID',
-                    field: 'id',
-                    sort: 'disabled',
-                    width: 200
-                },
+            columns: [               
                 {
                     label: 'Rating',
                     field: 'rating',
@@ -92,7 +86,6 @@ const ProductReviews = () => {
 
         reviews.forEach( review => {
             data.rows.push({
-                id: review._id,
                 rating: review.rating,
                 comment: parse(review.comment), 
                 user: review.name,                

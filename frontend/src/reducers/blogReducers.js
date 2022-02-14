@@ -219,6 +219,7 @@ export const newCommentReducer = ( state = {}, action ) => {
         case NEW_COMMENT_FAIL:
             return {
                 ...state,
+                loading: false,
                 error: action.payload
             }
         case CLEAR_ERRORS:

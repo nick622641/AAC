@@ -337,9 +337,14 @@ exports.getRelatedProducts = async (req, res, next) => {
 }
 // Get all products (Admin) => /api/v1/admin/products
 exports.getAdminProducts = async (req, res, next) => {   
+
+    const productsCount = await Product.countDocuments()
+
     const products = await Product.find().sort({ createdAt: -1 })
+    
     res.status(200).json({
-        success: true,       
+        success: true,  
+        productsCount,     
         products
     })      
 }
@@ -438,9 +443,16 @@ exports.createProductReview = catchAsyncErrors( async (req, res, next) => {
 
     const { rating, comment, productId } = req.body
 
+    if(rating === '0') { return next(new ErrorHandler('Please enter a rating',  400)) }
+    if(!comment)       { return next(new ErrorHandler('Please enter a comment', 400)) }
+
     const review = {
         user: req.user._id,
         name: req.user.name,
+        avatar: {
+            public_id: req.user.avatar.public_id,
+            url: req.user.avatar.url
+        },
         rating: Number(rating),
         comment
     }

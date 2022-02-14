@@ -8,6 +8,7 @@ import FormattedDate from '../layouts/FormattedDate'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import { Avatar } from '@mui/material'
 
 const ListReviews = ({ reviews, user, toggleModal, deleteReviewHandler }) => {
 
@@ -20,7 +21,7 @@ const ListReviews = ({ reviews, user, toggleModal, deleteReviewHandler }) => {
 
             <h3>Reviews</h3>
 
-            <div className="parent">
+            <div>
 
                 {reviews && reviews.map(review => (
 
@@ -33,6 +34,12 @@ const ListReviews = ({ reviews, user, toggleModal, deleteReviewHandler }) => {
                         />  
                          
                         <p style={{ lineHeight: "50px" }}>
+                            <IconButton>                                                  
+                                <Avatar 
+                                    alt={user && user.name} 
+                                    src={review.avatar && review.avatar.url}                                         
+                            />
+                            </IconButton>
                             by <b>{review.name}</b> on <FormattedDate iso={review.reviewCreatedAt} format="dateTime" />
                             
                             {user && user._id === review.user && (
@@ -57,7 +64,7 @@ const ListReviews = ({ reviews, user, toggleModal, deleteReviewHandler }) => {
                             )}
                         </p>
 
-                        <div style={{ backgroundColor: "white", borderRadius: "5px", padding: "10px" }}>
+                        <div  className="comment">
                             {parse(review.comment)}
                         </div>
 

@@ -12,11 +12,8 @@ import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
-import { Editor } from "react-draft-wysiwyg"
-import { EditorState, convertToRaw } from 'draft-js'
-import draftToHtml from 'draftjs-to-html'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import RichtextEdittor from "../layouts/RichtextEdittor"
 
 const NewBlog = () => {    
 
@@ -33,15 +30,7 @@ const NewBlog = () => {
     const [ fullscreen,    setFullscreen    ] = useState(false)
     
     const { loading, error, success } = useSelector( state => state.newBlog )
-    const { user                    } = useSelector( state => state.auth )   
-    
-    const [editorState, setEditorState] = useState(
-        () => EditorState.createEmpty(),
-    )
-    const handleEditorChange = (state) => {
-        setEditorState(state)
-        setDescription(draftToHtml(convertToRaw(state.getCurrentContent())))
-    }
+    const { user                    } = useSelector( state => state.auth )    
 
     useEffect(() => {  
 
@@ -166,25 +155,9 @@ const NewBlog = () => {
                                     </ul> 
                                 )}  
                               
-                                <h4>Content</h4>                          
+                                <h4>Content</h4>    
 
-                                <Editor
-                                    editorState={editorState}
-                                    onEditorStateChange={handleEditorChange}  
-                                    editorClassName="editor-area"   
-                                    toolbarClassName="richtext-editor"                                     
-                                    placeholder="Please enter your content here"
-                                    stripPastedStyles
-                                    spellCheck
-                                    toolbar={{
-                                        image: {                                    
-                                             alt: {
-                                                    present: true,
-                                                    mandatory: true
-                                                  }
-                                        }
-                                    }}        
-                                />   
+                                <RichtextEdittor text={description} setText={setDescription} />  
 
                                 <LoadingButton 
                                     loading={loading}

@@ -44,7 +44,7 @@ function Review(props) {
                 />               
 
                 <RichtextEdittor text={comment} setText={setComment} />  
-  
+                
                 <LoadingButton 
                     type="submit"
                     loading={loading}

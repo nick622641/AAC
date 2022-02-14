@@ -78,6 +78,12 @@ const BlogsList = () => {
                     width: 120
                 },
                 {
+                    label: 'Comments',
+                    field: 'comments',
+                    sort: 'asc',
+                    width: 100
+                },
+                {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'disabled',
@@ -97,7 +103,8 @@ const BlogsList = () => {
                         />          
                     </Link>,
                 id: blog._id,
-                title: blog.title,               
+                title: blog.title,    
+                comments: blog.numOfComments,           
                 actions: 
                     <Fragment>
                         <Link to={`/admin/blog/${blog._id}`}>

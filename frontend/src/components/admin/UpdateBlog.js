@@ -16,12 +16,8 @@ import SendIcon from '@mui/icons-material/Send'
 import DragnDrop from './DragnDrop'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
-import { Editor } from "react-draft-wysiwyg"
-import { EditorState, ContentState, convertToRaw } from 'draft-js'
-import htmlToDraft from 'html-to-draftjs'
-import draftToHtml from 'draftjs-to-html'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import RichtextEdittor from "../layouts/RichtextEdittor"
 
 const UpdateBlog = () => {
 
@@ -47,14 +43,6 @@ const UpdateBlog = () => {
     const [ final,           setFinal          ] = useState(0)
     const [ fullscreen,      setFullscreen     ] = useState(false)
 
-    const [editorState, setEditorState] = useState(
-        () => EditorState.createEmpty(),
-    )  
-    const handleEditorChange = (state) => {
-        setEditorState(state)
-        setDescription(draftToHtml(convertToRaw(state.getCurrentContent())))
-    } 
-
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
@@ -77,13 +65,7 @@ const UpdateBlog = () => {
             setTitle(blog.title)
             setTags(blog.tags)            
             setDescription(blog.description)          
-            setOldImages(blog.images)   
-            
-            const contentBlock = htmlToDraft(blog.description)
-            const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks)
-            const _editorState = EditorState.createWithContent(contentState)
-
-            setEditorState(_editorState)
+            setOldImages(blog.images)        
         }
 
         if(error) {
@@ -242,24 +224,8 @@ const UpdateBlog = () => {
 
                                 <h4>Content</h4> 
 
-                                {description && (                                 
-                                     <Editor
-                                        editorState={editorState}
-                                        onEditorStateChange={handleEditorChange}  
-                                        editorClassName="editor-area"   
-                                        toolbarClassName="richtext-editor" 
-                                        placeholder="Please enter your content here"  
-                                        stripPastedStyles
-                                        spellCheck
-                                        toolbar={{
-                                            image: {                                    
-                                                 alt: {
-                                                        present: true,
-                                                        mandatory: true
-                                                      }
-                                            }
-                                        }}                             
-                                    /> 
+                                {description && (  
+                                    <RichtextEdittor text={description} setText={setDescription} /> 
                                 )}                                                           
                     
                                 <LoadingButton 

@@ -23,7 +23,7 @@ const ProductsList = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { loading, error, products } = useSelector( state => state.products )
+    const { loading, error, products, productsCount } = useSelector( state => state.products )
     const { loading: isLoading, error: deleteError, isDeleted } = useSelector( state => state.product  )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
@@ -54,7 +54,7 @@ const ProductsList = () => {
 
     const deleteProductHandler = (id) => {
         dispatch(deleteProduct(id))
-    }
+    }    
 
     const setProducts = () => {
         const data = {
@@ -76,12 +76,24 @@ const ProductsList = () => {
                     field: 'name',
                     sort: 'asc',
                     width: 100
-                },                
+                },  
+                {
+                    label: 'Artist',
+                    field: 'artist',
+                    sort: 'asc',
+                    width: 100
+                },   
+                {
+                    label: 'Reviews',
+                    field: 'reviews',
+                    sort: 'asc',
+                    width: 100
+                },             
                 {
                     label: 'Stock',
                     field: 'stock',
                     sort: 'asc',
-                    width: 50
+                    width: 100
                 },
                 {
                     label: 'Actions',
@@ -92,7 +104,7 @@ const ProductsList = () => {
             ],
             rows: []
         }
-
+       
         products && products.forEach( product => {
             data.rows.push({
                 url: <Link to={`/artwork/${product._id}`}>
@@ -104,6 +116,8 @@ const ProductsList = () => {
                     </Link>,
                 id: product._id,
                 name: product.name,
+                artist: product.artist,
+                reviews: product.numOfReviews,
                 stock: product.stock,
                 actions: 
                     <Fragment>
@@ -151,7 +165,7 @@ const ProductsList = () => {
 
                                 <div className="user-form cart">
 
-                                    <h1>All Artwork</h1>                                
+                                    <h1>All Artwork <small>{productsCount}</small></h1>                                                                
                                 
                                     <MDBDataTableV5 
                                         data={setProducts()}   

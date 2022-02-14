@@ -101,7 +101,7 @@ const ProductDetails = () => {
 
         dispatch(getProductDetails(id))
 
-        dispatch(getRelatedProducts(product.artist))
+        dispatch(getRelatedProducts())
         
         if(error) { 
             alert.error(error)
@@ -125,7 +125,7 @@ const ProductDetails = () => {
             alert.success('Review Deleted Successfully')            
             dispatch({ type: DELETE_REVIEW_RESET })
         }         
-    }, [dispatch, success, alert, error, reviewError, id, product.artist, deleteError, isDeleted ])
+    }, [dispatch, success, alert, error, reviewError, id, deleteError, isDeleted ])
 
     const addToCart = () => {
         dispatch(addItemToCart(id, quantity))

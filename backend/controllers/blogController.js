@@ -227,9 +227,15 @@ exports.createBlogComment = catchAsyncErrors( async (req, res, next) => {
 
     const { comment, blogId } = req.body
 
+    if(!comment) { return next(new ErrorHandler('Please enter a comment', 400)) }
+
     const userComment = {
         user: req.user._id,
         name: req.user.name,
+        avatar: {
+            public_id: req.user.avatar.public_id,
+            url: req.user.avatar.url
+        },
         commentCreatedAt: Date.now(),
         comment
     }

@@ -7,6 +7,7 @@ import FormattedDate from '../layouts/FormattedDate'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
+import { Avatar } from '@mui/material'
 
 const ListComments = ({ comments, user, toggleModal, deleteCommentHandler }) => {
 
@@ -19,13 +20,19 @@ const ListComments = ({ comments, user, toggleModal, deleteCommentHandler }) => 
 
             <h3>Comments</h3>
 
-            <div className="parent">
+            <div>
 
                 {comments && comments.map(comment => (
 
-                    <div key={comment._id}>              
+                    <div key={comment._id}>  
                          
                         <p style={{ lineHeight: "50px" }}>
+                            <IconButton>                                                  
+                                <Avatar 
+                                    alt={user && user.name} 
+                                    src={comment.avatar && comment.avatar.url}                                         
+                                />
+                            </IconButton>    
                             by <b>{comment.name}</b> on &nbsp;
                             <FormattedDate iso={comment.commentCreatedAt} format="dateTime" />
                             
@@ -51,10 +58,7 @@ const ListComments = ({ comments, user, toggleModal, deleteCommentHandler }) => 
                             )}
                         </p>
 
-                        <div
-                            style={{ backgroundColor: "white", borderRadius: "5px", padding: "10px" }}
-                        
-                        >
+                        <div className="comment">
                             {parse(comment.comment)}
                         </div>
 

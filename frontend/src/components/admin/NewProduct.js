@@ -17,10 +17,7 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import { Editor } from "react-draft-wysiwyg"
-import { EditorState, convertToRaw } from 'draft-js'
-import draftToHtml from 'draftjs-to-html'
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import RichtextEdittor from "../layouts/RichtextEdittor"
 
 const NewProduct = () => {
 
@@ -33,7 +30,7 @@ const NewProduct = () => {
     const [ width,         setWidth         ] = useState(0)
     const [ height,        setHeight        ] = useState(0)
     const [ depth,         setDepth         ] = useState(0)
-    const [ description,   setDescription   ] = useState('Please enter a comprehensive description')
+    const [ description,   setDescription   ] = useState('')
     const [ artist,        setArtist        ] = useState('')
     const [ orientation,   setOrientation   ] = useState('')
     const [ medium,        setMedium        ] = useState('')
@@ -47,14 +44,6 @@ const NewProduct = () => {
     const { media                   } = useSelector( state => state.media )
     const { orientations            } = useSelector( state => state.orientations )
     const { artists                 } = useSelector( state => state.artists )
-
-    const [editorState, setEditorState] = useState(
-        () => EditorState.createEmpty(),
-    )
-    const handleEditorChange = (state) => {
-        setEditorState(state)
-        setDescription(draftToHtml(convertToRaw(state.getCurrentContent())))
-    }
 
     useEffect(() => {
         
@@ -308,23 +297,7 @@ const NewProduct = () => {
 
                                 <h4>Description</h4> 
 
-                                <Editor
-                                    editorState={editorState}
-                                    onEditorStateChange={handleEditorChange}  
-                                    editorClassName="editor-area"   
-                                    toolbarClassName="richtext-editor"                                     
-                                    placeholder="Please enter a description here"
-                                    stripPastedStyles
-                                    spellCheck
-                                    toolbar={{
-                                        image: {                                    
-                                             alt: {
-                                                    present: true,
-                                                    mandatory: true
-                                                  }
-                                        }
-                                    }}        
-                                />                                 
+                                <RichtextEdittor text={description} setText={setDescription} />                              
 
                                 <LoadingButton 
                                     loading={loading}
