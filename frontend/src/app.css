@@ -82,6 +82,10 @@ aside li {
   position: relative;
   font-size: 13px;
 }
+aside  li a {
+  display: inline-block;
+  height: 100%;
+}
 aside ul ul li {
   margin-left: 20px;
 }

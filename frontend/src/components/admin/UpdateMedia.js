@@ -11,6 +11,8 @@ import CloseIcon from '@mui/icons-material/Close'
 import SendIcon from '@mui/icons-material/Send'
 import { FormControl, TextField } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
+import IconButton from '@mui/material/IconButton'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const UpdateArtist = () => {
 
@@ -18,7 +20,8 @@ const UpdateArtist = () => {
     const alert = useAlert()
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [ name, setName ] = useState('')  
+    const [ name,       setName       ] = useState('')  
+    const [ fullscreen, setFullscreen ] = useState(false)
     const { error, medium                          } = useSelector(state => state.mediaDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.medium)
 
@@ -68,7 +71,7 @@ const UpdateArtist = () => {
                         
                     </aside>            
 
-                    <article>      
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>      
                             
                         <div className="user-form cart"> 
 
@@ -109,6 +112,14 @@ const UpdateArtist = () => {
                                     <CloseIcon />
                                 </Fab>
                             </Link>
+
+                            <IconButton 
+                                color="primary" 
+                                sx={{ position: 'absolute', top: 10, left: 10 }}
+                                onClick={() => setFullscreen(!fullscreen)}
+                            >
+                                <FitScreenIcon />
+                            </IconButton>
                             
                         </div>
                         

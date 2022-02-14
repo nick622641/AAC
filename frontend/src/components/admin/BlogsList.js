@@ -16,6 +16,7 @@ import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Avatar from '@mui/material/Avatar'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const BlogsList = () => {
 
@@ -27,7 +28,8 @@ const BlogsList = () => {
     const { loading: isLoading, error: deleteError, isDeleted } = useSelector( state => state.blog  )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
-    const [ id,  setId ] = useState('')
+    const [ id,              setId             ] = useState('')
+    const [ fullscreen,      setFullscreen     ] = useState(false)
 
     useEffect(() => {
 
@@ -81,7 +83,7 @@ const BlogsList = () => {
                     label: 'Comments',
                     field: 'comments',
                     sort: 'asc',
-                    width: 100
+                    width: 90
                 },
                 {
                     label: 'Actions',
@@ -143,7 +145,7 @@ const BlogsList = () => {
 
                     </aside>            
 
-                    <article className="relative">
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>
 
                         {loading || isLoading ? <Loader /> : (
 
@@ -171,6 +173,14 @@ const BlogsList = () => {
                                             <CloseIcon />
                                         </Fab>
                                     </Link>
+
+                                    <IconButton 
+                                        color="primary" 
+                                        sx={{ position: 'absolute', top: 10, left: 10 }}
+                                        onClick={() => setFullscreen(!fullscreen)}
+                                    >
+                                        <FitScreenIcon />
+                                    </IconButton>
 
                                 </div>
 

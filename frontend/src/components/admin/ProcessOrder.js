@@ -15,16 +15,19 @@ import AddTaskIcon from '@mui/icons-material/AddTask'
 import Avatar from '@mui/material/Avatar'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import FormattedDate from '../layouts/FormattedDate'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const ProcessOrder = () => {
-
-    const [status, setStatus] = useState('')
+    
     const orderId = useParams().id
     const alert = useAlert()   
     const dispatch = useDispatch()
     const { loading, order = {} } = useSelector(state => state.orderDetails)
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
     const { error, isUpdated } = useSelector(state => state.order)
+
+    const [status,      setStatus     ] = useState('')
+    const [ fullscreen, setFullscreen ] = useState(false)
 
     useEffect(() => {
 
@@ -63,7 +66,7 @@ const ProcessOrder = () => {
                         
                     </aside>            
 
-                    <article className="relative">                                            
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>                                            
 
                         {loading ? <Loader /> : (
 
@@ -203,6 +206,14 @@ const ProcessOrder = () => {
                                             <CloseIcon />
                                         </Fab>
                                     </Link>
+
+                                    <IconButton 
+                                        color="primary" 
+                                        sx={{ position: 'absolute', top: 10, left: 10 }}
+                                        onClick={() => setFullscreen(!fullscreen)}
+                                    >
+                                        <FitScreenIcon />
+                                    </IconButton>
                                     
                                 </div>
 

@@ -196,7 +196,7 @@ const UpdateBlog = () => {
 
                                         <FormControl fullWidth sx={{ mb: 1 }}>
                                             <TextField 
-                                                label="Tags" 
+                                                label="Tags (seperate with commas)" 
                                                 value={tags} 
                                                 variant="standard"
                                                 multiline

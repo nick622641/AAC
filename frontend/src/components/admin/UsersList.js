@@ -16,6 +16,7 @@ import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { Avatar } from '@mui/material'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const UsersList = () => {
 
@@ -27,6 +28,7 @@ const UsersList = () => {
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
+    const [ fullscreen,      setFullscreen     ] = useState(false)
 
     useEffect(() => {
 
@@ -58,13 +60,13 @@ const UsersList = () => {
                     label: 'Preview',
                     field: 'url',
                     sort: 'disabled',
-                    width: 50
+                    width: 70
                 },
                 {
                     label: 'User ID',
                     field: 'id',
                     sort: 'disabled',
-                    width: 200
+                    width: 220
                 },
                 {
                     label: 'Name',
@@ -76,7 +78,7 @@ const UsersList = () => {
                     label: 'Role',
                     field: 'role',
                     sort: 'asc',
-                    width: 100
+                    width: 90
                 },
                 {
                     label: 'Actions',
@@ -137,7 +139,7 @@ const UsersList = () => {
                         
                     </aside>                     
 
-                    <article className="relative"> 
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}> 
 
                         {loading ? <Loader /> : (
 
@@ -166,6 +168,14 @@ const UsersList = () => {
                                             <CloseIcon />
                                         </Fab>
                                     </Link>
+
+                                    <IconButton 
+                                        color="primary" 
+                                        sx={{ position: 'absolute', top: 10, left: 10 }}
+                                        onClick={() => setFullscreen(!fullscreen)}
+                                    >
+                                        <FitScreenIcon />
+                                    </IconButton>
 
                                 </div>
 

@@ -16,6 +16,7 @@ import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Avatar from '@mui/material/Avatar'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const ProductsList = () => {
 
@@ -27,7 +28,8 @@ const ProductsList = () => {
     const { loading: isLoading, error: deleteError, isDeleted } = useSelector( state => state.product  )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
-    const [ id,  setId ] = useState('')
+    const [ id,              setId             ] = useState('')
+    const [ fullscreen,      setFullscreen     ] = useState(false)
 
     useEffect(() => {
 
@@ -157,7 +159,7 @@ const ProductsList = () => {
 
                     </aside>            
 
-                    <article className="relative">
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>
 
                         {loading || isLoading ? <Loader /> : (
 
@@ -186,6 +188,14 @@ const ProductsList = () => {
                                             <CloseIcon />
                                         </Fab>
                                     </Link>
+
+                                    <IconButton 
+                                        color="primary" 
+                                        sx={{ position: 'absolute', top: 10, left: 10 }}
+                                        onClick={() => setFullscreen(!fullscreen)}
+                                    >
+                                        <FitScreenIcon />
+                                    </IconButton>
 
                                 </div>
 

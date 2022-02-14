@@ -11,6 +11,8 @@ import CloseIcon from '@mui/icons-material/Close'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
+import IconButton from '@mui/material/IconButton'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const UpdateUser = () => {    
 
@@ -18,10 +20,11 @@ const UpdateUser = () => {
     const userId = useParams().id    
     const dispatch = useDispatch()
     const navigate = useNavigate()  
-    const [ name, setName    ] = useState('')
-    const [ email, setEmail  ] = useState('')
-    const [ role, setRole    ] = useState('')   
-    const { user             } = useSelector(state => state.userDetails )
+    const [ name,       setName       ] = useState('')
+    const [ email,      setEmail      ] = useState('')
+    const [ role,       setRole       ] = useState('')   
+    const [ fullscreen, setFullscreen ] = useState(false)
+    const { user                      } = useSelector(state => state.userDetails )
     const { loading, error, isUpdated } = useSelector(state => state.user )
 
     useEffect(() => {
@@ -69,7 +72,7 @@ const UpdateUser = () => {
                         
                     </aside>            
 
-                    <article>
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>
 
                         <div className="user-form cart">
 
@@ -133,6 +136,14 @@ const UpdateUser = () => {
                                     <CloseIcon />
                                 </Fab>
                             </Link>
+
+                            <IconButton 
+                                color="primary" 
+                                sx={{ position: 'absolute', top: 10, left: 10 }}
+                                onClick={() => setFullscreen(!fullscreen)}
+                            >
+                                <FitScreenIcon />
+                            </IconButton>
 
                         </div>
 

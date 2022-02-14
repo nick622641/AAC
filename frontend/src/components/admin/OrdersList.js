@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const OrdersList = () => {
 
@@ -26,6 +27,7 @@ const OrdersList = () => {
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
+    const [ fullscreen,      setFullscreen     ] = useState(false)
 
     useEffect(() => {
 
@@ -131,7 +133,7 @@ const OrdersList = () => {
 
                     </aside>
 
-                    <article className="relative"> 
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}> 
 
                         {loading ? <Loader /> : (     
 
@@ -160,6 +162,14 @@ const OrdersList = () => {
                                             <CloseIcon />
                                         </Fab>
                                     </Link>
+
+                                    <IconButton 
+                                        color="primary" 
+                                        sx={{ position: 'absolute', top: 10, left: 10 }}
+                                        onClick={() => setFullscreen(!fullscreen)}
+                                    >
+                                        <FitScreenIcon />
+                                    </IconButton>
                                     
                                 </div>
 

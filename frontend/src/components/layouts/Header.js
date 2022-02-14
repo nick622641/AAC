@@ -71,11 +71,11 @@ const Header = () => {
         setMenuVisible(isMenuVisible => !isMenuVisible)
     }
     const handleNavigation = (e, item) => {
-        if(!isNavOpen || (isNavOpen && item === menuItem)) {
+        if (!isNavOpen || (isNavOpen && item === menuItem)) {
             setIsNavOpen(!isNavOpen)
         }
         const links = document.querySelectorAll('header > nav > ul > li')
-        for(let i = 0; i < links.length; i++ ) {
+        for (let i = 0; i < links.length; i++ ) {
             links[i].classList.remove('open')
         }
         if (!isNavOpen || (isNavOpen && item !== menuItem)) {

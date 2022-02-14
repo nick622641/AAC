@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import parse from 'html-react-parser'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const BlogComments = () => {
    
@@ -25,6 +26,7 @@ const BlogComments = () => {
     const [ blogId,         setBlogId         ] = useState('')
     const [ isModalVisible, setIsModalVisible ] = useState(false)
     const [ commentId,      setCommentId      ] = useState('')
+    const [ fullscreen,      setFullscreen     ] = useState(false)
 
     useEffect(() => {
         if(error) {
@@ -123,7 +125,7 @@ const BlogComments = () => {
                         
                     </aside>            
 
-                    <article>                            
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>                            
 
                         <div className="user-form cart"> 
 
@@ -163,6 +165,14 @@ const BlogComments = () => {
                                     <CloseIcon />
                                 </Fab>
                             </Link>
+
+                            <IconButton 
+                                color="primary" 
+                                sx={{ position: 'absolute', top: 10, left: 10 }}
+                                onClick={() => setFullscreen(!fullscreen)}
+                            >
+                                <FitScreenIcon />
+                            </IconButton>
 
                         </div>
                        
