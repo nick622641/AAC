@@ -9,7 +9,7 @@ const Loader = () => {
 
             <div
                 className="d-flex justify-content-center align-items-center absolute"
-                style={{ zIndex: 1, width: "100%", height: "100%" }}
+                style={{ zIndex: 1, width: "100%", height: "90vh" }}
             >
 
                 <CircularProgress className="loader" color="primary" /> 

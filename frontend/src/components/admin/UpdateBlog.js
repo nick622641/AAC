@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { updateBlog, getBlogDetails, updateImages, deleteImage, clearErrors } from '../../actions/blogActions'
 import { UPDATE_BLOG_RESET } from '../../constants/blogConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/blogConstants'
-import { FormControl, IconButton, TextField } from '@mui/material'
+import { FormControl, FormControlLabel, IconButton, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -17,7 +17,8 @@ import DragnDrop from './DragnDrop'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEdittor from "../layouts/RichtextEdittor"
+import RichtextEdittor from '../layouts/RichtextEdittor'
+import Checkbox from '@mui/material/Checkbox'
 
 const UpdateBlog = () => {
 
@@ -31,7 +32,8 @@ const UpdateBlog = () => {
     
     const [ title,           setTitle          ] = useState('')
     const [ tags,            setTags           ] = useState('')   
-    const [ description,     setDescription    ] = useState('')   
+    const [ description,     setDescription    ] = useState('')  
+    const [ visible,         setVisible        ] = useState(1) 
     const [ images,          setImages         ] = useState([])   
     const [ oldImages,       setOldImages      ] = useState([])
     const [ imagesPreview,   setImagesPreview  ] = useState([])    
@@ -65,7 +67,8 @@ const UpdateBlog = () => {
             setTitle(blog.title)
             setTags(blog.tags)            
             setDescription(blog.description)          
-            setOldImages(blog.images)        
+            setOldImages(blog.images)   
+            setVisible(blog.visible)     
         }
 
         if(error) {
@@ -106,7 +109,8 @@ const UpdateBlog = () => {
         const formData = new FormData()
         formData.set('title', title)
         formData.set('tags', tags)       
-        formData.set('description', description)       
+        formData.set('description', description)    
+        formData.set('visible', visible)   
 
         images.forEach(image => {
             formData.append('images', image)
@@ -221,6 +225,18 @@ const UpdateBlog = () => {
                                     oldImages={oldImages}
                                     imagesPreview={imagesPreview}
                                 />  
+
+                                <FormControlLabel 
+                                    control={
+                                        <Checkbox 
+                                            size="small"
+                                            value={visible}
+                                            onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
+                                            checked={visible === 1 ? true : false}
+                                        />
+                                    } 
+                                    label={visible === 1 ? 'Published' : 'Draft'} 
+                                /> 
 
                                 <h4>Content</h4> 
 

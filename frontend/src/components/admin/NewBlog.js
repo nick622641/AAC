@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { newBlog, clearErrors } from '../../actions/blogActions'
 import { NEW_BLOG_RESET } from '../../constants/blogConstants'
-import { FormControl, IconButton, TextField } from '@mui/material'
+import { FormControl, FormControlLabel, IconButton, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -13,7 +13,8 @@ import Avatar from '@mui/material/Avatar'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEdittor from "../layouts/RichtextEdittor"
+import RichtextEdittor from '../layouts/RichtextEdittor'
+import Checkbox from '@mui/material/Checkbox'
 
 const NewBlog = () => {    
 
@@ -24,6 +25,7 @@ const NewBlog = () => {
     const [ title,         setTitle         ] = useState('')
     const [ tags,          setTags          ] = useState('')   
     const [ description,   setDescription   ] = useState('')
+    const [ visible,       setVisible       ] = useState(0)
   
     const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
@@ -52,7 +54,8 @@ const NewBlog = () => {
         formData.set('title', title)
         formData.set('tags', tags)       
         formData.set('description', description)       
-        formData.set('name', user.name)       
+        formData.set('name', user.name)   
+        formData.set('visible', visible)    
 
         images.forEach(image => {
             formData.append('images', image)
@@ -154,6 +157,18 @@ const NewBlog = () => {
                                         ))} 
                                     </ul> 
                                 )}  
+
+                                <FormControlLabel 
+                                    control={
+                                        <Checkbox 
+                                            size="small"
+                                            value={visible}
+                                            onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
+                                            checked={visible === 1 ? true : false}
+                                        />
+                                    } 
+                                    label={visible === 1 ? 'Published' : 'Draft'} 
+                                /> 
                               
                                 <h4>Content</h4>    
 

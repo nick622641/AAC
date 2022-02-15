@@ -17,6 +17,8 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Avatar from '@mui/material/Avatar'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 const BlogsList = () => {
 
@@ -56,7 +58,7 @@ const BlogsList = () => {
 
     const deleteBlogHandler = (id) => {
         dispatch(deleteBlog(id))
-    }
+    } 
 
     const setBlogs = () => {
         const data = {
@@ -65,13 +67,13 @@ const BlogsList = () => {
                     label: 'Preview',
                     field: 'url',
                     sort: 'disabled',
-                    width: 50
+                    width: 75
                 },
                 {
-                    label: 'Blog ID',
-                    field: 'id',
+                    label: 'Actions',
+                    field: 'actions',
                     sort: 'disabled',
-                    width: 200
+                    width: 150                
                 },
                 {
                     label: 'Title',
@@ -84,13 +86,7 @@ const BlogsList = () => {
                     field: 'comments',
                     sort: 'asc',
                     width: 90
-                },
-                {
-                    label: 'Actions',
-                    field: 'actions',
-                    sort: 'disabled',
-                    width: 100                
-                }
+                }                
             ],
             rows: []
         }
@@ -104,13 +100,17 @@ const BlogsList = () => {
                             sx={{ width: 50, height: 50 }}
                         />          
                     </Link>,
-                id: blog._id,
-                title: blog.title,    
-                comments: blog.numOfComments,           
-                actions: 
-                    <Fragment>
+                actions: <Fragment>
+                        <CopyToClipboard text={blog._id}>
+                            <IconButton 
+                                onClick={() => alert.success('ID Copied')} 
+                                title="Copy ID">
+                                <ContentCopyIcon color="primary" 
+                            />  
+                            </IconButton>                      
+                        </CopyToClipboard>    
                         <Link to={`/admin/blog/${blog._id}`}>
-                            <IconButton>
+                            <IconButton title="Edit Blog">
                                 <EditOutlinedIcon />
                             </IconButton>
                         </Link> 
@@ -119,10 +119,14 @@ const BlogsList = () => {
                                 setIsModalVisible(!isModalVisible)
                                 setId(blog._id)
                             }}
+                            title="Delete Blog"
                         >
                             <DeleteOutlineIcon color="danger" />
-                        </IconButton>  
-                    </Fragment> 
+                        </IconButton>                      
+                    </Fragment>,
+                title: blog.title,    
+                comments: blog.numOfComments           
+               
             })
         })
 

@@ -17,6 +17,8 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Avatar from '@mui/material/Avatar'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 const ProductsList = () => {
 
@@ -65,13 +67,13 @@ const ProductsList = () => {
                     label: 'Preview',
                     field: 'url',
                     sort: 'disabled',
-                    width: 50
-                },
+                    width: 75
+                },          
                 {
-                    label: 'Artwork ID',
-                    field: 'id',
+                    label: 'Actions',
+                    field: 'actions',
                     sort: 'disabled',
-                    width: 200
+                    width: 150                
                 },
                 {
                     label: 'Name',
@@ -89,20 +91,14 @@ const ProductsList = () => {
                     label: 'Reviews',
                     field: 'reviews',
                     sort: 'asc',
-                    width: 100
+                    width: 90
                 },             
                 {
                     label: 'Stock',
                     field: 'stock',
                     sort: 'asc',
-                    width: 100
-                },
-                {
-                    label: 'Actions',
-                    field: 'actions',
-                    sort: 'disabled',
-                    width: 100                
-                }
+                    width: 90
+                }                
             ],
             rows: []
         }
@@ -115,28 +111,36 @@ const ProductsList = () => {
                             alt={product.name} 
                             sx={{ width: 50, height: 50 }}
                         />          
-                    </Link>,
-                id: product._id,
+                    </Link>,            
+                actions: 
+                <Fragment>                    
+                    <CopyToClipboard text={product._id}>
+                        <IconButton 
+                            onClick={() => alert.success('ID Copied')} 
+                            title="Copy ID"
+                        >
+                            <ContentCopyIcon color="primary" />  
+                        </IconButton>                      
+                    </CopyToClipboard>  
+                    <Link to={`/admin/product/${product._id}`}>
+                        <IconButton title="Edit Page">
+                            <EditOutlinedIcon />
+                        </IconButton>
+                    </Link> 
+                    <IconButton 
+                         onClick={() => {
+                            setIsModalVisible(!isModalVisible)
+                            setId(product._id)
+                        }}
+                        title="Delete Page"
+                    >
+                        <DeleteOutlineIcon color="danger" />
+                    </IconButton>  
+                </Fragment>, 
                 name: product.name,
                 artist: product.artist,
                 reviews: product.numOfReviews,
-                stock: product.stock,
-                actions: 
-                    <Fragment>
-                        <Link to={`/admin/product/${product._id}`}>
-                            <IconButton>
-                                <EditOutlinedIcon />
-                            </IconButton>
-                        </Link> 
-                        <IconButton 
-                             onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setId(product._id)
-                            }}
-                        >
-                            <DeleteOutlineIcon color="danger" />
-                        </IconButton>  
-                    </Fragment> 
+                stock: product.stock                
             })
         })
 

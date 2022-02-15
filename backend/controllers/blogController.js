@@ -111,11 +111,12 @@ exports.updateBlog = catchAsyncErrors(async (req, res, next) => {
 // Get all Blogs => /api/v1/blogs
 exports.getBlogs = async (req, res, next) => {   
 
-    const resPerPage = 12
-    
-    const blogsCount = await Blog.countDocuments()
+    const resPerPage = 12    
 
-    const blogs = await Blog.find().sort({ createdAt: -1 })
+    const blogs = await Blog.find({ visible: {$ne: 0}}).sort({ createdAt: -1 })
+
+    let blogsCount = blogs.length
+
     res.status(200).json({
         success: true,    
         resPerPage,

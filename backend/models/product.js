@@ -127,6 +127,10 @@ const productSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    visible: {
+        type: Number,
+        default: 1
     }
 })
 

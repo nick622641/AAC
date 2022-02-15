@@ -46,7 +46,7 @@ const Gallery = () => {
     const { artists      } = useSelector( state => state.artists )
     const { media        } = useSelector( state => state.media )
     const { orientations } = useSelector( state => state.orientations )  
-    const { loading, products, productsCount, resPerPage, filteredProductsCount, error } = useSelector( state => state.products )
+    const { loading, products, resPerPage, filteredProductsCount, error } = useSelector( state => state.products )
 
     const menuAppear = useSpring({
         transform: isMenuOpen && isMobile ? 'translateX(0)' : 'translateX(-100%)'
@@ -73,12 +73,8 @@ const Gallery = () => {
         setCurrentPage(pageNumber)
     }
 
-    let count = productsCount
-    let title = 'All the Work'
- 
-    if (keyword || artist || medium || orientation || price[0] > 1 || price[1] < 10000 || rating > 0) {
-        count = filteredProductsCount          
-    }  
+    let title = 'All the Work' 
+     
     if ( keyword     ) { title = keyword }
     if ( artist      ) { title = artist }
     if ( orientation ) { title = orientation }
@@ -248,13 +244,13 @@ const Gallery = () => {
                                     <small>
                                         {resPerPage * (currentPage - 1) + 1} 
                                         &nbsp;-&nbsp; 
-                                        {resPerPage * currentPage > count ? count : resPerPage * currentPage} 
-                                        &nbsp;  / &nbsp;{count}
+                                        {resPerPage * currentPage > filteredProductsCount ? filteredProductsCount : resPerPage * currentPage} 
+                                        &nbsp;  / &nbsp;{filteredProductsCount}
                                     </small> 
                                 </div>
 
                                 <div className="showroom">
-                                    {products && count > 0                             
+                                    {products && filteredProductsCount > 0                             
                                         ?   products.map(product => (
                                                 <Product key={product._id} product={product} />                                    
                                             )) 
@@ -262,12 +258,12 @@ const Gallery = () => {
                                     }    
                                 </div>
 
-                                {resPerPage <= count && (
+                                {resPerPage <= filteredProductsCount && (
                                     <div onClick={() => window.scrollTo(0, 0)}>
                                         <Pagination
                                             activePage={currentPage}
                                             itemsCountPerPage={resPerPage}
-                                            totalItemsCount={count}                        
+                                            totalItemsCount={filteredProductsCount}                        
                                             onChange={setCurrentPageNo}   
                                             nextPageText={<KeyboardArrowRightIcon />}  
                                             prevPageText={<KeyboardArrowLeftIcon />} 

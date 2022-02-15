@@ -50,7 +50,11 @@ const RichtextEdittor = ({ text, setText }) => {
                     alt: {
                             present: true,
                             mandatory: true
-                        }
+                        },
+                    defaultSize: {
+                        width: 240,
+                        height: 'auto'                        
+                    }
                 }
             }}                             
         />

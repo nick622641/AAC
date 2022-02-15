@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { newProduct, clearErrors } from '../../actions/productActions'
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
-import { FormControl, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { FormControl, FormControlLabel, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -17,7 +17,8 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEdittor from "../layouts/RichtextEdittor"
+import RichtextEdittor from '../layouts/RichtextEdittor'
+import Checkbox from '@mui/material/Checkbox'
 
 const NewProduct = () => {
 
@@ -35,6 +36,7 @@ const NewProduct = () => {
     const [ orientation,   setOrientation   ] = useState('')
     const [ medium,        setMedium        ] = useState('')
     const [ stock,         setStock         ] = useState('')
+    const [ visible,       setVisible       ] = useState(0)
     const [ datePublished, setDatePublished ] = useState(Date.now())
     const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
@@ -76,6 +78,7 @@ const NewProduct = () => {
         formData.set('orientation', orientation)
         formData.set('media', medium)
         formData.set('stock', stock)
+        formData.set('visible', visible)
         formData.set('datePublished', datePublished)
 
         images.forEach(image => {
@@ -187,7 +190,7 @@ const NewProduct = () => {
                                         </FormControl>    
                                     </div>                         
                                     
-                                </div>
+                                </div>                                
                                 
                                 {imagesPreview.length > 0 && (
                                     <ul className="d-flex">
@@ -200,8 +203,19 @@ const NewProduct = () => {
                                             </li>
                                         ))} 
                                     </ul> 
-                                )}                                  
+                                )}  
 
+                                <FormControlLabel 
+                                    control={
+                                        <Checkbox 
+                                            size="small"
+                                            value={visible}
+                                            onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
+                                            checked={visible === 1 ? true : false}
+                                        />
+                                    } 
+                                    label={visible === 1 ? 'Published' : 'Draft'} 
+                                />    
                               
                                 <h4>Dimensions <small>&bull; (cm)</small></h4>
 

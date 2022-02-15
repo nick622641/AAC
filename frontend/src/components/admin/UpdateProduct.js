@@ -6,7 +6,7 @@ import { updateProduct, getProductDetails, updateImages, deleteImage, clearError
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
-import { FormControl, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { FormControl, FormControlLabel, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -21,7 +21,8 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEdittor from "../layouts/RichtextEdittor"
+import RichtextEdittor from '../layouts/RichtextEdittor'
+import Checkbox from '@mui/material/Checkbox'
 
 const UpdateProduct = () => {
     
@@ -35,6 +36,7 @@ const UpdateProduct = () => {
     const [ orientation,     setOrientation    ] = useState('')
     const [ medium,          setMedium         ] = useState('')
     const [ stock,           setStock          ] = useState(0)
+    const [ visible,         setVisible        ] = useState(1)
     const [ datePublished,   setDatePublished  ] = useState('')
     const [ images,          setImages         ] = useState([])   
     const [ oldImages,       setOldImages      ] = useState([])
@@ -84,6 +86,7 @@ const UpdateProduct = () => {
             setMedium(product.media)
             setDatePublished(createdAt)
             setStock(product.stock)
+            setVisible(product.visible)
             setOldImages(product.images)             
         }
         if(error) {
@@ -127,6 +130,7 @@ const UpdateProduct = () => {
         formData.set('orientation', orientation)
         formData.set('media', medium)
         formData.set('stock', stock)
+        formData.set('visible', visible)
         formData.set('datePublished', datePublished)
 
         images.forEach(image => {
@@ -274,6 +278,18 @@ const UpdateProduct = () => {
                                     oldImages={oldImages}
                                     imagesPreview={imagesPreview}
                                 />  
+
+                                <FormControlLabel 
+                                    control={
+                                        <Checkbox 
+                                            size="small"
+                                            value={visible}
+                                            onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
+                                            checked={visible === 1 ? true : false}
+                                        />
+                                    } 
+                                    label={visible === 1 ? 'Published' : 'Draft'} 
+                                /> 
 
                                 <div>
                                     <h4>Dimensions <small>&bull; (cm)</small></h4>

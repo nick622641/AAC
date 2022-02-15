@@ -182,6 +182,9 @@ input:-webkit-autofill {
   left: 0;
   width: 100%;
 }
+.MuiFormControlLabel-root span {
+  font-size: 12px;
+}
 /* MDB Table Styles */
 .mdb-datatable > div:nth-child(2) {
   border: solid 1px #ccc;
@@ -468,6 +471,15 @@ section .callout h3 {
   padding: 10px 0 5px 0;
   margin: 0;
 }
+.dashboard-panels div {
+  transition: all var(--speed);
+}
+.dashboard-panels > div > div > div > div > div:hover {
+  box-shadow: var(--box-shadow);  
+}
+.dashboard-panels > div > div > div > div:last-child:hover > div {
+  box-shadow: none;
+}
 /* Media Queries */
 @media ( max-width: 768px ) {
   .container {
@@ -517,5 +529,18 @@ section .callout h3 {
     text-align: center;    
     float: none !important;
     margin: 0 auto !important;
+  }
+  #modal-root {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+  }
+  .modal { 
+    position: relative;      
+    top: 50px;
   }
  }
