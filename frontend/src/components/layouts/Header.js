@@ -96,7 +96,7 @@ const Header = () => {
         transform: isSearchVisible ? "translateY(0)" : "translateY(-40px)",
     })
     const navMenuAppear = useSpring({
-        transform: isMenuOpen && isMobile ? 'translateX(0)' : 'translateX(-100%)'
+        transform: isMenuOpen && isMobile ? 'translateX(0)' : 'translateX(100%)'
     })
 
     useEffect(() => {
@@ -173,7 +173,7 @@ const Header = () => {
                                                     to={`gallery/artist/${artist.name.replace(/ /g, '-')}`}
                                                     onClick={() => {
                                                                 setIsMenuOpen(false)
-                                                                setIsNavOpen(!false)
+                                                                setIsNavOpen(false)
                                                             }
                                                         }
                                                 >
@@ -194,7 +194,7 @@ const Header = () => {
                                                 <Link 
                                                     to={`gallery/medium/${medium.name.replace(/ /g, '-')}`}
                                                     onClick={() => {
-                                                            setIsNavOpen(!isNavOpen)
+                                                            setIsNavOpen(false)
                                                             setIsMenuOpen(false)
                                                         }
                                                     }
@@ -232,7 +232,7 @@ const Header = () => {
                                                 <Link 
                                                     to="blogs" 
                                                     onClick={() => {
-                                                            setIsNavOpen(!isNavOpen)
+                                                            setIsNavOpen(false)
                                                             setIsMenuOpen(false)
                                                         }
                                                     }
@@ -255,7 +255,7 @@ const Header = () => {
 
                 </nav>            
 
-                <div className="relative d-flex">
+                <div className="relative d-flex icons">
 
                     <IconButton 
                         onClick={() => {
@@ -381,8 +381,9 @@ const Header = () => {
                         </Link>
                     )}  
 
-                    <Divider orientation="vertical" flexItem  sx={{ mx: 1 }}/> 
-
+                    {!isMobile && (
+                        <Divider orientation="vertical" flexItem  sx={{ mx: 1 }}/> 
+                    )}  
                     
                     <IconButton>
                         <a 

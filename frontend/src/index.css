@@ -45,6 +45,9 @@ footer {
 small {
   font-size: 12px;
 }
+figcaption {
+  font-size: 12px;
+}
 button[disabled] {
   pointer-events: none;
 }

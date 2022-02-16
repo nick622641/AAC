@@ -61,13 +61,7 @@ const UsersList = () => {
                     field: 'url',
                     sort: 'disabled',
                     width: 70
-                },
-                {
-                    label: 'User ID',
-                    field: 'id',
-                    sort: 'disabled',
-                    width: 220
-                },
+                },                
                 {
                     label: 'Name',
                     field: 'name',
@@ -98,7 +92,6 @@ const UsersList = () => {
                         alt={user.name} 
                         sx={{ width: 50, height: 50 }}
                     />,
-                id: user._id,
                 name: user.name,
                 role: user.role,                
                 actions:                 

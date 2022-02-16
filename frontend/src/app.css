@@ -185,6 +185,10 @@ input:-webkit-autofill {
 .MuiFormControlLabel-root span {
   font-size: 12px;
 }
+.rt-preview {
+  border: solid 1px #ccc; 
+  padding: 10px;
+}
 /* MDB Table Styles */
 .mdb-datatable > div:nth-child(2) {
   border: solid 1px #ccc;

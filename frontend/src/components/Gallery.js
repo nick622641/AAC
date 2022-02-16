@@ -229,7 +229,7 @@ const Gallery = () => {
 
                     </aside>
 
-                    <article className="relative">                         
+                    <article className={!isMobile ? 'relative' : ''}>                         
 
                         <h1>{title}</h1>
 

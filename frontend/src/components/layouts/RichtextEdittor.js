@@ -55,7 +55,10 @@ const RichtextEdittor = ({ text, setText }) => {
                         width: 240,
                         height: 'auto'                        
                     }
-                }
+                },                
+                fontFamily: {
+                    options: ['Roboto', 'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],         
+                },                
             }}                             
         />
 

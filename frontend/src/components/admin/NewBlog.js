@@ -15,6 +15,7 @@ import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import RichtextEdittor from '../layouts/RichtextEdittor'
 import Checkbox from '@mui/material/Checkbox'
+import RichtextPreview from '../layouts/RichtextPreview'
 
 const NewBlog = () => {    
 
@@ -173,6 +174,8 @@ const NewBlog = () => {
                                 <h4>Content</h4>    
 
                                 <RichtextEdittor text={description} setText={setDescription} />  
+
+                                <RichtextPreview text={description} />
 
                                 <LoadingButton 
                                     loading={loading}

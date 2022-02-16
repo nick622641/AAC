@@ -19,6 +19,7 @@ import Confirm from '../modals/Confirm'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import RichtextEdittor from '../layouts/RichtextEdittor'
 import Checkbox from '@mui/material/Checkbox'
+import RichtextPreview from '../layouts/RichtextPreview'
 
 const UpdateBlog = () => {
 
@@ -241,8 +242,15 @@ const UpdateBlog = () => {
                                 <h4>Content</h4> 
 
                                 {description && (  
-                                    <RichtextEdittor text={description} setText={setDescription} /> 
-                                )}                                                           
+
+                                    <Fragment>
+
+                                        <RichtextEdittor text={description} setText={setDescription} /> 
+
+                                        <RichtextPreview text={description} />
+
+                                    </Fragment>
+                                )}                                                                                    
                     
                                 <LoadingButton 
                                     loading={loading}

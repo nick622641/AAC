@@ -57,6 +57,9 @@ header nav a {
     padding: 10px 10px 10px 0;   
     font-size: 0;
 }
+.logo img {
+    min-width: 40px;
+}
 .logo img:hover {
     transform: scale(1.05);
 }
@@ -87,6 +90,10 @@ header button:hover svg {
 }
 .searchform input::placeholder {
     color:#ccc;
+}
+.icons {
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 /* Footer Styles */
 footer {
@@ -123,7 +130,7 @@ footer small {
     }
     header nav > ul {
         position: absolute;
-        top: 90px;
+        top: 100%;
         left: 0;
         background: white;
         width: 100%;
@@ -173,5 +180,8 @@ footer small {
     }
     footer nav .parent {        
         align-items: center;
-    }    
+    }  
+    .searchform input {         
+        font-size: 32px;    
+    }
 }

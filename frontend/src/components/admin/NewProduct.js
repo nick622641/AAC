@@ -19,6 +19,7 @@ import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import RichtextEdittor from '../layouts/RichtextEdittor'
 import Checkbox from '@mui/material/Checkbox'
+import RichtextPreview from '../layouts/RichtextPreview'
 
 const NewProduct = () => {
 
@@ -311,7 +312,9 @@ const NewProduct = () => {
 
                                 <h4>Description</h4> 
 
-                                <RichtextEdittor text={description} setText={setDescription} />                              
+                                <RichtextEdittor text={description} setText={setDescription} />   
+
+                                <RichtextPreview text={description} />                           
 
                                 <LoadingButton 
                                     loading={loading}

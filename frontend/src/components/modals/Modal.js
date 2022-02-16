@@ -23,6 +23,8 @@ function Modal({ isModalVisible, content, onBackdropClick  }) {
   
     if(!isModalVisible) {
       return null
+    } else {
+      window.scrollTo(0, 0)
     }
 
     return ReactDOM.createPortal( 
