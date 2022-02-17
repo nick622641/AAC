@@ -15,7 +15,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import { Avatar } from '@mui/material'
+import { Avatar, Tooltip } from '@mui/material'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const UsersList = () => {
@@ -162,13 +162,15 @@ const UsersList = () => {
                                         </Fab>
                                     </Link>
 
-                                    <IconButton 
-                                        color="primary" 
-                                        sx={{ position: 'absolute', top: 10, left: 10 }}
-                                        onClick={() => setFullscreen(!fullscreen)}
+                                    <Tooltip title="Expand">
+                                        <IconButton 
+                                            color="primary" 
+                                            sx={{ position: 'absolute', top: 10, left: 10 }}
+                                            onClick={() => setFullscreen(!fullscreen)}
                                     >
-                                        <FitScreenIcon />
-                                    </IconButton>
+                                            <FitScreenIcon />
+                                        </IconButton>
+                                    </Tooltip>
 
                                 </div>
 

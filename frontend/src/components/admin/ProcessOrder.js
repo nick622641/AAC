@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import AddTaskIcon from '@mui/icons-material/AddTask'
 import Avatar from '@mui/material/Avatar'
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { FormControl, InputLabel, MenuItem, Select, Tooltip } from '@mui/material'
 import FormattedDate from '../layouts/FormattedDate'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
@@ -207,13 +207,15 @@ const ProcessOrder = () => {
                                         </Fab>
                                     </Link>
 
-                                    <IconButton 
-                                        color="primary" 
-                                        sx={{ position: 'absolute', top: 10, left: 10 }}
-                                        onClick={() => setFullscreen(!fullscreen)}
+                                    <Tooltip title="Expand">
+                                        <IconButton 
+                                            color="primary" 
+                                            sx={{ position: 'absolute', top: 10, left: 10 }}
+                                            onClick={() => setFullscreen(!fullscreen)}
                                     >
-                                        <FitScreenIcon />
-                                    </IconButton>
+                                            <FitScreenIcon />
+                                        </IconButton>
+                                    </Tooltip>
                                     
                                 </div>
 

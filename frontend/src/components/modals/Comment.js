@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { newComment } from '../../actions/blogActions'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
-import RichtextEdittor from "../layouts/RichtextEdittor"
+import RichtextEditor from "../layouts/RichtextEditor"
 
 function Comment(props) {
     
@@ -31,7 +31,7 @@ function Comment(props) {
 
             <form onSubmit={commentHandler}>    
 
-                <RichtextEdittor text={comment} setText={setComment} />    
+                <RichtextEditor text={comment} setText={setComment} />    
                 
                 <LoadingButton 
                     type="submit"

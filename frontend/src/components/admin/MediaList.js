@@ -16,6 +16,8 @@ import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
+import { Tooltip } from '@mui/material'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const ArtistList = () => {
 
@@ -27,6 +29,7 @@ const ArtistList = () => {
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
+    const [ fullscreen,      setFullscreen     ] = useState(false)
 
     useEffect(() => {
 
@@ -121,7 +124,7 @@ const ArtistList = () => {
                         
                     </aside>            
 
-                    <article className="relative">
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>
                         
                         {loading ? <Loader /> : (
 
@@ -157,6 +160,16 @@ const ArtistList = () => {
                                         <CloseIcon />
                                     </Fab>
                                 </Link>
+
+                                <Tooltip title="Expand">
+                                    <IconButton 
+                                        color="primary" 
+                                        sx={{ position: 'absolute', top: 10, left: 10 }}
+                                        onClick={() => setFullscreen(!fullscreen)}
+                                    >
+                                        <FitScreenIcon />
+                                    </IconButton>
+                                </Tooltip>
 
                             </div>
 

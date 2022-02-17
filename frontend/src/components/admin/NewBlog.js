@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { newBlog, clearErrors } from '../../actions/blogActions'
 import { NEW_BLOG_RESET } from '../../constants/blogConstants'
-import { FormControl, FormControlLabel, IconButton, TextField } from '@mui/material'
+import { FormControl, FormControlLabel, IconButton, TextField, Tooltip } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -13,7 +13,7 @@ import Avatar from '@mui/material/Avatar'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEdittor from '../layouts/RichtextEdittor'
+import RichtextEditor from '../layouts/RichtextEditor'
 import Checkbox from '@mui/material/Checkbox'
 import RichtextPreview from '../layouts/RichtextPreview'
 
@@ -45,7 +45,7 @@ const NewBlog = () => {
             alert.success('Blog Created Successfully')
             dispatch({ type: NEW_BLOG_RESET })
             navigate('/admin/blogs')
-        }
+        }        
     }, [dispatch, alert, error, success, navigate])
 
     const submitHandler = (e) => {
@@ -58,12 +58,12 @@ const NewBlog = () => {
         formData.set('name', user.name)   
         formData.set('visible', visible)    
 
-        images.forEach(image => {
+        images.forEach(image => {            
             formData.append('images', image)
         })
         dispatch(newBlog(formData))
     }
-
+    
     const onChange = (e) => {
         
         const files = Array.from(e.target.files)
@@ -74,7 +74,7 @@ const NewBlog = () => {
             reader.onload = () => {
                 if(reader.readyState === 2) {
                     setImagesPreview(oldArray => [...oldArray, reader.result])
-                    setImages(oldArray => [...oldArray, reader.result])
+                    setImages(oldArray => [...oldArray, reader.result])                    
                 }
             }
             reader.readAsDataURL(file)
@@ -173,7 +173,7 @@ const NewBlog = () => {
                               
                                 <h4>Content</h4>    
 
-                                <RichtextEdittor text={description} setText={setDescription} />  
+                                <RichtextEditor text={description} setText={setDescription} />  
 
                                 <RichtextPreview text={description} />
 
@@ -200,13 +200,15 @@ const NewBlog = () => {
                                 </Fab>
                             </Link>
 
-                            <IconButton 
-                                color="primary" 
-                                sx={{ position: 'absolute', top: 10, left: 10 }}
-                                onClick={() => setFullscreen(!fullscreen)}
-                            >
-                                <FitScreenIcon />
-                            </IconButton>
+                            <Tooltip title="Expand">
+                                <IconButton 
+                                    color="primary" 
+                                    sx={{ position: 'absolute', top: 10, left: 10 }}
+                                    onClick={() => setFullscreen(!fullscreen)}
+                                >
+                                    <FitScreenIcon />
+                                </IconButton>
+                            </Tooltip>
                         </div>
                         
                     </article>

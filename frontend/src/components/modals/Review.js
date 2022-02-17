@@ -5,7 +5,7 @@ import { newReview } from '../../actions/productActions'
 import Rating from '@mui/material/Rating'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
-import RichtextEdittor from "../layouts/RichtextEdittor"
+import RichtextEditor from "../layouts/RichtextEditor"
 
 function Review(props) {
     
@@ -43,7 +43,7 @@ function Review(props) {
                     }} 
                 />               
 
-                <RichtextEdittor text={comment} setText={setComment} />  
+                <RichtextEditor text={comment} setText={setComment} />  
                 
                 <LoadingButton 
                     type="submit"

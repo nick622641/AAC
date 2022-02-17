@@ -439,16 +439,27 @@ section .callout h3 {
   stroke: #333 !important;    
 }
 /* Blog Page Styles */
-.blog-content figure:nth-child(odd) {
-  float: left;
-  margin: 20px 20px 20px 0;
+.blog-content figure {
+  text-align: center;
 }
 .blog-content figure:nth-child(even) {
+  float: left;
+  margin-right: 10px;
+  text-align: left;
+}
+.blog-content figure:nth-child(odd) {
   float: right;
-  margin: 20px 0 20px 20px;
+  margin-left: 10px;
+  text-align: right;
+}
+.blog-content figure:last-child {
+  float: none;
+  clear: both;
+  margin-right: 10px;
+  text-align: right;
 }
 .blog-content p {
-  min-height: 20px
+  margin-bottom: 20px
 }
 .blog-content h3,
 .blog-content h4 {

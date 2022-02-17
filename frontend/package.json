@@ -6,6 +6,8 @@
     "@ckeditor/ckeditor5-build-classic": "^31.1.0",
     "@ckeditor/ckeditor5-react": "^3.0.3",
     "@date-io/date-fns": "^1.3.13",
+    "@draft-js-plugins/editor": "^4.1.2",
+    "@draft-js-plugins/image": "^4.1.2",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@material-ui/core": "^4.12.3",

@@ -16,6 +16,7 @@ import IconButton from '@mui/material/IconButton'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
+import { Tooltip } from '@mui/material'
 
 const OrdersList = () => {
 
@@ -163,13 +164,15 @@ const OrdersList = () => {
                                         </Fab>
                                     </Link>
 
-                                    <IconButton 
-                                        color="primary" 
-                                        sx={{ position: 'absolute', top: 10, left: 10 }}
-                                        onClick={() => setFullscreen(!fullscreen)}
+                                    <Tooltip title="Expand">
+                                        <IconButton 
+                                            color="primary" 
+                                            sx={{ position: 'absolute', top: 10, left: 10 }}
+                                            onClick={() => setFullscreen(!fullscreen)}
                                     >
                                         <FitScreenIcon />
                                     </IconButton>
+                                </Tooltip>
                                     
                                 </div>
 

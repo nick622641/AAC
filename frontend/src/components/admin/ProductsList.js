@@ -19,6 +19,7 @@ import Avatar from '@mui/material/Avatar'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import { Tooltip } from '@mui/material';
 
 const ProductsList = () => {
 
@@ -193,13 +194,15 @@ const ProductsList = () => {
                                         </Fab>
                                     </Link>
 
-                                    <IconButton 
-                                        color="primary" 
-                                        sx={{ position: 'absolute', top: 10, left: 10 }}
-                                        onClick={() => setFullscreen(!fullscreen)}
-                                    >
-                                        <FitScreenIcon />
-                                    </IconButton>
+                                    <Tooltip title="Expand">
+                                        <IconButton 
+                                            color="primary" 
+                                            sx={{ position: 'absolute', top: 10, left: 10 }}
+                                            onClick={() => setFullscreen(!fullscreen)}
+                                        >
+                                            <FitScreenIcon />
+                                        </IconButton>
+                                    </Tooltip>
 
                                 </div>
 

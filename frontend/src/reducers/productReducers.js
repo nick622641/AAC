@@ -43,7 +43,7 @@ import {
     UPDATE_IMAGE_RESET,
     UPDATE_IMAGE_FAIL,
     CLEAR_ERRORS 
-} from '../constants/productConstants';
+} from '../constants/productConstants'
 
 export const productsReducer = ( state = { products: [] }, action ) => {
     switch(action.type) {

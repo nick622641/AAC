@@ -8,7 +8,7 @@ import { UPDATE_ARTIST_RESET } from '../../constants/categoryConstants'
 import { getArtistDetails, updateArtist, clearErrors } from '../../actions/categoryActions'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import { FormControl, TextField } from '@mui/material'
+import { FormControl, TextField, Tooltip } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import IconButton from '@mui/material/IconButton'
@@ -112,13 +112,15 @@ const UpdateArtist = () => {
                                 </Fab>
                             </Link>
 
-                            <IconButton 
-                                color="primary" 
-                                sx={{ position: 'absolute', top: 10, left: 10 }}
-                                onClick={() => setFullscreen(!fullscreen)}
-                            >
-                                <FitScreenIcon />
-                            </IconButton>
+                            <Tooltip title="Expand">
+                                <IconButton 
+                                    color="primary" 
+                                    sx={{ position: 'absolute', top: 10, left: 10 }}
+                                    onClick={() => setFullscreen(!fullscreen)}
+                                    >
+                                        <FitScreenIcon />
+                                    </IconButton>
+                                </Tooltip>
                             
                         </div>
                         

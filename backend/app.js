@@ -21,12 +21,14 @@ const auth     = require('./routes/auth')
 const payment  = require('./routes/payment')
 const order    = require('./routes/order')
 const blog     = require('./routes/blog')
+const image    = require('./routes/image')
 
 app.use('/api/v1', auth)
 app.use('/api/v1', products)
 app.use('/api/v1', payment)
 app.use('/api/v1', order)
 app.use('/api/v1', blog)
+app.use('/api/v1', image)
 
 if (process.env.NODE_ENV === 'PRODUCTION') {
 

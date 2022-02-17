@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import { FormControl, TextField } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
-import RichtextEdittor from "../layouts/RichtextEdittor"
+import RichtextEditor from "../layouts/RichtextEditor"
 
 function Contact() {
 
@@ -59,7 +59,7 @@ function Contact() {
                     />                                 
                 </FormControl>  
 
-                <RichtextEdittor text={message} setText={setMessage} />                    
+                <RichtextEditor text={message} setText={setMessage} />                    
                              
                 <LoadingButton 
                     loading={loading}

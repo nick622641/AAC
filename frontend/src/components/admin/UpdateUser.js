@@ -8,7 +8,7 @@ import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { FormControl, InputLabel, MenuItem, Select, TextField, Tooltip } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import IconButton from '@mui/material/IconButton'
@@ -137,13 +137,15 @@ const UpdateUser = () => {
                                 </Fab>
                             </Link>
 
-                            <IconButton 
-                                color="primary" 
-                                sx={{ position: 'absolute', top: 10, left: 10 }}
-                                onClick={() => setFullscreen(!fullscreen)}
+                            <Tooltip title="Expand">
+                                <IconButton 
+                                    color="primary" 
+                                    sx={{ position: 'absolute', top: 10, left: 10 }}
+                                    onClick={() => setFullscreen(!fullscreen)}
                             >
-                                <FitScreenIcon />
-                            </IconButton>
+                                    <FitScreenIcon />
+                                </IconButton>
+                            </Tooltip>
 
                         </div>
 

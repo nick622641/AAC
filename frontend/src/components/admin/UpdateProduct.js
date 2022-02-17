@@ -6,7 +6,7 @@ import { updateProduct, getProductDetails, updateImages, deleteImage, clearError
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
-import { FormControl, FormControlLabel, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { FormControl, FormControlLabel, IconButton, InputLabel, MenuItem, Select, TextField, Tooltip } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -21,7 +21,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEdittor from '../layouts/RichtextEdittor'
+import RichtextEditor from '../layouts/RichtextEditor'
 import Checkbox from '@mui/material/Checkbox'
 import RichtextPreview from '../layouts/RichtextPreview'
 
@@ -393,7 +393,7 @@ const UpdateProduct = () => {
 
                                     <Fragment>
                                     
-                                        <RichtextEdittor text={description} setText={setDescription} />  
+                                        <RichtextEditor text={description} setText={setDescription} />  
 
                                         <RichtextPreview text={description} />
 
@@ -424,13 +424,15 @@ const UpdateProduct = () => {
                                 <CloseIcon />
                             </Fab>
 
-                            <IconButton 
-                                color="primary" 
-                                sx={{ position: 'absolute', top: 10, left: 10 }}
-                                onClick={() => setFullscreen(!fullscreen)}
-                            >
-                                <FitScreenIcon />
-                            </IconButton>
+                            <Tooltip title="Expand">
+                                <IconButton 
+                                    color="primary" 
+                                    sx={{ position: 'absolute', top: 10, left: 10 }}
+                                    onClick={() => setFullscreen(!fullscreen)}
+                                >
+                                    <FitScreenIcon />
+                                </IconButton>
+                            </Tooltip>
 
                         </div>
 

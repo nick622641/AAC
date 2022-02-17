@@ -73,9 +73,16 @@ const BlogDetails = () => {
             imgs[i].setAttribute('title', imgs[i].alt)   
             const nextEl = imgs[i].nextElementSibling  
             const parent = imgs[i].parentNode
+            // const align = window.getComputedStyle(parent, null).textAlign
+            // parent.style.float = align === 'left' && 'left'
+            // parent.style.float = align === 'right' && 'right'            
             const figure = document.createElement("figure")               
-            const figCap = document.createElement("figcaption")   
-            figCap.innerText = imgs[i].alt            
+            const figCap = document.createElement("figcaption") 
+            // figure.style.margin = align === 'right' && '0 0 0 10px'
+            // figure.style.margin = align === 'left' && '0 10px 0 0'
+            // figure.style.textAlign = align === 'right' && 'right'
+            // figure.style.textAlign = align === 'left' && 'left'    
+            figCap.innerText = imgs[i].alt    
             figure.appendChild(imgs[i])    
             figure.appendChild(figCap)    
             parent.insertBefore(figure, nextEl)            

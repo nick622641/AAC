@@ -45,6 +45,9 @@ footer {
 small {
   font-size: 12px;
 }
+code {
+  font-family: 'Courier New', Courier, monospace;
+}
 figcaption {
   font-size: 12px;
 }

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getBlogComments, deleteComment, clearErrors } from '../../actions/blogActions'
 import { DELETE_COMMENT_RESET } from '../../constants/blogConstants'
-import { FormControl, TextField } from '@mui/material'
+import { FormControl, TextField, Tooltip } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Modal from '../modals/Modal'
@@ -166,13 +166,15 @@ const BlogComments = () => {
                                 </Fab>
                             </Link>
 
-                            <IconButton 
-                                color="primary" 
-                                sx={{ position: 'absolute', top: 10, left: 10 }}
-                                onClick={() => setFullscreen(!fullscreen)}
+                            <Tooltip title="Expand">
+                                <IconButton 
+                                    color="primary" 
+                                    sx={{ position: 'absolute', top: 10, left: 10 }}
+                                    onClick={() => setFullscreen(!fullscreen)}
                             >
-                                <FitScreenIcon />
-                            </IconButton>
+                                    <FitScreenIcon />
+                                </IconButton>
+                            </Tooltip>
 
                         </div>
                        

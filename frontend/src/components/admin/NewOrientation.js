@@ -9,8 +9,9 @@ import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import SendIcon from '@mui/icons-material/Send'
-import { FormControl, TextField } from '@mui/material'
+import { FormControl, IconButton, TextField, Tooltip } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const NewOrientation = () => {
     
@@ -18,6 +19,7 @@ const NewOrientation = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [ name, setName ] = useState('')  
+    const [ fullscreen, setFullscreen ] = useState(false)
     const { loading, error, success } = useSelector( state => state.newOrientation )
 
     useEffect(() => { 
@@ -55,7 +57,7 @@ const NewOrientation = () => {
                         
                     </aside>            
 
-                    <article>         
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>         
                             
                         <div className="user-form cart"> 
 
@@ -96,6 +98,16 @@ const NewOrientation = () => {
                                     <CloseIcon />
                                 </Fab>
                             </Link>
+
+                            <Tooltip title="Expand">
+                                <IconButton 
+                                    color="primary" 
+                                    sx={{ position: 'absolute', top: 10, left: 10 }}
+                                    onClick={() => setFullscreen(!fullscreen)}
+                                >
+                                    <FitScreenIcon />
+                                </IconButton>
+                            </Tooltip>
                         </div>
                         
                     </article>

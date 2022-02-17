@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import axios from 'axios'
 import { Editor } from "react-draft-wysiwyg"
 import { EditorState, ContentState, convertToRaw } from 'draft-js'
 import htmlToDraft from 'html-to-draftjs'
@@ -13,13 +14,16 @@ const RichtextEdittor = ({ text, setText }) => {
         () => EditorState.createEmpty(),
     )  
     const handleEditorChange = (state) => {   
+
         setEditorState(state)
+
         if (editorState.getCurrentContent().hasText()) {
-            setText(draftToHtml(convertToRaw(state.getCurrentContent())))     
+
+            setText(draftToHtml(convertToRaw(state.getCurrentContent())))   
+
         } else {
             setText('')           
-        }
-          
+        }          
     }
     const getComment = useCallback((text) => {
         setComment(text)
@@ -35,6 +39,38 @@ const RichtextEdittor = ({ text, setText }) => {
               
     }, [ comment, getComment ])  
 
+    const uploadImageCallBack = (file) => {     
+
+        return new Promise(
+
+            (resolve, reject) => {
+
+                const reader = new FileReader()
+
+                reader.onload = async () => {
+
+                    if (reader.readyState === 2) {
+
+                        const formData = new FormData()
+                        formData.append('image', reader.result)  
+
+                        const config = {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }
+                            
+                        const data = await axios.post('/api/v1/admin/image/new', formData, config)
+
+                        resolve({ data: { link: data.data.url } })   
+                    }
+                    
+                }  
+                reader.readAsDataURL(file)                  
+            }
+        )        
+    }          
+    
     return (
 
         <Editor
@@ -46,7 +82,11 @@ const RichtextEdittor = ({ text, setText }) => {
             stripPastedStyles
             spellCheck  
             toolbar={{
-                image: {                                    
+                image: {   
+                    urlEnabled: true,
+                    previewImage: true,
+                    alignmentEnabled: true,
+                    uploadCallback: uploadImageCallBack,                                
                     alt: {
                             present: true,
                             mandatory: true
@@ -55,7 +95,8 @@ const RichtextEdittor = ({ text, setText }) => {
                         width: 240,
                         height: 'auto'                        
                     }
-                },                
+                },   
+                inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',             
                 fontFamily: {
                     options: ['Roboto', 'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],         
                 },                

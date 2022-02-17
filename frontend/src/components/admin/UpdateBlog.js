@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { updateBlog, getBlogDetails, updateImages, deleteImage, clearErrors } from '../../actions/blogActions'
 import { UPDATE_BLOG_RESET } from '../../constants/blogConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/blogConstants'
-import { FormControl, FormControlLabel, IconButton, TextField } from '@mui/material'
+import { FormControl, FormControlLabel, IconButton, TextField, Tooltip } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
@@ -17,7 +17,7 @@ import DragnDrop from './DragnDrop'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEdittor from '../layouts/RichtextEdittor'
+import RichtextEditor from '../layouts/RichtextEditor'
 import Checkbox from '@mui/material/Checkbox'
 import RichtextPreview from '../layouts/RichtextPreview'
 
@@ -111,7 +111,7 @@ const UpdateBlog = () => {
         formData.set('title', title)
         formData.set('tags', tags)       
         formData.set('description', description)    
-        formData.set('visible', visible)   
+        formData.set('visible', visible)  
 
         images.forEach(image => {
             formData.append('images', image)
@@ -130,11 +130,12 @@ const UpdateBlog = () => {
             reader.onload = () => {
                 if (reader.readyState === 2) {
                     setImagesPreview(oldArray => [...oldArray, reader.result])
-                    setImages(oldArray => [...oldArray, reader.result])
+                    setImages(oldArray => [...oldArray, reader.result])                    
                 }
+                
             }
             reader.readAsDataURL(file)
-        })
+        })        
     } 
 
     return (
@@ -245,7 +246,7 @@ const UpdateBlog = () => {
 
                                     <Fragment>
 
-                                        <RichtextEdittor text={description} setText={setDescription} /> 
+                                        <RichtextEditor text={description} setText={setDescription} /> 
 
                                         <RichtextPreview text={description} />
 
@@ -275,13 +276,15 @@ const UpdateBlog = () => {
                                 <CloseIcon />
                             </Fab>
 
-                            <IconButton 
-                                color="primary" 
-                                sx={{ position: 'absolute', top: 10, left: 10 }}
-                                onClick={() => setFullscreen(!fullscreen)}
-                            >
-                                <FitScreenIcon />
-                            </IconButton>
+                            <Tooltip title="Expand">
+                                <IconButton 
+                                    color="primary" 
+                                    sx={{ position: 'absolute', top: 10, left: 10 }}
+                                    onClick={() => setFullscreen(!fullscreen)}
+                                >
+                                    <FitScreenIcon />
+                                </IconButton>
+                            </Tooltip>
 
                         </div>                        
 

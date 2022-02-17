@@ -9,7 +9,7 @@ import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import SendIcon from '@mui/icons-material/Send'
-import { FormControl, TextField } from '@mui/material'
+import { FormControl, TextField, Tooltip } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import IconButton from '@mui/material/IconButton'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
@@ -113,13 +113,15 @@ const UpdateArtist = () => {
                                 </Fab>
                             </Link>
 
-                            <IconButton 
-                                color="primary" 
-                                sx={{ position: 'absolute', top: 10, left: 10 }}
-                                onClick={() => setFullscreen(!fullscreen)}
-                            >
-                                <FitScreenIcon />
-                            </IconButton>
+                            <Tooltip title="Expand">
+                                <IconButton 
+                                    color="primary" 
+                                    sx={{ position: 'absolute', top: 10, left: 10 }}
+                                    onClick={() => setFullscreen(!fullscreen)}
+                                >
+                                    <FitScreenIcon />
+                                </IconButton>
+                            </Tooltip>
                             
                         </div>
                         

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getProductReviews, deleteReview, clearErrors } from '../../actions/productActions'
 import { DELETE_REVIEW_RESET } from '../../constants/productConstants'
-import { FormControl, TextField } from '@mui/material'
+import { FormControl, TextField, Tooltip } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import Sidebar from '../admin/Sidebar'
 import Modal from '../modals/Modal'
@@ -166,13 +166,15 @@ const ProductReviews = () => {
                                 </Fab>
                             </Link>
 
-                            <IconButton 
-                                color="primary" 
-                                sx={{ position: 'absolute', top: 10, left: 10 }}
-                                onClick={() => setFullscreen(!fullscreen)}
+                            <Tooltip title="Expand">
+                                <IconButton 
+                                    color="primary" 
+                                    sx={{ position: 'absolute', top: 10, left: 10 }}
+                                    onClick={() => setFullscreen(!fullscreen)}
                             >
-                                <FitScreenIcon />
-                            </IconButton>
+                                    <FitScreenIcon />
+                                </IconButton>
+                            </Tooltip>
 
                         </div>
                        

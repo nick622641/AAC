@@ -17,6 +17,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
+import { Tooltip } from '@mui/material'
 
 const ArtistList = () => {
 
@@ -160,13 +161,15 @@ const ArtistList = () => {
                                     </Fab>
                                 </Link>
 
-                                <IconButton 
-                                    color="primary" 
-                                    sx={{ position: 'absolute', top: 10, left: 10 }}
-                                    onClick={() => setFullscreen(!fullscreen)}
-                                >
-                                    <FitScreenIcon />
-                                </IconButton>
+                                <Tooltip title="Expand">
+                                    <IconButton 
+                                        color="primary" 
+                                        sx={{ position: 'absolute', top: 10, left: 10 }}
+                                        onClick={() => setFullscreen(!fullscreen)}
+                                    >
+                                        <FitScreenIcon />
+                                    </IconButton>
+                                </Tooltip>
 
                             </div> 
                         
