@@ -17,7 +17,6 @@ import Lightbox from './Lightbox'
 import Callout from './Callout'
 import Social from '../layouts/Social'
 import FormattedPrice from '../layouts/FormattedPrice'
-import parse from 'html-react-parser'
 import IconButton from '@mui/material/IconButton'
 import EmailIcon from '@mui/icons-material/Email'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
@@ -25,6 +24,7 @@ import LoginIcon from '@mui/icons-material/Login'
 import Quantity from '../layouts/Quantity'
 import Rating from '@mui/material/Rating'
 import StructuredData from './StructuredData'
+import RichtextOutput from '../layouts/RichtextOutput'
 
 const ProductDetails = () => {   
 
@@ -72,37 +72,6 @@ const ProductDetails = () => {
     const deleteReviewHandler = (id) => {
         dispatch(deleteReview(id, product._id))        
     }  
-
-    const captionImages = (imgs) => {     
-        for(let i = 0; i < imgs.length; i++) {
-            imgs[i].setAttribute('title', imgs[i].alt)   
-            const nextEl = imgs[i].nextElementSibling  
-            const parent = imgs[i].parentNode
-            // const align = window.getComputedStyle(parent, null).textAlign
-            // parent.style.float = align === 'left' && 'left'
-            // parent.style.float = align === 'right' && 'right'            
-            const figure = document.createElement("figure")               
-            const figCap = document.createElement("figcaption") 
-            // figure.style.margin = align === 'right' && '0 0 10px 10px'
-            // figure.style.margin = align === 'left' && '0 10px 10px 0'
-            // figure.style.textAlign = align === 'right' && 'right'
-            // figure.style.textAlign = align === 'left' && 'left'    
-            figCap.innerText = imgs[i].alt    
-            figure.appendChild(imgs[i])    
-            figure.appendChild(figCap)    
-            parent.insertBefore(figure, nextEl)           
-        }        
-    }
-
-    useEffect(() => {
-        if(!loading) {
-            const imgs = document.querySelectorAll('.blog-content img')
-            const figures = document.querySelectorAll('.blog-content figure')
-            if(imgs.length > 0 && figures.length === 0) {
-                captionImages(imgs)
-            }            
-        } 
-    }, [loading])
 
     useEffect( () => {   
 
@@ -323,9 +292,11 @@ const ProductDetails = () => {
                                 </div>
                                 <div className="col-6" style={{ fontSize: "14px" }}>
 
-                                    {product.description && parse(product.description)}                                                               
+                                    {product.description && (
+                                        <RichtextOutput text={product.description} />
+                                    )}
                                     
-                                    <div style={{ clear: "both" }}>         
+                                    <div>         
 
                                         <small>Contact Us</small>  
 

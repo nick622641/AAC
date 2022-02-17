@@ -442,7 +442,7 @@ section .callout h3 {
 .blog-content figure {
   text-align: center;
 }
-.blog-content figure:nth-child(even) {
+/* .blog-content figure:nth-child(even) {
   float: left;
   margin-right: 10px;
   text-align: left;
@@ -451,13 +451,7 @@ section .callout h3 {
   float: right;
   margin-left: 10px;
   text-align: right;
-}
-.blog-content figure:last-child {
-  float: none;
-  clear: both;
-  margin-right: 10px;
-  text-align: right;
-}
+} */
 .blog-content p {
   margin-bottom: 20px
 }
@@ -540,8 +534,9 @@ section .callout h3 {
     max-width: 50%;
     margin: 0;
   }
+  .blog-content div,
   .blog-content figure {
-    text-align: center;    
+    text-align: center !important;    
     float: none !important;
     margin: 0 auto !important;
   }
