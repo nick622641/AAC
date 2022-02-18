@@ -14,10 +14,10 @@ const RichtextPreview = ({ text }) => {
         <Fragment>
 
             <Tooltip title={ previewVisible ? 'Hide Preview' : 'Show Preview' } arrow> 
-                <IconButton onClick={() => { setPreviewVisible(!previewVisible) }}>
+                <IconButton onClick={ () => setPreviewVisible(!previewVisible) }>
                     {previewVisible 
                         ? <VisibilityIcon fontSize="small" /> 
-                        : <VisibilityOff fontSize="small" />  
+                        : <VisibilityOff  fontSize="small" />  
                     }                
                 </IconButton>
             </Tooltip>
@@ -26,7 +26,7 @@ const RichtextPreview = ({ text }) => {
 
                 <div className="rt-preview">
                     
-                    <RichtextOutput text={text} />     
+                    <RichtextOutput text={text}  draft={true} />     
 
                 </div>
 

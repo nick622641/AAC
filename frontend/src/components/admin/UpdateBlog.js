@@ -136,7 +136,7 @@ const UpdateBlog = () => {
             }
             reader.readAsDataURL(file)
         })        
-    } 
+    }     
 
     return (
 
@@ -242,7 +242,7 @@ const UpdateBlog = () => {
 
                                 <h4>Content</h4> 
 
-                                {description && (  
+                                {description !== '' && (  
 
                                     <Fragment>
 

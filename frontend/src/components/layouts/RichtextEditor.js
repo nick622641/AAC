@@ -17,14 +17,14 @@ const RichtextEditor = ( { text, setText } ) => {
     const handleEditorChange = ( state ) => {   
         setEditorState( state )      
         if ( editorState.getCurrentContent().hasText() ) {
-            setText( draftToHtml( convertToRaw( state.getCurrentContent() ) ) )              
+            setText( draftToHtml( convertToRaw( state.getCurrentContent() ) ) )  
         } else {
             setText('')           
         }          
     }
 
     const getComment = useCallback( ( text ) => {
-        setComment( text )     
+        setComment( text )    
       }, [])
 
     useEffect(() => {  
@@ -55,7 +55,7 @@ const RichtextEditor = ( { text, setText } ) => {
     return (
 
         <Editor
-            editorState={editorState}
+            editorState={ editorState }
             onEditorStateChange={ handleEditorChange }  
             editorClassName='editor-area'   
             toolbarClassName='richtext-editor' 
