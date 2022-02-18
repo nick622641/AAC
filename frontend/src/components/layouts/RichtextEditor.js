@@ -50,7 +50,16 @@ const RichtextEditor = ( { text, setText } ) => {
                 reader.readAsDataURL( file )                  
             }
         )      
-    }          
+    }   
+    
+    const embedVideoCallcack = ( url ) => {
+        if ( url.indexOf( 'youtube' ) >= 0 )  {
+            url = url.replace( '/watch/'  , '/embed/' )
+            url = url.replace( 'youtu.be/', 'youtube.com/embed/' )
+            url = url.replace( 'watch?v=' , 'embed/' )               
+        }    
+        return url     
+    }
     
     return (
 
@@ -62,26 +71,35 @@ const RichtextEditor = ( { text, setText } ) => {
             placeholder='Please enter your content here'
             stripPastedStyles
             spellCheck  
-            toolbar={{
-                image: {   
-                    urlEnabled: true,
-                    previewImage: true,
-                    alignmentEnabled: true,
-                    uploadCallback: uploadImageCallBack,                                
-                    alt: {
+            toolbar={ 
+                {                 
+                    embedded: {
+                        embedCallback: embedVideoCallcack,
+                        defaultSize: {
+                            height: '300',
+                            width: '100%'
+                        }
+                    },               
+                    image: {   
+                        uploadCallback: uploadImageCallBack,  
+                        urlEnabled: true,
+                        previewImage: true,
+                        alignmentEnabled: true,                        
+                        inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',                              
+                        alt: {
                             present: true,
                             mandatory: true
                         },
-                    defaultSize: {
-                        width: 240,
-                        height: 'auto'                        
-                    }
-                },   
-                inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',             
-                fontFamily: {
-                    options: ['Roboto', 'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana']        
-                }                
-            }}                             
+                        defaultSize: {
+                            width: 240,
+                            height: 'auto'                        
+                        }
+                    },                              
+                    fontFamily: {
+                        options: ['Roboto', 'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana']        
+                    }                
+                }
+            }                             
         />
 
     )
