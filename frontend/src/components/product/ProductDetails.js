@@ -26,9 +26,12 @@ import Rating from '@mui/material/Rating'
 import StructuredData from './StructuredData'
 import RichtextOutput from '../layouts/RichtextOutput'
 
-const ProductDetails = () => {   
+const ProductDetails = () => { 
 
-    const id       = useParams().id    
+    const query = useParams().name
+    let name    = query.replace(/-/g, ' ')    
+    name        = name.replace(/_/g, '-')  
+
     const alert    = useAlert()
     const dispatch = useDispatch()
 
@@ -75,13 +78,13 @@ const ProductDetails = () => {
 
     useEffect( () => {   
 
-        dispatch(getProductDetails(id))
+        dispatch(getProductDetails(name))
 
         dispatch(getRelatedProducts())
         
-        if(error) { 
-            alert.error(error)
-            dispatch(clearErrors())
+        if(error) {            
+            alert.error(error)  
+            dispatch(clearErrors())          
         } 
         if(reviewError) { 
             alert.error(reviewError)
@@ -101,10 +104,10 @@ const ProductDetails = () => {
             alert.success('Review Deleted Successfully')            
             dispatch({ type: DELETE_REVIEW_RESET })
         }         
-    }, [dispatch, success, alert, error, reviewError, id, deleteError, isDeleted ])
+    }, [dispatch, success, alert, error, reviewError, name, deleteError, isDeleted ])
 
     const addToCart = () => {
-        dispatch(addItemToCart(id, quantity))
+        dispatch(addItemToCart(product.name, quantity))
         alert.success('Item Added to Cart')
     }        
 
@@ -228,7 +231,7 @@ const ProductDetails = () => {
                                                             Post Review  
                                                         </Fragment>      
                                                     : 
-                                                        <Link to={`/login?redirect=artwork/${id}`}>
+                                                        <Link to={`/login?redirect=artwork/${query}`}>
                                                             <IconButton>
                                                                 <LoginIcon />
                                                             </IconButton>    
@@ -241,7 +244,7 @@ const ProductDetails = () => {
                                                     <tr>
                                                         <td></td>
                                                         <td>
-                                                            <Link to={`/admin/product/${product._id}`}>
+                                                            <Link to={`/admin/product/${query}`}>
                                                                 <IconButton>
                                                                     <EditOutlinedIcon />
                                                                 </IconButton>  

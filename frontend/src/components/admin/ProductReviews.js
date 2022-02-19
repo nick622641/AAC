@@ -57,7 +57,13 @@ const ProductReviews = () => {
     }
     const setReviews = () => {
         const data = {
-            columns: [               
+            columns: [  
+                {
+                    label: 'User',
+                    field: 'user',
+                    sort: 'asc',
+                    width: 120
+                },             
                 {
                     label: 'Rating',
                     field: 'rating',
@@ -65,32 +71,25 @@ const ProductReviews = () => {
                     width: 75
                 },
                 {
-                    label: 'Comment',
-                    field: 'comment',
-                    sort: 'disabled',
-                    width: 100
-                },
-                {
-                    label: 'User',
-                    field: 'user',
-                    sort: 'asc',
-                    width: 120
-                },
-                {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'disabled',
                     width: 100                  
-                }
+                },
+                {
+                    label: 'Comment',
+                    field: 'comment',
+                    sort: 'disabled',
+                    width: 100
+                }                               
             ],
             rows: []
         }
 
         reviews.forEach( review => {
             data.rows.push({
+                user: review.name,
                 rating: review.rating,
-                comment: parse(review.comment), 
-                user: review.name,                
                 actions:                 
                     <Fragment> 
                         <IconButton 
@@ -101,7 +100,8 @@ const ProductReviews = () => {
                         >
                             <DeleteOutlineIcon color="danger" />
                         </IconButton> 
-                    </Fragment> 
+                    </Fragment>,
+                comment: parse(review.comment)                
             })
         })
 

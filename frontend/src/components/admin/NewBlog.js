@@ -81,6 +81,11 @@ const NewBlog = () => {
         })   
     }  
 
+    const sanitizeInput = (value) => {
+        value = value.replace(/[^a-z0-9'. -]/ig, '')
+        setTitle(value)
+    }
+
     return (
 
         <Fragment>
@@ -127,7 +132,10 @@ const NewBlog = () => {
                                                 label="Blog Title" 
                                                 value={title}
                                                 variant="standard"
-                                                onChange={(e) => setTitle(e.target.value)} 
+                                                onChange={(e) => {
+                                                    setTitle(e.target.value)
+                                                    sanitizeInput(e.target.value)
+                                                }} 
                                                 sx={{ mb: 1 }}
                                             />                                 
                                         </FormControl>

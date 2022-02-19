@@ -20,6 +20,9 @@ import {
     BLOG_DETAILS_REQUEST,
     BLOG_DETAILS_SUCCESS,
     BLOG_DETAILS_FAIL,   
+    ADMIN_BLOG_DETAILS_REQUEST,
+    ADMIN_BLOG_DETAILS_SUCCESS,
+    ADMIN_BLOG_DETAILS_FAIL,
     DELETE_IMAGE_REQUEST,
     DELETE_IMAGE_SUCCESS,
     DELETE_IMAGE_RESET,
@@ -143,18 +146,18 @@ export const blogReducer = ( state = {}, action ) => {
         case UPDATE_IMAGE_FAIL:                
         case DELETE_BLOG_FAIL:
         case UPDATE_BLOG_FAIL:
-                return {
-                    ...state,
-                    error: action.payload,
-                    loading: false,
-                }
-        case DELETE_IMAGE_RESET:
-        case UPDATE_IMAGE_RESET:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
+        case DELETE_IMAGE_RESET:        
         case DELETE_BLOG_RESET:
             return {
                 ...state,
                 isDeleted: false
             }
+        case UPDATE_IMAGE_RESET:
         case UPDATE_BLOG_RESET:
             return {
                 ...state,
@@ -184,6 +187,34 @@ export const blogDetailsReducer = ( state = { blog: {} }, action ) => {
                 blog: action.payload
             }
         case BLOG_DETAILS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state
+    }
+}
+
+export const adminBlogDetailsReducer = ( state = { blog: {} }, action ) => {
+    switch (action.type) {
+
+        case ADMIN_BLOG_DETAILS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case ADMIN_BLOG_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                blog: action.payload
+            }
+        case ADMIN_BLOG_DETAILS_FAIL:
             return {
                 ...state,
                 error: action.payload

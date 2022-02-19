@@ -25,7 +25,10 @@ import RichtextOutput from '../layouts/RichtextOutput'
 
 const BlogDetails = () => {   
 
-    const id       = useParams().id    
+    const query = useParams().title
+    let title    = query.replace(/-/g, ' ')    
+    title        = title.replace(/_/g, '-')  
+    
     const alert    = useAlert()
     const dispatch = useDispatch()
 
@@ -70,7 +73,7 @@ const BlogDetails = () => {
 
     useEffect( () => {   
 
-        dispatch(getBlogDetails(id))
+        dispatch(getBlogDetails(title))
 
         dispatch(getBlogs(1))      
         
@@ -98,7 +101,7 @@ const BlogDetails = () => {
             dispatch({ type: DELETE_COMMENT_RESET })
         } 
 
-    }, [dispatch, alert, error, id, success, commentError, isDeleted, deleteError ])      
+    }, [dispatch, alert, error, title, success, commentError, isDeleted, deleteError ])      
 
     return (
 
@@ -187,7 +190,7 @@ const BlogDetails = () => {
                                             Post Comment  
                                         </Fragment>      
                                     : 
-                                        <Link to={`/login?redirect=blog/${id}`}>
+                                        <Link to={`/login?redirect=blog/${title}`}>
                                             <IconButton>
                                                 <LoginIcon />
                                             </IconButton>    

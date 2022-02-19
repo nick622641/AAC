@@ -105,8 +105,10 @@ const ProductsList = () => {
         }
        
         products && products.forEach( product => {
+            let name = product.name.replace(/-/g, '_')    
+            name = name.replace(/ /g, '-') 
             data.rows.push({
-                url: <Link to={`/artwork/${product._id}`}>
+                url: <Link to={`/artwork/${name}`}>
                         <Avatar
                             src={product.images[0].thumbUrl} 
                             alt={product.name} 

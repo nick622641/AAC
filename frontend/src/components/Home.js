@@ -135,7 +135,7 @@ const Home = () => {
                          
                             <br />
 
-                            <Link className="submit chevron-hover" to="/artwork/61c8b87881e3744d5c99d26b">
+                            <Link className="submit chevron-hover" to="/artwork/The-Waiting">
                                 Shop Now 
                             </Link>
                         </div>
@@ -172,7 +172,7 @@ const Home = () => {
 
                     <br />
 
-                    <Link className="submit chevron-hover" to="/artwork/61c8cad58eae4a8146dacc80">
+                    <Link className="submit chevron-hover" to="/artwork/Songs-P2448_01">
                         Explore
                     </Link>
                 </div>

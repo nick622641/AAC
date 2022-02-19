@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { MDBDataTableV5 } from 'mdbreact'
 import { Button } from '@mui/material'
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
@@ -62,6 +63,61 @@ const ConfirmOrder = () => {
         navigate('/payment')
     }
 
+    const setCartItems = () => {
+        const data = {
+            columns: [
+                {
+                    label: 'Preview',
+                    field: 'url',
+                    sort: 'disabled',
+                    width: 75
+                },                
+                {
+                    label: 'Title',
+                    field: 'name',
+                    sort: 'disabled',
+                    width: 100
+                },  
+                {
+                    label: 'Price',
+                    field: 'price',
+                    sort: 'disabled',
+                    width: 100
+                },
+                {
+                    label: 'Sub Total',
+                    field: 'sub',
+                    sort: 'disabled',
+                    width: 150
+                }   
+            ],
+            rows: []
+        }
+       
+        cartItems && cartItems.forEach( item => {
+            let name = item.name.replace(/-/g, '_')    
+            name = name.replace(/ /g, '-') 
+            data.rows.push({
+                url: <Link to={`/artwork/${name}`}>
+                        <Avatar
+                            src={item.image} 
+                            alt={item.name} 
+                            sx={{ width: 50, height: 50 }}
+                        />                                          
+                    </Link>,                  
+                name: <Link to={`/artwork/${name}`}>{item.name}</Link>,
+                price: <Fragment>
+                            {item.quantity}
+                            &nbsp;x&nbsp;
+                            <FormattedPrice number={item.price} />
+                        </Fragment>,         
+                sub: <FormattedPrice number={(item.quantity * item.price)} />              
+            })
+        })
+
+        return data
+    }
+
     return (
 
         <Fragment>
@@ -76,45 +132,15 @@ const ConfirmOrder = () => {
 
                         <CheckoutSteps shipping confirmOrder /> 
 
-                        <table className="bordered-table">
-                            <tbody>                               
-
-                                <tr className="bg-grey">
-                                    <th>Item</th>
-                                    <th>Title</th>
-                                    <th>Price</th>
-                                    <th>Sub total</th>
-                                </tr>
-                                    
-                                {cartItems.map(item => (
-                                    <tr key={item.product}>
-                                        <td>
-                                            <Link to={`/artwork/${item.product}`}>
-                                                <Avatar
-                                                    src={item.image} 
-                                                    alt={item.name} 
-                                                    sx={{ width: 50, height: 50 }}
-                                                />                                 
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <Link to={`/artwork/${item.product}`}>
-                                                {item.name}
-                                            </Link>
-                                        </td>                                
-                                        <td>                                    
-                                            {item.quantity}
-                                            &nbsp;x&nbsp;
-                                            <FormattedPrice number={item.price} />                                    
-                                        </td>
-                                        <td>
-                                            <FormattedPrice number={(item.quantity * item.price)} />                                                                          
-                                        </td>                                     
-                                    </tr>
-                                ))}                           
-
-                            </tbody>
-                        </table>   
+                        <MDBDataTableV5 
+                            className="cart-table"
+                            data={setCartItems()}   
+                            scrollX  
+                            searchTop
+                            searching={false} 
+                            paging={false}
+                            info={false}
+                        />
 
                         <h4 className="text-center">Shipping Details</h4>                                       
 

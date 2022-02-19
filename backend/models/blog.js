@@ -5,6 +5,7 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter a title'],
         trim: true,
+        unique: true,
         maxLength: [100, 'Title may not exceed 100 characters']
     },    
     description: {

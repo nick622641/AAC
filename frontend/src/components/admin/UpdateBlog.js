@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { updateBlog, getBlogDetails, updateImages, deleteImage, clearErrors } from '../../actions/blogActions'
+import { updateBlog, getAdminBlogDetails, updateImages, deleteImage, clearErrors } from '../../actions/blogActions'
 import { UPDATE_BLOG_RESET } from '../../constants/blogConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/blogConstants'
 import { FormControl, FormControlLabel, IconButton, TextField, Tooltip } from '@mui/material'
@@ -24,11 +24,12 @@ import RichtextPreview from '../layouts/RichtextPreview'
 const UpdateBlog = () => {
 
     const alert     = useAlert()
-    const blogId    = useParams().id   
     const navigate  = useNavigate()    
     const dispatch  = useDispatch()
 
-    const { error, blog } = useSelector( state => state.blogDetails )
+    const blogId = useParams().id
+
+    const { error, blog } = useSelector( state => state.adminBlogDetails )
     const { loading, isUpdated, error: updateError, error: deleteError, isDeleted } = useSelector( state => state.blog )  
     
     const [ title,           setTitle          ] = useState('')
@@ -53,15 +54,16 @@ const UpdateBlog = () => {
     const deleteImageHandler = (id, imgIndex, imgId) => {
         dispatch(deleteImage(id, imgIndex, imgId))
     }  
+
     const updateImagesHandler = (id, initPos, finPos) => {
         dispatch(updateImages(id, initPos, finPos))
     }  
 
     useEffect(() => {       
 
-        if (blog && blog._id !== blogId) {    
+        if (blog && blog._id !== blogId) {              
 
-            dispatch(getBlogDetails(blogId))             
+            dispatch(getAdminBlogDetails(blogId))             
 
         } else {
             
@@ -73,8 +75,7 @@ const UpdateBlog = () => {
         }
 
         if(error) {
-            alert.error(error)
-            dispatch(clearErrors())
+            return alert.error(error)
         }
 
         if(updateError) {
@@ -84,7 +85,7 @@ const UpdateBlog = () => {
         
         if(isUpdated) {            
             alert.success('Blog Updated Successfully')
-            dispatch(getBlogDetails(blogId))  
+            dispatch(getAdminBlogDetails(blogId))  
             dispatch({ type: UPDATE_BLOG_RESET })    
             setImages([])       
         } 
@@ -96,7 +97,7 @@ const UpdateBlog = () => {
 
         if(isDeleted) {
             alert.success('Image Deleted Successfully') 
-            dispatch(getBlogDetails(blogId))    
+            dispatch(getAdminBlogDetails(blogId))    
             dispatch({ type: DELETE_IMAGE_RESET })            
         }
         
@@ -136,7 +137,12 @@ const UpdateBlog = () => {
             }
             reader.readAsDataURL(file)
         })        
-    }     
+    }  
+    
+    const sanitizeInput = (value) => {
+        value = value.replace(/[^a-z0-9'. -]/ig, '')
+        setTitle(value)
+    }
 
     return (
 
@@ -195,7 +201,10 @@ const UpdateBlog = () => {
                                                 label="Blog Title" 
                                                 value={title}
                                                 variant="standard"
-                                                onChange={(e) => setTitle(e.target.value)} 
+                                                onChange={(e) => {
+                                                    setTitle(e.target.value)
+                                                    sanitizeInput(e.target.value)
+                                                }} 
                                                 sx={{ mb: 1 }}
                                             />                                 
                                         </FormControl>     
@@ -221,7 +230,7 @@ const UpdateBlog = () => {
                                     setInit={setInit}
                                     setFinal={setFinal}
                                     updateImagesHandler={updateImagesHandler}
-                                    productId={blogId}                                        
+                                    productId={blog._id}                                        
                                     init={init}
                                     final={final}
                                     oldImages={oldImages}
@@ -300,7 +309,7 @@ const UpdateBlog = () => {
                 content={
                     <Confirm 
                         onBackdropClick={toggleModal} 
-                        onConfirm={() => deleteImageHandler(blogId, imgIndex, imgId)} 
+                        onConfirm={() => deleteImageHandler(blog._id, imgIndex, imgId)} 
                         message="Delete Image"
                     />
                 }

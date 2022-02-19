@@ -105,6 +105,11 @@ const NewProduct = () => {
         })   
     }  
 
+    const sanitizeInput = (value) => {
+        value = value.replace(/[^a-z0-9'. -]/ig, '')
+        setName(value)
+    }
+
     return (
 
         <Fragment>
@@ -132,7 +137,10 @@ const NewProduct = () => {
                                         label="Artwork Title" 
                                         value={name}
                                         variant="standard"
-                                        onChange={(e) => setName(e.target.value)} 
+                                        onChange={(e) => {
+                                            setName(e.target.value)
+                                            sanitizeInput(e.target.value)
+                                        }} 
                                         sx={{ mb: 1 }}
                                     />                                 
                                 </FormControl>

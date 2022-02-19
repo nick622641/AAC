@@ -27,7 +27,7 @@ const BlogsList = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { loading, error, blogs         } = useSelector( state => state.blogs )
+    const { loading, error, blogs } = useSelector( state => state.blogs )
     const { loading: isLoading, error: deleteError, isDeleted } = useSelector( state => state.blog  )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
@@ -93,11 +93,13 @@ const BlogsList = () => {
         }
 
         blogs && blogs.forEach( blog => {
+            let title = blog.title.replace(/-/g, '_')    
+            title = title.replace(/ /g, '-') 
             data.rows.push({
-                url: <Link to={`/blog/${blog._id}`}>
+                url: <Link to={`/blog/${title}`}>
                         <Avatar
                             src={blog.images[0].thumbUrl} 
-                            alt={blog.name} 
+                            alt={blog.title} 
                             sx={{ width: 50, height: 50 }}
                         />          
                     </Link>,

@@ -59,18 +59,6 @@ const BlogComments = () => {
         const data = {
             columns: [
                 {
-                    label: 'Comment ID',
-                    field: 'id',
-                    sort: 'disabled',
-                    width: 200
-                },               
-                {
-                    label: 'Comment',
-                    field: 'comment',
-                    sort: 'disabled',
-                    width: 100
-                },
-                {
                     label: 'User',
                     field: 'user',
                     sort: 'asc',
@@ -81,16 +69,20 @@ const BlogComments = () => {
                     field: 'actions',
                     sort: 'disabled',
                     width: 100                  
-                }
+                },              
+                {
+                    label: 'Comment',
+                    field: 'comment',
+                    sort: 'disabled',
+                    width: 100
+                }                              
             ],
             rows: []
         }
 
         comments.forEach( c => {
             data.rows.push({
-                id: c._id,
-                comment: parse(c.comment), 
-                user: c.name,                
+                user: c.name, 
                 actions:                 
                     <Fragment> 
                         <IconButton 
@@ -101,7 +93,8 @@ const BlogComments = () => {
                         >
                             <DeleteOutlineIcon color="danger" />
                         </IconButton> 
-                    </Fragment> 
+                    </Fragment> ,
+                comment: parse(c.comment)                 
             })
         })
 

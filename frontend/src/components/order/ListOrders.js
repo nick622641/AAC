@@ -32,6 +32,12 @@ const ListOrders = () => {
         const data = {
             columns: [
                 {
+                    label: 'Browse',
+                    field: 'actions',
+                    sort: 'disabled',
+                    width: 100
+                },
+                {
                     label: 'Order No',
                     field: 'id',
                     sort: 'disabled',
@@ -54,30 +60,24 @@ const ListOrders = () => {
                     field: 'status',
                     sort: 'asc',
                     width: 100
-                },
-                {
-                    label: 'Browse',
-                    field: 'actions',
-                    sort: 'disabled',
-                    width: 100
-                }
+                }                
             ],
             rows: []
         }
 
         orders && orders.forEach( order => {
 
-            data.rows.push({                 
-                id: order._id,
-                numOfItems: order.orderItems.length,
-                amount: `$${order.totalPrice}`, 
-                status: order.orderStatus,
+            data.rows.push({    
                 actions:
                     <Link to={`/order/${order._id}`}>
                         <IconButton>
                             <VisibilityIcon fontSize="small" />
                         </IconButton>
-                    </Link>    
+                    </Link>,             
+                id: order._id,
+                numOfItems: order.orderItems.length,
+                amount: `$${order.totalPrice}`, 
+                status: order.orderStatus                   
             })
         })
 

@@ -5,6 +5,7 @@ const router = express.Router()
 const { 
     getBlogs, 
     getAdminBlogs,
+    getAdminBlog,
     getSingleBlog,
     newBlog, 
     updateBlog, 
@@ -24,6 +25,7 @@ router.route('/blog/:id').get(getSingleBlog)
 
 router.route('/admin/blog/new').post(isAuthenticatedUser, authorizeRoles('admin'), newBlog)
 router.route('/admin/blog/:id')
+    .get(isAuthenticatedUser, authorizeRoles('admin'), getAdminBlog)
     .put   (isAuthenticatedUser, authorizeRoles('admin'), updateBlog)
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteBlog)
 

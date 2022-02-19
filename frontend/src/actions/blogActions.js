@@ -19,6 +19,9 @@ import {
     BLOG_DETAILS_REQUEST,
     BLOG_DETAILS_SUCCESS,
     BLOG_DETAILS_FAIL,   
+    ADMIN_BLOG_DETAILS_REQUEST,
+    ADMIN_BLOG_DETAILS_SUCCESS,
+    ADMIN_BLOG_DETAILS_FAIL,
     DELETE_IMAGE_REQUEST,
     DELETE_IMAGE_SUCCESS,
     DELETE_IMAGE_FAIL,
@@ -88,7 +91,7 @@ export const getAdminBlogs = () => async (dispatch) => {
 export const getBlogDetails = (id) => async (dispatch) => {
     try {
 
-        dispatch({ type: BLOG_DETAILS_REQUEST })
+        dispatch({ type: BLOG_DETAILS_REQUEST })        
 
         const { data } = await axios.get(`/api/v1/blog/${id}`)
 
@@ -106,6 +109,30 @@ export const getBlogDetails = (id) => async (dispatch) => {
 
     }
 }
+
+// Get Single Blog Details Admin
+export const getAdminBlogDetails = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: ADMIN_BLOG_DETAILS_REQUEST })        
+
+        const { data } = await axios.get(`/api/v1/admin/blog/${id}`)
+
+        dispatch({
+            type: ADMIN_BLOG_DETAILS_SUCCESS,
+            payload: data.blog
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: ADMIN_BLOG_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+
 // New Blog (Admin)
 export const newBlog = (blogData) => async (dispatch) => {
     try {
@@ -145,13 +172,36 @@ export const updateBlog = (id, blogtData) => async (dispatch) => {
         const { data } = await axios.put(`/api/v1/admin/blog/${id}`, blogtData, config)
         dispatch({
             type: UPDATE_BLOG_SUCCESS,
-            payload: data.success
+            payload: data
         })
     } catch (error) {
         dispatch({
             type: UPDATE_BLOG_FAIL,
             payload: error.response.data.message
         })
+    }
+}
+
+// Update Blog Images (Admin)
+export const updateImages = (id, initPos, finPos) => async (dispatch) => {
+    try {
+
+        dispatch({ type: UPDATE_IMAGE_REQUEST })      
+
+        const { data } = await axios.put(`/api/v1/blogImage?id=${id}&initPos=${initPos}&finPos=${finPos}`)
+
+        dispatch({
+            type: UPDATE_IMAGE_SUCCESS,
+            payload: data
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: UPDATE_IMAGE_FAIL,
+            payload: error.response.data.message
+        })
+
     }
 }
 
@@ -195,28 +245,6 @@ export const deleteImage = (id, imgIndex, imgId) => async (dispatch) => {
 
         dispatch({
             type: DELETE_IMAGE_FAIL,
-            payload: error.response.data.message
-        })
-
-    }
-}
-// Update Blog Images (Admin)
-export const updateImages = (id, initPos, finPos) => async (dispatch) => {
-    try {
-
-        dispatch({ type: UPDATE_IMAGE_REQUEST })      
-
-        const { data } = await axios.put(`/api/v1/blogImage?id=${id}&initPos=${initPos}&finPos=${finPos}`)
-
-        dispatch({
-            type: UPDATE_IMAGE_SUCCESS,
-            payload: data.success
-        })
-        
-    } catch (error) {
-
-        dispatch({
-            type: UPDATE_IMAGE_FAIL,
             payload: error.response.data.message
         })
 

@@ -44,6 +44,7 @@ exports.newBlog = catchAsyncErrors(async (req, res, next) => {
     req.body.user = req.user.id
     
     const blog = await Blog.create(req.body)
+
     res.status(201).json({
         success: true,
         blog
@@ -137,7 +138,20 @@ exports.getAdminBlogs = async (req, res, next) => {
 // Get single blog details => /api/v1/blog/:id
 exports.getSingleBlog = catchAsyncErrors(async (req, res, next) => {   
     try {     
-        const blog = await Blog.findById(req.params.id)  
+        const blog = await Blog.findOne({ title: req.params.id })
+        res.status(200).json({
+            success: true,
+            blog
+        })
+    } catch(error) {
+        return next(new ErrorHandler('Blog not found', 404))    
+    }
+})
+
+// Get single blog details (Admin) => /api/v1/admin/blog/:id
+exports.getAdminBlog = catchAsyncErrors(async (req, res, next) => { 
+    try {   
+        const blog = await Blog.findById(req.params.id)
         res.status(200).json({
             success: true,
             blog
@@ -216,7 +230,7 @@ exports.updateImages = catchAsyncErrors(async (req, res, next) => {
         })
 
         res.status(200).json({
-            success: true,
+            success: true            
         })
     } catch (error) {
         return next(new ErrorHandler('Blog not found', 404)) 

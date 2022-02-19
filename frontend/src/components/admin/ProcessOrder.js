@@ -1,19 +1,20 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { getOrderDetails, updateOrder, clearErrors } from '../../actions/orderActions'
+import { FormControl, InputLabel, MenuItem, Select, Tooltip } from '@mui/material'
 import { UPDATE_ORDER_RESET } from '../../constants/orderConstants'
+import { MDBDataTableV5 } from 'mdbreact'
 import FormattedPrice from '../layouts/FormattedPrice'
+import MetaData from '../layouts/MetaData'
+import Loader from '../layouts/Loader'
+import Sidebar from '../admin/Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import AddTaskIcon from '@mui/icons-material/AddTask'
 import Avatar from '@mui/material/Avatar'
-import { FormControl, InputLabel, MenuItem, Select, Tooltip } from '@mui/material'
 import FormattedDate from '../layouts/FormattedDate'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
@@ -50,6 +51,57 @@ const ProcessOrder = () => {
 
     const isPaid = paymentInfo && paymentInfo.status === 'succeeded' ? true : false
 
+    const setCartItems = () => {
+        const data = {
+            columns: [
+                {
+                    label: 'Preview',
+                    field: 'url',
+                    sort: 'disabled',
+                    width: 75
+                },                
+                {
+                    label: 'Title',
+                    field: 'name',
+                    sort: 'disabled',
+                    width: 100
+                },  
+                {
+                    label: 'Quantity',
+                    field: 'quantity',
+                    sort: 'disabled',
+                    width: 100
+                },
+                {
+                    label: 'Price',
+                    field: 'price',
+                    sort: 'disabled',
+                    width: 150
+                }   
+            ],
+            rows: []
+        }
+       
+        orderItems && orderItems.forEach( item => {
+            let name = item.name.replace(/-/g, '_')    
+            name = name.replace(/ /g, '-') 
+            data.rows.push({
+                url: <Link to={`/artwork/${name}`}>
+                        <Avatar
+                            src={item.image} 
+                            alt={item.name} 
+                            sx={{ width: 50, height: 50 }}
+                        />                                          
+                    </Link>,                  
+                name: <Link to={`/artwork/${name}`}>{item.name}</Link>,
+                quantity: item.quantity,         
+                price: <FormattedPrice number={item.price} />              
+            })
+        })
+
+        return data
+    }
+
     return (
 
         <Fragment>
@@ -76,32 +128,15 @@ const ProcessOrder = () => {
 
                                     <h1>Order</h1>
 
-                                    <table className="middle-align bordered-table">
-                                        <tbody>
-                                            <tr className="bg-grey">
-                                                <td>Item</td>
-                                                <td>Title</td>
-                                                <td>Price</td>
-                                                <th>Quantity</th>
-                                            </tr>
-                                            {orderItems && orderItems.map(item => (
-                                                <tr key={item.product}>
-                                                    <td>
-                                                        <Link to={`/artwork/${item.product}`}>
-                                                            <Avatar
-                                                                src={item.image} 
-                                                                alt={item.name}
-                                                                sx={{ width: 50, height: 50 }}
-                                                            /> 
-                                                        </Link>
-                                                    </td>
-                                                    <td><Link to={`/artwork/${item.product}`}>{item.name}</Link></td>                                            
-                                                    <td><FormattedPrice number={item.price} /></td>
-                                                    <td>{item.quantity}</td> 
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>                                
+                                    <MDBDataTableV5 
+                                        className="cart-table"
+                                        data={setCartItems()}   
+                                        scrollX  
+                                        searchTop
+                                        searching={false} 
+                                        paging={false}
+                                        info={false}
+                                    />                           
 
                                     <table className="top-align">
                                         <tbody>

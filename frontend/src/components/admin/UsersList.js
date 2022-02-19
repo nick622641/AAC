@@ -25,6 +25,7 @@ const UsersList = () => {
     const navigate = useNavigate()
     const { loading, error, users } = useSelector( state => state.allUsers )
     const { isDeleted             } = useSelector( state => state.user )
+    const { user                  } = useSelector( state => state.auth )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
@@ -61,7 +62,13 @@ const UsersList = () => {
                     field: 'url',
                     sort: 'disabled',
                     width: 70
-                },                
+                },   
+                {
+                    label: 'Actions',
+                    field: 'actions',
+                    sort: 'disabled',
+                    width: 100
+                },             
                 {
                     label: 'Name',
                     field: 'name',
@@ -73,30 +80,22 @@ const UsersList = () => {
                     field: 'role',
                     sort: 'asc',
                     width: 90
-                },
-                {
-                    label: 'Actions',
-                    field: 'actions',
-                    sort: 'disabled',
-                    width: 100
-                }
+                }               
             ],
             rows: []
         }
 
-        users.forEach( user => {
+        users.forEach( u => {
             data.rows.push({
                 url: 
                     <Avatar
-                        src={user.avatar.url} 
-                        alt={user.name} 
+                        src={u.avatar.url} 
+                        alt={u.name} 
                         sx={{ width: 50, height: 50 }}
                     />,
-                name: user.name,
-                role: user.role,                
-                actions:                 
+                    actions:                 
                     <Fragment>                        
-                        <Link to={`/admin/user/${user._id}`}>
+                        <Link to={`/admin/user/${u._id}`}>
                             <IconButton>
                                 <EditOutlinedIcon />
                             </IconButton>
@@ -104,12 +103,15 @@ const UsersList = () => {
                         <IconButton 
                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
-                                setId(user._id)
+                                setId(u._id)
                             }}
+                            disabled={user._id === u._id ? true : false}
                         >
-                            <DeleteOutlineIcon color="danger" />
+                            <DeleteOutlineIcon color={user._id !== u._id ? 'danger' : 'secondary'} />
                         </IconButton>                       
-                    </Fragment> 
+                    </Fragment>,
+                name: u.name,
+                role: <span style={{ textTransform: 'capitalize' }}>{u.role}</span> 
             })
         })
 

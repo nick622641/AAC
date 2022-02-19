@@ -4,9 +4,12 @@ import FormattedPrice from '../layouts/FormattedPrice'
 
 const Product = ({ product }) => {
 
+    let name = product.name.replace(/-/g, '_')    
+    name = name.replace(/ /g, '-')    
+
     return (
         
-        <Link to={`/artwork/${product._id}`} className="showroom-item"> 
+        <Link to={`/artwork/${name}`} className="showroom-item"> 
 
             <div> 
 

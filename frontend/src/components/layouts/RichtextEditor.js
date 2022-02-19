@@ -5,6 +5,7 @@ import { EditorState, ContentState, convertToRaw } from 'draft-js'
 import htmlToDraft                                 from 'html-to-draftjs'
 import draftToHtml                                 from 'draftjs-to-html'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import './richtext.css'
 
 const RichtextEditor = ( { text, setText } ) => {
 
@@ -82,7 +83,6 @@ const RichtextEditor = ( { text, setText } ) => {
                     },               
                     image: {   
                         uploadCallback: uploadImageCallBack,  
-                        urlEnabled: true,
                         previewImage: true,
                         alignmentEnabled: true,                        
                         inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',                              

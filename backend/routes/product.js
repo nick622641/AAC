@@ -8,6 +8,7 @@ const {
     getAdminProducts,
     newProduct, 
     getSingleProduct, 
+    getAdminProduct,
     updateProduct, 
     deleteProduct,
     createProductReview,
@@ -62,6 +63,7 @@ router.route('/product/:id').get(getSingleProduct)
 
 router.route('/admin/product/new').post(isAuthenticatedUser, authorizeRoles('admin'), newProduct)
 router.route('/admin/product/:id')
+    .get   (isAuthenticatedUser, authorizeRoles('admin'), getAdminProduct)
     .put   (isAuthenticatedUser, authorizeRoles('admin'), updateProduct)
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteProduct)
 

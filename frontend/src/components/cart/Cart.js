@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from 'react'
 import { Link, useNavigate  } from 'react-router-dom'
-import MetaData from '../layouts/MetaData'
+import { MDBDataTableV5 } from 'mdbreact'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart, removeItemFromCart, emptyCart } from '../../actions/cartActions'
+import { Button } from '@mui/material'
 import FormattedPrice from '../layouts/FormattedPrice'
+import MetaData from '../layouts/MetaData'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
 import IconButton from '@mui/material/IconButton'
@@ -15,7 +17,6 @@ import SendIcon from '@mui/icons-material/Send'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Avatar from '@mui/material/Avatar'
-import { Button } from '@mui/material'
 
 const Cart = () => {    
     
@@ -34,15 +35,15 @@ const Cart = () => {
     const emptyCartHandler = () => {   
         dispatch(emptyCart())
     }
-    const increaseQty = (id, quantity, stock) => {
+    const increaseQty = (name, quantity, stock) => {
         const newQty = quantity + 1
         if(newQty > stock) { return }
-        dispatch(addItemToCart(id, newQty))
+        dispatch(addItemToCart(name, newQty))
     }
-    const decreaseQty = (id, quantity) => {
+    const decreaseQty = (name, quantity) => {
         const newQty = quantity - 1
         if(newQty <= 0) { return }
-        dispatch(addItemToCart(id, newQty))
+        dispatch(addItemToCart(name, newQty))
     }
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
@@ -51,6 +52,98 @@ const Cart = () => {
         const link = isAuthenticated ? '/shipping' : '/login?redirect=shipping'    
         navigate(link)
     }
+
+    const setCartItems = () => {
+        const data = {
+            columns: [
+                {
+                    label: 'Preview',
+                    field: 'url',
+                    sort: 'disabled',
+                    width: 75
+                },                
+                {
+                    label: 'Title',
+                    field: 'name',
+                    sort: 'disabled',
+                    width: 100
+                },  
+                {
+                    label: 'Price',
+                    field: 'price',
+                    sort: 'disabled',
+                    width: 100
+                },
+                {
+                    label: 'Quantity',
+                    field: 'quantity',
+                    sort: 'disabled',
+                    width: 150
+                },       
+                {
+                    label: <IconButton onClick={() => {setIsModalVisible(!isModalVisible)}}>
+                                <DeleteForeverIcon color="danger" />
+                            </IconButton>,
+                    field: 'actions',
+                    sort: 'disabled',
+                    width: 100                
+                }           
+            ],
+            rows: []
+        }
+       
+        cartItems && cartItems.forEach( item => {
+            let name = item.name.replace(/-/g, '_')    
+            name = name.replace(/ /g, '-') 
+            data.rows.push({
+                url: <Link to={`/artwork/${name}`}>
+                        <Avatar
+                            src={item.image} 
+                            alt={item.name} 
+                            sx={{ width: 50, height: 50 }}
+                        />                                          
+                    </Link>,                  
+                name: <Link to={`/artwork/${name}`}>{item.name}</Link>,
+                price: <FormattedPrice number={item.price} />,
+                quantity: <Fragment>
+                            <div className="whitespace-nowrap"> 
+                            <IconButton 
+                                className={item.quantity === 1 ? 'inactive' : ''}                                                 
+                                onClick={() => decreaseQty(item.name, item.quantity)}
+                            >
+                                <RemoveCircleIcon 
+                                    fontSize="small" 
+                                    color={item.quantity === 1 ? 'disabled' : 'primary'}
+                                />
+                            </IconButton>  
+
+                            <input 
+                                className="text-center"
+                                style={{ width: '40px' }}                                              
+                                value={item.quantity} 
+                                readOnly 
+                            />
+
+                            <IconButton 
+                                className={item.quantity === item.stock ? 'inactive' : ''} 
+                                onClick={() => increaseQty(item.name, item.quantity, item.stock)}
+                            >
+                                <AddCircleIcon 
+                                    fontSize="small" 
+                                    color={item.quantity === item.stock ? 'disabled' : 'primary'}
+                                />
+                            </IconButton>                
+                            </div>
+                        </Fragment> ,
+                actions: 
+                    <IconButton onClick={() => removeCartItemHandler(item.product)}>
+                        <DeleteOutlineIcon color="danger" />
+                    </IconButton>               
+            })
+        })
+
+        return data
+    } 
 
     return (
 
@@ -65,6 +158,7 @@ const Cart = () => {
                     <div className="user-form">
 
                     {cartItems.length === 0 
+
                     ? ( <Fragment>
                             <h1>Your Cart</h1> 
                             <p>You have not added anything to your shopping cart yet</p>                            
@@ -75,79 +169,15 @@ const Cart = () => {
                             
                             <h1>Your Cart</h1> 
 
-                            <div className="scrollX">
-
-                                <table className="bordered-table">
-                                    <tbody>
-                                        <tr className="bg-grey">
-                                            <th>Item</th>
-                                            <th>Title</th>
-                                            <th>Price</th>                                    
-                                            <th>Quantity</th>                                    
-                                            <th>                                   
-                                                <IconButton onClick={() => {setIsModalVisible(!isModalVisible)}}>
-                                                    <DeleteForeverIcon color="danger" />
-                                                </IconButton>
-                                            </th>
-                                        </tr>
-                                        {cartItems.map(item => (
-                                            <tr key={item.product}>
-                                                <td>
-                                                    <Link to={`/artwork/${item.product}`}>
-                                                        <Avatar
-                                                            src={item.image} 
-                                                            alt={item.name} 
-                                                            sx={{ width: 50, height: 50 }}
-                                                        />                                          
-                                                    </Link>
-                                                </td>
-                                                <td>
-                                                    <Link to={`/artwork/${item.product}`}>{item.name}</Link>
-                                                </td>
-                                                <td>
-                                                    <FormattedPrice number={item.price} />                                            
-                                                </td>
-                                                <td className="whitespace-nowrap">   
-
-                                                    <IconButton 
-                                                        className={item.quantity === 1 ? 'inactive' : ''}                                                 
-                                                        onClick={() => decreaseQty(item.product, item.quantity)}
-                                                    >
-                                                        <RemoveCircleIcon 
-                                                            fontSize="small" 
-                                                            color={item.quantity === 1 ? 'disabled' : 'primary'}
-                                                        />
-                                                    </IconButton>  
-
-                                                    <input 
-                                                        className="text-center"
-                                                        style={{ width: '40px' }}                                              
-                                                        value={item.quantity} 
-                                                        readOnly 
-                                                    />
-
-                                                    <IconButton 
-                                                        className={item.quantity === item.stock ? 'inactive' : ''} 
-                                                        onClick={() => increaseQty(item.product, item.quantity, item.stock)}
-                                                    >
-                                                        <AddCircleIcon 
-                                                            fontSize="small" 
-                                                            color={item.quantity === item.stock ? 'disabled' : 'primary'}
-                                                        />
-                                                    </IconButton>
-                                            
-                                                </td>
-                                                <th>     
-                                                    <IconButton onClick={() => removeCartItemHandler(item.product)}>
-                                                        <DeleteOutlineIcon color="danger" />
-                                                    </IconButton>
-                                                </th>                                        
-                                            </tr>
-                                        ))}    
-                                    </tbody>
-                                </table>
-
-                            </div>
+                            <MDBDataTableV5 
+                                className="cart-table"
+                                data={setCartItems()}   
+                                scrollX  
+                                searchTop
+                                searching={false} 
+                                paging={false}
+                                info={false}
+                            />                         
 
                             <h4>Order Summary</h4>
                             

@@ -30,6 +30,9 @@ import {
     GET_REVIEWS_REQUEST,
     GET_REVIEWS_SUCCESS,
     GET_REVIEWS_FAIL,
+    ADMIN_PRODUCT_DETAILS_REQUEST,
+    ADMIN_PRODUCT_DETAILS_SUCCESS,
+    ADMIN_PRODUCT_DETAILS_FAIL,
     DELETE_REVIEW_REQUEST,
     DELETE_REVIEW_SUCCESS,
     DELETE_REVIEW_RESET,
@@ -166,8 +169,7 @@ export const productReducer = ( state = {}, action ) => {
         case UPDATE_PRODUCT_FAIL:
                 return {
                     ...state,
-                    error: action.payload,
-                    loading: false,
+                    error: action.payload
                 }
         case DELETE_PRODUCT_RESET:
         case DELETE_IMAGE_RESET:
@@ -218,6 +220,34 @@ export const productDetailsReducer = ( state = { product: {} }, action ) => {
 
         default:
             return state;
+    }
+}
+
+export const adminProductDetailsReducer = ( state = { product: {} }, action ) => {
+    switch (action.type) {
+
+        case ADMIN_PRODUCT_DETAILS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case ADMIN_PRODUCT_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                product: action.payload
+            }
+        case ADMIN_PRODUCT_DETAILS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state
     }
 }
 

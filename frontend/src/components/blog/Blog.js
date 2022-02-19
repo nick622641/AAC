@@ -4,9 +4,12 @@ import FormattedDate from '../layouts/FormattedDate'
 
 const Blog = ({ blog }) => {
 
+    let title = blog.title.replace(/-/g, '_')    
+    title = title.replace(/ /g, '-') 
+
     return (
         
-        <Link to={`/blog/${blog._id}`} className="showroom-item"> 
+        <Link to={`/blog/${title}`} className="showroom-item"> 
 
             <div> 
 

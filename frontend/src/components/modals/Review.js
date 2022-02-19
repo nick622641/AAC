@@ -1,6 +1,5 @@
 import { Fragment, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { newReview } from '../../actions/productActions'
 import Rating from '@mui/material/Rating'
 import LoadingButton from '@mui/lab/LoadingButton'
@@ -9,10 +8,10 @@ import RichtextEditor from "../layouts/RichtextEditor"
 
 function Review(props) {
     
-    const id = useParams().id    
     const dispatch = useDispatch()
 
     const { loading } = useSelector( state => state.newReview ) 
+    const { product } = useSelector( state => state.productDetails )
     
     const [ rating,  setRating  ] = useState( props.rating )
     const [ comment, setComment ] = useState( props.comment )      
@@ -22,7 +21,7 @@ function Review(props) {
         const formData = new FormData()
         formData.set('rating', rating)
         formData.set('comment', comment)
-        formData.set('productId', id)
+        formData.set('productId', product._id)
         dispatch(newReview(formData))  
     }
     

@@ -13,7 +13,7 @@ const Callout = ({ relatedProducts }) => {
 
                 <div className="parent reverse">
 
-                    <Link to={`/artwork/${relatedProducts[0]._id}`}
+                    <Link to={`/artwork/${relatedProducts[0].name.replace(/ /g, '-')}`}
                         className="col-6 no-font cta-first-image background-cover"
                         style={{ backgroundImage: `url(${relatedProducts[0].images[0].url})` }}
                     />
@@ -23,7 +23,7 @@ const Callout = ({ relatedProducts }) => {
                         <p>
                             {relatedProducts[0].description.substring(0, 200)}...
                             <br />
-                            <Link to={`/artwork/${relatedProducts[0]._id}`}>
+                            <Link to={`/artwork/${relatedProducts[0].name.replace(/ /g, '-')}`}>
                                 <IconButton color="primary">
                                     <MenuBookOutlinedIcon />
                                 </IconButton>
@@ -36,12 +36,12 @@ const Callout = ({ relatedProducts }) => {
                 <div className="parent">
 
                     <div className="col-6 relative">
-                        <Link to={`/artwork/${relatedProducts[1]._id}`}
+                        <Link to={`/artwork/${relatedProducts[1].name.replace(/ /g, '-')}`}
                             className="cta background-cover"
                             style={{ backgroundImage: `url(${relatedProducts[1].images[0].url})` }}
                         />
                     </div>
-                    <Link to={`/artwork/${relatedProducts[2]._id}`}
+                    <Link to={`/artwork/${relatedProducts[2].name.replace(/ /g, '-')}`}
                         className="col-6 cta-last-image background-cover"
                         style={{ backgroundImage: `url(${relatedProducts[2].images[0].url})` }}
                     />

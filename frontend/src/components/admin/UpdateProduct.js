@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { updateProduct, getProductDetails, updateImages, deleteImage, clearErrors } from '../../actions/productActions'
+import { updateProduct, getAdminProductDetails, updateImages, deleteImage, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { DELETE_IMAGE_RESET } from '../../constants/productConstants'
 import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
@@ -50,10 +50,12 @@ const UpdateProduct = () => {
     const [ fullscreen,      setFullscreen     ] = useState(false)
 
     const alert     = useAlert()
-    const productId = useParams().id   
+
+    const productId  = useParams().id 
+
     const navigate  = useNavigate()    
     const dispatch  = useDispatch()
-    const { error, product                         } = useSelector(state => state.productDetails)
+    const { error, product                         } = useSelector(state => state.adminProductDetails)
     const { loading, error: updateError, isUpdated, error: deleteError, isDeleted } = useSelector(state => state.product)
     const { media                                  } = useSelector(state => state.media)
     const { orientations                           } = useSelector(state => state.orientations)
@@ -69,7 +71,7 @@ const UpdateProduct = () => {
         dispatch(getArtists())    
 
         if (product && product._id !== productId) {            
-            dispatch(getProductDetails(productId))  
+            dispatch(getAdminProductDetails(productId))  
         } else {
             const date = new Date(product.datePublished)
             const day = date.getDate()
@@ -100,7 +102,7 @@ const UpdateProduct = () => {
         }
         if(isUpdated) {            
             alert.success('Artwork Updated Successfully')
-            dispatch(getProductDetails(productId))  
+            dispatch(getAdminProductDetails(productId))  
             dispatch({ type: UPDATE_PRODUCT_RESET })     
             setImages([])           
         }
@@ -110,7 +112,7 @@ const UpdateProduct = () => {
         }
         if(isDeleted) {
             alert.success('Image Deleted Successfully') 
-            dispatch(getProductDetails(productId))    
+            dispatch(getAdminProductDetails(productId))    
             dispatch({ type: DELETE_IMAGE_RESET })            
         }
     }, [dispatch, navigate, product, productId, alert, error, isUpdated, updateError, isDeleted, deleteError])
@@ -163,7 +165,12 @@ const UpdateProduct = () => {
     }  
     const updateImagesHandler = (id, initPos, finPos) => {
         dispatch(updateImages(id, initPos, finPos))
-    }   
+    } 
+    
+    const sanitizeInput = (value) => {
+        value = value.replace(/[^a-z0-9'. -]/ig, '')
+        setName(value)
+    }
 
     return (
 
@@ -192,7 +199,10 @@ const UpdateProduct = () => {
                                         label="Artwork Title" 
                                         value={name}
                                         variant="standard"
-                                        onChange={(e) => setName(e.target.value)} 
+                                        onChange={(e) => {
+                                            setName(e.target.value)
+                                            sanitizeInput(e.target.value)
+                                        }} 
                                         sx={{ mb: 1 }}
                                     />                                 
                                 </FormControl>                              
@@ -273,7 +283,7 @@ const UpdateProduct = () => {
                                     setInit={setInit}
                                     setFinal={setFinal}
                                     updateImagesHandler={updateImagesHandler}
-                                    productId={productId}                                        
+                                    productId={product._id}                                        
                                     init={init}
                                     final={final}
                                     oldImages={oldImages}
@@ -448,7 +458,7 @@ const UpdateProduct = () => {
                 content={
                     <Confirm 
                         onBackdropClick={toggleModal} 
-                        onConfirm={() => deleteImageHandler(productId, imgIndex, imgId)} 
+                        onConfirm={() => deleteImageHandler(product._id, imgIndex, imgId)} 
                         message="Delete Image"
                     />
                 }

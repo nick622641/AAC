@@ -351,8 +351,23 @@ exports.getAdminProducts = async (req, res, next) => {
 
 // Get single product details => /api/v1/product/:id
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {   
-    try {     
-        const product = await Product.findById(req.params.id)  
+    try {  
+
+        const product = await Product.findOne({ name: req.params.id })
+
+        res.status(200).json({
+            success: true,
+            product
+        })
+    } catch(error) {
+        return next(new ErrorHandler('Product not found', 404))    
+    }
+})
+
+// Get single Product details (Admin) => /api/v1/admin/product/:id
+exports.getAdminProduct = catchAsyncErrors(async (req, res, next) => { 
+    try {   
+        const product = await Product.findById(req.params.id)
         res.status(200).json({
             success: true,
             product

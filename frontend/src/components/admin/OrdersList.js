@@ -17,6 +17,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import { Tooltip } from '@mui/material'
+import FormattedDate from '../layouts/FormattedDate'
 
 const OrdersList = () => {
 
@@ -55,12 +56,18 @@ const OrdersList = () => {
 
     const setOrders = () => {
         const data = {
-            columns: [
+            columns: [ 
                 {
-                    label: 'Order ID',
-                    field: 'id',
+                    label: 'Actions',
+                    field: 'actions',
                     sort: 'disabled',
-                    width: 200
+                    width: 100                  
+                },
+                {
+                    label: 'Date',
+                    field: 'date',
+                    sort: 'disabled',
+                    width: 100
                 },
                 {
                     label: 'Qty',
@@ -79,23 +86,13 @@ const OrdersList = () => {
                     field: 'status',
                     sort: 'asc',
                     width: 100
-                },
-                {
-                    label: 'Actions',
-                    field: 'actions',
-                    sort: 'disabled',
-                    width: 100                  
-                }
+                }                
             ],
             rows: []
         }
 
         orders && orders.forEach( order => {
-            data.rows.push({
-                id: order._id,
-                numOfItems: order.orderItems.length,
-                amount: `$${order.totalPrice}`, 
-                status: order.orderStatus,
+            data.rows.push({                
                 actions:                 
                     <Fragment>
                         <Link to={`/admin/order/${order._id}`}>
@@ -111,7 +108,11 @@ const OrdersList = () => {
                         >
                             <DeleteOutlineIcon color="danger" />
                         </IconButton>            
-                    </Fragment> 
+                    </Fragment>, 
+                date: <FormattedDate iso={ order.paidAt} />,
+                numOfItems: order.orderItems.length,
+                amount: `$${order.totalPrice}`, 
+                status: order.orderStatus                
             })
         })
 
