@@ -8,9 +8,7 @@
   "height": 40,
   "depth": 0,
   "description": "Artist David Brooks is a fan of Japanese artist Isao Tomita and his unique synthesized music. It's no surprise therefore that David took inspiration from Tomita's album covers when he painted Automata. For those unfamiliar with his work, Tomita is considered by many to be the grandfather of electronic music and space-music. Broadly, Automata refers to machines making tasks easier, more efficient and less mistake-prone and ultimately helping humans toward an easier if not brighter future. In David's representation, horizontal bands overlay the image of what could be a face. A stark canvas texture and an alluring vignette create a puzzling and mysterious image. This gorgeous abstract would compliment any well lit room.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/r74ctsa2rjsxz2s8bqlh",
@@ -59,9 +57,7 @@
   "height": 40,
   "depth": 0,
   "description": "When he painted Authentic Self, artist David Brooks was pondering the question of how much of our true selves we reveal on our journeys through life.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/z2fwfuorfy9kwocri3k9",
@@ -208,9 +204,7 @@
   "height": 58,
   "depth": 0,
   "description": "A painting for space enthusiasts, SRB SEP is David Brooks’ evocation of NASA’s space shuttle Solid Rocket Booster Separation. This striking artwork would make a great talking point in any home or workspace.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/w6dxgmoala2xtk05q9mi",
@@ -259,9 +253,7 @@
   "height": 100,
   "depth": 0,
   "description": "Working from home has become the new normal. Artist David Brooks pays homage to this new working world in his latest vibrant, exciting abstract WFH 2.0",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/g7owhlive6pcyxs9it3h",
@@ -653,9 +645,7 @@
   "height": 70,
   "depth": 0,
   "description": "Artist David Brooks was imagining navigating through the far reaches of space when he painted Transit. Turquoise, azure and white are eye-catching in this piece that’s sure to brighten any room.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/v1ncpqmlsmzsdtjrvhkl",
@@ -1360,9 +1350,7 @@
   "height": 30,
   "depth": 0,
   "description": "David Brooks has experimented with paint to create this evocative art. Inspired by his childhood trips to the park from which the painting takes its name, Kejimkujik is a provocative painting which stuns in its simplicity.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/jqnqceb46rx4wwqmkzry",
@@ -1656,9 +1644,7 @@
   "height": 20,
   "depth": 0,
   "description": "Take a walk on this east coast Canadian fishing village and breathe in the sea air. Artist David Brooks' was inspired by his childhood memories of growing up in Nova Scotia when he painted Autumn.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/bkqsse4set92ysam9n90",
@@ -1707,9 +1693,7 @@
   "height": 60,
   "depth": 0,
   "description": "In Anathema you can lose yourself in the punishing depths of desolation. Shades of ochre, grey and burnt crimson make this a dark, brooding piece by artist David Brooks.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/nhkw6mlok5dtqplpl66k",
@@ -1758,9 +1742,7 @@
   "height": 21,
   "depth": 0,
   "description": "A recent abstract by artist Jim Ulrich, White Peonies is a depiction of the flowers in his wife’s garden.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/mfl5htge1rta9v9fmmrz",
@@ -3414,7 +3396,7 @@
     "$date": "2021-12-26T13:14:36.208Z"
   },
   "__v": 0,
-  "slug": "undefined",
+  "slug": "rudra-barred",
   "visible": 1
 },{
   "_id": {
@@ -3573,9 +3555,7 @@
   "height": 61,
   "depth": 0,
   "description": "From a series exploring the mind as a mandala, Cortical Retreat is divided primarily into left and right and ultimately abstracted to the four-direction structure.  The ultimate resolution of these is Bhuvanakrtimandala - a mandala depicting emptiness.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/fu5bq1rcdulstxliusy5",
@@ -3673,9 +3653,7 @@
   "height": 76,
   "depth": 0,
   "description": "A playful painting by Smartex Tambala that takes a snapshot of life under the sea. School of Fish would make an interesting and quirky addition to any room.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/azg0hp1hkv6lr8nzdcao",
@@ -4055,7 +4033,7 @@
     "$date": "2021-12-26T17:40:28.823Z"
   },
   "__v": 0,
-  "slug": "undefined",
+  "slug": "homestead",
   "visible": 1
 },{
   "_id": {
@@ -4361,9 +4339,7 @@
   "height": 89,
   "depth": 0,
   "description": "Artist Smartex Tambala has used interesting, intersecting shapes and bold, bright colours. The result evokes a rhythmical, African vibe in this recent painting, Community Circle.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/xn5ydu0rowstgwqd5yvw",
@@ -4461,9 +4437,7 @@
   "height": 91,
   "depth": 0,
   "description": "The striking stillness of the heron is captured by artist Jegan G Raja in his painting, The Waiting. The beautiful blues and greens would make this a lovely addition to freshen up any room.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/snurg2dcbc8y2xblh1fq",
@@ -4629,9 +4603,7 @@
   "height": 41,
   "depth": 0,
   "description": "A depiction of Lake Louise in Banff National Park in the Canadian Rockies, this lovely painting by Jegan G Raja would make an attractive centrepiece in a holiday home.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/jenobbay0wjvp9dcmhsc",
@@ -4729,9 +4701,7 @@
   "height": 61,
   "depth": 0,
   "description": "A beautiful depiction of a tropical idyll. The warm, bright colours of Dream Land by Jegan G Raja would bring serenity to any living space.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/mvo89fgq6kks3bn5rzfo",
@@ -4878,9 +4848,7 @@
   "height": 76,
   "depth": 0,
   "description": "Inspired by riversides in the Canadian wilderness, My Dream Home is a beautiful composition by Jegan G Raja. This painting would bring warmth and joy to any room.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/ffairrc0ztqyt6se2sho",
@@ -5112,7 +5080,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:09:37.650Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "magical-sunset",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8be488eae4a8146daadeb"
@@ -5172,9 +5142,7 @@
   "height": 61,
   "depth": 0,
   "description": "Artist Jegan G Raja was inspired by the infinitely beautiful colours of autumn in Ottawa when he painted Fall in Love. He observed that it is nature painting for us, day after day.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/tuqn63wus7sqjhtqga11",
@@ -5223,9 +5191,7 @@
   "height": 41,
   "depth": 0,
   "description": "Using dark colours, artist Ed Bader takes a minimalist, geometric approach in his homage to American abstract expressionist Ad Reinhardt.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/lh6erw7knwz5yoamtr65",
@@ -5751,7 +5717,10 @@
   "createdAt": {
     "$date": "2021-12-26T19:44:25.650Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "sunset-for-paul",
+  "visible": 1
+  
 },{
   "_id": {
     "$oid": "61c8c66e8eae4a8146dac8b4"
@@ -5762,9 +5731,7 @@
   "height": 152,
   "depth": 0,
   "description": "An expressionist abstract by Edward Bader, Blue Dawn evokes those serene few moments before the break of a new day.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/ievgmys8mbceshigerge",
@@ -5862,9 +5829,7 @@
   "height": 61,
   "depth": 0,
   "description": "From his Songs series, Songs-P2448_01, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/hjznsmprqm4k250zc7jx",
@@ -6060,9 +6025,7 @@
   "height": 51,
   "depth": 0,
   "description": "From his Songs series, Songs-P2020_25, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/oxqwkyz7oojapxbeadef",
@@ -6405,9 +6368,7 @@
   "height": 51,
   "depth": 0,
   "description": "This is the second painting that was created in a series focused on working with pairs. Artist Rachel Cadrin created Strictly Outta Curiosity at the same time as creating its mate, What Would Happen. The colours are the same but the space created is unique to each piece.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/ms7g0bde4aqer2mxd8qq",
@@ -6505,9 +6466,7 @@
   "height": 122,
   "depth": 0,
   "description": "The fifth painting in a series of seven paintings by Rachel Cadrin, Oil Painting 5 focused on creating depth of field through the exploration of colour. This is a mixed media piece and is canvas stretched over panel board. Due to the materials used this piece, it has a beautiful and interesting texture that draws the observer in.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/ens6gqyyzpuvdiu2toe9",
@@ -6556,9 +6515,7 @@
   "height": 122,
   "depth": 0,
   "description": "From a series in which artist Rachel Cadrin was using music as inspiration. Rachel created Oil Painting 4 listening to a specific song on repeat and allowing the cadence and tempo of the music to dictate her approach. Music impacted the overall mood of each piece in the series.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/sy4grmopubtjqzoczyyw",
@@ -7373,9 +7330,7 @@
   "height": 25,
   "depth": 0,
   "description": "Alyssia White's Artifact no.21: \"What ghost is this?\"",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/ldztn2xkcyuzov9coekm",
@@ -7638,9 +7593,7 @@
   "height": 35,
   "depth": 0,
   "description": "Reflections on a summer day and past trips were the inspiration for artist David Cheney's Dog Days of Summer.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/swualfa0gzqbpxewb21j",
@@ -8348,9 +8301,7 @@
   "height": 46,
   "depth": 0,
   "description": "One in a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. Fun Money Currents (Downward Flow), \"currents, the rhythmic movement of money, exchanges of goods and experiences. Outside influences, events from beyond, are dispersed and redirected by the flow of currency.\" This mixed-media creation uses foil and acrylic on canvas.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/q0g8ruaddlu9drcfd1ln",
@@ -8497,9 +8448,7 @@
   "height": 40,
   "depth": 0,
   "description": "Following on from his project with film-maker Anna Cooley in which he created paintings inspired by his meditations on the journey of the Covid-19 pandemic, Jim Ulrich now exhibits this more recent work, I Saw It Coming But It Was Too Late. This bold painting reflects his thoughts on the more recent Covid variants and our fears that this erratic and unpredictable virus may be far from over. This eye-catching abstract is sure to create a visual talking point in any home or workspace.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/u11jp5gocnxp4zjwqci2",
@@ -8597,9 +8546,7 @@
   "height": 65,
   "depth": 0,
   "description": "Artist Jim Ulrich was inspired by the evening view from his art studio in Beiseker, Alberta. This is one of two paintings in which he uses shades of blue to depict the effect of the full moon in brightening the night sky.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/gpfkj8cnvm5vvzqhyrem",
@@ -8648,9 +8595,7 @@
   "height": 56,
   "depth": 0,
   "description": " Artist Jim Ulrich took his inspiration from the fish tanks at the zoological aquarium in Ban Chang, Thailand, when he painted this recent piece.  With its vivid neon blues and splashes of red, Aquarium is a striking wall art that would bring to life to any living space.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/budp7bud55xymog8agnq",
@@ -8699,9 +8644,7 @@
   "height": 52,
   "depth": 0,
   "description": "Artist Jim Ulrich spent time in Australia and Yellow Water is one of his paintings that draw on his memories of his travels there. He describes this piece as 'the morning light on a Northern Australian waterway filled with saltwater crocodiles - the calm before the storm'. A lovely painting, Yellow Water evokes a feeling of mindfulness and calm - the perfect addition to your 'work from home' space.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/jwu8zn9npvvmeslfdrc7",
@@ -8848,9 +8791,7 @@
   "height": 170,
   "depth": 0,
   "description": "In one of his more recent works, More Extreme Storms Will Bring..., Jim Ulrich draws on his experience of the climate crisis. Specifically the effects of global warming which has brought extreme weather both in western Canada and worldwide. This visually chaotic composition with its primary colors, pastel shades, and swirling lines is Jim's abstract take on the chaos we all face as the crisis deepens beyond our control.",
-  "ratings": {
-    "$numberDouble": "Infinity"
-  },
+  "ratings": 0,
   "images": [
     {
       "public_id": "products/cplkbcq7qeefdsq2m6yn",
