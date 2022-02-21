@@ -72,7 +72,7 @@ const Register = () => {
 
         <Fragment>
 
-            <MetaData title={'Register User'} />
+            <MetaData title={'Register User'} noIndex={true} />
 
             <div className="container">
 

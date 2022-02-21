@@ -132,12 +132,12 @@ export const getAdminProducts = () => async (dispatch) => {
 }
 
 // Get Single Product Details
-export const getProductDetails = (id) => async (dispatch) => {
+export const getProductDetails = (slug) => async (dispatch) => {
     try {
 
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/v1/product/${id}`)
+        const { data } = await axios.get(`/api/v1/product/${slug}`)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,

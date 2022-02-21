@@ -8,6 +8,11 @@ const productSchema = new mongoose.Schema({
         trim: true,
         maxLength: [100, 'Name may not exceed 100 characters']
     },
+    slug: {
+        type: String,
+        unique: true,
+        required: true
+    },
     price: {
         type: Number,
         required: [true, 'Please enter a price'],

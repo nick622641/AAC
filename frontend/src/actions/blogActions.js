@@ -88,12 +88,12 @@ export const getAdminBlogs = () => async (dispatch) => {
 }
 
 // Get Single Blog Details
-export const getBlogDetails = (id) => async (dispatch) => {
+export const getBlogDetails = (slug) => async (dispatch) => {
     try {
 
         dispatch({ type: BLOG_DETAILS_REQUEST })        
 
-        const { data } = await axios.get(`/api/v1/blog/${id}`)
+        const { data } = await axios.get(`/api/v1/blog/${slug}`)
 
         dispatch({
             type: BLOG_DETAILS_SUCCESS,

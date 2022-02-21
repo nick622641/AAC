@@ -3,29 +3,29 @@ import { useNavigate, Link } from 'react-router-dom'
 import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getMedia, deleteMedia, clearErrors } from '../../actions/categoryActions'
-import { DELETE_MEDIA_RESET } from '../../constants/categoryConstants'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from './Sidebar'
-import Modal from '../modals/Modal'
-import Confirm from '../modals/Confirm'
+import { getArtists, deleteArtist, clearErrors } from '../../../actions/categoryActions'
+import { DELETE_ARTIST_RESET } from '../../../constants/categoryConstants'
+import MetaData from '../../layouts/MetaData'
+import Loader from '../../layouts/Loader'
+import Sidebar from '../Sidebar'
+import Modal from '../../modals/Modal'
+import Confirm from '../../modals/Confirm'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
-import { Tooltip } from '@mui/material'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
+import { Tooltip } from '@mui/material'
 
 const ArtistList = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { loading, error, media         } = useSelector( state => state.media )
-    const { error: deleteError, isDeleted } = useSelector( state => state.medium )
+    const { loading, error, artists       } = useSelector( state => state.artists )
+    const { error: deleteError, isDeleted } = useSelector( state => state.artist  )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
@@ -33,7 +33,7 @@ const ArtistList = () => {
 
     useEffect(() => {
 
-        dispatch(getMedia())
+        dispatch(getArtists())
 
         if(error) {
             alert.error(error)
@@ -44,25 +44,25 @@ const ArtistList = () => {
             dispatch(clearErrors())
         }      
         if(isDeleted) {
-            alert.success('Media Deleted Successfully')            
-            dispatch({ type: DELETE_MEDIA_RESET })
+            alert.success('Artist Deleted Successfully')            
+            dispatch({ type: DELETE_ARTIST_RESET })
         }
 
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
 
-    const toggleModal = () => {
-        setIsModalVisible(wasModalVisible => !wasModalVisible)
+    const deleteCategoryHandler = (id) => {
+        dispatch(deleteArtist(id))
     }
 
-    const deleteCategoryHandler = (id) => {
-        dispatch(deleteMedia(id))
+    const toggleModal = () => {
+        setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
 
     const setCategories = () => {
         const data = {
             columns: [                
                 {
-                    label: 'Media ID',
+                    label: 'Artist ID',
                     field: 'id',
                     sort: 'disabled',
                     width: 200
@@ -75,44 +75,44 @@ const ArtistList = () => {
                 {
                     label: 'Actions',
                     field: 'actions',
-                    sort: 'disabled',
-                    width: '100'                 
+                    sort: 'disabled'  ,
+                    width: 100                
                 }
             ],
             rows: []
         }      
-     
-        media && media.forEach( m => {
+        artists && artists.forEach( artist => {
             data.rows.push({                
-                id: m._id,
-                name: m.name,
+                id: artist._id,
+                name: artist.name,
                 actions: 
-                <Fragment>
-                    <Link to={`/admin/media/${m._id}`}>
-                        <IconButton>
-                            <EditOutlinedIcon />
-                        </IconButton>
-                    </Link> 
-                    <IconButton 
-                        onClick={() => {
-                            setIsModalVisible(!isModalVisible)
-                            setId(m._id)
-                        }}
-                    >
-                        <DeleteOutlineIcon color="danger" />
-                    </IconButton>    
-                </Fragment> 
+                    <Fragment>
+                        <Link to={`/admin/artist/${artist._id}`}>
+                            <IconButton>
+                                <EditOutlinedIcon />
+                            </IconButton>
+                        </Link> 
+                        <IconButton 
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setId(artist._id)
+                            }}
+                        >
+                            <DeleteOutlineIcon color="danger" />
+                        </IconButton>   
+                    </Fragment> 
             })
-        })    
-       
+        }) 
+
         return data
+
     }    
 
     return (
 
         <Fragment>
 
-            <MetaData title={'All Media'} />
+            <MetaData title={'All Artists'} noIndex={true} />
 
             <div className="container">
 
@@ -124,23 +124,23 @@ const ArtistList = () => {
                         
                     </aside>            
 
-                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>
-                        
-                        {loading ? <Loader /> : (
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>  
+
+                        {loading ? <Loader /> : ( 
 
                             <div className="user-form cart">
 
-                                <h1>Media Category</h1>
+                                <h1>Artist Category</h1>
 
                                 <p className="text-right">
-                                    <Link to="/admin/medium">
+                                    <Link to="/admin/artist">
                                         Add
                                         <IconButton>
                                             <AddIcon />
                                         </IconButton>
-                                    </Link>
-                                </p>                                
-
+                                    </Link> 
+                                </p>                                                                                                 
+                                
                                 <MDBDataTableV5 
                                     data={setCategories()}   
                                     fullPagination   
@@ -148,7 +148,7 @@ const ArtistList = () => {
                                     // scrollY   
                                     searchTop
                                     searchBottom={false}  
-                                /> 
+                                />  
 
                                 <Link to="/admin/dashboard">
                                     <Fab 
@@ -171,8 +171,8 @@ const ArtistList = () => {
                                     </IconButton>
                                 </Tooltip>
 
-                            </div>
-
+                            </div> 
+                        
                         )}
 
                     </article>
@@ -188,7 +188,7 @@ const ArtistList = () => {
                     <Confirm 
                         onBackdropClick={toggleModal} 
                         onConfirm={() => deleteCategoryHandler(id)} 
-                        message="Delete Medium"
+                        message="Delete Artist"
                     />
                 }
             />

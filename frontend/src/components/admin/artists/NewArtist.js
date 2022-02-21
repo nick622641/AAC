@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
-import { NEW_ARTIST_RESET } from '../../constants/categoryConstants'
-import { newArtist, clearErrors } from '../../actions/categoryActions'
+import { NEW_ARTIST_RESET } from '../../../constants/categoryConstants'
+import { newArtist, clearErrors } from '../../../actions/categoryActions'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import { FormControl, TextField, Tooltip } from '@mui/material'
@@ -46,7 +46,7 @@ const NewArtist = () => {
 
         <Fragment>
 
-            <MetaData title={'New Artist'} />
+            <MetaData title={'New Artist'} noIndex={true} />
 
             <div className="container">
 

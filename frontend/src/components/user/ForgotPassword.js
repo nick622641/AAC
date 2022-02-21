@@ -37,7 +37,7 @@ const ForgotPassword = () => {
 
         <Fragment>
             
-            <MetaData title={'Forgot Password'} />
+            <MetaData title={'Forgot Password'} noIndex={true} />
             
             <div className="container">
                 

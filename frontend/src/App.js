@@ -38,29 +38,36 @@ import ListOrders                        from './components/order/ListOrders'
 import OrderDetails                      from './components/order/OrderDetails'
 // Admin Imports
 import Dashboard                         from './components/admin/Dashboard'
-import ProductsList                      from './components/admin/ProductsList'
-import NewProduct                        from './components/admin/NewProduct'
-import UpdateProduct                     from './components/admin/UpdateProduct'
-import OrdersList                        from './components/admin/OrdersList'
-import ProcessOrder                      from './components/admin/ProcessOrder'
-import UsersList                         from './components/admin/UsersList'
-import UpdateUser                        from './components/admin/UpdateUser'
-import ProductReviews                    from './components/admin/ProductReviews'
-import ArtistList                        from './components/admin/ArtistList'
-import NewArtist                         from './components/admin/NewArtist'
-import UpdateArtist                      from './components/admin/UpdateArtist'
-import OrientationList                   from './components/admin/OrientationList'
-import NewOrientation                    from './components/admin/NewOrientation'
-import UpdateOrientation                 from './components/admin/UpdateOrientation'
-import MediaList                         from './components/admin/MediaList'
-import NewMedia                          from './components/admin/NewMedia'
-import UpdateMedia                       from './components/admin/UpdateMedia'
-import NewBlog from './components/admin/NewBlog'
-import BlogsList from './components/admin/BlogsList'
-import UpdateBlog from './components/admin/UpdateBlog'
-import Blogs from './components/Blogs'
-import BlogDetails from './components/blog/BlogDetails'
-import BlogComments from './components/admin/BlogComments'
+
+import ProductsList                      from './components/admin/products/ProductsList'
+import NewProduct                        from './components/admin/products/NewProduct'
+import UpdateProduct                     from './components/admin/products/UpdateProduct'
+import ProductReviews                    from './components/admin/products/ProductReviews'
+
+import OrdersList                        from './components/admin/orders/OrdersList'
+import ProcessOrder                      from './components/admin/orders/ProcessOrder'
+
+import UsersList                         from './components/admin/users/UsersList'
+import UpdateUser                        from './components/admin/users/UpdateUser'
+
+import ArtistList                        from './components/admin/artists/ArtistList'
+import NewArtist                         from './components/admin/artists/NewArtist'
+import UpdateArtist                      from './components/admin/artists/UpdateArtist'
+
+import OrientationList                   from './components/admin/orientations/OrientationList'
+import NewOrientation                    from './components/admin/orientations/NewOrientation'
+import UpdateOrientation                 from './components/admin/orientations/UpdateOrientation'
+
+import MediaList                         from './components/admin/media/MediaList'
+import NewMedia                          from './components/admin/media/NewMedia'
+import UpdateMedia                       from './components/admin/media/UpdateMedia'
+
+import Blogs                             from './components/Blogs'
+import BlogDetails                       from './components/blog/BlogDetails'
+import NewBlog                           from './components/admin/blogs/NewBlog'
+import BlogsList                         from './components/admin/blogs/BlogsList'
+import UpdateBlog                        from './components/admin/blogs/UpdateBlog'
+import BlogComments                      from './components/admin/blogs/BlogComments'
 
 function App() {  
 
@@ -108,14 +115,14 @@ function App() {
 
             <Route path="/"                      element={<Home                                                         />} />
             <Route path="/blogs"                 element={<Blogs                                                        />} />
-            <Route path="/blog/:title"           element={<BlogDetails                                                  />} />
+            <Route path="/blog/:slug"            element={<BlogDetails                                                  />} />
             <Route path="/gallery"               element={<Gallery                                                      />} />
             <Route path="/gallery/:keyword"      element={<Gallery                                                      />} />
             <Route path="/gallery/artist/:artist" element={<Gallery                                                     />} />
             <Route path="/gallery/orientation/:orientation" element={<Gallery                                           />} />
             <Route path="/gallery/medium/:medium" element={<Gallery                                                     />} />
             <Route path="/gallery/rating/:rating" element={<Gallery                                                     />} />
-            <Route path="/artwork/:name"         element={<ProductDetails                                               />} />             
+            <Route path="/artwork/:slug"         element={<ProductDetails                                               />} />             
             <Route path="/terms"                 element={<Terms                                                        />} />
             <Route path="/privacy"               element={<Privacy                                                      />} />
 

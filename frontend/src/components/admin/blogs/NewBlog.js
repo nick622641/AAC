@@ -2,20 +2,20 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
-import { newBlog, clearErrors } from '../../actions/blogActions'
-import { NEW_BLOG_RESET } from '../../constants/blogConstants'
+import { newBlog, clearErrors } from '../../../actions/blogActions'
+import { NEW_BLOG_RESET } from '../../../constants/blogConstants'
 import { FormControl, FormControlLabel, IconButton, TextField, Tooltip } from '@mui/material'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEditor from '../layouts/RichtextEditor'
+import RichtextEditor from '../../layouts/RichtextEditor'
 import Checkbox from '@mui/material/Checkbox'
-import RichtextPreview from '../layouts/RichtextPreview'
+import RichtextPreview from '../../layouts/RichtextPreview'
 
 const NewBlog = () => {    
 
@@ -24,9 +24,10 @@ const NewBlog = () => {
     const dispatch = useDispatch()
 
     const [ title,         setTitle         ] = useState('')
+    const [ slug,          setSlug          ] = useState('')
     const [ tags,          setTags          ] = useState('')   
     const [ description,   setDescription   ] = useState('')
-    const [ visible,       setVisible       ] = useState(0)
+    const [ visible,       setVisible       ] = useState(0)   
   
     const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
@@ -46,13 +47,14 @@ const NewBlog = () => {
             dispatch({ type: NEW_BLOG_RESET })
             navigate('/admin/blogs')
         }        
-    }, [dispatch, alert, error, success, navigate])
+    }, [dispatch, navigate, alert, error, success])
 
     const submitHandler = (e) => {
         
         e.preventDefault()
         const formData = new FormData()
         formData.set('title', title)
+        formData.set('slug', slug)
         formData.set('tags', tags)       
         formData.set('description', description)       
         formData.set('name', user.name)   
@@ -82,15 +84,16 @@ const NewBlog = () => {
     }  
 
     const sanitizeInput = (value) => {
-        value = value.replace(/[^a-z0-9'. -]/ig, '')
-        setTitle(value)
+        value = value.replace(/[^\w -]/ig, '')
+        value = value.replace(/ /ig, '-')
+        setSlug(value.toLowerCase())
     }
 
     return (
 
         <Fragment>
 
-            <MetaData title={'New Blog'} />
+            <MetaData title={'New Blog'} noIndex={true} />
 
             <div className="container">
 
@@ -110,20 +113,36 @@ const NewBlog = () => {
 
                                 <div className="parent reverse">
 
-                                    <label>                                        
-                                        <input
-                                            type="file"   
-                                            className="hidden-input"
-                                            name="product_images"                            
-                                            onChange={onChange}   
-                                            multiple                              
-                                        /> 
-                                        <Avatar
-                                            src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
-                                            alt='Avatar Preview' 
-                                            sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
-                                        /> 
-                                    </label> 
+                                    <div>
+
+                                        <label>                                        
+                                            <input
+                                                type="file"   
+                                                className="hidden-input"
+                                                name="product_images"                            
+                                                onChange={onChange}   
+                                                multiple                              
+                                            /> 
+                                            <Avatar
+                                                src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
+                                                alt='Avatar Preview' 
+                                                sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
+                                            /> 
+                                        </label> 
+
+                                        <FormControlLabel 
+                                            control={
+                                                <Checkbox 
+                                                    size="small"
+                                                    value={visible}
+                                                    onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
+                                                    checked={visible === 1 ? true : false}
+                                                />
+                                            } 
+                                            label={visible === 1 ? 'Published' : 'Draft'} 
+                                        />
+
+                                    </div>
 
                                     <div style={{ flexGrow: 1 }}>   
 
@@ -138,6 +157,20 @@ const NewBlog = () => {
                                                 }} 
                                                 sx={{ mb: 1 }}
                                             />                                 
+                                        </FormControl>
+
+                                        <FormControl fullWidth>
+                                            <TextField
+                                                label="Url Slug - (Read Only)"
+                                                variant="filled"
+                                                value={slug}
+                                                InputProps={{
+                                                    readOnly: true,
+                                                }}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            />
                                         </FormControl>
 
                                         <FormControl fullWidth sx={{ mb: 1 }}>
@@ -165,19 +198,7 @@ const NewBlog = () => {
                                             </li>
                                         ))} 
                                     </ul> 
-                                )}  
-
-                                <FormControlLabel 
-                                    control={
-                                        <Checkbox 
-                                            size="small"
-                                            value={visible}
-                                            onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
-                                            checked={visible === 1 ? true : false}
-                                        />
-                                    } 
-                                    label={visible === 1 ? 'Published' : 'Draft'} 
-                                /> 
+                                )}                                   
                               
                                 <h4>Content</h4>    
 
@@ -208,7 +229,7 @@ const NewBlog = () => {
                                 </Fab>
                             </Link>
 
-                            <Tooltip title="Expand">
+                            <Tooltip title="Expand" arrow>
                                 <IconButton 
                                     color="primary" 
                                     sx={{ position: 'absolute', top: 10, left: 10 }}

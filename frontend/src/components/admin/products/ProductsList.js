@@ -3,13 +3,13 @@ import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
-import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions'
-import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from '../admin/Sidebar'
-import Modal from '../modals/Modal'
-import Confirm from '../modals/Confirm'
+import { getAdminProducts, deleteProduct, clearErrors } from '../../../actions/productActions'
+import { DELETE_PRODUCT_RESET } from '../../../constants/productConstants'
+import MetaData from '../../layouts/MetaData'
+import Loader from '../../layouts/Loader'
+import Sidebar from '../Sidebar'
+import Modal from '../../modals/Modal'
+import Confirm from '../../modals/Confirm'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
@@ -104,11 +104,9 @@ const ProductsList = () => {
             rows: []
         }
        
-        products && products.forEach( product => {
-            let name = product.name.replace(/-/g, '_')    
-            name = name.replace(/ /g, '-') 
+        products && products.forEach( product => {         
             data.rows.push({
-                url: <Link to={`/artwork/${name}`}>
+                url: <Link to={`/artwork/${product.slug}`}>
                         <Avatar
                             src={product.images[0].thumbUrl} 
                             alt={product.name} 
@@ -154,7 +152,7 @@ const ProductsList = () => {
 
         <Fragment>
 
-            <MetaData title={'All Products'} />
+            <MetaData title={'All Products'} noIndex={true} />
 
             <div className="container">
 
@@ -180,7 +178,6 @@ const ProductsList = () => {
                                         data={setProducts()}   
                                         fullPagination   
                                         scrollX  
-                                        // scrollY   
                                         searchTop
                                         searchBottom={false}  
                                     />                                 

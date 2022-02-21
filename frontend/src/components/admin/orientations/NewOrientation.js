@@ -1,64 +1,51 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Link, useParams } from 'react-router-dom'
-import { UPDATE_ORIENTATION_RESET } from '../../constants/categoryConstants'
-import { getOrientationDetails, updateOrientation, clearErrors } from '../../actions/categoryActions'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
+import { useNavigate, Link } from 'react-router-dom'
+import { NEW_ORIENTATION_RESET } from '../../../constants/categoryConstants'
+import { newOrientation, clearErrors } from '../../../actions/categoryActions'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import SendIcon from '@mui/icons-material/Send'
-import { FormControl, TextField, Tooltip } from '@mui/material'
+import { FormControl, IconButton, TextField, Tooltip } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
-import IconButton from '@mui/material/IconButton'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
-const UpdateOrientation = () => {
-
-    const id = useParams().id
+const NewOrientation = () => {
+    
     const alert = useAlert()
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [ name,       setName       ] = useState('')  
+    const [ name, setName ] = useState('')  
     const [ fullscreen, setFullscreen ] = useState(false)
-    const { error, orientation                     } = useSelector(state => state.orientationDetails)
-    const { loading, error: updateError, isUpdated } = useSelector(state => state.orientation)
+    const { loading, error, success } = useSelector( state => state.newOrientation )
 
     useEffect(() => { 
-
-        if (orientation && orientation._id !== id) {
-            dispatch(getOrientationDetails(id))
-        } else {
-            setName(orientation.name)
-        }
         if(error) {
             alert.error(error)
             dispatch(clearErrors())
         }
-        if(updateError) {
-            alert.error(updateError)
-            dispatch(clearErrors())
-        }
-        if(isUpdated) {            
-            alert.success('Orientation Updated Successfully')
-            dispatch(getOrientationDetails(id))
+        if(success) {            
+            alert.success('Orientation Created Successfully')
             navigate('/admin/orientations')
-            dispatch({ type: UPDATE_ORIENTATION_RESET })            
+            dispatch({ type: NEW_ORIENTATION_RESET })            
         }
-    }, [dispatch, navigate, alert, error, isUpdated, updateError, orientation, id])
+    }, [dispatch, navigate, alert, error, success])
 
     const submitHandler = (e) => {        
         e.preventDefault()
         const formData = new FormData()
         formData.set('name', name)       
-        dispatch(updateOrientation(orientation._id, formData))
+        dispatch(newOrientation(formData))
     }   
+
     return (
 
         <Fragment>
 
-            <MetaData title={'Update Orientation'} />
+            <MetaData title={'New Orientation'} noIndex={true} />
 
             <div className="container">
 
@@ -70,11 +57,11 @@ const UpdateOrientation = () => {
                         
                     </aside>            
 
-                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>      
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>         
                             
                         <div className="user-form cart"> 
 
-                            <h1>Update Orientation</h1>      
+                            <h1>New Orientation</h1>   
 
                             <form onSubmit={submitHandler}>
 
@@ -96,8 +83,8 @@ const UpdateOrientation = () => {
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
                                 >
-                                    Update
-                                </LoadingButton>  
+                                    Create
+                                </LoadingButton>   
 
                             </form>
                    
@@ -121,7 +108,6 @@ const UpdateOrientation = () => {
                                     <FitScreenIcon />
                                 </IconButton>
                             </Tooltip>
-                            
                         </div>
                         
                     </article>
@@ -133,7 +119,7 @@ const UpdateOrientation = () => {
         </Fragment>
 
     )
-
+    
 }
 
-export default UpdateOrientation
+export default NewOrientation

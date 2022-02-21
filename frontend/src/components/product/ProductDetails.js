@@ -28,9 +28,7 @@ import RichtextOutput from '../layouts/RichtextOutput'
 
 const ProductDetails = () => { 
 
-    const query = useParams().name
-    let name    = query.replace(/-/g, ' ')    
-    name        = name.replace(/_/g, '-')  
+    const slug = useParams().slug    
 
     const alert    = useAlert()
     const dispatch = useDispatch()
@@ -78,7 +76,7 @@ const ProductDetails = () => {
 
     useEffect( () => {   
 
-        dispatch(getProductDetails(name))
+        dispatch(getProductDetails(slug))
 
         dispatch(getRelatedProducts())
         
@@ -104,10 +102,10 @@ const ProductDetails = () => {
             alert.success('Review Deleted Successfully')            
             dispatch({ type: DELETE_REVIEW_RESET })
         }         
-    }, [dispatch, success, alert, error, reviewError, name, deleteError, isDeleted ])
+    }, [dispatch, success, alert, error, reviewError, slug, deleteError, isDeleted ])
 
     const addToCart = () => {
-        dispatch(addItemToCart(product.name, quantity))
+        dispatch(addItemToCart(product.slug, quantity))
         alert.success('Item Added to Cart')
     }        
 
@@ -231,7 +229,7 @@ const ProductDetails = () => {
                                                             Post Review  
                                                         </Fragment>      
                                                     : 
-                                                        <Link to={`/login?redirect=artwork/${query}`}>
+                                                        <Link to={`/login?redirect=artwork/${slug}`}>
                                                             <IconButton>
                                                                 <LoginIcon />
                                                             </IconButton>    
@@ -244,7 +242,7 @@ const ProductDetails = () => {
                                                     <tr>
                                                         <td></td>
                                                         <td>
-                                                            <Link to={`/admin/product/${query}`}>
+                                                            <Link to={`/admin/product/${product._id}`}>
                                                                 <IconButton>
                                                                     <EditOutlinedIcon />
                                                                 </IconButton>  

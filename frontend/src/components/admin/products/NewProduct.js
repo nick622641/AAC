@@ -2,12 +2,12 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
-import { newProduct, clearErrors } from '../../actions/productActions'
-import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
-import { getMedia, getOrientations, getArtists } from '../../actions/categoryActions'
+import { newProduct, clearErrors } from '../../../actions/productActions'
+import { NEW_PRODUCT_RESET } from '../../../constants/productConstants'
+import { getMedia, getOrientations, getArtists } from '../../../actions/categoryActions'
 import { FormControl, FormControlLabel, IconButton, InputLabel, MenuItem, Select, TextField, Tooltip } from '@mui/material'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
@@ -17,9 +17,9 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEditor from '../layouts/RichtextEditor'
+import RichtextEditor from '../../layouts/RichtextEditor'
 import Checkbox from '@mui/material/Checkbox'
-import RichtextPreview from '../layouts/RichtextPreview'
+import RichtextPreview from '../../layouts/RichtextPreview'
 
 const NewProduct = () => {
 
@@ -28,6 +28,7 @@ const NewProduct = () => {
     const dispatch = useDispatch()
 
     const [ name,          setName          ] = useState('')
+    const [ slug,          setSlug          ] = useState('')
     const [ price,         setPrice         ] = useState('')
     const [ width,         setWidth         ] = useState(0)
     const [ height,        setHeight        ] = useState(0)
@@ -70,6 +71,7 @@ const NewProduct = () => {
         e.preventDefault()
         const formData = new FormData()
         formData.set('name', name)
+        formData.set('slug', slug)
         formData.set('price', price)
         formData.set('width', width)
         formData.set('height', height)
@@ -106,15 +108,16 @@ const NewProduct = () => {
     }  
 
     const sanitizeInput = (value) => {
-        value = value.replace(/[^a-z0-9'. -]/ig, '')
-        setName(value)
+        value = value.replace(/[^\w -]/ig, '')
+        value = value.replace(/ /ig, '-')
+        setSlug(value.toLowerCase())
     }
 
     return (
 
         <Fragment>
 
-            <MetaData title={'New Product'} />
+            <MetaData title={'New Product'} noIndex={true} />
 
             <div className="container">
 
@@ -147,22 +150,52 @@ const NewProduct = () => {
 
                                 <div className="parent reverse">
 
-                                    <label>                                        
-                                        <input
-                                            type="file"   
-                                            className="hidden-input"
-                                            name="product_images"                            
-                                            onChange={onChange}   
-                                            multiple                              
-                                        /> 
-                                        <Avatar
-                                            src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
-                                            alt='Avatar Preview' 
-                                            sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
-                                        /> 
-                                    </label> 
+                                    <div>
 
-                                    <div>                                                                            
+                                        <label>                                        
+                                            <input
+                                                type="file"   
+                                                className="hidden-input"
+                                                name="product_images"                            
+                                                onChange={onChange}   
+                                                multiple                              
+                                            /> 
+                                            <Avatar
+                                                src={imagesPreview[0] ? imagesPreview[0] : '/images/default-product.jpg'} 
+                                                alt='Avatar Preview' 
+                                                sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
+                                            /> 
+                                        </label> 
+
+                                        <FormControlLabel 
+                                            control={
+                                                <Checkbox 
+                                                    size="small"
+                                                    value={visible}
+                                                    onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
+                                                    checked={visible === 1 ? true : false}
+                                                />
+                                            } 
+                                            label={visible === 1 ? 'Published' : 'Draft'} 
+                                        /> 
+
+                                    </div>
+
+                                    <div>  
+                                        <FormControl fullWidth>
+                                            <TextField
+                                                label="Url Slug - (Read Only)"
+                                                variant="filled"
+                                                value={slug}
+                                                InputProps={{
+                                                    readOnly: true,
+                                                }}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            />
+                                        </FormControl>
+
                                         <FormControl fullWidth sx={{ mb: 1 }}>
                                             <TextField 
                                                 label="Stock" 
@@ -212,19 +245,7 @@ const NewProduct = () => {
                                             </li>
                                         ))} 
                                     </ul> 
-                                )}  
-
-                                <FormControlLabel 
-                                    control={
-                                        <Checkbox 
-                                            size="small"
-                                            value={visible}
-                                            onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
-                                            checked={visible === 1 ? true : false}
-                                        />
-                                    } 
-                                    label={visible === 1 ? 'Published' : 'Draft'} 
-                                />    
+                                )}                                     
                               
                                 <h4>Dimensions <small>&bull; (cm)</small></h4>
 

@@ -61,7 +61,7 @@ const UpdatePassword = () => {
 
         <Fragment>
 
-            <MetaData title={'Update Password'} />
+            <MetaData title={'Update Password'} noIndex={true} />
 
             <div className="container">
 

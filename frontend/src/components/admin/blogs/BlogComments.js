@@ -3,13 +3,13 @@ import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getProductReviews, deleteReview, clearErrors } from '../../actions/productActions'
-import { DELETE_REVIEW_RESET } from '../../constants/productConstants'
+import { getBlogComments, deleteComment, clearErrors } from '../../../actions/blogActions'
+import { DELETE_COMMENT_RESET } from '../../../constants/blogConstants'
 import { FormControl, TextField, Tooltip } from '@mui/material'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
-import Modal from '../modals/Modal'
-import Confirm from '../modals/Confirm'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
+import Modal from '../../modals/Modal'
+import Confirm from '../../modals/Confirm'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
@@ -17,15 +17,15 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import parse from 'html-react-parser'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
-const ProductReviews = () => {
+const BlogComments = () => {
    
     const alert    = useAlert()
     const dispatch = useDispatch() 
-    const { error, reviews                     } = useSelector( state => state.productReviews )
-    const { isDeleted, error: deleteError      } = useSelector( state => state.review )
-    const [ productId,       setProductId      ] = useState('')
-    const [ isModalVisible,  setIsModalVisible ] = useState(false)
-    const [ reviewId,        setReviewId       ] = useState('')
+    const { error, comments                   } = useSelector( state => state.blogComments )
+    const { isDeleted, error: deleteError     } = useSelector( state => state.comment )
+    const [ blogId,         setBlogId         ] = useState('')
+    const [ isModalVisible, setIsModalVisible ] = useState(false)
+    const [ commentId,      setCommentId      ] = useState('')
     const [ fullscreen,      setFullscreen     ] = useState(false)
 
     useEffect(() => {
@@ -36,72 +36,65 @@ const ProductReviews = () => {
             alert.error(deleteError)
             dispatch(clearErrors())
         }          
-        if(productId !== '') {
-            dispatch(getProductReviews(productId))
+        if(blogId !== '') {
+            dispatch(getBlogComments(blogId))
         }
         if(isDeleted) {
-            alert.success('Review Deleted Successfully')            
-            dispatch({ type: DELETE_REVIEW_RESET })
+            alert.success('Comment Deleted Successfully')            
+            dispatch({ type: DELETE_COMMENT_RESET })
         }  
-    }, [dispatch, isDeleted, alert, error, productId, deleteError])
+    }, [dispatch, isDeleted, alert, error, blogId, deleteError])
 
-    const deleteReviewHandler = (id) => {
-        dispatch(deleteReview(id, productId))
+    const deleteCommentHandler = (id) => {
+        dispatch(deleteComment(id, blogId))
     }   
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(getProductReviews(productId))
+        dispatch(getBlogComments(blogId))
     }
-    const setReviews = () => {
+    const setComments = () => {
         const data = {
-            columns: [  
+            columns: [
                 {
                     label: 'User',
                     field: 'user',
                     sort: 'asc',
                     width: 120
-                },             
-                {
-                    label: 'Rating',
-                    field: 'rating',
-                    sort: 'asc',
-                    width: 75
                 },
                 {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'disabled',
                     width: 100                  
-                },
+                },              
                 {
                     label: 'Comment',
                     field: 'comment',
                     sort: 'disabled',
                     width: 100
-                }                               
+                }                              
             ],
             rows: []
         }
 
-        reviews.forEach( review => {
+        comments.forEach( c => {
             data.rows.push({
-                user: review.name,
-                rating: review.rating,
+                user: c.name, 
                 actions:                 
                     <Fragment> 
                         <IconButton 
                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
-                                setReviewId(review._id)
+                                setCommentId(c._id)
                             }}
                         >
                             <DeleteOutlineIcon color="danger" />
                         </IconButton> 
-                    </Fragment>,
-                comment: parse(review.comment)                
+                    </Fragment> ,
+                comment: parse(c.comment)                 
             })
         })
 
@@ -113,7 +106,7 @@ const ProductReviews = () => {
 
         <Fragment>
 
-            <MetaData title={'Product Reviews'} />
+            <MetaData title={'Blog Comments'} noIndex={true} />
 
             <div className="container">
 
@@ -129,23 +122,23 @@ const ProductReviews = () => {
 
                         <div className="user-form cart"> 
 
-                            <h1>Product Reviews</h1>
+                            <h1>Blog Comments</h1>
 
                             <form onSubmit={submitHandler}>   
                                 <FormControl fullWidth>
                                     <TextField 
-                                        label="Enter Product ID" 
-                                        value={productId}
+                                        label="Enter Blog ID" 
+                                        value={blogId}
                                         variant="standard"
-                                        onChange={(e) => setProductId(e.target.value)}
+                                        onChange={(e) => setBlogId(e.target.value)}
                                         sx={{ mb: 2 }}
                                     />                                 
                                 </FormControl>     
                             </form> 
 
-                            {reviews && reviews.length > 0 ? (
+                            {comments && comments.length > 0 ? (
                                 <MDBDataTableV5 
-                                    data={setReviews()}   
+                                    data={setComments()}   
                                     fullPagination   
                                     scrollX  
                                     // scrollY   
@@ -153,7 +146,7 @@ const ProductReviews = () => {
                                     searchBottom={false}  
                                 /> 
                             ) : (
-                                <p>No Reviews</p>
+                                <p>No Comments</p>
                             )}
 
                             <Link to="/admin/dashboard">
@@ -190,8 +183,8 @@ const ProductReviews = () => {
                 content={
                     <Confirm 
                         onBackdropClick={toggleModal} 
-                        onConfirm={() => deleteReviewHandler(reviewId)} 
-                        message="Delete Review"
+                        onConfirm={() => deleteCommentHandler(commentId)} 
+                        message="Delete Comment"
                     />
                 }
             />
@@ -202,4 +195,4 @@ const ProductReviews = () => {
 
 }
 
-export default ProductReviews
+export default BlogComments

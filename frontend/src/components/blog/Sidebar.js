@@ -19,14 +19,6 @@ const Sidebar = ({ blogs }) => {
         window.scrollTo(0, 0)           
     }
 
-    let titles = []
-
-    for( let i = 0; i < blogs.length; i++ ) {
-        let title = blogs[i].title.replace(/-/g, '_')    
-        title = title.replace(/ /g, '-') 
-        titles.push(title)
-    }
-
     return (
 
         <Fragment>
@@ -49,7 +41,7 @@ const Sidebar = ({ blogs }) => {
                         <li key={blog._id}>   
 
                             <Link 
-                                to={`/blog/${titles[i]}`}
+                                to={`/blog/${blog.slug}`}
                                 className="whitespace-nowrap"
                             >                                                                   
                                 <FormattedDate iso={blog.createdAt} format="date" />

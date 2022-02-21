@@ -39,7 +39,7 @@ const Shipping = () => {
 
         <Fragment>
 
-            <MetaData title={'Shipping Info'} />                     
+            <MetaData title={'Shipping Info'} noIndex={true} />                     
 
             <div className="container">                        
 

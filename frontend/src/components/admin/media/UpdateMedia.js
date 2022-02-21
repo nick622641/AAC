@@ -1,52 +1,65 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom'
-import { NEW_MEDIA_RESET } from '../../constants/categoryConstants'
-import { newMedia, clearErrors } from '../../actions/categoryActions'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
+import { useNavigate, Link, useParams } from 'react-router-dom'
+import { UPDATE_MEDIA_RESET } from '../../../constants/categoryConstants'
+import { getMediaDetails, updateMedia, clearErrors } from '../../../actions/categoryActions'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
+import SendIcon from '@mui/icons-material/Send'
 import { FormControl, TextField, Tooltip } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
-import SendIcon from '@mui/icons-material/Send'
 import IconButton from '@mui/material/IconButton'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
-const NewMedia = () => {
-    
+const UpdateArtist = () => {
+
+    const id = useParams().id
     const alert = useAlert()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [ name,       setName       ] = useState('')  
     const [ fullscreen, setFullscreen ] = useState(false)
-    const { loading, error, success } = useSelector(state => state.newMedia)
+    const { error, medium                          } = useSelector(state => state.mediaDetails)
+    const { loading, error: updateError, isUpdated } = useSelector(state => state.medium)
 
     useEffect(() => { 
+
+        if (medium && medium._id !== id) {
+            dispatch(getMediaDetails(id))
+        } else {
+            setName(medium.name)
+        }
         if(error) {
             alert.error(error)
             dispatch(clearErrors())
         }
-        if(success) {            
-            alert.success('Media Created Successfully')
-            navigate('/admin/media')
-            dispatch({ type: NEW_MEDIA_RESET })            
+        if(updateError) {
+            alert.error(updateError)
+            dispatch(clearErrors())
         }
-    }, [dispatch, navigate, alert, error, success])
+        if(isUpdated) {            
+            alert.success('Media Updated Successfully')
+            dispatch(getMediaDetails(id))
+            navigate('/admin/media')
+            dispatch({ type: UPDATE_MEDIA_RESET })            
+        }
+    }, [dispatch, navigate, alert, error, isUpdated, updateError, medium, id])
 
     const submitHandler = (e) => {        
         e.preventDefault()
         const formData = new FormData()
         formData.set('name', name)       
-        dispatch(newMedia(formData))
+        dispatch(updateMedia(medium._id, formData))
     }   
 
     return (
 
         <Fragment>
 
-            <MetaData title={'New Media'} />
+            <MetaData title={'Update Media'} noIndex={true} />
 
             <div className="container">
 
@@ -58,11 +71,11 @@ const NewMedia = () => {
                         
                     </aside>            
 
-                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>       
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>      
                             
                         <div className="user-form cart"> 
 
-                            <h1>New Media</h1>   
+                            <h1>Update Media</h1>     
 
                             <form onSubmit={submitHandler}>
 
@@ -84,9 +97,9 @@ const NewMedia = () => {
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
                                 >
-                                    Create
-                                </LoadingButton>   
-                              
+                                    Update
+                                </LoadingButton>                                  
+                               
                             </form>
                    
                             <Link to="/admin/media">
@@ -109,6 +122,7 @@ const NewMedia = () => {
                                     <FitScreenIcon />
                                 </IconButton>
                             </Tooltip>
+                            
                         </div>
                         
                     </article>
@@ -120,7 +134,7 @@ const NewMedia = () => {
         </Fragment>
 
     )
-
+    
 }
 
-export default NewMedia
+export default UpdateArtist

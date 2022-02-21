@@ -2,10 +2,10 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { getUserDetails, updateUser, clearErrors } from '../../actions/userActions'
-import { UPDATE_USER_RESET } from '../../constants/userConstants'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
+import { getUserDetails, updateUser, clearErrors } from '../../../actions/userActions'
+import { UPDATE_USER_RESET } from '../../../constants/userConstants'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import { FormControl, InputLabel, MenuItem, Select, TextField, Tooltip } from '@mui/material'
@@ -60,7 +60,7 @@ const UpdateUser = () => {
 
         <Fragment>
 
-            <MetaData title={'Update User'} />
+            <MetaData title={'Update User'} noIndex={true} />
 
             <div className="container">
 

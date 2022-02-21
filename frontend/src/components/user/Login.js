@@ -52,7 +52,7 @@ const Login = () => {
         
         <Fragment>
 
-            <MetaData title={'Login'} />
+            <MetaData title={'Login'} noIndex={true} />
 
             {loading ? <Loader /> : (                        
 

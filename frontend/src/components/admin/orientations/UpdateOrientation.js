@@ -1,20 +1,20 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link, useParams } from 'react-router-dom'
-import { UPDATE_ARTIST_RESET } from '../../constants/categoryConstants'
-import { getArtistDetails, updateArtist, clearErrors } from '../../actions/categoryActions'
+import { UPDATE_ORIENTATION_RESET } from '../../../constants/categoryConstants'
+import { getOrientationDetails, updateOrientation, clearErrors } from '../../../actions/categoryActions'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
+import SendIcon from '@mui/icons-material/Send'
 import { FormControl, TextField, Tooltip } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
-import SendIcon from '@mui/icons-material/Send'
 import IconButton from '@mui/material/IconButton'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
-const UpdateArtist = () => {
+const UpdateOrientation = () => {
 
     const id = useParams().id
     const alert = useAlert()
@@ -22,15 +22,15 @@ const UpdateArtist = () => {
     const dispatch = useDispatch()
     const [ name,       setName       ] = useState('')  
     const [ fullscreen, setFullscreen ] = useState(false)
-    const { error, artist                          } = useSelector(state => state.artistDetails)
-    const { loading, error: updateError, isUpdated } = useSelector(state => state.artist)
+    const { error, orientation                     } = useSelector(state => state.orientationDetails)
+    const { loading, error: updateError, isUpdated } = useSelector(state => state.orientation)
 
     useEffect(() => { 
-        
-        if (artist && artist._id !== id) {
-            dispatch(getArtistDetails(id))
+
+        if (orientation && orientation._id !== id) {
+            dispatch(getOrientationDetails(id))
         } else {
-            setName(artist.name)
+            setName(orientation.name)
         }
         if(error) {
             alert.error(error)
@@ -41,24 +41,24 @@ const UpdateArtist = () => {
             dispatch(clearErrors())
         }
         if(isUpdated) {            
-            alert.success('Artist Updated Successfully')
-            dispatch(getArtistDetails(id))
-            navigate('/admin/artists')
-            dispatch({ type: UPDATE_ARTIST_RESET })            
+            alert.success('Orientation Updated Successfully')
+            dispatch(getOrientationDetails(id))
+            navigate('/admin/orientations')
+            dispatch({ type: UPDATE_ORIENTATION_RESET })            
         }
-    }, [dispatch, navigate, alert, error, isUpdated, updateError, artist, id])
+    }, [dispatch, navigate, alert, error, isUpdated, updateError, orientation, id])
 
     const submitHandler = (e) => {        
         e.preventDefault()
         const formData = new FormData()
         formData.set('name', name)       
-        dispatch(updateArtist(artist._id, formData))
+        dispatch(updateOrientation(orientation._id, formData))
     }   
     return (
 
         <Fragment>
 
-            <MetaData title={'Update Artist'} />
+            <MetaData title={'Update Orientation'} noIndex={true} />
 
             <div className="container">
 
@@ -70,23 +70,23 @@ const UpdateArtist = () => {
                         
                     </aside>            
 
-                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>        
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>      
                             
                         <div className="user-form cart"> 
 
-                            <h1>Update Artist</h1>   
+                            <h1>Update Orientation</h1>      
 
                             <form onSubmit={submitHandler}>
 
                                 <FormControl fullWidth>
                                     <TextField 
-                                        label="Artist Name" 
+                                        label="Orientation Name" 
                                         value={name}
                                         variant="standard"
                                         onChange={(e) => setName(e.target.value)} 
                                         sx={{ mb: 1 }}
                                     />                                 
-                                </FormControl>   
+                                </FormControl>
 
                                 <LoadingButton 
                                     loading={loading}
@@ -97,11 +97,11 @@ const UpdateArtist = () => {
                                     sx={{ mt: 4, width: '100%' }}
                                 >
                                     Update
-                                </LoadingButton> 
+                                </LoadingButton>  
 
                             </form>
                    
-                            <Link to="/admin/artists">
+                            <Link to="/admin/orientations">
                                 <Fab 
                                     size="small" 
                                     className="close" 
@@ -117,10 +117,10 @@ const UpdateArtist = () => {
                                     color="primary" 
                                     sx={{ position: 'absolute', top: 10, left: 10 }}
                                     onClick={() => setFullscreen(!fullscreen)}
-                                    >
-                                        <FitScreenIcon />
-                                    </IconButton>
-                                </Tooltip>
+                                >
+                                    <FitScreenIcon />
+                                </IconButton>
+                            </Tooltip>
                             
                         </div>
                         
@@ -136,4 +136,4 @@ const UpdateArtist = () => {
 
 }
 
-export default UpdateArtist
+export default UpdateOrientation

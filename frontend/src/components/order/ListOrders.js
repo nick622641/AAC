@@ -88,7 +88,7 @@ const ListOrders = () => {
 
         <Fragment>
 
-            <MetaData title={'My Orders'} />
+            <MetaData title={'My Orders'} noIndex={true} />
 
             {loading ? <Loader /> : (                     
 

@@ -2,25 +2,26 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
-import { NEW_ORIENTATION_RESET } from '../../constants/categoryConstants'
-import { newOrientation, clearErrors } from '../../actions/categoryActions'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
+import { NEW_MEDIA_RESET } from '../../../constants/categoryConstants'
+import { newMedia, clearErrors } from '../../../actions/categoryActions'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import SendIcon from '@mui/icons-material/Send'
-import { FormControl, IconButton, TextField, Tooltip } from '@mui/material'
+import { FormControl, TextField, Tooltip } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
+import IconButton from '@mui/material/IconButton'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
-const NewOrientation = () => {
+const NewMedia = () => {
     
     const alert = useAlert()
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [ name, setName ] = useState('')  
+    const [ name,       setName       ] = useState('')  
     const [ fullscreen, setFullscreen ] = useState(false)
-    const { loading, error, success } = useSelector( state => state.newOrientation )
+    const { loading, error, success } = useSelector(state => state.newMedia)
 
     useEffect(() => { 
         if(error) {
@@ -28,9 +29,9 @@ const NewOrientation = () => {
             dispatch(clearErrors())
         }
         if(success) {            
-            alert.success('Orientation Created Successfully')
-            navigate('/admin/orientations')
-            dispatch({ type: NEW_ORIENTATION_RESET })            
+            alert.success('Media Created Successfully')
+            navigate('/admin/media')
+            dispatch({ type: NEW_MEDIA_RESET })            
         }
     }, [dispatch, navigate, alert, error, success])
 
@@ -38,14 +39,14 @@ const NewOrientation = () => {
         e.preventDefault()
         const formData = new FormData()
         formData.set('name', name)       
-        dispatch(newOrientation(formData))
+        dispatch(newMedia(formData))
     }   
 
     return (
 
         <Fragment>
 
-            <MetaData title={'New Orientation'} />
+            <MetaData title={'New Media'} noIndex={true} />
 
             <div className="container">
 
@@ -57,17 +58,17 @@ const NewOrientation = () => {
                         
                     </aside>            
 
-                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>         
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>       
                             
                         <div className="user-form cart"> 
 
-                            <h1>New Orientation</h1>   
+                            <h1>New Media</h1>   
 
                             <form onSubmit={submitHandler}>
 
                                 <FormControl fullWidth>
                                     <TextField 
-                                        label="Orientation Name" 
+                                        label="Media Name" 
                                         value={name}
                                         variant="standard"
                                         onChange={(e) => setName(e.target.value)} 
@@ -85,10 +86,10 @@ const NewOrientation = () => {
                                 >
                                     Create
                                 </LoadingButton>   
-
+                              
                             </form>
                    
-                            <Link to="/admin/orientations">
+                            <Link to="/admin/media">
                                 <Fab 
                                     size="small" 
                                     className="close" 
@@ -119,7 +120,7 @@ const NewOrientation = () => {
         </Fragment>
 
     )
-    
+
 }
 
-export default NewOrientation
+export default NewMedia

@@ -3,13 +3,13 @@ import { useNavigate, Link } from 'react-router-dom'
 import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getArtists, deleteArtist, clearErrors } from '../../actions/categoryActions'
-import { DELETE_ARTIST_RESET } from '../../constants/categoryConstants'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from './Sidebar'
-import Modal from '../modals/Modal'
-import Confirm from '../modals/Confirm'
+import { getOrientations, deleteOrientation, clearErrors } from '../../../actions/categoryActions'
+import { DELETE_ORIENTATION_RESET } from '../../../constants/categoryConstants'
+import MetaData from '../../layouts/MetaData'
+import Loader from '../../layouts/Loader'
+import Sidebar from '../Sidebar'
+import Modal from '../../modals/Modal'
+import Confirm from '../../modals/Confirm'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
@@ -19,13 +19,13 @@ import AddIcon from '@mui/icons-material/Add'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import { Tooltip } from '@mui/material'
 
-const ArtistList = () => {
+const OrientationList = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { loading, error, artists       } = useSelector( state => state.artists )
-    const { error: deleteError, isDeleted } = useSelector( state => state.artist  )
+    const { loading, error, orientations }  = useSelector( state => state.orientations )
+    const { error: deleteError, isDeleted } = useSelector( state => state.orientation )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
@@ -33,7 +33,7 @@ const ArtistList = () => {
 
     useEffect(() => {
 
-        dispatch(getArtists())
+        dispatch(getOrientations())
 
         if(error) {
             alert.error(error)
@@ -44,25 +44,25 @@ const ArtistList = () => {
             dispatch(clearErrors())
         }      
         if(isDeleted) {
-            alert.success('Artist Deleted Successfully')            
-            dispatch({ type: DELETE_ARTIST_RESET })
+            alert.success('Orientation Deleted Successfully')            
+            dispatch({ type: DELETE_ORIENTATION_RESET })
         }
 
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
 
-    const deleteCategoryHandler = (id) => {
-        dispatch(deleteArtist(id))
-    }
-
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
+    }
+
+    const deleteCategoryHandler = (id) => {
+        dispatch(deleteOrientation(id))
     }
 
     const setCategories = () => {
         const data = {
             columns: [                
                 {
-                    label: 'Artist ID',
+                    label: 'Orientation ID',
                     field: 'id',
                     sort: 'disabled',
                     width: 200
@@ -75,44 +75,43 @@ const ArtistList = () => {
                 {
                     label: 'Actions',
                     field: 'actions',
-                    sort: 'disabled'  ,
-                    width: 100                
+                    sort: 'disabled',
+                    width: 100                  
                 }
             ],
             rows: []
-        }      
-        artists && artists.forEach( artist => {
+        }   
+        orientations && orientations.forEach( orientation => {
             data.rows.push({                
-                id: artist._id,
-                name: artist.name,
+                id: orientation._id,
+                name: orientation.name,
                 actions: 
-                    <Fragment>
-                        <Link to={`/admin/artist/${artist._id}`}>
-                            <IconButton>
-                                <EditOutlinedIcon />
-                            </IconButton>
-                        </Link> 
-                        <IconButton 
-                            onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setId(artist._id)
-                            }}
-                        >
-                            <DeleteOutlineIcon color="danger" />
-                        </IconButton>   
-                    </Fragment> 
+                <Fragment>
+                    <Link to={`/admin/orientation/${orientation._id}`}>
+                        <IconButton>
+                            <EditOutlinedIcon />
+                        </IconButton>
+                    </Link> 
+                    <IconButton 
+                        onClick={() => {
+                            setIsModalVisible(!isModalVisible)
+                            setId(orientation._id)
+                        }}
+                    >
+                        <DeleteOutlineIcon color="danger" />
+                    </IconButton>     
+                </Fragment> 
             })
-        }) 
+        })
 
         return data
-
     }    
 
     return (
 
         <Fragment>
 
-            <MetaData title={'All Artists'} />
+            <MetaData title={'All Orientations'} noIndex={true} />
 
             <div className="container">
 
@@ -124,23 +123,23 @@ const ArtistList = () => {
                         
                     </aside>            
 
-                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>  
-
-                        {loading ? <Loader /> : ( 
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>
+                        
+                        {loading ? <Loader /> : (
 
                             <div className="user-form cart">
 
-                                <h1>Artist Category</h1>
+                                <h1>Orientation Category</h1>
 
                                 <p className="text-right">
-                                    <Link to="/admin/artist">
+                                    <Link to="/admin/orientation">
                                         Add
                                         <IconButton>
                                             <AddIcon />
                                         </IconButton>
-                                    </Link> 
-                                </p>                                                                                                 
-                                
+                                    </Link>
+                                </p>  
+
                                 <MDBDataTableV5 
                                     data={setCategories()}   
                                     fullPagination   
@@ -148,7 +147,7 @@ const ArtistList = () => {
                                     // scrollY   
                                     searchTop
                                     searchBottom={false}  
-                                />  
+                                />
 
                                 <Link to="/admin/dashboard">
                                     <Fab 
@@ -171,8 +170,8 @@ const ArtistList = () => {
                                     </IconButton>
                                 </Tooltip>
 
-                            </div> 
-                        
+                            </div>
+
                         )}
 
                     </article>
@@ -188,7 +187,7 @@ const ArtistList = () => {
                     <Confirm 
                         onBackdropClick={toggleModal} 
                         onConfirm={() => deleteCategoryHandler(id)} 
-                        message="Delete Artist"
+                        message="Delete Orientation"
                     />
                 }
             />
@@ -199,4 +198,4 @@ const ArtistList = () => {
 
 }
 
-export default ArtistList
+export default OrientationList

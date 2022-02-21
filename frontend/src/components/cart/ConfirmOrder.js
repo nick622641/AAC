@@ -122,7 +122,7 @@ const ConfirmOrder = () => {
 
         <Fragment>
 
-            <MetaData title={'Confirm Order'} />
+            <MetaData title={'Confirm Order'} noIndex={true} />
 
             <div className="container">            
 

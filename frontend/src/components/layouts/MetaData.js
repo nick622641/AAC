@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-const MetaData = ({ title, description }) => {
+const MetaData = ({ title, description, noIndex=false }) => {
 
     return (
         
@@ -14,6 +14,9 @@ const MetaData = ({ title, description }) => {
                     : 'Bold and beautiful abstract works of art by Canadian artists'
                 } 
             />
+            {noIndex === true && (
+                 <meta name="robots" content="noindex" />
+            )}           
         </Helmet>
 
     )

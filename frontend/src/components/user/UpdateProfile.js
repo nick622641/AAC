@@ -69,7 +69,7 @@ const UpdateProfile = () => {
 
         <Fragment>
 
-            <MetaData title={'Update Profile'} />
+            <MetaData title={'Update Profile'} noIndex={true} />
 
             <div className="container">
 

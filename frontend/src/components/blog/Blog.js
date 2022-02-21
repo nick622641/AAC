@@ -2,14 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import FormattedDate from '../layouts/FormattedDate'
 
-const Blog = ({ blog }) => {
-
-    let title = blog.title.replace(/-/g, '_')    
-    title = title.replace(/ /g, '-') 
+const Blog = ({ blog }) => { 
 
     return (
         
-        <Link to={`/blog/${title}`} className="showroom-item"> 
+        <Link to={`/blog/${blog.slug}`} className="showroom-item"> 
 
             <div> 
 

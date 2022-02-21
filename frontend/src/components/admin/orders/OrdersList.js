@@ -3,29 +3,29 @@ import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
-import { allUsers, deleteUser, clearErrors } from '../../actions/userActions'
-import { DELETE_USER_RESET } from '../../constants/userConstants'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from '../admin/Sidebar'
-import Modal from '../modals/Modal'
-import Confirm from '../modals/Confirm'
+import { allOrders, deleteOrder, clearErrors } from '../../../actions/orderActions'
+import { DELETE_ORDER_RESET } from '../../../constants/orderConstants'
+import MetaData from '../../layouts/MetaData'
+import Loader from '../../layouts/Loader'
+import Sidebar from '../Sidebar'
+import Modal from '../../modals/Modal'
+import Confirm from '../../modals/Confirm'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import { Avatar, Tooltip } from '@mui/material'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
+import { Tooltip } from '@mui/material'
+import FormattedDate from '../../layouts/FormattedDate'
 
-const UsersList = () => {
+const OrdersList = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { loading, error, users } = useSelector( state => state.allUsers )
-    const { isDeleted             } = useSelector( state => state.user )
-    const { user                  } = useSelector( state => state.auth )
+    const { loading, error, orders } = useSelector( state => state.allOrders )
+    const { isDeleted              } = useSelector( state => state.order )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
@@ -33,125 +33,126 @@ const UsersList = () => {
 
     useEffect(() => {
 
-        dispatch(allUsers())
+        dispatch(allOrders())
 
         if(error) {
-            alert.error(error)
+            alert.error(error);
             dispatch(clearErrors())
-        }  
+        }   
         if(isDeleted) {
-            alert.success('User Deleted Successfully')            
-            dispatch({ type: DELETE_USER_RESET })
+            alert.success('Order Deleted Successfully')            
+            dispatch({ type: DELETE_ORDER_RESET })
         }
-
-    }, [dispatch, navigate, isDeleted, alert, error ])
-
-    const deleteUserHandler = (id) => {
-        dispatch(deleteUser(id))
-    }
+        
+    }, [dispatch, navigate,  alert, error, isDeleted])
 
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
 
-    const setUsers = () => {
+    const deleteOrderHandler = (id) => {
+        dispatch(deleteOrder(id))
+    }
+
+    const setOrders = () => {
         const data = {
-            columns: [
-                {
-                    label: 'Preview',
-                    field: 'url',
-                    sort: 'disabled',
-                    width: 70
-                },   
+            columns: [ 
                 {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'disabled',
-                    width: 100
-                },             
+                    width: 100                  
+                },
                 {
-                    label: 'Name',
-                    field: 'name',
+                    label: 'Date',
+                    field: 'date',
+                    sort: 'disabled',
+                    width: 100
+                },
+                {
+                    label: 'Qty',
+                    field: 'numOfItems',
+                    sort: 'asc',
+                    width: 75
+                },
+                {
+                    label: 'Amount',
+                    field: 'amount',
                     sort: 'asc',
                     width: 100
-                },                
+                },
                 {
-                    label: 'Role',
-                    field: 'role',
+                    label: 'Status',
+                    field: 'status',
                     sort: 'asc',
-                    width: 90
-                }               
+                    width: 100
+                }                
             ],
             rows: []
         }
 
-        users.forEach( u => {
-            data.rows.push({
-                url: 
-                    <Avatar
-                        src={u.avatar.url} 
-                        alt={u.name} 
-                        sx={{ width: 50, height: 50 }}
-                    />,
-                    actions:                 
-                    <Fragment>                        
-                        <Link to={`/admin/user/${u._id}`}>
+        orders && orders.forEach( order => {
+            data.rows.push({                
+                actions:                 
+                    <Fragment>
+                        <Link to={`/admin/order/${order._id}`}>
                             <IconButton>
-                                <EditOutlinedIcon />
+                            <   VisibilityIcon fontSize="small" />
                             </IconButton>
                         </Link> 
                         <IconButton 
                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
-                                setId(u._id)
+                                setId(order._id)
                             }}
-                            disabled={user._id === u._id ? true : false}
                         >
-                            <DeleteOutlineIcon color={user._id !== u._id ? 'danger' : 'secondary'} />
-                        </IconButton>                       
-                    </Fragment>,
-                name: u.name,
-                role: <span style={{ textTransform: 'capitalize' }}>{u.role}</span> 
+                            <DeleteOutlineIcon color="danger" />
+                        </IconButton>            
+                    </Fragment>, 
+                date: <FormattedDate iso={ order.paidAt} />,
+                numOfItems: order.orderItems.length,
+                amount: `$${order.totalPrice}`, 
+                status: order.orderStatus                
             })
         })
 
         return data
     }
-    
+
     return (
 
         <Fragment>
 
-            <MetaData title={'All Users'} />
+            <MetaData title={'All Orders'} noIndex={true} />
 
             <div className="container">
 
                 <div className="wrapper parent">
 
                     <aside>
-                        
+
                         <Sidebar />
-                        
-                    </aside>                     
+
+                    </aside>
 
                     <article className={fullscreen ? 'fullscreen relative' : 'relative'}> 
 
-                        {loading ? <Loader /> : (
+                        {loading ? <Loader /> : (     
 
-                            <Fragment>                            
+                            <Fragment>
 
                                 <div className="user-form cart">
 
-                                    <h1>All Users</h1>                                
+                                    <h1>All Orders</h1>                                
 
                                     <MDBDataTableV5 
-                                        data={setUsers()}   
+                                        data={setOrders()}   
                                         fullPagination   
                                         scrollX  
-                                        scrollY   
+                                        // scrollY   
                                         searchTop
                                         searchBottom={false}  
-                                    />                                
+                                    />   
 
                                     <Link to="/admin/dashboard">
                                         <Fab 
@@ -170,17 +171,17 @@ const UsersList = () => {
                                             sx={{ position: 'absolute', top: 10, left: 10 }}
                                             onClick={() => setFullscreen(!fullscreen)}
                                     >
-                                            <FitScreenIcon />
-                                        </IconButton>
-                                    </Tooltip>
-
+                                        <FitScreenIcon />
+                                    </IconButton>
+                                </Tooltip>
+                                    
                                 </div>
 
                             </Fragment>
 
                         )}
 
-                    </article>
+                    </article>   
 
                 </div>
 
@@ -192,8 +193,8 @@ const UsersList = () => {
                 content={
                     <Confirm 
                         onBackdropClick={toggleModal} 
-                        onConfirm={() => deleteUserHandler(id)} 
-                        message="Delete User"
+                        onConfirm={() => deleteOrderHandler(id)} 
+                        message="Delete Order"
                     />
                 }
             />
@@ -204,4 +205,4 @@ const UsersList = () => {
     
 }
 
-export default UsersList
+export default OrdersList

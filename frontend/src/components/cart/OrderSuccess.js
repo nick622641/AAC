@@ -11,7 +11,7 @@ const OrderSuccess = () => {
 
         <Fragment>
 
-            <MetaData title={'Order Success'} />
+            <MetaData title={'Order Success'} noIndex={true} />
 
             <div className="container parent" style={{ minHeight: "60vh", alignItems: "center" }}>
 

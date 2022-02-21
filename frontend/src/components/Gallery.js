@@ -33,11 +33,10 @@ const Gallery = () => {
     const artistQuery      = useParams().artist 
     const orientationQuery = useParams().orientation 
     const mediumQuery      = useParams().medium 
-    const ratingQuery      = useParams().rating 
+    const rating           = useParams().rating 
     const artist      = artistQuery      ? artistQuery.replace(/-/g, ' ')      : ''
     const orientation = orientationQuery ? orientationQuery.replace(/-/g, ' ') : ''
     const medium      = mediumQuery      ? mediumQuery.replace(/-/g, ' ')      : ''
-    const rating      = ratingQuery      ? ratingQuery.replace(/-/g, ' ')      : ''   
 
     const [ currentPage, setCurrentPage ] = useState(1)
     const [ price,       setPrice       ] = useState([1, 10000])    
@@ -101,129 +100,130 @@ const Gallery = () => {
                         </button>
 
                         {(isMenuOpen || !isMobile) && (
-                        <animated.div style={isMobile ? menuAppear : {}}>
 
-                            <h3>
-                                Filters
-                                <Link to="/gallery">
-                                    <IconButton className="float-r">
-                                        <AutorenewIcon />
-                                    </IconButton>
-                                </Link>
-                            </h3>    
+                            <animated.div style={isMobile ? menuAppear : {}}>
 
-                            <h6>Price Range</h6>
+                                <h3>
+                                    Filters
+                                    <Link to="/gallery">
+                                        <IconButton className="float-r">
+                                            <AutorenewIcon />
+                                        </IconButton>
+                                    </Link>
+                                </h3>    
 
-                            <Range 
-                                marks={{
-                                    1 : `$1`,
-                                    10000 : `$10000`
-                                }}
-                                min={1}
-                                max={10000}
-                                defaultValue={[1, 10000]}
-                                tipFormatter={value => `$${value}`}
-                                tipProps={{
-                                    placement: "top"                                                    
-                                }}
-                                value={price}
-                                onChange={(price) => {
-                                    setPrice(price)                          
-                                    resetPage()
-                                }}
-                                style={{ margin: "20px 0 50px 0" }}
-                            />                            
+                                <h6>Price Range</h6>
 
-                            <h6>Artist</h6>
+                                <Range 
+                                    marks={{
+                                        1 : `$1`,
+                                        10000 : `$10000`
+                                    }}
+                                    min={1}
+                                    max={10000}
+                                    defaultValue={[1, 10000]}
+                                    tipFormatter={value => `$${value}`}
+                                    tipProps={{
+                                        placement: "top"                                                    
+                                    }}
+                                    value={price}
+                                    onChange={(price) => {
+                                        setPrice(price)                          
+                                        resetPage()
+                                    }}
+                                    style={{ margin: "20px 0 50px 0" }}
+                                />                            
 
-                            <ul>   
-                                {artists && artists.map(a => (
-                                    <li                                           
-                                        key={a.name}                             
-                                        className={artist === a.name ? 'link-active' : ''}
-                                    >                                                                          
-                                        <Link 
-                                            to={`/gallery/artist/${a.name.replace(/ /g, '-')}`}
-                                            className="whitespace-nowrap"
+                                <h6>Artist</h6>
+
+                                <ul>   
+                                    {artists && artists.map(a => (
+                                        <li                                           
+                                            key={a.name}                             
+                                            className={artist === a.name ? 'link-active' : ''}
+                                        >                                                                          
+                                            <Link 
+                                                to={`/gallery/artist/${a.name.replace(/ /g, '-')}`}
+                                                className="whitespace-nowrap"
+                                            >
+                                                <Checkbox 
+                                                    checked={artist === a.name ? true : false} 
+                                                    size="small"
+                                                    sx={{ py: 0.3 }}
+                                                    color="primary"
+                                                />                                      
+                                                {a.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <h6>Orientation</h6>
+
+                                <ul>
+                                    {orientations && orientations.map(o => (
+                                        <li                                           
+                                            key={o.name}                               
+                                            className={orientation === o.name ? 'link-active' : ''}
                                         >
-                                            <Checkbox 
-                                                checked={artist === a.name ? true : false} 
-                                                size="small"
-                                                sx={{ py: 0.3 }}
-                                                color="primary"
-                                            />                                      
-                                            {a.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                                            <Link to={`/gallery/orientation/${o.name.replace(/ /g, '-')}`}>
+                                                <Checkbox 
+                                                    checked={orientation === o.name ? true : false} 
+                                                    size="small"
+                                                    sx={{ py: 0.3 }}
+                                                    color="primary"
+                                                />                                            
+                                                {o.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
 
-                            <h6>Orientation</h6>
+                                <h6>Media</h6>
 
-                            <ul>
-                                {orientations && orientations.map(o => (
-                                    <li                                           
-                                        key={o.name}                               
-                                        className={orientation === o.name ? 'link-active' : ''}
-                                    >
-                                        <Link to={`/gallery/orientation/${o.name.replace(/ /g, '-')}`}>
-                                            <Checkbox 
-                                                checked={orientation === o.name ? true : false} 
-                                                size="small"
-                                                sx={{ py: 0.3 }}
-                                                color="primary"
-                                            />                                            
-                                            {o.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                                <ul>
+                                    {media && media.map(m => (
+                                        <li                                           
+                                            key={m.name}                                    
+                                            className={medium === m.name ? 'link-active' : ''}
+                                        >
+                                            <Link to={`/gallery/medium/${m.name.replace(/ /g, '-')}`}>
+                                                <Checkbox 
+                                                    checked={medium === m.name ? true : false} 
+                                                    size="small"
+                                                    sx={{ py: 0.3 }}
+                                                    color="primary"
+                                                />                                       
+                                                {m.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>                            
 
-                            <h6>Media</h6>
+                                <h6>Ratings</h6>
 
-                            <ul>
-                                {media && media.map(m => (
-                                    <li                                           
-                                        key={m.name}                                    
-                                        className={medium === m.name ? 'link-active' : ''}
-                                    >
-                                        <Link to={`/gallery/medium/${m.name.replace(/ /g, '-')}`}>
-                                            <Checkbox 
-                                                checked={medium === m.name ? true : false} 
-                                                size="small"
-                                                sx={{ py: 0.3 }}
-                                                color="primary"
-                                            />                                       
-                                            {m.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>                            
+                                <ul>
+                                    {[5, 4, 3, 2, 1].map(star => (
+                                        <li key={star}>
+                                            <Link to={`/gallery/rating/${star}`}>
+                                                <Rating 
+                                                    value={star} 
+                                                    sx={{ color: "var(--primary-color)" }} 
+                                                    readOnly
+                                                />                                            
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
 
-                            <h6>Ratings</h6>
+                                <button 
+                                    className="filters"
+                                    onClick={resetPage}
+                                >
+                                    Hide Menu
+                                </button>
 
-                            <ul>
-                                {[5, 4, 3, 2, 1].map(star => (
-                                    <li key={star}>
-                                        <Link to={`/gallery/rating/${star}`}>
-                                            <Rating 
-                                                value={star} 
-                                                sx={{ color: "var(--primary-color)" }} 
-                                                readOnly
-                                            />                                            
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <button 
-                                className="filters"
-                                onClick={resetPage}
-                            >
-                                Hide Menu
-                            </button>
-
-                        </animated.div>
+                            </animated.div>
                         
                         )} 
 

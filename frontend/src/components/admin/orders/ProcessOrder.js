@@ -2,20 +2,20 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-import { getOrderDetails, updateOrder, clearErrors } from '../../actions/orderActions'
+import { getOrderDetails, updateOrder, clearErrors } from '../../../actions/orderActions'
 import { FormControl, InputLabel, MenuItem, Select, Tooltip } from '@mui/material'
-import { UPDATE_ORDER_RESET } from '../../constants/orderConstants'
+import { UPDATE_ORDER_RESET } from '../../../constants/orderConstants'
 import { MDBDataTableV5 } from 'mdbreact'
-import FormattedPrice from '../layouts/FormattedPrice'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from '../admin/Sidebar'
+import FormattedPrice from '../../layouts/FormattedPrice'
+import MetaData from '../../layouts/MetaData'
+import Loader from '../../layouts/Loader'
+import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import AddTaskIcon from '@mui/icons-material/AddTask'
 import Avatar from '@mui/material/Avatar'
-import FormattedDate from '../layouts/FormattedDate'
+import FormattedDate from '../../layouts/FormattedDate'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
 const ProcessOrder = () => {
@@ -106,7 +106,7 @@ const ProcessOrder = () => {
 
         <Fragment>
 
-            <MetaData title={`Process Order # ${order && order._id}`} />
+            <MetaData title={`Process Order # ${order && order._id}`} noIndex={true} />
 
             <div className="container">
 

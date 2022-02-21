@@ -2,24 +2,24 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { updateBlog, getAdminBlogDetails, updateImages, deleteImage, clearErrors } from '../../actions/blogActions'
-import { UPDATE_BLOG_RESET } from '../../constants/blogConstants'
-import { DELETE_IMAGE_RESET } from '../../constants/blogConstants'
+import { updateBlog, getAdminBlogDetails, updateImages, deleteImage, clearErrors } from '../../../actions/blogActions'
+import { UPDATE_BLOG_RESET } from '../../../constants/blogConstants'
+import { DELETE_IMAGE_RESET } from '../../../constants/blogConstants'
 import { FormControl, FormControlLabel, IconButton, TextField, Tooltip } from '@mui/material'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import Avatar from '@mui/material/Avatar'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
-import DragnDrop from './DragnDrop'
-import Modal from '../modals/Modal'
-import Confirm from '../modals/Confirm'
+import DragnDrop from '../DragnDrop'
+import Modal from '../../modals/Modal'
+import Confirm from '../../modals/Confirm'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEditor from '../layouts/RichtextEditor'
+import RichtextEditor from '../../layouts/RichtextEditor'
 import Checkbox from '@mui/material/Checkbox'
-import RichtextPreview from '../layouts/RichtextPreview'
+import RichtextPreview from '../../layouts/RichtextPreview'
 
 const UpdateBlog = () => {
 
@@ -33,6 +33,7 @@ const UpdateBlog = () => {
     const { loading, isUpdated, error: updateError, error: deleteError, isDeleted } = useSelector( state => state.blog )  
     
     const [ title,           setTitle          ] = useState('')
+    const [ slug,            setSlug           ] = useState('')
     const [ tags,            setTags           ] = useState('')   
     const [ description,     setDescription    ] = useState('')  
     const [ visible,         setVisible        ] = useState(1) 
@@ -68,6 +69,7 @@ const UpdateBlog = () => {
         } else {
             
             setTitle(blog.title)
+            setSlug(blog.slug)
             setTags(blog.tags)            
             setDescription(blog.description)          
             setOldImages(blog.images)   
@@ -110,6 +112,7 @@ const UpdateBlog = () => {
         e.preventDefault()
         const formData = new FormData()
         formData.set('title', title)
+        formData.set('slug', slug)
         formData.set('tags', tags)       
         formData.set('description', description)    
         formData.set('visible', visible)  
@@ -132,23 +135,23 @@ const UpdateBlog = () => {
                 if (reader.readyState === 2) {
                     setImagesPreview(oldArray => [...oldArray, reader.result])
                     setImages(oldArray => [...oldArray, reader.result])                    
-                }
-                
+                }                
             }
             reader.readAsDataURL(file)
         })        
     }  
     
     const sanitizeInput = (value) => {
-        value = value.replace(/[^a-z0-9'. -]/ig, '')
-        setTitle(value)
+        value = value.replace(/[^\w -]/ig, '')
+        value = value.replace(/ /ig, '-')
+        setSlug(value.toLowerCase())
     }
 
     return (
 
         <Fragment>
 
-            <MetaData title={'Update Blog'} />
+            <MetaData title={'Update Blog'} noIndex={true} />
 
             <div className="container">
 
@@ -167,32 +170,48 @@ const UpdateBlog = () => {
                             <form onSubmit={submitHandler} encType='multipart/form-data'>  
 
                                 <div className="parent reverse">
+
+                                    <div>
                                     
-                                    <label>                                    
-                                        <input
-                                            type='file'   
-                                            className="hidden-input"
-                                            name="product_images"                            
-                                            onChange={onChange}   
-                                            multiple                              
-                                        />   
-                                                                
-                                        {oldImages[0] && !imagesPreview[0]  && (
-                                            <Avatar
-                                                src={oldImages[0].thumbUrl} 
-                                                alt={title}
-                                                sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
-                                            />                                   
-                                        )}   
-                                        {imagesPreview[0] && (
-                                            <Avatar
-                                                src={imagesPreview[0]} 
-                                                alt={title}
-                                                sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
-                                            />                                           
-                                        )}                                            
-                                            
-                                    </label>
+                                        <label>                                    
+                                            <input
+                                                type='file'   
+                                                className="hidden-input"
+                                                name="product_images"                            
+                                                onChange={onChange}   
+                                                multiple                              
+                                            />   
+                                                                    
+                                            {oldImages[0] && !imagesPreview[0]  && (
+                                                <Avatar
+                                                    src={oldImages[0].thumbUrl} 
+                                                    alt={title}
+                                                    sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
+                                                />                                   
+                                            )}   
+                                            {imagesPreview[0] && (
+                                                <Avatar
+                                                    src={imagesPreview[0]} 
+                                                    alt={title}
+                                                    sx={{ width: 150, height: 150, mr: 4, mb: 1 }}
+                                                />                                           
+                                            )}                                            
+                                                
+                                        </label>
+
+                                        <FormControlLabel 
+                                            control={
+                                                <Checkbox 
+                                                    size="small"
+                                                    value={visible}
+                                                    onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
+                                                    checked={visible === 1 ? true : false}
+                                                />
+                                            } 
+                                            label={visible === 1 ? 'Published' : 'Draft'} 
+                                        /> 
+
+                                    </div>
 
                                     <div style={{ flexGrow: 1 }}>
 
@@ -207,6 +226,20 @@ const UpdateBlog = () => {
                                                 }} 
                                                 sx={{ mb: 1 }}
                                             />                                 
+                                        </FormControl>
+
+                                        <FormControl fullWidth>
+                                            <TextField
+                                                label="Url Slug - (Read Only)"
+                                                variant="filled"
+                                                value={slug}
+                                                InputProps={{
+                                                    readOnly: true,
+                                                }}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            />
                                         </FormControl>     
 
                                         <FormControl fullWidth sx={{ mb: 1 }}>
@@ -235,19 +268,7 @@ const UpdateBlog = () => {
                                     final={final}
                                     oldImages={oldImages}
                                     imagesPreview={imagesPreview}
-                                />  
-
-                                <FormControlLabel 
-                                    control={
-                                        <Checkbox 
-                                            size="small"
-                                            value={visible}
-                                            onChange={(e) => setVisible(e.target.checked ? 1 : 0 )}
-                                            checked={visible === 1 ? true : false}
-                                        />
-                                    } 
-                                    label={visible === 1 ? 'Published' : 'Draft'} 
-                                /> 
+                                />                                  
 
                                 <h4>Content</h4> 
 
@@ -285,7 +306,7 @@ const UpdateBlog = () => {
                                 <CloseIcon />
                             </Fab>
 
-                            <Tooltip title="Expand">
+                            <Tooltip title="Expand" arrow>
                                 <IconButton 
                                     color="primary" 
                                     sx={{ position: 'absolute', top: 10, left: 10 }}

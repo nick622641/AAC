@@ -84,7 +84,7 @@ const OrderDetails = () => {
     return (
         <Fragment>
 
-            <MetaData title={'Order Details'} />
+            <MetaData title={'Order Details'} noIndex={true} />
 
             {loading ? <Loader /> : (
 

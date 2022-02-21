@@ -7,7 +7,12 @@ const blogSchema = new mongoose.Schema({
         trim: true,
         unique: true,
         maxLength: [100, 'Title may not exceed 100 characters']
-    },    
+    },  
+    slug: {
+        type: String,
+        unique: true,
+        required: true
+    },  
     description: {
         type: String,
         required: [true, 'Please enter a description']       

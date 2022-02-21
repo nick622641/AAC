@@ -109,7 +109,7 @@ const Payment = () => {
 
         <Fragment>
 
-            <MetaData title={'Payment'} />
+            <MetaData title={'Payment'} noIndex={true} />
 
             <div className="container">            
 

@@ -135,10 +135,10 @@ exports.getAdminBlogs = async (req, res, next) => {
     })      
 }
 
-// Get single blog details => /api/v1/blog/:id
+// Get single blog details => /api/v1/blog/:slug
 exports.getSingleBlog = catchAsyncErrors(async (req, res, next) => {   
     try {     
-        const blog = await Blog.findOne({ title: req.params.id })
+        const blog = await Blog.findOne({ slug: req.params.slug })
         res.status(200).json({
             success: true,
             blog

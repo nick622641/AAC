@@ -349,11 +349,11 @@ exports.getAdminProducts = async (req, res, next) => {
     })      
 }
 
-// Get single product details => /api/v1/product/:id
+// Get single product details => /api/v1/product/:slug
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {   
     try {  
 
-        const product = await Product.findOne({ name: req.params.id })
+        const product = await Product.findOne({ slug: req.params.slug })
 
         res.status(200).json({
             success: true,

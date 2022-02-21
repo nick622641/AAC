@@ -3,29 +3,29 @@ import { useNavigate, Link } from 'react-router-dom'
 import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getOrientations, deleteOrientation, clearErrors } from '../../actions/categoryActions'
-import { DELETE_ORIENTATION_RESET } from '../../constants/categoryConstants'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from './Sidebar'
-import Modal from '../modals/Modal'
-import Confirm from '../modals/Confirm'
+import { getMedia, deleteMedia, clearErrors } from '../../../actions/categoryActions'
+import { DELETE_MEDIA_RESET } from '../../../constants/categoryConstants'
+import MetaData from '../../layouts/MetaData'
+import Loader from '../../layouts/Loader'
+import Sidebar from '../Sidebar'
+import Modal from '../../modals/Modal'
+import Confirm from '../../modals/Confirm'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
-import FitScreenIcon from '@mui/icons-material/FitScreen'
 import { Tooltip } from '@mui/material'
+import FitScreenIcon from '@mui/icons-material/FitScreen'
 
-const OrientationList = () => {
+const ArtistList = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { loading, error, orientations }  = useSelector( state => state.orientations )
-    const { error: deleteError, isDeleted } = useSelector( state => state.orientation )
+    const { loading, error, media         } = useSelector( state => state.media )
+    const { error: deleteError, isDeleted } = useSelector( state => state.medium )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
@@ -33,7 +33,7 @@ const OrientationList = () => {
 
     useEffect(() => {
 
-        dispatch(getOrientations())
+        dispatch(getMedia())
 
         if(error) {
             alert.error(error)
@@ -44,8 +44,8 @@ const OrientationList = () => {
             dispatch(clearErrors())
         }      
         if(isDeleted) {
-            alert.success('Orientation Deleted Successfully')            
-            dispatch({ type: DELETE_ORIENTATION_RESET })
+            alert.success('Media Deleted Successfully')            
+            dispatch({ type: DELETE_MEDIA_RESET })
         }
 
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
@@ -55,14 +55,14 @@ const OrientationList = () => {
     }
 
     const deleteCategoryHandler = (id) => {
-        dispatch(deleteOrientation(id))
+        dispatch(deleteMedia(id))
     }
 
     const setCategories = () => {
         const data = {
             columns: [                
                 {
-                    label: 'Orientation ID',
+                    label: 'Media ID',
                     field: 'id',
                     sort: 'disabled',
                     width: 200
@@ -76,18 +76,19 @@ const OrientationList = () => {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'disabled',
-                    width: 100                  
+                    width: '100'                 
                 }
             ],
             rows: []
-        }   
-        orientations && orientations.forEach( orientation => {
+        }      
+     
+        media && media.forEach( m => {
             data.rows.push({                
-                id: orientation._id,
-                name: orientation.name,
+                id: m._id,
+                name: m.name,
                 actions: 
                 <Fragment>
-                    <Link to={`/admin/orientation/${orientation._id}`}>
+                    <Link to={`/admin/media/${m._id}`}>
                         <IconButton>
                             <EditOutlinedIcon />
                         </IconButton>
@@ -95,15 +96,15 @@ const OrientationList = () => {
                     <IconButton 
                         onClick={() => {
                             setIsModalVisible(!isModalVisible)
-                            setId(orientation._id)
+                            setId(m._id)
                         }}
                     >
                         <DeleteOutlineIcon color="danger" />
-                    </IconButton>     
+                    </IconButton>    
                 </Fragment> 
             })
-        })
-
+        })    
+       
         return data
     }    
 
@@ -111,7 +112,7 @@ const OrientationList = () => {
 
         <Fragment>
 
-            <MetaData title={'All Orientations'} />
+            <MetaData title={'All Media'} noIndex={true} />
 
             <div className="container">
 
@@ -129,16 +130,16 @@ const OrientationList = () => {
 
                             <div className="user-form cart">
 
-                                <h1>Orientation Category</h1>
+                                <h1>Media Category</h1>
 
                                 <p className="text-right">
-                                    <Link to="/admin/orientation">
+                                    <Link to="/admin/medium">
                                         Add
                                         <IconButton>
                                             <AddIcon />
                                         </IconButton>
                                     </Link>
-                                </p>  
+                                </p>                                
 
                                 <MDBDataTableV5 
                                     data={setCategories()}   
@@ -147,7 +148,7 @@ const OrientationList = () => {
                                     // scrollY   
                                     searchTop
                                     searchBottom={false}  
-                                />
+                                /> 
 
                                 <Link to="/admin/dashboard">
                                     <Fab 
@@ -187,7 +188,7 @@ const OrientationList = () => {
                     <Confirm 
                         onBackdropClick={toggleModal} 
                         onConfirm={() => deleteCategoryHandler(id)} 
-                        message="Delete Orientation"
+                        message="Delete Medium"
                     />
                 }
             />
@@ -198,4 +199,4 @@ const OrientationList = () => {
 
 }
 
-export default OrientationList
+export default ArtistList

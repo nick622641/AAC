@@ -19,7 +19,7 @@ const Profile = () => {
 
         <Fragment>
 
-            <MetaData title={'My Profile'} />
+            <MetaData title={'My Profile'} noIndex={true} />
 
                 {loading ? <Loader /> : (                
 

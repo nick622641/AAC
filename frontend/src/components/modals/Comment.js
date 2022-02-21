@@ -1,23 +1,23 @@
-import { Fragment, useState } from "react"
-import { useDispatch, useSelector } from 'react-redux'
-import { newComment } from '../../actions/blogActions'
-import LoadingButton from '@mui/lab/LoadingButton'
-import SendIcon from '@mui/icons-material/Send'
-import RichtextEditor from "../layouts/RichtextEditor"
+import React, { Fragment, useState } from 'react'
+import { useDispatch, useSelector  } from 'react-redux'
+import { newComment                } from '../../actions/blogActions'
+import RichtextEditor                from '../layouts/RichtextEditor'
+import LoadingButton                 from '@mui/lab/LoadingButton'
+import SendIcon                      from '@mui/icons-material/Send'
 
-function Comment(props) {
+const Comment = ({ comment }) => {
     
     const dispatch = useDispatch()
 
     const { loading } = useSelector( state => state.newComment ) 
-    const { blog }    = useSelector( state => state.blogDetails )
+    const { blog    } = useSelector( state => state.blogDetails )
     
-    const [ comment, setComment ] = useState( props.comment )         
+    const [ _comment, setComment ] = useState( comment )         
 
     const commentHandler = (e)  => {
         e.preventDefault()
         const formData = new FormData()
-        formData.set('comment', comment)
+        formData.set('comment', _comment)
         formData.set('blogId', blog._id)
         dispatch(newComment(formData))  
     }

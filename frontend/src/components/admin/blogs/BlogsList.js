@@ -3,13 +3,13 @@ import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
-import { getAdminBlogs, deleteBlog, clearErrors } from '../../actions/blogActions'
-import { DELETE_BLOG_RESET } from '../../constants/blogConstants'
-import MetaData from '../layouts/MetaData'
-import Loader from '../layouts/Loader'
-import Sidebar from '../admin/Sidebar'
-import Modal from '../modals/Modal'
-import Confirm from '../modals/Confirm'
+import { getAdminBlogs, deleteBlog, clearErrors } from '../../../actions/blogActions'
+import { DELETE_BLOG_RESET } from '../../../constants/blogConstants'
+import MetaData from '../../layouts/MetaData'
+import Loader from '../../layouts/Loader'
+import Sidebar from '../Sidebar'
+import Modal from '../../modals/Modal'
+import Confirm from '../../modals/Confirm'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
@@ -92,11 +92,9 @@ const BlogsList = () => {
             rows: []
         }
 
-        blogs && blogs.forEach( blog => {
-            let title = blog.title.replace(/-/g, '_')    
-            title = title.replace(/ /g, '-') 
+        blogs && blogs.forEach( blog => {     
             data.rows.push({
-                url: <Link to={`/blog/${title}`}>
+                url: <Link to={`/blog/${blog.slug}`}>
                         <Avatar
                             src={blog.images[0].thumbUrl} 
                             alt={blog.title} 
@@ -140,7 +138,7 @@ const BlogsList = () => {
 
         <Fragment>
 
-            <MetaData title={'All Products'} />
+            <MetaData title={'All Products'} noIndex={true} />
 
             <div className="container">
 
@@ -166,7 +164,6 @@ const BlogsList = () => {
                                         data={setBlogs()}   
                                         fullPagination   
                                         scrollX  
-                                        // scrollY   
                                         searchTop
                                         searchBottom={false}  
                                     />                                 
@@ -181,7 +178,7 @@ const BlogsList = () => {
                                         </Fab>
                                     </Link>
 
-                                    <Tooltip title="Expand">
+                                    <Tooltip title="Expand" arrow>
                                         <IconButton 
                                             color="primary" 
                                             sx={{ position: 'absolute', top: 10, left: 10 }}

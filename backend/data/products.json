@@ -8,7 +8,9 @@
   "height": 40,
   "depth": 0,
   "description": "Artist David Brooks is a fan of Japanese artist Isao Tomita and his unique synthesized music. It's no surprise therefore that David took inspiration from Tomita's album covers when he painted Automata. For those unfamiliar with his work, Tomita is considered by many to be the grandfather of electronic music and space-music. Broadly, Automata refers to machines making tasks easier, more efficient and less mistake-prone and ultimately helping humans toward an easier if not brighter future. In David's representation, horizontal bands overlay the image of what could be a face. A stark canvas texture and an alluring vignette create a puzzling and mysterious image. This gorgeous abstract would compliment any well lit room.",
-  "ratings": 4,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/r74ctsa2rjsxz2s8bqlh",
@@ -36,27 +38,17 @@
     "$date": "2021-12-26T00:00:00Z"
   },
   "stock": 1,
-  "numOfReviews": 1,
+  "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
   },
-  "reviews": [
-    {
-      "user": {
-        "$oid": "61c8f6b8b264b7bb87c9e3ea"
-      },
-      "name": "Jenny",
-      "rating": 4,
-      "comment": "Nice",
-      "_id": {
-        "$oid": "61c90014a05ae38117327576"
-      }
-    }
-  ],
+  "reviews": [],
   "createdAt": {
     "$date": "2021-12-26T08:56:57.321Z"
   },
-  "__v": 1
+  "__v": 3,
+  "slug": "automata",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c82f058aaffc74fc010507"
@@ -67,7 +59,9 @@
   "height": 40,
   "depth": 0,
   "description": "When he painted Authentic Self, artist David Brooks was pondering the question of how much of our true selves we reveal on our journeys through life.",
-  "ratings": 5,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/z2fwfuorfy9kwocri3k9",
@@ -95,27 +89,17 @@
     "$date": "2021-12-26T00:00:00Z"
   },
   "stock": 1,
-  "numOfReviews": 1,
+  "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
   },
-  "reviews": [
-    {
-      "user": {
-        "$oid": "61c8f6b8b264b7bb87c9e3ea"
-      },
-      "name": "Jenny",
-      "rating": 5,
-      "comment": "Great",
-      "_id": {
-        "$oid": "61c9009040cde6d7356e1e14"
-      }
-    }
-  ],
+  "reviews": [],
   "createdAt": {
     "$date": "2021-12-26T08:59:49.635Z"
   },
-  "__v": 1
+  "__v": 1,
+  "slug": "authentic-self",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c830908aaffc74fc01051f"
@@ -162,7 +146,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:06:24.045Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "kaiseizan-park",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8314edcd5849d499d122a"
@@ -209,7 +195,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:09:34.770Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "sunshine-recorder",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8320bdcd5849d499d124a"
@@ -220,7 +208,9 @@
   "height": 58,
   "depth": 0,
   "description": "A painting for space enthusiasts, SRB SEP is David Brooks’ evocation of NASA’s space shuttle Solid Rocket Booster Separation. This striking artwork would make a great talking point in any home or workspace.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/w6dxgmoala2xtk05q9mi",
@@ -256,7 +246,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:12:43.696Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "srb-sep",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8332cdcd5849d499d1291"
@@ -267,7 +259,9 @@
   "height": 100,
   "depth": 0,
   "description": "Working from home has become the new normal. Artist David Brooks pays homage to this new working world in his latest vibrant, exciting abstract WFH 2.0",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/g7owhlive6pcyxs9it3h",
@@ -294,7 +288,7 @@
   "datePublished": {
     "$date": "2021-05-26T00:00:00Z"
   },
-  "stock": 1,
+  "stock": 0,
   "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
@@ -303,7 +297,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:17:32.243Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "wfh-20",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8379ddcd5849d499d12cd"
@@ -350,7 +346,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:36:29.873Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "the-coral-sea",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c83809dcd5849d499d1308"
@@ -397,7 +395,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:38:17.047Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fracture",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8388fdcd5849d499d133f"
@@ -444,7 +444,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:40:31.111Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "flotilla",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c83911dcd5849d499d1386"
@@ -482,7 +484,7 @@
   "datePublished": {
     "$date": "2018-10-26T00:00:00Z"
   },
-  "stock": 1,
+  "stock": 0,
   "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
@@ -491,7 +493,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:42:41.957Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "physics-textbook-triptych",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c83987dcd5849d499d13c5"
@@ -538,7 +542,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:44:39.576Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "pathumthani",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c83a1ac2dde4594c22d97d"
@@ -585,7 +591,9 @@
   "createdAt": {
     "$date": "2021-12-26T09:47:06.637Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "aorpreeya",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c83d98e911529db714f0a8"
@@ -632,7 +640,9 @@
   "createdAt": {
     "$date": "2021-12-26T10:02:00.145Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "prospect",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c83dfee911529db714f0ec"
@@ -643,7 +653,9 @@
   "height": 70,
   "depth": 0,
   "description": "Artist David Brooks was imagining navigating through the far reaches of space when he painted Transit. Turquoise, azure and white are eye-catching in this piece that’s sure to brighten any room.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/v1ncpqmlsmzsdtjrvhkl",
@@ -679,7 +691,9 @@
   "createdAt": {
     "$date": "2021-12-26T10:03:42.822Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "transit",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c83f4b0c1d3e5623a10266"
@@ -690,7 +704,7 @@
   "height": 60,
   "depth": 0,
   "description": "Homage to Kubrick’s, 2001 A Space Odyssey, this representation of discovery would add some futuristic flair to any office.",
-  "ratings": 0,
+  "ratings": 5,
   "images": [
     {
       "public_id": "products/kyq3itisgbepiyrphlw8",
@@ -712,21 +726,42 @@
     }
   ],
   "artist": "David Brooks",
-  "orientation": "Portrait",
+  "orientation": "Landscape",
   "media": "Acrylic on Canvas",
   "datePublished": {
     "$date": "2020-07-26T00:00:00Z"
   },
   "stock": 0,
-  "numOfReviews": 0,
+  "numOfReviews": 1,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
   },
-  "reviews": [],
+  "reviews": [
+    {
+      "user": {
+        "$oid": "61b7bae1939ff81896b8cd56"
+      },
+      "name": "Nick Dittmer",
+      "avatar": {
+        "public_id": "avatars/gccxbl5yi157sfrqtqcv",
+        "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641222575/avatars/gccxbl5yi157sfrqtqcv.jpg"
+      },
+      "rating": 5,
+      "comment": "<p>Beautiful! 😀</p>\r\n",
+      "_id": {
+        "$oid": "62122cb11fe88267121180ea"
+      },
+      "reviewCreatedAt": {
+        "$date": "2022-02-20T11:57:37.657Z"
+      }
+    }
+  ],
   "createdAt": {
     "$date": "2021-12-26T10:09:15.262Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "will-i-dream",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c84b2b0c1d3e5623a102b2"
@@ -773,7 +808,9 @@
   "createdAt": {
     "$date": "2021-12-26T10:59:55.247Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "water-house",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c84bb60c1d3e5623a10302"
@@ -820,7 +857,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:02:14.775Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "walk-the-woods",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c84c270c1d3e5623a10356"
@@ -867,7 +906,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:04:07.996Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "the-kill",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c84c890c1d3e5623a103ae"
@@ -914,7 +955,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:05:45.469Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "the-horn",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c84cf30c1d3e5623a1040a"
@@ -961,7 +1004,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:07:31.393Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "the-city",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c84ee50c1d3e5623a1046a"
@@ -1008,7 +1053,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:15:49.796Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "cassowary",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c84f5b0c1d3e5623a104ce"
@@ -1055,7 +1102,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:17:47.321Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "storm-triptych",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c84fbf0c1d3e5623a10536"
@@ -1102,7 +1151,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:19:27.870Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "wall-garden",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c850100c1d3e5623a105a2"
@@ -1149,7 +1200,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:20:48.089Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "tokyo-nights-pentaptych",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c851960c1d3e5623a10612"
@@ -1196,7 +1249,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:27:18.418Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "reconnaisance",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c851f30c1d3e5623a10686"
@@ -1243,7 +1298,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:28:51.970Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "mekong-delta",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c852580c1d3e5623a106fe"
@@ -1290,7 +1347,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:30:32.313Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "junk",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c852a60c1d3e5623a1077a"
@@ -1301,7 +1360,9 @@
   "height": 30,
   "depth": 0,
   "description": "David Brooks has experimented with paint to create this evocative art. Inspired by his childhood trips to the park from which the painting takes its name, Kejimkujik is a provocative painting which stuns in its simplicity.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/jqnqceb46rx4wwqmkzry",
@@ -1337,7 +1398,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:31:50.505Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "kejimkujik",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8535a0c1d3e5623a107fa"
@@ -1384,7 +1447,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:34:50.296Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "dissolved-girl",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c853be0c1d3e5623a1087e"
@@ -1431,7 +1496,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:36:30.242Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "croatia",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8542b0c1d3e5623a10906"
@@ -1478,7 +1545,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:38:19.200Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "clear-visibility",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c854910c1d3e5623a10992"
@@ -1525,7 +1594,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:40:01.156Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "chernobyl",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c854ff0c1d3e5623a10a22"
@@ -1572,7 +1643,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:41:51.067Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "bamboo-hut",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8555f0c1d3e5623a10ab6"
@@ -1583,7 +1656,9 @@
   "height": 20,
   "depth": 0,
   "description": "Take a walk on this east coast Canadian fishing village and breathe in the sea air. Artist David Brooks' was inspired by his childhood memories of growing up in Nova Scotia when he painted Autumn.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/bkqsse4set92ysam9n90",
@@ -1619,7 +1694,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:43:27.669Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "autumn",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c855c90c1d3e5623a10b4e"
@@ -1630,24 +1707,26 @@
   "height": 60,
   "depth": 0,
   "description": "In Anathema you can lose yourself in the punishing depths of desolation. Shades of ochre, grey and burnt crimson make this a dark, brooding piece by artist David Brooks.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
-      "public_id": "products/jnebjfz7tgyzi6le4e0e",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640519104/products/jnebjfz7tgyzi6le4e0e.jpg",
-      "thumb_id": "products/w8rmsfyxbrhahav1facn",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640519101/products/w8rmsfyxbrhahav1facn.jpg",
+      "public_id": "products/nhkw6mlok5dtqplpl66k",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641615388/products/nhkw6mlok5dtqplpl66k.jpg",
+      "thumb_id": "products/oxmyehd5u42r2mycpkkd",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641615384/products/oxmyehd5u42r2mycpkkd.jpg",
       "_id": {
-        "$oid": "61c855c90c1d3e5623a10b4f"
+        "$oid": "61d9101df6ce24e6b0ff295b"
       }
     },
     {
-      "public_id": "products/pd24wsuwi3pgpseluw66",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640519112/products/pd24wsuwi3pgpseluw66.jpg",
-      "thumb_id": "products/r9n7gaerdsukn5ysfcdh",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640519108/products/r9n7gaerdsukn5ysfcdh.jpg",
+      "public_id": "products/ccu0cxpqrwbgxspmicgx",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641615393/products/ccu0cxpqrwbgxspmicgx.jpg",
+      "thumb_id": "products/ovfwgnbrusgpndbua282",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641615391/products/ovfwgnbrusgpndbua282.jpg",
       "_id": {
-        "$oid": "61c855c90c1d3e5623a10b50"
+        "$oid": "61d9101df6ce24e6b0ff295c"
       }
     }
   ],
@@ -1666,7 +1745,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:45:13.009Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "anathema",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c856670c1d3e5623a10bea"
@@ -1677,7 +1758,9 @@
   "height": 21,
   "depth": 0,
   "description": "A recent abstract by artist Jim Ulrich, White Peonies is a depiction of the flowers in his wife’s garden.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/mfl5htge1rta9v9fmmrz",
@@ -1704,7 +1787,7 @@
   "datePublished": {
     "$date": "2021-12-26T00:00:00Z"
   },
-  "stock": 1,
+  "stock": 10,
   "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
@@ -1713,7 +1796,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:47:51.717Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "white-peonies",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c856cd0c1d3e5623a10c8a"
@@ -1760,7 +1845,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:49:33.486Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "the-journey",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c857420c1d3e5623a10d2e"
@@ -1807,7 +1894,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:51:30.048Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "pathway",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c857aa0c1d3e5623a10dd6"
@@ -1854,7 +1943,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:53:14.141Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "illusion",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c858120c1d3e5623a10e82"
@@ -1901,7 +1992,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:54:58.968Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "virus",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8587f0c1d3e5623a10f32"
@@ -1948,7 +2041,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:56:47.944Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "the-storm",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c858ec0c1d3e5623a10fe6"
@@ -1995,7 +2090,9 @@
   "createdAt": {
     "$date": "2021-12-26T11:58:36.728Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "wondered",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8595e0c1d3e5623a1109e"
@@ -2042,12 +2139,14 @@
   "createdAt": {
     "$date": "2021-12-26T12:00:30.179Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "untitled",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c859cc0c1d3e5623a1115a"
   },
-  "name": "Surface #3",
+  "name": "Surface No.3",
   "price": 1350,
   "width": 53,
   "height": 71,
@@ -2089,12 +2188,14 @@
   "createdAt": {
     "$date": "2021-12-26T12:02:20.533Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "surface-no3",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85a3f0c1d3e5623a1121a"
   },
-  "name": "Surface #2",
+  "name": "Surface No.2",
   "price": 1000,
   "width": 53,
   "height": 71,
@@ -2136,12 +2237,14 @@
   "createdAt": {
     "$date": "2021-12-26T12:04:15.636Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "surface-no2",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85ab40c1d3e5623a112de"
   },
-  "name": "Surface #1",
+  "name": "Surface No.1",
   "price": 1350,
   "width": 53,
   "height": 71,
@@ -2183,7 +2286,9 @@
   "createdAt": {
     "$date": "2021-12-26T12:06:12.142Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "undefined",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85b4c0c1d3e5623a113a6"
@@ -2230,12 +2335,14 @@
   "createdAt": {
     "$date": "2021-12-26T12:08:44.709Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "see-through",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85bb40c1d3e5623a11472"
   },
-  "name": "Midwinter Thailand #5",
+  "name": "Midwinter Thailand No.5",
   "price": 825,
   "width": 56,
   "height": 76,
@@ -2244,21 +2351,21 @@
   "ratings": 0,
   "images": [
     {
-      "public_id": "products/mozrvncnjtxo70xujenq",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640520622/products/mozrvncnjtxo70xujenq.jpg",
-      "thumb_id": "products/wlxzwuy2vhsk83ceko83",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640520618/products/wlxzwuy2vhsk83ceko83.jpg",
+      "public_id": "products/y76ew43da8qdfnjim0w9",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641529014/products/y76ew43da8qdfnjim0w9.jpg",
+      "thumb_id": "products/n2wcaskqdqybxpeehmd2",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641529011/products/n2wcaskqdqybxpeehmd2.jpg",
       "_id": {
-        "$oid": "61c85bb40c1d3e5623a11473"
+        "$oid": "61d7bebbe01ced0d7f452d91"
       }
     },
     {
-      "public_id": "products/f3mrftwizzbryjkng04o",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640520628/products/f3mrftwizzbryjkng04o.jpg",
-      "thumb_id": "products/d0ek2fgxgnhtfc7ytfxi",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640520625/products/d0ek2fgxgnhtfc7ytfxi.jpg",
+      "public_id": "products/awuiy4iw7x69w5dii7lx",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641529021/products/awuiy4iw7x69w5dii7lx.jpg",
+      "thumb_id": "products/grksks2jqzybobc2o9ly",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641529017/products/grksks2jqzybobc2o9ly.jpg",
       "_id": {
-        "$oid": "61c85bb40c1d3e5623a11474"
+        "$oid": "61d7bebbe01ced0d7f452d92"
       }
     }
   ],
@@ -2277,12 +2384,14 @@
   "createdAt": {
     "$date": "2021-12-26T12:10:28.300Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "midwinter-thailand-no5",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85c360c1d3e5623a11542"
   },
-  "name": "Midwinter Thailand #4",
+  "name": "Midwinter Thailand No.4",
   "price": 825,
   "width": 56,
   "height": 76,
@@ -2324,15 +2433,17 @@
   "createdAt": {
     "$date": "2021-12-26T12:12:38.726Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "midwinter-thailand-no4",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85ca80c1d3e5623a11616"
   },
-  "name": "Midwinter Thailand #3",
+  "name": "Midwinter Thailand No.3",
   "price": 1000,
   "width": 48,
-  "height": 63.5,
+  "height": 64,
   "depth": 0,
   "description": "Midwinter Thailand #3 is the one in a series of six expressive abstract paintings by artist Jim Ulrich.",
   "ratings": 0,
@@ -2371,12 +2482,14 @@
   "createdAt": {
     "$date": "2021-12-26T12:14:32.907Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "midwinter-thailand-no3",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85d030c1d3e5623a116ee"
   },
-  "name": "Midwinter Thailand #2",
+  "name": "Midwinter Thailand No.2",
   "price": 825,
   "width": 76,
   "height": 56,
@@ -2385,21 +2498,21 @@
   "ratings": 0,
   "images": [
     {
-      "public_id": "products/c00kpma8dq861nq6phfx",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640520956/products/c00kpma8dq861nq6phfx.jpg",
-      "thumb_id": "products/toflenyhdetwp4qnf3z8",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640520953/products/toflenyhdetwp4qnf3z8.jpg",
+      "public_id": "products/ro8lzj0tqdvxpdkqaj4b",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641529161/products/ro8lzj0tqdvxpdkqaj4b.jpg",
+      "thumb_id": "products/m527p97cvv2jrqe5vsiu",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641529158/products/m527p97cvv2jrqe5vsiu.jpg",
       "_id": {
-        "$oid": "61c85d030c1d3e5623a116ef"
+        "$oid": "61d7bf4be01ced0d7f4532b9"
       }
     },
     {
-      "public_id": "products/naibymifcbegyzyxi41g",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640520963/products/naibymifcbegyzyxi41g.jpg",
-      "thumb_id": "products/b0dubrhoop1rr26u2m3o",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640520959/products/b0dubrhoop1rr26u2m3o.jpg",
+      "public_id": "products/znjg9b0hhwjsfb2cqlsa",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641529165/products/znjg9b0hhwjsfb2cqlsa.jpg",
+      "thumb_id": "products/dpeix10ccexxrmc40kgp",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641529163/products/dpeix10ccexxrmc40kgp.jpg",
       "_id": {
-        "$oid": "61c85d030c1d3e5623a116f0"
+        "$oid": "61d7bf4be01ced0d7f4532ba"
       }
     }
   ],
@@ -2418,14 +2531,16 @@
   "createdAt": {
     "$date": "2021-12-26T12:16:03.208Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "midwinter-thailand-no2",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85d6c0c1d3e5623a117ca"
   },
-  "name": "Midwinter Thailand",
+  "name": "Midwinter Thailand No.1",
   "price": 723,
-  "width": 63.5,
+  "width": 64,
   "height": 48,
   "depth": 0,
   "description": "Midwinter Thailand is the first in a series of six expressive abstract paintings by artist Jim Ulrich.",
@@ -2465,7 +2580,9 @@
   "createdAt": {
     "$date": "2021-12-26T12:17:48.801Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "midwinter-thailand-no1",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85dea0c1d3e5623a118aa"
@@ -2512,7 +2629,9 @@
   "createdAt": {
     "$date": "2021-12-26T12:19:54.882Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "flow-over",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85e5a0c1d3e5623a1198e"
@@ -2559,7 +2678,9 @@
   "createdAt": {
     "$date": "2021-12-26T12:21:46.136Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fall-sunset",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85ec40c1d3e5623a11a76"
@@ -2606,7 +2727,9 @@
   "createdAt": {
     "$date": "2021-12-26T12:23:32.433Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "double-bubble",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85f5a0c1d3e5623a11b62"
@@ -2653,7 +2776,9 @@
   "createdAt": {
     "$date": "2021-12-26T12:26:02.040Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "changing-path",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c85fb80c1d3e5623a11c52"
@@ -2700,14 +2825,16 @@
   "createdAt": {
     "$date": "2021-12-26T12:27:36.843Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "abandoned-site",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8662181e3744d5c99a646"
   },
   "name": "Blue Light (IV)",
   "price": 1200,
-  "width": 45.7,
+  "width": 46,
   "height": 63,
   "depth": 0,
   "description": "One of four paintings from Norman Sjoman's Blue Light Series.",
@@ -2747,14 +2874,16 @@
   "createdAt": {
     "$date": "2021-12-26T12:54:57.422Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "blue-light-iv",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8669c81e3744d5c99a73e"
   },
   "name": "Blue Light (III)",
   "price": 1200,
-  "width": 45.7,
+  "width": 46,
   "height": 63,
   "depth": 0,
   "description": "One of four paintings from Norman Sjoman's Blue Light Series.",
@@ -2794,14 +2923,16 @@
   "createdAt": {
     "$date": "2021-12-26T12:57:00.808Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "blue-light-iii",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8671681e3744d5c99a83a"
   },
   "name": "Blue Light (II)",
   "price": 1200,
-  "width": 45.7,
+  "width": 46,
   "height": 63,
   "depth": 0,
   "description": "One of four paintings from Norman Sjoman's Blue Light Series.",
@@ -2841,14 +2972,16 @@
   "createdAt": {
     "$date": "2021-12-26T12:59:02.389Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "blue-light-ii",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8677a81e3744d5c99a93a"
   },
   "name": "Blue Light (I)",
   "price": 1200,
-  "width": 45.7,
+  "width": 45,
   "height": 63,
   "depth": 0,
   "description": "One of four paintings from Norman Sjoman's Blue Light Series.",
@@ -2888,7 +3021,9 @@
   "createdAt": {
     "$date": "2021-12-26T13:00:42.656Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "blue-light-i",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c867f581e3744d5c99aa3e"
@@ -2935,7 +3070,9 @@
   "createdAt": {
     "$date": "2021-12-26T13:02:45.699Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "portraits-of-yogins-iv",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8685281e3744d5c99ab46"
@@ -2982,7 +3119,9 @@
   "createdAt": {
     "$date": "2021-12-26T13:04:18.800Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "portraits-of-yogins-iii",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c868b881e3744d5c99ac52"
@@ -3029,7 +3168,9 @@
   "createdAt": {
     "$date": "2021-12-26T13:06:00.884Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "portraits-of-yogins-ii",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8691581e3744d5c99ad62"
@@ -3076,7 +3217,9 @@
   "createdAt": {
     "$date": "2021-12-26T13:07:33.120Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "portraits-of-yogins-i",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8697d81e3744d5c99ae76"
@@ -3123,7 +3266,9 @@
   "createdAt": {
     "$date": "2021-12-26T13:09:17.465Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "rudra-surya",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c869e281e3744d5c99af8e"
@@ -3170,7 +3315,9 @@
   "createdAt": {
     "$date": "2021-12-26T13:10:58.270Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "rudra-nila",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c86a5181e3744d5c99b0aa"
@@ -3217,7 +3364,9 @@
   "createdAt": {
     "$date": "2021-12-26T13:12:49.860Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "rudra-green",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c86abc81e3744d5c99b1ca"
@@ -3264,14 +3413,16 @@
   "createdAt": {
     "$date": "2021-12-26T13:14:36.208Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "undefined",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a21081e3744d5c99b2ee"
   },
   "name": "The Floating Mind",
   "price": 1200,
-  "width": 45.7,
+  "width": 46,
   "height": 61,
   "depth": 0,
   "description": "From a series exploring the mind as a mandala, The Floating Mind is divided primarily into left and right and ultimately abstracted to the four-direction structure. The ultimate resolution of these is Bhuvanakrtimandala - a mandala depicting emptiness.",
@@ -3311,14 +3462,16 @@
   "createdAt": {
     "$date": "2021-12-26T17:10:40.510Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "the-floating-mind",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a28d81e3744d5c99b416"
   },
   "name": "Mandala Armarilla",
   "price": 1200,
-  "width": 45.7,
+  "width": 46,
   "height": 61,
   "depth": 0,
   "description": "This is from a series exploring the mind as a mandala divided primarily into left and right and ultimately abstracted to the four direction structure.  The ultimate resolution of these is Bhuvanakrtimandala - a mandala depicting emptiness.",
@@ -3358,14 +3511,16 @@
   "createdAt": {
     "$date": "2021-12-26T17:12:45.802Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "mandala-armarilla",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a31f81e3744d5c99b542"
   },
   "name": "Dimensional Shift",
   "price": 1200,
-  "width": 45.7,
+  "width": 46,
   "height": 61,
   "depth": 0,
   "description": "From a series exploring the mind as a mandala, Dimensional Shift is divided primarily into left and right and ultimately abstracted to the four direction structure. The ultimate resolution of these is Bhuvanakrtimandala - a mandala depicting emptiness.",
@@ -3405,18 +3560,22 @@
   "createdAt": {
     "$date": "2021-12-26T17:15:11.283Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "dimensional-shift",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a39281e3744d5c99b672"
   },
   "name": "Cortical Retreat",
   "price": 1200,
-  "width": 45.7,
+  "width": 46,
   "height": 61,
   "depth": 0,
   "description": "From a series exploring the mind as a mandala, Cortical Retreat is divided primarily into left and right and ultimately abstracted to the four-direction structure.  The ultimate resolution of these is Bhuvanakrtimandala - a mandala depicting emptiness.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/fu5bq1rcdulstxliusy5",
@@ -3452,15 +3611,17 @@
   "createdAt": {
     "$date": "2021-12-26T17:17:06.607Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "cortical-retreat",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a40781e3744d5c99b7a6"
   },
   "name": "Bhuvanakrtimandalam",
   "price": 1200,
-  "width": 27.9,
-  "height": 38.1,
+  "width": 28,
+  "height": 38,
   "depth": 0,
   "description": "  The final resolution in the Norman Sjoman's series of mandalas, Bhuvanakrtimandalam depicts the universe and the emptiness within. The caption in the void reads: 'The world of Siva (Rudra) is a mandala in the form of the universe. It's inside of you. It's your own body and it is identical with your own consciousness.' The painting comes from a circular meeting of shamans. The text is from an Atharva Veda hymn to a vanished divinity, Skambha.",
   "ratings": 0,
@@ -3499,7 +3660,9 @@
   "createdAt": {
     "$date": "2021-12-26T17:19:03.988Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "bhuvanakrtimandalam",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a59981e3744d5c99ba0c"
@@ -3510,7 +3673,9 @@
   "height": 76,
   "depth": 0,
   "description": "A playful painting by Smartex Tambala that takes a snapshot of life under the sea. School of Fish would make an interesting and quirky addition to any room.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/azg0hp1hkv6lr8nzdcao",
@@ -3546,15 +3711,17 @@
   "createdAt": {
     "$date": "2021-12-26T17:25:45.080Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "school-of-fish",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a62f81e3744d5c99bb48"
   },
   "name": "Urban Highway",
   "price": 595,
-  "width": 30.5,
-  "height": 30.5,
+  "width": 31,
+  "height": 31,
   "depth": 0,
   "description": "One in a series of four abstract paintings, Urban Highway by Smartex Tambala depicts the intersection across a busy road.",
   "ratings": 0,
@@ -3593,15 +3760,17 @@
   "createdAt": {
     "$date": "2021-12-26T17:28:15.230Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "urban-highway",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a69a81e3744d5c99bc88"
   },
   "name": "Town Centre",
   "price": 595,
-  "width": 30.5,
-  "height": 30.5,
+  "width": 31,
+  "height": 31,
   "depth": 0,
   "description": "One in a series of four abstract paintings, Town Centre by Smartex Tambala depicts an aerial view of an urban cityscape.",
   "ratings": 0,
@@ -3640,15 +3809,17 @@
   "createdAt": {
     "$date": "2021-12-26T17:30:02.340Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "town-centre",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a70281e3744d5c99bdd3"
   },
   "name": "The Cross Road",
   "price": 595,
-  "width": 30.5,
-  "height": 30.5,
+  "width": 31,
+  "height": 31,
   "depth": 0,
   "description": "One in a series of four paintings, The Cross Road by Smartex Tambala depicts an abstract urban cityscape",
   "ratings": 0,
@@ -3687,15 +3858,17 @@
   "createdAt": {
     "$date": "2021-12-26T17:31:46.225Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "the-cross-road",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a76f81e3744d5c99bfb8"
   },
   "name": "Junction",
   "price": 595,
-  "width": 30.5,
-  "height": 30.5,
+  "width": 31,
+  "height": 31,
   "depth": 0,
   "description": "One in a series of four abstract paintings, Junction, by Smartex Tambala, depicts an urban cityscape.",
   "ratings": 0,
@@ -3734,7 +3907,9 @@
   "createdAt": {
     "$date": "2021-12-26T17:33:35.230Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "junction",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a7db81e3744d5c99c104"
@@ -3772,7 +3947,7 @@
   "datePublished": {
     "$date": "2021-12-27T00:00:00Z"
   },
-  "stock": 1,
+  "stock": 0,
   "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
@@ -3781,7 +3956,9 @@
   "createdAt": {
     "$date": "2021-12-26T17:35:23.713Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "school-girls-1",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a88b81e3744d5c99c254"
@@ -3828,15 +4005,17 @@
   "createdAt": {
     "$date": "2021-12-26T17:38:19.784Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "school-girls",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a90c81e3744d5c99c3a8"
   },
   "name": "Homestead",
   "price": 545,
-  "width": 25.4,
-  "height": 30.5,
+  "width": 25,
+  "height": 31,
   "depth": 0,
   "description": "Artist Smartex Tambala depicts a typical African family in front of their homestead. This original painting evokes a sense of warmth and community.",
   "ratings": 0,
@@ -3875,7 +4054,9 @@
   "createdAt": {
     "$date": "2021-12-26T17:40:28.823Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "undefined",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8a9a281e3744d5c99c500"
@@ -3922,7 +4103,9 @@
   "createdAt": {
     "$date": "2021-12-26T17:42:58.935Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "nature-of-birds",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8aa0681e3744d5c99c65c"
@@ -3969,7 +4152,9 @@
   "createdAt": {
     "$date": "2021-12-26T17:44:38.645Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "reflection",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8aa8381e3744d5c99c865"
@@ -4016,7 +4201,9 @@
   "createdAt": {
     "$date": "2021-12-26T17:46:43.557Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "urban-grid",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8aadc81e3744d5c99c9c9"
@@ -4063,7 +4250,9 @@
   "createdAt": {
     "$date": "2021-12-26T17:48:12.625Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fall-reflection",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8b30881e3744d5c99cca3"
@@ -4110,7 +4299,9 @@
   "createdAt": {
     "$date": "2021-12-26T18:23:04.626Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "dancing-structure",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8b35e81e3744d5c99ce0f"
@@ -4157,7 +4348,9 @@
   "createdAt": {
     "$date": "2021-12-26T18:24:30.207Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "communication-systems",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8b3c381e3744d5c99cf7f"
@@ -4168,7 +4361,9 @@
   "height": 89,
   "depth": 0,
   "description": "Artist Smartex Tambala has used interesting, intersecting shapes and bold, bright colours. The result evokes a rhythmical, African vibe in this recent painting, Community Circle.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/xn5ydu0rowstgwqd5yvw",
@@ -4204,7 +4399,9 @@
   "createdAt": {
     "$date": "2021-12-26T18:26:11.346Z"
   },
-  "__v": 0
+  "__v": 7,
+  "slug": "community-circle",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8b43381e3744d5c99d0f3"
@@ -4251,7 +4448,9 @@
   "createdAt": {
     "$date": "2021-12-26T18:28:03.377Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "circles-of-life",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8b87881e3744d5c99d26b"
@@ -4262,7 +4461,9 @@
   "height": 91,
   "depth": 0,
   "description": "The striking stillness of the heron is captured by artist Jegan G Raja in his painting, The Waiting. The beautiful blues and greens would make this a lovely addition to freshen up any room.",
-  "ratings": 5,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/snurg2dcbc8y2xblh1fq",
@@ -4290,49 +4491,28 @@
     "$date": "2021-12-27T00:00:00Z"
   },
   "stock": 1,
-  "numOfReviews": 2,
+  "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
   },
-  "reviews": [
-    {
-      "user": {
-        "$oid": "61c8f6b8b264b7bb87c9e3ea"
-      },
-      "name": "Jenny",
-      "rating": 5,
-      "comment": "Cool",
-      "_id": {
-        "$oid": "61c8ff1ca05ae381173273a4"
-      }
-    },
-    {
-      "user": {
-        "$oid": "61c82b569a7afa05d215e98e"
-      },
-      "name": "Nick",
-      "rating": 5,
-      "comment": "No really",
-      "_id": {
-        "$oid": "61c9349dfaaeebe7fb395c02"
-      }
-    }
-  ],
+  "reviews": [],
   "createdAt": {
     "$date": "2021-12-26T18:46:16.982Z"
   },
-  "__v": 2
+  "__v": 4,
+  "slug": "the-waiting",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8b8e581e3744d5c99d3e7"
   },
-  "name": "Red Sky -Sailor’s Delight",
+  "name": "Red Sky - Sailor’s Delight",
   "price": 1100,
   "width": 61,
   "height": 91,
   "depth": 0,
-  "description": "From the saying, Red sky at night, sailor's delight, Jegan has captured a calm and crystal clear sea at sunset. This painting would create tranquility in any living space.",
-  "ratings": 0,
+  "description": "<p>From the saying, Red sky at night, Sailor's Delight, Jegan has captured a calm and crystal clear sea at sunset. This painting would create tranquility in any living space.</p>\r\n",
+  "ratings": 5,
   "images": [
     {
       "public_id": "products/g0vdgatxmbg4odsqn8n8",
@@ -4360,15 +4540,36 @@
     "$date": "2021-12-27T00:00:00Z"
   },
   "stock": 1,
-  "numOfReviews": 0,
+  "numOfReviews": 1,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
   },
-  "reviews": [],
+  "reviews": [
+    {
+      "user": {
+        "$oid": "61b7bae1939ff81896b8cd56"
+      },
+      "name": "Nick Dittmer",
+      "avatar": {
+        "public_id": "avatars/gccxbl5yi157sfrqtqcv",
+        "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641222575/avatars/gccxbl5yi157sfrqtqcv.jpg"
+      },
+      "rating": 5,
+      "comment": "<p>test</p>\r\n",
+      "_id": {
+        "$oid": "6210c1c8662903ecba877258"
+      },
+      "reviewCreatedAt": {
+        "$date": "2022-02-19T10:09:12.384Z"
+      }
+    }
+  ],
   "createdAt": {
     "$date": "2021-12-26T18:48:05.823Z"
   },
-  "__v": 0
+  "__v": 2,
+  "visible": 1,
+  "slug": "red-sky---sailors-delight"
 },{
   "_id": {
     "$oid": "61c8b94181e3744d5c99d567"
@@ -4415,7 +4616,9 @@
   "createdAt": {
     "$date": "2021-12-26T18:49:37.942Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "morning-glory",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8b9bb81e3744d5c99d6f2"
@@ -4426,7 +4629,9 @@
   "height": 41,
   "depth": 0,
   "description": "A depiction of Lake Louise in Banff National Park in the Canadian Rockies, this lovely painting by Jegan G Raja would make an attractive centrepiece in a holiday home.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/jenobbay0wjvp9dcmhsc",
@@ -4462,7 +4667,9 @@
   "createdAt": {
     "$date": "2021-12-26T18:51:39.664Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "lake-louise",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8ba1981e3744d5c99d937"
@@ -4509,18 +4716,22 @@
   "createdAt": {
     "$date": "2021-12-26T18:53:13.395Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "calm-before-the-storm",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8ba7581e3744d5c99dac3"
   },
   "name": "Dream Land",
   "price": 1050,
-  "width": 30.5,
+  "width": 30,
   "height": 61,
   "depth": 0,
   "description": "A beautiful depiction of a tropical idyll. The warm, bright colours of Dream Land by Jegan G Raja would bring serenity to any living space.",
-  "ratings": 5,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/mvo89fgq6kks3bn5rzfo",
@@ -4548,34 +4759,24 @@
     "$date": "2021-12-27T00:00:00Z"
   },
   "stock": 1,
-  "numOfReviews": 1,
+  "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
   },
-  "reviews": [
-    {
-      "user": {
-        "$oid": "61c82b569a7afa05d215e98e"
-      },
-      "name": "Nick",
-      "rating": 5,
-      "comment": "Great product",
-      "_id": {
-        "$oid": "61c9071218749481bd6ea35c"
-      }
-    }
-  ],
+  "reviews": [],
   "createdAt": {
     "$date": "2021-12-26T18:54:45.160Z"
   },
-  "__v": 1
+  "__v": 1,
+  "slug": "dream-land",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8bacf81e3744d5c99dc53"
   },
   "name": "Magic Hour",
   "price": 1050,
-  "width": 30.5,
+  "width": 31,
   "height": 61,
   "depth": 0,
   "description": "As the sun sets, birds return home. Magic Hour by Jegan G Raja is the epitome of warmth, peace and tranquility.",
@@ -4615,7 +4816,9 @@
   "createdAt": {
     "$date": "2021-12-26T18:56:15.044Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "magic-hour",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8bb2e81e3744d5c99dde7"
@@ -4662,7 +4865,9 @@
   "createdAt": {
     "$date": "2021-12-26T18:57:50.833Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "symphony-of-nature",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8bc668eae4a8146daa5b7"
@@ -4673,7 +4878,9 @@
   "height": 76,
   "depth": 0,
   "description": "Inspired by riversides in the Canadian wilderness, My Dream Home is a beautiful composition by Jegan G Raja. This painting would bring warmth and joy to any room.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/ffairrc0ztqyt6se2sho",
@@ -4709,7 +4916,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:03:02.281Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "my-dream-home",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8bcd48eae4a8146daa753"
@@ -4756,7 +4965,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:04:52.561Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "caribbean-sunset",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8bd2b8eae4a8146daa8f3"
@@ -4803,7 +5014,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:06:19.479Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "a-walk-in-the-woods",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8bd8e8eae4a8146daaa97"
@@ -4850,7 +5063,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:07:58.103Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "once-upon-a-time",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8bdf18eae4a8146daac3f"
@@ -4944,7 +5159,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:11:04.913Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "golden-hour",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8beac8eae4a8146daaf9b"
@@ -4955,7 +5172,9 @@
   "height": 61,
   "depth": 0,
   "description": "Artist Jegan G Raja was inspired by the infinitely beautiful colours of autumn in Ottawa when he painted Fall in Love. He observed that it is nature painting for us, day after day.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/tuqn63wus7sqjhtqga11",
@@ -4991,7 +5210,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:12:44.299Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "fall-in-love",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c2038eae4a8146dab14f"
@@ -5002,7 +5223,9 @@
   "height": 41,
   "depth": 0,
   "description": "Using dark colours, artist Ed Bader takes a minimalist, geometric approach in his homage to American abstract expressionist Ad Reinhardt.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/lh6erw7knwz5yoamtr65",
@@ -5038,7 +5261,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:26:59.077Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "requiem-for-ad-reinhardt",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c2738eae4a8146dab307"
@@ -5085,7 +5310,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:28:51.552Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "tangerine-tango",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c2e78eae4a8146dab4c3"
@@ -5132,7 +5359,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:30:47.498Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "mellow-yellow",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c3418eae4a8146dab683"
@@ -5179,7 +5408,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:32:17.442Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "pink-dawn-polka",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c3b18eae4a8146dab847"
@@ -5226,7 +5457,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:34:09.106Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "adagio-for-agnes-martin",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c4188eae4a8146daba0f"
@@ -5240,21 +5473,21 @@
   "ratings": 0,
   "images": [
     {
-      "public_id": "products/gzkzb14egt37lteyv17u",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640547347/products/gzkzb14egt37lteyv17u.jpg",
-      "thumb_id": "products/vs64o20pof7q8gay3ny9",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640547344/products/vs64o20pof7q8gay3ny9.jpg",
+      "public_id": "products/el2fgqnrrduc8bgqb9zk",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641618532/products/el2fgqnrrduc8bgqb9zk.jpg",
+      "thumb_id": "products/rii0dhtk2rkmgdsfv8j0",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641618530/products/rii0dhtk2rkmgdsfv8j0.jpg",
       "_id": {
-        "$oid": "61c8c4188eae4a8146daba10"
+        "$oid": "61d91c67ea0ca163cff647de"
       }
     },
     {
-      "public_id": "products/k4d88gmzgbpulcwl4yal",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640547352/products/k4d88gmzgbpulcwl4yal.jpg",
-      "thumb_id": "products/cdf9hhdsw7wnodfp76yv",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640547349/products/cdf9hhdsw7wnodfp76yv.jpg",
+      "public_id": "products/cquckqsfikqpjqs9qopx",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641618539/products/cquckqsfikqpjqs9qopx.jpg",
+      "thumb_id": "products/fuuenuij48g42jmnunbh",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641618535/products/fuuenuij48g42jmnunbh.jpg",
       "_id": {
-        "$oid": "61c8c4188eae4a8146daba11"
+        "$oid": "61d91c67ea0ca163cff647df"
       }
     }
   ],
@@ -5273,7 +5506,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:35:52.259Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "moon-pines-wall--graffiti",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c48b8eae4a8146dabbdb"
@@ -5320,7 +5555,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:37:47.286Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "summertime",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c51e8eae4a8146dac14c"
@@ -5367,7 +5604,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:40:14.905Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "dancer",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c5688eae4a8146dac320"
@@ -5414,7 +5653,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:41:28.580Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "homage-to-turner",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c5c28eae4a8146dac4f8"
@@ -5461,7 +5702,9 @@
   "createdAt": {
     "$date": "2021-12-26T19:42:58.944Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "homage-to-ernst",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8c6198eae4a8146dac6d4"
@@ -5519,7 +5762,9 @@
   "height": 152,
   "depth": 0,
   "description": "An expressionist abstract by Edward Bader, Blue Dawn evokes those serene few moments before the break of a new day.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/ievgmys8mbceshigerge",
@@ -5555,12 +5800,14 @@
   "createdAt": {
     "$date": "2021-12-26T19:45:50.188Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "blue-dawn",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8ca768eae4a8146daca98"
   },
-  "name": "Songs-P3024_03",
+  "name": "Songs-P3024-03",
   "price": 3850,
   "width": 61,
   "height": 76,
@@ -5602,18 +5849,22 @@
   "createdAt": {
     "$date": "2021-12-26T20:03:02.766Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-p3024-03",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cad58eae4a8146dacc80"
   },
-  "name": "Songs-P2448_01",
+  "name": "Songs-P2448-01",
   "price": 3850,
   "width": 122,
   "height": 61,
   "depth": 0,
   "description": "From his Songs series, Songs-P2448_01, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/hjznsmprqm4k250zc7jx",
@@ -5640,7 +5891,7 @@
   "datePublished": {
     "$date": "2018-06-27T00:00:00Z"
   },
-  "stock": 1,
+  "stock": 0,
   "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
@@ -5649,12 +5900,14 @@
   "createdAt": {
     "$date": "2021-12-26T20:04:37.378Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "songs-p2448-01",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cb3a8eae4a8146dace6c"
   },
-  "name": "Songs-P2424_08",
+  "name": "Songs-P2424-08",
   "price": 1925,
   "width": 61,
   "height": 61,
@@ -5696,14 +5949,16 @@
   "createdAt": {
     "$date": "2021-12-26T20:06:18.496Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-p2424-08",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cb9c8eae4a8146dad05c"
   },
-  "name": "Songs-P2418_16",
+  "name": "Songs-P2418-16",
   "price": 1415,
-  "width": 45.7,
+  "width": 46,
   "height": 61,
   "depth": 0,
   "description": "From his Songs series, Songs-P2418_16, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
@@ -5743,14 +5998,16 @@
   "createdAt": {
     "$date": "2021-12-26T20:07:56.903Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-p2418-16",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cc088eae4a8146dad250"
   },
-  "name": "Songs-P2418_07",
+  "name": "Songs-P2418-07",
   "price": 1415,
-  "width": 45.7,
+  "width": 46,
   "height": 61,
   "depth": 0,
   "description": "From his Songs series, Songs-P3024_07, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
@@ -5790,18 +6047,22 @@
   "createdAt": {
     "$date": "2021-12-26T20:09:44.445Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-p2418-07",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cc708eae4a8146dad448"
   },
-  "name": "Songs-P2020_25",
+  "name": "Songs-P2020-25",
   "price": 1285,
-  "width": 50.8,
-  "height": 50.8,
+  "width": 51,
+  "height": 51,
   "depth": 0,
   "description": "From his Songs series, Songs-P2020_25, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/oxqwkyz7oojapxbeadef",
@@ -5837,15 +6098,17 @@
   "createdAt": {
     "$date": "2021-12-26T20:11:28.704Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "songs-p2020-25",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cce78eae4a8146dad644"
   },
-  "name": "Songs-P1212_22",
+  "name": "Songs-P1212-22",
   "price": 770,
-  "width": 30.5,
-  "height": 30.5,
+  "width": 31,
+  "height": 31,
   "depth": 0,
   "description": "From his Songs series, Songs-P1212_22, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
   "ratings": 0,
@@ -5884,15 +6147,17 @@
   "createdAt": {
     "$date": "2021-12-26T20:13:27.282Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-p1212-22",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cd508eae4a8146dad844"
   },
-  "name": "Songs-P1020_9",
+  "name": "Songs-P1020-9",
   "price": 965,
   "width": 51,
-  "height": 25.4,
+  "height": 25,
   "depth": 0,
   "description": "From his Songs series, Songs-P1020_09, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
   "ratings": 0,
@@ -5931,15 +6196,17 @@
   "createdAt": {
     "$date": "2021-12-26T20:15:12.538Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-p1020-9",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cdae8eae4a8146dada48"
   },
-  "name": "Songs-P1010_12",
+  "name": "Songs-P1010-12",
   "price": 645,
-  "width": 25.4,
-  "height": 25.4,
+  "width": 25,
+  "height": 25,
   "depth": 0,
   "description": "From his Songs series, Songs-P1010_12, artist Quentin Caron describes each as \"an abstract, playful and surreal contemporary painting.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
   "ratings": 0,
@@ -5978,12 +6245,14 @@
   "createdAt": {
     "$date": "2021-12-26T20:16:46.502Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-p1010-12",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8ce098eae4a8146dadc50"
   },
-  "name": "Songs-D3022_11",
+  "name": "Songs-D3022-11",
   "price": 1220,
   "width": 56,
   "height": 76,
@@ -6025,12 +6294,14 @@
   "createdAt": {
     "$date": "2021-12-26T20:18:17.650Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-d3022-11",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8ce748eae4a8146dade5c"
   },
-  "name": "Songs-D118_12",
+  "name": "Songs-D118-12",
   "price": 245,
   "width": 22,
   "height": 28,
@@ -6072,14 +6343,16 @@
   "createdAt": {
     "$date": "2021-12-26T20:20:04.658Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-d118-12",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cee28eae4a8146dae06c"
   },
-  "name": "Songs-D118_11",
+  "name": "Songs-D118-11",
   "price": 245,
-  "width": 21.6,
+  "width": 22,
   "height": 28,
   "depth": 0,
   "description": "From his Songs series, Songs-D118_11, artist Quentin Caron describes each drawing as \"abstract, playful and surreal.\" Quentin creates each one as a poem. However, he adds that they have become so visually lyrical as to be more like songs. \"They have a balance of elements building towards an emotional whole.\"",
@@ -6119,7 +6392,9 @@
   "createdAt": {
     "$date": "2021-12-26T20:21:54.641Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "songs-d118-11",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cf92957611b09fa63ebc"
@@ -6130,7 +6405,9 @@
   "height": 51,
   "depth": 0,
   "description": "This is the second painting that was created in a series focused on working with pairs. Artist Rachel Cadrin created Strictly Outta Curiosity at the same time as creating its mate, What Would Happen. The colours are the same but the space created is unique to each piece.",
-  "ratings": 5,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/ms7g0bde4aqer2mxd8qq",
@@ -6158,27 +6435,17 @@
     "$date": "2018-06-20T00:00:00Z"
   },
   "stock": 1,
-  "numOfReviews": 1,
+  "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
   },
-  "reviews": [
-    {
-      "user": {
-        "$oid": "61c82b569a7afa05d215e98e"
-      },
-      "name": "Nick",
-      "rating": 5,
-      "comment": "Great work",
-      "_id": {
-        "$oid": "61c92db17f7f6d97e13fb49d"
-      }
-    }
-  ],
+  "reviews": [],
   "createdAt": {
     "$date": "2021-12-26T20:24:50.711Z"
   },
-  "__v": 1
+  "__v": 1,
+  "slug": "strictly-outta-curiosity",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8cffe957611b09fa640d4"
@@ -6225,7 +6492,9 @@
   "createdAt": {
     "$date": "2021-12-26T20:26:38.932Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "what-would-happen",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d05f957611b09fa642f0"
@@ -6236,7 +6505,9 @@
   "height": 122,
   "depth": 0,
   "description": "The fifth painting in a series of seven paintings by Rachel Cadrin, Oil Painting 5 focused on creating depth of field through the exploration of colour. This is a mixed media piece and is canvas stretched over panel board. Due to the materials used this piece, it has a beautiful and interesting texture that draws the observer in.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/ens6gqyyzpuvdiu2toe9",
@@ -6272,7 +6543,9 @@
   "createdAt": {
     "$date": "2021-12-26T20:28:15.648Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "oil-painting-5",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d0c2957611b09fa64510"
@@ -6283,7 +6556,9 @@
   "height": 122,
   "depth": 0,
   "description": "From a series in which artist Rachel Cadrin was using music as inspiration. Rachel created Oil Painting 4 listening to a specific song on repeat and allowing the cadence and tempo of the music to dictate her approach. Music impacted the overall mood of each piece in the series.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/sy4grmopubtjqzoczyyw",
@@ -6310,7 +6585,7 @@
   "datePublished": {
     "$date": "2014-05-01T00:00:00Z"
   },
-  "stock": 1,
+  "stock": 0,
   "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
@@ -6319,7 +6594,9 @@
   "createdAt": {
     "$date": "2021-12-26T20:29:54.661Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "oil-painting-4",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d12f957611b09fa64734"
@@ -6366,14 +6643,16 @@
   "createdAt": {
     "$date": "2021-12-26T20:31:43.418Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "in-the-midnight-hour",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d35b957611b09fa6495c"
   },
   "name": "Rubinstein",
   "price": 1150,
-  "width": 45.7,
+  "width": 46,
   "height": 61,
   "depth": 0,
   "description": "Created from mixed media collage, Rubinstein is artist Perry Adamuik's homage to the classical pianist.",
@@ -6413,15 +6692,17 @@
   "createdAt": {
     "$date": "2021-12-26T20:40:59.245Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "rubinstein",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d4fff48b8cf13f4f4b6f"
   },
   "name": "Pontiac",
   "price": 1100,
-  "width": 40.6,
-  "height": 53.4,
+  "width": 41,
+  "height": 53,
   "depth": 0,
   "description": "Created in mixed media collage, Pontiac is one of artist Perry Adamuik's creations inspired by music.",
   "ratings": 0,
@@ -6460,14 +6741,16 @@
   "createdAt": {
     "$date": "2021-12-26T20:47:59.612Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "pontiac",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d596f48b8cf13f4f4d9f"
   },
   "name": "Marche Slave",
   "price": 1150,
-  "width": 45.7,
+  "width": 46,
   "height": 61,
   "depth": 0,
   "description": "Created from mixed media collage and found objects, Marche Slave is named for the music of Tchaikovsky.  ",
@@ -6507,15 +6790,17 @@
   "createdAt": {
     "$date": "2021-12-26T20:50:30.547Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "marche-slave",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d606f48b8cf13f4f4fd3"
   },
   "name": "Caruso",
   "price": 1150,
-  "width": 40.6,
-  "height": 53.3,
+  "width": 41,
+  "height": 53,
   "depth": 0,
   "description": "Created from collage and found objects, Caruso is artist Perry Adamuik's homage to the Italian opera singer.",
   "ratings": 0,
@@ -6554,15 +6839,17 @@
   "createdAt": {
     "$date": "2021-12-26T20:52:22.909Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "caruso",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d686f48b8cf13f4f520b"
   },
   "name": "Inward-looking",
   "price": 1300,
-  "width": 56,
-  "height": 76,
+  "width": 76,
+  "height": 56,
   "depth": 0,
   "description": "Perry Adamuik's Inward-looking uses music as it's muse. It is created in acrylic on canvas and framed with a floater moulding profile.",
   "ratings": 0,
@@ -6601,7 +6888,9 @@
   "createdAt": {
     "$date": "2021-12-26T20:54:30.918Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "inward-looking",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d715f48b8cf13f4f568b"
@@ -6648,15 +6937,17 @@
   "createdAt": {
     "$date": "2021-12-26T20:56:53.219Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "appassionata",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d859f48b8cf13f4f5fa8"
   },
   "name": "Charity Work",
   "price": 800,
-  "width": 41.9,
-  "height": 34.9,
+  "width": 42,
+  "height": 35,
   "depth": 0,
   "description": "Created from archival material and plexiglass, Charity Work is by artist Perry Adamiuk.",
   "ratings": 0,
@@ -6686,15 +6977,17 @@
   "createdAt": {
     "$date": "2021-12-26T21:02:17.803Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "charity-work",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d8d4f48b8cf13f4f630a"
   },
   "name": "In Plane Sight",
   "price": 800,
-  "width": 36.8,
-  "height": 34.3,
+  "width": 37,
+  "height": 34,
   "depth": 0,
   "description": "Created by Perry Adamuik, In Plane Sight is framed using archival materials and plexiglass",
   "ratings": 0,
@@ -6733,15 +7026,17 @@
   "createdAt": {
     "$date": "2021-12-26T21:04:20.815Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "in-plane-sight",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d935f48b8cf13f4f666c"
   },
   "name": "Suede",
   "price": 1100,
-  "width": 58.4,
-  "height": 58.4,
+  "width": 58,
+  "height": 58,
   "depth": 0,
   "description": "Created by in mixed media by Perry Adamuik, Suede is framed using archival materials and plexiglass.",
   "ratings": 0,
@@ -6780,15 +7075,17 @@
   "createdAt": {
     "$date": "2021-12-26T21:05:57.535Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "suede",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8d9e8f48b8cf13f4f68c4"
   },
   "name": "Dissonance",
   "price": 800,
-  "width": 48.2,
-  "height": 45.7,
+  "width": 48,
+  "height": 46,
   "depth": 0,
   "description": "Artwork created using archival materials and plexiglass, Dissonance is a musically-influenced piece by Perry Adamuik.",
   "ratings": 0,
@@ -6827,7 +7124,9 @@
   "createdAt": {
     "$date": "2021-12-26T21:08:56.613Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "dissonance",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8da96f48b8cf13f4f6c40"
@@ -6865,15 +7164,17 @@
   "createdAt": {
     "$date": "2021-12-26T21:11:50.141Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "prairie-fireball",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8daf2f48b8cf13f4f6fb0"
   },
   "name": "Loose Lips",
   "price": 800,
-  "width": 35.6,
-  "height": 55.9,
+  "width": 36,
+  "height": 56,
   "depth": 0,
   "description": "Artist Perry Adamuik's artwork, Loose Lips, is framed using archival materials and plexiglass.",
   "ratings": 0,
@@ -6912,7 +7213,9 @@
   "createdAt": {
     "$date": "2021-12-26T21:13:22.083Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "loose-lips",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8db52f48b8cf13f4f7204"
@@ -6959,14 +7262,16 @@
   "createdAt": {
     "$date": "2021-12-26T21:14:58.503Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "totem",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8dbb1f48b8cf13f4f745c"
   },
-  "name": "#40",
+  "name": "# 40",
   "price": 1200,
-  "width": 50.8,
+  "width": 51,
   "height": 68,
   "depth": 0,
   "description": "Artwork #40 is framed using archival materials and plexiglass.",
@@ -7006,15 +7311,17 @@
   "createdAt": {
     "$date": "2021-12-26T21:16:33.045Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "-40",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8df86f48b8cf13f4f76b8"
   },
   "name": "Artifact no.57",
   "price": 800,
-  "width": 32.4,
-  "height": 27.3,
+  "width": 33,
+  "height": 28,
   "depth": 0,
   "description": "Alyssia White's Artifact no.57: \"Both poison and light travel as fast as a homesick bird\".",
   "ratings": 0,
@@ -7053,18 +7360,22 @@
   "createdAt": {
     "$date": "2021-12-26T21:32:54.450Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "artifact-no57",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8dfe8f48b8cf13f4f7918"
   },
   "name": "Artifact no.21",
   "price": 800,
-  "width": 35.5,
+  "width": 36,
   "height": 25,
   "depth": 0,
   "description": "Alyssia White's Artifact no.21: \"What ghost is this?\"",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/ldztn2xkcyuzov9coekm",
@@ -7100,7 +7411,9 @@
   "createdAt": {
     "$date": "2021-12-26T21:34:32.650Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "artifact-no21",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8e040f48b8cf13f4f7b7c"
@@ -7108,7 +7421,7 @@
   "name": "Artifact no.08",
   "price": 800,
   "width": 33,
-  "height": 28.5,
+  "height": 29,
   "depth": 0,
   "description": "Alyssia White's Artifact no.8: \"With your willow-tempered smile. And I, in a grey suit of victory\".",
   "ratings": 0,
@@ -7147,14 +7460,16 @@
   "createdAt": {
     "$date": "2021-12-26T21:36:00.230Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "artifact-no08",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8e09bf48b8cf13f4f7de4"
   },
   "name": "Bitter Tasting Things",
   "price": 1150,
-  "width": 44.5,
+  "width": 45,
   "height": 47,
   "depth": 0,
   "description": "Bitter Tasting Things created by Alyssia White: \"Those dive toes first into all the merry thoughts of a joyful child. For children do not like bitter tasting things.\"",
@@ -7194,14 +7509,16 @@
   "createdAt": {
     "$date": "2021-12-26T21:37:31.887Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "bitter-tasting-things",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8e122f48b8cf13f4f8050"
   },
   "name": "Artifact no.11",
   "price": 800,
-  "width": 21.3,
+  "width": 21,
   "height": 14,
   "depth": 14,
   "description": "Alyssia White's Artifact 11 contains a functioning lamp and LED bulb.",
@@ -7245,7 +7562,7 @@
     }
   ],
   "artist": "Alyssia White",
-  "orientation": "Landscape",
+  "orientation": "3 Dimensional",
   "media": "Mixed Media",
   "datePublished": {
     "$date": "2021-12-27T00:00:00Z"
@@ -7259,7 +7576,9 @@
   "createdAt": {
     "$date": "2021-12-26T21:39:46.156Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "artifact-no11",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8e9dab264b7bb87c9abde"
@@ -7306,7 +7625,9 @@
   "createdAt": {
     "$date": "2021-12-26T22:16:58.454Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "spread-the-word-about-el-quadern-gris-the-gray-notebook",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8ea42b264b7bb87c9ae56"
@@ -7317,7 +7638,9 @@
   "height": 35,
   "depth": 0,
   "description": "Reflections on a summer day and past trips were the inspiration for artist David Cheney's Dog Days of Summer.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/swualfa0gzqbpxewb21j",
@@ -7353,7 +7676,9 @@
   "createdAt": {
     "$date": "2021-12-26T22:18:42.247Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "dog-days-of-summer",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8eaa1b264b7bb87c9b0d2"
@@ -7361,7 +7686,7 @@
   "name": "The strange and watery crossing of the river Ebro",
   "price": 150,
   "width": 23,
-  "height": 30.5,
+  "height": 31,
   "depth": 0,
   "description": "Artist David Cheney was inspired to create The Strange and Watery Crossing of the River Ebro while reading Don Quixote de la Mancha.",
   "ratings": 0,
@@ -7400,7 +7725,9 @@
   "createdAt": {
     "$date": "2021-12-26T22:20:17.182Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "the-strange-and-watery-crossing-of-the-river-ebro",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8eb00b264b7bb87c9b352"
@@ -7408,7 +7735,7 @@
   "name": "Teotihuacán, 15 de octubre de 2018",
   "price": 150,
   "width": 23,
-  "height": 30.5,
+  "height": 31,
   "depth": 0,
   "description": "On his travels in Mexico, artist David Cheney was inspired by the power and beauty of the great pyramids outside Mexico City. The result is his painting Teotihuacán, 15 de Octubre de 2018.",
   "ratings": 0,
@@ -7447,7 +7774,9 @@
   "createdAt": {
     "$date": "2021-12-26T22:21:52.943Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "teotihuacn-15-de-octubre-de-2018",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8ec77b264b7bb87c9b5eb"
@@ -7455,7 +7784,7 @@
   "name": "Templo Mayor, 12 de octubre de 2018",
   "price": 150,
   "width": 23,
-  "height": 30.5,
+  "height": 31,
   "depth": 0,
   "description": "Artist David Cheney was inspired to create Templo Mayor, 12 de Octubre de 2018 after his visit to Templo Mayor in Mexico City. The great temple and museum of the Mexica people is located right behind the cathedral and zocalo (main square).",
   "ratings": 0,
@@ -7485,7 +7814,7 @@
   "datePublished": {
     "$date": "2021-09-27T00:00:00Z"
   },
-  "stock": 1,
+  "stock": 0,
   "numOfReviews": 0,
   "user": {
     "$oid": "61c82b569a7afa05d215e98e"
@@ -7494,7 +7823,9 @@
   "createdAt": {
     "$date": "2021-12-26T22:28:07.356Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "templo-mayor-12-de-octubre-de-2018",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8eddcb264b7bb87c9b9b0"
@@ -7502,7 +7833,7 @@
   "name": "Sixteenth Century Andalusian Love Sonnets and Other Rubbish",
   "price": 150,
   "width": 23,
-  "height": 30.5,
+  "height": 31,
   "depth": 0,
   "description": "David Cheney was inspired to create this artwork, Sixteenth Century Andalusian Love Sonnets, while reading Don Quixote de la Mancha.",
   "ratings": 0,
@@ -7541,7 +7872,9 @@
   "createdAt": {
     "$date": "2021-12-26T22:34:04.980Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "sixteenth-century-andalusian-love-sonnets-and-other-rubbish",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8ee42b264b7bb87c9bc3c"
@@ -7549,7 +7882,7 @@
   "name": "Looking for Dulcinea of Toboso by the Knight of the Sad Figure",
   "price": 150,
   "width": 23,
-  "height": 30.5,
+  "height": 28,
   "depth": 0,
   "description": "Artist David Cheney was inspired by the happy meeting of sweethearts in Don Quijote de la Mancha when he created this artwork: Looking for Dulcinea of Toboso by the Knight of the Sad Figure.",
   "ratings": 0,
@@ -7588,7 +7921,9 @@
   "createdAt": {
     "$date": "2021-12-26T22:35:46.224Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "looking-for-dulcinea-of-toboso-by-the-knight-of-the-sad-figure",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8eea7b264b7bb87c9becc"
@@ -7596,7 +7931,7 @@
   "name": "Buscando las muralistas, José Clemente Orozco",
   "price": 150,
   "width": 23,
-  "height": 30.5,
+  "height": 31,
   "depth": 0,
   "description": "Artist David Cheney was inspired by the Mexican muralistas on a trip to Mexico City. As a result, he created Buscando Las Muralistas, Jose Clemente Orozco.",
   "ratings": 0,
@@ -7635,14 +7970,16 @@
   "createdAt": {
     "$date": "2021-12-26T22:37:27.443Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "buscando-las-muralistas-jos-clemente-orozco",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8efd7b264b7bb87c9c175"
   },
   "name": "Le Temps Retrouvé",
   "price": 175,
-  "width": 27.5,
+  "width": 28,
   "height": 36,
   "depth": 0,
   "description": "Artist David Cheney was inspired after reading Marcel Proust's masterpiece Le Temps Retrouvé (Time Regained) when he created this piece.",
@@ -7673,14 +8010,16 @@
   "createdAt": {
     "$date": "2021-12-26T22:42:31.940Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "le-temps-retrouv",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f040b264b7bb87c9c54e"
   },
   "name": "Albertine Disparue",
   "price": 175,
-  "width": 27.5,
+  "width": 28,
   "height": 36,
   "depth": 0,
   "description": "Artist David Cheney was inspired by Marcel Proust's masterpiece, A la Recherché du Temps Perdu (In Search of Lost Time) when he created his homage to the sixth volume, Albertine Disparue.",
@@ -7720,15 +8059,17 @@
   "createdAt": {
     "$date": "2021-12-26T22:44:16.368Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "albertine-disparue",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f199b264b7bb87c9c7fd"
   },
   "name": "Fun Money Currents (Up Flow)",
   "price": 1685,
-  "width": 45.2,
-  "height": 45.2,
+  "width": 45,
+  "height": 45,
   "depth": 0,
   "description": "One in a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. Fun Money Currents (Up Flow), \"currents, the rhythmic movement of money, exchanges of goods and experiences. New growth is buoyed upward by the currents, reaching toward sunlight.\" This mixed-media creation uses foil and acrylic on canvas.",
   "ratings": 0,
@@ -7758,15 +8099,17 @@
   "createdAt": {
     "$date": "2021-12-26T22:50:01.079Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fun-money-currents-up-flow",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f268b264b7bb87c9cbed"
   },
   "name": "Fun Money Currents (Peacock)",
   "price": 1685,
-  "width": 45.7,
-  "height": 45.7,
+  "width": 46,
+  "height": 46,
   "depth": 0,
   "description": "One in a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. In Fun Money Currents, we are \"hypnotized by the shiny prettiness of currency as it moves in patterns, bringing and taking away a continual flow of experiences through our lives.\" This mixed-media creation uses foil and acrylic on canvas.",
   "ratings": 0,
@@ -7796,15 +8139,17 @@
   "createdAt": {
     "$date": "2021-12-26T22:53:28.780Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fun-money-currents-peacock",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f2e0b264b7bb87c9cfd2"
   },
   "name": "Fun Money Wiggle 2",
   "price": 415,
-  "width": 20.3,
-  "height": 20.3,
+  "width": 20,
+  "height": 20,
   "depth": 0,
   "description": "One of a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. In Fun Money Wiggle 2, \"chocolate or bubblegum, did you get what you wanted out of your fun money?\" This mixed-media creation uses foil and acrylic paint on canvas.",
   "ratings": 0,
@@ -7843,15 +8188,17 @@
   "createdAt": {
     "$date": "2021-12-26T22:55:28.882Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fun-money-wiggle-2",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f399b264b7bb87c9d282"
   },
   "name": "Fun Money Can I Lick It (Guilty Pleasures)",
   "price": 1685,
-  "width": 45.7,
-  "height": 45.7,
+  "width": 46,
+  "height": 46,
   "depth": 0,
   "description": "One of a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. In Can I Lick It (Guilty Pleasures) it's \"breaking away from the soothing, repetitive and decorative surface enjoyment of money, it's time to get messy, peel back layers and transgress lifetime taboos of talking about money.\" This mixed-media creation uses foil and acrylic on canvas.  ",
   "ratings": 0,
@@ -7890,15 +8237,17 @@
   "createdAt": {
     "$date": "2021-12-26T22:58:33.455Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fun-money-can-i-lick-it-guilty-pleasures",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f416b264b7bb87c9d674"
   },
   "name": "Fun Money Can I Lick It (Your Hidden Charms)",
   "price": 1685,
-  "width": 45.7,
-  "height": 45.7,
+  "width": 46,
+  "height": 46,
   "depth": 0,
   "description": "One of a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. In Can I Lick It (Your Hidden Charms) it's \"thinking about the sensual experience of consuming these fun money coins, literally and metaphorically, having permission to use them up rather than conserving them, stockpiling them. Are they really used, or are they transformed?\" This mixed-media creation uses foil and acrylic on canvas.  ",
   "ratings": 0,
@@ -7937,15 +8286,17 @@
   "createdAt": {
     "$date": "2021-12-26T23:00:38.745Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fun-money-can-i-lick-it-your-hidden-charms",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f498b264b7bb87c9d91e"
   },
   "name": "Fun Money Currents (Decorative)",
   "price": 1685,
-  "width": 45.7,
-  "height": 45.7,
+  "width": 46,
+  "height": 43,
   "depth": 0,
   "description": "One in a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. In Fun Money Currents, we are \"hypnotized by the shiny prettiness of currency as it moves in patterns, bringing and taking away a continual flow of experiences through our lives.\" This mixed-media creation uses foil and acrylic on canvas.  ",
   "ratings": 0,
@@ -7984,18 +8335,22 @@
   "createdAt": {
     "$date": "2021-12-26T23:02:48.214Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fun-money-currents-decorative",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f515b264b7bb87c9dbcc"
   },
   "name": "Fun Money Currents (Downward Flow)",
   "price": 1685,
-  "width": 45.7,
-  "height": 45.7,
+  "width": 46,
+  "height": 46,
   "depth": 0,
   "description": "One in a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. Fun Money Currents (Downward Flow), \"currents, the rhythmic movement of money, exchanges of goods and experiences. Outside influences, events from beyond, are dispersed and redirected by the flow of currency.\" This mixed-media creation uses foil and acrylic on canvas.",
-  "ratings": 0,
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
   "images": [
     {
       "public_id": "products/q0g8ruaddlu9drcfd1ln",
@@ -8031,15 +8386,17 @@
   "createdAt": {
     "$date": "2021-12-26T23:04:53.360Z"
   },
-  "__v": 0
+  "__v": 1,
+  "slug": "fun-money-currents-downward-flow",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f587b264b7bb87c9de7e"
   },
   "name": "Fun Money Wiggle 1",
   "price": 415,
-  "width": 20.3,
-  "height": 20.3,
+  "width": 20,
+  "height": 20,
   "depth": 0,
   "description": "One of a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. In Fun Money Wiggle 1, \"chocolate or bubblegum, did you get what you wanted out of your fun money?\" This mixed-media creation uses foil and acrylic paint on canvas.  ",
   "ratings": 0,
@@ -8078,35 +8435,37 @@
   "createdAt": {
     "$date": "2021-12-26T23:06:47.623Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fun-money-wiggle-1",
+  "visible": 1
 },{
   "_id": {
     "$oid": "61c8f5f2b264b7bb87c9e134"
   },
   "name": "Fun Money Pop",
   "price": 265,
-  "width": 15.2,
-  "height": 15.2,
+  "width": 15,
+  "height": 15,
   "depth": 0,
   "description": "One of a series entitled Fun Money, artist Debbie.lee Miszaniec takes a playful look at her relationship with money. In Fun Money Pop, \"round and round go the coins until we stop to look inside.\" This mixed-media creation uses foil and acrylic paint on canvas.",
   "ratings": 0,
   "images": [
     {
-      "public_id": "products/e8sixrepvnamb8pb5lve",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640560115/products/e8sixrepvnamb8pb5lve.jpg",
-      "thumb_id": "products/dq4cyb21fnqsmuxd0hce",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640560112/products/dq4cyb21fnqsmuxd0hce.jpg",
+      "public_id": "products/d4jcfxrivym3bdza78up",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641615673/products/d4jcfxrivym3bdza78up.jpg",
+      "thumb_id": "products/ac3lwnnvbmxlb5mdlbur",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641615667/products/ac3lwnnvbmxlb5mdlbur.jpg",
       "_id": {
-        "$oid": "61c8f5f2b264b7bb87c9e135"
+        "$oid": "61d9113bea0ca163cff63ed8"
       }
     },
     {
-      "public_id": "products/wnurpejpok39wnvn4enx",
-      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1640560120/products/wnurpejpok39wnvn4enx.jpg",
-      "thumb_id": "products/pf6hoelgogkgl3cvm8h4",
-      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1640560117/products/pf6hoelgogkgl3cvm8h4.jpg",
+      "public_id": "products/difsea6ou3ovumf87sej",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641615678/products/difsea6ou3ovumf87sej.jpg",
+      "thumb_id": "products/qbt9sxj4kapurlbjou1m",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641615676/products/qbt9sxj4kapurlbjou1m.jpg",
       "_id": {
-        "$oid": "61c8f5f2b264b7bb87c9e136"
+        "$oid": "61d9113bea0ca163cff63ed9"
       }
     }
   ],
@@ -8125,5 +8484,468 @@
   "createdAt": {
     "$date": "2021-12-26T23:08:34.532Z"
   },
-  "__v": 0
+  "__v": 0,
+  "slug": "fun-money-pop",
+  "visible": 1
+},{
+  "_id": {
+    "$oid": "61d7b854e8cd4025d2ff9684"
+  },
+  "name": "I Saw It Coming But It Was Too Late",
+  "price": 475,
+  "width": 50,
+  "height": 40,
+  "depth": 0,
+  "description": "Following on from his project with film-maker Anna Cooley in which he created paintings inspired by his meditations on the journey of the Covid-19 pandemic, Jim Ulrich now exhibits this more recent work, I Saw It Coming But It Was Too Late. This bold painting reflects his thoughts on the more recent Covid variants and our fears that this erratic and unpredictable virus may be far from over. This eye-catching abstract is sure to create a visual talking point in any home or workspace.",
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
+  "images": [
+    {
+      "public_id": "products/u11jp5gocnxp4zjwqci2",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527377/products/u11jp5gocnxp4zjwqci2.jpg",
+      "thumb_id": "products/dwklcqmtohgcvavfkumh",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527374/products/dwklcqmtohgcvavfkumh.jpg",
+      "_id": {
+        "$oid": "61d7b854e8cd4025d2ff9685"
+      }
+    },
+    {
+      "public_id": "products/e5vcvpvpppejwsfiduae",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527382/products/e5vcvpvpppejwsfiduae.jpg",
+      "thumb_id": "products/sqqdlpyxcuy1kvdlcqpf",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527380/products/sqqdlpyxcuy1kvdlcqpf.jpg",
+      "_id": {
+        "$oid": "61d7b854e8cd4025d2ff9686"
+      }
+    }
+  ],
+  "artist": "Jim Ulrich",
+  "orientation": "Landscape",
+  "media": "Acrylic on Canvas",
+  "datePublished": {
+    "$date": "2021-07-03T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-01-07T03:49:40.635Z"
+  },
+  "__v": 1,
+  "slug": "i-saw-it-coming-but-it-was-too-late",
+  "visible": 1
+},{
+  "_id": {
+    "$oid": "61d7b9d4e8cd4025d2ff9cd1"
+  },
+  "name": "Full Moon Night Sky No.2",
+  "price": 725,
+  "width": 99,
+  "height": 65,
+  "depth": 0,
+  "description": "Artist Jim Ulrich was inspired by the evening view from his art studio in Beiseker, Alberta. This is one of two paintings in which he uses shades of blue to depict the effect of the full moon in brightening the night sky.",
+  "ratings": 0,
+  "images": [
+    {
+      "public_id": "products/pgxmdzd8hgqtiu12ydwq",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527761/products/pgxmdzd8hgqtiu12ydwq.jpg",
+      "thumb_id": "products/wygognrotlybppjhjknt",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527758/products/wygognrotlybppjhjknt.jpg",
+      "_id": {
+        "$oid": "61d7b9d4e8cd4025d2ff9cd2"
+      }
+    },
+    {
+      "public_id": "products/a6rgoeajfv8yieathwko",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527766/products/a6rgoeajfv8yieathwko.jpg",
+      "thumb_id": "products/u2st1dwtae8jahgqhfrc",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527764/products/u2st1dwtae8jahgqhfrc.jpg",
+      "_id": {
+        "$oid": "61d7b9d4e8cd4025d2ff9cd3"
+      }
+    }
+  ],
+  "artist": "Jim Ulrich",
+  "orientation": "Landscape",
+  "media": "Acrylic on Canvas",
+  "datePublished": {
+    "$date": "2010-05-03T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-01-07T03:56:04.103Z"
+  },
+  "__v": 0,
+  "slug": "full-moon-night-sky-no2",
+  "visible": 1
+},{
+  "_id": {
+    "$oid": "61d7ba47e8cd4025d2ff9fa3"
+  },
+  "name": "Full Moon Night Sky No.1",
+  "price": 725,
+  "width": 99,
+  "height": 65,
+  "depth": 0,
+  "description": "Artist Jim Ulrich was inspired by the evening view from his art studio in Beiseker, Alberta. This is one of two paintings in which he uses shades of blue to depict the effect of the full moon in brightening the night sky.",
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
+  "images": [
+    {
+      "public_id": "products/gpfkj8cnvm5vvzqhyrem",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527875/products/gpfkj8cnvm5vvzqhyrem.jpg",
+      "thumb_id": "products/gfz28kaikmewojbrsyuo",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527872/products/gfz28kaikmewojbrsyuo.jpg",
+      "_id": {
+        "$oid": "61d7ba47e8cd4025d2ff9fa4"
+      }
+    },
+    {
+      "public_id": "products/l9ib7tl2rhrr3rrezlxh",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527881/products/l9ib7tl2rhrr3rrezlxh.jpg",
+      "thumb_id": "products/jqh9z7ik0nt2x0mvprk9",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527878/products/jqh9z7ik0nt2x0mvprk9.jpg",
+      "_id": {
+        "$oid": "61d7ba47e8cd4025d2ff9fa5"
+      }
+    }
+  ],
+  "artist": "Jim Ulrich",
+  "orientation": "Landscape",
+  "media": "Acrylic on Canvas",
+  "datePublished": {
+    "$date": "2010-05-03T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-01-07T03:57:59.297Z"
+  },
+  "__v": 1,
+  "slug": "full-moon-night-sky-no1",
+  "visible": 1
+},{
+  "_id": {
+    "$oid": "61d7baade8cd4025d2ffa279"
+  },
+  "name": "Aquarium",
+  "price": 625,
+  "width": 68,
+  "height": 56,
+  "depth": 0,
+  "description": " Artist Jim Ulrich took his inspiration from the fish tanks at the zoological aquarium in Ban Chang, Thailand, when he painted this recent piece.  With its vivid neon blues and splashes of red, Aquarium is a striking wall art that would bring to life to any living space.",
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
+  "images": [
+    {
+      "public_id": "products/budp7bud55xymog8agnq",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527978/products/budp7bud55xymog8agnq.jpg",
+      "thumb_id": "products/rwrbs3h0fje5sjnhrtv1",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527975/products/rwrbs3h0fje5sjnhrtv1.jpg",
+      "_id": {
+        "$oid": "61d7baade8cd4025d2ffa27a"
+      }
+    },
+    {
+      "public_id": "products/sojsridyqr9yfyoeoimc",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527983/products/sojsridyqr9yfyoeoimc.jpg",
+      "thumb_id": "products/de0yahzs4a6puhrdexbe",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641527981/products/de0yahzs4a6puhrdexbe.jpg",
+      "_id": {
+        "$oid": "61d7baade8cd4025d2ffa27b"
+      }
+    }
+  ],
+  "artist": "Jim Ulrich",
+  "orientation": "Landscape",
+  "media": "Acrylic on Canvas",
+  "datePublished": {
+    "$date": "2018-02-03T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-01-07T03:59:41.713Z"
+  },
+  "__v": 1,
+  "slug": "aquarium",
+  "visible": 1
+},{
+  "_id": {
+    "$oid": "61d7bbb3e8cd4025d2ffa553"
+  },
+  "name": "Yellow Water",
+  "price": 475,
+  "width": 38,
+  "height": 52,
+  "depth": 0,
+  "description": "Artist Jim Ulrich spent time in Australia and Yellow Water is one of his paintings that draw on his memories of his travels there. He describes this piece as 'the morning light on a Northern Australian waterway filled with saltwater crocodiles - the calm before the storm'. A lovely painting, Yellow Water evokes a feeling of mindfulness and calm - the perfect addition to your 'work from home' space.",
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
+  "images": [
+    {
+      "public_id": "products/jwu8zn9npvvmeslfdrc7",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528240/products/jwu8zn9npvvmeslfdrc7.jpg",
+      "thumb_id": "products/cx19rsoaajsihpzi4ezl",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528237/products/cx19rsoaajsihpzi4ezl.jpg",
+      "_id": {
+        "$oid": "61d7bbb3e8cd4025d2ffa554"
+      }
+    },
+    {
+      "public_id": "products/n8stokmjfxzwravhgbli",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528245/products/n8stokmjfxzwravhgbli.jpg",
+      "thumb_id": "products/mpavosmln4j15dnhei7e",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528243/products/mpavosmln4j15dnhei7e.jpg",
+      "_id": {
+        "$oid": "61d7bbb3e8cd4025d2ffa555"
+      }
+    }
+  ],
+  "artist": "Jim Ulrich",
+  "orientation": "Portrait",
+  "media": "Prints",
+  "datePublished": {
+    "$date": "1986-07-10T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-01-07T04:04:03.500Z"
+  },
+  "__v": 1,
+  "slug": "yellow-water",
+  "visible": 1
+},{
+  "_id": {
+    "$oid": "61d7bc32e8cd4025d2ffa999"
+  },
+  "name": "Stradbroke",
+  "price": 625,
+  "width": 68,
+  "height": 54,
+  "depth": 0,
+  "description": "Named for the island off the coast of Brisbane, Australia, Stradbroke is a new artwork by artist Jim Ulrich. Jim wanted to convey the juxtaposition of its aboriginal and colonial history and its beauty as a tropical paradise. With the start contrast of blue, red, yellow and white, Stradbroke's originality would make a great feature in any room.",
+  "ratings": 0,
+  "images": [
+    {
+      "public_id": "products/sxspycwthkmnxpvmvqtq",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528367/products/sxspycwthkmnxpvmvqtq.jpg",
+      "thumb_id": "products/ohmjovdjwz5zskjs5rfa",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528365/products/ohmjovdjwz5zskjs5rfa.jpg",
+      "_id": {
+        "$oid": "61d7bc32e8cd4025d2ffa99a"
+      }
+    },
+    {
+      "public_id": "products/xecybb0b5xzemioijpua",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528372/products/xecybb0b5xzemioijpua.jpg",
+      "thumb_id": "products/ebolc1cb1ejuqikg0dng",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528370/products/ebolc1cb1ejuqikg0dng.jpg",
+      "_id": {
+        "$oid": "61d7bc32e8cd4025d2ffa99b"
+      }
+    }
+  ],
+  "artist": "Jim Ulrich",
+  "orientation": "Landscape",
+  "media": "Prints",
+  "datePublished": {
+    "$date": "1986-08-09T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-01-07T04:06:10.340Z"
+  },
+  "__v": 0,
+  "slug": "stradbroke",
+  "visible": 1
+},{
+  "_id": {
+    "$oid": "61d7bc98e8cd4025d2ffac7b"
+  },
+  "name": "Not Everything Has To Be About Something",
+  "price": 5200,
+  "width": 155,
+  "height": 165,
+  "depth": 0,
+  "description": "In one of his more recent works, Not Everything Has To Be About Something, Jim Ulrich draws on his experience of the extreme weather both in western Canada and worldwide. Here he is questioning the apparent chaos of the global responses to the questions of global warming. This visually chaotic composition with its primary colors and swirling lines is Jim's abstract take on the chaos we all face as the crisis deepens beyond our control.",
+  "ratings": 0,
+  "images": [
+    {
+      "public_id": "products/nuyj5qpezfcqgd5f9lh5",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528469/products/nuyj5qpezfcqgd5f9lh5.jpg",
+      "thumb_id": "products/bzmnhzxdnpcxk7b0k0jr",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528466/products/bzmnhzxdnpcxk7b0k0jr.jpg",
+      "_id": {
+        "$oid": "61d7bc98e8cd4025d2ffac7c"
+      }
+    },
+    {
+      "public_id": "products/udcqlkzeg327o6x200tw",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528474/products/udcqlkzeg327o6x200tw.jpg",
+      "thumb_id": "products/xinqidohadz9w3axjrnl",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528471/products/xinqidohadz9w3axjrnl.jpg",
+      "_id": {
+        "$oid": "61d7bc98e8cd4025d2ffac7d"
+      }
+    }
+  ],
+  "artist": "Jim Ulrich",
+  "orientation": "Portrait",
+  "media": "Acrylic on Canvas",
+  "datePublished": {
+    "$date": "2021-11-18T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-01-07T04:07:52.159Z"
+  },
+  "__v": 0,
+  "slug": "not-everything-has-to-be-about-something",
+  "visible": 1
+},{
+  "_id": {
+    "$oid": "61d7bd01e8cd4025d2ffaf61"
+  },
+  "name": "More Extreme Storms Will Bring...",
+  "price": 5200,
+  "width": 160,
+  "height": 170,
+  "depth": 0,
+  "description": "In one of his more recent works, More Extreme Storms Will Bring..., Jim Ulrich draws on his experience of the climate crisis. Specifically the effects of global warming which has brought extreme weather both in western Canada and worldwide. This visually chaotic composition with its primary colors, pastel shades, and swirling lines is Jim's abstract take on the chaos we all face as the crisis deepens beyond our control.",
+  "ratings": {
+    "$numberDouble": "Infinity"
+  },
+  "images": [
+    {
+      "public_id": "products/cplkbcq7qeefdsq2m6yn",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528573/products/cplkbcq7qeefdsq2m6yn.jpg",
+      "thumb_id": "products/ltusa1bcdpmlgimkgaxw",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528570/products/ltusa1bcdpmlgimkgaxw.jpg",
+      "_id": {
+        "$oid": "61d7bd01e8cd4025d2ffaf62"
+      }
+    },
+    {
+      "public_id": "products/q6jsybxo8ikwn14ar1x2",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528580/products/q6jsybxo8ikwn14ar1x2.jpg",
+      "thumb_id": "products/gvxsshmvxm8isgz2kp17",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1641528576/products/gvxsshmvxm8isgz2kp17.jpg",
+      "_id": {
+        "$oid": "61d7bd01e8cd4025d2ffaf63"
+      }
+    }
+  ],
+  "artist": "Jim Ulrich",
+  "orientation": "Portrait",
+  "media": "Acrylic on Canvas",
+  "datePublished": {
+    "$date": "2021-11-20T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-01-07T04:09:37.772Z"
+  },
+  "__v": 5,
+  "slug": "more-extreme-storms-will-bring",
+  "visible": 1
+},{
+  "_id": {
+    "$oid": "620b4eb131e4fbaa8e3e1250"
+  },
+  "name": "another test",
+  "price": 1,
+  "width": 1,
+  "height": 1,
+  "depth": 0,
+  "description": "<p><span style=\"font-family: Impact;\">ffff</span></p>\r\n",
+  "ratings": 4,
+  "images": [
+    {
+      "public_id": "products/a4o7jmo2gieawm1rogt2",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1644908210/products/a4o7jmo2gieawm1rogt2.jpg",
+      "thumb_id": "products/wdcrhmn34uw1e69zf4rj",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1644908207/products/wdcrhmn34uw1e69zf4rj.jpg",
+      "_id": {
+        "$oid": "620b4eb131e4fbaa8e3e1251"
+      }
+    }
+  ],
+  "artist": "Norman Sjoman",
+  "orientation": "Landscape",
+  "media": "Photography",
+  "datePublished": {
+    "$date": "2022-02-15T00:00:00Z"
+  },
+  "stock": 10,
+  "numOfReviews": 1,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "visible": 1,
+  "reviews": [
+    {
+      "user": {
+        "$oid": "61b7bae1939ff81896b8cd56"
+      },
+      "name": "Nick Dittmer",
+      "avatar": {
+        "public_id": "avatars/gccxbl5yi157sfrqtqcv",
+        "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1641222575/avatars/gccxbl5yi157sfrqtqcv.jpg"
+      },
+      "rating": 4,
+      "comment": "<p>test 😀!</p>\r\n",
+      "_id": {
+        "$oid": "621225c41fe8826712117c3e"
+      },
+      "reviewCreatedAt": {
+        "$date": "2022-02-20T11:28:04.702Z"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2022-02-15T06:56:49.208Z"
+  },
+  "__v": 1,
+  "slug": "another-test"
 }]

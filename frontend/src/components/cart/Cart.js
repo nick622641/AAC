@@ -35,15 +35,15 @@ const Cart = () => {
     const emptyCartHandler = () => {   
         dispatch(emptyCart())
     }
-    const increaseQty = (name, quantity, stock) => {
+    const increaseQty = (id, quantity, stock) => {
         const newQty = quantity + 1
         if(newQty > stock) { return }
-        dispatch(addItemToCart(name, newQty))
+        dispatch(addItemToCart(id, newQty))
     }
-    const decreaseQty = (name, quantity) => {
+    const decreaseQty = (id, quantity) => {
         const newQty = quantity - 1
         if(newQty <= 0) { return }
-        dispatch(addItemToCart(name, newQty))
+        dispatch(addItemToCart(id, newQty))
     }
     const toggleModal = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
@@ -93,46 +93,45 @@ const Cart = () => {
         }
        
         cartItems && cartItems.forEach( item => {
-            let name = item.name.replace(/-/g, '_')    
-            name = name.replace(/ /g, '-') 
+            
             data.rows.push({
-                url: <Link to={`/artwork/${name}`}>
+                url: <Link to={`/artwork/${item.slug}`}>
                         <Avatar
                             src={item.image} 
                             alt={item.name} 
                             sx={{ width: 50, height: 50 }}
                         />                                          
                     </Link>,                  
-                name: <Link to={`/artwork/${name}`}>{item.name}</Link>,
+                name: <Link to={`/artwork/${item.slug}`}>{item.name}</Link>,
                 price: <FormattedPrice number={item.price} />,
                 quantity: <Fragment>
                             <div className="whitespace-nowrap"> 
-                            <IconButton 
-                                className={item.quantity === 1 ? 'inactive' : ''}                                                 
-                                onClick={() => decreaseQty(item.name, item.quantity)}
-                            >
-                                <RemoveCircleIcon 
-                                    fontSize="small" 
-                                    color={item.quantity === 1 ? 'disabled' : 'primary'}
-                                />
-                            </IconButton>  
+                                <IconButton 
+                                    className={item.quantity === 1 ? 'inactive' : ''}                                                 
+                                    onClick={() => decreaseQty(item.slug, item.quantity)}
+                                >
+                                    <RemoveCircleIcon 
+                                        fontSize="small" 
+                                        color={item.quantity === 1 ? 'disabled' : 'primary'}
+                                    />
+                                </IconButton>  
 
-                            <input 
-                                className="text-center"
-                                style={{ width: '40px' }}                                              
-                                value={item.quantity} 
-                                readOnly 
-                            />
-
-                            <IconButton 
-                                className={item.quantity === item.stock ? 'inactive' : ''} 
-                                onClick={() => increaseQty(item.name, item.quantity, item.stock)}
-                            >
-                                <AddCircleIcon 
-                                    fontSize="small" 
-                                    color={item.quantity === item.stock ? 'disabled' : 'primary'}
+                                <input 
+                                    className="text-center"
+                                    style={{ width: '40px' }}                                              
+                                    value={item.quantity} 
+                                    readOnly 
                                 />
-                            </IconButton>                
+
+                                <IconButton 
+                                    className={item.quantity === item.stock ? 'inactive' : ''} 
+                                    onClick={() => increaseQty(item.slug, item.quantity, item.stock)}
+                                >
+                                    <AddCircleIcon 
+                                        fontSize="small" 
+                                        color={item.quantity === item.stock ? 'disabled' : 'primary'}
+                                    />
+                                </IconButton>                
                             </div>
                         </Fragment> ,
                 actions: 
@@ -149,7 +148,7 @@ const Cart = () => {
 
         <Fragment>
 
-            <MetaData title={'Your Cart'} />
+            <MetaData title={'Your Cart'} noIndex={true} />
 
             <div className="container">
 

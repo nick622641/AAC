@@ -57,7 +57,7 @@ const NewPassword = () => {
 
         <Fragment>
 
-            <MetaData title={'New Password Reset'} />
+            <MetaData title={'New Password Reset'} noIndex={true} />
 
             <div className="container">
 

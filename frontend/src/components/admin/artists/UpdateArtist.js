@@ -1,16 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import MetaData from '../../layouts/MetaData'
+import Sidebar from '../Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link, useParams } from 'react-router-dom'
-import { UPDATE_MEDIA_RESET } from '../../constants/categoryConstants'
-import { getMediaDetails, updateMedia, clearErrors } from '../../actions/categoryActions'
-import MetaData from '../layouts/MetaData'
-import Sidebar from '../admin/Sidebar'
+import { UPDATE_ARTIST_RESET } from '../../../constants/categoryConstants'
+import { getArtistDetails, updateArtist, clearErrors } from '../../../actions/categoryActions'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import SendIcon from '@mui/icons-material/Send'
 import { FormControl, TextField, Tooltip } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
 import IconButton from '@mui/material/IconButton'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 
@@ -22,15 +22,15 @@ const UpdateArtist = () => {
     const dispatch = useDispatch()
     const [ name,       setName       ] = useState('')  
     const [ fullscreen, setFullscreen ] = useState(false)
-    const { error, medium                          } = useSelector(state => state.mediaDetails)
-    const { loading, error: updateError, isUpdated } = useSelector(state => state.medium)
+    const { error, artist                          } = useSelector(state => state.artistDetails)
+    const { loading, error: updateError, isUpdated } = useSelector(state => state.artist)
 
     useEffect(() => { 
-
-        if (medium && medium._id !== id) {
-            dispatch(getMediaDetails(id))
+        
+        if (artist && artist._id !== id) {
+            dispatch(getArtistDetails(id))
         } else {
-            setName(medium.name)
+            setName(artist.name)
         }
         if(error) {
             alert.error(error)
@@ -41,25 +41,24 @@ const UpdateArtist = () => {
             dispatch(clearErrors())
         }
         if(isUpdated) {            
-            alert.success('Media Updated Successfully')
-            dispatch(getMediaDetails(id))
-            navigate('/admin/media')
-            dispatch({ type: UPDATE_MEDIA_RESET })            
+            alert.success('Artist Updated Successfully')
+            dispatch(getArtistDetails(id))
+            navigate('/admin/artists')
+            dispatch({ type: UPDATE_ARTIST_RESET })            
         }
-    }, [dispatch, navigate, alert, error, isUpdated, updateError, medium, id])
+    }, [dispatch, navigate, alert, error, isUpdated, updateError, artist, id])
 
     const submitHandler = (e) => {        
         e.preventDefault()
         const formData = new FormData()
         formData.set('name', name)       
-        dispatch(updateMedia(medium._id, formData))
+        dispatch(updateArtist(artist._id, formData))
     }   
-
     return (
 
         <Fragment>
 
-            <MetaData title={'Update Media'} />
+            <MetaData title={'Update Artist'} noIndex={true} />
 
             <div className="container">
 
@@ -71,23 +70,23 @@ const UpdateArtist = () => {
                         
                     </aside>            
 
-                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>      
+                    <article className={fullscreen ? 'fullscreen relative' : 'relative'}>        
                             
                         <div className="user-form cart"> 
 
-                            <h1>Update Media</h1>     
+                            <h1>Update Artist</h1>   
 
                             <form onSubmit={submitHandler}>
 
                                 <FormControl fullWidth>
                                     <TextField 
-                                        label="Media Name" 
+                                        label="Artist Name" 
                                         value={name}
                                         variant="standard"
                                         onChange={(e) => setName(e.target.value)} 
                                         sx={{ mb: 1 }}
                                     />                                 
-                                </FormControl>
+                                </FormControl>   
 
                                 <LoadingButton 
                                     loading={loading}
@@ -98,11 +97,11 @@ const UpdateArtist = () => {
                                     sx={{ mt: 4, width: '100%' }}
                                 >
                                     Update
-                                </LoadingButton>                                  
-                               
+                                </LoadingButton> 
+
                             </form>
                    
-                            <Link to="/admin/media">
+                            <Link to="/admin/artists">
                                 <Fab 
                                     size="small" 
                                     className="close" 
@@ -118,10 +117,10 @@ const UpdateArtist = () => {
                                     color="primary" 
                                     sx={{ position: 'absolute', top: 10, left: 10 }}
                                     onClick={() => setFullscreen(!fullscreen)}
-                                >
-                                    <FitScreenIcon />
-                                </IconButton>
-                            </Tooltip>
+                                    >
+                                        <FitScreenIcon />
+                                    </IconButton>
+                                </Tooltip>
                             
                         </div>
                         
@@ -134,7 +133,7 @@ const UpdateArtist = () => {
         </Fragment>
 
     )
-    
+
 }
 
 export default UpdateArtist

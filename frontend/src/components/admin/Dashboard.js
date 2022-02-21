@@ -54,7 +54,7 @@ const Dashboard = () => {
 
         <Fragment>              
 
-            <MetaData title={'Admin Dashboard'} />
+            <MetaData title={'Admin Dashboard'} noIndex={true} />
 
             <div className="container">
 

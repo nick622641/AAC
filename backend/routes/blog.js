@@ -20,8 +20,8 @@ const {
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth')
 
 router.route('/blogs').get(getBlogs)
+router.route('/blog/:slug').get(getSingleBlog)
 router.route('/admin/blogs').get(getAdminBlogs)
-router.route('/blog/:id').get(getSingleBlog)
 
 router.route('/admin/blog/new').post(isAuthenticatedUser, authorizeRoles('admin'), newBlog)
 router.route('/admin/blog/:id')
