@@ -10,7 +10,7 @@ import Loader from '../layouts/Loader'
 import MetaData from '../layouts/MetaData'
 import Modal from '../modals/Modal'
 import Contact from '../modals/Contact'
-import Lightbox from '../product/Lightbox'
+import Lightbox from '../layouts/images/Lightbox'
 import Social from '../layouts/Social'
 import IconButton from '@mui/material/IconButton'
 import EmailIcon from '@mui/icons-material/Email'
@@ -21,7 +21,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import Comment from '../modals/Comment'
 import ListComments from './ListComments'
 import FormattedDate from '../layouts/FormattedDate'
-import RichtextOutput from '../layouts/RichtextOutput'
+import RichtextOutput from '../layouts/richtext/RichtextOutput'
 
 const BlogDetails = () => {   
 

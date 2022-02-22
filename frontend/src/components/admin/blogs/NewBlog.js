@@ -13,9 +13,9 @@ import Avatar from '@mui/material/Avatar'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEditor from '../../layouts/RichtextEditor'
 import Checkbox from '@mui/material/Checkbox'
-import RichtextPreview from '../../layouts/RichtextPreview'
+import RichtextEditor from '../../layouts/richtext/RichtextEditor'
+import RichtextPreview from '../../layouts/richtext/RichtextPreview'
 
 const NewBlog = () => {    
 

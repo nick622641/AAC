@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import { FormControl, TextField } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
-import RichtextEditor from "../layouts/RichtextEditor"
+import RichtextEditor from "../layouts/richtext/RichtextEditor"
 
 function Contact() {
 

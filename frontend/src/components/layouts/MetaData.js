@@ -11,7 +11,7 @@ const MetaData = ({ title, description, noIndex=false }) => {
                 name="description" 
                 content={description 
                     ? description.replace(/(<([^>]+)>)/gi, "").substring(0, 155) + '...' 
-                    : 'Bold and beautiful abstract works of art by Canadian artists'
+                    : 'Bold and Beautiful Abstract works of art by Canadian Artists'
                 } 
             />
             {noIndex === true && (

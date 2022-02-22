@@ -321,18 +321,22 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 })
 // Get products related to a particular artist => /api/v1/products/related
 exports.getRelatedProducts = async (req, res, next) => {  
-    // const apiFeatures = new APIFeatures(
-    //     Product
-    //         .find()
-    //         .sort({ numOfReviews: -1 })
-    //         .limit(3), req.query
-    // )
-    //     .filter()
-    // const relatedProducts = await apiFeatures.query     
+     
     const relatedProducts = await Product.aggregate([ { $sample: { size: 3 } } ])
     res.status(200).json({
         success: true,       
         relatedProducts
+    })    
+}
+// Getslideshow images => /api/v1/products/random
+exports.getRandomProducts = async (req, res, next) => {  
+    
+    const quantity = Number(req.params.quantity)
+
+    const randomProducts = await Product.aggregate([ { $sample: { size: quantity } } ])
+    res.status(200).json({
+        success: true,       
+        randomProducts
     })    
 }
 // Get all products (Admin) => /api/v1/admin/products

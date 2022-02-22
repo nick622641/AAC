@@ -20,6 +20,9 @@ import {
     RELATED_PRODUCTS_REQUEST, 
     RELATED_PRODUCTS_SUCCESS, 
     RELATED_PRODUCTS_FAIL, 
+    RANDOM_PRODUCTS_REQUEST, 
+    RANDOM_PRODUCTS_SUCCESS, 
+    RANDOM_PRODUCTS_FAIL,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
@@ -48,7 +51,7 @@ import {
     CLEAR_ERRORS 
 } from '../constants/productConstants'
 
-export const productsReducer = ( state = { products: [] }, action ) => {
+export const productsReducer = ( state = { products: [], calloutProducts: [] }, action ) => {
     switch(action.type) {
 
         case ALL_PRODUCTS_REQUEST:
@@ -56,7 +59,8 @@ export const productsReducer = ( state = { products: [] }, action ) => {
         case ADMIN_PRODUCTS_REQUEST:
             return {
                 loading: true,
-                products: []
+                products: [],
+                calloutProducts: []
             }
         
         case ALL_PRODUCTS_SUCCESS:
@@ -68,11 +72,11 @@ export const productsReducer = ( state = { products: [] }, action ) => {
                 filteredProductsCount: action.payload.filteredProductsCount
             }
 
-        case RELATED_PRODUCTS_SUCCESS:
+        case RELATED_PRODUCTS_SUCCESS:            
             return {
                 loading: false,
-                relatedProducts: action.payload                 
-            }
+                calloutProducts: action.payload                 
+            }       
         
         case ADMIN_PRODUCTS_SUCCESS:
             return {
@@ -96,7 +100,42 @@ export const productsReducer = ( state = { products: [] }, action ) => {
             }
 
         default:
-            return state;
+            return state
+
+    }
+}
+
+export const randomProductsReducer = ( state = { randomProducts: [] }, action ) => {
+    switch(action.type) {
+
+        case RANDOM_PRODUCTS_REQUEST:
+            return {
+                loading: true,
+                products: [],
+                relatedProducts: [],
+                randomProducts: []
+            }  
+
+        case RANDOM_PRODUCTS_SUCCESS:
+            return {
+                loading: false,
+                randomProducts: action.payload                 
+            }   
+       
+        case RANDOM_PRODUCTS_FAIL:
+             return {
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                 error: null
+            }
+
+        default:
+            return state
 
     }
 }

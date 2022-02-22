@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { getProductDetails, getRelatedProducts, deleteReview } from '../../actions/productActions'
+import { getProductDetails, getCalloutProducts, deleteReview } from '../../actions/productActions'
 import { addItemToCart } from '../../actions/cartActions'
 import { NEW_REVIEW_RESET, DELETE_REVIEW_RESET } from '../../constants/productConstants'
 import { clearErrors } from '../../actions/userActions'
@@ -13,18 +13,18 @@ import Modal from '../modals/Modal'
 import Review from '../modals/Review'
 import Contact from '../modals/Contact'
 import ListReviews from '../review/ListReviews'
-import Lightbox from './Lightbox'
-import Callout from './Callout'
+import Lightbox from '../layouts/images/Lightbox'
+import Callout from '../layouts/images/Callout'
 import Social from '../layouts/Social'
 import FormattedPrice from '../layouts/FormattedPrice'
 import IconButton from '@mui/material/IconButton'
 import EmailIcon from '@mui/icons-material/Email'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import LoginIcon from '@mui/icons-material/Login'
-import Quantity from '../layouts/Quantity'
+import Quantity from './Quantity'
 import Rating from '@mui/material/Rating'
 import StructuredData from './StructuredData'
-import RichtextOutput from '../layouts/RichtextOutput'
+import RichtextOutput from '../layouts/richtext/RichtextOutput'
 
 const ProductDetails = () => { 
 
@@ -35,7 +35,7 @@ const ProductDetails = () => {
 
     const { error: reviewError, success   } = useSelector( state => state.newReview )
     const { loading, product, error       } = useSelector( state => state.productDetails )
-    const { relatedProducts               } = useSelector( state => state.products )
+    const { calloutProducts               } = useSelector( state => state.products )
     const { user, isAuthenticated         } = useSelector( state => state.auth )  
     const { isDeleted, error: deleteError } = useSelector( state => state.review ) 
 
@@ -78,7 +78,7 @@ const ProductDetails = () => {
 
         dispatch(getProductDetails(slug))
 
-        dispatch(getRelatedProducts())
+        dispatch(getCalloutProducts())
         
         if(error) {            
             alert.error(error)  
@@ -335,8 +335,8 @@ const ProductDetails = () => {
                         </div>                                                        
                     )}  
 
-                    {relatedProducts && relatedProducts.length > 2 && (
-                        <Callout relatedProducts={relatedProducts} />                        
+                    {calloutProducts && calloutProducts.length > 2 && (
+                        <Callout data={calloutProducts} />                        
                     )}                    
 
                     {isLightboxVisible && (

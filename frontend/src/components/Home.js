@@ -1,53 +1,18 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import { getRelatedProducts } from '../actions/productActions'
-import { animated, useTransition } from 'react-spring'
+import React, { Fragment, useEffect } from 'react'
+import { getCalloutProducts, getRandomProducts } from '../actions/productActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import MetaData from './layouts/MetaData'
-import Callout from './product/Callout'
+import Callout from './layouts/images/Callout'
 import Social from './layouts/Social'
-import IconButton from '@mui/material/IconButton'
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
-import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
+import Slideshow from './layouts/images/Slideshow'
+import Carousel from './layouts/images/Carousel'
 
 const Home = () => {  
     
     const dispatch = useDispatch()
-    const { relatedProducts } = useSelector( state => state.products )
-   
-    const [ imgIndex, setImgIndex ] = useState(0)     
-    const [ left,     setLeft     ] = useState(0)
-    
-    const moveLeft  = () => { 
-        const item = document.querySelector('.carousel li')
-        const width = item.offsetWidth * -1 
-        setImgIndex(imgIndex - 1) 
-        setLeft(width * (imgIndex - 1))
-    }
-    const moveRight = () => { 
-        const item = document.querySelector('.carousel li')
-        const width = item.offsetWidth * -1 
-        setImgIndex(imgIndex + 1) 
-        setLeft(width * (imgIndex + 1))
-    }
-
-    const data = [
-        {
-          url: "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Songs-P2448_01.jpg?fit=1920%2C957&ssl=1",
-        },
-        {
-          url: "https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Homage-to-Paul.jpeg?fit=1343%2C1080&ssl=1",
-        },
-        {
-          url: "https://i1.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/Reflection-3.jpg?fit=1045%2C786&ssl=1",
-        },
-        {
-          url: "https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/Calm-Before-the-Storm-1.jpg?fit=1439%2C1080&ssl=1",
-        },
-        {
-          url: "https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/A-Walk-in-the-Woods.jpg?fit=1429%2C1080&ssl=1",
-        }
-      ]
+    const { randomProducts  } = useSelector( state => state.randomProducts )
+    const { calloutProducts } = useSelector( state => state.products )          
 
     const slides = [
         {
@@ -77,46 +42,24 @@ const Home = () => {
         {
             url: 'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/Bhuvanakrtimandalam.jpg?fit=795%2C1080&ssl=1'
         }
-    ]
-
-    const [ position, setPosition ] = useState(0)
-
-    const transitions = useTransition(position, {
-        key: position,
-        from: { opacity: 0 },
-        enter: { opacity: 1 },
-        leave: { opacity: 0 },
-        config: { duration: 2000 }
-    })
+    ] 
 
     useEffect(() => {  
-        dispatch(getRelatedProducts())
-        
-        let isMounted = true        
-        setInterval(() => {
-            if (isMounted) {
-                setPosition((index) => ( index + 1 ) % data.length)
-            }
-        }, 10000)           
-        return () => { isMounted = false }
-    }, [dispatch, data.length])
+
+        dispatch(getCalloutProducts())
+        dispatch(getRandomProducts(12))       
+
+    }, [dispatch])
 
     return (
 
         <Fragment>
 
-            <MetaData title={'Home'} description="Bold and beautiful abstract works of art by Canadian artists" />             
+            <MetaData title={'Home'} />             
 
-            <div className="slideshow">
-                {transitions((style, index) => (
-                    <animated.div 
-                        style={{
-                            ...style,                                            
-                            backgroundImage: `url(${data[index].url})`
-                        }} 
-                    />
-                ))}
-            </div>             
+            {randomProducts && randomProducts.length > 0 && (
+                <Slideshow data={randomProducts} />               
+            )}          
 
             <div className="container">
 
@@ -135,7 +78,7 @@ const Home = () => {
                          
                             <br />
 
-                            <Link className="submit chevron-hover" to="/artwork/The-Waiting">
+                            <Link className="submit chevron-hover" to="/artwork/the-waiting">
                                 Shop Now 
                             </Link>
                         </div>
@@ -172,63 +115,24 @@ const Home = () => {
 
                     <br />
 
-                    <Link className="submit chevron-hover" to="/artwork/Songs-P2448_01">
+                    <Link className="submit chevron-hover" to="/artwork/songs-p2448-01">
                         Explore
                     </Link>
                 </div>
             </section>
 
-            <div className="container">
-                <div className="wrapper" style={{ position: "relative" }}>
-                    <div className="carousel">
-                        <ul style={{ left: `${left}px` }}>    
+            <Carousel data={slides} />            
 
-                            {slides && slides.map((slide, index) => (
-                                <li 
-                                    key={index}
-                                    className={index === (imgIndex + 1) ? 'active' : ''}
-                                >
-                                    <img 
-                                        src={slide.url} 
-                                        className="centered-image"
-                                        alt="" 
-                                    />
-                                </li>
-                            ))}                              
-                        </ul>
-                    </div>
-                    <div className="arrow-buttons">
-                    
-                        <IconButton onClick={moveLeft}>
-                            <ArrowBackIosOutlinedIcon 
-                                style={{ display: imgIndex === 0 && "none" }}
-                            />
-                        </IconButton>     
-
-                        <IconButton className="float-r" onClick={moveRight}>
-                            <ArrowForwardIosOutlinedIcon 
-                                style={{ display: imgIndex === 6 && "none" }}
-                            />
-                        </IconButton>
-
-                    </div>
-                </div>
-                <div className="wrapper">
-                    <div className="text-center">
-                        <h2>Image Title</h2>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
-                    </div>
-                </div>
-            </div>               
-
-            {relatedProducts && relatedProducts.length > 2 && (
+            {calloutProducts && calloutProducts.length > 2 && (
                 <div className="bg-grey">
-                    <Callout relatedProducts={relatedProducts} />  
+                    <Callout data={calloutProducts} />  
                 </div>                      
             )}
 
         </Fragment>
+
     )
+
 }
 
 export default Home

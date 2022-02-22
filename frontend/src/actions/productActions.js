@@ -15,6 +15,9 @@ import {
     RELATED_PRODUCTS_REQUEST, 
     RELATED_PRODUCTS_SUCCESS, 
     RELATED_PRODUCTS_FAIL, 
+    RANDOM_PRODUCTS_REQUEST, 
+    RANDOM_PRODUCTS_SUCCESS, 
+    RANDOM_PRODUCTS_FAIL, 
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAIL,
@@ -80,18 +83,12 @@ export const getProducts = ( keyword = '', currentPage = 1, price, artist = '', 
 }
 
 // Get related products limit 3
-export const getRelatedProducts = (artist = '') => async (dispatch) => {
+export const getCalloutProducts = (artist = '') => async (dispatch) => {
     try {
 
         dispatch({ type: RELATED_PRODUCTS_REQUEST })
-
-        let link = '/api/v1/products/related'
-
-        if( artist ) {    
-            link = `/api/v1/products/related?artist=${artist}`
-        } 
-
-        const { data } = await axios.get(link)
+       
+        const { data } = await axios.get('/api/v1/products/related')        
 
         dispatch({
             type: RELATED_PRODUCTS_SUCCESS,
@@ -102,6 +99,30 @@ export const getRelatedProducts = (artist = '') => async (dispatch) => {
 
         dispatch({
             type: RELATED_PRODUCTS_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+
+// Get random products limit n
+export const getRandomProducts = (quantity) => async (dispatch) => {
+    
+    try {
+
+        dispatch({ type: RANDOM_PRODUCTS_REQUEST })     
+
+        const { data } = await axios.get(`/api/v1/products/random/${quantity}`)
+
+        dispatch({
+            type: RANDOM_PRODUCTS_SUCCESS,
+            payload: data.randomProducts
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: RANDOM_PRODUCTS_FAIL,
             payload: error.response.data.message
         })
 

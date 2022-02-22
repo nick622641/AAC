@@ -5,6 +5,7 @@ const router = express.Router()
 const { 
     getProducts, 
     getRelatedProducts,
+    getRandomProducts,
     getAdminProducts,
     newProduct, 
     getSingleProduct, 
@@ -58,6 +59,7 @@ router.route('/admin/artist/:id')
 
 router.route('/products').get(getProducts)
 router.route('/products/related').get(getRelatedProducts)
+router.route('/products/random/:quantity').get(getRandomProducts)
 router.route('/admin/products').get(getAdminProducts)
 router.route('/product/:slug').get(getSingleProduct)
 

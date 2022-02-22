@@ -17,9 +17,9 @@ import DragnDrop from '../DragnDrop'
 import Modal from '../../modals/Modal'
 import Confirm from '../../modals/Confirm'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
-import RichtextEditor from '../../layouts/RichtextEditor'
 import Checkbox from '@mui/material/Checkbox'
-import RichtextPreview from '../../layouts/RichtextPreview'
+import RichtextEditor from '../../layouts/richtext/RichtextEditor'
+import RichtextPreview from '../../layouts/richtext/RichtextPreview'
 
 const UpdateBlog = () => {
 

@@ -4,7 +4,7 @@ import { newReview } from '../../actions/productActions'
 import Rating from '@mui/material/Rating'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
-import RichtextEditor from "../layouts/RichtextEditor"
+import RichtextEditor from "../layouts/richtext/RichtextEditor"
 
 function Review(props) {
     
