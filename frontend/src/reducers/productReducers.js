@@ -17,12 +17,15 @@ import {
     ALL_PRODUCTS_REQUEST, 
     ALL_PRODUCTS_SUCCESS, 
     ALL_PRODUCTS_FAIL, 
-    RELATED_PRODUCTS_REQUEST, 
-    RELATED_PRODUCTS_SUCCESS, 
-    RELATED_PRODUCTS_FAIL, 
+    CALLOUT_PRODUCTS_REQUEST, 
+    CALLOUT_PRODUCTS_SUCCESS, 
+    CALLOUT_PRODUCTS_FAIL, 
     RANDOM_PRODUCTS_REQUEST, 
     RANDOM_PRODUCTS_SUCCESS, 
     RANDOM_PRODUCTS_FAIL,
+    RANDOM_PRODUCTS_DETAILS_REQUEST, 
+    RANDOM_PRODUCTS_DETAILS_SUCCESS, 
+    RANDOM_PRODUCTS_DETAILS_FAIL,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
@@ -55,7 +58,7 @@ export const productsReducer = ( state = { products: [], calloutProducts: [] }, 
     switch(action.type) {
 
         case ALL_PRODUCTS_REQUEST:
-        case RELATED_PRODUCTS_REQUEST:
+        case CALLOUT_PRODUCTS_REQUEST:
         case ADMIN_PRODUCTS_REQUEST:
             return {
                 loading: true,
@@ -72,7 +75,7 @@ export const productsReducer = ( state = { products: [], calloutProducts: [] }, 
                 filteredProductsCount: action.payload.filteredProductsCount
             }
 
-        case RELATED_PRODUCTS_SUCCESS:            
+        case CALLOUT_PRODUCTS_SUCCESS:            
             return {
                 loading: false,
                 calloutProducts: action.payload                 
@@ -87,7 +90,7 @@ export const productsReducer = ( state = { products: [], calloutProducts: [] }, 
 
         case ALL_PRODUCTS_FAIL:
         case ADMIN_PRODUCTS_FAIL:
-        case RELATED_PRODUCTS_FAIL:
+        case CALLOUT_PRODUCTS_FAIL:
              return {
                 loading: false,
                 error: action.payload
@@ -111,8 +114,6 @@ export const randomProductsReducer = ( state = { randomProducts: [] }, action ) 
         case RANDOM_PRODUCTS_REQUEST:
             return {
                 loading: true,
-                products: [],
-                relatedProducts: [],
                 randomProducts: []
             }  
 
@@ -123,6 +124,39 @@ export const randomProductsReducer = ( state = { randomProducts: [] }, action ) 
             }   
        
         case RANDOM_PRODUCTS_FAIL:
+             return {
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                 error: null
+            }
+
+        default:
+            return state
+
+    }
+}
+
+export const randomProductsDetailsReducer = ( state = { randomProductsDetails: [] }, action ) => {
+    switch(action.type) {
+
+        case RANDOM_PRODUCTS_DETAILS_REQUEST:
+            return {
+                loading: true,
+                randomProductsDetails: []               
+            }  
+
+        case RANDOM_PRODUCTS_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                randomProductsDetails: action.payload                 
+            }   
+       
+        case RANDOM_PRODUCTS_DETAILS_FAIL:
              return {
                 loading: false,
                 error: action.payload

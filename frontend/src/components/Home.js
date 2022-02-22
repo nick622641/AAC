@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
-import { getCalloutProducts, getRandomProducts } from '../actions/productActions'
+import { getCalloutProducts, getRandomProducts, getRandomProductsDetails } from '../actions/productActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import MetaData from './layouts/MetaData'
@@ -11,43 +11,15 @@ import Carousel from './layouts/images/Carousel'
 const Home = () => {  
     
     const dispatch = useDispatch()
-    const { randomProducts  } = useSelector( state => state.randomProducts )
-    const { calloutProducts } = useSelector( state => state.products )          
-
-    const slides = [
-        {
-            url: 'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Blue-Lightiv.jpg?fit=792%2C1080&ssl=1'
-        },
-        {
-            url: 'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Blue-Lightiii.jpg?fit=810%2C1080&ssl=1'
-        },
-        {
-            url: 'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Blue-Lightii.jpg?fit=825%2C1080&ssl=1'
-        },
-        {
-            url: 'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/09/Blue-Lighti-e1631215978370.jpg?fit=788%2C1080&ssl=1'
-        },
-        {
-            url: 'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/The-Floating-Mind-e1625610542725.jpg?fit=785%2C1063&ssl=1'
-        },
-        {
-            url:'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/Mandala-Armarilla-e1625609067275.jpg?fit=772%2C1080&ssl=1'
-        },
-        {
-            url: 'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/Dimensional-Shift.jpg?fit=807%2C1080&ssl=1'
-        },
-        {
-            url: 'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/Cortical-Retreat.jpg?fit=807%2C1080&ssl=1'
-        },
-        {
-            url: 'https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/07/Bhuvanakrtimandalam.jpg?fit=795%2C1080&ssl=1'
-        }
-    ] 
+    const { randomProducts        } = useSelector( state => state.randomProducts )
+    const { calloutProducts       } = useSelector( state => state.products )          
+    const { randomProductsDetails } = useSelector( state => state.randomProductsDetails )          
 
     useEffect(() => {  
 
         dispatch(getCalloutProducts())
         dispatch(getRandomProducts(12))       
+        dispatch(getRandomProductsDetails(8))       
 
     }, [dispatch])
 
@@ -121,7 +93,9 @@ const Home = () => {
                 </div>
             </section>
 
-            <Carousel data={slides} />            
+            {randomProductsDetails && randomProductsDetails.length > 0 && (
+                <Carousel data={randomProductsDetails} />       
+            )}                 
 
             {calloutProducts && calloutProducts.length > 2 && (
                 <div className="bg-grey">

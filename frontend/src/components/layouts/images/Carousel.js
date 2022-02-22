@@ -1,30 +1,36 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import IconButton from '@mui/material/IconButton'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
+import RichtextOutput from '../richtext/RichtextOutput'
 
 const Carousel = ({ data }) => {
 
     const [ imgIndex, setImgIndex ] = useState(0)     
     const [ left,     setLeft     ] = useState(0)
+    const [ textleft, setTextLeft ] = useState( '-100%' )
 
-    const moveLeft  = () => { 
-        const item = document.querySelector('.carousel li')
-        const width = item.offsetWidth * -1 
-        setImgIndex(imgIndex - 1) 
-        setLeft(width * (imgIndex - 1))
+    const handleMove = (dir) => {
+        const item      = document.querySelector( '.carousel li' )
+        const text      = document.querySelector( '.carousel-text li' )
+        const width     = item.offsetWidth * -1         
+        const textwidth = text.offsetWidth * -1 
+        setImgIndex  ( dir === 'left' ?   imgIndex - 1 
+                                      :   imgIndex + 1 
+        ) 
+        setLeft      ( dir === 'left' ? ( imgIndex - 1 ) * width 
+                                      : ( imgIndex + 1 ) * width 
+        )
+        setTextLeft  ( dir === 'left' ? ( imgIndex       * textwidth ) + 'px' 
+                                      : ( imgIndex + 2 ) * textwidth   + 'px' 
+        )
     }
-    const moveRight = () => { 
-        const item = document.querySelector('.carousel li')
-        const width = item.offsetWidth * -1 
-        setImgIndex(imgIndex + 1) 
-        setLeft(width * (imgIndex + 1))
-    } 
 
     return (
 
         <div className="container">
-            <div className="wrapper" style={{ position: "relative" }}>
+            <div className="wrapper relative">
                 <div className="carousel">
                     <ul style={{ left: `${left}px` }}>    
 
@@ -33,35 +39,45 @@ const Carousel = ({ data }) => {
                                 key={index}
                                 className={index === (imgIndex + 1) ? 'active' : ''}
                             >
-                                <img 
-                                    src={slide.url} 
-                                    className="centered-image"
-                                    alt="" 
-                                />
+                                <Link to={`artwork/${slide.slug}`}>
+                                    <img 
+                                        src={slide.images[0].url} 
+                                        className="centered-image"
+                                        alt={slide.name} 
+                                    />
+                                </Link>
                             </li>
                         ))}                              
                     </ul>
                 </div>
                 <div className="arrow-buttons">
                 
-                    <IconButton onClick={moveLeft}>
+                    <IconButton onClick={() => handleMove('left')}>
                         <ArrowBackIosOutlinedIcon 
                             style={{ display: imgIndex === 0 && "none" }}
                         />
                     </IconButton>     
 
-                    <IconButton className="float-r" onClick={moveRight}>
+                    <IconButton onClick={() => handleMove('right')} className="float-r">
                         <ArrowForwardIosOutlinedIcon 
-                            style={{ display: imgIndex === 6 && "none" }}
+                            style={{ display: imgIndex === (data.length - 3) && "none" }}
                         />
                     </IconButton>
 
                 </div>
             </div>
-            <div className="wrapper">
-                <div className="text-center">
-                    <h2>Image Title</h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
+            <div className="wrapper relative">
+                <div className="carousel-text">
+                    <ul style={{ left: textleft }}> 
+                        {data && data.map((slide, index) => (
+                            <li key={index} className="text-center">
+                                <Link to={`artwork/${slide.slug}`}>
+                                    <h2>{slide.name}</h2>
+                                    <RichtextOutput text={slide.description} />
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div> 

@@ -12,12 +12,15 @@ import {
     ALL_PRODUCTS_REQUEST, 
     ALL_PRODUCTS_SUCCESS, 
     ALL_PRODUCTS_FAIL, 
-    RELATED_PRODUCTS_REQUEST, 
-    RELATED_PRODUCTS_SUCCESS, 
-    RELATED_PRODUCTS_FAIL, 
+    CALLOUT_PRODUCTS_REQUEST, 
+    CALLOUT_PRODUCTS_SUCCESS, 
+    CALLOUT_PRODUCTS_FAIL, 
     RANDOM_PRODUCTS_REQUEST, 
     RANDOM_PRODUCTS_SUCCESS, 
     RANDOM_PRODUCTS_FAIL, 
+    RANDOM_PRODUCTS_DETAILS_REQUEST, 
+    RANDOM_PRODUCTS_DETAILS_SUCCESS, 
+    RANDOM_PRODUCTS_DETAILS_FAIL,
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAIL,
@@ -82,23 +85,23 @@ export const getProducts = ( keyword = '', currentPage = 1, price, artist = '', 
     }
 }
 
-// Get related products limit 3
+// Get callout products limit 3
 export const getCalloutProducts = (artist = '') => async (dispatch) => {
     try {
 
-        dispatch({ type: RELATED_PRODUCTS_REQUEST })
+        dispatch({ type: CALLOUT_PRODUCTS_REQUEST })
        
-        const { data } = await axios.get('/api/v1/products/related')        
+        const { data } = await axios.get('/api/v1/products/callout')        
 
         dispatch({
-            type: RELATED_PRODUCTS_SUCCESS,
-            payload: data.relatedProducts
+            type: CALLOUT_PRODUCTS_SUCCESS,
+            payload: data.calloutProducts
         })
         
     } catch (error) {
 
         dispatch({
-            type: RELATED_PRODUCTS_FAIL,
+            type: CALLOUT_PRODUCTS_FAIL,
             payload: error.response.data.message
         })
 
@@ -123,6 +126,30 @@ export const getRandomProducts = (quantity) => async (dispatch) => {
 
         dispatch({
             type: RANDOM_PRODUCTS_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+
+// Get random products and details limit n
+export const getRandomProductsDetails = (quantity) => async (dispatch) => {
+    
+    try {
+
+        dispatch({ type: RANDOM_PRODUCTS_DETAILS_REQUEST })     
+
+        const { data } = await axios.get(`/api/v1/products/random/details/${quantity}`)
+
+        dispatch({
+            type: RANDOM_PRODUCTS_DETAILS_SUCCESS,
+            payload: data.randomProductsDetails
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: RANDOM_PRODUCTS_DETAILS_FAIL,
             payload: error.response.data.message
         })
 

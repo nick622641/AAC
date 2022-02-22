@@ -288,13 +288,15 @@ section .callout h3 {
   opacity: 0.5;
 }
 /* Carousel Styles */
-.carousel {
+.carousel,
+.carousel-text {
   width: 100%;
   max-width: 860px;
   overflow: hidden;
   margin: 0 auto;
 }
-.carousel ul {
+.carousel ul,
+.carousel-text ul {
   position: relative;
   white-space: nowrap;
   transition: all var(--speed);
@@ -304,17 +306,22 @@ section .callout h3 {
   height: 335px;
   display: inline-block;
   overflow: hidden;
-  background-color: black;
   border: solid 20px white; 
   transition: all var(--speed); 
 }
+.carousel-text li {
+  font-size: 14px;
+  width: 100%;  
+  padding: 0 40px;
+  display: inline-block;
+  white-space: normal;  
+}
 .carousel img {
-  opacity: 0.85;  
+  opacity: 0.5;  
 }
 .carousel .active {
   border: solid 5px #333;
   box-shadow: var(--box-shadow); 
-  z-index: 1;
   position: relative;
 }
 .carousel .active img {
