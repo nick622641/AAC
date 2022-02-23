@@ -26,6 +26,12 @@ import {
     RANDOM_PRODUCTS_DETAILS_REQUEST, 
     RANDOM_PRODUCTS_DETAILS_SUCCESS, 
     RANDOM_PRODUCTS_DETAILS_FAIL,
+    SINGLE_RANDOM_PRODUCT_REQUEST,
+    SINGLE_RANDOM_PRODUCT_SUCCESS,
+    SINGLE_RANDOM_PRODUCT_FAIL,
+    LATEST_PRODUCT_DETAILS_REQUEST,
+    LATEST_PRODUCT_DETAILS_SUCCESS,
+    LATEST_PRODUCT_DETAILS_FAIL,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
@@ -174,6 +180,35 @@ export const randomProductsDetailsReducer = ( state = { randomProductsDetails: [
     }
 }
 
+export const latestProductReducer = ( state = { latestProduct: [] }, action ) => {
+    
+    switch (action.type) {
+
+        case LATEST_PRODUCT_DETAILS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case LATEST_PRODUCT_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                latestProduct: action.payload
+            }
+        case LATEST_PRODUCT_DETAILS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state
+    }
+}
+
 export const newProductReducer = ( state = { product: {} }, action ) => {
     switch (action.type) {
 
@@ -281,6 +316,35 @@ export const productDetailsReducer = ( state = { product: {} }, action ) => {
                 product: action.payload
             }
         case PRODUCT_DETAILS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state;
+    }
+}
+
+export const randomProductReducer = ( state = { randomProduct: {} }, action ) => {
+    switch (action.type) {
+
+        case SINGLE_RANDOM_PRODUCT_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case SINGLE_RANDOM_PRODUCT_SUCCESS:
+            return {
+                loading: false,
+                randomProduct: action.payload
+            }
+        case SINGLE_RANDOM_PRODUCT_FAIL:
             return {
                 ...state,
                 error: action.payload

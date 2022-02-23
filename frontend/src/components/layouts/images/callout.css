@@ -1,0 +1,36 @@
+/* CTA styles */
+.cta {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 200px;
+    overflow: hidden;    
+  }
+  .cta-first-image {
+    align-self: end;
+    height: 400px;
+  }
+  .cta-last-image {
+    height: 400px;
+  }
+  .callout div {
+    font-size: 14px;
+    line-height: 1.8em;
+  }
+  /* Media Queries */
+@media ( max-width: 768px ) {
+    .cta {
+        position: relative;
+        width: 50%;
+        float: right;
+    }
+    .cta-first-image {
+        width: 100%;
+        flex-basis: auto;
+    }
+    .cta-last-image {
+        width: 50%;
+        height: 200px;
+        flex-basis: auto;
+    }
+}

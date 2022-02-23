@@ -1,0 +1,37 @@
+/* Lightbox */
+.backdrop {
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0; 
+    z-index: 1;
+  }
+  .lightbox {  
+    width: 90vw;
+    height: 90vh;
+    margin: 5vh auto; 
+    overflow: hidden;  
+    position: relative;
+  }
+  .lightbox .slide-container {  
+    position: absolute;  
+    white-space: nowrap;
+    transition: left var(--speed);
+    width: 100%;
+    height: 100%; 
+  }
+  .lightbox .slide-container div {    
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+  .arrow-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 1;   
+  }

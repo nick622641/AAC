@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { IconButton } from '@mui/material'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
+import './lightbox.css'
 
 const Lightbox = (props) => { 
 

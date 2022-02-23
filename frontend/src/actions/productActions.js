@@ -21,6 +21,12 @@ import {
     RANDOM_PRODUCTS_DETAILS_REQUEST, 
     RANDOM_PRODUCTS_DETAILS_SUCCESS, 
     RANDOM_PRODUCTS_DETAILS_FAIL,
+    SINGLE_RANDOM_PRODUCT_REQUEST,
+    SINGLE_RANDOM_PRODUCT_SUCCESS,
+    SINGLE_RANDOM_PRODUCT_FAIL,
+    LATEST_PRODUCT_DETAILS_REQUEST,
+    LATEST_PRODUCT_DETAILS_SUCCESS,
+    LATEST_PRODUCT_DETAILS_FAIL,
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAIL,
@@ -132,6 +138,30 @@ export const getRandomProducts = (quantity) => async (dispatch) => {
     }
 }
 
+// Get random product
+export const getRandomProduct = () => async (dispatch) => {
+    
+    try {
+
+        dispatch({ type: SINGLE_RANDOM_PRODUCT_REQUEST })     
+
+        const { data } = await axios.get('/api/v1/product/random')
+
+        dispatch({
+            type: SINGLE_RANDOM_PRODUCT_SUCCESS,
+            payload: data.randomProduct
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: SINGLE_RANDOM_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+
 // Get random products and details limit n
 export const getRandomProductsDetails = (quantity) => async (dispatch) => {
     
@@ -196,6 +226,28 @@ export const getProductDetails = (slug) => async (dispatch) => {
 
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+
+// Get Latest Product Details
+export const getLatestProduct = () => async (dispatch) => {   
+    try {        
+        dispatch({ type: LATEST_PRODUCT_DETAILS_REQUEST })
+
+        const { data } = await axios.get('/api/v1/latest')        
+
+        dispatch({
+            type: LATEST_PRODUCT_DETAILS_SUCCESS,
+            payload: data.latestProduct
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: LATEST_PRODUCT_DETAILS_FAIL,
             payload: error.response.data.message
         })
 

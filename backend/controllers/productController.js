@@ -321,11 +321,27 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 })
 // Get 3 random products for callout => /api/v1/products/callout
 exports.getCalloutProducts = async (req, res, next) => {  
-     
-    const calloutProducts = await Product.aggregate([ { $sample: { size: 3 } } ])
+    const calloutProducts = await Product.aggregate([ 
+        { $match: { visible: {$ne: 0}} }, 
+        { $sample: { size: 3 } } 
+    ])
+    
     res.status(200).json({
         success: true,       
         calloutProducts
+    })    
+}
+// Get 1 random product => /api/v1/product/random
+exports.getRandomProduct = async (req, res, next) => {  
+     
+    const randomProduct = await Product.aggregate([ 
+        { $match: { visible: {$ne: 0}} }, 
+        { $sample: { size: 1 } } 
+    ])
+
+    res.status(200).json({
+        success: true,       
+        randomProduct
     })    
 }
 // Get slideshow images => /api/v1/products/random/:quantity
@@ -333,7 +349,10 @@ exports.getRandomProducts = async (req, res, next) => {
     
     const quantity = Number(req.params.quantity)
 
-    const randomProducts = await Product.aggregate([ { $sample: { size: quantity } } ])
+    const randomProducts = await Product.aggregate([ 
+        { $match: { visible: {$ne: 0}} }, 
+        { $sample: { size: quantity } }
+    ])
     res.status(200).json({
         success: true,       
         randomProducts
@@ -344,7 +363,10 @@ exports.getRandomProductsDetails = async (req, res, next) => {
     
     const quantity = Number(req.params.quantity)
 
-    const randomProductsDetails = await Product.aggregate([ { $sample: { size: quantity } } ])
+    const randomProductsDetails = await Product.aggregate([ 
+        { $match: { visible: {$ne: 0}} }, 
+        { $sample: { size: quantity } } 
+    ])
     res.status(200).json({
         success: true,       
         randomProductsDetails
@@ -377,6 +399,20 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
     } catch(error) {
         return next(new ErrorHandler('Product not found', 404))    
     }
+})
+
+// Get latest product details => /api/v1/product/latest
+exports.getLatestProduct = catchAsyncErrors(async (req, res, next) => {      
+
+    const latestProduct = await Product.find( 
+        { visible: {$ne: 0}})
+            .sort({ createdAt: -1 })
+            .limit(1)
+
+    res.status(200).json({
+        success: true,       
+        latestProduct
+    })
 })
 
 // Get single Product details (Admin) => /api/v1/admin/product/:id

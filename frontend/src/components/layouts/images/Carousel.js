@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
 import RichtextOutput from '../richtext/RichtextOutput'
+import './carousel.css'
 
 const Carousel = ({ data }) => {
 
@@ -11,7 +12,7 @@ const Carousel = ({ data }) => {
     const [ left,     setLeft     ] = useState(0)
     const [ textleft, setTextLeft ] = useState( '-100%' )
 
-    const handleMove = (dir) => {
+    const handleMove = ( dir ) => {
         const item      = document.querySelector( '.carousel li' )
         const text      = document.querySelector( '.carousel-text li' )
         const width     = item.offsetWidth * -1         
@@ -66,14 +67,14 @@ const Carousel = ({ data }) => {
 
                 </div>
             </div>
-            <div className="wrapper relative">
+            <div className="wrapper relative" style={{ paddingTop: 0 }}>
                 <div className="carousel-text">
                     <ul style={{ left: textleft }}> 
                         {data && data.map((slide, index) => (
                             <li key={index} className="text-center">
                                 <Link to={`artwork/${slide.slug}`}>
                                     <h2>{slide.name}</h2>
-                                    <RichtextOutput text={slide.description} />
+                                    <RichtextOutput text={`${slide.description.substring(0, 155)}...`} />
                                 </Link>
                             </li>
                         ))}

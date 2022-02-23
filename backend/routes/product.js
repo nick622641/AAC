@@ -5,8 +5,10 @@ const router = express.Router()
 const { 
     getProducts, 
     getCalloutProducts,
+    getRandomProduct,
     getRandomProducts,
     getRandomProductsDetails,
+    getLatestProduct,
     getAdminProducts,
     newProduct, 
     getSingleProduct, 
@@ -61,9 +63,11 @@ router.route('/admin/artist/:id')
 router.route('/products').get(getProducts)
 router.route('/products/callout').get(getCalloutProducts)
 router.route('/products/random/:quantity').get(getRandomProducts)
+router.route('/product/random/').get(getRandomProduct)
 router.route('/products/random/details/:quantity').get(getRandomProductsDetails)
 router.route('/admin/products').get(getAdminProducts)
 router.route('/product/:slug').get(getSingleProduct)
+router.route('/latest').get(getLatestProduct)
 
 router.route('/admin/product/new').post(isAuthenticatedUser, authorizeRoles('admin'), newProduct)
 router.route('/admin/product/:id')

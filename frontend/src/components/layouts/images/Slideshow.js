@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { animated, useTransition } from 'react-spring'
+import './slideshow.css'
 
 const Slideshow = ({ data }) => {
 

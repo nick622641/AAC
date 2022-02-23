@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect } from 'react'
-import { getCalloutProducts, getRandomProducts, getRandomProductsDetails } from '../actions/productActions'
+import { getCalloutProducts, getLatestProduct, getRandomProducts, getRandomProductsDetails, getRandomProduct } from '../actions/productActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import MetaData from './layouts/MetaData'
 import Callout from './layouts/images/Callout'
 import Social from './layouts/Social'
 import Slideshow from './layouts/images/Slideshow'
 import Carousel from './layouts/images/Carousel'
+import Banner from './layouts/images/Banner'
+import Latest from './layouts/images/Latest'
 
 const Home = () => {  
     
@@ -14,12 +15,16 @@ const Home = () => {
     const { randomProducts        } = useSelector( state => state.randomProducts )
     const { calloutProducts       } = useSelector( state => state.products )          
     const { randomProductsDetails } = useSelector( state => state.randomProductsDetails )          
+    const { randomProduct         } = useSelector( state => state.randomProduct )
+    const { latestProduct         } = useSelector( state => state.latestProduct )
 
     useEffect(() => {  
 
         dispatch(getCalloutProducts())
         dispatch(getRandomProducts(12))       
         dispatch(getRandomProductsDetails(8))       
+        dispatch(getRandomProduct())       
+        dispatch(getLatestProduct())       
 
     }, [dispatch])
 
@@ -36,25 +41,11 @@ const Home = () => {
             <div className="container">
 
                 <div className="wrapper">  
+                
+                    {latestProduct && latestProduct.length > 0 && (
+                        <Latest product={latestProduct[0]} />
+                    )}                   
 
-                    <div className="parent">
-                        <div className="col-6">
-                            <img src="https://res.cloudinary.com/marine-graphics/image/upload/v1640544376/products/ccjfh4na1pvylu8cilvp.jpg" alt="" />
-                        </div>
-                        <div className="parent col-6 wrapper callout">
-                            <h3>BROWSE THE COLLECTION</h3>
-
-                            <h2>Latest Work</h2>
-
-                            <p>Striking and affordable original works of abstract art by global artists. Inspired in Canada, driven by emotion and powered by colour and texture.</p>
-                         
-                            <br />
-
-                            <Link className="submit chevron-hover" to="/artwork/the-waiting">
-                                Shop Now 
-                            </Link>
-                        </div>
-                    </div>   
                     <div className="parent" style={{ margin: "80px 0 0 0" }}>
                         <div className="col-6">
                             <h3>Share</h3>
@@ -76,23 +67,10 @@ const Home = () => {
                 </div>
             </div>  
             
-            <section 
-                style={{ backgroundImage: "url(https://i0.wp.com/abstractartcanada.com/wp-content/uploads/2021/08/Songs-P2448_01.jpg?fit=1920%2C957&ssl=1)" }}
-                className="background-cover"
-            >
-                <div className="wrapper callout parent">
-                    <h3>Quentin Caron</h3>
-                    <h2>Songs-P2448_01</h2>
-                    <p>From his Songs series, Songs-P2448_01, artist Quentin Caron describes each as "an abstract, playful and surreal contemporary painting." Quentin creates each one as a poem.</p>
-
-                    <br />
-
-                    <Link className="submit chevron-hover" to="/artwork/songs-p2448-01">
-                        Explore
-                    </Link>
-                </div>
-            </section>
-
+            {randomProduct && randomProduct.length > 0 && (
+                <Banner product={randomProduct} />
+            )} 
+           
             {randomProductsDetails && randomProductsDetails.length > 0 && (
                 <Carousel data={randomProductsDetails} />       
             )}                 
