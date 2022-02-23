@@ -333,10 +333,12 @@ exports.getCalloutProducts = async (req, res, next) => {
 }
 // Get 1 random product => /api/v1/product/random
 exports.getRandomProduct = async (req, res, next) => {  
+
+    const quantity = Number(req.params.quantity)
      
     const randomProduct = await Product.aggregate([ 
         { $match: { visible: {$ne: 0}} }, 
-        { $sample: { size: 1 } } 
+        { $sample: { size: quantity } } 
     ])
 
     res.status(200).json({

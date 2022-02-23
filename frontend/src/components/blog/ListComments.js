@@ -2,12 +2,12 @@ import React, { Fragment, useState } from 'react'
 import Comment from '../modals/Comment'
 import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import parse from 'html-react-parser'
 import FormattedDate from '../layouts/FormattedDate'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
 import { Avatar } from '@mui/material'
+import RichtextOutput from '../layouts/richtext/RichtextOutput'
 
 const ListComments = ({ comments, user, toggleModal, deleteCommentHandler }) => {
 
@@ -59,7 +59,7 @@ const ListComments = ({ comments, user, toggleModal, deleteCommentHandler }) => 
                         </p>
 
                         <div className="comment">
-                            {parse(comment.comment)}
+                            <RichtextOutput text={comment.comment} />
                         </div>
 
                     </div>

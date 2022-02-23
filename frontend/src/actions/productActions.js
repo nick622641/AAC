@@ -138,14 +138,14 @@ export const getRandomProducts = (quantity) => async (dispatch) => {
     }
 }
 
-// Get random product
-export const getRandomProduct = () => async (dispatch) => {
+// Get random product limit n
+export const getRandomProduct = (quantity) => async (dispatch) => {
     
     try {
 
         dispatch({ type: SINGLE_RANDOM_PRODUCT_REQUEST })     
 
-        const { data } = await axios.get('/api/v1/product/random')
+        const { data } = await axios.get(`/api/v1/product/random/${quantity}`)
 
         dispatch({
             type: SINGLE_RANDOM_PRODUCT_SUCCESS,

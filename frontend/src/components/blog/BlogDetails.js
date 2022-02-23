@@ -178,7 +178,7 @@ const BlogDetails = () => {
                                     <RichtextOutput text={blog.description} />
                                 )}   
 
-                                <div>                            
+                                <div style={{ marginTop: "40px" }}>                            
 
                                     {user ? 
                                         <Fragment>

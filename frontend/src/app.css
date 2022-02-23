@@ -315,34 +315,6 @@ input:-webkit-autofill {
 #__react-alert__ button svg {
   stroke: #333 !important;    
 }
-/* Blog Page Styles */
-.blog-content figure {
-  text-align: center;
-}
-.blog-content p {
-  margin-bottom: 20px
-}
-.blog-content ul {
-  list-style-position: inside;
-  list-style-type: disc; 
-}
-.blog-content ol {
-  list-style-position: inside;
-}
-.blog-content h3,
-.blog-content h4 {
-  margin: 20px 0;
-}
-.blog-content h5,
-.blog-content h6 {
-  margin: 10px 0;
-}
-.comment {
-  background: white;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
 /* Dashboard styles */
 .dashboard-panels h2 {
   color: white;

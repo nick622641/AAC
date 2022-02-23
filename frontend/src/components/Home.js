@@ -8,6 +8,8 @@ import Slideshow from './layouts/images/Slideshow'
 import Carousel from './layouts/images/Carousel'
 import Banner from './layouts/images/Banner'
 import Latest from './layouts/images/Latest'
+import { Button } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const Home = () => {  
     
@@ -23,7 +25,7 @@ const Home = () => {
         dispatch(getCalloutProducts())
         dispatch(getRandomProducts(12))       
         dispatch(getRandomProductsDetails(8))       
-        dispatch(getRandomProduct())       
+        dispatch(getRandomProduct(2))       
         dispatch(getLatestProduct())       
 
     }, [dispatch])
@@ -41,6 +43,22 @@ const Home = () => {
             <div className="container">
 
                 <div className="wrapper">  
+
+                    <div className="d-flex justify-content-center" style={{ marginBottom: "40px" }}>
+
+                        <Link to="/gallery/orientation/Portrait">
+                            <Button variant="outlined" style={{ margin: "0 10px" }}>Portrait</Button>
+                        </Link>
+
+                        <Link to="/gallery">
+                            <Button variant="outlined" style={{ margin: "0 10px" }}>LATEST ARTWORK</Button>
+                        </Link>
+
+                        <Link to="/gallery/orientation/Landscape">
+                            <Button variant="outlined" style={{ margin: "0 10px" }}>Landscape</Button>
+                        </Link>     
+
+                    </div>
                 
                     {latestProduct && latestProduct.length > 0 && (
                         <Latest product={latestProduct[0]} />
@@ -68,12 +86,16 @@ const Home = () => {
             </div>  
             
             {randomProduct && randomProduct.length > 0 && (
-                <Banner product={randomProduct} />
+                <Banner product={randomProduct[0]} />
             )} 
            
             {randomProductsDetails && randomProductsDetails.length > 0 && (
                 <Carousel data={randomProductsDetails} />       
-            )}                 
+            )}     
+
+            {randomProduct && randomProduct.length > 0 && (
+                <Banner product={randomProduct[1]} />
+            )}             
 
             {calloutProducts && calloutProducts.length > 2 && (
                 <div className="bg-grey">

@@ -46,7 +46,7 @@ const RichtextOutput = ( { text, draft = false } ) => {
                 : <div className="blog-content">{parse(text)}</div>
             }  
                 
-            <div style={{ clear: 'both', marginBottom: '40px' }} />
+            <div style={{ clear: 'both' }} />
 
         </Fragment>
 

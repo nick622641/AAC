@@ -297,7 +297,7 @@ const ProductDetails = () => {
                                         <RichtextOutput text={product.description} />
                                     )}
                                     
-                                    <div>         
+                                    <div style={{ marginTop: "40px" }}>         
 
                                         <small>Contact Us</small>  
 

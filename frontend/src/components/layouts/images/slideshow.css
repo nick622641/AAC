@@ -1,8 +1,7 @@
 /* Slideshow Styles */
 .slideshow {
     position: relative;
-    height: 80vh;
-    margin-bottom: 10vh;
+    height: 80vh;    
     background: white;
   }
   .slideshow > div {
@@ -13,4 +12,16 @@
     height: 100%;
     background-position: center;
     background-size: cover;    
+  }
+  .ticker h1 {
+    color: #999;
+    font-size: 90px !important;
+    white-space: nowrap;
+    margin: 0 80px
+  }
+  .ticker-container {
+    position: absolute;
+    height: 90px !important;
+    top: 50% !important;
+    transform: translateY(-50%);
   }

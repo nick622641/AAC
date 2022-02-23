@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { animated, useTransition } from 'react-spring'
+import Ticker from 'react-ticker'
 import './slideshow.css'
 
 const Slideshow = ({ data }) => {
@@ -37,6 +38,15 @@ const Slideshow = ({ data }) => {
                     }} 
                 />
             ))}
+            <div className="ticker-container">
+                <Ticker mode="smooth">
+                    {({ index }) => (
+                        
+                        <h1>Abstract Art Canada</h1>
+                    
+                    )}
+                </Ticker>
+            </div>
         </div>         
 
   )

@@ -3,12 +3,12 @@ import Review from '../modals/Review'
 import IconButton from '@mui/material/IconButton'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import Rating from '@mui/material/Rating'
-import parse from 'html-react-parser'
 import FormattedDate from '../layouts/FormattedDate'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import Modal from '../modals/Modal'
 import Confirm from '../modals/Confirm'
 import { Avatar } from '@mui/material'
+import RichtextOutput from '../layouts/richtext/RichtextOutput'
 
 const ListReviews = ({ reviews, user, toggleModal, deleteReviewHandler }) => {
 
@@ -65,7 +65,7 @@ const ListReviews = ({ reviews, user, toggleModal, deleteReviewHandler }) => {
                         </p>
 
                         <div  className="comment">
-                            {parse(review.comment)}
+                            <RichtextOutput text={review.comment} />
                         </div>
 
                     </div>

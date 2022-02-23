@@ -72,7 +72,7 @@ const Gallery = () => {
         setCurrentPage(pageNumber)
     }
 
-    let title = 'All the Work' 
+    let title = 'Latest Work' 
      
     if ( keyword     ) { title = keyword }
     if ( artist      ) { title = artist }
