@@ -1,0 +1,15 @@
+.banner {
+    flex-direction: column;
+    justify-content: center;
+  }
+  section {
+    margin: 40px 0; 
+  }
+  section .banner {
+    background: rgba(0,0,0,0.8);
+    width: 350px;  
+    color: #ccc;
+  }
+  section .banner h3 {
+    color: #999;
+  }

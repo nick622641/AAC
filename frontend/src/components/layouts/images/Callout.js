@@ -11,7 +11,7 @@ const Callout = ({ data }) => {
 
         <div className="container">
 
-            <div className="wrapper">
+            <div className="wrapper callout">
 
                 <div className="parent reverse">
 
@@ -19,7 +19,7 @@ const Callout = ({ data }) => {
                         className="col-6 no-font cta-first-image background-cover"
                         style={{ backgroundImage: `url(${data[0].images[0].url})` }}
                     />
-                    <div className="wrapper parent callout col-6">
+                    <div className="wrapper parent col-6">
                         <h3>{data[0].artist}</h3>
                         <h2>{data[0].name}</h2>
                         <div>
