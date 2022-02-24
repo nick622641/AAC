@@ -6,6 +6,10 @@ import {
     NEW_PRODUCT_RESET,
     NEW_PRODUCT_SUCCESS,
     NEW_PRODUCT_FAIL,
+    NEW_PRODUCT_USER_REQUEST,
+    NEW_PRODUCT_USER_SUCCESS,
+    NEW_PRODUCT_USER_RESET,
+    NEW_PRODUCT_USER_FAIL,
     UPDATE_PRODUCT_REQUEST,
     UPDATE_PRODUCT_SUCCESS,
     UPDATE_PRODUCT_RESET,
@@ -230,6 +234,42 @@ export const newProductReducer = ( state = { product: {} }, action ) => {
                     loading: false,
                 }
         case NEW_PRODUCT_RESET:
+            return {
+                ...state,
+                success: false
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state;
+    }
+}
+
+export const newProductUserReducer = ( state = { product: {} }, action ) => {
+    switch (action.type) {
+
+        case NEW_PRODUCT_USER_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case NEW_PRODUCT_USER_SUCCESS:
+            return {
+                loading: false,
+                success: action.payload.success,
+                product: action.payload.product
+            }
+        case NEW_PRODUCT_USER_FAIL:
+                return {
+                    ...state,
+                    error: action.payload,
+                    loading: false,
+                }
+        case NEW_PRODUCT_USER_RESET:
             return {
                 ...state,
                 success: false

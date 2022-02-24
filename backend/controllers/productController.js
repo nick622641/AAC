@@ -194,16 +194,69 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
     }
     let imagesLinks = []
 
-    if(!name)  { return next(new ErrorHandler('Please enter a title',    400)) }
-    if(!images) { return next(new ErrorHandler('Please add an image(s)', 400)) }
-    if(price === '0') { return next(new ErrorHandler('Price must be over 0', 400)) }
-    if(!datePublished) { return next(new ErrorHandler('Please enter a date', 400)) }
-    if(width === '0') { return next(new ErrorHandler('Width must be over 0', 400)) }
-    if(height === '0') { return next(new ErrorHandler('Height must be over 0', 400)) }    
-    if(!artist)  { return next(new ErrorHandler('Please select an artist', 400)) }
-    if(!orientation)  { return next(new ErrorHandler('Please select a orientation', 400)) }
-    if(!media)  { return next(new ErrorHandler('Please select a media type', 400)) }    
-    if(!description)  { return next(new ErrorHandler('Please provide a description', 400)) }    
+    if( !name          ) { return next(new ErrorHandler('Please enter a title'        , 400)) }
+    if( !images        ) { return next(new ErrorHandler('Please add an image(s)'      , 400)) }
+    if( price === '0'  ) { return next(new ErrorHandler('Price must be over 0'        , 400)) }
+    if( !datePublished ) { return next(new ErrorHandler('Please enter a date'         , 400)) }
+    if( width === '0'  ) { return next(new ErrorHandler('Width must be over 0'        , 400)) }
+    if( height === '0' ) { return next(new ErrorHandler('Height must be over 0'       , 400)) }    
+    if( !artist        ) { return next(new ErrorHandler('Please select an artist'     , 400)) }
+    if( !orientation   ) { return next(new ErrorHandler('Please select a orientation' , 400)) }
+    if( !media         ) { return next(new ErrorHandler('Please select a media type'  , 400)) }    
+    if( !description   ) { return next(new ErrorHandler('Please provide a description', 400)) }    
+
+    for(let i = 0; i < images.length; i++) {
+        const thumb = await cloudinary.v2.uploader.upload(images[i], {
+            folder: "products",            
+            width: 240,
+            crop: "scale" 
+        })
+        const image = await cloudinary.v2.uploader.upload(images[i], {
+            folder: "products",                    
+            height: 1080,
+            crop: "scale" 
+        })
+        imagesLinks.push({
+            public_id: image.public_id,
+            url: image.secure_url,
+            thumb_id: thumb.public_id,
+            thumbUrl: thumb.secure_url
+        })
+    }
+
+    req.body.images = imagesLinks    
+    req.body.user = req.user.id
+    
+    const product = await Product.create(req.body)
+    res.status(201).json({
+        success: true,
+        product
+    })
+})
+
+// Create new product (User) => /api/v1/new
+exports.newProductUser = catchAsyncErrors(async (req, res, next) => {
+
+    const { name, stock, price, width, height, datePublished, artist, orientation, media, description } = req.body
+    
+    let images = []
+    if(typeof req.body.images === 'string') {
+        images.push(req.body.images)  
+    } else {
+        images = req.body.images
+    }
+    let imagesLinks = []
+
+    if( !name          ) { return next(new ErrorHandler('Please enter a title',         400)) }
+    if( !images        ) { return next(new ErrorHandler('Please add an image(s)',       400)) }
+    if( price === '0'  ) { return next(new ErrorHandler('Price must be over 0',         400)) }
+    if( !datePublished ) { return next(new ErrorHandler('Please enter a date',          400)) }
+    if( width === '0'  ) { return next(new ErrorHandler('Width must be over 0',         400)) }
+    if( height === '0' ) { return next(new ErrorHandler('Height must be over 0',        400)) }    
+    if( !artist        ) { return next(new ErrorHandler('Please select an artist',      400)) }
+    if( !orientation   ) { return next(new ErrorHandler('Please select a orientation',  400)) }
+    if( !media         ) { return next(new ErrorHandler('Please select a media type',   400)) }    
+    if( !description   ) { return next(new ErrorHandler('Please provide a description', 400)) }    
 
     for(let i = 0; i < images.length; i++) {
         const thumb = await cloudinary.v2.uploader.upload(images[i], {
@@ -387,7 +440,6 @@ exports.getAdminProducts = async (req, res, next) => {
         products
     })      
 }
-
 // Get single product details => /api/v1/product/:slug
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {   
     try {  
@@ -402,7 +454,6 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Product not found', 404))    
     }
 })
-
 // Get latest product details => /api/v1/product/latest
 exports.getLatestProduct = catchAsyncErrors(async (req, res, next) => {      
 
@@ -416,7 +467,6 @@ exports.getLatestProduct = catchAsyncErrors(async (req, res, next) => {
         latestProduct
     })
 })
-
 // Get single Product details (Admin) => /api/v1/admin/product/:id
 exports.getAdminProduct = catchAsyncErrors(async (req, res, next) => { 
     try {   
@@ -429,7 +479,6 @@ exports.getAdminProduct = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Product not found', 404))    
     }
 })
-
 // Delete Product => /api/v1/admin/product/:id
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     try { 
@@ -448,7 +497,6 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Product not found', 404)) 
     }
 })
-
 // Delete Image => /api/v1/image
 exports.deleteImage = catchAsyncErrors(async (req, res, next) => {
 
@@ -475,7 +523,6 @@ exports.deleteImage = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Product not found', 404)) 
     }
 })
-
 // Update images => /api/v1/image
 exports.updateImages = catchAsyncErrors(async (req, res, next) => {
 
@@ -505,7 +552,6 @@ exports.updateImages = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Product not found', 404)) 
     }
 })
-
 // Create New Review => /api/v1/review
 exports.createProductReview = catchAsyncErrors( async (req, res, next) => {
 
@@ -552,7 +598,6 @@ exports.createProductReview = catchAsyncErrors( async (req, res, next) => {
     })
 
 })
-
 // Get Product Reviews => /api/v1/reviews
 exports.getProductReviews = catchAsyncErrors( async (req, res, next) => {
 
@@ -564,7 +609,6 @@ exports.getProductReviews = catchAsyncErrors( async (req, res, next) => {
     })
 
 })
-
 // Delete Product Review => /api/v1/reviews
 exports.deleteReview = catchAsyncErrors( async (req, res, next) => {
 

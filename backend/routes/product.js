@@ -11,6 +11,7 @@ const {
     getLatestProduct,
     getAdminProducts,
     newProduct, 
+    newProductUser,
     getSingleProduct, 
     getAdminProduct,
     updateProduct, 
@@ -62,10 +63,11 @@ router.route('/admin/artist/:id')
 
 router.route('/products').get(getProducts)
 router.route('/products/callout').get(getCalloutProducts)
+router.route('/new').post(isAuthenticatedUser, newProductUser)
 router.route('/products/random/:quantity').get(getRandomProducts)
 router.route('/product/random/:quantity').get(getRandomProduct)
 router.route('/products/random/details/:quantity').get(getRandomProductsDetails)
-router.route('/admin/products').get(getAdminProducts)
+router.route('/admin/products').get(isAuthenticatedUser, authorizeRoles('admin'), getAdminProducts)
 router.route('/product/:slug').get(getSingleProduct)
 router.route('/latest').get(getLatestProduct)
 

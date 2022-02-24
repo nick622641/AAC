@@ -34,6 +34,11 @@ const Footer = () => {
                                 </li> 
                                 <li>
                                     <Link to="privacy">Privacy Policy</Link>
+                                </li> 
+                                <li>
+                                    <Link to="/login?redirect=artwork/new">
+                                        Upload Artwork
+                                    </Link>
                                 </li>            
                             </ul>
                         </li>

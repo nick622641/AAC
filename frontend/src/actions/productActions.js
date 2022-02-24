@@ -6,6 +6,9 @@ import {
     NEW_PRODUCT_REQUEST,
     NEW_PRODUCT_SUCCESS,
     NEW_PRODUCT_FAIL,
+    NEW_PRODUCT_USER_REQUEST,
+    NEW_PRODUCT_USER_SUCCESS,
+    NEW_PRODUCT_USER_FAIL,
     UPDATE_PRODUCT_REQUEST,
     UPDATE_PRODUCT_SUCCESS,
     UPDATE_PRODUCT_FAIL,
@@ -285,7 +288,7 @@ export const newProduct = (productData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json'                
             }
         }
 
@@ -299,6 +302,33 @@ export const newProduct = (productData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: NEW_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// New Product (User)
+export const newProductUser = (productData) => async (dispatch) => {
+    try {
+
+        dispatch({ type: NEW_PRODUCT_USER_REQUEST })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'               
+            }
+        }
+
+        const { data } = await axios.post('/api/v1/new', productData, config)
+
+        dispatch({
+            type: NEW_PRODUCT_USER_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: NEW_PRODUCT_USER_FAIL,
             payload: error.response.data.message
         })
     }

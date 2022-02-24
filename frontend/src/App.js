@@ -68,6 +68,7 @@ import NewBlog                           from './components/admin/blogs/NewBlog'
 import BlogsList                         from './components/admin/blogs/BlogsList'
 import UpdateBlog                        from './components/admin/blogs/UpdateBlog'
 import BlogComments                      from './components/admin/blogs/BlogComments'
+import ImageUploader                     from './components/ImageUploader'
 
 function App() {  
 
@@ -123,6 +124,8 @@ function App() {
             <Route path="/gallery/medium/:medium" element={<Gallery                                                     />} />
             <Route path="/gallery/rating/:rating" element={<Gallery                                                     />} />
             <Route path="/artwork/:slug"         element={<ProductDetails                                               />} />             
+            <Route path="/artwork/new"           element={<PrivateRoute><ImageUploader                   /></PrivateRoute>} />             
+            
             <Route path="/terms"                 element={<Terms                                                        />} />
             <Route path="/privacy"               element={<Privacy                                                      />} />
 
