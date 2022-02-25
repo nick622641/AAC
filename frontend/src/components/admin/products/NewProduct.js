@@ -87,7 +87,7 @@ const NewProduct = () => {
         images.forEach(image => {
             formData.append('images', image)
         })
-        dispatch(newProduct(formData))
+        dispatch(newProduct( urlencodeFormData(formData) ))
     }
 
     const onChange = (e) => {
@@ -105,7 +105,15 @@ const NewProduct = () => {
             }
             reader.readAsDataURL(file)
         })   
-    }  
+    } 
+    
+    const urlencodeFormData = ( formData ) => {
+        const params = new URLSearchParams()
+        for( let pair of formData.entries() ) {
+            typeof pair[1]=='string' && params.append( pair[0], pair[1] )
+        }
+        return params.toString()
+    }
 
     const sanitizeInput = (value) => {
         value = value.replace(/[^\w -]/ig, '')

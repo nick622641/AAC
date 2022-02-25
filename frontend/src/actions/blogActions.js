@@ -141,7 +141,7 @@ export const newBlog = (blogData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'   
             }
         }
 
@@ -166,7 +166,7 @@ export const updateBlog = (id, blogtData) => async (dispatch) => {
         dispatch({ type: UPDATE_BLOG_REQUEST })
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'   
             }
         }
         const { data } = await axios.put(`/api/v1/admin/blog/${id}`, blogtData, config)
@@ -259,7 +259,7 @@ export const newComment = (commentData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'   
             }
         }
 

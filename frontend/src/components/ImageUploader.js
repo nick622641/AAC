@@ -78,10 +78,10 @@ const ImageUploader = () => {
         formData.set('stock', stock)
         formData.set('datePublished', datePublished)
 
-        images.forEach(image => {
-            formData.append('images', image)  
+        images.forEach(image => {     
+            formData.append('images', image)     
         })
-        dispatch(newProductUser(formData))
+        dispatch(newProductUser( urlencodeFormData(formData) ))
     }
 
     const onChange = (e) => {
@@ -93,16 +93,21 @@ const ImageUploader = () => {
             const reader = new FileReader()
             reader.onload = () => {
                 if(reader.readyState === 2) {
-                    setImagesPreview(oldArray => [...oldArray, reader.result])            
-                    setImages(oldArray => [...oldArray, reader.result])
-                    // console.log(reader.result)
-                    // console.log(JSON.stringify( {  data: reader.result} ))
-                    console.log(reader.result)
+                    setImagesPreview( oldArray => [ ...oldArray, reader.result ] )            
+                    setImages       ( oldArray => [ ...oldArray, reader.result ] )                   
                 }
             }
             reader.readAsDataURL(file)
         })   
     }  
+
+    const urlencodeFormData = ( formData ) => {
+        const params = new URLSearchParams()
+        for( let pair of formData.entries() ) {
+            typeof pair[1]=='string' && params.append( pair[0], pair[1] )
+        }
+        return params.toString()
+    }
 
     const sanitizeInput = (value) => {
         value = value.replace(/[^\w -]/ig, '')
@@ -163,20 +168,7 @@ const ImageUploader = () => {
                                     </div>
 
                                     <div>  
-                                        <FormControl fullWidth>
-                                            <TextField
-                                                label="Url Slug - (Read Only)"
-                                                variant="filled"
-                                                value={slug}
-                                                InputProps={{
-                                                    readOnly: true,
-                                                }}
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
-                                            />
-                                        </FormControl>
-
+                                        
                                         <FormControl fullWidth sx={{ mb: 1 }}>
                                             <TextField 
                                                 label="Stock" 

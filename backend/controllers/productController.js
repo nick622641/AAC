@@ -194,16 +194,16 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
     }
     let imagesLinks = []
 
-    if( !name          ) { return next(new ErrorHandler('Please enter a title'        , 400)) }
-    if( !images        ) { return next(new ErrorHandler('Please add an image(s)'      , 400)) }
-    if( price === '0'  ) { return next(new ErrorHandler('Price must be over 0'        , 400)) }
-    if( !datePublished ) { return next(new ErrorHandler('Please enter a date'         , 400)) }
-    if( width === '0'  ) { return next(new ErrorHandler('Width must be over 0'        , 400)) }
-    if( height === '0' ) { return next(new ErrorHandler('Height must be over 0'       , 400)) }    
-    if( !artist        ) { return next(new ErrorHandler('Please select an artist'     , 400)) }
-    if( !orientation   ) { return next(new ErrorHandler('Please select a orientation' , 400)) }
-    if( !media         ) { return next(new ErrorHandler('Please select a media type'  , 400)) }    
-    if( !description   ) { return next(new ErrorHandler('Please provide a description', 400)) }    
+    if( !name          ) { return next( new ErrorHandler( 'Please enter a title'        , 400 )) }
+    if( !images        ) { return next( new ErrorHandler( 'Please add an image'         , 400 )) }
+    if( price  === '0' ) { return next( new ErrorHandler( 'Price must be over 0'        , 400 )) }
+    if( !datePublished ) { return next( new ErrorHandler( 'Please enter a date'         , 400 )) }
+    if( width  === '0' ) { return next( new ErrorHandler( 'Width must be over 0'        , 400 )) }
+    if( height === '0' ) { return next( new ErrorHandler( 'Height must be over 0'       , 400 )) }    
+    if( !artist        ) { return next( new ErrorHandler( 'Please select an artist'     , 400 )) }
+    if( !orientation   ) { return next( new ErrorHandler( 'Please select a orientation' , 400 )) }
+    if( !media         ) { return next( new ErrorHandler( 'Please select a media type'  , 400 )) }    
+    if( !description   ) { return next( new ErrorHandler( 'Please provide a description', 400 )) }    
 
     for(let i = 0; i < images.length; i++) {
         const thumb = await cloudinary.v2.uploader.upload(images[i], {
@@ -237,26 +237,26 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 // Create new product (User) => /api/v1/new
 exports.newProductUser = catchAsyncErrors(async (req, res, next) => {
 
-    const { name, stock, price, width, height, datePublished, artist, orientation, media, description } = req.body
+    const { name, price, width, height, datePublished, artist, orientation, media, description } = req.body
     
     let images = []
     if(typeof req.body.images === 'string') {
-        images.push(req.body.images)  
+        images.push(req.body.images)         
     } else {
-        images = req.body.images
+        images = req.body.images        
     }
-    let imagesLinks = []
+    let imagesLinks = []    
 
-    if( !name          ) { return next(new ErrorHandler('Please enter a title',         400)) }
-    if( !images        ) { return next(new ErrorHandler('Please add an image(s)',       400)) }
-    if( price === '0'  ) { return next(new ErrorHandler('Price must be over 0',         400)) }
-    if( !datePublished ) { return next(new ErrorHandler('Please enter a date',          400)) }
-    if( width === '0'  ) { return next(new ErrorHandler('Width must be over 0',         400)) }
-    if( height === '0' ) { return next(new ErrorHandler('Height must be over 0',        400)) }    
-    if( !artist        ) { return next(new ErrorHandler('Please select an artist',      400)) }
-    if( !orientation   ) { return next(new ErrorHandler('Please select a orientation',  400)) }
-    if( !media         ) { return next(new ErrorHandler('Please select a media type',   400)) }    
-    if( !description   ) { return next(new ErrorHandler('Please provide a description', 400)) }    
+    if( !name          ) { return next( new ErrorHandler( 'Please enter a title'        , 400 )) }
+    if( !images        ) { return next( new ErrorHandler( 'Please add an image'         , 400 )) }
+    if( price  === '0' ) { return next( new ErrorHandler( 'Price must be over 0'        , 400 )) }
+    if( !datePublished ) { return next( new ErrorHandler( 'Please enter a date'         , 400 )) }
+    if( width  === '0' ) { return next( new ErrorHandler( 'Width must be over 0'        , 400 )) }
+    if( height === '0' ) { return next( new ErrorHandler( 'Height must be over 0'       , 400 )) }    
+    if( !artist        ) { return next( new ErrorHandler( 'Please select an artist'     , 400 )) }
+    if( !orientation   ) { return next( new ErrorHandler( 'Please select a orientation' , 400 )) }
+    if( !media         ) { return next( new ErrorHandler( 'Please select a media type'  , 400 )) }    
+    if( !description   ) { return next( new ErrorHandler( 'Please provide a description', 400 )) }    
 
     for(let i = 0; i < images.length; i++) {
         const thumb = await cloudinary.v2.uploader.upload(images[i], {
@@ -276,7 +276,6 @@ exports.newProductUser = catchAsyncErrors(async (req, res, next) => {
             thumbUrl: thumb.secure_url
         })
     }
-
     req.body.images = imagesLinks    
     req.body.user = req.user.id
     

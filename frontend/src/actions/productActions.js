@@ -288,7 +288,7 @@ export const newProduct = (productData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'                
+                'Content-Type': 'application/x-www-form-urlencoded'                
             }
         }
 
@@ -315,7 +315,7 @@ export const newProductUser = (productData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'               
+                'Content-Type': 'application/x-www-form-urlencoded'           
             }
         }
 
@@ -340,7 +340,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
         dispatch({ type: UPDATE_PRODUCT_REQUEST })
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'   
             }
         }
         const { data } = await axios.put(`/api/v1/admin/product/${id}`, productData, config)
@@ -431,7 +431,7 @@ export const newReview = (reviewData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'   
             }
         }
 

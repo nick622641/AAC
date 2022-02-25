@@ -124,6 +124,7 @@ const UpdateProduct = () => {
         setImagesPreview([])
 
         e.preventDefault()
+
         const formData = new FormData()
         formData.set('name', name)
         formData.set('slug', slug)
@@ -142,7 +143,8 @@ const UpdateProduct = () => {
         images.forEach(image => {
             formData.append('images', image)
         })
-        dispatch(updateProduct(product._id, formData))
+        
+        dispatch(updateProduct(product._id,  urlencodeFormData(formData) ))
     }
 
     const onChange = e => {
@@ -166,9 +168,18 @@ const UpdateProduct = () => {
     const deleteImageHandler = (id, imgIndex, imgId) => {
         dispatch(deleteImage(id, imgIndex, imgId))
     }  
+
     const updateImagesHandler = (id, initPos, finPos) => {
         dispatch(updateImages(id, initPos, finPos))
     } 
+
+    const urlencodeFormData = ( formData ) => {
+        const params = new URLSearchParams()
+        for( let pair of formData.entries() ) {
+            typeof pair[1]=='string' && params.append( pair[0], pair[1] )
+        }
+        return params.toString()
+    }
     
     const sanitizeInput = (value) => {
         value = value.replace(/[^\w -]/ig, '')

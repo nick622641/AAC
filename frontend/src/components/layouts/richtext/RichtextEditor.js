@@ -36,15 +36,28 @@ const RichtextEditor = ( { text, setText } ) => {
         setEditorState( _editorState )  
     }, [ comment, getComment ])  
 
+    const urlencodeFormData = ( formData ) => {
+        const params = new URLSearchParams()
+        for( let pair of formData.entries() ) {
+            typeof pair[1]=='string' && params.append( pair[0], pair[1] )
+        }
+        return params.toString()
+    }
+
     const uploadImageCallBack = ( file ) => {    
         return new Promise(
             ( resolve ) => {
                 const reader = new FileReader()
                 reader.onload = async () => {
-                    if ( reader.readyState === 2 ) {
+                    if ( reader.readyState === 2 ) {                       
                         const formData = new FormData()
                         formData.append( 'image', reader.result )  
-                        const data = await axios.post( '/api/v1/admin/image/new', formData )
+                        const config = {
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'           
+                            }
+                        }                        
+                        const data = await axios.post( '/api/v1/admin/image/new', urlencodeFormData(formData), config )
                         resolve( { data: { link: data.data.url } } )   
                     }                    
                 }  
