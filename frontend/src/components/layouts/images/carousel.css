@@ -11,7 +11,10 @@
 .carousel-text ul {
   position: relative;
   white-space: nowrap;
-  transition: all var(--speed);
+}
+.carousel ul.transition,
+.carousel-text ul.transition {
+  transition: left var(--speed);
 }
 .carousel li {
   width: calc(100% / 3);
@@ -19,7 +22,10 @@
   display: inline-block;
   overflow: hidden;
   border: solid 20px white; 
-  transition: all var(--speed); 
+}
+.carousel ul.transition li,
+.carousel-text ul.transition li {
+  transition: all var(--speed);
 }
 .carousel-text li {
   font-size: 14px;
@@ -30,6 +36,7 @@
 }
 .carousel img {
   opacity: 0.5;  
+  transition: none;
 }
 .carousel .active {
   border: solid 5px #333;
