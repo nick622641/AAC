@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
 import { useAlert } from 'react-alert'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
 import { getArtists, getMedia } from '../../actions/categoryActions'
 import { styled } from '@mui/material/styles'
@@ -29,23 +29,14 @@ import ScrollToTop from 'react-scroll-to-top'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import './layout.css'
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge': {
-      right: -3,
-      border: '2px solid white',
-      padding: '0 4px',
-      backgroundColor: 'var(--primary-color)',
-      lineHeight: '18px'
-    },
-  }))
-
-const Header = () => {
+const Header = () => {    
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation()
     const alert    = useAlert()
     const isMobile = useMediaQuery({ query: '(max-width: 1024px)' })
-    
+   
     const { user, loading } = useSelector( state => state.auth )
     const { cartItems     } = useSelector( state => state.cart )
     const { artists       } = useSelector( state => state.artists )
@@ -57,6 +48,17 @@ const Header = () => {
     const [ isMenuVisible,   setMenuVisible    ] = useState(false)
     const [ menuItem,        setMenuItem       ] = useState(0)
     const [ isMenuOpen,      setIsMenuOpen     ] = useState(false)  
+    const [ fixed,           setFixed          ] = useState(false);
+
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: -3,
+            border: '2px solid white',
+            padding: '0 4px',
+            backgroundColor: 'var(--primary-color)',
+            lineHeight: '18px'
+        },
+    }))
 
     const logoutHandler = () => {
         dispatch(logout())
@@ -103,10 +105,21 @@ const Header = () => {
 
     useEffect(() => {
         dispatch(getArtists())  
-        dispatch(getMedia())             
-
+        dispatch(getMedia())  
     }, [dispatch])
+
    
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+          window.addEventListener('scroll', () =>
+            setFixed(window.scrollY  > 400)
+          )
+          return () => {
+            window.removeEventListener('scroll', setFixed)
+          }
+        }
+      }, [])    
     
     return (
 
@@ -122,18 +135,23 @@ const Header = () => {
                 }
             /> 
 
-            <header            
-                style={
-                    {
-                        marginBottom: isSearchVisible ? "250px" : "0",
-                        position: isNavOpen ? "relative" : "sticky"
-                    }
-                }                
+            <header 
+                id={(location.pathname === '/' && !isNavOpen && !isMenuVisible && !isMenuOpen && !isSearchVisible) ? 'homepage' : ''}           
+                className={fixed ? 'fixed' : ''}           
+                style={{ marginBottom: isSearchVisible ? '250px' : '0' }}                
             >      
 
                 <div className="logo">
 
-                    <Link to="/"><img src="/images/logo100.png" alt="Logo" /></Link>
+                    <Link to="/">
+                        <img 
+                            src={(location.pathname === '/' && !isNavOpen && !isMenuVisible && !isMenuOpen && !isSearchVisible && !fixed) 
+                                ? '/images/logoLight100.png' 
+                                : '/images/logo100.png'
+                            }
+                            alt="Logo" 
+                        />
+                    </Link>
 
                 </div>
 
@@ -268,7 +286,7 @@ const Header = () => {
                         }} 
                         className="mobile-menu"
                     >
-                        <MoreVertIcon color="secondary" />
+                        <MoreVertIcon className="header-icon" />
                     </IconButton>
                     &nbsp;
                     <IconButton
@@ -277,7 +295,7 @@ const Header = () => {
                             setIsNavOpen(false)
                         }}
                     >
-                        <SearchIcon color="secondary" />
+                        <SearchIcon className="header-icon" />
                     </IconButton>                                                        
                     &nbsp;
                     <IconButton
@@ -291,7 +309,7 @@ const Header = () => {
                             badgeContent={cartItems.length} 
                             color="primary"
                         >
-                            <ShoppingCartIcon color="secondary" />
+                            <ShoppingCartIcon className="header-icon" />
                         </StyledBadge>
                     </IconButton>   
                     &nbsp;&nbsp;
@@ -301,7 +319,7 @@ const Header = () => {
                             setIsNavOpen(false)
                         }}
                     >
-                        <EmailIcon color="secondary" />
+                        <EmailIcon className="header-icon" />
                     </IconButton>              
                     &nbsp;
                     {user ? (

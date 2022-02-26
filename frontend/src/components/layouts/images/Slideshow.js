@@ -31,7 +31,7 @@ const Slideshow = ({ data }) => {
         
         <div className="slideshow">
             {transitions((style, index) => (
-                <animated.div 
+                <animated.div className="slides"
                     style={{
                         ...style,                                            
                         backgroundImage: `url(${data[index].images[0].url})`

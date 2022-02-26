@@ -1,14 +1,29 @@
 /* Header Styles */
 header {
-    padding: 0 40px;        
-    background: white;    
-    position: sticky;
-    top: 0;     
+    padding: 0 40px;   
     align-items: center;
     box-shadow: var(--box-shadow);
+    position: relative;
+    top: 0;
+    background: white;    
     z-index: 1;
     display: flex;
     justify-content: space-between;
+    transition: all var(--speed);
+}
+header.fixed {    
+    position: sticky;   
+}
+header#homepage {
+    background: none;
+    position: absolute;
+    width: 100%;
+    box-shadow: none;
+}
+header#homepage.fixed {
+    background: white;
+    position: sticky;
+    box-shadow: var(--box-shadow);
 }
 header .dropdown-menu {
     position: absolute;
@@ -25,8 +40,19 @@ header .dropdown-menu a {
     display: block;
     line-height: 1.8em;
 }
-header nav >  ul > li > span {
+header#homepage > nav > ul > li > span {
+    color: white;
+}
+header nav >  ul > li > span,
+header#homepage.fixed nav > ul > li > span {
+    transition: all var(--speed);
     padding: 0 20px;
+    color: #999;
+}
+header nav >  ul > li > span:hover,
+header#homepage.fixed nav > ul > li > span:hover,
+header#homepage > nav > ul > li > span:hover {
+    color: var(--primary-color);
 }
 header nav > ul > li > ul {
     position: absolute;
@@ -65,6 +91,17 @@ header nav a {
 }
 header button:hover svg {
     color: var(--primary-color);
+}
+header#homepage .header-icon {
+    color: white;
+}
+header .header-icon,
+header#homepage.fixed .header-icon {
+    color: #999;
+    transition: all var(--speed);
+}
+.header-icon:hover {
+    color: var(--primary-color) !important;
 }
 /* search */
 .searchform {
