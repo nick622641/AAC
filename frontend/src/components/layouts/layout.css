@@ -89,6 +89,10 @@ header nav a {
 .logo img:hover {
     transform: scale(1.05);
 }
+header button {
+    width: 50px;
+    height: 50px;
+}
 header button:hover svg {
     color: var(--primary-color);
 }
@@ -102,6 +106,13 @@ header#homepage.fixed .header-icon {
 }
 .header-icon:hover {
     color: var(--primary-color) !important;
+}
+header .name,
+header#homepage.fixed .name {
+    color: #333;
+}
+header#homepage .name {
+    color: white;
 }
 /* search */
 .searchform {

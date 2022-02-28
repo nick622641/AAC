@@ -10,7 +10,7 @@ process.on('uncaughtException', err => {
 })
 
 // Conecting to Database
- connectDatabase()
+connectDatabase()
 
 // Setting up Cloudinary config
 cloudinary.config({

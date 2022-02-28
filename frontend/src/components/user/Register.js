@@ -13,6 +13,8 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import SendIcon from '@mui/icons-material/Send'
 import LoadingButton from '@mui/lab/LoadingButton'
+import ReCAPTCHA from 'react-google-recaptcha'
+import Modal from '../modals/Modal'
 
 const Register = () => {
 
@@ -27,6 +29,8 @@ const Register = () => {
     const [ avatar,          setAvatar          ] = useState('') 
     const [ avatarPreview,   setAvatarPreview   ] = useState('/images/default-avatar.jpg')     
     const [ passwordVisible, setPasswordVisible ] = useState()
+    const [ captcha,         setCaptcha         ] = useState(false)
+    const [ isVerified,      setIsVerified      ] = useState(false)
 
     const togglePassword = () => {
         setPasswordVisible(!passwordVisible)
@@ -43,8 +47,25 @@ const Register = () => {
         }
     }, [dispatch, alert, isAuthenticated, error, navigate])
 
-    const submitHandler = (e) => {        
-        e.preventDefault()
+    useEffect(() => {
+        if ( name && email && password && avatar ) {
+            setIsVerified(true)
+        }
+      }, [ name, email, password, avatar])
+
+      useEffect(() => {
+        if ( email ) {
+            setIsVerified(true)
+        }
+      }, [ email ])
+
+    const submitHandler = (e) => {
+        e.preventDefault()         
+        setCaptcha(true)                  
+    }
+
+    const handleChange = () => {             
+        setCaptcha(false)
         const formData = new FormData()
         formData.set('name'    , name)
         formData.set('email'   , email)
@@ -66,7 +87,7 @@ const Register = () => {
         } else {
             setUser({ ...user, [e.target.name]: e.target.value })
         }
-    }
+    }    
 
     return (       
 
@@ -160,6 +181,7 @@ const Register = () => {
                             onClick={submitHandler}
                             endIcon={<SendIcon />}
                             sx={{ mb: 4, width: '100%' }}
+                            disabled={ !isVerified ? true : false }
                         >
                             Sign Up
                         </LoadingButton>
@@ -184,7 +206,18 @@ const Register = () => {
 
                 </div>
 
-            </div>               
+            </div>  
+
+            <Modal
+                isModalVisible={captcha} 
+                onBackdropClick={() => setCaptcha(false)}   
+                content={ 
+                    <ReCAPTCHA
+                        sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+                        onChange={handleChange}
+                    /> 
+                }
+            />             
 
         </Fragment>
 

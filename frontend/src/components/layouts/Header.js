@@ -288,7 +288,7 @@ const Header = () => {
                     >
                         <MoreVertIcon className="header-icon" />
                     </IconButton>
-                    &nbsp;
+
                     <IconButton
                         onClick={() => {
                             toggleSearch()
@@ -297,7 +297,7 @@ const Header = () => {
                     >
                         <SearchIcon className="header-icon" />
                     </IconButton>                                                        
-                    &nbsp;
+
                     <IconButton
                         onClick={() => {
                             setIsNavOpen(false)
@@ -312,7 +312,7 @@ const Header = () => {
                             <ShoppingCartIcon className="header-icon" />
                         </StyledBadge>
                     </IconButton>   
-                    &nbsp;&nbsp;
+
                     <IconButton
                         onClick={() => { 
                             toggleModal()
@@ -338,8 +338,8 @@ const Header = () => {
                                 </IconButton>  
                                 
                                 <small 
-                                    className="whitespace-nowrap absolute"
-                                    style={{ right: 0, top: "90%" }}
+                                    className="whitespace-nowrap absolute name"
+                                    style={{ right: 0, top: "100%" }}
                                 >
                                     {user && user.name}
                                 </small>                            
@@ -396,14 +396,18 @@ const Header = () => {
                             onClick={() => {setIsNavOpen(false)}}
                         >
                             <IconButton>
-                                <LoginIcon />
+                                <LoginIcon className="header-icon" />
                             </IconButton>
                         </Link>
-                    )}  
+                    )} 
+
+                    &nbsp; 
 
                     {!isMobile && (
                         <Divider orientation="vertical" flexItem  sx={{ mx: 1 }}/> 
                     )}  
+
+                    &nbsp;
                     
                     <IconButton>
                         <a 
@@ -411,14 +415,17 @@ const Header = () => {
                             target="_biank"
                             style={{ fontSize: 0 }}
                         >
-                            <FacebookSharpIcon color="facebook" sx={{ fontSize: "32px" }} />
+                            <FacebookSharpIcon 
+                                color="facebook" 
+                                sx={{ fontSize: "32px" }} 
+                            />
                         </a>
                     </IconButton>                   
 
                     <Modal
                         isModalVisible={isModalVisible} 
                         onBackdropClick={toggleModal}   
-                        content={<Contact />}
+                        content={ <Contact /> }
                     />
 
                 </div>

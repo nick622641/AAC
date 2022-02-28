@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
 const OrderSuccess = () => {
 

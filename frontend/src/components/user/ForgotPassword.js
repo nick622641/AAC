@@ -9,13 +9,18 @@ import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
 import SendIcon from '@mui/icons-material/Send'
 import LoadingButton from '@mui/lab/LoadingButton'
+import ReCAPTCHA from 'react-google-recaptcha'
+import Modal from '../modals/Modal'
 
 const ForgotPassword = () => {
 
+    const { loading, message, error } = useSelector( state => state.forgotPassword )
+
     const dispatch = useDispatch()
     const alert = useAlert()
-    const [ email, setEmail ] = useState('')    
-    const { loading, message, error } = useSelector( state => state.forgotPassword )
+    const [ email,      setEmail           ] = useState('')    
+    const [ captcha,    setCaptcha         ] = useState(false)
+    const [ isVerified, setIsVerified      ] = useState(false)    
 
     useEffect(() => {    
         if(error) { 
@@ -24,15 +29,27 @@ const ForgotPassword = () => {
         }
         if(message) {
             alert.success(message)    
-        }
+        }        
     }, [dispatch, alert, message, error])
 
-    const submitHandler = (e) => {        
-        e.preventDefault()
+    useEffect(() => {
+        if ( email ) {
+            setIsVerified(true)
+        }
+      }, [ email ])
+
+      const submitHandler = (e) => {
+        e.preventDefault()         
+        setCaptcha(true)                  
+    }
+
+    const handleChange = () => {        
         const formData = new FormData()
         formData.set('email', email)
         dispatch(forgotPassword(formData))
+        setCaptcha(false)  
     }
+
     return (
 
         <Fragment>
@@ -65,6 +82,7 @@ const ForgotPassword = () => {
                             variant="contained"                            
                             endIcon={<SendIcon />}
                             sx={{ mt: 4, width: '100%' }}
+                            disabled={ !isVerified ? true : false }
                         >
                             Send Email
                         </LoadingButton>
@@ -85,6 +103,17 @@ const ForgotPassword = () => {
                 </div>
 
             </div>
+
+            <Modal
+                isModalVisible={captcha} 
+                onBackdropClick={() => setCaptcha(false)}   
+                content={ 
+                    <ReCAPTCHA
+                        sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+                        onChange={handleChange}
+                    /> 
+                }
+            />
 
         </Fragment>
 
