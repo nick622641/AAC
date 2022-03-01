@@ -25,8 +25,6 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import Divider from '@mui/material/Divider'
 import LoginIcon from '@mui/icons-material/Login'
 import Backdrop from '@mui/material/Backdrop'
-import ScrollToTop from 'react-scroll-to-top'
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import './layout.css'
 
 const Header = () => {    
@@ -453,13 +451,7 @@ const Header = () => {
 
                 )}
 
-            </header> 
-
-            <ScrollToTop 
-                smooth 
-                style={{ background: 'none', boxShadow: 'none' }} 
-                component={<ArrowCircleUpIcon color="primary" fontSize="large" />} 
-            />
+            </header>             
             
         </Fragment>
 

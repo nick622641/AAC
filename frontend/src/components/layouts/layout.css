@@ -25,6 +25,9 @@ header#homepage.fixed {
     position: sticky;
     box-shadow: var(--box-shadow);
 }
+header#homepage.fixed + main {   
+    margin-top: -90px;    
+}
 header .dropdown-menu {
     position: absolute;
     top: calc(100% + 12px);
