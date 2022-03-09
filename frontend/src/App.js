@@ -70,6 +70,11 @@ import UpdateBlog                        from './components/admin/blogs/UpdateBl
 import BlogComments                      from './components/admin/blogs/BlogComments'
 import ImageUploader                     from './components/ImageUploader'
 
+import PageDetails                       from './components/page/PageDetails'
+import PagesList                         from './components/admin/pages/PagesList'
+import NewPage                           from './components/admin/pages/NewPage'
+import UpdatePage                        from './components/admin/pages/UpdatePage'
+
 function App() {  
 
   const { loggingOut } = useSelector(state => state.auth)
@@ -126,6 +131,8 @@ function App() {
             <Route path="/artwork/:slug"         element={<ProductDetails                                               />} />             
             <Route path="/artwork/new"           element={<PrivateRoute><ImageUploader                   /></PrivateRoute>} />             
             
+            <Route path="/page/:slug"            element={<PageDetails                                                  />} />
+
             <Route path="/terms"                 element={<Terms                                                        />} />
             <Route path="/privacy"               element={<Privacy                                                      />} />
 
@@ -169,6 +176,10 @@ function App() {
             <Route path="/admin/blog/:id"        element={<PrivateRoute isAdmin={true}><UpdateBlog       /></PrivateRoute>} />
             <Route path="/admin/comments"        element={<PrivateRoute isAdmin={true}><BlogComments     /></PrivateRoute>} />                        
             
+            <Route path="/admin/pages"           element={<PrivateRoute isAdmin={true}><PagesList        /></PrivateRoute>} /> 
+            <Route path="/admin/page"            element={<PrivateRoute isAdmin={true}><NewPage          /></PrivateRoute>} />
+            <Route path="/admin/page/:id"        element={<PrivateRoute isAdmin={true}><UpdatePage       /></PrivateRoute>} />
+
           </Routes>   
 
         </Elements>

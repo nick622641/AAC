@@ -22,6 +22,7 @@ const Dashboard = () => {
     const { users                        } = useSelector( state => state.allUsers  )
     const { products                     } = useSelector( state => state.products  )    
     const { blogs                        } = useSelector( state => state.blogs  )    
+    const { pages                        } = useSelector( state => state.pages  )    
     const { loading, orders, totalAmount } = useSelector( state => state.allOrders )
     const { artists                      } = useSelector( state => state.artists )
     const { media                        } = useSelector( state => state.media )
@@ -128,6 +129,25 @@ const Dashboard = () => {
                                                 </Item>
                                             </Grid>
 
+                                            <Grid item xs={12} md={3}>
+                                                <Item sx={{ background: 'violet' }}>
+                                                    <Link to="/admin/pages">   
+
+                                                    <div>
+                                                        <h3>Pages</h3>
+                                                        <h2>{pages && pages.length}</h2>
+                                                        <Button 
+                                                                size="small" 
+                                                                sx={{ color: 'white', width: '100%' }}
+                                                            >
+                                                                View Details
+                                                        </Button>
+                                                    </div>
+                                                    
+                                                    </Link>
+                                                </Item>
+                                            </Grid>
+
                                             <Grid item xs={12} md={3} sx={{ mb: 2 }}>
                                                 <Item sx={{ background: '#ffbb00'}}>
                                                     <Link to="/admin/orders">  
@@ -221,7 +241,7 @@ const Dashboard = () => {
                                                 
                                                     </Link>
                                                 </Item>
-                                            </Grid>
+                                            </Grid>                                            
 
                                             <Grid item xs={12} md={3}>
                                                 <Item sx={{ background: '#ea4845' }}>

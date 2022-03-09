@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { productsReducer, latestProductReducer, randomProductReducer, randomProductsReducer, randomProductsDetailsReducer, productDetailsReducer, adminProductDetailsReducer, newReviewReducer, newProductReducer, newProductUserReducer, productReducer, productReviewsReducer, reviewReducer } from './reducers/productReducers'
 import { blogsReducer, blogDetailsReducer, adminBlogDetailsReducer, newBlogReducer, blogReducer, newCommentReducer, blogCommentsReducer, commentReducer } from './reducers/blogReducers'
+import { pagesReducer, pageDetailsReducer, adminPageDetailsReducer, newPageReducer, pageReducer } from './reducers/pageReducers'
 import { mediaReducer, newMediaReducer, mediumReducer, mediaDetailsReducer, orientationsReducer, orientationDetailsReducer, orientationReducer, newOrientationReducer, artistsReducer, newArtistReducer, artistReducer, artistDetailsReducer } from './reducers/categoryReducers'
 import { authReducer, userReducer, forgotPasswordReducer, allUsersdReducer, userDetailsReducer } from './reducers/userReducers'
 import { cartReducer } from './reducers/cartReducers'
@@ -27,6 +28,7 @@ const reducer = combineReducers({
     randomProductsDetails: randomProductsDetailsReducer,    
     products: productsReducer,    
     productDetails: productDetailsReducer,
+    adminProductDetails: adminProductDetailsReducer,    
     newProduct: newProductReducer,
     newProductUser: newProductUserReducer,
     product: productReducer,
@@ -35,15 +37,19 @@ const reducer = combineReducers({
 
     blogs: blogsReducer,    
     blogDetails: blogDetailsReducer,
-
     adminBlogDetails: adminBlogDetailsReducer,
-    adminProductDetails: adminProductDetailsReducer,
-    
     newBlog: newBlogReducer,
     blog: blogReducer,
+
     blogComments: blogCommentsReducer,
     comment: commentReducer,
     newComment: newCommentReducer,
+
+    pages: pagesReducer,    
+    pageDetails: pageDetailsReducer,
+    adminPageDetails: adminPageDetailsReducer,
+    newPage: newPageReducer,
+    page: pageReducer,
 
     productReviews: productReviewsReducer,
     review: reviewReducer,

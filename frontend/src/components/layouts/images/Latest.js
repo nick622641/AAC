@@ -6,7 +6,7 @@ const Latest = ({ product }) => {
 
     return (
 
-        <div className="parent">
+        <div className="parent align-items-center">
             <div className="col-6">
                 <img src={product.images[0].url} alt={product.name} />
             </div>

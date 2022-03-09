@@ -236,10 +236,83 @@ const Header = () => {
                                 onClick={(e) => handleNavigation(e, 1)}
                                 className="cursor-pointer"
                             >
-                                Community
+                                About
                             </span> 
 
                             {isNavOpen && menuItem === 1 && (  
+
+                                <animated.ul style={animation}>
+
+                                    <li>
+                                        <h5>Who We Are</h5>
+                                        <ul className="list-style"> 
+                                            <li>
+                                                <Link 
+                                                    to="#!" 
+                                                    onClick={() => {
+                                                            setIsNavOpen(false)
+                                                            setIsMenuOpen(false)
+                                                        }
+                                                    }
+                                                >
+                                                    Meet The Team
+                                                </Link>
+                                            </li>  
+                                            <li>
+                                                <Link 
+                                                    to="#!" 
+                                                    onClick={() => {
+                                                            setIsNavOpen(false)
+                                                            setIsMenuOpen(false)
+                                                        }
+                                                    }
+                                                >
+                                                    Our Passion
+                                                </Link>
+                                            </li> 
+                                            <li>
+                                                <Link 
+                                                    to="#!" 
+                                                    onClick={() => {
+                                                            setIsNavOpen(false)
+                                                            setIsMenuOpen(false)
+                                                        }
+                                                    }
+                                                >
+                                                    Buying & Shipping
+                                                </Link>
+                                            </li>  
+                                            <li>
+                                                <Link 
+                                                    to="#!" 
+                                                    onClick={() => {
+                                                            setIsNavOpen(false)
+                                                            setIsMenuOpen(false)
+                                                        }
+                                                    }
+                                                >
+                                                    Friends of AAC
+                                                </Link>
+                                            </li>                                
+                        
+                                        </ul>                                        
+                                    </li>
+
+                                </animated.ul>
+
+                            )}
+                            
+                        </li>    
+
+                        <li>
+                            <span
+                                onClick={(e) => handleNavigation(e, 1)}
+                                className="cursor-pointer"
+                            >
+                                Community
+                            </span> 
+
+                            {isNavOpen && menuItem === 2 && (  
 
                                 <animated.ul style={animation}>
 
@@ -266,7 +339,7 @@ const Header = () => {
 
                             )}
                             
-                        </li>                
+                        </li>              
         
                     </animated.ul> 
                 )}  

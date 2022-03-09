@@ -18,11 +18,13 @@ import ColorLensIcon from '@mui/icons-material/ColorLens'
 import BrushIcon from '@mui/icons-material/Brush'
 import PushPinIcon from '@mui/icons-material/PushPin'
 import StarsIcon from '@mui/icons-material/Stars'
+import ContactPageIcon from '@mui/icons-material/ContactPage'
 
 const Sidebar = () => {
 
     const [ isSidebarOpen, setSideBarOpen ] = useState(false)
     const [ isBlogMenuVisible, setBlogMenuVisible ] = useState(false)
+    const [ isPageMenuVisible, setPageMenuVisible ] = useState(false)
     const [ isMenuVisible, setMenuVisible ] = useState(false)
     const [ isCategoriesVisible, setCategoriesVisible ] = useState(false)
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
@@ -33,6 +35,9 @@ const Sidebar = () => {
 
     const toggleBlogMenu = () => {
         setBlogMenuVisible(isBlogMenuVisible => !isBlogMenuVisible)
+    }
+    const togglePageMenu = () => {
+        setPageMenuVisible(isPageMenuVisible => !isPageMenuVisible)
     }
     const toggleMenu = () => {
         setMenuVisible(isMenuVisible => !isMenuVisible)
@@ -47,6 +52,10 @@ const Sidebar = () => {
     const blogMenuAppear = useSpring({
         transform: isBlogMenuVisible ? "translateY(0)" : "translateY(-40px)",
         opacity: isBlogMenuVisible ? 1 : 0
+    })
+    const pageMenuAppear = useSpring({
+        transform: isPageMenuVisible ? "translateY(0)" : "translateY(-40px)",
+        opacity: isPageMenuVisible ? 1 : 0
     })
     const categoriesAppear = useSpring({
         transform: isCategoriesVisible ? "translateY(0)" : "translateY(-40px)",
@@ -116,6 +125,46 @@ const Sidebar = () => {
                             </animated.div>
                             )}
                         </li>
+
+                        <li onClick={() => {togglePageMenu()}}>                        
+                           
+                            <IconButton>
+                                <ContactPageIcon />
+                            </IconButton>
+                            &nbsp; Pages
+                            <IconButton className="arrow-down">
+                                {isPageMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isPageMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={pageMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/pages">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/page">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>
+
                         <li onClick={() => {toggleMenu()}}>                        
                            
                             <IconButton>
