@@ -128,6 +128,9 @@
 .blog-content figure {
   text-align: center;
 }
+.blog-content li {
+  font-size: 14px;
+}
 .blog-content p {
   margin-bottom: 20px
 }

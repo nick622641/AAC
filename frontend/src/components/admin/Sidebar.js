@@ -19,12 +19,14 @@ import BrushIcon from '@mui/icons-material/Brush'
 import PushPinIcon from '@mui/icons-material/PushPin'
 import StarsIcon from '@mui/icons-material/Stars'
 import ContactPageIcon from '@mui/icons-material/ContactPage'
+import ArticleIcon from '@mui/icons-material/Article'
 
 const Sidebar = () => {
 
     const [ isSidebarOpen, setSideBarOpen ] = useState(false)
     const [ isBlogMenuVisible, setBlogMenuVisible ] = useState(false)
     const [ isPageMenuVisible, setPageMenuVisible ] = useState(false)
+    const [ isArtistMenuVisible, setArtistMenuVisible ] = useState(false)
     const [ isMenuVisible, setMenuVisible ] = useState(false)
     const [ isCategoriesVisible, setCategoriesVisible ] = useState(false)
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
@@ -38,6 +40,9 @@ const Sidebar = () => {
     }
     const togglePageMenu = () => {
         setPageMenuVisible(isPageMenuVisible => !isPageMenuVisible)
+    }
+    const toggleArtistMenu = () => {
+        setArtistMenuVisible(isArtistMenuVisible => !isArtistMenuVisible)
     }
     const toggleMenu = () => {
         setMenuVisible(isMenuVisible => !isMenuVisible)
@@ -56,6 +61,10 @@ const Sidebar = () => {
     const pageMenuAppear = useSpring({
         transform: isPageMenuVisible ? "translateY(0)" : "translateY(-40px)",
         opacity: isPageMenuVisible ? 1 : 0
+    })
+    const artistMenuAppear = useSpring({
+        transform: isArtistMenuVisible ? "translateY(0)" : "translateY(-40px)",
+        opacity: isArtistMenuVisible ? 1 : 0
     })
     const categoriesAppear = useSpring({
         transform: isCategoriesVisible ? "translateY(0)" : "translateY(-40px)",
@@ -154,6 +163,45 @@ const Sidebar = () => {
                         
                                     <li>
                                         <Link to="/admin/page">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>
+
+                        <li onClick={() => {toggleArtistMenu()}}>                        
+                           
+                            <IconButton>
+                                <ArticleIcon />
+                            </IconButton>
+                            &nbsp; Artist Bios
+                            <IconButton className="arrow-down">
+                                {isArtistMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isArtistMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={artistMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/painters">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/painter">
                                             <IconButton>
                                                 <AddIcon />
                                             </IconButton> 

@@ -5,6 +5,7 @@ import { useAlert } from 'react-alert'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { logout } from '../../actions/userActions'
 import { getArtists, getMedia } from '../../actions/categoryActions'
+import { getPainters } from '../../actions/painterActions'
 import { styled } from '@mui/material/styles'
 import { useMediaQuery } from 'react-responsive'
 import Modal from '../modals/Modal'
@@ -39,6 +40,7 @@ const Header = () => {
     const { cartItems     } = useSelector( state => state.cart )
     const { artists       } = useSelector( state => state.artists )
     const { media         } = useSelector( state => state.media )
+    const { painters      } = useSelector( state => state.painters )
 
     const [ isNavOpen,       setIsNavOpen      ] = useState(false)
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
@@ -104,6 +106,7 @@ const Header = () => {
     useEffect(() => {
         dispatch(getArtists())  
         dispatch(getMedia())  
+        dispatch(getPainters())  
     }, [dispatch])
 
    
@@ -260,7 +263,7 @@ const Header = () => {
                                             </li>  
                                             <li>
                                                 <Link 
-                                                    to="#!" 
+                                                    to="/page/our-passion" 
                                                     onClick={() => {
                                                             setIsNavOpen(false)
                                                             setIsMenuOpen(false)
@@ -272,7 +275,7 @@ const Header = () => {
                                             </li> 
                                             <li>
                                                 <Link 
-                                                    to="#!" 
+                                                    to="/page/buying-and-shipping" 
                                                     onClick={() => {
                                                             setIsNavOpen(false)
                                                             setIsMenuOpen(false)
@@ -306,7 +309,7 @@ const Header = () => {
 
                         <li>
                             <span
-                                onClick={(e) => handleNavigation(e, 1)}
+                                onClick={(e) => handleNavigation(e, 2)}
                                 className="cursor-pointer"
                             >
                                 Community
@@ -339,7 +342,59 @@ const Header = () => {
 
                             )}
                             
-                        </li>              
+                        </li>   
+
+                        <li>
+                            <span
+                                onClick={(e) => handleNavigation(e, 3)}
+                                className="cursor-pointer"
+                            >
+                                Artists
+                            </span>                         
+
+                            {isNavOpen && menuItem === 3 && (  
+
+                            <animated.ul style={animation}>   
+                                
+                                <li>
+                                    <h5>Meet the Artists</h5>
+                                    <ul className="list-style">   
+                                        <li>
+                                            <Link 
+                                                to="/painters" 
+                                                onClick={() => {
+                                                        setIsMenuOpen(false)
+                                                        setIsNavOpen(false)
+                                                    }
+                                                }
+                                            >
+                                                All the Artists
+                                            </Link>
+                                        </li>                  
+                                     
+                                        {painters && painters.map( (painter, index) => ( 
+                                            <li key={painter._id}>                                                
+                                                <Link 
+                                                    to={`painter/${painter.slug}`}
+                                                    onClick={() => {
+                                                                setIsMenuOpen(false)
+                                                                setIsNavOpen(false)
+                                                            }
+                                                        }
+                                                >
+                                                    {painter.title}
+                                                </Link>                                               
+                                            </li>    
+                                        ))}                                                                         
+                    
+                                    </ul>                                        
+                                </li>                            
+
+                            </animated.ul> 
+
+                            )}
+                                    
+                        </li>            
         
                     </animated.ul> 
                 )}  

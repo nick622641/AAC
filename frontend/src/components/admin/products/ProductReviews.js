@@ -57,7 +57,13 @@ const ProductReviews = () => {
     }
     const setReviews = () => {
         const data = {
-            columns: [  
+            columns: [           
+                {
+                    label: 'Actions',
+                    field: 'actions',
+                    sort: 'disabled',
+                    width: 100                  
+                },
                 {
                     label: 'User',
                     field: 'user',
@@ -69,13 +75,7 @@ const ProductReviews = () => {
                     field: 'rating',
                     sort: 'asc',
                     width: 75
-                },
-                {
-                    label: 'Actions',
-                    field: 'actions',
-                    sort: 'disabled',
-                    width: 100                  
-                },
+                },                
                 {
                     label: 'Comment',
                     field: 'comment',
@@ -87,20 +87,22 @@ const ProductReviews = () => {
         }
 
         reviews.forEach( review => {
-            data.rows.push({
+            data.rows.push({            
                 user: review.name,
                 rating: review.rating,
-                actions:                 
+                actions:  
                     <Fragment> 
-                        <IconButton 
-                            onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setReviewId(review._id)
-                            }}
-                        >
-                            <DeleteOutlineIcon color="danger" />
-                        </IconButton> 
-                    </Fragment>,
+                        <Tooltip title="Delete" arrow>
+                            <IconButton 
+                                onClick={() => {
+                                    setIsModalVisible(!isModalVisible)
+                                    setReviewId(review._id)
+                                }}
+                            >
+                                <DeleteOutlineIcon color="danger" />
+                            </IconButton> 
+                        </Tooltip>                       
+                    </Fragment>, 
                 comment: parse(review.comment)                
             })
         })
@@ -166,7 +168,7 @@ const ProductReviews = () => {
                                 </Fab>
                             </Link>
 
-                            <Tooltip title="Expand">
+                            <Tooltip title="Expand" arrow>
                                 <IconButton 
                                     color="primary" 
                                     sx={{ position: 'absolute', top: 10, left: 10 }}

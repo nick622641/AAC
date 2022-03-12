@@ -75,6 +75,12 @@ import PagesList                         from './components/admin/pages/PagesLis
 import NewPage                           from './components/admin/pages/NewPage'
 import UpdatePage                        from './components/admin/pages/UpdatePage'
 
+import Painters                          from './components/Painters'
+import PainterDetails                    from './components/painter/PainterDetails'
+import PaintersList                      from './components/admin/painters/PaintersList'
+import NewPainter                        from './components/admin/painters/NewPainter'
+import UpdatePainter                     from './components/admin/painters/UpdatePainter'
+
 function App() {  
 
   const { loggingOut } = useSelector(state => state.auth)
@@ -133,6 +139,9 @@ function App() {
             
             <Route path="/page/:slug"            element={<PageDetails                                                  />} />
 
+            <Route path="/painters"              element={<Painters                                                        />} />
+            <Route path="/painter/:slug"         element={<PainterDetails                                                  />} />
+
             <Route path="/terms"                 element={<Terms                                                        />} />
             <Route path="/privacy"               element={<Privacy                                                      />} />
 
@@ -179,6 +188,10 @@ function App() {
             <Route path="/admin/pages"           element={<PrivateRoute isAdmin={true}><PagesList        /></PrivateRoute>} /> 
             <Route path="/admin/page"            element={<PrivateRoute isAdmin={true}><NewPage          /></PrivateRoute>} />
             <Route path="/admin/page/:id"        element={<PrivateRoute isAdmin={true}><UpdatePage       /></PrivateRoute>} />
+
+            <Route path="/admin/painter"         element={<PrivateRoute isAdmin={true}><NewPainter       /></PrivateRoute>} />
+            <Route path="/admin/painters"        element={<PrivateRoute isAdmin={true}><PaintersList     /></PrivateRoute>} /> 
+            <Route path="/admin/painter/:id"     element={<PrivateRoute isAdmin={true}><UpdatePainter    /></PrivateRoute>} />
 
           </Routes>   
 

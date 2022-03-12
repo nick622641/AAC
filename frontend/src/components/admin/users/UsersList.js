@@ -17,6 +17,8 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { Avatar, Tooltip } from '@mui/material'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
+import CopyToClipboard from 'react-copy-to-clipboard'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 const UsersList = () => {
 
@@ -25,7 +27,6 @@ const UsersList = () => {
     const navigate = useNavigate()
     const { loading, error, users } = useSelector( state => state.allUsers )
     const { isDeleted             } = useSelector( state => state.user )
-    const { user                  } = useSelector( state => state.auth )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
@@ -67,7 +68,7 @@ const UsersList = () => {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'disabled',
-                    width: 100
+                    width: 150
                 },             
                 {
                     label: 'Name',
@@ -93,23 +94,33 @@ const UsersList = () => {
                         alt={u.name} 
                         sx={{ width: 50, height: 50 }}
                     />,
-                    actions:                 
-                    <Fragment>                        
-                        <Link to={`/admin/user/${u._id}`}>
+                actions: 
+                <Fragment>  
+                    <CopyToClipboard text={u._id}>
+                        <IconButton onClick={() => alert.success('ID Copied')}>
+                            <Tooltip title="Copy ID" arrow>
+                                <ContentCopyIcon color="primary" />  
+                            </Tooltip>
+                        </IconButton>                    
+                    </CopyToClipboard> 
+                    <Link to={`/admin/user/${u._id}`}>
+                        <Tooltip title="Update" arrow>
                             <IconButton>
                                 <EditOutlinedIcon />
                             </IconButton>
-                        </Link> 
+                        </Tooltip>
+                    </Link> 
+                    <Tooltip title="Delete" arrow>
                         <IconButton 
                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
                                 setId(u._id)
                             }}
-                            disabled={user._id === u._id ? true : false}
                         >
-                            <DeleteOutlineIcon color={user._id !== u._id ? 'danger' : 'secondary'} />
-                        </IconButton>                       
-                    </Fragment>,
+                            <DeleteOutlineIcon color="danger" />
+                        </IconButton> 
+                    </Tooltip>  
+                </Fragment>,                
                 name: u.name,
                 role: <span style={{ textTransform: 'capitalize' }}>{u.role}</span> 
             })
@@ -147,8 +158,7 @@ const UsersList = () => {
                                     <MDBDataTableV5 
                                         data={setUsers()}   
                                         fullPagination   
-                                        scrollX  
-                                        scrollY   
+                                        scrollX                                             
                                         searchTop
                                         searchBottom={false}  
                                     />                                
@@ -164,7 +174,7 @@ const UsersList = () => {
                                         </Fab>
                                     </Link>
 
-                                    <Tooltip title="Expand">
+                                    <Tooltip title="Expand" arrow>
                                         <IconButton 
                                             color="primary" 
                                             sx={{ position: 'absolute', top: 10, left: 10 }}

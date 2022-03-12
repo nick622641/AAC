@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts } from '../../actions/productActions'
 import { getAdminBlogs } from '../../actions/blogActions'
+import { getAdminPages } from '../../actions/pageActions'
 import { allOrders } from '../../actions/orderActions'
 import { allUsers } from '../../actions/userActions'
-import { getArtists, getOrientations, getMedia } from '../../actions/categoryActions'
+// import { getArtists, getOrientations, getMedia } from '../../actions/categoryActions'
+import { getPainters } from '../../actions/painterActions'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
 import Sidebar from '../admin/Sidebar'
@@ -24,9 +26,10 @@ const Dashboard = () => {
     const { blogs                        } = useSelector( state => state.blogs  )    
     const { pages                        } = useSelector( state => state.pages  )    
     const { loading, orders, totalAmount } = useSelector( state => state.allOrders )
-    const { artists                      } = useSelector( state => state.artists )
-    const { media                        } = useSelector( state => state.media )
-    const { orientations                 } = useSelector( state => state.orientations )
+    // const { artists                      } = useSelector( state => state.artists )
+    // const { media                        } = useSelector( state => state.media )
+    // const { orientations                 } = useSelector( state => state.orientations )
+    const { painters                     } = useSelector( state => state.painters )
 
     let outOfStock = 0
     products && products.forEach(product => {
@@ -44,11 +47,13 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getAdminProducts())
         dispatch(getAdminBlogs())
+        dispatch(getAdminPages())
         dispatch(allOrders())
         dispatch(allUsers())
-        dispatch(getArtists())
-        dispatch(getMedia())
-        dispatch(getOrientations())
+        // dispatch(getArtists())
+        // dispatch(getMedia())
+        // dispatch(getOrientations())
+        dispatch(getPainters())
     }, [dispatch])
 
     return (
@@ -186,7 +191,7 @@ const Dashboard = () => {
                                                 </Item>
                                             </Grid>
 
-                                            <Grid item xs={12} md={3} sx={{ mb: 2 }}>
+                                            {/* <Grid item xs={12} md={3} sx={{ mb: 2 }}>
                                                 <Item sx={{ background: '#9cb19c' }}>
                                                     <Link to="/admin/artists">   
 
@@ -241,7 +246,28 @@ const Dashboard = () => {
                                                 
                                                     </Link>
                                                 </Item>
-                                            </Grid>                                            
+                                            </Grid>   
+                                            
+                                            */}
+
+                                            <Grid item xs={12} md={3} sx={{ mb: 2 }}>
+                                                <Item sx={{ background: '#bc986a' }}>
+                                                    <Link to="/admin/painters">   
+
+                                                        <div>
+                                                            <h3>Artist Bios</h3>
+                                                            <h2>{painters && painters.length}</h2>
+                                                            <Button 
+                                                                size="small" 
+                                                                sx={{ color: 'white', width: '100%' }}
+                                                            >
+                                                                View Details
+                                                            </Button>
+                                                        </div>  
+                                                
+                                                    </Link>
+                                                </Item>
+                                            </Grid>
 
                                             <Grid item xs={12} md={3}>
                                                 <Item sx={{ background: '#ea4845' }}>

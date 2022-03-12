@@ -97,27 +97,29 @@ const PagesList = () => {
                     </Link>,
                 actions: <Fragment>
                         <CopyToClipboard text={page._id}>
-                            <IconButton 
-                                onClick={() => alert.success('ID Copied')} 
-                                title="Copy ID">
-                                <ContentCopyIcon color="primary" 
-                            />  
-                            </IconButton>                      
+                            <IconButton onClick={() => alert.success('ID Copied')}>
+                                <Tooltip title="Copy ID" arrow>
+                                    <ContentCopyIcon color="primary" />  
+                                </Tooltip>
+                            </IconButton>                     
                         </CopyToClipboard>    
                         <Link to={`/admin/page/${page._id}`}>
-                            <IconButton title="Edit Blog">
-                                <EditOutlinedIcon />
-                            </IconButton>
+                            <Tooltip title="Update" arrow>
+                                <IconButton>
+                                    <EditOutlinedIcon />
+                                </IconButton>
+                            </Tooltip>
                         </Link> 
-                        <IconButton 
-                             onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setId(page._id)
-                            }}
-                            title="Delete Blog"
-                        >
-                            <DeleteOutlineIcon color="danger" />
-                        </IconButton>                      
+                        <Tooltip title="Delete" arrow>
+                            <IconButton 
+                                onClick={() => {
+                                    setIsModalVisible(!isModalVisible)
+                                    setId(page._id)
+                                }}
+                            >
+                                <DeleteOutlineIcon color="danger" />
+                            </IconButton> 
+                        </Tooltip>                     
                     </Fragment>,
                 title: page.title   
                

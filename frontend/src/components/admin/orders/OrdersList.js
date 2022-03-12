@@ -18,6 +18,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import { Tooltip } from '@mui/material'
 import FormattedDate from '../../layouts/FormattedDate'
+import CopyToClipboard from 'react-copy-to-clipboard'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 const OrdersList = () => {
 
@@ -61,7 +63,7 @@ const OrdersList = () => {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'disabled',
-                    width: 100                  
+                    width: 150                  
                 },
                 {
                     label: 'Date',
@@ -92,14 +94,24 @@ const OrdersList = () => {
         }
 
         orders && orders.forEach( order => {
-            data.rows.push({                
-                actions:                 
-                    <Fragment>
-                        <Link to={`/admin/order/${order._id}`}>
+            data.rows.push({  
+                actions: 
+                <Fragment>  
+                    <CopyToClipboard text={order._id}>
+                        <IconButton onClick={() => alert.success('ID Copied')}>
+                            <Tooltip title="Copy ID" arrow>
+                                <ContentCopyIcon color="primary" />  
+                            </Tooltip>
+                        </IconButton>                    
+                    </CopyToClipboard> 
+                    <Link to={`/admin/order/${order._id}`}>
+                        <Tooltip title="Update" arrow>
                             <IconButton>
-                            <   VisibilityIcon fontSize="small" />
+                                <VisibilityIcon fontSize="small" />
                             </IconButton>
-                        </Link> 
+                        </Tooltip>
+                    </Link> 
+                    <Tooltip title="Delete" arrow>
                         <IconButton 
                             onClick={() => {
                                 setIsModalVisible(!isModalVisible)
@@ -107,8 +119,9 @@ const OrdersList = () => {
                             }}
                         >
                             <DeleteOutlineIcon color="danger" />
-                        </IconButton>            
-                    </Fragment>, 
+                        </IconButton> 
+                    </Tooltip>  
+                </Fragment>,                
                 date: <FormattedDate iso={ order.paidAt} />,
                 numOfItems: order.orderItems.length,
                 amount: `$${order.totalPrice}`, 
@@ -165,7 +178,7 @@ const OrdersList = () => {
                                         </Fab>
                                     </Link>
 
-                                    <Tooltip title="Expand">
+                                    <Tooltip title="Expand" arrow>
                                         <IconButton 
                                             color="primary" 
                                             sx={{ position: 'absolute', top: 10, left: 10 }}

@@ -18,6 +18,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
 import { Tooltip } from '@mui/material'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
+import CopyToClipboard from 'react-copy-to-clipboard'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 const ArtistList = () => {
 
@@ -62,46 +64,50 @@ const ArtistList = () => {
         const data = {
             columns: [                
                 {
-                    label: 'Media ID',
-                    field: 'id',
+                    label: 'Actions',
+                    field: 'actions',
                     sort: 'disabled',
-                    width: 200
+                    width: '150'                 
                 },
                 {
                     label: 'Name',
                     field: 'name',
                     sort: 'asc'
-                },  
-                {
-                    label: 'Actions',
-                    field: 'actions',
-                    sort: 'disabled',
-                    width: '100'                 
-                }
+                }                
             ],
             rows: []
         }      
      
-        media && media.forEach( m => {
-            data.rows.push({                
-                id: m._id,
-                name: m.name,
+        media && media.forEach( medium => {
+            data.rows.push({  
                 actions: 
-                <Fragment>
-                    <Link to={`/admin/media/${m._id}`}>
-                        <IconButton>
-                            <EditOutlinedIcon />
-                        </IconButton>
+                <Fragment>  
+                    <CopyToClipboard text={medium._id}>
+                        <IconButton onClick={() => alert.success('ID Copied')}>
+                            <Tooltip title="Copy ID" arrow>
+                                <ContentCopyIcon color="primary" />  
+                            </Tooltip>
+                        </IconButton>                    
+                    </CopyToClipboard> 
+                    <Link to={`/admin/media/${medium._id}`}>
+                        <Tooltip title="Update" arrow>
+                            <IconButton>
+                                <EditOutlinedIcon />
+                            </IconButton>
+                        </Tooltip>
                     </Link> 
-                    <IconButton 
-                        onClick={() => {
-                            setIsModalVisible(!isModalVisible)
-                            setId(m._id)
-                        }}
-                    >
-                        <DeleteOutlineIcon color="danger" />
-                    </IconButton>    
-                </Fragment> 
+                    <Tooltip title="Delete" arrow>
+                        <IconButton 
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setId(medium._id)
+                            }}
+                        >
+                            <DeleteOutlineIcon color="danger" />
+                        </IconButton> 
+                    </Tooltip>  
+                </Fragment>,
+                name: medium.name 
             })
         })    
        
@@ -161,7 +167,7 @@ const ArtistList = () => {
                                     </Fab>
                                 </Link>
 
-                                <Tooltip title="Expand">
+                                <Tooltip title="Expand" arrow>
                                     <IconButton 
                                         color="primary" 
                                         sx={{ position: 'absolute', top: 10, left: 10 }}

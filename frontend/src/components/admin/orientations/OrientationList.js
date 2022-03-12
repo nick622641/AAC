@@ -18,6 +18,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import { Tooltip } from '@mui/material'
+import CopyToClipboard from 'react-copy-to-clipboard'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 const OrientationList = () => {
 
@@ -62,45 +64,49 @@ const OrientationList = () => {
         const data = {
             columns: [                
                 {
-                    label: 'Orientation ID',
-                    field: 'id',
+                    label: 'Actions',
+                    field: 'actions',
                     sort: 'disabled',
-                    width: 200
+                    width: 150                  
                 },
                 {
                     label: 'Name',
                     field: 'name',
                     sort: 'asc'
-                },  
-                {
-                    label: 'Actions',
-                    field: 'actions',
-                    sort: 'disabled',
-                    width: 100                  
-                }
+                }                
             ],
             rows: []
         }   
         orientations && orientations.forEach( orientation => {
             data.rows.push({                
-                id: orientation._id,
-                name: orientation.name,
                 actions: 
-                <Fragment>
+                <Fragment>  
+                    <CopyToClipboard text={orientation._id}>
+                        <IconButton onClick={() => alert.success('ID Copied')}>
+                            <Tooltip title="Copy ID" arrow>
+                                <ContentCopyIcon color="primary" />  
+                            </Tooltip>
+                        </IconButton>                    
+                    </CopyToClipboard> 
                     <Link to={`/admin/orientation/${orientation._id}`}>
-                        <IconButton>
-                            <EditOutlinedIcon />
-                        </IconButton>
+                        <Tooltip title="Update" arrow>
+                            <IconButton>
+                                <EditOutlinedIcon />
+                            </IconButton>
+                        </Tooltip>
                     </Link> 
-                    <IconButton 
-                        onClick={() => {
-                            setIsModalVisible(!isModalVisible)
-                            setId(orientation._id)
-                        }}
-                    >
-                        <DeleteOutlineIcon color="danger" />
-                    </IconButton>     
-                </Fragment> 
+                    <Tooltip title="Delete" arrow>
+                        <IconButton 
+                            onClick={() => {
+                                setIsModalVisible(!isModalVisible)
+                                setId(orientation._id)
+                            }}
+                        >
+                            <DeleteOutlineIcon color="danger" />
+                        </IconButton> 
+                    </Tooltip>  
+                </Fragment>,
+                name: orientation.name 
             })
         })
 
@@ -160,7 +166,7 @@ const OrientationList = () => {
                                     </Fab>
                                 </Link>
 
-                                <Tooltip title="Expand">
+                                <Tooltip title="Expand" arrow>
                                     <IconButton 
                                         color="primary" 
                                         sx={{ position: 'absolute', top: 10, left: 10 }}

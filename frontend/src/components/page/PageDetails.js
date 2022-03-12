@@ -14,7 +14,6 @@ import Social from '../layouts/Social'
 import IconButton from '@mui/material/IconButton'
 import EmailIcon from '@mui/icons-material/Email'
 import Sidebar from './Sidebar'
-import FormattedDate from '../layouts/FormattedDate'
 import RichtextOutput from '../layouts/richtext/RichtextOutput'
 
 const PageDetails = () => {   
@@ -110,17 +109,7 @@ const PageDetails = () => {
 
                             <article>
 
-                                <h1 style={{ marginBottom: "10px" }}>{page.title}</h1> 
-
-                                <div  style={{ marginBottom: "10px" }}>
-
-                                    <small>Created on <b><FormattedDate iso={page.createdAt} /></b> by <b>{page.name}</b></small>
-
-                                </div>
-                                
-                                <div  style={{ marginBottom: "10px" }}>
-                                    <small><b>{page.numOfComments}</b> Comments</small>
-                                </div>                             
+                                <h1 style={{ marginBottom: "10px" }}>{page.title}</h1>                                              
 
                                 {page.description && (
                                     <RichtextOutput text={page.description} />

@@ -179,11 +179,11 @@ exports.deletePage = catchAsyncErrors(async (req, res, next) => {
 exports.deleteImage = catchAsyncErrors(async (req, res, next) => {
 
     try { 
-        const blog = await Blog.findById(req.query.id)
-        const images  = blog.images.filter(image => image._id.toString() !== req.query.imgId.toString())
+        const page = await Page.findById(req.query.id)
+        const images  = page.images.filter(image => image._id.toString() !== req.query.imgId.toString())
 
-        await cloudinary.v2.uploader.destroy(blog.images[req.query.imgIndex].public_id)
-        await cloudinary.v2.uploader.destroy(blog.images[req.query.imgIndex].thumb_id)               
+        await cloudinary.v2.uploader.destroy(page.images[req.query.imgIndex].public_id)
+        await cloudinary.v2.uploader.destroy(page.images[req.query.imgIndex].thumb_id)               
         
         await Page.findByIdAndUpdate(req.query.id, {
             images
@@ -208,7 +208,7 @@ exports.updateImages = catchAsyncErrors(async (req, res, next) => {
     try { 
         const page = await Page.findById(req.query.id)
         const init = req.query.initPos
-        const img = blog.images[init]
+        const img = page.images[init]
         const final = req.query.finPos
         
         let images  = page.images.filter( image => page.images[init] !== image )  

@@ -3,8 +3,8 @@ import { MDBDataTableV5 } from 'mdbreact'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
-import { getAdminProducts, deleteProduct, clearErrors } from '../../../actions/productActions'
-import { DELETE_PRODUCT_RESET } from '../../../constants/productConstants'
+import { getAdminPainters, deletePainter, clearErrors } from '../../../actions/painterActions'
+import { DELETE_PAINTER_RESET } from '../../../constants/painterConstants'
 import MetaData from '../../layouts/MetaData'
 import Loader from '../../layouts/Loader'
 import Sidebar from '../Sidebar'
@@ -21,14 +21,14 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { Tooltip } from '@mui/material';
 
-const ProductsList = () => {
+const PaintersList = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { loading, error, products, productsCount } = useSelector( state => state.products )
-    const { loading: isLoading, error: deleteError, isDeleted } = useSelector( state => state.product  )
+    const { loading, error, painters } = useSelector( state => state.painters )
+    const { loading: isLoading, error: deleteError, isDeleted } = useSelector( state => state.painter  )
 
     const [ isModalVisible,  setIsModalVisible ] = useState(false)
     const [ id,              setId             ] = useState('')
@@ -36,7 +36,7 @@ const ProductsList = () => {
 
     useEffect(() => {
 
-        dispatch(getAdminProducts())
+        dispatch(getAdminPainters())
 
         if(error) {
             alert.error(error)
@@ -47,8 +47,8 @@ const ProductsList = () => {
             dispatch(clearErrors())
         }
         if(isDeleted) {
-            alert.success('Artwork Deleted Successfully')    
-            dispatch({ type: DELETE_PRODUCT_RESET })            
+            alert.success('Artist Bio Deleted Successfully')    
+            dispatch({ type: DELETE_PAINTER_RESET })            
         }
         
     }, [dispatch, navigate, alert, error, isDeleted, deleteError])
@@ -57,11 +57,11 @@ const ProductsList = () => {
         setIsModalVisible(wasModalVisible => !wasModalVisible)
     }
 
-    const deleteProductHandler = (id) => {
-        dispatch(deleteProduct(id))
-    }    
+    const deletePainterHandler = (id) => {
+        dispatch(deletePainter(id))
+    } 
 
-    const setProducts = () => {
+    const setPainters = () => {
         const data = {
             columns: [
                 {
@@ -69,7 +69,7 @@ const ProductsList = () => {
                     field: 'url',
                     sort: 'disabled',
                     width: 75
-                },          
+                },
                 {
                     label: 'Actions',
                     field: 'actions',
@@ -77,73 +77,52 @@ const ProductsList = () => {
                     width: 150                
                 },
                 {
-                    label: 'Name',
-                    field: 'name',
+                    label: 'Title',
+                    field: 'title',
                     sort: 'asc',
-                    width: 100
-                },  
-                {
-                    label: 'Artist',
-                    field: 'artist',
-                    sort: 'asc',
-                    width: 100
-                },   
-                {
-                    label: 'Reviews',
-                    field: 'reviews',
-                    sort: 'asc',
-                    width: 90
-                },             
-                {
-                    label: 'Stock',
-                    field: 'stock',
-                    sort: 'asc',
-                    width: 90
-                }                
+                    width: 120
+                }                            
             ],
             rows: []
         }
-       
-        products && products.forEach( product => {         
+
+        painters && painters.forEach( painter => {     
             data.rows.push({
-                url: <Link to={`/artwork/${product.slug}`}>
+                url: <Link to={`/painter/${painter.slug}`}>
                         <Avatar
-                            src={product.images[0].thumbUrl} 
-                            alt={product.name} 
+                            src={painter.images[0].thumbUrl} 
+                            alt={painter.title} 
                             sx={{ width: 50, height: 50 }}
                         />          
-                    </Link>,            
-                actions: 
-                <Fragment>                    
-                    <CopyToClipboard text={product._id}>                        
-                        <IconButton onClick={() => alert.success('ID Copied')}>
-                            <Tooltip title="Copy ID" arrow>
-                                <ContentCopyIcon color="primary" />  
-                            </Tooltip>  
-                        </IconButton>                                            
-                    </CopyToClipboard>  
-                    <Link to={`/admin/product/${product._id}`}>
-                        <Tooltip title="Update" arrow>
-                            <IconButton>
-                                <EditOutlinedIcon />
-                            </IconButton>
-                        </Tooltip>
-                    </Link> 
-                    <Tooltip title="Delete" arrow>
-                        <IconButton 
-                            onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setId(product._id)
-                            }}
-                        >
-                            <DeleteOutlineIcon color="danger" />
-                        </IconButton>
-                    </Tooltip>  
-                </Fragment>, 
-                name: product.name,
-                artist: product.artist,
-                reviews: product.numOfReviews,
-                stock: product.stock                
+                    </Link>,
+                actions: <Fragment>                        
+                            <CopyToClipboard text={painter._id}>
+                                <IconButton onClick={() => alert.success('ID Copied')}>
+                                    <Tooltip title="Copy ID" arrow>
+                                        <ContentCopyIcon color="primary" />  
+                                    </Tooltip>
+                                </IconButton>                     
+                            </CopyToClipboard>  
+                            <Link to={`/admin/painter/${painter._id}`}>
+                                <Tooltip title="Update" arrow>
+                                    <IconButton>
+                                        <EditOutlinedIcon />
+                                    </IconButton>
+                                </Tooltip>
+                            </Link> 
+                            <Tooltip title="Delete" arrow>
+                                <IconButton 
+                                    onClick={() => {
+                                        setIsModalVisible(!isModalVisible)
+                                        setId(painter._id)
+                                    }}
+                                >
+                                    <DeleteOutlineIcon color="danger" />
+                                </IconButton>   
+                            </Tooltip>                   
+                        </Fragment>,
+                title: painter.title   
+               
             })
         })
 
@@ -154,7 +133,7 @@ const ProductsList = () => {
 
         <Fragment>
 
-            <MetaData title={'All Products'} noIndex={true} />
+            <MetaData title={'All Artist Bios'} noIndex={true} />
 
             <div className="container">
 
@@ -172,12 +151,12 @@ const ProductsList = () => {
 
                             <Fragment>  
 
-                                <div className="user-form cart">
+                                <div className="user-form">
 
-                                    <h1>All Artwork <small>{productsCount}</small></h1>                                                                
+                                    <h1>All Artist Bios</h1>                                
                                 
                                     <MDBDataTableV5 
-                                        data={setProducts()}   
+                                        data={setPainters()}   
                                         fullPagination   
                                         scrollX  
                                         searchTop
@@ -187,7 +166,6 @@ const ProductsList = () => {
                                     <Link to="/admin/dashboard">
                                         <Fab 
                                             size="small" 
-                                            className="close" 
                                             color="primary"
                                             sx={{ position: 'absolute', top: 10, right: 10 }}
                                         >
@@ -223,8 +201,8 @@ const ProductsList = () => {
                 content={
                     <Confirm 
                         onBackdropClick={toggleModal} 
-                        onConfirm={() => deleteProductHandler(id)} 
-                        message="Delete artwork"
+                        onConfirm={() => deletePainterHandler(id)} 
+                        message="Delete Artist Bio"
                     />
                 }
             />
@@ -235,4 +213,4 @@ const ProductsList = () => {
 
 }
 
-export default ProductsList
+export default PaintersList

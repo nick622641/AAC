@@ -103,27 +103,29 @@ const BlogsList = () => {
                     </Link>,
                 actions: <Fragment>
                         <CopyToClipboard text={blog._id}>
-                            <IconButton 
-                                onClick={() => alert.success('ID Copied')} 
-                                title="Copy ID">
-                                <ContentCopyIcon color="primary" 
-                            />  
-                            </IconButton>                      
+                            <IconButton onClick={() => alert.success('ID Copied')}>
+                                <Tooltip title="Copy ID" arrow>
+                                    <ContentCopyIcon color="primary" />  
+                                </Tooltip>
+                            </IconButton>  
                         </CopyToClipboard>    
                         <Link to={`/admin/blog/${blog._id}`}>
-                            <IconButton title="Edit Blog">
-                                <EditOutlinedIcon />
-                            </IconButton>
+                            <Tooltip title="Update" arrow>
+                                <IconButton>
+                                    <EditOutlinedIcon />
+                                </IconButton>
+                            </Tooltip>
                         </Link> 
-                        <IconButton 
-                             onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setId(blog._id)
-                            }}
-                            title="Delete Blog"
-                        >
-                            <DeleteOutlineIcon color="danger" />
-                        </IconButton>                      
+                        <Tooltip title="Delete" arrow>
+                            <IconButton 
+                                onClick={() => {
+                                    setIsModalVisible(!isModalVisible)
+                                    setId(blog._id)
+                                }}                                
+                            >
+                                <DeleteOutlineIcon color="danger" />
+                            </IconButton> 
+                        </Tooltip>                     
                     </Fragment>,
                 title: blog.title,    
                 comments: blog.numOfComments           

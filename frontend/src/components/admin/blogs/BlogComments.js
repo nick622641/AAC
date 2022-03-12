@@ -59,17 +59,17 @@ const BlogComments = () => {
         const data = {
             columns: [
                 {
-                    label: 'User',
-                    field: 'user',
-                    sort: 'asc',
-                    width: 120
-                },
-                {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'disabled',
                     width: 100                  
-                },              
+                },  
+                {
+                    label: 'User',
+                    field: 'user',
+                    sort: 'asc',
+                    width: 120
+                },                            
                 {
                     label: 'Comment',
                     field: 'comment',
@@ -81,19 +81,21 @@ const BlogComments = () => {
         }
 
         comments.forEach( c => {
-            data.rows.push({
-                user: c.name, 
+            data.rows.push({                
                 actions:                 
                     <Fragment> 
-                        <IconButton 
-                            onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setCommentId(c._id)
-                            }}
-                        >
-                            <DeleteOutlineIcon color="danger" />
-                        </IconButton> 
-                    </Fragment> ,
+                        <Tooltip title="Delete" arrow>
+                            <IconButton 
+                                onClick={() => {
+                                    setIsModalVisible(!isModalVisible)
+                                    setCommentId(c._id)
+                                }}
+                            >
+                                <DeleteOutlineIcon color="danger" />
+                            </IconButton> 
+                        </Tooltip>                       
+                    </Fragment>,
+                user: c.name, 
                 comment: parse(c.comment)                 
             })
         })
@@ -159,7 +161,7 @@ const BlogComments = () => {
                                 </Fab>
                             </Link>
 
-                            <Tooltip title="Expand">
+                            <Tooltip title="Expand" arrow>
                                 <IconButton 
                                     color="primary" 
                                     sx={{ position: 'absolute', top: 10, left: 10 }}

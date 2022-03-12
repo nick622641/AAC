@@ -18,6 +18,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import { Tooltip } from '@mui/material'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 const ArtistList = () => {
 
@@ -62,45 +64,49 @@ const ArtistList = () => {
         const data = {
             columns: [                
                 {
-                    label: 'Artist ID',
-                    field: 'id',
-                    sort: 'disabled',
-                    width: 200
+                    label: 'Actions',
+                    field: 'actions',
+                    sort: 'disabled'  ,
+                    width: 150                
                 },
                 {
                     label: 'Name',
                     field: 'name',
                     sort: 'asc'
-                },  
-                {
-                    label: 'Actions',
-                    field: 'actions',
-                    sort: 'disabled'  ,
-                    width: 100                
-                }
+                }                
             ],
             rows: []
         }      
         artists && artists.forEach( artist => {
-            data.rows.push({                
-                id: artist._id,
-                name: artist.name,
+            data.rows.push({ 
                 actions: 
                     <Fragment>
+                        <CopyToClipboard text={artist._id}>
+                            <IconButton onClick={() => alert.success('ID Copied')}>
+                                <Tooltip title="Copy ID" arrow>
+                                    <ContentCopyIcon color="primary" />  
+                                </Tooltip>
+                            </IconButton>                    
+                        </CopyToClipboard> 
                         <Link to={`/admin/artist/${artist._id}`}>
-                            <IconButton>
-                                <EditOutlinedIcon />
-                            </IconButton>
+                            <Tooltip title="Update" arrow>
+                                <IconButton>
+                                    <EditOutlinedIcon />
+                                </IconButton>
+                            </Tooltip>
                         </Link> 
-                        <IconButton 
-                            onClick={() => {
-                                setIsModalVisible(!isModalVisible)
-                                setId(artist._id)
-                            }}
-                        >
-                            <DeleteOutlineIcon color="danger" />
-                        </IconButton>   
-                    </Fragment> 
+                        <Tooltip title="Delete" arrow>
+                            <IconButton 
+                                onClick={() => {
+                                    setIsModalVisible(!isModalVisible)
+                                    setId(artist._id)
+                                }}
+                            >
+                                <DeleteOutlineIcon color="danger" />
+                            </IconButton> 
+                        </Tooltip>  
+                    </Fragment>,
+                name: artist.name
             })
         }) 
 
@@ -161,7 +167,7 @@ const ArtistList = () => {
                                     </Fab>
                                 </Link>
 
-                                <Tooltip title="Expand">
+                                <Tooltip title="Expand" arrow>
                                     <IconButton 
                                         color="primary" 
                                         sx={{ position: 'absolute', top: 10, left: 10 }}
