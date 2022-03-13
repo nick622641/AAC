@@ -2,7 +2,7 @@ const User = require('../models/user')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
 const sendToken = require('../utils/jwtToken')
- const sendEmail = require('../utils/sendEmail')
+const sendEmail = require('../utils/sendEmail')
 const crypto = require('crypto')
 const cloudinary = require('cloudinary')
 
@@ -78,6 +78,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     const message = `Your password reset token is as follows:\n\n${resetUrl}\n\nIf you have not requested a password reset please ignore this email.`
     try {
         await sendEmail({
+            type: 'forgot',
             email: user.email,
             subject: 'AAC Password Recovery',
             message

@@ -1,9 +1,10 @@
 import { Fragment, useEffect, useState } from 'react'
-import { Button, FormControl, TextField } from '@mui/material'
+import axios from 'axios'
+import { FormControl, TextField } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
-import RichtextEditor from '../layouts/richtext/RichtextEditor'
 import ReCAPTCHA from 'react-google-recaptcha'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 function Contact() {
 
@@ -13,10 +14,12 @@ function Contact() {
     const [ captcha,    setCaptcha    ] = useState(false)
     const [ isVerified, setIsVerified ] = useState(false)
     const [ success,    setSuccess    ] = useState(false)
+    const [ loading,    setLoading    ] = useState(false)
 
     const submitHandler = (e) => {
         e.preventDefault()         
-        setCaptcha(true)                  
+        setCaptcha(true)  
+        setLoading(true)                
     }
 
     const onChange = (value) => {      
@@ -24,16 +27,23 @@ function Contact() {
         const formData = new FormData()
         formData.set('name', name)
         formData.set('email', email)
-        formData.set('message', message)
-        console.log(`Name: ${name}, Email: ${email} and message: ${message}`)
-        setSuccess(true)
-      }
-
-      useEffect(() => {
+        formData.set('message', message)        
+        
+        axios.post( '/api/v1/contact', formData )
+            .then(res => {
+                setSuccess(true)
+                setLoading(false)
+                console.log(`Name: ${name}, Email: ${email} and message: ${message}`)
+            }).catch(() => {
+                console.log('message not sent')
+            })
+                        
+    }
+    useEffect(() => {
         if ( name && email && message ) {
             setIsVerified(true)
         }
-      }, [ name, email, message])
+    }, [ name, email, message])
     
     return (  
 
@@ -73,17 +83,28 @@ function Contact() {
                                 />                                 
                             </FormControl>  
 
-                            <RichtextEditor text={message} setText={setMessage} />                                          
-                                        
-                            <Button                       
-                                variant='contained' 
-                                onClick={submitHandler}
+                            <FormControl fullWidth>
+                                <TextField
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                    multiline
+                                    rows={4}
+                                    label="Message*"
+                                    variant="standard"
+                                />
+                            </FormControl>    
+
+                            <LoadingButton 
+                                type="submit"
+                                loading={loading}
+                                loadingPosition="end"
+                                variant="contained"                            
                                 endIcon={<SendIcon />}
                                 sx={{ mt: 4, width: '100%' }}
                                 disabled={ !isVerified ? true : false }
                             >
-                                Send
-                            </Button>
+                                Send Email
+                            </LoadingButton>
                                 
                         </form>     
 

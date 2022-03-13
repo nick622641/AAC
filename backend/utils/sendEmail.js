@@ -10,12 +10,26 @@ const sendEmail = async options => {
         }
       })
 
-      const message = {
+      let message = ''
+
+      if ( options.type === 'contact' ) {
+        message = {
+          from: `${options.name} <${options.email}>`,
+          to: process.env.SMTP_FROM_EMAIL,
+          subject: options.subject,
+          text: options.message
+        }
+         
+      } 
+      
+      if ( options.type === 'forgot' ) {
+        message = {
           from: `${process.env.SMTP_FROM_NAME} <${process.env.SMTP_FROM_EMAIL}>`,
           to: options.email,
           subject: options.subject,
           text: options.message
-      }
+        }
+      }      
 
       await transporter.sendMail(message)
 }

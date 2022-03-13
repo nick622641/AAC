@@ -22,6 +22,7 @@ const blog     = require( './routes/blog'    )
 const painter  = require( './routes/painter' )
 const page     = require( './routes/page'    )
 const image    = require( './routes/image'   )
+const contact  = require( './routes/contact' )
 
 app.use( '/api/v1', auth     )
 app.use( '/api/v1', products )
@@ -31,6 +32,7 @@ app.use( '/api/v1', blog     )
 app.use( '/api/v1', painter  )
 app.use( '/api/v1', page     )
 app.use( '/api/v1', image    )
+app.use( '/api/v1', contact  )
 
 if ( process.env.NODE_ENV === 'PRODUCTION' ) {
 
