@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { useSpring, animated } from 'react-spring'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import FormattedDate from '../layouts/FormattedDate'
 
 const Sidebar = ({ blogs }) => {
+
+    const location = useLocation()
 
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
@@ -41,8 +43,9 @@ const Sidebar = ({ blogs }) => {
                         <li key={blog._id}>   
 
                             <Link 
+                                className={location.pathname.includes(blog.slug) ? 'link-active' : ''}
                                 to={`/blog/${blog.slug}`}
-                                className="whitespace-nowrap"
+                                style={{ whiteSpace: "nowrap" }}
                             >                                                                   
                                 <FormattedDate iso={blog.createdAt} format="date" />
                             </Link>

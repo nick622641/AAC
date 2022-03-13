@@ -251,7 +251,7 @@ const Dashboard = () => {
                                             */}
 
                                             <Grid item xs={12} md={3} sx={{ mb: 2 }}>
-                                                <Item sx={{ background: '#bc986a' }}>
+                                                <Item sx={{ background: '#9cb19c' }}>
                                                     <Link to="/admin/painters">   
 
                                                         <div>

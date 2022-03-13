@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { useSpring, animated } from 'react-spring'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const Sidebar = ({ pages }) => {
+
+    const location = useLocation()
 
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
@@ -40,8 +42,9 @@ const Sidebar = ({ pages }) => {
                         <li key={page._id}>   
 
                             <Link 
+                                className={location.pathname.includes(page.slug) ? 'link-active' : ''}
                                 to={`/page/${page.slug}`}
-                                className="whitespace-nowrap"
+                                style={{ whiteSpace: "nowrap" }}
                             >                                                                   
                                 {page.title}
                             </Link>

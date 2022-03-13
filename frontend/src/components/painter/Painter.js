@@ -34,8 +34,8 @@ const Painter = ({ painter }) => {
                     <p style={{ marginBottom: "10px" }}>
                         
                             <small>
-                                By <b>{painter.name} </b>
-                                on <b><FormattedDate iso={painter.createdAt} format="date" /></b>
+                                Member since&nbsp;
+                                <b><FormattedDate iso={painter.createdAt} format="date" /></b>
                             </small>
                        
                     </p>                

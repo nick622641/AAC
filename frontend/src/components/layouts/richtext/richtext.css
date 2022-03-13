@@ -158,3 +158,6 @@
   padding: 10px;
   margin-bottom: 20px;
 }
+.blog-content a {
+  text-decoration: underline;
+}

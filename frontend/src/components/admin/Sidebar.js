@@ -95,125 +95,8 @@ const Sidebar = () => {
                                 </IconButton>
                                 &nbsp; Dashboard
                             </Link>
-                        </li>                    
-                        <li onClick={() => {toggleBlogMenu()}}>                        
-                           
-                            <IconButton>
-                                <PushPinIcon />
-                            </IconButton>
-                            &nbsp; Blogs
-                            <IconButton className="arrow-down">
-                                {isBlogMenuVisible ? (
-                                    <ArrowDropUpIcon />
-                                ):(
-                                    <ArrowDropDownIcon />
-                                )}                                
-                            </IconButton>
-                       
-                            {isBlogMenuVisible && ( 
-                            <animated.div className="dropdown-menu" style={blogMenuAppear}>  
-                                <ul>                            
-                                    <li>
-                                        <Link to="/admin/blogs">
-                                            <IconButton>
-                                                <ImageSearchIcon />
-                                            </IconButton>                                            
-                                            &nbsp; All
-                                        </Link>
-                                    </li>
-                        
-                                    <li>
-                                        <Link to="/admin/blog">
-                                            <IconButton>
-                                                <AddIcon />
-                                            </IconButton> 
-                                            &nbsp; Create
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </animated.div>
-                            )}
-                        </li>
-
-                        <li onClick={() => {togglePageMenu()}}>                        
-                           
-                            <IconButton>
-                                <ContactPageIcon />
-                            </IconButton>
-                            &nbsp; Pages
-                            <IconButton className="arrow-down">
-                                {isPageMenuVisible ? (
-                                    <ArrowDropUpIcon />
-                                ):(
-                                    <ArrowDropDownIcon />
-                                )}                                
-                            </IconButton>
-                       
-                            {isPageMenuVisible && ( 
-                            <animated.div className="dropdown-menu" style={pageMenuAppear}>  
-                                <ul>                            
-                                    <li>
-                                        <Link to="/admin/pages">
-                                            <IconButton>
-                                                <ImageSearchIcon />
-                                            </IconButton>                                            
-                                            &nbsp; All
-                                        </Link>
-                                    </li>
-                        
-                                    <li>
-                                        <Link to="/admin/page">
-                                            <IconButton>
-                                                <AddIcon />
-                                            </IconButton> 
-                                            &nbsp; Create
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </animated.div>
-                            )}
-                        </li>
-
-                        <li onClick={() => {toggleArtistMenu()}}>                        
-                           
-                            <IconButton>
-                                <ArticleIcon />
-                            </IconButton>
-                            &nbsp; Artist Bios
-                            <IconButton className="arrow-down">
-                                {isArtistMenuVisible ? (
-                                    <ArrowDropUpIcon />
-                                ):(
-                                    <ArrowDropDownIcon />
-                                )}                                
-                            </IconButton>
-                       
-                            {isArtistMenuVisible && ( 
-                            <animated.div className="dropdown-menu" style={artistMenuAppear}>  
-                                <ul>                            
-                                    <li>
-                                        <Link to="/admin/painters">
-                                            <IconButton>
-                                                <ImageSearchIcon />
-                                            </IconButton>                                            
-                                            &nbsp; All
-                                        </Link>
-                                    </li>
-                        
-                                    <li>
-                                        <Link to="/admin/painter">
-                                            <IconButton>
-                                                <AddIcon />
-                                            </IconButton> 
-                                            &nbsp; Create
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </animated.div>
-                            )}
-                        </li>
-
-                        <li onClick={() => {toggleMenu()}}>                        
+                        </li>  
+                        <li onClick={() => {toggleMenu()}} className="cursor-pointer">                        
                            
                             <IconButton>
                                 <BrushIcon />
@@ -251,7 +134,8 @@ const Sidebar = () => {
                             </animated.div>
                             )}
                         </li>
-                        <li onClick={() => {toggleCategories()}}>                      
+
+                        <li onClick={() => {toggleCategories()}}  className="cursor-pointer">                      
                            
                             <IconButton>
                                 <CategoryIcon />
@@ -295,7 +179,125 @@ const Sidebar = () => {
                                     </ul>
                                 </animated.div>
                             )}
-                        </li>    
+                        </li>   
+
+                        <li onClick={() => {toggleBlogMenu()}}  className="cursor-pointer">                        
+                           
+                            <IconButton>
+                                <PushPinIcon />
+                            </IconButton>
+                            &nbsp; Blogs
+                            <IconButton className="arrow-down">
+                                {isBlogMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isBlogMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={blogMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/blogs">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/blog">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>
+
+                        <li onClick={() => {togglePageMenu()}}  className="cursor-pointer">                        
+                           
+                            <IconButton>
+                                <ContactPageIcon />
+                            </IconButton>
+                            &nbsp; Pages
+                            <IconButton className="arrow-down">
+                                {isPageMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isPageMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={pageMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/pages">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/page">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>
+
+                        <li onClick={() => {toggleArtistMenu()}}  className="cursor-pointer">                        
+                           
+                            <IconButton>
+                                <ArticleIcon />
+                            </IconButton>
+                            &nbsp; Artist Bios
+                            <IconButton className="arrow-down">
+                                {isArtistMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isArtistMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={artistMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/painters">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/painter">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>                        
+                         
                         <li>
                             <Link to="/admin/orders">
                                 <IconButton>
@@ -304,6 +306,7 @@ const Sidebar = () => {
                                 &nbsp; Orders
                             </Link>
                         </li>
+
                         <li>
                             <Link to="/admin/users">
                                 <IconButton>
@@ -312,6 +315,7 @@ const Sidebar = () => {
                                 &nbsp; Users
                             </Link>
                         </li>
+
                         <li>
                             <Link to="/admin/reviews">
                                 <IconButton>
@@ -320,6 +324,7 @@ const Sidebar = () => {
                                 &nbsp; Reviews
                             </Link>
                         </li>
+                        
                         <li>
                             <Link to="/admin/comments">
                                 <IconButton>

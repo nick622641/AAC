@@ -48,7 +48,9 @@ const Header = () => {
     const [ isMenuVisible,   setMenuVisible    ] = useState(false)
     const [ menuItem,        setMenuItem       ] = useState(0)
     const [ isMenuOpen,      setIsMenuOpen     ] = useState(false)  
-    const [ fixed,           setFixed          ] = useState(false);
+    const [ fixed,           setFixed          ] = useState(false)
+    
+    const pathname = location.pathname.replace(/-/g, ' ')
 
     const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
@@ -120,7 +122,7 @@ const Header = () => {
             window.removeEventListener('scroll', setFixed)
           }
         }
-      }, [])    
+    }, [])         
     
     return (
 
@@ -190,7 +192,8 @@ const Header = () => {
                                         </li> 
                                         {artists && artists.map( (artist, index) => ( 
                                             <li key={artist._id}>                                                
-                                                <Link 
+                                                <Link
+                                                    className={pathname.includes(artist.name) ? 'link-active' : ''} 
                                                     to={`gallery/artist/${artist.name.replace(/ /g, '-')}`}
                                                     onClick={() => {
                                                                 setIsMenuOpen(false)
@@ -213,6 +216,7 @@ const Header = () => {
                                         {media && media.map( (medium, index) => ( 
                                             <li key={medium._id}>                                                
                                                 <Link 
+                                                    className={pathname.includes(medium.name) ? 'link-active' : ''}
                                                     to={`gallery/medium/${medium.name.replace(/ /g, '-')}`}
                                                     onClick={() => {
                                                             setIsNavOpen(false)
@@ -375,6 +379,7 @@ const Header = () => {
                                         {painters && painters.map( (painter, index) => ( 
                                             <li key={painter._id}>                                                
                                                 <Link 
+                                                    className={location.pathname.includes(painter.slug) ? 'link-active' : ''}
                                                     to={`painter/${painter.slug}`}
                                                     onClick={() => {
                                                                 setIsMenuOpen(false)
