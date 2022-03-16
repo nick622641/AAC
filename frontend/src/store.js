@@ -10,6 +10,7 @@ import { mediaReducer, newMediaReducer, mediumReducer, mediaDetailsReducer, orie
 import { authReducer, userReducer, forgotPasswordReducer, allUsersdReducer, userDetailsReducer } from './reducers/userReducers'
 import { cartReducer } from './reducers/cartReducers'
 import { newOrderReducer, myOrdersReducer, orderDetailsReducer, allOrdersReducer, orderReducer } from './reducers/orderReducers'
+import { staffMembersReducer, staffDetailsReducer, adminStaffDetailsReducer, newStaffReducer, staffReducer } from './reducers/staffReducers'
 
 const reducer = combineReducers({
     artists: artistsReducer,
@@ -51,6 +52,12 @@ const reducer = combineReducers({
     adminPainterDetails: adminPainterDetailsReducer,
     newPainter: newPainterReducer,
     painter: painterReducer,
+
+    staffMembers: staffMembersReducer,    
+    staffDetails: staffDetailsReducer,
+    adminStaffDetails: adminStaffDetailsReducer,
+    newStaff: newStaffReducer,
+    staff: staffReducer,
 
     pages: pagesReducer,    
     pageDetails: pageDetailsReducer,

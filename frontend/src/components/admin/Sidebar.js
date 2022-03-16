@@ -20,6 +20,7 @@ import PushPinIcon from '@mui/icons-material/PushPin'
 import StarsIcon from '@mui/icons-material/Stars'
 import ContactPageIcon from '@mui/icons-material/ContactPage'
 import ArticleIcon from '@mui/icons-material/Article'
+import GroupAddIcon from '@mui/icons-material/GroupAdd'
 
 const Sidebar = () => {
 
@@ -27,6 +28,7 @@ const Sidebar = () => {
     const [ isBlogMenuVisible, setBlogMenuVisible ] = useState(false)
     const [ isPageMenuVisible, setPageMenuVisible ] = useState(false)
     const [ isArtistMenuVisible, setArtistMenuVisible ] = useState(false)
+    const [ isStaffMenuVisible, setStaffMenuVisible ] = useState(false)
     const [ isMenuVisible, setMenuVisible ] = useState(false)
     const [ isCategoriesVisible, setCategoriesVisible ] = useState(false)
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
@@ -43,6 +45,9 @@ const Sidebar = () => {
     }
     const toggleArtistMenu = () => {
         setArtistMenuVisible(isArtistMenuVisible => !isArtistMenuVisible)
+    }
+    const toggleStaffMenu = () => {
+        setStaffMenuVisible(isStaffMenuVisible => !isStaffMenuVisible)
     }
     const toggleMenu = () => {
         setMenuVisible(isMenuVisible => !isMenuVisible)
@@ -65,6 +70,10 @@ const Sidebar = () => {
     const artistMenuAppear = useSpring({
         transform: isArtistMenuVisible ? "translateY(0)" : "translateY(-40px)",
         opacity: isArtistMenuVisible ? 1 : 0
+    })
+    const staffMenuAppear = useSpring({
+        transform: isStaffMenuVisible ? "translateY(0)" : "translateY(-40px)",
+        opacity: isStaffMenuVisible ? 1 : 0
     })
     const categoriesAppear = useSpring({
         transform: isCategoriesVisible ? "translateY(0)" : "translateY(-40px)",
@@ -296,17 +305,47 @@ const Sidebar = () => {
                                 </ul>
                             </animated.div>
                             )}
-                        </li>                        
-                         
-                        <li>
-                            <Link to="/admin/orders">
-                                <IconButton>
-                                    <ShoppingBasketIcon />
-                                </IconButton>
-                                &nbsp; Orders
-                            </Link>
-                        </li>
+                        </li>    
 
+                        <li onClick={() => {toggleStaffMenu()}}  className="cursor-pointer">                        
+                           
+                            <IconButton>
+                                <GroupAddIcon />
+                            </IconButton>
+                            &nbsp; Staff
+                            <IconButton className="arrow-down">
+                                {isStaffMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isStaffMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={staffMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/staff">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/staff/new">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>
+                        
                         <li>
                             <Link to="/admin/users">
                                 <IconButton>
@@ -315,6 +354,15 @@ const Sidebar = () => {
                                 &nbsp; Users
                             </Link>
                         </li>
+                         
+                        <li>
+                            <Link to="/admin/orders">
+                                <IconButton>
+                                    <ShoppingBasketIcon />
+                                </IconButton>
+                                &nbsp; Orders
+                            </Link>
+                        </li>                   
 
                         <li>
                             <Link to="/admin/reviews">

@@ -72,8 +72,8 @@ exports.updatePainter = catchAsyncErrors(async (req, res, next) => {
         if(!title)       { return next(new ErrorHandler('Please enter a name',            400)) }
         if(!description) { return next(new ErrorHandler('Please provide a description',    400)) }    
         if(!style)       { return next(new ErrorHandler('Please provide at least one style', 400)) }    
-    if(!inspiration)     { return next(new ErrorHandler('Please provide at least one inspiration', 400)) }    
-    if(!medium)          { return next(new ErrorHandler('Please provide at least one medium'     , 400)) }
+        if(!inspiration) { return next(new ErrorHandler('Please provide at least one inspiration', 400)) }    
+        if(!medium)      { return next(new ErrorHandler('Please provide at least one medium'     , 400)) }
 
         if (images !== undefined) {       
               

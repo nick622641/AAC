@@ -15,8 +15,7 @@ exports.contactEmail = catchAsyncErrors( async (req, res, next) => {
             message: req.body.message
         })
         res.status(200).json({
-            success: true,
-            message: 'Thank You!'
+            success: true            
         })        
     } catch (error) { 
 

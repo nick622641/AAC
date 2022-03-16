@@ -161,7 +161,7 @@ export const newBlog = (blogData) => async (dispatch) => {
 }
 
 // Update Blog (Admin)
-export const updateBlog = (id, blogtData) => async (dispatch) => {
+export const updateBlog = (id, blogData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_BLOG_REQUEST })
         const config = {
@@ -169,7 +169,7 @@ export const updateBlog = (id, blogtData) => async (dispatch) => {
                 'Content-Type': 'application/x-www-form-urlencoded'   
             }
         }
-        const { data } = await axios.put(`/api/v1/admin/blog/${id}`, blogtData, config)
+        const { data } = await axios.put(`/api/v1/admin/blog/${id}`, blogData, config)
         dispatch({
             type: UPDATE_BLOG_SUCCESS,
             payload: data

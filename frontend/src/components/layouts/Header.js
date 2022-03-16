@@ -255,7 +255,7 @@ const Header = () => {
                                         <ul className="list-style"> 
                                             <li>
                                                 <Link 
-                                                    to="#!" 
+                                                    to="/staff" 
                                                     onClick={() => {
                                                             setIsNavOpen(false)
                                                             setIsMenuOpen(false)

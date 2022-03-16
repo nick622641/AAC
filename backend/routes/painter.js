@@ -11,10 +11,7 @@ const {
     updatePainter, 
     deletePainter,
     deleteImage,
-    updateImages,
-    createPainterComment,
-    getPainterComments,
-    deleteComment   
+    updateImages    
 } = require('../controllers/painterController')
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth')

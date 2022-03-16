@@ -81,6 +81,12 @@ import PaintersList                      from './components/admin/painters/Paint
 import NewPainter                        from './components/admin/painters/NewPainter'
 import UpdatePainter                     from './components/admin/painters/UpdatePainter'
 
+import StaffMembers                      from './components/StaffMembers'
+import StaffDetails                      from './components/staff/StaffDetails'
+import StaffList                         from './components/admin/staff/StaffList'
+import NewStaff                          from './components/admin/staff/NewStaff'
+import UpdateStaff                       from './components/admin/staff/UpdateStaff'
+
 function App() {  
 
   const { loggingOut } = useSelector(state => state.auth)
@@ -139,8 +145,11 @@ function App() {
             
             <Route path="/page/:slug"            element={<PageDetails                                                  />} />
 
-            <Route path="/painters"              element={<Painters                                                        />} />
-            <Route path="/painter/:slug"         element={<PainterDetails                                                  />} />
+            <Route path="/painters"              element={<Painters                                                     />} />
+            <Route path="/painter/:slug"         element={<PainterDetails                                               />} />
+
+            <Route path="/staff"                 element={<StaffMembers                                                 />} />
+            <Route path="/staff/:slug"           element={<StaffDetails                                                 />} />
 
             <Route path="/terms"                 element={<Terms                                                        />} />
             <Route path="/privacy"               element={<Privacy                                                      />} />
@@ -192,6 +201,10 @@ function App() {
             <Route path="/admin/painter"         element={<PrivateRoute isAdmin={true}><NewPainter       /></PrivateRoute>} />
             <Route path="/admin/painters"        element={<PrivateRoute isAdmin={true}><PaintersList     /></PrivateRoute>} /> 
             <Route path="/admin/painter/:id"     element={<PrivateRoute isAdmin={true}><UpdatePainter    /></PrivateRoute>} />
+
+            <Route path="/admin/staff/new"       element={<PrivateRoute isAdmin={true}><NewStaff         /></PrivateRoute>} />
+            <Route path="/admin/staff"           element={<PrivateRoute isAdmin={true}><StaffList        /></PrivateRoute>} /> 
+            <Route path="/admin/staff/:id"       element={<PrivateRoute isAdmin={true}><UpdateStaff      /></PrivateRoute>} />
 
           </Routes>   
 
