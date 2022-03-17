@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "622aca241dd9574b971f5fcb"
+  },
+  "title": "Our passion",
+  "slug": "our-passion",
+  "description": "<h2>Every artwork represents an emotion or feeling from our lives</h2>\n<p>Abstract Art Canada comprises a growing number of artists connected by a desire to celebrate our history, our emotional experiences and our freedom of self-expression.</p>\n<p>When starting any new piece, we don’t follow any rules – our art is created spontaneously and naturally.</p>\n<p>Each painting has its own story to tell and each piece is a personal statement.</p>\n<p>We express the emotion of our stories in creative and dynamic ways and in doing so, we try to convey a sense of presence in our works. But the stories don’t end there. As the viewer, you bring your own perception to our art. It is you who tells the final chapter.</p>\n<h2>Art that’s accessible and good for your mental wellbeing</h2>\n<p>In the words of founder, David Brooks, “We want to make art which is approachable and accessible for everyone. Painting provides a therapeutic way to support your mental and emotional wellbeing and we hope to encourage as many people as possible to pick up a paintbrush.”</p>\n<h2>FEEDBACK FROM SOME OF OUR CUSTOMERS</h2>\n<p><em>“I’m a complete novice when it comes to art. I just wanted something to really stand out on my wall. The piece I bought does just that. I see something new each time I look at it.”</em></p>\n<p>Ruth, London</p>\n<p><em>“I am lost inside that! There is nothing else to say apart from ‘excellent’, as it draws you inside, slowly, to find each detail and gesture that you see. All good art will do that: initial attraction, which then entices you into that world. I wish I could do that.”</em></p>\n<p>Jon, UK</p>\n<p><em>“The painting arrived this morning and it’s already up on the wall. It’s even better than I expected and I can’t wait to show it off. Thank you.”</em></p>\n<p>Terrie, Edmonton</p>\n",
+  "images": [
+    {
+      "public_id": "pages/xmbhgfzw7cop1efjj1z5",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1646971431/pages/xmbhgfzw7cop1efjj1z5.jpg",
+      "thumb_id": "pages/xheijkhkbbqq80ofkrfa",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1646971428/pages/xheijkhkbbqq80ofkrfa.jpg",
+      "_id": {
+        "$oid": "622aca241dd9574b971f5fcc"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-11T04:03:48.982Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622acb3d1dd9574b971f5fdc"
+  },
+  "title": "Buying and Shipping",
+  "slug": "buying-and-shipping",
+  "description": "<h2>Simple</h2>\n<p>Whether you’re a seasoned collector or a first-time buyer, we want to make buying our art as simple as possible.  When browsing any of the art, you’ll see a link which takes you to information about the artist.  In addition, we’re available to answer any other questions you may have before you commit to a purchase.  Please feel free to Contact Us or click on the ‘Enquire’ button below any of the artworks to ask your question.</p>\n<h2>Environmentally-friendly</h2>\n<p>Once you’ve decided on a piece, we will choose the best method for shipping it to you. We’re not Amazon so we promise to use the most appropriate packaging. What’s more, we take an environmentally-friendly approach so, where possible, no single-use plastic.</p>\n<h2>Quick and efficient</h2>\n<ul>\n<li>To make a purchase, simply click <strong>add to cart</strong></li>\n<li>Click on the <strong>payment box</strong>, when you’re ready</li>\n<li>Follow the process to pay by PayPal or by credit or debit card and follow the instructions</li>\n<li>If paying by PayPal, please note that we will send the art to the <strong>address you registered with Paypal</strong></li>\n<li>In the event you wish us to <strong>dispatch to a different address</strong> please let us know as soon as possible and provide your <strong>telephone number</strong>.&nbsp;</li>\n<li>We will then contact you within 24 hours to confirm details of packaging and shipping.</li>\n<li>Please note, we do not store bank details.</li>\n</ul>\n<h2></h2>\n<h2>Safe and secure and fully insured</h2>\n<p>Each artist is responsible for shipping their art so they will always pack it very securely and post it, fully insured. In the unlikely event an artwork arrives damaged, we provide a money-back guarantee.</p>\n<h2>Free shipping</h2>\n<p>All prices are in Canadian dollars and we take payment via PayPal or bank card. Please note, shipping of all artworks is included in the price.</p>\n<h2>Authenticity guaranteed</h2>\n<p>All artworks come with a signed certificate of authenticity.</p>\n",
+  "images": [
+    {
+      "public_id": "pages/dncji81d3fvdytsfmerg",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1646971712/pages/dncji81d3fvdytsfmerg.jpg",
+      "thumb_id": "pages/uvwuc9kwhmovavxt6wzi",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1646971709/pages/uvwuc9kwhmovavxt6wzi.jpg",
+      "_id": {
+        "$oid": "622acb3d1dd9574b971f5fdd"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-11T04:08:29.162Z"
+  },
+  "__v": 0
+}]

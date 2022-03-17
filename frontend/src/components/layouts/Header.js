@@ -291,7 +291,7 @@ const Header = () => {
                                             </li>  
                                             <li>
                                                 <Link 
-                                                    to="#!" 
+                                                    to="/friends" 
                                                     onClick={() => {
                                                             setIsNavOpen(false)
                                                             setIsMenuOpen(false)

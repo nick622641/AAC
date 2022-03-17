@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive'
 import { useSpring, animated } from 'react-spring'
 import { Link, useLocation } from 'react-router-dom'
 
-const Sidebar = ({ staffMembers }) => {
+const Sidebar = ({ staffMembers, friends }) => {
 
     const location = useLocation()
 
@@ -50,7 +50,25 @@ const Sidebar = ({ staffMembers }) => {
                             </Link>
                         </li>
                     ))}
-                </ul>       
+                </ul> 
+
+                <h3>Friends of AAC</h3>                              
+
+                <ul className="list-style">   
+                    {friends && friends.map((friend, i) => (
+                        
+                        <li key={friend._id}>   
+
+                            <Link 
+                                className={location.pathname.includes(friend.slug) ? 'link-active' : ''}
+                                to={`/friend/${friend.slug}`}
+                                style={{ whiteSpace: "nowrap" }}
+                            >                                                                   
+                                {friend.title}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>        
 
                 <button 
                     className="filters"

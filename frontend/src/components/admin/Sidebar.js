@@ -29,6 +29,7 @@ const Sidebar = () => {
     const [ isPageMenuVisible, setPageMenuVisible ] = useState(false)
     const [ isArtistMenuVisible, setArtistMenuVisible ] = useState(false)
     const [ isStaffMenuVisible, setStaffMenuVisible ] = useState(false)
+    const [ isFriendMenuVisible, setFriendMenuVisible ] = useState(false)
     const [ isMenuVisible, setMenuVisible ] = useState(false)
     const [ isCategoriesVisible, setCategoriesVisible ] = useState(false)
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
@@ -48,6 +49,9 @@ const Sidebar = () => {
     }
     const toggleStaffMenu = () => {
         setStaffMenuVisible(isStaffMenuVisible => !isStaffMenuVisible)
+    }
+    const toggleFriendMenu = () => {
+        setFriendMenuVisible(isFriendMenuVisible => !isFriendMenuVisible)
     }
     const toggleMenu = () => {
         setMenuVisible(isMenuVisible => !isMenuVisible)
@@ -74,6 +78,10 @@ const Sidebar = () => {
     const staffMenuAppear = useSpring({
         transform: isStaffMenuVisible ? "translateY(0)" : "translateY(-40px)",
         opacity: isStaffMenuVisible ? 1 : 0
+    })
+    const friendMenuAppear = useSpring({
+        transform: isFriendMenuVisible ? "translateY(0)" : "translateY(-40px)",
+        opacity: isFriendMenuVisible ? 1 : 0
     })
     const categoriesAppear = useSpring({
         transform: isCategoriesVisible ? "translateY(0)" : "translateY(-40px)",
@@ -326,6 +334,45 @@ const Sidebar = () => {
                                 <ul>                            
                                     <li>
                                         <Link to="/admin/staff">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/staff/new">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>
+
+                        <li onClick={() => {toggleFriendMenu()}}  className="cursor-pointer">                        
+                           
+                            <IconButton>
+                                <GroupAddIcon />
+                            </IconButton>
+                            &nbsp; Friends of AAC
+                            <IconButton className="arrow-down">
+                                {isFriendMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isFriendMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={friendMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/friends">
                                             <IconButton>
                                                 <ImageSearchIcon />
                                             </IconButton>                                            

@@ -11,6 +11,7 @@ import { authReducer, userReducer, forgotPasswordReducer, allUsersdReducer, user
 import { cartReducer } from './reducers/cartReducers'
 import { newOrderReducer, myOrdersReducer, orderDetailsReducer, allOrdersReducer, orderReducer } from './reducers/orderReducers'
 import { staffMembersReducer, staffDetailsReducer, adminStaffDetailsReducer, newStaffReducer, staffReducer } from './reducers/staffReducers'
+import { friendsReducer, friendDetailsReducer, adminFriendDetailsReducer, newFriendReducer, friendReducer } from './reducers/friendReducers'
 
 const reducer = combineReducers({
     artists: artistsReducer,
@@ -58,6 +59,12 @@ const reducer = combineReducers({
     adminStaffDetails: adminStaffDetailsReducer,
     newStaff: newStaffReducer,
     staff: staffReducer,
+
+    friends: friendsReducer,    
+    friendDetails: friendDetailsReducer,
+    adminFriendDetails: adminFriendDetailsReducer,
+    newFriend: newFriendReducer,
+    friend: friendReducer,
 
     pages: pagesReducer,    
     pageDetails: pageDetailsReducer,

@@ -1,0 +1,361 @@
+[{
+  "_id": {
+    "$oid": "622c1616dc83e949df8c3cd8"
+  },
+  "title": "David Brooks",
+  "slug": "david-brooks",
+  "description": "<h2>An IT entrepreneur with a talent for abstract expressionism</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647056410/painters/kflfde0jfohzaglyh08d.jpg\" alt=\"The artist, in the thick of it, \" style=\"height: auto;width: 240px\"/></div>\n<p>A truly global citizen, David was born in the UK but grew up in Canada. He then spent most of his working life in Asia where his principle pastime was scuba-diving. This changed a few years ago when fellow artist and neighbour, Jim Ulrich, inspired David to pick up a paintbrush and ‘just have a go!’ After a period honing his skills, David has discovered his new passion.</p>\n<p></p>\n<p>Talking about his paintings, that passion is evident. <em>“I love to experiment with different styles and techniques. I’m not satisfied until I’ve created colours and textures that evoke memories and a sense of nostalgia.”</em></p>\n<p></p>\n<p>David describes his style as abstract expressionist but you can also see Cubism, Impressionism and Symbolism in his work.</p>\n<p></p>\n<p>Growing more passionate about art every day, David wanted to create an online gallery with the primary desire to bring together artists with a similar affinity for creating bold, authentic and affordable art while making the connection to his Canadian roots. His current ambition is to create some simple lessons to anyone else willing to have a go.</p>\n<p></p>\n<p>While mainly exploring natural themes which are often ocean or space-related, David is also available for expressionist abstract commissions.</p>\n",
+  "style": "Symbolism, Cubism, Outsider, Impressionism",
+  "medium": "Acrylic on canvas",
+  "inspiration": "Katsushika Hokusai, John Turner",
+  "images": [
+    {
+      "public_id": "painters/vgy7i7xserbbmax5bfd6",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647057254/painters/vgy7i7xserbbmax5bfd6.jpg",
+      "thumb_id": "painters/ugu6aqeqiqq7ztoxi7ki",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647057251/painters/ugu6aqeqiqq7ztoxi7ki.jpg",
+      "_id": {
+        "$oid": "622c1962443e92b911e3be20"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-12T03:40:06.851Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d2dca05ca912b767408d5"
+  },
+  "title": "Jim Ulrich",
+  "slug": "jim-ulrich",
+  "description": "<h2>From retired lecturer to globetrotting artist</h2>\n<p></p>\n<p style=\"text-align:left;\"></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647127919/richtext/bniwz322fdl49pyabaw1.jpg\" alt=\"\" style=\"height: auto;width: 240px\"/></div>\n<p>Jim Ulrich retired in 2013 after 40 years teaching at the Alberta University of Art. During his time there he was awarded the title of Professor Emeritus. He also earned the Research Excellence Award for Demonstrating Excellence in Research.</p>\n<p></p>\n<p>As an artist of more than forty years, Jim has been most inspired by his interest in natural phenomena and international travel. These interests have engaged him in many projects worldwide. Because some of these projects took him to Northern Australia, Thailand and California, Jim now splits his time between homes in Canada and Thailand.</p>\n<p></p>\n<p>Jim creates his art in mixed media or acrylic on canvas and he describes his art as a mixture of abstract expressionism, Dadaism, collage and Outsider. His influences include Pollock, Richter, Reiss and Burri.</p>\n<p></p>\n<p>Jim's art has been exhibited around the world since the year 2000 (see below). To suit any taste or budget, his paintings are available in drawing size to mural size and can be scaled for public works or commercial interiors.</p>\n<p></p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<ul>\n<li>2016: MEKONG LIGHTS, Fox Galleries, Melbourne, Australia.</li>\n<li>2014: HIDDEN TREASURES, City Stage Gallery, Red Deer, Alberta, Canada.</li>\n<li>2013: 40 YEAR RETROSPECTIVE, Alberta College of Art and Design, Calgary, Canada.</li>\n<li>2013: MADE IN CALGARY, Glen Bow Museum, Calgary, Canada.</li>\n<li>2008: FLY OVER, Narai Gallery, Pattaya, Thailand.</li>\n<li>2003: DESTINATION  DRAWING, University of New South Wales, Sydney, Australia and Beijing, China.</li>\n<li>2000: VORGESTELLT, Potsdam, Germany.</li>\n</ul>\n<p></p>\n<p>For a complete list of Jim's exhibitions, please visit <a href=\"http://www.jimulrichstudio.com/\" target=\"_blank\">www.jimulrichstudio.com</a>&nbsp;</p>\n",
+  "style": "Abstract Expression, Collage, Dada, Outsider",
+  "medium": "Mixed media",
+  "inspiration": "Jackson Pollock, Clyfford Still, Roland Reiss, Gerhard Richter, Sam Gilliam, Paul Jenkins, Zou Kuo Zi, Ai Wei-Wei, Alberto Burri, Francis Bacon, Dr Alan Blizzard",
+  "images": [
+    {
+      "public_id": "painters/i3znajbe9svtttyeqqex",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647128009/painters/i3znajbe9svtttyeqqex.jpg",
+      "thumb_id": "painters/xbs7wzrv7xaidmv4snvj",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647128006/painters/xbs7wzrv7xaidmv4snvj.jpg",
+      "_id": {
+        "$oid": "622d2dca05ca912b767408d6"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-12T23:33:30.418Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d2eec05ca912b767408eb"
+  },
+  "title": "Norman Sjoman",
+  "slug": "norman-sjoman",
+  "description": "<h2>Yoga meets abstract art in a search for enlightenment</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647128257/richtext/lgqncaouf502gckqe7cg.jpg\" alt=\"Norman Sjoman\" style=\"height: auto;width: 240px\"/></div>\n<p>Originally from Mission City in Western Canada, Norman Sjoman grew up in the rural, artisan village of Whonnock. Norman then spent the early Sixties in Vancouver where he studied Mathematical Philosophy and Literature at the University of British Columbia.</p>\n<p></p>\n<p>Norman then spent six years in Stockholm where he started his studies in Sanskrit. He later completed his doctorate in Sanskrit at the Centre for Advanced Studies at Pune University in India. Remaining in India for the next 25 years, Norman studied metaphysical knowledge systems with Pandits in Mysore.</p>\n<p></p>\n<p>“I restored paintings in India that were painted in the Mysore style and this influenced my own artwork. I met many modern artists in India who worked in both traditional and modern idioms feeling ultimately that it is a tradition of 'culture' that makes creative art whatever the form.”</p>\n<p></p>\n<p>In addition to his art, Norman has spent years reading original Sanskrit texts on yoga and has written a number of books on the subject including the 1996 book The Yoga Tradition of the Mysore Palace. He considers yoga to be an art form concentrated on exploring consciousness.</p>\n<p></p>\n<p>Norman currently resides in Calgary.</p>\n<p></p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<ul>\n<li>2017: Portraits of Yogis and Siddhas. Hotbox Gallery, Calgary.</li>\n</ul>\n",
+  "style": "Abstract",
+  "medium": "Any but currently watercolour and pen",
+  "inspiration": "See all of Norman Sjoman's work here.",
+  "images": [
+    {
+      "public_id": "painters/twyhf2w5pu9xexvvkrkb",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647128299/painters/twyhf2w5pu9xexvvkrkb.jpg",
+      "thumb_id": "painters/o8fbqppifi0ghudmhpgq",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647128297/painters/o8fbqppifi0ghudmhpgq.jpg",
+      "_id": {
+        "$oid": "622d2eec05ca912b767408ec"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-12T23:38:20.726Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d2fd305ca912b767408f8"
+  },
+  "title": "Smartex Tambala",
+  "slug": "smartex-tambala",
+  "description": "<h2>Architect, designer and Olympian with a passion for creating African-influenced art</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647128515/richtext/gbawpyy0ht9ynsw63xws.jpg\" alt=\"Smartex Tambala\" style=\"height: auto;width: 240px\"/></div>\n<p>Born in Malawi, Smartex Tambala moved to Halifax, Canada, where he undertook his schooling. He was awarded a Diploma in Graphic Design and a Fine Arts Degree from the Nova Scotia College of Art and Design (NSCAD). Later, he completed a Masters in Architecture and a Batchelors in Environmental Design.</p>\n<p></p>\n<p>A man of many talents, Smartex currently works as an architect and designer, and international residential developer, on projects in Canada, Ghana and Malawi. However, he continues to maintain his passion and talent for art.</p>\n<p></p>\n<p>Smartex’s travels, particularly in Africa, are his inspiration to create striking and colourful paintings. He has exhibited his art in galleries across Nova Scotia, New Brunswick and Bermuda.</p>\n<p></p>\n<p>If this wasn't enough, also a talented long-distance runner, Smartex competed in the Marathon at the 1992 Barcelona Olympics and in the 1994 Commonwealth Games in British Columbia.</p>\n<p></p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<ul>\n<li>Tynedale Art Exhibition, Ontario Faculty of Architecture, Dalhousie University</li>\n<li>Windjammer Art Gallery, Hamilton, Bermuda</li>\n<li>Artza Art Gallery, Nova Scotia</li>\n<li>Ivan Frazer Art Gallery, Nova Scotia</li>\n<li>Mount Allison Art Gallery, New Brunswick</li>\n<li>Dalhousie Art Gallery, Nova Scotia</li>\n<li>Anna Leonowens Art Gallery, Nova Scotia</li>\n<li>Mount St Vincent Art Gallery, Nova Scotia</li>\n</ul>\n",
+  "style": "Abstract",
+  "medium": "Mixed medium, acrylics, watercolour, oil",
+  "inspiration": "Alex Corville, Robert Bateman, William Alsop, Michael Grave, market scenery photography of Malawi, and all Canadians.",
+  "images": [
+    {
+      "public_id": "painters/zs6maxsyomuuw5t5pozu",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647128531/painters/zs6maxsyomuuw5t5pozu.jpg",
+      "thumb_id": "painters/j4en2nfvboknikiebnrw",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647128528/painters/j4en2nfvboknikiebnrw.jpg",
+      "_id": {
+        "$oid": "622d2fd305ca912b767408f9"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-12T23:42:11.910Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d308005ca912b76740907"
+  },
+  "title": "Jegan G Raja",
+  "slug": "jegan-g-raja",
+  "description": "<h2>A self-taught abstract expressionist with roots in Sri Lanka</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647128688/richtext/tr504hesnmxbzjgu8rng.jpg\" alt=\"Jegan G Raja\" style=\"height: auto;width: 240px\"/></div>\n<p>Born in Sri Lanka, Jegan Raja's family migrated to Canada in the early 1990s. Since retiring from a career in banking, self-taught, Jegan has been developing a career as an artist – his dream and passion since childhood.</p>\n<p></p>\n<p>Jegan has been painting primarily in acrylic and he also works in digital media. He likes exploring a variety of subject matter in an abstract expressionist style. Jegan enjoys, and gets inspired by, the beauty and elegance of nature. He also likes to travel and is a keen photographer.</p>\n<p></p>\n<p>Jegan works freelance and is based in Ottawa and is a member of the art group Artists of Stonebridge through which he exhibits his paintings.</p>\n",
+  "style": "Abstract Expression",
+  "medium": "Acrylic and Digital Media",
+  "inspiration": "The beauty and elegance of nature",
+  "images": [
+    {
+      "public_id": "painters/dqekqo7owtvpjvixkgh9",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647128703/painters/dqekqo7owtvpjvixkgh9.jpg",
+      "thumb_id": "painters/auhwc5pobblxlzk7krph",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647128701/painters/auhwc5pobblxlzk7krph.jpg",
+      "_id": {
+        "$oid": "622d308005ca912b76740908"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-12T23:45:04.446Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d31f205ca912b76740acc"
+  },
+  "title": "Edward Bader",
+  "slug": "edward-bader",
+  "description": "<h2>Artist and academic with a passion for visual culture</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647129056/richtext/ulqvsd0iffccxohheawo.jpg\" alt=\"Edward Bader\" style=\"height: auto;width: 240px\"/></div>\n<p>Born in Lethbridge, Alberta, Edward Bader has always had a passion for visual culture. This passion has been in comic books, commercial illustration and traditional fine art.</p>\n<p></p>\n<p>Edward received his Bachelor of Fine Arts from the University of Lethbridge in 1979. Subsequently he received his Fine Arts Masters (drawing/painting) from the University of Calgary in 1993. In 2007 he received an Interdisciplinary MA in Popular Culture with Distinction from Brock University. With this academic pedigree, he has taught at the Universities of Calgary and Lethbridge and at the Alberta College of Art and Design. Since 1998, Edward has been a tenured instructor at Grande Prairie Regional College teaching Art History, Drawing, and Digital Media.</p>\n<p></p>\n<p>His work can be seen in the Alberta Foundation for the Arts Collection, the Canada Council Art Bank, the University of Lethbridge, the City of Calgary, the Art Gallery of Grande Prairie and in numerous private collections.</p>\n<p></p>\n<p>Painting during the early days of the COVID pandemic, Edward had this to say about his work: ‘In dark times, I wish to bring joy to the viewer and a greater appreciation of the sublime and transcendental nature of our existence.’</p>\n<p></p>\n<p>Edward currently resides in Grand Prairie, Alberta, and outside of his art enjoys bodybuilding, hiking, cycling, history and travel.&nbsp;</p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<p>Edward has exhibited drawings, paintings and new media projects throughout the Province of Alberta, Canada, and internationally in numerous solo and group exhibitions including:</p>\n<ul>\n<li>2000: Alberta Biennial of Contemporary Art</li>\n<li>2012: White Wall Gallery, Toronto</li>\n<li>2016: Paul Kuhn Fine Arts, Calgary</li>\n<li>2017 and 2020: Artspace, Montreal Fierte</li>\n<li>2018: Seattle Leather Arts Media (SLAM) Seattle, Washington</li>\n<li>2018 and 2020: Pride in Art, Queer Arts Festival, Vancouver, British Columbia</li>\n<li>2019: Dencker &amp; Schneider Gallery, Berlin</li>\n</ul>\n",
+  "style": "Semi-abstract expressionist",
+  "medium": "Collage on paper, acrylic on canvas",
+  "inspiration": "Henri Matisse, Paul Klee, 1960s formal abstraction, Persian miniatures",
+  "images": [
+    {
+      "public_id": "painters/hxp2gt3kgbayitrcijp6",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647129074/painters/hxp2gt3kgbayitrcijp6.jpg",
+      "thumb_id": "painters/rloqqnzisz2tumbt0uev",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647129072/painters/rloqqnzisz2tumbt0uev.jpg",
+      "_id": {
+        "$oid": "622d31f205ca912b76740acd"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-12T23:51:14.941Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d329e05ca912b76740adf"
+  },
+  "title": "Quentin Caron",
+  "slug": "quentin-caron",
+  "description": "<h2>Award-winning art director and exhibition artist with a passion for creating 'lyrical' art</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647129230/richtext/o58dk674sptgehwbxtw6.jpg\" alt=\"Quentin Caron\" style=\"height: auto;width: 240px\"/></div>\n<p>A published artist and award-winning art director, Quentin Caron was born in Calgary, studied at the Alberta College of Art and Design, and later graduated with an MFA in painting and printmaking from Columbia University in New York.</p>\n<p></p>\n<p>Quentin's talents span drawing, painting, ceramics, sculpture and rockwork artistry. After showing in galleries across Alberta and British Columbia, Quentin worked as an exhibition artist for many years. Specifically, he has creating environments for zoos, aquariums and living museums across the world. This included working as an Imagineer for Disneyworld, Florida, and as Production Art Director for Universal Creative.</p>\n<p></p>\n<p>A common thread in Quentin’s work is his love of colour. He spent years teaching painting fundamentals, but also colour theory, and his paintings, drawings and human figure-works share the same joyful use of colour and instinct for surprising contrasts. “If you look closely, you will see elements of my sculpture and rock-work in some of my paintings. Growing up in the Rockies has influenced me to incorporate their geological textures into my work.”</p>\n<p></p>\n<p>Quentin's recent studio works are titled Songs. Each is an abstract, playful, and surreal contemporary painting or drawing.  “I have always constructed my works as poems, but here they have become so visually lyrical as to be more like songs, with a balance of elements building toward an emotional whole.”</p>\n<p></p>\n<p>Residing in Florida where he enjoys reading and hiking, Quentin’s works can be found in private, commercial and public collections.</p>\n",
+  "style": "Primarily a form of quirky lyrical abstraction",
+  "medium": "Oil over acrylic on either canvas or linen; acrylic on paper; inks on paper",
+  "inspiration": "Too many to list but above all, the common thread of honesty and authenticity in art.",
+  "images": [
+    {
+      "public_id": "painters/kt3qftikjbozusfwzkad",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647129246/painters/kt3qftikjbozusfwzkad.jpg",
+      "thumb_id": "painters/fl8cs45xwdgkz7khbz3h",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647129243/painters/fl8cs45xwdgkz7khbz3h.jpg",
+      "_id": {
+        "$oid": "622d329e05ca912b76740ae0"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-12T23:54:06.599Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d334b05ca912b76740af4"
+  },
+  "title": "Rachel Cadrin",
+  "slug": "rachel-cadrin",
+  "description": "<h2>Yoga-teaching artist brings therapeutic expertise</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647129404/richtext/ogovdwfck6f6tpidyle3.jpg\" alt=\"Rachel Cadrin\" style=\"height: auto;width: 240px\"/></div>\n<p>Hailing from Lloydminster, Alberta, Rachel Cadrin always had a passion for creating. However, after a year at the University of Calgary she realized she needed to explore the world before digging deeper into her art education.</p>\n<p></p>\n<p>Taking a year out, Rachel travelled to Africa and New Zealand. During her travels she discovered Yoga which drastically shifted her views on life. Returning home, subsequently, Rachel studied a Bachelors in Painting at the Alberta College of Art and Design, graduating with Distinction. Rachel credits her time spent travelling with impacting the work she created during her degree.</p>\n<p></p>\n<p>“I view my art as I view my life: a journey that is evolving with each day, moment, and breath. Much like my life I am not passive in my art journey, nor am I solely in control; the canvas, paint, and I work together to create.\"</p>\n<p></p>\n<p>Rachel’s work focuses on chance and materiality. She uses a variety of mediums to achieve unique outcomes. Rachel enjoys co-creating with the unpredictability of the media she uses to create ambiguous pieces which are open to interpretation.</p>\n<p></p>\n<p>“I have long been fascinated with colour and creating spaces using colours. My work provides the audience with the opportunity to create their own story, emotion and thoughts about each piece. I believe art should evoke a feeling, emotion or a new way of thinking. I hope my work does this for you.\"</p>\n<p></p>\n<p>Rachel currently lives in Calgary where she paints, teaches Yoga and works as a qualified counsellor and art therapist.</p>\n<p></p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<ul>\n<li>2014 Shut Your Eyes and See and the Caprices Fine Arts Show</li>\n<li>2013 Lilac Festival</li>\n<li>2013 I Think It Should Be Bigger and You’re Welcome: A Painting Show</li>\n<li>2012 Colourful Finger Paintings and More</li>\n<li>2008-2014 ACAD Show and Sale</li>\n<li>2007 Open Call to Art Gallery of Alberta</li>\n<li>2006-2011 Edmonton Art Walk</li>\n</ul>\n",
+  "style": "Colour field, abstract expression, contemporary",
+  "medium": "Mixed media",
+  "inspiration": "Gerhard Richter, Fabian Marrcacio, Dan Flavin, Arturo Herrera, Irene Neal, Joseph Drapel, Anne Low, Bram Bogart, Ad Reinhardt, Alexis Harding",
+  "images": [
+    {
+      "public_id": "painters/u9botbcndnhdikhebq1h",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647129419/painters/u9botbcndnhdikhebq1h.jpg",
+      "thumb_id": "painters/gzwnuaif98bht6t9rx8q",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647129416/painters/gzwnuaif98bht6t9rx8q.jpg",
+      "_id": {
+        "$oid": "622d334b05ca912b76740af5"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-12T23:56:59.990Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d349405ca912b76740b0a"
+  },
+  "title": "Perry Adamuik",
+  "slug": "perry-adamuik",
+  "description": "<h2>Self-taught artist working with found objects to create analogue collage</h2>\n<p>Born in the city of Flin Flon in Manitoba, Perry Adamuik is a mixed-media artist who has been present on the Calgary art scene for 40 years.</p>\n<p></p>\n<p>Despite having no formal qualifications, Perry’s art stems from a life-long interest in collage and found objects. He therefore has a particular passion for incorporating old vinyl records, album covers and music scores into his works.</p>\n<p></p>\n<p>Mixing these objects with a contrast of monotone and garish colour palettes, Perry is influenced by both Russian Constructivism and Outsider Art. He creates collages with both 3D and acrylic elements.</p>\n<p></p>\n<p>Perry currently resides in Calgary and is owner and operator of Fine Art Framers, an art services company in his home city.</p>\n<p></p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<ul>\n<li>2018 Group exhibition at the New Edward Gallery, Calgary</li>\n<li>2019 Two-person exhibition at the New Edward Gallery, Calgary</li>\n<li>2019 Fifth year anniversary exhibition at the New Edward Gallery, Calgary</li>\n<li>2021 Solo exhibition, Loophole Exhibition Space, Calgary.</li>\n</ul>\n",
+  "style": "Constructivism, Outsider art",
+  "medium": "Mixed -media, 3D collage, acrylic",
+  "inspiration": "Russian Constructivism, post-war 20th century music",
+  "images": [
+    {
+      "public_id": "painters/c7dcegcsrjnxklwtudia",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647129746/painters/c7dcegcsrjnxklwtudia.jpg",
+      "thumb_id": "painters/y4vdmri8fgzfyewmbn2d",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647129743/painters/y4vdmri8fgzfyewmbn2d.jpg",
+      "_id": {
+        "$oid": "622d349405ca912b76740b0b"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-13T00:02:28.432Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d37ca05ca912b76740b23"
+  },
+  "title": "Alyssia White",
+  "slug": "alyssia-white",
+  "description": "<h2>Mixed-media artist creating anachronistic art objects</h2>\n<p></p>\n<p style=\"text-align:left;\"></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647130556/richtext/bp2hg2rkrhb4q6weucba.jpg\" alt=\"Alyssia White\" style=\"height: auto;width: 240px\"/></div>\n<p>A multi-disciplinary artist currently living and working in Calgary, Alberta, British-born and educated, Alyssia White received her degree in Drawing and Applied Arts from the University of the West of England (UWE), Bristol. Subsequently, Alyssia retained her base in Bristol, while she travelled and painted in South America, eventually settling in Canada.</p>\n<p></p>\n<p>Incorporating aspects of craft, design and literature, Alyssia combines poetry and mixed-media assemblage to create both two dimensional and sculptural works. Employing elements of Surrealism and the Magical Realism literary movement, her use of found objects is pivotal in her exploration of memory and narrative. This manifests in 'objet d'art' pieces which creates a blur between fiction and reality.</p>\n<p></p>\n<p>Alyssia currently resides in Calgary, Alberta.</p>\n<p></p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<ul>\n<li>2021 Solo Exhibition, Loophole Presents: Alyssia White | Loophole Art Space, Calgary, Alberta.</li>\n<li>2021 Group Exhibition, Art in the Park (sponsored by City of Calgary) | Rotary Park, Calgary, Alberta.</li>\n<li>2018 Co-writer,Words we never Wrote (at Hay Festival of Literature)| Richard Booth’s Bookshop, Hay-on-Wye, UK.</li>\n<li>2017 Co-artist, Mural projects | Various locations, Peru and Argentina.</li>\n<li>2016 Co-writer, Experiment i | Hachette UK, Carmelite House, London, UK.</li>\n<li>2015 Group Exhibition, Sheffield International Artist Book Prize | Bank Street Arts, Sheffield, UK. Group Exhibition, Practice Place | Loft 6D, The Old Malt House, Bristol, UK. Group Exhibition, Drawing and Applied Arts Degree Show | UWE Bower Ashton Campus, Bristol, UK.</li>\n<li>2014 Site-specific Installation, Jamaica Street Artists – Open Studio | Jamaica Street Studios, Bristol, UK.</li>\n<li>2014 Group Exhibition, In-between | The Island, Bristol, UK.</li>\n</ul>\n<p></p>\n<p>See my Instagram page at: <a href=\"https://www.instagram.com/whitealyssia/?hl=en\" target=\"_blank\">Alyssia White</a> .</p>\n",
+  "style": "Assemblage",
+  "medium": "Mixed-media, Found objects",
+  "inspiration": "\tSurrealist, Dadaist, Joseph Cornell, Magical Realism",
+  "images": [
+    {
+      "public_id": "painters/be12xlevpl0l2x8qyvyv",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647130569/painters/be12xlevpl0l2x8qyvyv.jpg",
+      "thumb_id": "painters/lvaphad92xfs2ew5qsg4",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647130567/painters/lvaphad92xfs2ew5qsg4.jpg",
+      "_id": {
+        "$oid": "622d37ca05ca912b76740b24"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-13T00:16:10.737Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d392f05ca912b76740b82"
+  },
+  "title": "David Cheney",
+  "slug": "david-cheney",
+  "description": "<h2>Abstract artist, global traveller and literature-loving linguaphile</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647130913/richtext/uhbfzo5lyeyjqu5saw1m.jpg\" alt=\"David Cheney\" style=\"height: auto;width: 240px\"/></div>\n<p>Hailing from Prince Albert, Saskatchewan, David Cheney graduated from the Alberta College of Art in 1984, majoring in painting and minor printmaking. In 1987 David went on to study at the Aegean School of Fine Art in Paros, Greece, and gained an MFA from York University, Toronto, in 1990. After graduating from York, he taught watercolour for two continuing education programmes in Calgary until 2007.</p>\n<p></p>\n<p>David has also enjoyed many travels to the United States, Mexico, Spain, France, Germany and Portugal.</p>\n<p></p>\n<p>\"<em>For most of my art career, inspired by my travels, I have worked in oil or watercolours, painting mostly from memory or from sketches. I have used a very loose painterly brush stroke so I have never considered my work realism. Over the last five years, however, I have expanded into abstraction with paper pieces. My premise is simple: inspired by a thought, a book that I have read, an image from a walk, I select some colours, load a brush, then paint on paper. I may add photos or text in a collage manner, then add ink or even more colour to round out the final image.</em>”</p>\n<p></p>\n<p>Currently residing in Calgary,David is a member of the Artpoint Gallery and Studios Society where he also maintains a studio.  He has donated his art to a variety of charities over the years and continues to donate to this day.</p>\n<p></p>\n<p>As well as art and travel, David's other passion is reading; in particular, Spanish, Portuguese and French literature. Since retiring, he has also become a walking and wildlife enthusiast.</p>\n<p></p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<h5>ONE-PERSON EXHIBITIONS</h5>\n<ul>\n<li><strong>2019 </strong>El aire más transparente, Artpoint Gallery, Calgary.</li>\n<li><strong>2017 </strong>Bulerias y cositas buenas, Artpoint Gallery, Calgary.</li>\n<li><strong>2016 </strong>100 Years Of Solitude &amp; Other Stories, Artpoint Gallery, Calgary.</li>\n<li><strong>2015 </strong>Travels with My Aunt and Other Neurotic Stories, Artpoint Gallery, Calgary.</li>\n<li><strong>2014 </strong>Painting Autism: 20 Years of Painting My Daughter, Artpoint Gallery, Calgary.</li>\n<li><strong>2013 </strong>Catalunya, Artpoint Gallery, Calgary.</li>\n<li><strong>2011 </strong>Dreaming in Méxican: Reflections on Recent Travels, Artpoint Gallery, Calgary.</li>\n<li><strong>2000 </strong>Flowers for Autism, Calgary Jewish Centre.</li>\n<li><strong>1990 </strong>Odyssey: A Shrine for Nikos Kazantzakis, York University, North York, Ontario.</li>\n<li><strong>1987 </strong>New Works, The Aegean School of Fine Art, Paros, Greece.</li>\n<li><strong>1986 </strong>The Exposure Series: Banalaties and Decorum, Off Centre Centre, Calgary, Alberta.</li>\n</ul>\n<p></p>\n<h5>SELECTED GROUP EXHIBITIONS</h5>\n<ul>\n<li><strong>2019 </strong>&amp; <strong>2020 </strong>Latin American Art Exhibition &amp; Festival, Casa Mexico Foundation, Calgary (Online).</li>\n<li><strong>2018 </strong>Sad Bastards and Bad Luck Ball, Elephant Artists Relief, Calgary.</li>\n<li><strong>2017 </strong>I love Art, 4th Biennal Fundraiser, High River Rotary Club.</li>\n<li><strong>2014 </strong>Frances Vettergreen and David Cheney, Midtowne Gallery, Calgary.</li>\n<li><strong>2013 </strong>Trip the Light Fantastic, Alberta Society of Artists, Walterdale Theater, Edmonton.</li>\n<li><strong>2012 </strong>Incidents of Travel, Alberta Society of Artists, Leighton Art Centre, Alberta.</li>\n<li><strong>2010 </strong>By Means of Watercolor: June Montgomery, David Cheney, Brent Laycock and Thep Thavonsouk, Alberta Society of Artists, Traveling Exhibition Program, (2007 - 2010).</li>\n<li><strong>2009 </strong>The Art of the Book, Calgary Public Library Foundation, Literary Awards, Calgary.</li>\n<li><strong>2006 </strong>Giddy Up Gala, Stampede Queens Alumni Fundraiser, Calgary.</li>\n<li><strong>2001 </strong>Jerry Selinger Memorial Tournament, Calgary. By invitation.</li>\n<li><strong>1991 </strong>Glenbow Acquisition Society Annual Ball, Calgary</li>\n<li><strong>1990 </strong>Remove, York University Grad students in conjunction with Olga Korper Gallery, Toronto, Ontario.</li>\n<li><strong>1988 </strong>Purposeful Journeys, The New Gallery, Calgary.</li>\n<li><strong>1986 </strong>Parallel and Affinities, The Prairie Gallery, Grand Prairie, Alberta.</li>\n<li><strong>1985A </strong>Measure of Success: Graduates of the ACA, 1974 - 1984, Alberta College of Art Gallery, Calgary.</li>\n</ul>\n",
+  "style": "Abstract",
+  "medium": "Mixed-media on paper",
+  "inspiration": "Mark Dicey, Robert Motherwell, David Hockney, Julian Schnabel and the Mexican muralistas: Diego Rivera, Jose Clemente Orozco, David Alfaro Siqueiros, and Rufino Tamayo",
+  "images": [
+    {
+      "public_id": "painters/tdiidptfvnjrxvlumqjk",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647130926/painters/tdiidptfvnjrxvlumqjk.jpg",
+      "thumb_id": "painters/zomdbvfbrapxjc58vzmc",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647130924/painters/zomdbvfbrapxjc58vzmc.jpg",
+      "_id": {
+        "$oid": "622d392f05ca912b76740b83"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-13T00:22:07.857Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "622d3a4805ca912b76740b9f"
+  },
+  "title": "Debbie.lee Miszaniec",
+  "slug": "debbielee-miszaniec",
+  "description": "<h2>A post-modernist painter with an eclectic approach to art</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1647131193/richtext/khregkg3bbg6kit2auex.jpg\" alt=\"Debbie.lee Miszaniek\" style=\"height: auto;width: 240px\"/></div>\n<p>Debbie.lee Miszaniec is a Canadian visual artist from Alberta Canada. Since graduating from the Alberta University of the Arts in 2008 she has been involved in a breadth of creative ventures in Calgary, including public commissions, arts writing, teaching, talks, events, exhibitions, volunteerism, and studio painting.</p>\n<p></p>\n<p>Debbie.lee’s paintings typically employ the traditional media of oil or acrylic on canvas. However, she has been known to incorporate diverse media into her work. Talking about her art, she describes is as “post-modernist painting practice engaging the intersection between lived experience and the influences of art, history, popular culture and social movements.\"</p>\n<p></p>\n<p>Debbie.lee’s influences range from the northern renaissance, Dutch baroque and German expressionist, to conceptual, pop, neo-expressionist and identity art.</p>\n<p></p>\n<p>She has exhibited her art at the Alberta Society of Artists Gallery, the Women’s Museum of Canada, CARFAC Alberta’s Shaping Alberta, the Calgary Stampede Western Showcase Art Gallery, and the Heritage Park's museum.</p>\n<p></p>\n<p>Debbie.lee currently works from her studio on the edge of Fish Creek Provincial Park in Calgary, where she lives with her family. When she is not making art, she can often be found reading, cooking, or enjoying a walk out in nature.</p>\n<p></p>\n<p>PREVIOUS EXHIBITION</p>\n<ul>\n<li><strong>2021 </strong>Medium of Exchange: Process, Alberta Society of Artists Gallery, Calgary AB</li>\n<li><strong>2020 </strong>Covid-19 Artwork Series Showcase, Fortune Brainstorm Health Virtual Event, Fortune Magazine, based in New York NY</li>\n<li><strong>2020 </strong>S.H.E. Sharing Her Experience on Covid 19, Virtual Exhibition, Women’s Art Museum of Canada, Edmonton AB</li>\n<li><strong>2019 </strong>Shaping Alberta, CARFAC (AB Chapter), Northern Alberta Jubilee Auditorium, Edmonton AB</li>\n<li><strong>2019 </strong>The Motion of Shopping, Women's Art Museum of Canada (AB Chapter)</li>\n<li><strong>2018 </strong>Western Art Gallery, Western Showcase, Calgary Stampede, Calgary AB</li>\n<li><strong>2018 </strong>Journey of a Lifetime, Heritage Park Historical Village and Museum, Calgary AB</li>\n<li><strong>2017 </strong>Wish150 Mosaic, Latitude 53, Edmonton AB</li>\n<li><strong>2017 </strong>Mystical, Magical, Fantasy, Visual Arts Studio Association of St. Albert AB</li>\n<li><strong>2017 </strong>I AM CANADIAN, Edge Gallery, Calgary AB</li>\n<li><strong>2016 </strong>I Love Inglewood, Edge Gallery, Calgary AB</li>\n<li><strong>2015 </strong>Group Exhibition, Calgary Klein MLA Office, Calgary AB</li>\n<li><strong>2014 </strong>Thickwood Hills Studio Trail, Guest Artist, Shellbrook SK</li>\n<li><strong>2012 </strong>4 Eyes: A Fine Art Event, Elbow Park Clubhouse, Calgary AB</li>\n<li><strong>2011 </strong>As You Like It (ArtPoint Member Show), Theatre Calgary, Calgary AB</li>\n<li><strong>2010 </strong>Revealed, Keystone Gallery, Calgary AB</li>\n<li><strong>2010 </strong>Medium of Exchange, ArtPoint, Calgary AB</li>\n<li><strong>2008 </strong>TEPPA, Throw Away Gallery, Calgary AB (with Koren Scott)</li>\n<li><strong>2008 </strong>Graduate Show, Alberta College of Art and Design, Calgary AB</li>\n</ul>\n<p></p>\n<h4>SOLO SHOW</h4>\n<ul>\n<li><strong>2011 </strong>Exit Eden, ArtPoint, Calgary AB</li>\n<li><strong>2009 </strong>In Eden Perchance, ArtPoint, Calgary AB</li>\n<li><strong>2006 </strong>Debbie’s Dream, Marion Nicoll Gallery, Alberta College of Art and Design, Calgary AB</li>\n</ul>\n<p></p>\n<p>For a complete list of Debbie.lee's exhibitions, visit <a href=\"http://www.onelifefineart.com/\" target=\"_blank\">www.onelifefineart.com</a>&nbsp;</p>\n",
+  "style": "Post-modern painting",
+  "medium": "oil or acrylic on canvas, mixed media",
+  "inspiration": "Northern Renaissance, Dutch Baroque, German expressionist, conceptual art, pop art, neo-expressionist, identity art",
+  "images": [
+    {
+      "public_id": "painters/ctzr2eodydtfg9fdo6f1",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647131207/painters/ctzr2eodydtfg9fdo6f1.jpg",
+      "thumb_id": "painters/cedxu1li9h6gl6dho4os",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647131205/painters/cedxu1li9h6gl6dho4os.jpg",
+      "_id": {
+        "$oid": "622d3a4805ca912b76740ba0"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-13T00:26:48.964Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,246 @@
+[{
+  "_id": {
+    "$oid": "6231645584e161b4f37df189"
+  },
+  "title": "David Brooks",
+  "slug": "david-brooks",
+  "description": "<h2>An IT entrepreneur with a talent for abstract expressionism</h2>\n<p>A truly global citizen, David was born in the UK but grew up in Canada. He then spent most of his working life in Asia where his principle pastime was scuba-diving. This changed a few years ago when fellow artist and neighbour, Jim Ulrich, inspired David to pick up a paintbrush and ‘just have a go!’ After a period honing his skills, David has discovered his new passion.</p>\n<p></p>\n<p>Talking about his paintings, that passion is evident. “I love to experiment with different styles and techniques. I’m not satisfied until I’ve created colours and textures that evoke memories and a sense of nostalgia.”</p>\n<p></p>\n<p>David describes his style as abstract expressionist but you can also see Cubism, Impressionism and Symbolism in his work.</p>\n<p></p>\n<p>Growing more passionate about art every day, David wanted to create an online gallery with the primary desire to bring together artists with a similar affinity for creating bold, authentic and affordable art while making the connection to his Canadian roots. His current ambition is to create some simple lessons to anyone else willing to have a go.</p>\n<p></p>\n<p>While mainly exploring natural themes which are often ocean or space-related, David is also available for expressionist abstract commissions.</p>\n",
+  "background": "IT and Computer Science",
+  "profession": "Regional manager Microsoft Singapore",
+  "interests": "Painting, Cycling, Reading & Rocket Science",
+  "avatar": {
+    "avatar_id": "staff/tuvkyfzm1oplvgjg6vuk",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647406674/staff/tuvkyfzm1oplvgjg6vuk.jpg"
+  },
+  "images": [
+    {
+      "public_id": "staff/wlqi8kyeqrqw3sd959ho",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416683/staff/wlqi8kyeqrqw3sd959ho.jpg",
+      "_id": {
+        "$oid": "62319569645c737151a4268d"
+      }
+    },
+    {
+      "public_id": "staff/br7egeisou01xdkgcjqq",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416685/staff/br7egeisou01xdkgcjqq.jpg",
+      "_id": {
+        "$oid": "6231956b645c737151a4268e"
+      }
+    },
+    {
+      "public_id": "staff/iryhgpfvlky3tibnqvbf",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416687/staff/iryhgpfvlky3tibnqvbf.jpg",
+      "_id": {
+        "$oid": "6231956e645c737151a4268f"
+      }
+    },
+    {
+      "public_id": "staff/lodntnoe8an2s3rto2cc",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416690/staff/lodntnoe8an2s3rto2cc.jpg",
+      "_id": {
+        "$oid": "62319570645c737151a42690"
+      }
+    },
+    {
+      "public_id": "staff/mncqmrmnpb1jugakgvvr",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416692/staff/mncqmrmnpb1jugakgvvr.jpg",
+      "_id": {
+        "$oid": "62319572645c737151a42691"
+      }
+    },
+    {
+      "public_id": "staff/cdnyscaifd6q4jnodap5",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416694/staff/cdnyscaifd6q4jnodap5.jpg",
+      "_id": {
+        "$oid": "62319574645c737151a42692"
+      }
+    }
+  ],
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-16T04:15:17.174Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62316db39813099d0c9c328e"
+  },
+  "title": "Jim Ulrich",
+  "slug": "jim-ulrich",
+  "description": "<h2>From retired lecturer to globetrotting artist</h2>\n<p>Jim Ulrich retired in 2013 after 40 years teaching at the Alberta University of Art. During his time there he was awarded the title of Professor Emeritus. He also earned the Research Excellence Award for Demonstrating Excellence in Research.</p>\n<p></p>\n<p>As an artist of more than forty years, Jim has been most inspired by his interest in natural phenomena and international travel. These interests have engaged him in many projects worldwide. Because some of these projects took him to Northern Australia, Thailand and California, Jim now splits his time between homes in Canada and Thailand.</p>\n<p></p>\n<p>Jim creates his art in mixed media or acrylic on canvas and he describes his art as a mixture of abstract expressionism, Dadaism, collage and Outsider. His influences include Pollock, Richter, Reiss and Burri.</p>\n<p></p>\n<p>Jim's art has been exhibited around the world since the year 2000 (see below). To suit any taste or budget, his paintings are available in drawing size to mural size and can be scaled for public works or commercial interiors.</p>\n<p></p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<ul>\n<li><strong>2016</strong>: MEKONG LIGHTS, Fox Galleries, Melbourne, Australia.</li>\n<li><strong>2014</strong>: HIDDEN TREASURES, City Stage Gallery, Red Deer, Alberta, Canada.</li>\n<li><strong>2013</strong>: 40 YEAR RETROSPECTIVE, Alberta College of Art and Design, Calgary, Canada.</li>\n<li><strong>2013</strong>: MADE IN CALGARY, Glen Bow Museum, Calgary, Canada.</li>\n<li><strong>2008</strong>: FLY OVER, Narai Gallery, Pattaya, Thailand.</li>\n<li><strong>2003</strong>: DESTINATION  DRAWING, University of New South Wales, Sydney, Australia and Beijing, China.</li>\n<li><strong>2000</strong>: VORGESTELLT, Potsdam, Germany.</li>\n</ul>\n<p></p>\n<p>For a complete list of Jim's exhibitions, please visit <a href=\"http://www.jimulrichstudio.com/\" target=\"_blank\">www.jimulrichstudio.com</a>&nbsp;</p>\n",
+  "background": "Lecturer",
+  "profession": "Artists",
+  "interests": "Travel",
+  "avatar": {
+    "avatar_id": "staff/wntg8y9ho5towbuafmcg",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416482/staff/wntg8y9ho5towbuafmcg.jpg"
+  },
+  "images": [
+    {
+      "public_id": "staff/xdzgxfe8s1weordd2a0y",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416461/staff/xdzgxfe8s1weordd2a0y.jpg",
+      "_id": {
+        "$oid": "6231948c645c737151a4234d"
+      }
+    },
+    {
+      "public_id": "staff/x1ce9fszbhiofyz5rtcn",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416464/staff/x1ce9fszbhiofyz5rtcn.jpg",
+      "_id": {
+        "$oid": "6231948e645c737151a4234e"
+      }
+    },
+    {
+      "public_id": "staff/kugp3xhcebmfvkbmcpbc",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416466/staff/kugp3xhcebmfvkbmcpbc.jpg",
+      "_id": {
+        "$oid": "62319491645c737151a4234f"
+      }
+    },
+    {
+      "public_id": "staff/s2qkq8kh79fmnuh6ofoh",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416469/staff/s2qkq8kh79fmnuh6ofoh.jpg",
+      "_id": {
+        "$oid": "62319493645c737151a42350"
+      }
+    },
+    {
+      "public_id": "staff/iklpln2c7iey5gxi7wll",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416472/staff/iklpln2c7iey5gxi7wll.jpg",
+      "_id": {
+        "$oid": "62319496645c737151a42351"
+      }
+    },
+    {
+      "public_id": "staff/dnktybwbaaly8kla1d45",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416476/staff/dnktybwbaaly8kla1d45.jpg",
+      "_id": {
+        "$oid": "6231949a645c737151a42352"
+      }
+    },
+    {
+      "public_id": "staff/tpfxboovql5jovsw0yuq",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416478/staff/tpfxboovql5jovsw0yuq.jpg",
+      "_id": {
+        "$oid": "6231949d645c737151a42353"
+      }
+    }
+  ],
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-16T04:55:15.390Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62316fae7dea8bc9f9ac634a"
+  },
+  "title": "Aimee Coles",
+  "slug": "aimee-coles",
+  "description": "<h2>Meet Abstract Art Canada's Communications &amp; Content Director</h2>\n<p>Despite excelling at creative writing at school, Aimee dreamed of becoming a marine biologist. To this end, after completing an Arts degree, she spent a year scuba-diving around Asia and Australia.</p>\n<p></p>\n<p>However, returning to the UK, Aimee started her career working for a large advertising agency. She later moved to Spain then France to teach English. Returning to England, she developed her talent as a communications professional. Initially she worked as a customer relations manager for the National Health Service. Then she worked as a PR and communications manager for Virgin Care. Taking an opportunity to move into the education sector, she next worked as an editor for a provider of arts and neuroscience-based courses promoting children's mental wellbeing across UK schools.</p>\n<p></p>\n<p>Prior to joining Abstract Art Canada, Aimee freelanced for its founder, David Brooks, and subsequently, was invited by David to join the team as its Communications and Content Director.</p>\n<p></p>\n<p>Outside work, Aimee is devoted to her family and she loves to travel where she gets to enjoy culture, art, great cuisine and the occasional dive.</p>\n",
+  "background": "TEFL teacher, customer relations, writer and editor",
+  "profession": "Communications professional",
+  "interests": "Travel, culture, art, cuisine,",
+  "avatar": {
+    "avatar_id": "staff/nuh1y1mkuj9f10s54v3h",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416301/staff/nuh1y1mkuj9f10s54v3h.jpg"
+  },
+  "images": [
+    {
+      "public_id": "staff/ndqn8p55czusugkykjci",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647407013/staff/ndqn8p55czusugkykjci.jpg",
+      "_id": {
+        "$oid": "62316fae7dea8bc9f9ac634b"
+      }
+    },
+    {
+      "public_id": "staff/dpxnhgotmsmnqemet7yt",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416291/staff/dpxnhgotmsmnqemet7yt.jpg",
+      "_id": {
+        "$oid": "623193e2645c737151a42234"
+      }
+    },
+    {
+      "public_id": "staff/httdrzdhxyhau2d4bggm",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416293/staff/httdrzdhxyhau2d4bggm.jpg",
+      "_id": {
+        "$oid": "623193e4645c737151a42235"
+      }
+    },
+    {
+      "public_id": "staff/hoxp0ocag9ury0vf9wsb",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416295/staff/hoxp0ocag9ury0vf9wsb.jpg",
+      "_id": {
+        "$oid": "623193e6645c737151a42236"
+      }
+    },
+    {
+      "public_id": "staff/nwzwwaxq5lmgcvgx3ofg",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416298/staff/nwzwwaxq5lmgcvgx3ofg.jpg",
+      "_id": {
+        "$oid": "623193e8645c737151a42237"
+      }
+    }
+  ],
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-16T05:03:42.155Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "623170437dea8bc9f9ac6379"
+  },
+  "title": "Nick Dittmer",
+  "slug": "nick-dittmer",
+  "description": "<h2>Meet Abstract Art Canada's IT and Graphic Design Director</h2>\n<p>Born in Germany and raised in the UK, Nick Dittmer spent his formative years between the English countryside and boarding school.  After a brush with art school and a brief dip into lifeguarding, he took a dive (literally) into the world of scuba instructing in sunny Australia where he became a dive instructor and discovered he looked good in neoprene…</p>\n<p></p>\n<p>For more than a decade he has been living in Thailand where he has developed his talent as a graphic designer. He has used his expertise to draw boats for Deck-Layouts, designing for Hammerhead Technologies and designing pictorial guides for divers through his own company, Fishslates. He has most recently brought his designer eye and artistic flare to Abstract Art Canada designing and developing our website.</p>\n<p></p>\n<p>When away from his computer, Nick has built a hydroponic farm and a commercial fish farm. While not a huge fan of politics or religion, he loves music, movies, diving, fishing, gardening and cats and is devoted to his true love and long-time partner, Pakdee.</p>\n",
+  "background": "Professional diving",
+  "profession": "Web development & graphic design",
+  "interests": "Music, fishing, gardening, cycling, anthropology",
+  "avatar": {
+    "avatar_id": "staff/bcchgtanisutjwdfg0pf",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416175/staff/bcchgtanisutjwdfg0pf.jpg"
+  },
+  "images": [
+    {
+      "public_id": "staff/m0cszifbqe1csfqnyz30",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416002/staff/m0cszifbqe1csfqnyz30.jpg",
+      "_id": {
+        "$oid": "623192c1645c737151a4205c"
+      }
+    },
+    {
+      "public_id": "staff/eakfh1vx6cld3ymm1buj",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416103/staff/eakfh1vx6cld3ymm1buj.jpg",
+      "_id": {
+        "$oid": "62319325645c737151a42107"
+      }
+    },
+    {
+      "public_id": "staff/uhfzsjrop7kwgndozcdk",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416106/staff/uhfzsjrop7kwgndozcdk.jpg",
+      "_id": {
+        "$oid": "62319329645c737151a42108"
+      }
+    },
+    {
+      "public_id": "staff/bk4fkf9kpim88pidduhl",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416109/staff/bk4fkf9kpim88pidduhl.jpg",
+      "_id": {
+        "$oid": "6231932c645c737151a42109"
+      }
+    },
+    {
+      "public_id": "staff/ar7v13uswmzeb80qga1w",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1647416113/staff/ar7v13uswmzeb80qga1w.jpg",
+      "_id": {
+        "$oid": "6231932f645c737151a4210a"
+      }
+    }
+  ],
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-16T05:06:11.734Z"
+  },
+  "__v": 0
+}]
