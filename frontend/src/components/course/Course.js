@@ -10,21 +10,15 @@ const Course = ({ course }) => {
 
             <div> 
 
-                <iframe 
-                    width="560" 
-                    height="315" 
+                <iframe                             
                     src={course.video} 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="
-                        accelerometer; 
-                        autoplay; 
-                        clipboard-write; 
-                        encrypted-media; 
-                        gyroscope; 
-                        picture-in-picture" 
-                        allowfullscreen
-                ></iframe>
+                    title={course.title}
+                    style={{ 
+                        pointerEvents: "none",
+                        width: "100%",
+                        height: "100%"                              
+                    }}                    
+                />
                 
             </div> 
 
@@ -42,7 +36,7 @@ const Course = ({ course }) => {
                     <p style={{ marginBottom: "10px" }}>
                         
                             <small>
-                                Member since&nbsp;
+                                Added on&nbsp;
                                 <b><FormattedDate iso={course.createdAt} format="date" /></b>
                             </small>
                        

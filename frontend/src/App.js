@@ -164,8 +164,8 @@ function App() {
             <Route path="/staff/:slug"           element={<StaffDetails                                                 />} />
             <Route path="/friends"               element={<Friends                                                      />} />
             <Route path="/friend/:slug"          element={<FriendDetails                                                />} />
-            <Route path="/courses"               element={<Courses                                                      />} />
-            <Route path="/course/:slug"          element={<CourseDetails                                                />} />
+            <Route path="/courses"               element={<PrivateRoute><Courses/></PrivateRoute                         >} />
+            <Route path="/course/:slug"          element={<PrivateRoute><CourseDetails/></PrivateRoute                   >} />
 
             <Route path="/terms"                 element={<Terms                                                        />} />
             <Route path="/privacy"               element={<Privacy                                                      />} />

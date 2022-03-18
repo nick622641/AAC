@@ -93,16 +93,18 @@ const CourseList = () => {
         courses && courses.forEach( course => {     
             data.rows.push({
                 url: <Link to={`/course/${course.slug}`}>
-                        <iframe                             
-                            src={course.video} 
-                            title={course.title}
-                            style={{ 
-                                pointerEvents: "none",
-                                borderRadius: "50%",
-                                width: "100px",
-                                height: "100px"                              
-                            }}                    
-                        />
+                        <div>
+                            <iframe                             
+                                src={course.video} 
+                                title={course.title}
+                                style={{ 
+                                    pointerEvents: "none",
+                                    borderRadius: "50%",
+                                    width: "100px",
+                                    height: "100px"                              
+                                }}                    
+                            />
+                        </div>
                     </Link>,
                 actions: <Fragment>                        
                             <CopyToClipboard text={course._id}>

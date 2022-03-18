@@ -43,7 +43,7 @@ const Sidebar = ({ courses }) => {
 
                             <Link 
                                 className={location.pathname.includes(course.slug) ? 'link-active' : ''}
-                                to={`/staff/${course.slug}`}
+                                to={`/course/${course.slug}`}
                                 style={{ whiteSpace: "nowrap" }}
                             >                                                                   
                                 {course.title}

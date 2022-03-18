@@ -13,7 +13,6 @@ import EmailIcon from '@mui/icons-material/Email'
 import Sidebar from './Sidebar'
 import RichtextOutput from '../layouts/richtext/RichtextOutput'
 import { Divider } from '@mui/material'
-import { COURSE_DETAILS_SUCCESS } from '../../constants/courseConstants'
 
 const CourseDetails = () => {   
 
@@ -54,7 +53,7 @@ const CourseDetails = () => {
 
                 <Fragment>
 
-                    <MetaData title={COURSE_DETAILS_SUCCESS.title} description={COURSE_DETAILS_SUCCESS.description} />              
+                    <MetaData title={course.title} description={course.description} />              
                     
                     <div className="container">
 
@@ -62,7 +61,7 @@ const CourseDetails = () => {
 
                             <aside>
 
-                                <Sidebar staffMembers={courses} />  
+                                <Sidebar courses={courses} />  
 
                             </aside>
 
@@ -74,21 +73,16 @@ const CourseDetails = () => {
 
                                 <div> 
 
-                                    <iframe 
-                                        width="560" 
-                                        height="315" 
+                                    <iframe                             
                                         src={course.video} 
-                                        title="YouTube video player" 
-                                        frameborder="0" 
-                                        allow="
-                                            accelerometer; 
-                                            autoplay; 
-                                            clipboard-write; 
-                                            encrypted-media; 
-                                            gyroscope; 
-                                            picture-in-picture" 
-                                            allowfullscreen
-                                    ></iframe>
+                                        title={course.title}
+                                        style={{ 
+                                            width: "100%",
+                                            height: "300px",
+                                            marginBottom: "40px"                              
+                                        }} 
+                                        allowFullScreen                   
+                                    />
                                     
                                 </div>                             
                            

@@ -417,8 +417,7 @@ const Header = () => {
                                         <h5>Join the Tour</h5>
                                         <ul className="list-style"> 
                                             <li>
-                                                <Link 
-                                                    to="courses" 
+                                                <Link to={'/login?redirect=courses'}
                                                     onClick={() => {
                                                             setIsNavOpen(false)
                                                             setIsMenuOpen(false)
