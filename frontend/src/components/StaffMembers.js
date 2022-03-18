@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { getStaff } from '../actions/staffActions'
+import { getFriends } from '../actions/friendActions'
 import MetaData from './layouts/MetaData'
 import Staff from './staff/Staff'
 import Loader from './layouts/Loader'
@@ -21,10 +22,12 @@ const StaffMembers = () => {
     const [ currentPage, setCurrentPage ] = useState(1)
 
     const { loading, staffMembers, staffCount, resPerPage,  error } = useSelector( state => state.staffMembers )
+    const { friends } = useSelector( state => state.friends )
 
     useEffect( () => {
 
         dispatch(getStaff(currentPage))   
+        dispatch(getFriends(1))   
     
         if(error) {
             return alert.error(error)        
@@ -58,7 +61,7 @@ const StaffMembers = () => {
 
                     <aside>
 
-                        <Sidebar staffMembers={staffMembers} />                       
+                        <Sidebar staffMembers={staffMembers} friends={friends} />                       
 
                     </aside>
 

@@ -34,9 +34,21 @@ const Sidebar = ({ pages }) => {
             {(isMenuOpen || !isMobile) && (
             <animated.div style={isMobile ? menuAppear : {}}>
 
-                <h3>Pages</h3>                              
+                <h3>About Us</h3>                              
 
                 <ul className="list-style">   
+
+                    <li>
+                        <Link to="/staff">
+                            Meet the Team
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/friends">
+                            Friends of AAC
+                        </Link>
+                    </li>
+
                     {pages && pages.map((page, i) => (
                         
                         <li key={page._id}>   
@@ -49,7 +61,7 @@ const Sidebar = ({ pages }) => {
                                 {page.title}
                             </Link>
                         </li>
-                    ))}
+                    ))}                  
                 </ul>       
 
                 <button 
