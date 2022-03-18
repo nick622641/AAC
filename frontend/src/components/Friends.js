@@ -12,6 +12,7 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Sidebar from './staff/Sidebar'
+import { Link } from 'react-router-dom'
 
 const Friends = () => {
 
@@ -45,6 +46,16 @@ const Friends = () => {
             <MetaData title="Friends of AAC" />                                      
 
             <div className="container">
+
+                <div className="breadcrumbs">
+                    <Link to="/">
+                        <small>Home</small>
+                    </Link>
+                    &nbsp;/&nbsp;                  
+                    <span>
+                        <small>Friends of AAC</small>
+                    </span>
+                </div>
 
                 <div className="wrapper parent">  
 

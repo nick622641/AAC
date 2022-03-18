@@ -88,6 +88,20 @@ const Gallery = () => {
 
             <div className="container">
 
+                <div className="breadcrumbs">
+                    <Link to="/">
+                        <small>Home</small>
+                    </Link>
+                    &nbsp;/&nbsp;
+                    <Link to="/gallery">
+                        <small>Gallery</small>
+                    </Link>
+                    &nbsp;/&nbsp;
+                    <span>
+                        <small>{title}</small>
+                    </span>
+                </div>
+
                 <div className="wrapper parent">  
 
                     <aside>

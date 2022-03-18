@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getStaffDetails, getStaff } from '../../actions/staffActions'
 import { getFriends } from '../../actions/friendActions'
 import { clearErrors } from '../../actions/userActions'
@@ -73,6 +73,20 @@ const StaffDetails = () => {
                     <MetaData title={staffMember.title} description={staffMember.description} />              
                     
                     <div className="container">
+
+                        <div className="breadcrumbs">
+                            <Link to="/">
+                                <small>Home</small>
+                            </Link>
+                            &nbsp;/&nbsp;
+                            <Link to="/blogs">
+                                <small>Staff Members</small>
+                            </Link>
+                            &nbsp;/&nbsp;
+                            <span>
+                                <small>{staffMember.title}</small>
+                            </span>
+                        </div>
 
                         <div className="wrapper parent">
 

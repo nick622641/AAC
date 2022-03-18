@@ -14,6 +14,17 @@ const Terms = () => {
         <img src="../../images/terms.jpg" alt="Terms and Conditions" />
 
         <div className="container">
+
+            <div className="breadcrumbs">
+                <Link to="/">
+                    <small>Home</small>
+                </Link>
+                &nbsp;/&nbsp;                            
+                <span>
+                    <small>Terms & Conditions</small>
+                </span>
+            </div>
+
             <div className="wrapper parent">
 
                 <aside>
@@ -21,7 +32,7 @@ const Terms = () => {
                     <h6>Technical Data</h6>
                     <ul>
                         <li>
-                            <Link to="/terms">Terms & Conditions</Link>
+                            <Link className="link-active" to="/terms">Terms & Conditions</Link>
                         </li>
                         <li>
                             <Link to="/privacy">Privacy Policy</Link>

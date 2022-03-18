@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getCourseDetails, getCourses, clearErrors } from '../../actions/courseActions'
 import Loader from '../layouts/Loader'
 import MetaData from '../layouts/MetaData'
@@ -56,6 +56,20 @@ const CourseDetails = () => {
                     <MetaData title={course.title} description={course.description} />              
                     
                     <div className="container">
+
+                        <div className="breadcrumbs">
+                            <Link to="/">
+                                <small>Home</small>
+                            </Link>
+                            &nbsp;/&nbsp;
+                            <Link to="/courses">
+                                <small>Courses</small>
+                            </Link>
+                            &nbsp;/&nbsp;
+                            <span>
+                                <small>{course.title}</small>
+                            </span>
+                        </div>
 
                         <div className="wrapper parent">
 

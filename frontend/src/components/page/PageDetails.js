@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getPageDetails, getPages } from '../../actions/pageActions'
 import { clearErrors } from '../../actions/userActions'
 import { useSpring } from 'react-spring'
@@ -70,6 +70,16 @@ const PageDetails = () => {
                     <div className="bg-grey">
 
                         <div className="container"> 
+
+                            <div className="breadcrumbs">
+                                <Link to="/">
+                                    <small>Home</small>
+                                </Link>
+                                &nbsp;/&nbsp;                            
+                                <span>
+                                    <small>{page.title}</small>
+                                </span>
+                            </div>
                                 
                             <div className="wrapper" style={{ paddingBottom: "5px" }}>
                                  

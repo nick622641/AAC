@@ -15,7 +15,7 @@ import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
 import RichtextEditor from './layouts/richtext/RichtextEditor'
 import RichtextPreview from './layouts/richtext/RichtextPreview'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const ImageUploader = () => {
 
@@ -56,7 +56,6 @@ const ImageUploader = () => {
         }
         if(success) {    
             dispatch({ type: NEW_PRODUCT_USER_RESET })   
-            // navigate('/')         
             alert.success('Product Created Successfully')
         }
     }, [dispatch, navigate, alert, error, success])
@@ -119,9 +118,19 @@ const ImageUploader = () => {
 
         <Fragment>
 
-            <MetaData title={'Upload a Product'} noIndex={true} />
+            <MetaData title={'Upload Artwork'} noIndex={true} />
 
             <div className="container">
+
+                <div className="breadcrumbs">
+                    <Link to="/">
+                        <small>Home</small>
+                    </Link>
+                    &nbsp;/&nbsp;                            
+                    <span>
+                        <small>Upload Artwork</small>
+                    </span>
+                </div>
 
                 <div className="wrapper parent"> 
 
@@ -129,7 +138,7 @@ const ImageUploader = () => {
                             
                         <div className="user-form"> 
 
-                            <h1>Upload a Product</h1>
+                            <h1>Upload Artwork</h1>
 
                             <form onSubmit={submitHandler} encType='multipart/form-data'>
 

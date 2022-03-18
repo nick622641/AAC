@@ -14,6 +14,17 @@ const Privacy = () => {
             <img src="../../images/privacy.jpg" alt="Terms and Conditions" />
 
             <div className="container">
+
+                <div className="breadcrumbs">
+                    <Link to="/">
+                        <small>Home</small>
+                    </Link>
+                    &nbsp;/&nbsp;                            
+                    <span>
+                        <small>Privacy Policy</small>
+                    </span>
+                </div>
+
                 <div className="wrapper parent">
 
                     <aside>
@@ -24,7 +35,7 @@ const Privacy = () => {
                                 <Link to="/terms">Terms & Conditions</Link>
                             </li>
                             <li>
-                                <Link to="/privacy">Privacy Policy</Link>
+                                <Link className="link-active" to="/privacy">Privacy Policy</Link>
                             </li>                            
                         </ul>
 

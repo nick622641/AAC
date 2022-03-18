@@ -11,6 +11,7 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Sidebar from './painter/Sidebar'
+import { Link } from 'react-router-dom'
 
 const Painters = () => {
 
@@ -42,6 +43,16 @@ const Painters = () => {
             <MetaData title="Painters" />                                      
 
             <div className="container">
+
+                <div className="breadcrumbs">
+                    <Link to="/">
+                        <small>Home</small>
+                    </Link>
+                    &nbsp;/&nbsp;                  
+                    <span>
+                        <small>Artist Bios</small>
+                    </span>
+                </div>
 
                 <div className="wrapper parent">  
 

@@ -71,6 +71,20 @@ const PainterDetails = () => {
                     <div className="bg-grey">
 
                         <div className="container"> 
+
+                            <div className="breadcrumbs">
+                                <Link to="/">
+                                    <small>Home</small>
+                                </Link>
+                                &nbsp;/&nbsp;
+                                <Link to="/painters">
+                                    <small>Artist Bios</small>
+                                </Link>
+                                &nbsp;/&nbsp;
+                                <span>
+                                    <small>{painter.title}</small>
+                                </span>
+                            </div>
                                 
                             <div className="wrapper" style={{ paddingBottom: "5px" }}>
                                  

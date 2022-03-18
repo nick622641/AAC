@@ -136,6 +136,26 @@ const ProductDetails = () => {
                     <div className="bg-grey">
 
                         <div className="container"> 
+
+                            <div className="breadcrumbs">
+                                <Link to="/">
+                                    <small>Home</small>
+                                </Link>
+                                &nbsp;/&nbsp;
+                                <Link to="/gallery">
+                                    <small>Gallery</small>
+                                </Link>
+                                &nbsp;/&nbsp;
+                                {product.artist && (
+                                    <Link to={`/gallery/artist/${product.artist.replace(/ /g, '-')}`}>
+                                        <small>{product.artist}</small>
+                                    </Link>
+                                )}                                
+                                &nbsp;/&nbsp;
+                                <span>
+                                    <small>{product.name}</small>
+                                </span>
+                            </div>
                                 
                             <div className="wrapper">
 
