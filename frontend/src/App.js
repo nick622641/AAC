@@ -93,6 +93,12 @@ import FriendList                        from './components/admin/friends/Friend
 import NewFriend                         from './components/admin/friends/NewFriend'
 import UpdateFriend                      from './components/admin/friends/UpdateFriend'
 
+import Courses                           from './components/Courses'
+import CourseDetails                     from './components/course/CourseDetails'
+import CourseList                        from './components/admin/courses/CourseList'
+import NewCourse                         from './components/admin/courses/NewCourse'
+import UpdateCourse                      from './components/admin/courses/UpdateCourse'
+
 function App() {  
 
   const { loggingOut } = useSelector(state => state.auth)
@@ -158,6 +164,8 @@ function App() {
             <Route path="/staff/:slug"           element={<StaffDetails                                                 />} />
             <Route path="/friends"               element={<Friends                                                      />} />
             <Route path="/friend/:slug"          element={<FriendDetails                                                />} />
+            <Route path="/courses"               element={<Courses                                                      />} />
+            <Route path="/course/:slug"          element={<CourseDetails                                                />} />
 
             <Route path="/terms"                 element={<Terms                                                        />} />
             <Route path="/privacy"               element={<Privacy                                                      />} />
@@ -217,6 +225,10 @@ function App() {
             <Route path="/admin/friend/new"      element={<PrivateRoute isAdmin={true}><NewFriend        /></PrivateRoute>} />
             <Route path="/admin/friends"         element={<PrivateRoute isAdmin={true}><FriendList       /></PrivateRoute>} /> 
             <Route path="/admin/friend/:id"      element={<PrivateRoute isAdmin={true}><UpdateFriend     /></PrivateRoute>} />
+
+            <Route path="/admin/course/new"      element={<PrivateRoute isAdmin={true}><NewCourse        /></PrivateRoute>} />
+            <Route path="/admin/courses"         element={<PrivateRoute isAdmin={true}><CourseList       /></PrivateRoute>} /> 
+            <Route path="/admin/course/:id"      element={<PrivateRoute isAdmin={true}><UpdateCourse     /></PrivateRoute>} />
 
           </Routes>   
 

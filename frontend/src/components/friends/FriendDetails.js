@@ -26,7 +26,7 @@ const FriendDetails = () => {
     const dispatch = useDispatch()
 
     const { friends                } = useSelector( state => state.friends )
-    const { loading, friend, error } = useSelector( state => state.friend )
+    const { loading, friend, error } = useSelector( state => state.friendDetails )
     const { staffMembers           } = useSelector( state => state.staffMembers )
 
     const [ modalType,         setIModalType        ] = useState()    

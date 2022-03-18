@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts } from '../../actions/productActions'
 import { getAdminBlogs } from '../../actions/blogActions'
 import { getAdminPages } from '../../actions/pageActions'
+import { getAdminCourses } from '../../actions/courseActions'
 import { allOrders } from '../../actions/orderActions'
 import { allUsers } from '../../actions/userActions'
-// import { getArtists, getOrientations, getMedia } from '../../actions/categoryActions'
 import { getPainters } from '../../actions/painterActions'
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
@@ -25,10 +25,9 @@ const Dashboard = () => {
     const { products                     } = useSelector( state => state.products  )    
     const { blogs                        } = useSelector( state => state.blogs  )    
     const { pages                        } = useSelector( state => state.pages  )    
+    const { courses                        } = useSelector( state => state.courses  )    
     const { loading, orders, totalAmount } = useSelector( state => state.allOrders )
-    // const { artists                      } = useSelector( state => state.artists )
-    // const { media                        } = useSelector( state => state.media )
-    // const { orientations                 } = useSelector( state => state.orientations )
+ 
     const { painters                     } = useSelector( state => state.painters )
 
     let outOfStock = 0
@@ -50,9 +49,7 @@ const Dashboard = () => {
         dispatch(getAdminPages())
         dispatch(allOrders())
         dispatch(allUsers())
-        // dispatch(getArtists())
-        // dispatch(getMedia())
-        // dispatch(getOrientations())
+        dispatch(getAdminCourses())   
         dispatch(getPainters())
     }, [dispatch])
 
@@ -189,66 +186,7 @@ const Dashboard = () => {
                                                        
                                                     </Link>
                                                 </Item>
-                                            </Grid>
-
-                                            {/* <Grid item xs={12} md={3} sx={{ mb: 2 }}>
-                                                <Item sx={{ background: '#9cb19c' }}>
-                                                    <Link to="/admin/artists">   
-
-                                                        <div>
-                                                            <h3>Artists</h3>
-                                                            <h2>{artists && artists.length}</h2>
-                                                            <Button 
-                                                                size="small" 
-                                                                sx={{ color: 'white', width: '100%' }}
-                                                            >
-                                                                View Details
-                                                            </Button>
-                                                        </div>  
-                                                
-                                                    </Link>
-                                                </Item>
-                                            </Grid>
-
-                                            <Grid item xs={12} md={3} sx={{ mb: 2 }}>
-                                                <Item sx={{ background: '#5cbd95' }}>
-                                                    <Link to="/admin/media">   
-
-                                                        <div>
-                                                            <h3>Media</h3>
-                                                            <h2>{media && media.length}</h2>
-                                                            <Button 
-                                                                size="small" 
-                                                                sx={{ color: 'white', width: '100%' }}
-                                                            >
-                                                                View Details
-                                                            </Button>
-                                                        </div>  
-                                                
-                                                    </Link>
-                                                </Item>
-                                            </Grid>
-
-                                            <Grid item xs={12} md={3} sx={{ mb: 2 }}>
-                                                <Item sx={{ background: '#bc986a' }}>
-                                                    <Link to="/admin/orientations">   
-
-                                                        <div>
-                                                            <h3>Orientations</h3>
-                                                            <h2>{orientations && orientations.length}</h2>
-                                                            <Button 
-                                                                size="small" 
-                                                                sx={{ color: 'white', width: '100%' }}
-                                                            >
-                                                                View Details
-                                                            </Button>
-                                                        </div>  
-                                                
-                                                    </Link>
-                                                </Item>
-                                            </Grid>   
-                                            
-                                            */}
+                                            </Grid>                                
 
                                             <Grid item xs={12} md={3} sx={{ mb: 2 }}>
                                                 <Item sx={{ background: '#9cb19c' }}>
@@ -257,6 +195,25 @@ const Dashboard = () => {
                                                         <div>
                                                             <h3>Artist Bios</h3>
                                                             <h2>{painters && painters.length}</h2>
+                                                            <Button 
+                                                                size="small" 
+                                                                sx={{ color: 'white', width: '100%' }}
+                                                            >
+                                                                View Details
+                                                            </Button>
+                                                        </div>  
+                                                
+                                                    </Link>
+                                                </Item>
+                                            </Grid>
+
+                                            <Grid item xs={12} md={3} sx={{ mb: 2 }}>
+                                                <Item sx={{ background: 'BurlyWood' }}>
+                                                    <Link to="/admin/courses">   
+
+                                                        <div>
+                                                            <h3>Courses</h3>
+                                                            <h2>{courses && courses.length}</h2>
                                                             <Button 
                                                                 size="small" 
                                                                 sx={{ color: 'white', width: '100%' }}

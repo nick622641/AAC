@@ -2,14 +2,13 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { updateFriend, getAdminFriendDetails } from '../../../actions/friendActions'
-import { UPDATE_FRIEND_RESET } from '../../../constants/friendConstants'
+import { updateCourse, getAdminCourseDetails } from '../../../actions/courseActions'
+import { UPDATE_COURSE_RESET } from '../../../constants/courseConstants'
 import { FormControl, FormControlLabel, IconButton, TextField, Tooltip } from '@mui/material'
 import MetaData from '../../layouts/MetaData'
 import Sidebar from '../Sidebar'
 import Fab from '@mui/material/Fab'
 import CloseIcon from '@mui/icons-material/Close'
-import Avatar from '@mui/material/Avatar'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import FitScreenIcon from '@mui/icons-material/FitScreen'
@@ -17,45 +16,39 @@ import Checkbox from '@mui/material/Checkbox'
 import RichtextEditor from '../../layouts/richtext/RichtextEditor'
 import RichtextPreview from '../../layouts/richtext/RichtextPreview'
 
-const UpdateFriend = () => {
+const UpdateCourse = () => {
 
     const alert     = useAlert()
     const navigate  = useNavigate()    
     const dispatch  = useDispatch()
 
-    const friendId   = useParams().id
+    const courseId   = useParams().id
 
-    const { error, friend } = useSelector( state => state.adminFriendDetails )
-    const { loading, isUpdated, error: updateError } = useSelector( state => state.friend )  
+    const { error, course } = useSelector( state => state.adminCourseDetails )
+    const { loading, isUpdated, error: updateError } = useSelector( state => state.course )  
     
     const [ title,           setTitle          ] = useState('')
     const [ slug,            setSlug           ] = useState('')
     const [ description,     setDescription    ] = useState('')  
-    const [ background,      setBackground     ] = useState('')   
-    const [ profession,      setProfession     ] = useState('')   
-    const [ interests,       setInterests      ] = useState('') 
+    const [ author,          setAuthor         ] = useState('')   
+    const [ video,           setVideo          ] = useState('')   
     const [ visible,         setVisible        ] = useState(1) 
-    const [ avatar,          setAvatar         ] = useState('') 
-    const [ avatarPreview,   setAvatarPreview  ] = useState('')    
-
     const [ fullscreen,      setFullscreen     ] = useState(false)  
 
     useEffect(() => {       
 
-        if (friend && friend._id !== friendId  ) {              
+        if (course && course._id !== courseId  ) {              
 
-            dispatch(getAdminFriendDetails(friendId  ))             
+            dispatch(getAdminCourseDetails(courseId  ))             
 
         } else {
             
-            setTitle(friend.title)
-            setSlug(friend.slug)
-            setDescription(friend.description)  
-            setBackground(friend.background)    
-            setProfession(friend.profession) 
-            setInterests(friend.interests)  
-            setAvatarPreview(friend.avatar.url)  
-            setVisible(friend.visible)     
+            setTitle(course.title)
+            setSlug(course.slug)
+            setDescription(course.description)  
+            setAuthor(course.author)    
+            setVideo(course.video)  
+            setVisible(course.visible)     
         }
 
         if(error) {
@@ -67,12 +60,12 @@ const UpdateFriend = () => {
         }
         
         if(isUpdated) {            
-            alert.success('Friend Updated Successfully')
-            dispatch(getAdminFriendDetails( friendId  ))  
-            dispatch({ type: UPDATE_FRIEND_RESET })    
+            alert.success('Course Updated Successfully')
+            dispatch(getAdminCourseDetails( courseId  ))  
+            dispatch({ type: UPDATE_COURSE_RESET })    
         }
         
-    }, [dispatch, navigate, friend, friendId  , alert, error, isUpdated, updateError ])
+    }, [dispatch, navigate, course, courseId  , alert, error, isUpdated, updateError ])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -80,32 +73,11 @@ const UpdateFriend = () => {
         formData.set('title', title)
         formData.set('slug', slug)
         formData.set('description', description)   
-        formData.set('background', background)       
-        formData.set('profession', profession)       
-        formData.set('interests', interests)   
+        formData.set('author', author)       
+        formData.set('video', embedVideoCallcack(video))       
         formData.set('visible', visible)  
-        formData.set('avatar', avatar)
 
-        dispatch(updateFriend(friend._id, urlencodeFormData(formData) ))
-    }
-
-    const onAvatarChange = (e) => {        
-        const reader = new FileReader()
-        reader.onload = () => {
-            if(reader.readyState === 2) {
-                setAvatarPreview(reader.result)
-                setAvatar(reader.result)
-            }
-        }
-        reader.readAsDataURL(e.target.files[0])
-    } 
-
-    const urlencodeFormData = ( formData ) => {
-        const params = new URLSearchParams()
-        for( let pair of formData.entries() ) {
-            typeof pair[1]=='string' && params.append( pair[0], pair[1] )
-        }
-        return params.toString()
+        dispatch(updateCourse(course._id, formData ))
     }
     
     const sanitizeInput = (value) => {
@@ -114,11 +86,20 @@ const UpdateFriend = () => {
         setSlug(value.toLowerCase())
     }
 
+    const embedVideoCallcack = ( url ) => {
+        if ( url.indexOf( 'youtube' ) >= 0 )  {
+            url = url.replace( '/watch/'  , '/embed/' )
+            url = url.replace( 'youtu.be/', 'youtube.com/embed/' )
+            url = url.replace( 'watch?v=' , 'embed/' )               
+        }    
+        return url     
+    }
+
     return (
 
         <Fragment>
 
-            <MetaData title={'Update Friend'} noIndex={true} />
+            <MetaData title={'Update Course'} noIndex={true} />
 
             <div className="container">
 
@@ -138,19 +119,22 @@ const UpdateFriend = () => {
 
                                 <div className="parent reverse">
 
-                                    <div style={{ marginRight: "40px" }}>
-                                        <label>  
-                                            <Avatar 
-                                                src={avatarPreview} 
-                                                alt='Avatar Preview' 
-                                                sx={{ width: 75, height: 75 }}
-                                            />                                 
-                                            <input
-                                                type='file' 
-                                                className="hidden-input"  
-                                                onChange={onAvatarChange} 
-                                            />         
-                                        </label>   
+                                    <div style={{ marginRight: "40px" }}>   
+
+                                        {video !== '' && video.indexOf( 'youtube' ) >= 0 && (
+
+                                            <iframe                                           
+                                                src={embedVideoCallcack(video)} 
+                                                title={course.title}
+                                                style={{ 
+                                                    pointerEvents: "none",
+                                                    borderRadius: "50%",
+                                                    width: "200px",
+                                                    height: "200px"                              
+                                                }}                                            
+                                            />
+
+                                        )}                                    
 
                                         <FormControlLabel 
                                             control={
@@ -170,7 +154,7 @@ const UpdateFriend = () => {
 
                                         <FormControl fullWidth>
                                             <TextField 
-                                                label="Friend's Name" 
+                                                label="Course Name" 
                                                 value={title}
                                                 variant="standard"
                                                 onChange={(e) => {
@@ -197,33 +181,23 @@ const UpdateFriend = () => {
 
                                         <FormControl fullWidth sx={{ mb: 1 }}>
                                             <TextField 
-                                                label="Background" 
-                                                value={background} 
+                                                label="Author" 
+                                                value={author} 
                                                 variant="standard"
                                                 multiline
-                                                onChange={(e) => setBackground(e.target.value)}
+                                                onChange={(e) => setAuthor(e.target.value)}
                                             />                                 
                                         </FormControl>     
 
                                         <FormControl fullWidth sx={{ mb: 1 }}>
                                             <TextField 
-                                                label="Profession" 
-                                                value={profession} 
+                                                label="Video" 
+                                                value={video} 
                                                 variant="standard"
                                                 multiline
-                                                onChange={(e) => setProfession(e.target.value)}
+                                                onChange={(e) => setVideo(e.target.value)}
                                             />                                 
-                                        </FormControl> 
-
-                                        <FormControl fullWidth sx={{ mb: 1 }}>
-                                            <TextField 
-                                                label="Interests" 
-                                                value={interests} 
-                                                variant="standard"
-                                                multiline
-                                                onChange={(e) => setInterests(e.target.value)}
-                                            />                                 
-                                        </FormControl>                                      
+                                        </FormControl>                                  
 
                                     </div>                           
 
@@ -289,4 +263,4 @@ const UpdateFriend = () => {
 
 }
 
-export default UpdateFriend
+export default UpdateCourse

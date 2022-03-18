@@ -3,6 +3,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getStaffDetails, getStaff } from '../../actions/staffActions'
+import { getFriends } from '../../actions/friendActions'
 import { clearErrors } from '../../actions/userActions'
 import { useSpring } from 'react-spring'
 import Loader from '../layouts/Loader'
@@ -25,6 +26,7 @@ const StaffDetails = () => {
     const alert    = useAlert()
     const dispatch = useDispatch()
 
+    const { friends                } = useSelector( state => state.friends )
     const { staffMembers          } = useSelector( state => state.staffMembers )
     const { loading, staffMember, error } = useSelector( state => state.staffDetails )
 
@@ -50,7 +52,8 @@ const StaffDetails = () => {
 
         dispatch(getStaffDetails(slug))
 
-        dispatch(getStaff(1))      
+        dispatch(getStaff(1))  
+        dispatch(getFriends(1))    
         
         if(error) { 
             alert.error(error)
@@ -75,7 +78,7 @@ const StaffDetails = () => {
 
                             <aside>
 
-                                <Sidebar staffMembers={staffMembers} />  
+                                <Sidebar staffMembers={staffMembers} friends={friends} />  
 
                             </aside>
 

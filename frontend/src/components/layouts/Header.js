@@ -399,7 +399,44 @@ const Header = () => {
 
                             )}
                                     
-                        </li>            
+                        </li>  
+
+                        <li>
+                            <span
+                                onClick={(e) => handleNavigation(e, 4)}
+                                className="cursor-pointer"
+                            >
+                                Learning
+                            </span> 
+
+                            {isNavOpen && menuItem === 4 && (  
+
+                                <animated.ul style={animation}>
+
+                                    <li>
+                                        <h5>Join the Tour</h5>
+                                        <ul className="list-style"> 
+                                            <li>
+                                                <Link 
+                                                    to="courses" 
+                                                    onClick={() => {
+                                                            setIsNavOpen(false)
+                                                            setIsMenuOpen(false)
+                                                        }
+                                                    }
+                                                >
+                                                    Courses
+                                                </Link>
+                                            </li>                                  
+                        
+                                        </ul>                                        
+                                    </li>
+
+                                </animated.ul>
+
+                            )}
+                            
+                        </li>             
         
                     </animated.ul> 
                 )}  

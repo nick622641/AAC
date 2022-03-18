@@ -1,0 +1,58 @@
+[{
+  "_id": {
+    "$oid": "623436673eae254795298373"
+  },
+  "title": "Duncan Veasey",
+  "slug": "duncan-veasey",
+  "description": "<h2>Military psychiatrist with a life-long love of art</h2>\n<p>Qualifying as a doctor from St Bartholomew’s Hospital in London, Dr Duncan Veasey later became a psychiatrist for the Royal Navy. He currently practises in Nova Scotia in post trauma, military and occupational psychiatry.</p>\n<p></p>\n<p>Over the years, Duncan has experimented in pastel and acrylic allegorical still life. He takes inspiration from the German Expressionists and from 19th and 20th century marine art. However, he is equally passionate about the art of David Hockney, Robert Lenkiewicz and Michel Williate-Battet.</p>\n<p></p>\n<p>Duncan has come late to contemporary art but has since started following the work of Abstract Art Canada’s very own, David Brooks. He has been enjoying and promoting David's abstract, international painting in recent years.</p>\n",
+  "background": "Royal Navy",
+  "profession": "Psychiatry",
+  "interests": "The arts and painting",
+  "avatar": {
+    "avatar_id": "friends/mvrw7hsnimqds4xd6fkc",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647588971/friends/mvrw7hsnimqds4xd6fkc.png"
+  },
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-18T07:36:07.595Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "623436b33eae254795298378"
+  },
+  "title": "Susan Bainbridge",
+  "slug": "susan-bainbridge",
+  "description": "<h2>Writer, researcher, teacher and well-travelled art lover</h2>\n<p>Susan Bainbridge holds a doctorate in distance education specialising in online learning and technology-enhanced learning. She is also a novelist, researcher, and consultant.</p>\n<p></p>\n<p>Susan has travelled extensively during the past 30 years, while living as an expat in various locations in Asia and the Middle East. She loves nothing better than discovering and exploring an artist quarter in a new city or town.</p>\n<p></p>\n<p>Susan feels that a life without art and books would be a dull existence. She has recently fallen in love with David Brooks’ paintings, but alas! Not his taste in music.</p>\n",
+  "background": "Distance Education",
+  "profession": "Novelist, Researcher, Consultant",
+  "interests": "Art and reading for pleasure",
+  "avatar": {
+    "avatar_id": "friends/hgshotbvp0zyjyefilvf",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647589047/friends/hgshotbvp0zyjyefilvf.jpg"
+  },
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-18T07:37:23.461Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "623436ef3eae25479529837d"
+  },
+  "title": "Thomas Joseph",
+  "slug": "thomas-joseph",
+  "description": "<h2>Teacher with a passion for art and the great outdoors</h2>\n<p>Born in the UK, Thomas Joseph migrated to Canada with his family when he was three. Initially living in Saskatchewan, he has spent the majority of his life in Nova Scotia. He now lives and works in Halifax as a high school English and Social Studies teacher.</p>\n<p></p>\n<p>Tom brings his passion for art to Abstract Art Canada and he is particularly captivated by the historical overtones of some of our paintings. Tom is excited to join the team at the start of its journey and looks forward to lending his support.</p>\n<p></p>\n<p>In his spare time, Tom enjoys reading and he takes any opportunity to backpack in the Canadian wilderness.</p>\n",
+  "background": "Masters degree in History",
+  "profession": "High school teacher of English and social studies",
+  "interests": "Art, hiking, reading and history",
+  "avatar": {
+    "avatar_id": "friends/xurdo9txoi6pnd5cb42s",
+    "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1647589107/friends/xurdo9txoi6pnd5cb42s.jpg"
+  },
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-03-18T07:38:23.271Z"
+  },
+  "__v": 0
+}]

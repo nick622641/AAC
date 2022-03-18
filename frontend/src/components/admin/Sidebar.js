@@ -21,12 +21,15 @@ import StarsIcon from '@mui/icons-material/Stars'
 import ContactPageIcon from '@mui/icons-material/ContactPage'
 import ArticleIcon from '@mui/icons-material/Article'
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew'
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
 
 const Sidebar = () => {
 
     const [ isSidebarOpen, setSideBarOpen ] = useState(false)
     const [ isBlogMenuVisible, setBlogMenuVisible ] = useState(false)
     const [ isPageMenuVisible, setPageMenuVisible ] = useState(false)
+    const [ isCourseMenuVisible, setCourseMenuVisible ] = useState(false)
     const [ isArtistMenuVisible, setArtistMenuVisible ] = useState(false)
     const [ isStaffMenuVisible, setStaffMenuVisible ] = useState(false)
     const [ isFriendMenuVisible, setFriendMenuVisible ] = useState(false)
@@ -43,6 +46,9 @@ const Sidebar = () => {
     }
     const togglePageMenu = () => {
         setPageMenuVisible(isPageMenuVisible => !isPageMenuVisible)
+    }
+    const toggleCourseMenu = () => {
+        setCourseMenuVisible(isCourseMenuVisible => !isCourseMenuVisible)
     }
     const toggleArtistMenu = () => {
         setArtistMenuVisible(isArtistMenuVisible => !isArtistMenuVisible)
@@ -70,6 +76,10 @@ const Sidebar = () => {
     const pageMenuAppear = useSpring({
         transform: isPageMenuVisible ? "translateY(0)" : "translateY(-40px)",
         opacity: isPageMenuVisible ? 1 : 0
+    })
+    const courseMenuAppear = useSpring({
+        transform: isCourseMenuVisible ? "translateY(0)" : "translateY(-40px)",
+        opacity: isCourseMenuVisible ? 1 : 0
     })
     const artistMenuAppear = useSpring({
         transform: isArtistMenuVisible ? "translateY(0)" : "translateY(-40px)",
@@ -276,6 +286,45 @@ const Sidebar = () => {
                             )}
                         </li>
 
+                        <li onClick={() => {toggleCourseMenu()}}  className="cursor-pointer">                        
+                           
+                            <IconButton>
+                                <AccountBalanceIcon />
+                            </IconButton>
+                            &nbsp; Courses
+                            <IconButton className="arrow-down">
+                                {isCourseMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isCourseMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={courseMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/courses">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/course/new">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>
+
                         <li onClick={() => {toggleArtistMenu()}}  className="cursor-pointer">                        
                            
                             <IconButton>
@@ -315,6 +364,45 @@ const Sidebar = () => {
                             )}
                         </li>    
 
+                        <li onClick={() => {toggleFriendMenu()}}  className="cursor-pointer">                        
+                           
+                            <IconButton>
+                                <AccessibilityNewIcon />
+                            </IconButton>
+                            &nbsp; Friends of AAC
+                            <IconButton className="arrow-down">
+                                {isFriendMenuVisible ? (
+                                    <ArrowDropUpIcon />
+                                ):(
+                                    <ArrowDropDownIcon />
+                                )}                                
+                            </IconButton>
+                       
+                            {isFriendMenuVisible && ( 
+                            <animated.div className="dropdown-menu" style={friendMenuAppear}>  
+                                <ul>                            
+                                    <li>
+                                        <Link to="/admin/friends">
+                                            <IconButton>
+                                                <ImageSearchIcon />
+                                            </IconButton>                                            
+                                            &nbsp; All
+                                        </Link>
+                                    </li>
+                        
+                                    <li>
+                                        <Link to="/admin/friend/new">
+                                            <IconButton>
+                                                <AddIcon />
+                                            </IconButton> 
+                                            &nbsp; Create
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </animated.div>
+                            )}
+                        </li>
+
                         <li onClick={() => {toggleStaffMenu()}}  className="cursor-pointer">                        
                            
                             <IconButton>
@@ -352,46 +440,7 @@ const Sidebar = () => {
                                 </ul>
                             </animated.div>
                             )}
-                        </li>
-
-                        <li onClick={() => {toggleFriendMenu()}}  className="cursor-pointer">                        
-                           
-                            <IconButton>
-                                <GroupAddIcon />
-                            </IconButton>
-                            &nbsp; Friends of AAC
-                            <IconButton className="arrow-down">
-                                {isFriendMenuVisible ? (
-                                    <ArrowDropUpIcon />
-                                ):(
-                                    <ArrowDropDownIcon />
-                                )}                                
-                            </IconButton>
-                       
-                            {isFriendMenuVisible && ( 
-                            <animated.div className="dropdown-menu" style={friendMenuAppear}>  
-                                <ul>                            
-                                    <li>
-                                        <Link to="/admin/friends">
-                                            <IconButton>
-                                                <ImageSearchIcon />
-                                            </IconButton>                                            
-                                            &nbsp; All
-                                        </Link>
-                                    </li>
-                        
-                                    <li>
-                                        <Link to="/admin/staff/new">
-                                            <IconButton>
-                                                <AddIcon />
-                                            </IconButton> 
-                                            &nbsp; Create
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </animated.div>
-                            )}
-                        </li>
+                        </li>                        
                         
                         <li>
                             <Link to="/admin/users">

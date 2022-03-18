@@ -6,6 +6,7 @@ import { productsReducer, latestProductReducer, randomProductReducer, randomProd
 import { blogsReducer, blogDetailsReducer, adminBlogDetailsReducer, newBlogReducer, blogReducer, newCommentReducer, blogCommentsReducer, commentReducer } from './reducers/blogReducers'
 import { paintersReducer, painterDetailsReducer, adminPainterDetailsReducer, newPainterReducer, painterReducer } from './reducers/painterReducers'
 import { pagesReducer, pageDetailsReducer, adminPageDetailsReducer, newPageReducer, pageReducer } from './reducers/pageReducers'
+import { coursesReducer, courseDetailsReducer, adminCourseDetailsReducer, newCourseReducer, courseReducer } from './reducers/courseReducers'
 import { mediaReducer, newMediaReducer, mediumReducer, mediaDetailsReducer, orientationsReducer, orientationDetailsReducer, orientationReducer, newOrientationReducer, artistsReducer, newArtistReducer, artistReducer, artistDetailsReducer } from './reducers/categoryReducers'
 import { authReducer, userReducer, forgotPasswordReducer, allUsersdReducer, userDetailsReducer } from './reducers/userReducers'
 import { cartReducer } from './reducers/cartReducers'
@@ -71,6 +72,12 @@ const reducer = combineReducers({
     adminPageDetails: adminPageDetailsReducer,
     newPage: newPageReducer,
     page: pageReducer,
+
+    courses: coursesReducer,    
+    courseDetails: courseDetailsReducer,
+    adminCourseDetails: adminCourseDetailsReducer,
+    newCourse: newCourseReducer,
+    course: courseReducer,
 
     productReviews: productReviewsReducer,
     review: reviewReducer,
