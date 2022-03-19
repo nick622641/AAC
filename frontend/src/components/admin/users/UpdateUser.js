@@ -109,7 +109,7 @@ const UpdateUser = () => {
                                         onChange={(e) => setRole(e.target.value)}                                        
                                     >                                                                             
                                         <MenuItem value="user">User</MenuItem> 
-                                        <MenuItem value="premium">Premium</MenuItem> 
+                                        {/* <MenuItem value="premium">Premium</MenuItem>  */}
                                         <MenuItem value="admin">Admin</MenuItem> 
                                     </Select>
                                 </FormControl> 

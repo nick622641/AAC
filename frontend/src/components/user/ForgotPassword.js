@@ -43,9 +43,10 @@ const ForgotPassword = () => {
         setCaptcha(true)                  
     }
 
-    const handleChange = () => {        
+    const handleChange = (value) => {        
         const formData = new FormData()
         formData.set('email', email)
+        formData.set('key', value)   
         dispatch(forgotPassword(formData))
         setCaptcha(false)  
     }
@@ -109,7 +110,7 @@ const ForgotPassword = () => {
                 onBackdropClick={() => setCaptcha(false)}   
                 content={ 
                     <ReCAPTCHA
-                        sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
                         onChange={handleChange}
                     /> 
                 }

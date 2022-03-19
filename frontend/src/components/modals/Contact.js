@@ -23,19 +23,22 @@ function Contact() {
     }
 
     const onChange = (value) => {      
-        setCaptcha(false)
+        
         const formData = new FormData()
         formData.set('name', name)
         formData.set('email', email)
-        formData.set('message', message)        
+        formData.set('message', message)   
+        formData.set('key', value)           
         
         axios.post( '/api/v1/contact', formData )
             .then(res => {
                 setSuccess(true)
                 setLoading(false)
-                console.log(`Name: ${name}, Email: ${email} and message: ${message}`)
-            }).catch(() => {
-                console.log('message not sent')
+                setCaptcha(false)
+            }).catch((res) => {
+                setCaptcha(false)
+                setLoading(false)
+                console.log(res)
             })
                         
     }
@@ -131,7 +134,8 @@ function Contact() {
             ) : (
 
                 <ReCAPTCHA
-                    sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+                    sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                    // sitekey={process.env.REACT_APP_RECAPTCHA_TEST_KEY}
                     onChange={onChange}
                 /> 
 

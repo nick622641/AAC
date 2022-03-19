@@ -5,10 +5,19 @@ const sendToken = require('../utils/jwtToken')
 const sendEmail = require('../utils/sendEmail')
 const crypto = require('crypto')
 const cloudinary = require('cloudinary')
+const axios = require('axios')
 
 // Register a User => /api/v1/register
 exports.registerUser = catchAsyncErrors( async (req, res, next) => {
-    const { name, email, password, avatar } = req.body
+    const { name, email, password, avatar, key } = req.body
+
+    const secret = process.env.RECAPTCHA_SECRET_KEY
+    const response = await axios.post(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${key}`
+    )
+    const { success } = response.data
+    if ( !success ) { return next(new ErrorHandler('Nice try!', 500)) }  
+
     // Checks if name, email and password is entered by user
     if(!avatar) {
         return next(new ErrorHandler('Please choose an avatar', 400))
@@ -65,6 +74,14 @@ exports.loginUser = catchAsyncErrors( async(req, res, next) => {
 
 // Forgot Password => /api/v1/password/forgot
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
+
+    const secret = process.env.RECAPTCHA_SECRET_KEY
+    const response = await axios.post(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${req.body.key}`
+    )
+    const { success } = response.data
+    if ( !success ) { return next(new ErrorHandler('Nice try!', 500)) }  
+
     const user = await User.findOne({ email: req.body.email })
     if(!user) {
         return next(new ErrorHandler('User not found with this email', 404))
@@ -73,8 +90,8 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     const resetToken = user.getResetPasswordToken()
     await user.save({ validateBeforeSave: false })
     // Create password reset url
-    const resetUrl = `${req.protocol}://${req.get('host')}/password/reset/${resetToken}`
-    // const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`
+    // const resetUrl = `${req.protocol}://${req.get('host')}/password/reset/${resetToken}`
+    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`
     const message = `Your password reset token is as follows:\n\n${resetUrl}\n\nIf you have not requested a password reset please ignore this email.`
     try {
         await sendEmail({

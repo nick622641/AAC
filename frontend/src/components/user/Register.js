@@ -64,13 +64,15 @@ const Register = () => {
         setCaptcha(true)                  
     }
 
-    const handleChange = () => {             
+    const handleChange = (value) => {             
         setCaptcha(false)
         const formData = new FormData()
         formData.set('name'    , name)
         formData.set('email'   , email)
         formData.set('password', password)
         formData.set('avatar'  , avatar)
+        formData.set('key', value)  
+
         dispatch(register(formData))
     }
 
@@ -213,7 +215,7 @@ const Register = () => {
                 onBackdropClick={() => setCaptcha(false)}   
                 content={ 
                     <ReCAPTCHA
-                        sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
                         onChange={handleChange}
                     /> 
                 }
