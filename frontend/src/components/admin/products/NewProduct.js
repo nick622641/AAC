@@ -29,9 +29,9 @@ const NewProduct = () => {
 
     const [ name,          setName          ] = useState('')
     const [ slug,          setSlug          ] = useState('')
-    const [ price,         setPrice         ] = useState('')
-    const [ width,         setWidth         ] = useState(0)
-    const [ height,        setHeight        ] = useState(0)
+    const [ price,         setPrice         ] = useState()
+    const [ width,         setWidth         ] = useState()
+    const [ height,        setHeight        ] = useState()
     const [ depth,         setDepth         ] = useState(0)
     const [ description,   setDescription   ] = useState('')
     const [ artist,        setArtist        ] = useState('')

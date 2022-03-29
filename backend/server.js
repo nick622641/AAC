@@ -1,13 +1,13 @@
-const connectDatabase = require('./config/database')
-const cloudinary      = require('cloudinary').v2
-const app             = require('./app')
-const dotenv          = require('dotenv')
+const cloudinary = require('cloudinary').v2
+const mongoose   = require('mongoose')
+const app        = require('./app')
+const dotenv     = require('dotenv')
 
 // Setting up config file
 // if (process.env.NODE_ENV !== 'PRODUCTION') {
 //     require('dotenv').config({ path: 'backend/config/config.env' })
 // }
-dotenv.config({ path: 'backend/config/config.env' })
+dotenv.config({ path: 'backend/config.env' })
 
 // Handle Uncaught Exceptions
 process.on('uncaughtException', err => {
@@ -17,7 +17,20 @@ process.on('uncaughtException', err => {
 })
 
 // Conecting to Database
-connectDatabase()
+const db = process.env.NODE_ENV === 'PRODUCTION' 
+        ? process.env.DB_URI 
+        : process.env.DB_LOCAL_URI
+
+    mongoose.connect(db)
+        .then(con => {
+
+            console.log(`MongoDB Database connected with HOST: ${con.connection.host}`)
+
+        }).catch(con => {
+
+            console.log("Error Connecting to the Mongodb Database")            
+
+        }) 
 
 // Setting up Cloudinary config
 cloudinary.config({
