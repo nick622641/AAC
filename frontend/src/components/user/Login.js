@@ -19,7 +19,7 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
-    const path = location.search  ? `/${location.search.split('=')[1]}` : '/'  
+    const path = location.search  ? `/${location.search.split('=')[1]}` : '/me'  
 
     const { loading, isAuthenticated, error } = useSelector( state => state.auth )  
 
@@ -37,10 +37,12 @@ const Login = () => {
         if(isAuthenticated) {
             navigate(redirect)   
         }
+      
         if(error) { 
             alert.error(error)
             dispatch(clearErrors())
         }
+        
     }, [dispatch, navigate, alert, isAuthenticated, redirect, error])
 
     const submitHandler = (e) => {  
@@ -102,7 +104,7 @@ const Login = () => {
                                 Login
                             </Button>
 
-                            <div className="parent">
+                            <div className="parent row">
                                 <Link to="/password/forgot">Forgot Password?</Link>                               
                                 <Link to="/register">New User?</Link>
                             </div>

@@ -13,8 +13,8 @@ import FormattedDate from '../layouts/FormattedDate'
 
 const Profile = () => {
 
-    const { user, loading } = useSelector( state => state.auth )
-
+    const { user, loading } = useSelector( state => state.auth )   
+    
     return (
 
         <Fragment>
@@ -31,63 +31,64 @@ const Profile = () => {
 
                                 <h1>My Profile</h1>
 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td rowSpan="3">                                        
-                                                <Avatar 
-                                                    src={user.avatar.url} 
-                                                    alt={user.name} 
-                                                    sx={{ width: 175, height: 175 }}
-                                                />
-                                            </td>
-                                            <td >
-                                                <h6>Name</h6>
-                                                <p>{user.name}</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h6>Email</h6>
-                                                <p>{user.email}</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h6>Date Joined</h6>
-                                                <p><FormattedDate iso={user.createdAt} format="date" /></p>
-                                            </td>
-                                        </tr>                                  
-                                        <tr>
-                                            <td>
-                                                <Link to="/me/update"> 
-                                                    <IconButton>
-                                                        <EditOutlinedIcon fontSize="small" />
-                                                    </IconButton>
-                                                    Update Profile
-                                                </Link> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <Link to="/password/update">
-                                                    <IconButton>
-                                                        <EditOutlinedIcon fontSize="small" />
-                                                    </IconButton>
-                                                    Update Password
-                                                </Link>
-                                            </td>
-                                            <td>                                           
-                                                <Link to="/orders/me">
-                                                    <IconButton>
-                                                        <VisibilityIcon fontSize="small" />
-                                                    </IconButton>
-                                                    My Orders
-                                                </Link>                                           
-                                            </td>
-                                        </tr>                                   
-                                    </tbody>
-                                </table>
+                                <div className="parent">
+                                    <div className="d-flex align-items-center justify-content-center">
+                                        <Avatar 
+                                            src={user.avatar.url} 
+                                            alt={user.name} 
+                                            sx={{ width: 175, height: 175 }}
+                                        />
+                                    </div>
+
+                                    <div className="spacer" />
+
+                                    <div>
+                                        <h6>Name</h6>
+                                        <p>{user.name}</p>
+
+                                        <br />
+
+                                        <h6>Email</h6>
+                                        <p>{user.email}</p>
+
+                                        <br />
+
+                                        <h6>Date Joined</h6>
+                                        <p><FormattedDate iso={user.createdAt} format="date" /></p>
+
+                                    </div>
+                                </div> 
+
+                                <div className="spacer" />
+
+                                <div className="parent">
+                                    <div>
+                                        <Link to="/me/update"> 
+                                            <IconButton>
+                                                <EditOutlinedIcon fontSize="small" />
+                                            </IconButton>
+                                            Update Profile
+                                        </Link>
+
+                                        <br />
+
+                                        <Link to="/password/update">
+                                            <IconButton>
+                                                <EditOutlinedIcon fontSize="small" />
+                                            </IconButton>
+                                            Update Password
+                                        </Link>
+                                    </div>                                    
+
+                                    <div>
+                                        <Link to="/orders/me">
+                                            <IconButton>
+                                                <VisibilityIcon fontSize="small" />
+                                            </IconButton>
+                                            My Orders
+                                        </Link> 
+                                    </div>
+                                </div>  
 
                                 <Link to="/">                              
                                     <Fab 

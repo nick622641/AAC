@@ -236,3 +236,10 @@ footer small {
         font-size: 32px;    
     }
 }
+@media ( max-width: 480px ) {   
+    header .name,
+    header#homepage.fixed .name {
+        position: static;
+     
+    }
+}

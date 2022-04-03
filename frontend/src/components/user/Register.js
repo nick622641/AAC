@@ -105,76 +105,68 @@ const Register = () => {
 
                         <h1>Register</h1>
 
-                        <table className="top-align">
-                        <tbody>
-                            <tr>
-                                <td rowSpan="3">
-                                    <label className="avatar">                            
-                                        <input
-                                            type="file"  
-                                            className="hidden-input" 
-                                            name="avatar"                            
-                                            accept="images/*"
-                                            onChange={onChange}                                                                                                                             
-                                        />
-                                        <Avatar 
-                                            src={avatarPreview} 
-                                            alt="Avatar Preview" 
-                                            sx={{ width: 175, height: 175 }}
-                                        />  
-                                    </label>
-                                </td>
-                                <td>  
-                                    <FormControl fullWidth>
-                                        <TextField 
-                                            label="Name" 
-                                            name="name"
-                                            value={name}
-                                            variant="standard"
-                                            onChange={onChange} 
-                                        />                                 
-                                    </FormControl> 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> 
-                                    <FormControl fullWidth>
-                                        <TextField 
-                                            label="Email" 
-                                            type="email"
-                                            name="email"
-                                            value={email}
-                                            variant="standard"
-                                            onChange={onChange} 
-                                        />                                 
-                                    </FormControl>  
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>                                
-                                    <FormControl sx={{ mb: 4 }} variant="standard" fullWidth>
-                                        <InputLabel>Password</InputLabel>
-                                        <Input
-                                            type={passwordVisible ? 'text' : 'password'}
-                                            value={password}
-                                            name="password"
-                                            onChange={onChange} 
-                                            endAdornment={
-                                                <InputAdornment position="end">
-                                                    <IconButton onClick={togglePassword}>
-                                                        {passwordVisible 
-                                                            ? <Visibility fontSize="small" /> 
-                                                            : <VisibilityOff fontSize="small" />
-                                                        }
-                                                    </IconButton>
-                                                </InputAdornment>
-                                            }
-                                        />
-                                    </FormControl>
-                                </td>
-                            </tr>
-                        </tbody>
-                        </table>    
+                        <div className="parent">
+                            <div className="d-flex align-items-center justify-content-center">
+                                <label className="avatar">                            
+                                    <input
+                                        type="file"  
+                                        className="hidden-input" 
+                                        name="avatar"                            
+                                        accept="images/*"
+                                        onChange={onChange}                                                                                                                             
+                                    />
+                                    <Avatar 
+                                        src={avatarPreview} 
+                                        alt="Avatar Preview" 
+                                        sx={{ width: 150, height: 150 }}
+                                    />  
+                                </label>
+                            </div>
+                            <div className="spacer" />
+                            <div>
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Name" 
+                                        name="name"
+                                        value={name}
+                                        variant="standard"
+                                        onChange={onChange} 
+                                    />                                 
+                                </FormControl> 
+
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Email" 
+                                        type="email"
+                                        name="email"
+                                        value={email}
+                                        variant="standard"
+                                        onChange={onChange} 
+                                    />                                 
+                                </FormControl>
+
+                                <FormControl sx={{ mb: 4 }} variant="standard" fullWidth>
+                                    <InputLabel>Password</InputLabel>
+                                    <Input
+                                        type={passwordVisible ? 'text' : 'password'}
+                                        value={password}
+                                        name="password"
+                                        onChange={onChange} 
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton onClick={togglePassword}>
+                                                    {passwordVisible 
+                                                        ? <Visibility fontSize="small" /> 
+                                                        : <VisibilityOff fontSize="small" />
+                                                    }
+                                                </IconButton>
+                                            </InputAdornment>
+                                        }
+                                    />
+                                </FormControl>
+
+                            </div>
+                        </div>                
                 
                         <LoadingButton 
                             loading={loading}
@@ -188,7 +180,7 @@ const Register = () => {
                             Sign Up
                         </LoadingButton>
 
-                        <div className="parent">
+                        <div className="parent row">
                             <small>Already signed up?</small>
                             <Link to="/login">Login</Link>
                         </div>

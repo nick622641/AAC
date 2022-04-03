@@ -79,47 +79,47 @@ const UpdateProfile = () => {
                       
                         <h1>Update Profile</h1>
 
-                        <table className="middle-align">
-                            <tbody>
-                                <tr>                                    
-                                    <td>
-                                        <label>  
-                                            <Avatar 
-                                                src={avatarPreview} 
-                                                alt='Avatar Preview' 
-                                                sx={{ width: 175, height: 175 }}
-                                            />                                 
-                                            <input
-                                                type='file' 
-                                                className="hidden-input"  
-                                                onChange={onChange} 
-                                            />         
-                                        </label>
-                                    </td>
-                                    <td>                               
-                                        <FormControl fullWidth>
-                                            <TextField 
-                                                label="Name" 
-                                                value={name}
-                                                variant="standard"
-                                                onChange={(e) => setName(e.target.value)}
-                                                sx={{ mb: 2 }}
-                                            />                                 
-                                        </FormControl> 
+                        <div className="parent">
+                            <div className="d-flex align-items-center justify-content-center">
+                                <label>  
+                                    <Avatar 
+                                        src={avatarPreview} 
+                                        alt='Avatar Preview' 
+                                        sx={{ width: 175, height: 175 }}
+                                    />                                 
+                                    <input
+                                        type='file' 
+                                        className="hidden-input"  
+                                        onChange={onChange} 
+                                    />         
+                                </label>
+                            </div>
 
-                                        <FormControl fullWidth>
-                                            <TextField 
-                                                label="Email" 
-                                                type="email"
-                                                value={email}
-                                                variant="standard"
-                                                onChange={(e) => setEmail(e.target.value)}                                                
-                                            />                                 
-                                        </FormControl>                                       
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>  
+                            <div className="spacer" />
+                            
+                            <div>
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Name" 
+                                        value={name}
+                                        variant="standard"
+                                        onChange={(e) => setName(e.target.value)}
+                                        sx={{ mb: 2 }}
+                                    />                                 
+                                </FormControl> 
+
+                                <FormControl fullWidth>
+                                    <TextField 
+                                        label="Email" 
+                                        type="email"
+                                        value={email}
+                                        variant="standard"
+                                        onChange={(e) => setEmail(e.target.value)}                                                
+                                    />                                 
+                                </FormControl>
+
+                            </div>
+                        </div> 
 
                         <LoadingButton 
                             loading={loading}
