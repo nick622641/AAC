@@ -111,7 +111,7 @@ const Home = () => {
                                 
                                 <br />
 
-                                <Link className="submit chevron-hover" to={`/artwork/${randomBlog[0].slug}`}>
+                                <Link className="submit chevron-hover" to={`/blog/${randomBlog[0].slug}`}>
                                     Read More 
                                 </Link>
                             </div>
