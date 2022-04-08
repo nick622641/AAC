@@ -100,6 +100,7 @@ const Login = () => {
                                 type="submit" 
                                 endIcon={<SendIcon />}
                                 sx={{ width: '100%', mb: 4 }}
+                                disabled={!email || !password ? true : false}
                             >
                                 Login
                             </Button>

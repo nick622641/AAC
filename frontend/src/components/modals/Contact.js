@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import axios from 'axios'
 import { FormControl, TextField } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
@@ -12,7 +12,6 @@ function Contact() {
     const [ email,      setEmail      ] = useState('')
     const [ message,    setMessage    ] = useState('')
     const [ captcha,    setCaptcha    ] = useState(false)
-    const [ isVerified, setIsVerified ] = useState(false)
     const [ success,    setSuccess    ] = useState(false)
     const [ loading,    setLoading    ] = useState(false)
 
@@ -42,11 +41,6 @@ function Contact() {
             })
                         
     }
-    useEffect(() => {
-        if ( name && email && message ) {
-            setIsVerified(true)
-        }
-    }, [ name, email, message])
     
     return (  
 
@@ -104,7 +98,7 @@ function Contact() {
                                 variant="contained"                            
                                 endIcon={<SendIcon />}
                                 sx={{ mt: 4, width: '100%' }}
-                                disabled={ !isVerified ? true : false }
+                                disabled={ !name || !email || !message ? true : false }
                             >
                                 Send Email
                             </LoadingButton>

@@ -223,6 +223,7 @@ const UpdateCourse = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!title || !description || !author || !video ? true : false}
                                 >
                                     Update
                                 </LoadingButton>

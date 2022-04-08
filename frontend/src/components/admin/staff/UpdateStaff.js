@@ -344,6 +344,7 @@ const UpdateStaff = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!title || !description || !background || !profession || !interests || !avatar ? true : false}
                                 >
                                     Update
                                 </LoadingButton>

@@ -285,6 +285,7 @@ const UpdatePage = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!title || !description || !images ? true : false}
                                 >
                                     Update
                                 </LoadingButton>

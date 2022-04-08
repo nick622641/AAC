@@ -20,7 +20,6 @@ const ForgotPassword = () => {
     const alert = useAlert()
     const [ email,      setEmail           ] = useState('')    
     const [ captcha,    setCaptcha         ] = useState(false)
-    const [ isVerified, setIsVerified      ] = useState(false)    
 
     useEffect(() => {    
         if(error) { 
@@ -30,15 +29,9 @@ const ForgotPassword = () => {
         if(message) {
             alert.success(message)    
         }        
-    }, [dispatch, alert, message, error])
+    }, [dispatch, alert, message, error])   
 
-    useEffect(() => {
-        if ( email ) {
-            setIsVerified(true)
-        }
-      }, [ email ])
-
-      const submitHandler = (e) => {
+    const submitHandler = (e) => {
         e.preventDefault()         
         setCaptcha(true)                  
     }
@@ -83,7 +76,7 @@ const ForgotPassword = () => {
                             variant="contained"                            
                             endIcon={<SendIcon />}
                             sx={{ mt: 4, width: '100%' }}
-                            disabled={ !isVerified ? true : false }
+                            disabled={ !email ? true : false }
                         >
                             Send Email
                         </LoadingButton>

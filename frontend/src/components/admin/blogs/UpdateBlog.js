@@ -298,6 +298,7 @@ const UpdateBlog = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!title || !tags || !description || !images ? true : false}
                                 >
                                     Update
                                 </LoadingButton>

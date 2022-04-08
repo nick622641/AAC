@@ -128,6 +128,7 @@ const UpdateProfile = () => {
                             onClick={submitHandler}
                             endIcon={<SendIcon />}
                             sx={{ mt: 4, width: '100%' }}
+                            disabled={!name || !email ? true : false}
                         >
                             Update
                         </LoadingButton>

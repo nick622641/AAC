@@ -324,6 +324,7 @@ const UpdatePainter = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!title || !description || !style || !medium || !inspiration || !images ? true : false}
                                 >
                                     Update
                                 </LoadingButton>

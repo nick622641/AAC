@@ -451,6 +451,7 @@ const UpdateProduct = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!name || !price || !width || !height || !description || !artist || !orientation || !medium || !stock || !images ? true : false}
                                 >
                                     Update
                                 </LoadingButton>

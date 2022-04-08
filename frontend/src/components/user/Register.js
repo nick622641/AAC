@@ -30,7 +30,6 @@ const Register = () => {
     const [ avatarPreview,   setAvatarPreview   ] = useState('/images/default-avatar.jpg')     
     const [ passwordVisible, setPasswordVisible ] = useState()
     const [ captcha,         setCaptcha         ] = useState(false)
-    const [ isVerified,      setIsVerified      ] = useState(false)
 
     const togglePassword = () => {
         setPasswordVisible(!passwordVisible)
@@ -46,12 +45,6 @@ const Register = () => {
             dispatch(clearErrors())
         }
     }, [dispatch, alert, isAuthenticated, error, navigate])
-
-    useEffect(() => {
-        if ( name && email && password && avatar ) {
-            setIsVerified(true)
-        }
-    }, [ name, email, password, avatar]) 
 
     const submitHandler = (e) => {
         e.preventDefault()         
@@ -169,7 +162,7 @@ const Register = () => {
                             onClick={submitHandler}
                             endIcon={<SendIcon />}
                             sx={{ mb: 4, width: '100%' }}
-                            disabled={ !isVerified ? true : false }
+                            disabled={ !name || !email || !password || !avatar ? true : false }
                         >
                             Sign Up
                         </LoadingButton>

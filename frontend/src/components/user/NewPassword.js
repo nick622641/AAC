@@ -112,6 +112,7 @@ const NewPassword = () => {
                             variant="contained" 
                             endIcon={<SendIcon />}
                             sx={{ width: '100%' }}
+                            disabled={!password || !confirmPassword ? true : false}
                         >
                             Set Password
                         </LoadingButton> 

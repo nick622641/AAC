@@ -96,6 +96,7 @@ const UpdateArtist = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={ !name ? true : false }
                                 >
                                     Update
                                 </LoadingButton>                                  
