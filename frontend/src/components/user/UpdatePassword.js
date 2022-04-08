@@ -23,10 +23,11 @@ const UpdatePassword = () => {
     
     const { loading, isUpdated, error } = useSelector( state => state.user )
 
-    const [ newPassword,       setNewPassword         ] = useState('') 
+    const [ newPassword,        setNewPassword        ] = useState('') 
     const [ oldPassword,        setOldPassword        ] = useState('')       
     const [ oldPasswordVisible, setOldPasswordVisible ] = useState(false)
     const [ newPasswordVisible, setNewPasswordVisible ] = useState(false)   
+    const [ isVerified,          setIsVerified        ] = useState(false)
 
     const toggleOldPassword = () => {
         setOldPasswordVisible(!oldPasswordVisible)
@@ -48,6 +49,12 @@ const UpdatePassword = () => {
             })
         }
     }, [dispatch, alert, error, navigate, isUpdated])
+
+    useEffect(() => {
+        if ( newPassword && oldPassword ) {
+            setIsVerified(true)
+        }
+    }, [ newPassword, oldPassword])
 
     const submitHandler = (e) => {        
         e.preventDefault()
@@ -116,6 +123,7 @@ const UpdatePassword = () => {
                             variant="contained" 
                             endIcon={<SendIcon />}
                             sx={{ width: '100%' }}
+                            disabled={ !isVerified ? true : false }
                         >
                             Update Password
                         </LoadingButton>  

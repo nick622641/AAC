@@ -29,7 +29,7 @@ const NewCourse = () => {
     const [ video,         setVideo         ] = useState('')   
     const [ visible,       setVisible       ] = useState(0)   
     const [ fullscreen,    setFullscreen    ] = useState(false)
-    
+       
     const { loading, error, success } = useSelector( state => state.newCourse )
 
     useEffect(() => {       
@@ -195,6 +195,7 @@ const NewCourse = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!title || !description || !author || !video ? true : false}
                                 >
                                     Create
                                 </LoadingButton>

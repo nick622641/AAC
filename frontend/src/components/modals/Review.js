@@ -35,7 +35,7 @@ function Review(props) {
                 <Rating
                     value={rating}
                     sx={{ color: "var(--primary-color)" }}    
-                    style={{ fontSize: "32px", marginBottom: "20px" }}  
+                    style={{ marginBottom: "20px" }}  
                     size="large"               
                     onChange={(event, newValue) => {
                         setRating(newValue)
@@ -51,6 +51,7 @@ function Review(props) {
                     variant="contained"                    
                     endIcon={<SendIcon />}
                     sx={{ mt: 4, width: '100%' }}
+					disabled={!rating || !comment ? true : false}
                 >
                     Submit
                 </LoadingButton>                            

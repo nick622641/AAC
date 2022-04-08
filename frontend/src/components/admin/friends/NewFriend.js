@@ -32,7 +32,7 @@ const NewFriend = () => {
     const [ visible,       setVisible       ] = useState(0)   
     const [ avatar,        setAvatar        ] = useState('') 
     const [ avatarPreview, setAvatarPreview ] = useState('/images/default-avatar.jpg')  
-    const [ fullscreen,    setFullscreen    ] = useState(false)
+    const [ fullscreen,    setFullscreen    ] = useState(false)    
     
     const { loading, error, success } = useSelector( state => state.newFriend )
 
@@ -220,6 +220,7 @@ const NewFriend = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!title || !description || !background || !profession || !interests || !avatar ? true : false}
                                 >
                                     Create
                                 </LoadingButton>

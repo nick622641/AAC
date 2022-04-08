@@ -9,7 +9,6 @@
 /* CSS Reset */
 * {    
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -72,6 +71,7 @@ a {
   text-decoration: none;
   color: var(--secondary-color);
   transition: all var(--speed);
+  font-size: 14px;
 }
 a:hover {
   color: var(--primary-color);

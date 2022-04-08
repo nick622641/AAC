@@ -26,7 +26,7 @@ const Login = () => {
     const [ email,           setEmail           ] = useState('')
     const [ password,        setPassword        ] = useState('')    
     const [ passwordVisible, setPasswordVisible ] = useState()
-    const [ redirect                            ] = useState(path)       
+    const [ redirect                            ] = useState(path)     
 
     const togglePassword = () => {
         setPasswordVisible(!passwordVisible)

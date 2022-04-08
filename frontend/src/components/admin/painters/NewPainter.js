@@ -29,7 +29,7 @@ const NewPainter = () => {
     const [ style,         setStyle         ] = useState('')   
     const [ medium,        setMedium        ] = useState('')   
     const [ inspiration,   setInspiration   ] = useState('')   
-    const [ visible,       setVisible       ] = useState(0) 
+    const [ visible,       setVisible       ] = useState(0)    
   
     const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
@@ -245,6 +245,7 @@ const NewPainter = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!title || !description || !style || !medium || !inspiration || !images ? true : false}
                                 >
                                     Create
                                 </LoadingButton>

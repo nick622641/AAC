@@ -358,4 +358,64 @@
     "$date": "2022-03-13T00:26:48.964Z"
   },
   "__v": 0
+},{
+  "_id": {
+    "$oid": "624fe7149abd794b98889cd2"
+  },
+  "title": "Robbin Yager",
+  "slug": "robbin-yager",
+  "description": "<h2>A visual artist who captures the soul of intimate wilderness</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1649403751/richtext/f5bazl0jx3lg36sgf919.jpg\" alt=\"Robbin Yager\" style=\"height: auto;width: 240px\"/></div>\n<p>Originally from Calgary, Alberta, Robbin Yager graduated from the Alberta University of the Arts with a major in printmaking and a minor in drawing.</p>\n<p></p>\n<p>Since graduating, Robbin has travelled extensively over the years. Her experiences in India, Nepal, Europe, Mexico, Central America, the USA and Morocco have all been significant influences on her art.</p>\n<p></p>\n<p>Robbin's work reflects her passion for the natural world, the environment and man's impact on the Earth. She's an avid explorer, and can often be found trekking pristine trails in the Rockies or the deserts of the US south west. She explains: “<em>I pursue intimate wilderness experiences to power my vision and my palette.</em>”</p>\n<p></p>\n<p>Her work characterizes elements found in landscape, which she treats as portrait, seeking to capture the soul of her surroundings. She uses bright colors and large immersive formats and often adds a slant of humor to her works.</p>\n<p></p>\n<p>Robbin has exhibited in major public and private galleries across Canada. Her work has also been included in print shows in the USA, Peru, Holland, Slovenia, Germany and Finland. Her prints, drawings and paintings are part of many public, private and corporate collections in Canada and the USA. In addition, she has won multiple awards for her prints and received grants from Alberta Foundation for the Arts, the Ontario Arts Council, and Canada Council.</p>\n<p></p>\n<p>Robbin is now based in Mayne Island, British Columbia where she continues to work as a visual artist creating handmade prints and mixed media drawings. She also enjoys photography, creative writing and dabbling in object sculpture.</p>\n",
+  "style": "Abstraction",
+  "medium": "Oil on Canvas / Oil Pastel",
+  "inspiration": "Frank Stella, Cy Twombly, Pierre Bonnard, Patterson Ewan, Milton Avery, David Hockney, Agnes Martin, Mathew Wong",
+  "images": [
+    {
+      "public_id": "painters/nzqxjr3xfyy00xhswvsv",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649403842/painters/nzqxjr3xfyy00xhswvsv.jpg",
+      "thumb_id": "painters/dhrdezmu2witrt7siqy8",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649403839/painters/dhrdezmu2witrt7siqy8.jpg",
+      "_id": {
+        "$oid": "624fe7c09abd794b98889d30"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-04-08T07:41:08.156Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624fe8c89abd794b98889dab"
+  },
+  "title": "Phoebe Bradbury",
+  "slug": "phoebe-bradbury",
+  "description": "<h2>An abstract expressionist creator of beautiful, underworked art</h2>\n<p></p>\n<div style=\"text-align:left;\"><img src=\"https://res.cloudinary.com/marine-graphics/image/upload/v1649404036/richtext/oufstgbpwx2a4kqnzsmc.jpg\" alt=\"Phoebe Bradbury\" style=\"height: auto;width: 240px\"/></div>\n<p>Phoebe Bradbury is a Canadian visual artist from Manitoba, Canada.  In addition to qualifications in aquaculture, physiology and anthropology she has a degree in Fine Arts from Alberta College of Art and Design (ACAD) graduating with Distinction.</p>\n<p></p>\n<p>During her time at ACAD, Phoebe exhibited her art across a selection of venues in Calgary. After graduating in 2006 Phoebe worked as an educator in abstract and acrylic painting at her alma mater, at Mount Royal College in Calgary and at the High River Cultural Centre in High River, Alberta. She also kept a studio in Nanton where she taught art.</p>\n<p></p>\n<p>Since 2020, Phoebe has been living and working in Yucatan, Mexico, where she has her newer studio. She produces two or three small works every week in between selling her own brand of artist tools.</p>\n<p></p>\n<p>Phoebe's paintings typically employ experimentation with acrylic paint and ways to apply it. Talking about her art, she describes is as “fresh and underworked”. Though she may spend weeks or longer studying a technique and doing small studies to prepare for a larger piece, she often completes her artworks in less than a day.</p>\n<p></p>\n<p>Describing her influences as “all the art she has ever seen”, Phoebe also takes inspiration from abstract expressionism and the “underworked and beautiful art created by children.”</p>\n<p></p>\n<p>When she is not making art, Phoebe can be found with her family or at the beach where she livestreams demonstrations of her art tools and techniques at Facebook.com/StudioArtSchool.</p>\n<p></p>\n<h4>PREVIOUS EXHIBITIONS</h4>\n<ul>\n<li>2021-2022: Scheduled Art Demos</li>\n<li>2017: Studio Tour: Merida, Yucatan, Mexico</li>\n<li>2009: Nine: Group show, Marquee Room, Calgary AB</li>\n<li>2008: Art of Pulse: Group show, Pulse Medical, Calgary AB</li>\n<li>2007: Layers of Light: Solo show, Nakusp BC</li>\n<li>2007: Orchophelia: Solo show, Marion Nicoll Gallery, Calgary AB</li>\n<li>2006: Summer Latitudes: Group show, Calgary AB</li>\n<li>2005: Graduation Show: Group show, Calgary AB</li>\n</ul>\n<p></p>\n<p>For a complete list of Phoebe’s exhibitions and teaching experience, visit <a href=\"https://phoebebradbury.com/art-cv\" target=\"_blank\">https://phoebebradbury.com/art-cv</a>&nbsp;</p>\n",
+  "style": "Abstraction",
+  "medium": "Acrylic on canvas, wood and paper",
+  "inspiration": "Abstract expressionism, underworked art, art by children",
+  "images": [
+    {
+      "public_id": "painters/nkw5jd6f5pqlkksmoaev",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649404107/painters/nkw5jd6f5pqlkksmoaev.jpg",
+      "thumb_id": "painters/w29hp4nahjxakf6wvzsv",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649404103/painters/w29hp4nahjxakf6wvzsv.jpg",
+      "_id": {
+        "$oid": "624fe8c89abd794b98889dac"
+      }
+    }
+  ],
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "name": "Nick Dittmer",
+  "visible": 1,
+  "createdAt": {
+    "$date": "2022-04-08T07:48:24.593Z"
+  },
+  "__v": 0
 }]

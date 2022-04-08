@@ -76,8 +76,8 @@ const StaffList = () => {
                     width: 150                
                 },
                 {
-                    label: 'Title',
-                    field: 'title',
+                    label: 'Name',
+                    field: 'name',
                     sort: 'asc',
                     width: 120
                 }                            
@@ -120,7 +120,7 @@ const StaffList = () => {
                                 </IconButton>   
                             </Tooltip>                   
                         </Fragment>,
-                title: staffMember.title   
+                name: staffMember.title   
                
             })
         })

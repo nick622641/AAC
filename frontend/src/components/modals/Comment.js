@@ -39,6 +39,7 @@ const Comment = ({ comment }) => {
                     variant="contained"                    
                     endIcon={<SendIcon />}
                     sx={{ mt: 4, width: '100%' }}
+					disabled={ !_comment ? true : false}
                 >
                     Submit
                 </LoadingButton>                            

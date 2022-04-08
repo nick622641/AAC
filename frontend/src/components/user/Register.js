@@ -51,13 +51,7 @@ const Register = () => {
         if ( name && email && password && avatar ) {
             setIsVerified(true)
         }
-      }, [ name, email, password, avatar])
-
-      useEffect(() => {
-        if ( email ) {
-            setIsVerified(true)
-        }
-      }, [ email ])
+    }, [ name, email, password, avatar]) 
 
     const submitHandler = (e) => {
         e.preventDefault()         
