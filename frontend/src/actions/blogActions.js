@@ -15,7 +15,10 @@ import {
     DELETE_BLOG_FAIL,
     ALL_BLOGS_REQUEST, 
     ALL_BLOGS_SUCCESS, 
-    ALL_BLOGS_FAIL,    
+    ALL_BLOGS_FAIL,  
+    RANDOM_BLOG_REQUEST,
+    RANDOM_BLOG_SUCCESS,
+    RANDOM_BLOG_FAIL,  
     BLOG_DETAILS_REQUEST,
     BLOG_DETAILS_SUCCESS,
     BLOG_DETAILS_FAIL,   
@@ -104,6 +107,30 @@ export const getBlogDetails = (slug) => async (dispatch) => {
 
         dispatch({
             type: BLOG_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+
+    }
+}
+
+// Get random blog limit n
+export const getRandomBlog = (quantity) => async (dispatch) => {
+    
+    try {
+
+        dispatch({ type: RANDOM_BLOG_REQUEST })     
+
+        const { data } = await axios.get(`/api/v1/blog/random/${quantity}`)
+
+        dispatch({
+            type: RANDOM_BLOG_SUCCESS,
+            payload: data.randomBlog
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: RANDOM_BLOG_FAIL,
             payload: error.response.data.message
         })
 

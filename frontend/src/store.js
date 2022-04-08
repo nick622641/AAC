@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { productsReducer, latestProductReducer, randomProductReducer, randomProductsReducer, randomProductsDetailsReducer, productDetailsReducer, adminProductDetailsReducer, newReviewReducer, newProductReducer, newProductUserReducer, productReducer, productReviewsReducer, reviewReducer } from './reducers/productReducers'
-import { blogsReducer, blogDetailsReducer, adminBlogDetailsReducer, newBlogReducer, blogReducer, newCommentReducer, blogCommentsReducer, commentReducer } from './reducers/blogReducers'
+import { blogsReducer, randomBlogReducer, blogDetailsReducer, adminBlogDetailsReducer, newBlogReducer, blogReducer, newCommentReducer, blogCommentsReducer, commentReducer } from './reducers/blogReducers'
 import { paintersReducer, painterDetailsReducer, adminPainterDetailsReducer, newPainterReducer, painterReducer } from './reducers/painterReducers'
 import { pagesReducer, pageDetailsReducer, adminPageDetailsReducer, newPageReducer, pageReducer } from './reducers/pageReducers'
 import { coursesReducer, courseDetailsReducer, adminCourseDetailsReducer, newCourseReducer, courseReducer } from './reducers/courseReducers'
@@ -41,6 +41,7 @@ const reducer = combineReducers({
 
     blogs: blogsReducer,    
     blogDetails: blogDetailsReducer,
+    randomBlog: randomBlogReducer,
     adminBlogDetails: adminBlogDetailsReducer,
     newBlog: newBlogReducer,
     blog: blogReducer,

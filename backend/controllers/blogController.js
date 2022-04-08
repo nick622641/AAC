@@ -180,6 +180,22 @@ exports.deleteBlog = catchAsyncErrors(async (req, res, next) => {
     }
 })
 
+// Get n random blogs => /api/v1/blog/random/:quantity
+exports.getRandomBlog = async (req, res, next) => {  
+
+    const quantity = Number(req.params.quantity)
+     
+    const randomBlog = await Blog.aggregate([ 
+        { $match: { visible: {$ne: 0}} }, 
+        { $sample: { size: quantity } } 
+    ])
+
+    res.status(200).json({
+        success: true,       
+        randomBlog
+    })    
+}
+
 // Delete Blog Image => /api/v1/blogImage
 exports.deleteImage = catchAsyncErrors(async (req, res, next) => {
 

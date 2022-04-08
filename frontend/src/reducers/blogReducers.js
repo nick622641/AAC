@@ -6,6 +6,9 @@ import {
     NEW_BLOG_RESET,
     NEW_BLOG_SUCCESS,
     NEW_BLOG_FAIL,
+    RANDOM_BLOG_REQUEST,
+    RANDOM_BLOG_SUCCESS,
+    RANDOM_BLOG_FAIL,
     UPDATE_BLOG_REQUEST,
     UPDATE_BLOG_SUCCESS,
     UPDATE_BLOG_RESET,
@@ -170,6 +173,39 @@ export const blogReducer = ( state = {}, action ) => {
             }
         default:
             return state
+    }
+}
+
+export const randomBlogReducer = ( state = { randomBlog: [] }, action ) => {
+    switch(action.type) {
+
+        case RANDOM_BLOG_REQUEST:
+            return {
+                loading: true,
+                randomBlog: []               
+            }  
+
+        case RANDOM_BLOG_SUCCESS:
+            return {
+                loading: false,
+                randomBlog: action.payload                 
+            }   
+       
+        case RANDOM_BLOG_FAIL:
+             return {
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                 error: null
+            }
+
+        default:
+            return state
+
     }
 }
 

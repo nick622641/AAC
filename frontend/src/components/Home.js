@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { getCalloutProducts, getLatestProduct, getRandomProducts, getRandomProductsDetails, getRandomProduct } from '../actions/productActions'
+import { getRandomBlog } from '../actions/blogActions'
 import { useDispatch, useSelector } from 'react-redux'
 import MetaData from './layouts/MetaData'
 import Callout from './layouts/images/Callout'
@@ -10,6 +11,8 @@ import Banner from './layouts/images/Banner'
 import Latest from './layouts/images/Latest'
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
+import RichtextOutput from './layouts/richtext/RichtextOutput'
+import FormattedDate from './layouts/FormattedDate'
 
 const Home = () => {  
     
@@ -18,6 +21,7 @@ const Home = () => {
     const { calloutProducts       } = useSelector( state => state.products )          
     const { randomProductsDetails } = useSelector( state => state.randomProductsDetails )          
     const { randomProduct         } = useSelector( state => state.randomProduct )
+    const { randomBlog            } = useSelector( state => state.randomBlog )
     const { latestProduct         } = useSelector( state => state.latestProduct )
 
     useEffect(() => {  
@@ -26,6 +30,7 @@ const Home = () => {
         dispatch(getRandomProducts(12))       
         dispatch(getRandomProductsDetails(8))       
         dispatch(getRandomProduct(2))       
+        dispatch(getRandomBlog(1))       
         dispatch(getLatestProduct())       
 
     }, [dispatch])
@@ -84,6 +89,44 @@ const Home = () => {
 
                 </div>
             </div>  
+
+            <div className="container">
+
+                <div className="wrapper">  
+
+                    {randomBlog && randomBlog.length > 0 && (
+
+                        <div className="parent align-items-center">
+                            
+                            <div className="parent col-6 wrapper callout">
+                                <h2>{randomBlog[0].title}</h2>
+
+                                <h6>Posted by {randomBlog[0].name}</h6>
+
+                                <p><FormattedDate iso={randomBlog[0].createdAt} format="date" /></p>
+
+                                <br />
+
+                                <RichtextOutput text={`${randomBlog[0].description.substring(0, 300)}...`} />
+                                
+                                <br />
+
+                                <Link className="submit chevron-hover" to={`/artwork/${randomBlog[0].slug}`}>
+                                    Read More 
+                                </Link>
+                            </div>
+
+                            <div className="col-6">
+                                <img src={randomBlog[0].images[0].url} alt={randomBlog[0].title} />
+                            </div>
+
+                        </div> 
+
+                    )}    
+
+                </div>
+
+            </div>        
             
             {randomProduct && randomProduct.length > 0 && (
                 <Banner product={randomProduct[0]} />
