@@ -76,4 +76,10 @@
   },
   "name": "Oil Pastel",
   "__v": 0
+},{
+  "_id": {
+    "$oid": "62540da56c25bc62035528b0"
+  },
+  "name": "Acrylic on Paper",
+  "__v": 0
 }]

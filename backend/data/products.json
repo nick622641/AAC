@@ -9431,4 +9431,298 @@
     "$date": "2022-03-29T14:54:20.703Z"
   },
   "__v": 0
+},{
+  "_id": {
+    "$oid": "62540e156c25bc62035528b8"
+  },
+  "name": "Morning Sun",
+  "slug": "morning-sun",
+  "price": 175,
+  "width": 28,
+  "height": 22,
+  "depth": 0,
+  "description": "<p>We live on the Yucatan Peninsula in Mexico our house faces North to Texas. The morning sun comes from the right as in this painting. Like most of these Acrylic on Yupo paper studies this was done for an audience on live video.</p>\n",
+  "ratings": 0,
+  "images": [
+    {
+      "public_id": "products/gbb84grpvd8jxz3qtx3f",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649675797/products/gbb84grpvd8jxz3qtx3f.jpg",
+      "thumb_id": "products/thtdqjkw6i0c2dthmm1x",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649675794/products/thtdqjkw6i0c2dthmm1x.jpg",
+      "_id": {
+        "$oid": "62540e156c25bc62035528ba"
+      }
+    },
+    {
+      "public_id": "products/igdhinbahzh2irfm02w3",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649675787/products/igdhinbahzh2irfm02w3.jpg",
+      "thumb_id": "products/n1u2phyiy4nkqkdjluk6",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649675784/products/n1u2phyiy4nkqkdjluk6.jpg",
+      "_id": {
+        "$oid": "62540e156c25bc62035528b9"
+      }
+    }
+  ],
+  "artist": "Phoebe Bradbury",
+  "orientation": "Landscape",
+  "media": "Acrylic on Paper",
+  "datePublished": {
+    "$date": "2021-12-01T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "visible": 1,
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-04-11T11:16:37.800Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62540e6b6c25bc6203552beb"
+  },
+  "name": "Dark Designs",
+  "slug": "dark-designs",
+  "price": 175,
+  "width": 22,
+  "height": 28,
+  "depth": 0,
+  "description": "<p>This is a painting that I like more, the more I see it. Dark Designs was painted just before Virus for Sale. You can see I was having an interesting day. I did not like this at first. I forget what colors were squirted on the Yupo paper at the beginning, but they soon got all mixed up and became gray. I was using a homemade silicon tool to scrape through - my parallel linemaker. I look at it now and I see a thwarted struggle. Grey somewhat parallel lines pushing though, and continuing. Sometimes life feels like that.</p>\n",
+  "ratings": 0,
+  "images": [
+    {
+      "public_id": "products/c77aqpzdpmxzmibvjnrd",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649675883/products/c77aqpzdpmxzmibvjnrd.jpg",
+      "thumb_id": "products/atlu3feggwdf5gjwjri7",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649675880/products/atlu3feggwdf5gjwjri7.jpg",
+      "_id": {
+        "$oid": "62540e6b6c25bc6203552bed"
+      }
+    },
+    {
+      "public_id": "products/y1avpcr6azrdjgivlhim",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649675877/products/y1avpcr6azrdjgivlhim.jpg",
+      "thumb_id": "products/ewjne0egszrndnxtlyhu",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649675875/products/ewjne0egszrndnxtlyhu.jpg",
+      "_id": {
+        "$oid": "62540e6b6c25bc6203552bec"
+      }
+    }
+  ],
+  "artist": "Phoebe Bradbury",
+  "orientation": "Portrait",
+  "media": "Acrylic on Paper",
+  "datePublished": {
+    "$date": "2021-11-22T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "visible": 1,
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-04-11T11:18:03.994Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62540ee76c25bc6203552f22"
+  },
+  "name": "Virus for Sale",
+  "slug": "virus-for-sale",
+  "price": 175,
+  "width": 22,
+  "height": 28,
+  "depth": 0,
+  "description": "<p>I would say about this that my online viewers got to see anger and frustration in action with the mark making. One viewer, my husband, said it looks like a virus and the name stuck. I had been a little frustrated because my previous attempt on the paper had to be rinsed away. When I look at it now it looks evil.</p>\n",
+  "ratings": 0,
+  "images": [
+    {
+      "public_id": "products/vzqo7u7hif9gdckjilha",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676006/products/vzqo7u7hif9gdckjilha.jpg",
+      "thumb_id": "products/cyfvw2lvxqprvicrxfo6",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676003/products/cyfvw2lvxqprvicrxfo6.jpg",
+      "_id": {
+        "$oid": "62540ee76c25bc6203552f24"
+      }
+    },
+    {
+      "public_id": "products/x7u8sbpanecnkmj5fifg",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676000/products/x7u8sbpanecnkmj5fifg.jpg",
+      "thumb_id": "products/a6aushzeskyhtdmnshj8",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649675997/products/a6aushzeskyhtdmnshj8.jpg",
+      "_id": {
+        "$oid": "62540ee76c25bc6203552f23"
+      }
+    }
+  ],
+  "artist": "Phoebe Bradbury",
+  "orientation": "Portrait",
+  "media": "Acrylic on Paper",
+  "datePublished": {
+    "$date": "2021-11-22T11:18:18Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "visible": 1,
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-04-11T11:20:07.259Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "625411406c25bc62035538b3"
+  },
+  "name": "Overlapping Thoughts",
+  "slug": "overlapping-thoughts",
+  "price": 175,
+  "width": 28,
+  "height": 22,
+  "depth": 0,
+  "description": "<p>This was executed very quickly. Red and yellow squirted on and played with. Approaching 75, I wonder how anyone can control or organize all the random thoughts that flit through the mind hour after hour. I had no trouble naming this when I saw it the next morning. It seems to me anxious and frightening. As I look at it now I see drops of blood. I think I need to meditate more. This has been set to music on youtube and it is less scary.</p>\n",
+  "ratings": 0,
+  "images": [
+    {
+      "public_id": "products/s7d6h9ampzrqp3frz9ik",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676605/products/s7d6h9ampzrqp3frz9ik.jpg",
+      "thumb_id": "products/uasrxmwehq9k7uotkaxa",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676601/products/uasrxmwehq9k7uotkaxa.jpg",
+      "_id": {
+        "$oid": "625411406c25bc62035538b5"
+      }
+    },
+    {
+      "public_id": "products/egidj8scsy80hhdi6dt3",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676597/products/egidj8scsy80hhdi6dt3.jpg",
+      "thumb_id": "products/psrrnnckbbceppdkx1tq",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676589/products/psrrnnckbbceppdkx1tq.jpg",
+      "_id": {
+        "$oid": "625411406c25bc62035538b4"
+      }
+    }
+  ],
+  "artist": "Phoebe Bradbury",
+  "orientation": "Landscape",
+  "media": "Acrylic on Paper",
+  "datePublished": {
+    "$date": "2021-11-17T11:28:25Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "visible": 1,
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-04-11T11:30:08.645Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "625411a46c25bc6203553bf2"
+  },
+  "name": "Orange Regrets",
+  "slug": "orange-regrets",
+  "price": 175,
+  "width": 28,
+  "height": 22,
+  "depth": 0,
+  "description": "<p>A quick study using a new tool with yellow and red squirted on the yupo paper. This is a warm-up for me. I don't know why I named this Orange Regrets but that is the name that popped into my mind when I looked at it the next morning. All the happiness and alignment below and the stronger disruptions on the top may have made me think this. Right now - maybe I just made it up.</p>\n",
+  "ratings": 0,
+  "images": [
+    {
+      "public_id": "products/uhrbh6sbvhtlimolxski",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676708/products/uhrbh6sbvhtlimolxski.jpg",
+      "thumb_id": "products/y6gnqty2bifkcwtpqm29",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676704/products/y6gnqty2bifkcwtpqm29.jpg",
+      "_id": {
+        "$oid": "625411a46c25bc6203553bf4"
+      }
+    },
+    {
+      "public_id": "products/o9sxkijegto3ito5tfsj",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676700/products/o9sxkijegto3ito5tfsj.jpg",
+      "thumb_id": "products/bmpli0dezs9ny1ifj4p4",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676697/products/bmpli0dezs9ny1ifj4p4.jpg",
+      "_id": {
+        "$oid": "625411a46c25bc6203553bf3"
+      }
+    }
+  ],
+  "artist": "Phoebe Bradbury",
+  "orientation": "Landscape",
+  "media": "Acrylic on Paper",
+  "datePublished": {
+    "$date": "2021-11-15T00:00:00Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "visible": 1,
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-04-11T11:31:48.866Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "625412406c25bc6203554123"
+  },
+  "name": "Blue Bridge",
+  "slug": "blue-bridge",
+  "price": 175,
+  "width": 28,
+  "height": 22,
+  "depth": 0,
+  "description": "<p>This was made during a demonstration of new art tools and was a response to the enjoying the new tool and the squirts of paint that had been added to the canvas. I usually name the piece the next day when I can see it with fresh eyes. 'Blue Bridge ' is a move from blue to now. If you see the video taken while I was doing it you will see that it is done very quickly - less than 2 minutes even when not speeded up. This is a warm-up study that I usually do before starting to work on larger piece. It is available for viewing on youtube and several other places online.</p>\n",
+  "ratings": 0,
+  "images": [
+    {
+      "public_id": "products/n0k8bs9ffoyunmnaeuk5",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676863/products/n0k8bs9ffoyunmnaeuk5.jpg",
+      "thumb_id": "products/hfpbs1mwbhicxr7s9dct",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676860/products/hfpbs1mwbhicxr7s9dct.jpg",
+      "_id": {
+        "$oid": "625412406c25bc6203554125"
+      }
+    },
+    {
+      "public_id": "products/ivoxie5xqknyx0px1oth",
+      "url": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676856/products/ivoxie5xqknyx0px1oth.jpg",
+      "thumb_id": "products/i4wpjdcvsgxt4ryeqlv7",
+      "thumbUrl": "https://res.cloudinary.com/marine-graphics/image/upload/v1649676853/products/i4wpjdcvsgxt4ryeqlv7.jpg",
+      "_id": {
+        "$oid": "625412406c25bc6203554124"
+      }
+    }
+  ],
+  "artist": "Phoebe Bradbury",
+  "orientation": "Landscape",
+  "media": "Acrylic on Paper",
+  "datePublished": {
+    "$date": "2021-11-03T11:33:05Z"
+  },
+  "stock": 1,
+  "numOfReviews": 0,
+  "user": {
+    "$oid": "61b7bae1939ff81896b8cd56"
+  },
+  "visible": 1,
+  "reviews": [],
+  "createdAt": {
+    "$date": "2022-04-11T11:34:24.533Z"
+  },
+  "__v": 0
 }]
