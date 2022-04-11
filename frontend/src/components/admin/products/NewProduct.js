@@ -195,8 +195,9 @@ const NewProduct = () => {
                                                 label="Url Slug - (Read Only)"
                                                 variant="filled"
                                                 value={slug}
+                                                disabled={true}
                                                 InputProps={{
-                                                    readOnly: true,
+                                                    readOnly: true
                                                 }}
                                                 InputLabelProps={{
                                                     shrink: true,

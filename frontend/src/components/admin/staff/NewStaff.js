@@ -202,6 +202,7 @@ const NewStaff = () => {
                                                 label="Url Slug - (Read Only)"
                                                 variant="filled"
                                                 value={slug}
+                                                disabled={true}
                                                 InputProps={{
                                                     readOnly: true,
                                                 }}
