@@ -99,7 +99,13 @@ const ProductsList = () => {
                     field: 'stock',
                     sort: 'asc',
                     width: 90
-                }                
+                },
+                {
+                    label: 'Status',
+                    field: 'status',
+                    sort: 'asc',
+                    width: 90
+                }                 
             ],
             rows: []
         }
@@ -143,7 +149,8 @@ const ProductsList = () => {
                 name: product.name,
                 artist: product.artist,
                 reviews: product.numOfReviews,
-                stock: product.stock                
+                stock: product.stock,
+                status: product.visible === 1 ? 'Published' : 'Draft'                
             })
         })
 

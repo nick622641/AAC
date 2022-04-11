@@ -86,8 +86,14 @@ const BlogsList = () => {
                     label: 'Comments',
                     field: 'comments',
                     sort: 'asc',
+                    width: 120
+                },
+                {
+                    label: 'Status',
+                    field: 'status',
+                    sort: 'asc',
                     width: 90
-                }                
+                }                 
             ],
             rows: []
         }
@@ -128,8 +134,8 @@ const BlogsList = () => {
                         </Tooltip>                     
                     </Fragment>,
                 title: blog.title,    
-                comments: blog.numOfComments           
-               
+                comments: blog.numOfComments,
+                status: blog.visible === 1 ? 'Published' : 'Draft'   
             })
         })
 
