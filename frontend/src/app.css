@@ -399,7 +399,7 @@ input:-webkit-autofill {
   }
   .modal { 
     position: relative;      
-    top: 0;
+    top: 50px;
   }
   .spacer {
     padding: 20px;

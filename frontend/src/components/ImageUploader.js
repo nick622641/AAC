@@ -26,8 +26,8 @@ const ImageUploader = () => {
     const [ name,          setName          ] = useState('')
     const [ slug,          setSlug          ] = useState('')
     const [ price,         setPrice         ] = useState('')
-    const [ width,         setWidth         ] = useState(0)
-    const [ height,        setHeight        ] = useState(0)
+    const [ width,         setWidth         ] = useState()
+    const [ height,        setHeight        ] = useState()
     const [ depth,         setDepth         ] = useState(0)
     const [ description,   setDescription   ] = useState('')
     const [ artist,        setArtist        ] = useState('')
@@ -37,7 +37,7 @@ const ImageUploader = () => {
     const [ datePublished, setDatePublished ] = useState(Date.now())
     const [ images,        setImages        ] = useState([])
     const [ imagesPreview, setImagesPreview ] = useState([])
-    const [ fullscreen,    setFullscreen    ] = useState(false)
+    const [ fullscreen,    setFullscreen    ] = useState(false)    
     
     const { loading, error, success } = useSelector( state => state.newProductUser )
     const { media                   } = useSelector( state => state.media )
@@ -334,6 +334,7 @@ const ImageUploader = () => {
                                     type="submit"
                                     endIcon={<SendIcon />}
                                     sx={{ mt: 4, width: '100%' }}
+                                    disabled={!name || !stock || !price || !width || !height || !description || !artist || !orientation || !medium || !images ? true : false}
                                 >
                                     Create
                                 </LoadingButton>

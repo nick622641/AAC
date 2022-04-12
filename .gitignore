@@ -6,7 +6,7 @@
 /frontend/build
 
 # misc
-/backend/config/config.env
+/backend/config.env
 # /frontend/.env
 /frontend/.env.local
 /frontend/.env.development.local
